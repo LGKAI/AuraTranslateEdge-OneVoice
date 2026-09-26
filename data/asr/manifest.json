@@ -1,0 +1,122 @@
+[
+  {
+    "lang": "vi",
+    "path": "data/asr/vi/vi_0.wav",
+    "transcript": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+    "duration_s": 11.34
+  },
+  {
+    "lang": "vi",
+    "path": "data/asr/vi/vi_1.wav",
+    "transcript": "đối với springboks trận này đã giúp đội tuyển kết thúc chuỗi thua 5 trận liền",
+    "duration_s": 7.26
+  },
+  {
+    "lang": "vi",
+    "path": "data/asr/vi/vi_2.wav",
+    "transcript": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+    "duration_s": 10.02
+  },
+  {
+    "lang": "vi",
+    "path": "data/asr/vi/vi_3.wav",
+    "transcript": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+    "duration_s": 11.16
+  },
+  {
+    "lang": "vi",
+    "path": "data/asr/vi/vi_4.wav",
+    "transcript": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+    "duration_s": 14.88
+  },
+  {
+    "lang": "en",
+    "path": "data/asr/en/en_0.wav",
+    "transcript": "however due to the slow communication channels styles in the west could lag behind by 25 to 30 year",
+    "duration_s": 10.56
+  },
+  {
+    "lang": "en",
+    "path": "data/asr/en/en_1.wav",
+    "transcript": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+    "duration_s": 8.76
+  },
+  {
+    "lang": "en",
+    "path": "data/asr/en/en_2.wav",
+    "transcript": "to the north and within easy reach is the romantic and fascinating town of sintra and which was made famous to foreigners after a glowing account of its splendours recorded by lord byron",
+    "duration_s": 11.46
+  },
+  {
+    "lang": "en",
+    "path": "data/asr/en/en_3.wav",
+    "transcript": "the cabbage juice changes color depending on how acidic or basic alkaline the chemical is",
+    "duration_s": 5.76
+  },
+  {
+    "lang": "en",
+    "path": "data/asr/en/en_4.wav",
+    "transcript": "many people don't think about them as dinosaurs because they have feathers and can fly",
+    "duration_s": 4.32
+  },
+  {
+    "lang": "zh",
+    "path": "data/asr/zh/zh_0.wav",
+    "transcript": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+    "duration_s": 10.38
+  },
+  {
+    "lang": "zh",
+    "path": "data/asr/zh/zh_1.wav",
+    "transcript": "钙 钾 等 元 素 属 于 金 属 银 和 金 等 元 素 当 然 也 是 金 属",
+    "duration_s": 8.28
+  },
+  {
+    "lang": "zh",
+    "path": "data/asr/zh/zh_2.wav",
+    "transcript": "桥 下 垂 直 净 空 15 米 该 项 目 于 2011 年 8 月 完 工 但 直 到 2017 年 3 月 才 开 始 通 车",
+    "duration_s": 13.86
+  },
+  {
+    "lang": "zh",
+    "path": "data/asr/zh/zh_3.wav",
+    "transcript": "适 当 使 用 博 客 可 以 使 学 生 变 得 更 善 于 分 析 和 进 行 思 辨 通 过 积 极 回 应 网 络 材 料 学 生 们 可 以 在 他 人 文 章 的 上 下 文 语 境 中 找 到 自 己 的 立 场 并 能 够 针 对 特 定 问 题 提 出 自 己 的 观 点 oravec 2002",
+    "duration_s": 15.42
+  },
+  {
+    "lang": "zh",
+    "path": "data/asr/zh/zh_4.wav",
+    "transcript": "科 学 家 们 可 以 得 出 结 论 暗 物 质 对 其 他 暗 物 质 的 影 响 方 式 与 普 通 物 质 相 同",
+    "duration_s": 12.9
+  },
+  {
+    "lang": "ko",
+    "path": "data/asr/ko/ko_0.wav",
+    "transcript": "다리 밑 수직 간격은 15미터이며 공사는 2011년 8월에 마무리되었으며 해당 다리의 통행금지는 2017년 3월까지이다",
+    "duration_s": 12.48
+  },
+  {
+    "lang": "ko",
+    "path": "data/asr/ko/ko_1.wav",
+    "transcript": "델 포트로가 2세트에서 먼저 어드밴티지를 얻었지만 6 대 6이 된 후 다시 타이 브레이크가 필요했다",
+    "duration_s": 10.8
+  },
+  {
+    "lang": "ko",
+    "path": "data/asr/ko/ko_2.wav",
+    "transcript": "염소 사육은 대략 일만 년 전에 이란의 자그로스산맥에서 시작한 것으로 보입니다",
+    "duration_s": 8.94
+  },
+  {
+    "lang": "ko",
+    "path": "data/asr/ko/ko_3.wav",
+    "transcript": "겨울에 북발트해를 건널 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다",
+    "duration_s": 12.54
+  },
+  {
+    "lang": "ko",
+    "path": "data/asr/ko/ko_4.wav",
+    "transcript": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대그래프에 비유된다",
+    "duration_s": 12.12
+  }
+]

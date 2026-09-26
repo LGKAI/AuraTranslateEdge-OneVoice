@@ -1,0 +1,43 @@
+torch>=2.0
+soundfile>=0.12
+librosa>=0.10
+numpy>=1.24
+einops>=0.7
+# pesq>=0.0.4
+# pystoi>=0.3
+# pyroomacoustics>=0.7
+pandas>=2.0
+transformers>=4.40
+datasets>=2.16
+jiwer>=3.0
+funasr>=1.1
+sherpa-onnx>=1.10       # test_asr_zipformer.py
+sentencepiece>=0.2      # test_asr_zipformer.py, only used if repo lacks tokens.txt
+huggingface-hub>=0.24   # test_asr_zipformer.py (snapshot_download)
+sacrebleu>=2.4          # test_mt_*.py (BLEU scoring)
+# test_asr_qwen.py needs transformers>=5.13.0 specifically -- that's a big
+# jump from the >=4.40 pinned above and may conflict with funasr's own
+# transformers pin. Install it in isolation (venv/conda env) if `pip install
+# -U transformers` here breaks test_asr_vi.py / test_asr_multi.py.
+
+# --- Step 3 (TTS) ---
+supertonic                 # test_tts_supertonic.py
+piper-tts                  # test_tts_piper.py (also needs `python -m piper.download_voices <voice>` first)
+# vieneu                     # test_tts_vieneu.py -- mode="standard" needs neucodec + a compatible torchao
+# neucodec                   # test_tts_vieneu.py codec backend
+# torchao==0.9.0              # vieneu's neucodec import chain breaks on torchao>=0.10 unless torch>=2.7 (register_constant API) -- pin to 0.9.0 for torch 2.6.x
+# llama-cpp-python            # vieneu's default "turbo" mode; on Windows install from
+#                              # https://abetlen.github.io/llama-cpp-python/whl/cpu -- pip's normal
+#                              # index has no working prebuilt wheel here and source builds need a C++ toolchain
+# MeloTTS (test_tts_melotts.py) is not on PyPI -- clone https://github.com/myshell-ai/MeloTTS
+# and `pip install -e .`; needs Python<=3.11 (tokenizers has no 3.13 wheel and needs Rust to build from source)
+
+# --- Step 4 (Quantization) ---
+ctranslate2                 # verify_nllb_int8.py, pipeline_s2s.py -- NLLB int8 MT runtime
+funasr_onnx                 # verify_sensevoice_int8.py -- SenseVoice-Small ONNX int8 inference
+onnxruntime                 # quantize_supertonic.py (onnxruntime.quantization.quantize_dynamic)
+
+# --- Step 5 (End-to-end pipeline) ---
+# pipeline_s2s.py chains Step 1-4's picks; no new deps beyond the above --
+# reuses funasr (fp32 SenseVoice on CPU/GPU), sherpa-onnx (Zipformer),
+# ctranslate2 (NLLB), piper-tts/supertonic/melotts (TTS).

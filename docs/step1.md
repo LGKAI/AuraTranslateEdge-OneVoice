@@ -133,12 +133,5 @@ Trong trường hợp cần tối ưu hóa sâu hơn cho các phương ngữ ti�
 
 ---
 
-### 8. Lượng tử hoá & Triển khai Phần cứng NPU (SenseVoice-Small)
-
-Chi tiết quy trình nén W8A16 Mixed Precision, xuất mô hình Single Static DAG hợp nhất 5 khối (100.00% NPU, Zero-CPU Detokenizer) và báo cáo thực thi trên bo mạch Qualcomm Dragonwing IQ-9075 EVK được trình bày chi tiết tại:
-👉 **[`src/step1_asr/step4_sensevoice.md`](../src/step1_asr/step4_sensevoice.md)**.
-
----
-
 **Phiên bản tài liệu:** 2026-09-28 (Cập nhật kết quả triển khai NPU W8A16 chính thức trên Qualcomm AI Hub)  
 **Trạng thái:** Hoàn tất kiểm thử thực nghiệm, kiến trúc đóng gói tĩnh 100% NPU đã được xác thực toàn diện.

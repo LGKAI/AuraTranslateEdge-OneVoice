@@ -71,7 +71,7 @@ flowchart LR
 |:---:|---|---|---|---|---|
 | **0** | **Audio Front-end** | **GTCRN** (ICASSP 2024) + **Silero VAD** | ~10 MB (~24K params GTCRN) | RTF < 0.1 (real-time) | Khử ồn máy móc nhà máy (70–95 dB SPL) thời gian thực + lọc bỏ khoảng lặng (silence gating), tránh lãng phí chu kỳ NPU |
 | **1** | **ASR (Tiếng Việt)** | **Zipformer-30M (RNN-T → CTC Fine-tuned)** | **~85 MB** (21.4M params, FP16) | **Target < 300 ms** (Encoder Cosine Sim: 0.841, WER: 0.0615 w8a16) | Thay thế hoàn toàn decoder/joiner tuần tự bằng **1 CTC head đơn (single-shot non-autoregressive)**; fine-tune 3 giai đoạn trên **ViMD** (102.5h, 63 phương ngữ tỉnh thành); w8a16 QNN Context Binary |
-| **1** | **ASR (Hàn / Trung / Anh)** | **SenseVoice-Small** (Alibaba FunASR) | **~250 MB** | **Target < 500 ms** (Đo thật trên Dragonwing: **269 ms / 5s audio**, RAM **54.8 MB**) | Kiến trúc non-autoregressive tự nhiên; tích hợp sẵn Language ID (LID) định tuyến tự động và chuẩn hoá văn bản ITN; **E2E W8A16 100% NPU offload** (Conv1D + DFT Matmul, GraphSurgeon patched zero-bias) |
+| **1** | **ASR (Hàn / Trung / Anh)** | **SenseVoice-Small** (Alibaba FunASR) | **~250 MB** | **Target < 500 ms** (Đo thật trên Dragonwing IQ-9075: **184.2 ms / 29s audio**, RAM **9.12 MB**) | Kiến trúc non-autoregressive; tích hợp sẵn LID và ITN; **Single Static DAG W8A16 100.00% NPU offload** (2,946/2,946 ops NPU, 0% CPU fallback); Zero-CPU UTF-8 Detokenizer |
 | **2** | **Dịch máy (MT)** | **NLLB-200-distilled-600M** (Meta AI) | **~600 MB** (CTranslate2 INT8: 594 MB) | **Target < 800 ms** (Encoder Cosine Sim: **0.9998** vs FP32 trên phần cứng thật) | Một mô hình duy nhất phủ trọn 6 chiều dịch (VI ⇄ KO, VI ⇄ ZH, VI ⇄ EN); w8a16 QNN Context Binary; tích hợp chính sách streaming **AlignAtt** (Interspeech 2023) phát từ sớm dựa trên ma trận attention |
 | **3** | **TTS (Tiếng Việt)** | **Piper** (`vi_VN-vais1000-medium`) | **61 MB** (VITS ONNX) | RTF **0.144** (CPU) | VITS one-shot decoder; **nhẹ hơn 8× và nhanh hơn 3.3×** so với VieNeu-TTS; loại bỏ hoàn toàn lỗi lặp từ của Supertonic trên tiếng Việt |
 | **3** | **TTS (Hàn & Anh)** | **Supertonic 3** (Flow-Matching) | **178 MB** (nén mixed-INT8 từ 398 MB) | RTF **1.11** (Ko) / **1.16** (En) | Flow-matching TTS; **Mixed-INT8** (giữ riêng `vocoder.onnx` FP32 chống vỡ tiếng, 3 submodels còn lại INT8); tích hợp **Quality-Gated Retry** (tối đa 5 lần) bằng SenseVoice chống lỗi lặp âm tiếng Hàn |
@@ -121,12 +121,12 @@ flowchart LR
 │   │   └── README.md              # Hướng dẫn chi tiết & benchmark Step 0
 │   ├── step1_asr/                 # Step 1: Nhận dạng giọng nói tự động (ASR) & NPU Export
 │   │   ├── README.md              # Hướng dẫn chi tiết & benchmark Step 1
-│   │   ├── unified_asr.py         # Router định tuyến ASR tự động đa ngôn ngữ (CLI tương tác)
-│   │   ├── step4_s1_export_e2e_onnx.py    # Xuất đồ thị SenseVoice E2E ONNX tĩnh cho NPU
-│   │   ├── step4_s1_patch_mask.py         # Vá lỗi zero-bias 70 Conv nodes bằng GraphSurgeon cho QAIRT
-│   │   ├── step4_s1_prepare_calib.py      # Chuẩn bị dữ liệu calibration cho w8a16
-│   │   ├── submit_unified_e2e_detok.py    # Gửi biên dịch QNN DLC lên Qualcomm AI Hub
-│   │   └── decode_h5_results.py           # Giải mã Zero-CPU stream byte trực tiếp từ output HDF5
+│   │   ├── step4_s1_export_sensevoice_e2e_unified.py  # Xuất đồ thị SenseVoice 5 khối E2E tĩnh (100% NPU, Zero-CPU Detok)
+│   │   ├── step4_s1_prepare_calib_unified.py          # Chuẩn bị dữ liệu calibration tĩnh cho W8A16
+│   │   ├── step4_s1_quantize_w8a16_unified.py         # Biên dịch & Lượng tử hóa W8A16 trên Qualcomm AI Hub
+│   │   ├── submit_qai_hub_pipeline.py                 # Tự động hóa pipeline AI Hub (Quantize, Compile, Profile, Inference)
+│   │   ├── inspect_inference_results.py               # Giải mã HDF5 & đối chứng kết quả silicon NPU vs FP32
+│   │   └── step4_sensevoice.md                        # Báo cáo kỹ thuật chi tiết kiến trúc SenseVoice E2E NPU
 │   ├── step2_mt/                  # Step 2: Dịch máy đa ngữ NLLB-600M INT8 & AlignAtt
 │   │   ├── README.md              # Hướng dẫn chi tiết & benchmark Step 2
 │   │   ├── test_mt_nllb.py        # Dịch câu đa ngữ CLI & Benchmark tự động đo BLEU
@@ -168,8 +168,10 @@ pip install -r requirements.txt
 # 1. Step 0: Audio Front-end (Khử ồn GTCRN + VAD + Beamforming)
 cd src/step0_frontend && python run_all.py
 
-# 2. Step 1: ASR Pipeline (Kiểm tra định tuyến Zipformer + SenseVoice)
-cd ../step1_asr && python unified_asr.py
+# 2. Step 1: ASR Pipeline (Kiểm tra định tuyến hoặc đối chứng NPU)
+cd ../step1_asr && python test_asr_multi.py
+# Hoặc giải mã kết quả thực thi NPU Hexagon v73:
+python inspect_inference_results.py
 
 # 3. Step 2: Dịch máy (NLLB-200 dịch câu bất kỳ từ CLI hoặc đo BLEU)
 cd ../step2_mt && python test_mt_nllb.py "Xin chào, tôi là trợ lý AI." --src vi --tgt en

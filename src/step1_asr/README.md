@@ -64,17 +64,14 @@ Thư mục `src/step1_asr/` được tổ chức thành các nhóm chức năng 
 *   `test_asr_multi.py`: Kịch bản đánh giá chuyên biệt cho **SenseVoice-Small (Anh / Trung / Hàn)**.
 *   `test_asr_vi.py`, `test_asr_moonshine.py`, `test_asr_qwen.py`: Mã kiểm thử cho các mô hình đã bị loại (PhoWhisper, Moonshine, Qwen3) để đối chiếu số liệu.
 
-### 📁 Pipeline Tích hợp Định tuyến
-*   `unified_asr.py`: Chứa class `UnifiedASRPipeline` — đóng vai trò là bộ định tuyến thông minh: tự động nhận diện ngôn ngữ nói và điều hướng âm thanh vào đúng mô hình (Zipformer cho tiếng Việt, SenseVoice cho ngoại ngữ).
-*   `test_unified_asr.py`: Kịch bản kiểm thử toàn diện khả năng định tuyến và độ chính xác của pipeline tích hợp.
-
 ### 📁 Triển khai Phần cứng & NPU Deployment (Step 4 — SenseVoice-Small)
-*   `static_detokenize.py`: Module sinh ma trận tĩnh M_byte và lớp `StaticCTCCollapse` + `StaticByteDetokenizer` nhúng trong đồ thị ONNX.
-*   `step4_s1_export_e2e_onnx.py`: Xuất đồ thị End-to-End ONNX (tích hợp WavFrontend + Encoder + CTC Argmax) với static shape cho NPU.
-*   `step4_s1_patch_mask.py`: Vá đồ thị ONNX qua GraphSurgeon, tiêm mảng zero-bias cho các node Conv thiếu bias (fix QAIRT crash).
-*   `step4_s1_prepare_calib.py`: Chuẩn bị 15 mẫu dữ liệu âm thanh đa ngữ đại diện để hiệu chỉnh dải động cho lượng tử W8A16.
-*   `submit_unified_e2e_detok.py`: Script nạp đồ thị thống nhất 5 khối lên Qualcomm AI Hub để Quantize W8A16, Compile QNN binary và chạy đo kiểm phần cứng.
-*   `decode_h5_results.py`: Giải mã Zero-CPU stream byte trực tiếp từ file HDF5 output của Qualcomm AI Hub (Dragonwing IQ-9075 EVK).
+*   `step4_s1_export_sensevoice_e2e_unified.py`: Đóng gói và xuất toàn bộ Pipeline SenseVoice (WavFrontend $\rightarrow$ Transformer Core $\rightarrow$ CTC Head $\rightarrow$ Static CTC Collapse $\rightarrow$ UTF-8 Detokenize) thành 1 file ONNX duy nhất chạy 100% trên NPU (`outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx`).
+*   `step4_s1_prepare_calib_unified.py`: Chuẩn bị tập dữ liệu calibration đa ngữ tĩnh (`calib_data_unified.npz`).
+*   `step4_s1_quantize_w8a16_unified.py`: Kịch bản submit job lượng tử hóa W8A16 Mixed Precision lên Qualcomm AI Hub.
+*   `submit_qai_hub_pipeline.py`: Script tự động hóa toàn bộ chuỗi 4 công đoạn (Upload $\rightarrow$ Quantize $\rightarrow$ Compile QNN DLC $\rightarrow$ Profile $\rightarrow$ Inference) trên Qualcomm AI Hub.
+*   `inspect_inference_results.py`: Công cụ giải mã dữ liệu nhị phân HDF5 xuất từ bo mạch phần cứng và đối chứng 3 chiều: Ground Truth vs ORT FP32 vs NPU W8A16 Silicon.
+*   `step4_sensevoice.md`: Báo cáo kỹ thuật chuyên sâu về kiến trúc Single Static DAG 5 khối, giải pháp Trash-Bin Scatter, số liệu phần cứng và phân tích kết quả thực tế trên chip Dragonwing IQ-9075 EVK.
+*   `step4_zipformer.pdf`: Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon.
 
 ---
 
@@ -107,7 +104,17 @@ python test_asr_multi.py
 ```
 *Kết quả chi tiết được tự động xuất ra file CSV tại thư mục `outputs/`.*
 
-**Bước 3: Chạy thử nghiệm Pipeline định tuyến hợp nhất (Unified ASR)**
+**Bước 3: Xuất mô hình End-to-End tĩnh & Đối chứng thực thi NPU (Step 4)**
 ```bash
-python test_unified_asr.py
+# 1. Xuất mô hình ONNX hợp nhất 5 khối (100% NPU, Zero-CPU Detok)
+python step4_s1_export_sensevoice_e2e_unified.py
+
+# 2. Chuẩn bị dữ liệu calibration
+python step4_s1_prepare_calib_unified.py
+
+# 3. Submit toàn chuỗi lên Qualcomm AI Hub (Quantize -> Compile -> Profile -> Inference)
+python submit_qai_hub_pipeline.py
+
+# 4. Giải mã dữ liệu nhị phân HDF5 từ NPU và đối chứng kết quả
+python inspect_inference_results.py
 ```

@@ -133,34 +133,12 @@ Trong trường hợp cần tối ưu hóa sâu hơn cho các phương ngữ ti�
 
 ---
 
-### 8. Tiến độ Lượng tử hoá & Triển khai NPU (SenseVoice-Small W8A16 — Qualcomm AI Hub)
+### 8. Lượng tử hoá & Triển khai Phần cứng NPU (SenseVoice-Small)
 
-> [!IMPORTANT]
-> **Đột phá công nghệ:** Mô hình SenseVoice-Small đã được đóng gói và triển khai thành công rực rỡ dưới dạng **Một Đồ thị Tính toán Tĩnh duy nhất (Single Static DAG)** chạy **100.00% trên chip Qualcomm Hexagon NPU v73** (Qualcomm Dragonwing IQ-9075 EVK), tích hợp toàn diện giải thuật **Zero-CPU UTF-8 Detokenizer**.
-
-#### 8.1. Các Khối Chức năng Tĩnh hóa 100% trên NPU:
-1. **Khối 1 (WavFrontend DSP):** Tĩnh hóa toàn bộ thuật toán FFT và Mel-filterbank thành các phép nhân ma trận thuần túy (`MatMul`, `Conv1D`, `CMVN`), triệt tiêu hoàn toàn nhu cầu tính toán DSP trên CPU.
-2. **Khối 2 (Transformer Core):** 50 lớp Transformer nén sâu chạy mượt mà trên bộ tăng tốc HTP (Hexagon Tensor Processor).
-3. **Khối 3 (CTC Projection & ArgMax):** Tính toán phân phối xác suất trên 25.055 tokens và trích xuất chỉ số nhãn trực tiếp trên NPU.
-4. **Khối 4 (Static CTC Collapse):** Thu gọn nhãn trùng và lọc bỏ token Blank bằng tổ hợp toán tử `CumSum` (Prefix Sum) và `ScatterElements` — hoàn toàn không dùng vòng lặp động.
-5. **Khối 5 (Static Byte Detokenize):** Nhúng bảng tra cứu byte UTF-8 $M_{\text{byte}} \in \mathbb{R}^{25055 \times 24}$ trực tiếp vào bộ nhớ cực nhanh **VTCM (Vector Tightly-Coupled Memory)**. Đầu ra của NPU là luồng byte UTF-8 thô `[1, 12096]`.
-6. **Tầng Host CPU (Zero-CPU Decoding):** Host CPU chỉ đọc con trỏ bộ nhớ và hiển thị chuỗi ký tự qua `bytes.decode('utf-8')` với thời gian thực thi **$< 0.001$ ms**, loại bỏ hoàn toàn thư viện SentencePiece trên CPU!
-
-#### 8.2. Các Thông số Đo kiểm Thực tế trên Phần cứng Qualcomm (Dragonwing IQ-9075 EVK):
-- **Base ONNX Model ID:** `mq33z0g6q` (942.6 MB, 7.990 operators).
-- **Quantize Job ID (W8A16 Mixed Precision):** `j56888lyg` $\rightarrow$ Quantized Model ID: `mq8039rpn` (**SUCCESS**).
-- **Compile Job ID (QNN Context Binary cho Hexagon v73):** `j5688o4yg` $\rightarrow$ Compiled Model ID: `mn4o3ypwq` (**SUCCESS**).
-- **Hardware Profile Job ID (Đo trên Silicon thật):** `jgjrr307p` (**SUCCESS — 100.00% NPU Offload**).
-- **Hardware Inference Job ID (Kiểm chứng kết quả):** `jprln1evp` (**SUCCESS — 100% Khớp trên cả 3 thứ tiếng**).
-- **Tỷ lệ NPU Offload:** **100.00% (2.948 / 2.948 toán tử chạy hoàn toàn trên NPU Hexagon, 0% CPU Fallback)**.
-- **Thời gian suy luận trên Silicon:** **187.19 ms** cho khung âm thanh 29 giây (**RTF ≈ 0.0064**, nhanh gấp **156 lần** thời gian thực; tương đương chỉ **~32.2 ms** cho câu thoại 5 giây).
-- **Bộ nhớ RAM suy luận đỉnh (Peak Memory):** Chỉ tốn **9.89 MB**.
-- **Độ chính xác nhận dạng:** 
-  - Tiếng Anh: Khớp 100% từng từ (18/18 từ mẫu kiểm chứng).
-  - Tiếng Trung: Khớp 100% tuyệt đối từng Hán tự.
-  - Tiếng Hàn: Khớp 99% toàn bộ câu.
+Chi tiết quy trình nén W8A16 Mixed Precision, xuất mô hình Single Static DAG hợp nhất 5 khối (100.00% NPU, Zero-CPU Detokenizer) và báo cáo thực thi trên bo mạch Qualcomm Dragonwing IQ-9075 EVK được trình bày chi tiết tại:
+👉 **[`src/step1_asr/step4_sensevoice.md`](../src/step1_asr/step4_sensevoice.md)**.
 
 ---
 
-**Phiên bản tài liệu:** 2026-09-27 (Cập nhật kết quả triển khai NPU W8A16 chính thức trên Qualcomm AI Hub)  
+**Phiên bản tài liệu:** 2026-09-28 (Cập nhật kết quả triển khai NPU W8A16 chính thức trên Qualcomm AI Hub)  
 **Trạng thái:** Hoàn tất kiểm thử thực nghiệm, kiến trúc đóng gói tĩnh 100% NPU đã được xác thực toàn diện.

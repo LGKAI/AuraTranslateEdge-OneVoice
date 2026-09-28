@@ -71,7 +71,7 @@ flowchart LR
 |:---:|---|---|---|---|---|
 | **0** | **Audio Front-end** | **GTCRN** (ICASSP 2024) + **Silero VAD** | ~10 MB (~24K params GTCRN) | RTF < 0.1 (real-time) | Khử ồn máy móc nhà máy (70–95 dB SPL) thời gian thực + lọc bỏ khoảng lặng (silence gating), tránh lãng phí chu kỳ NPU |
 | **1** | **ASR (Tiếng Việt)** | **Zipformer-30M (RNN-T → CTC Fine-tuned)** | **~85 MB** (21.4M params, FP16) | **Target < 300 ms** (Encoder Cosine Sim: 0.841, WER: 0.0615 w8a16) | Thay thế hoàn toàn decoder/joiner tuần tự bằng **1 CTC head đơn (single-shot non-autoregressive)**; fine-tune 3 giai đoạn trên **ViMD** (102.5h, 63 phương ngữ tỉnh thành); w8a16 QNN Context Binary |
-| **1** | **ASR (Hàn / Trung / Anh)** | **SenseVoice-Small** (Alibaba FunASR) | **~250 MB** | **Target < 500 ms** (Đo thật trên Dragonwing IQ-9075: **184.2 ms / 29s audio**, RAM **9.12 MB**) | Kiến trúc non-autoregressive; tích hợp sẵn LID và ITN; **Single Static DAG W8A16 100.00% NPU offload** (2,946/2,946 ops NPU, 0% CPU fallback); Zero-CPU UTF-8 Detokenizer |
+| **1** | **ASR (Hàn / Trung / Anh)** | **SenseVoice-Small** (Alibaba FunASR) | **~250 MB** | **Target < 500 ms** (Đo thật trên Dragonwing IQ-9075: **182.5 ms / 29s audio**, RAM **11.08 MB**) | Kiến trúc non-autoregressive; tích hợp sẵn LID và ITN; **Single Static DAG W8A16 100.00% NPU offload** (2,984/2,984 ops NPU, 0% CPU fallback); Zero-CPU UTF-8 Detokenizer |
 | **2** | **Dịch máy (MT)** | **NLLB-200-distilled-600M** (Meta AI) | **~600 MB** (CTranslate2 INT8: 594 MB) | **Target < 800 ms** (Encoder Cosine Sim: **0.9998** vs FP32 trên phần cứng thật) | Một mô hình duy nhất phủ trọn 6 chiều dịch (VI ⇄ KO, VI ⇄ ZH, VI ⇄ EN); w8a16 QNN Context Binary; tích hợp chính sách streaming **AlignAtt** (Interspeech 2023) phát từ sớm dựa trên ma trận attention |
 | **3** | **TTS (Tiếng Việt)** | **Piper** (`vi_VN-vais1000-medium`) | **61 MB** (VITS ONNX) | RTF **0.144** (CPU) | VITS one-shot decoder; **nhẹ hơn 8× và nhanh hơn 3.3×** so với VieNeu-TTS; loại bỏ hoàn toàn lỗi lặp từ của Supertonic trên tiếng Việt |
 | **3** | **TTS (Hàn & Anh)** | **Supertonic 3** (Flow-Matching) | **178 MB** (nén mixed-INT8 từ 398 MB) | RTF **1.11** (Ko) / **1.16** (En) | Flow-matching TTS; **Mixed-INT8** (giữ riêng `vocoder.onnx` FP32 chống vỡ tiếng, 3 submodels còn lại INT8); tích hợp **Quality-Gated Retry** (tối đa 5 lần) bằng SenseVoice chống lỗi lặp âm tiếng Hàn |
@@ -85,7 +85,7 @@ flowchart LR
 
 - **Tổng dung lượng mô hình trên ổ đĩa (128 GB UFS):** Toàn bộ pipeline lượng tử hoá chiếm khoảng **~1.30 – 1.38 GB**, tải tức thì lúc khởi động dưới dạng QNN Context Binaries.
 - **Mức chiếm dụng RAM NPU (36 GB LPDDR5):**
-  - Đỉnh RAM hoạt động của SenseVoice-Small E2E đo thực tế trên phần cứng NPU: **~54.8 MB**.
+  - Đỉnh RAM hoạt động của SenseVoice-Small E2E đo thực tế trên phần cứng NPU: **~11.08 MB**.
   - Headroom bộ nhớ cực kỳ dồi dào trên Dragonwing IQ-9075 EVK, loại bỏ nguy cơ tràn RAM (OOM) khi chạy đồng thời nhiều mô hình.
   - Cơ chế **Lazy Loading** và giải phóng định kỳ bộ đệm ngữ cảnh (past-context flushing) chống rò rỉ bộ nhớ trong các phiên làm việc kéo dài trọn ca sản xuất (> 8 tiếng).
 - **Tổng công suất tiêu thụ toàn hệ thống:** **~5.8 – 8.8 W** (Bao gồm SoC 3.8–20W, ReSpeaker Mic 0.1W, Loa 0.5W, UFS Storage 0.2W), vận hành êm ái với tản nhiệt thụ động (fanless passive cooling).

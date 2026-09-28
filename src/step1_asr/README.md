@@ -65,13 +65,12 @@ Thư mục `src/step1_asr/` được tổ chức thành các nhóm chức năng 
 *   `test_asr_vi.py`, `test_asr_moonshine.py`, `test_asr_qwen.py`: Mã kiểm thử cho các mô hình đã bị loại (PhoWhisper, Moonshine, Qwen3) để đối chiếu số liệu.
 
 ### 📁 Triển khai Phần cứng & NPU Deployment (Step 4 — SenseVoice-Small)
-*   `step4_s1_export_sensevoice_e2e_unified.py`: Đóng gói và xuất toàn bộ Pipeline SenseVoice (WavFrontend $\rightarrow$ Transformer Core $\rightarrow$ CTC Head $\rightarrow$ Static CTC Collapse $\rightarrow$ UTF-8 Detokenize) thành 1 file ONNX duy nhất chạy 100% trên NPU (`outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx`).
-*   `step4_s1_prepare_calib_unified.py`: Chuẩn bị tập dữ liệu calibration đa ngữ tĩnh (`calib_data_unified.npz`).
-*   `step4_s1_quantize_w8a16_unified.py`: Kịch bản submit job lượng tử hóa W8A16 Mixed Precision lên Qualcomm AI Hub.
-*   `submit_qai_hub_pipeline.py`: Script tự động hóa toàn bộ chuỗi 4 công đoạn (Upload $\rightarrow$ Quantize $\rightarrow$ Compile QNN DLC $\rightarrow$ Profile $\rightarrow$ Inference) trên Qualcomm AI Hub.
-*   `inspect_inference_results.py`: Công cụ giải mã dữ liệu nhị phân HDF5 xuất từ bo mạch phần cứng và đối chứng 3 chiều: Ground Truth vs ORT FP32 vs NPU W8A16 Silicon.
-*   `step4_sensevoice.md`: Báo cáo kỹ thuật chuyên sâu về kiến trúc Single Static DAG 5 khối, giải pháp Trash-Bin Scatter, số liệu phần cứng và phân tích kết quả thực tế trên chip Dragonwing IQ-9075 EVK.
-*   `step4_zipformer.pdf`: Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon.
+*   [`step4_s1_export_sensevoice_e2e_unified.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_s1_export_sensevoice_e2e_unified.py): Đóng gói và xuất toàn bộ Pipeline SenseVoice (WavFrontend $\rightarrow$ Transformer Core $\rightarrow$ CTC Head $\rightarrow$ Static CTC Collapse $\rightarrow$ UTF-8 Detokenize) thành 1 file ONNX tĩnh duy nhất chạy 100% trên NPU ([`outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx)).
+*   [`step4_s1_prepare_calib_unified.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_s1_prepare_calib_unified.py): Chuẩn bị tập dữ liệu calibration đa ngữ tĩnh chuẩn hóa Vocab Token IDs và multi-bucket sizing ([`outputs/sensevoice-e2e-onnx/calib_data_unified.npz`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/calib_data_unified.npz)).
+*   [`submit_qai_hub_pipeline.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/submit_qai_hub_pipeline.py): Kịch bản tự động hóa toàn bộ chuỗi 5 công đoạn (Upload $\rightarrow$ Quantize W8A16 $\rightarrow$ Compile QNN DLC $\rightarrow$ Profile $\rightarrow$ Silicon Inference) trên Qualcomm AI Hub, hỗ trợ quản lý trạng thái (`--submit`, `--status`, `--check-all`).
+*   [`inspect_inference_results.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/inspect_inference_results.py): Công cụ giải mã dữ liệu nhị phân HDF5 từ chip silicon NPU, đối chứng 3 chiều (Ground Truth vs ORT FP32 vs NPU W8A16 Silicon) và xuất kết quả ra JSON ([`outputs/sensevoice-e2e-onnx/inference_results_v2.json`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/inference_results_v2.json)).
+*   [`step4_sensevoice.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_sensevoice.md): Báo cáo kỹ thuật chuyên sâu về kiến trúc Single Static DAG 5 khối, giải pháp Trash-Bin Scatter, số liệu phần cứng vật lý và phân tích kết quả thực tế trên chip Dragonwing IQ-9075 EVK.
+*   [`step4_zipformer.pdf`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_zipformer.pdf): Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon.
 
 ---
 
@@ -104,17 +103,20 @@ python test_asr_multi.py
 ```
 *Kết quả chi tiết được tự động xuất ra file CSV tại thư mục `outputs/`.*
 
-**Bước 3: Xuất mô hình End-to-End tĩnh & Đối chứng thực thi NPU (Step 4)**
+**Bước 3: Xuất mô hình End-to-End tĩnh & Triển khai NPU (Step 4)**
 ```bash
-# 1. Xuất mô hình ONNX hợp nhất 5 khối (100% NPU, Zero-CPU Detok)
+# 1. Xuất mô hình ONNX hợp nhất 5 khối (100% NPU, Zero-CPU Detok) & verify CPU 100%
 python step4_s1_export_sensevoice_e2e_unified.py
 
-# 2. Chuẩn bị dữ liệu calibration
+# 2. Chuẩn bị dữ liệu calibration với Vocab Token IDs & multi-bucket sizing
 python step4_s1_prepare_calib_unified.py
 
-# 3. Submit toàn chuỗi lên Qualcomm AI Hub (Quantize -> Compile -> Profile -> Inference)
-python submit_qai_hub_pipeline.py
+# 3. Submit toàn chuỗi lên Qualcomm AI Hub (Upload -> Quantize -> Compile -> Profile -> Inference)
+python submit_qai_hub_pipeline.py --submit
 
-# 4. Giải mã dữ liệu nhị phân HDF5 từ NPU và đối chứng kết quả
-python inspect_inference_results.py
+# 4. Kiểm tra trạng thái trực tiếp của toàn bộ các jobs
+python submit_qai_hub_pipeline.py --check-all
+
+# 5. Giải mã tệp tensor H5 từ chip NPU, đối chứng 3 chiều và xuất báo cáo JSON
+python inspect_inference_results.py --export-json outputs/sensevoice-e2e-onnx/inference_results_v2.json
 ```

@@ -1,11 +1,14 @@
-"""step4_s1_prepare_calib_unified.py — Chuẩn bị calibration data cho mô hình SenseVoice Unified E2E
+"""step4_s1_prepare_calib_unified.py — Chuẩn bị calibration data cho SenseVoice Unified E2E v2
 
-Calibration dataset chứa các mẫu âm thanh thật (En, Zh, Ko) với kích thước tĩnh:
-  - wav: [1, 464000] float32
-  - language: [1] int32
-  - textnorm: [1] int32
-
-Dữ liệu được lưu dạng .npz và .h5 chuẩn theo yêu cầu của Qualcomm AI Hub API (submit_quantize_job).
+Cải tiến v2:
+  1. Sử dụng Vocab Token IDs thực tế của SenseVoice:
+     - zh: 24884 (<|zh|>)
+     - en: 24885 (<|en|>)
+     - ko: 24896 (<|ko|>)
+     - withitn: 25016 (<|withitn|>)
+  2. Thứ tự lưu các keys trong npz được chuẩn hóa theo bảng chữ cái:
+     ["language", "textnorm", "wav"] khớp 100% với model DLC và pipeline Qualcomm AI Hub.
+  3. Dùng bucket-based padding về MAX_WAV_SAMPLES (464000).
 """
 
 import os
@@ -14,16 +17,54 @@ import json
 import numpy as np
 import soundfile as sf
 
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT     = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_DIR = os.path.join(ROOT, "data", "asr")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+OUT_DIR  = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
 CALIB_NPZ = os.path.join(OUT_DIR, "calib_data_unified.npz")
 
-MAX_WAV_SAMPLES = 464000
-LID_DICT = {"zh": 3, "en": 4, "ko": 12}
-TEXTNORM_ITN = 14
+FS = 16000
+FRAME_SAMPLES = 400  # 25ms * 16kHz
+
+# Vocab Token IDs thực tế trong vocab SenseVoice (tokens.json)
+VOCAB_LID_DICT = {
+    "zh": 24884,  # <|zh|>
+    "en": 24885,  # <|en|>
+    "ko": 24896,  # <|ko|>
+}
+VOCAB_TEXTNORM_ITN = 25016  # <|withitn|>
+
+# Query IDs tương ứng (tầng embed [16, 560] nội bộ)
+QUERY_LID_DICT = {
+    "auto": 0,
+    "zh": 3,
+    "en": 4,
+    "ko": 12,
+}
+QUERY_TEXTNORM_ITN = 14
+
+LID_DICT = VOCAB_LID_DICT
+TEXTNORM_ITN = VOCAB_TEXTNORM_ITN
+
+# Buckets — đồng bộ với step4_s1_export_sensevoice_e2e_unified.py
+WAV_BUCKETS = sorted([
+    3 * FS,                   # 48000
+    6 * FS,                   # 96000
+    10 * FS,                  # 160000
+    15 * FS,                  # 240000
+    20 * FS,                  # 320000
+    29 * FS + FRAME_SAMPLES,  # 464400 -> cắt thành 464000
+])
+MAX_WAV_SAMPLES = 464000  # hard limit
+
+
+def best_bucket(n_samples: int) -> int:
+    """Chọn bucket nhỏ nhất >= n_samples."""
+    for b in WAV_BUCKETS:
+        if n_samples <= b:
+            return min(b, MAX_WAV_SAMPLES)
+    return MAX_WAV_SAMPLES
 
 
 def main():
@@ -34,41 +75,50 @@ def main():
 
     sv_items = [it for it in manifest if it["lang"] in LID_DICT]
 
-    wav_list = []
+    wav_list  = []
     lang_list = []
-    tn_list = []
+    tn_list   = []
 
-    print(f"[Calib] Đang xử lý {len(sv_items)} mẫu âm thanh (En/Zh/Ko) ...")
+    print(f"[Calib v2] Xử lý {len(sv_items)} mẫu (En/Zh/Ko) với Vocab Token IDs thực tế ...")
     for item in sv_items:
-        lang = item["lang"]
+        lang     = item["lang"]
         wav_path = os.path.join(ROOT, item["path"])
-        wav, sr = sf.read(wav_path)
+        wav, sr  = sf.read(wav_path)
         if wav.ndim > 1:
             wav = wav.mean(axis=1)
         wav = wav.astype(np.float32)
 
-        if len(wav) > MAX_WAV_SAMPLES:
+        n_samples = len(wav)
+        bucket    = best_bucket(n_samples)
+
+        # Pad về MAX_WAV_SAMPLES (shape cố định của model)
+        # Phần từ 0..bucket là audio thực, bucket..MAX là silence zeros
+        if n_samples > MAX_WAV_SAMPLES:
             wav_pad = wav[:MAX_WAV_SAMPLES]
         else:
-            wav_pad = np.pad(wav, (0, MAX_WAV_SAMPLES - len(wav)))
+            wav_pad = np.pad(wav, (0, MAX_WAV_SAMPLES - n_samples))
+
         wav_pad = wav_pad.reshape(1, MAX_WAV_SAMPLES)
 
+        v_lid = LID_DICT[lang]
+        q_lid = QUERY_LID_DICT[lang]
+
         wav_list.append(wav_pad)
-        lang_list.append(np.array([LID_DICT[lang]], dtype=np.int32))
+        lang_list.append(np.array([v_lid], dtype=np.int32))
         tn_list.append(np.array([TEXTNORM_ITN], dtype=np.int32))
 
-        print(f"  + [{lang.upper()}] {os.path.basename(wav_path)} — {item['duration_s']}s")
+        dur = item.get("duration_s", round(n_samples / FS, 2))
+        print(f"  [{lang.upper()}] {os.path.basename(wav_path)} {dur}s | Vocab LID={v_lid} (Query LID={q_lid}) -> shape=[1,{MAX_WAV_SAMPLES}]")
 
-    # Lưu thành định dạng npz
-    # Mỗi key tương ứng với 1 input của đồ thị ONNX
+    # Lưu thành npz theo thứ tự bảng chữ cái: language, textnorm, wav
     np.savez_compressed(
         CALIB_NPZ,
-        wav=np.stack(wav_list, axis=0),         # [N, 1, 464000]
-        language=np.stack(lang_list, axis=0),   # [N, 1]
-        textnorm=np.stack(tn_list, axis=0)      # [N, 1]
+        language=np.stack(lang_list, axis=0),    # [N, 1]
+        textnorm=np.stack(tn_list, axis=0),      # [N, 1]
+        wav=np.stack(wav_list, axis=0),          # [N, 1, MAX_WAV_SAMPLES]
     )
 
-    print(f"\n✅ Đã lưu tập calibration data: {CALIB_NPZ}")
+    print(f"\n[Calib v2] ✅ Saved: {CALIB_NPZ}")
     data = np.load(CALIB_NPZ)
     for k in data.files:
         print(f"  {k}: shape={data[k].shape}, dtype={data[k].dtype}")

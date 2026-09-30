@@ -113,8 +113,6 @@ flowchart LR
 │   ├── step2.md                   # Báo cáo chi tiết MT (NLLB-200, AlignAtt)
 │   ├── step3.md                   # Báo cáo chi tiết TTS (Piper Vi, Supertonic Ko/En, MeloTTS Zh)
 │   └── step4.md                   # Báo cáo chi tiết Phần cứng & Lượng tử hoá NPU
-├── notebooks/                     # Jupyter Notebooks huấn luyện & thử nghiệm
-│   └── OneVoice_Kaggle.ipynb      # Notebook kiểm thử môi trường huấn luyện Kaggle
 ├── src/
 │   ├── common.py                  # Các hàm tiện ích dùng chung (đo RTF, I/O WAV, WER/CER)
 │   ├── step0_frontend/            # Step 0: Tiền xử lý âm thanh (GTCRN denoiser, Silero VAD, MVDR beamforming)

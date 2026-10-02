@@ -1,0 +1,832 @@
+{
+  "pipeline": "combined graph fp32 CPU (reference)",
+  "summary": {
+    "en": {
+      "n": 30,
+      "wer": 8.446952327650521,
+      "cer": 4.0461539449776165
+    },
+    "zh": {
+      "n": 30,
+      "wer": 100.0,
+      "cer": 8.653999059043384
+    },
+    "ko": {
+      "n": 30,
+      "wer": 26.55694984285642,
+      "cer": 7.647971721244683
+    }
+  },
+  "per_sample": [
+    {
+      "lang": "en",
+      "audio": "en_e0.wav",
+      "dur": 11.42,
+      "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+      "hypothesis": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e1.wav",
+      "dur": 10.8,
+      "reference": "the northern marianas emergency management office said that there were no damages reported in the nation",
+      "hypothesis": "The northern Mariana's emergencyency management office said that there were no damages reported in the nation.",
+      "wer": 0.0625,
+      "cer": 0.0449438202247191
+    },
+    {
+      "lang": "en",
+      "audio": "en_e2.wav",
+      "dur": 6.96,
+      "reference": "twentieth century research has shown that there are two pools of genetic variation hidden and expressed",
+      "hypothesis": "20th century research has shown that there are two pools of genetic variation, hidden and expressed.",
+      "wer": 0.0625,
+      "cer": 0.07954545454545454
+    },
+    {
+      "lang": "en",
+      "audio": "en_e3.wav",
+      "dur": 11.04,
+      "reference": "the aspect ratio of this format dividing by twelve to obtain the simplest whole-number ratio is therefore said to be 3:2",
+      "hypothesis": "The aspect ratio of this format dividing by 12 to obtains the simplest whole number ratio, is therefore said to be3 to2.",
+      "wer": 0.2857142857142857,
+      "cer": 0.09183673469387756
+    },
+    {
+      "lang": "en",
+      "audio": "en_e4.wav",
+      "dur": 9.9,
+      "reference": "as light pollution in their heyday was not the kind of problem it is today they are usually located in cities or at campuses easier to reach than those built in modern times",
+      "hypothesis": "As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e5.wav",
+      "dur": 4.8,
+      "reference": "through the night between 150 and 200 copies were made now known as dunlap broadsides",
+      "hypothesis": "For the night between 1,50 and 200 copies were made now known as Denlap broadsides.",
+      "wer": 0.13333333333333333,
+      "cer": 0.09859154929577464
+    },
+    {
+      "lang": "en",
+      "audio": "en_e6.wav",
+      "dur": 11.28,
+      "reference": "for example each year students from bennet school in north carolina design a website about their trip to the state capital each year the website gets remodeled but old versions are kept online to serve as a scrapbook",
+      "hypothesis": "For example, each year, students from Bennett School in North Carolina design a website about their trip to the state capitalit. Each year, the website gets remodeled, but old versions are kept online to service a scrapbook.",
+      "wer": 0.10526315789473684,
+      "cer": 0.0335195530726257
+    },
+    {
+      "lang": "en",
+      "audio": "en_e7.wav",
+      "dur": 10.92,
+      "reference": "lion prides act much like packs of wolves or dogs animals surprisingly similar to lions but not other big cats in behavior and also very deadly to their prey",
+      "hypothesis": "Lion Pri acts much like packs of wolves or dogs, animals surprisingly similar to lions, but not other big cats in behavior and also very deadly to their prey.",
+      "wer": 0.06896551724137931,
+      "cer": 0.031007751937984496
+    },
+    {
+      "lang": "en",
+      "audio": "en_e8.wav",
+      "dur": 11.28,
+      "reference": "the city is also the base to climb the nyiragongo volcano along with some of the cheapest mountain gorilla tracking in africa",
+      "hypothesis": "The city is also the base to climb the Nraango volcano, along with some of the cheapest mountain gorilla trafficking in Africa.",
+      "wer": 0.09090909090909091,
+      "cer": 0.0673076923076923
+    },
+    {
+      "lang": "en",
+      "audio": "en_e9.wav",
+      "dur": 5.72,
+      "reference": "the internet combines elements of both mass and interpersonal communication",
+      "hypothesis": "The internet combines elements of both mass and interpersonal communication.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e10.wav",
+      "dur": 15.56,
+      "reference": "these theories look at what it is about certain people that make them want the things that they do and what things in their environment will make them do or not do certain things",
+      "hypothesis": "These look at what it is about certain people that make them want the things that they do and what things in their environment will make them do or not do certain things.",
+      "wer": 0.029411764705882353,
+      "cer": 0.05517241379310345
+    },
+    {
+      "lang": "en",
+      "audio": "en_e11.wav",
+      "dur": 13.92,
+      "reference": "for example the most common still image photography format in the world is 35mm which was the dominant film size at the close of the analog film era",
+      "hypothesis": "For example, the most common still image photography format in the world is 35 mm, which was the dominant film size at the close of the analog film era.",
+      "wer": 0.07142857142857142,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e12.wav",
+      "dur": 8.64,
+      "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+      "hypothesis": "The term safari in popular loosee refers to overland travel to view the stunning African wildlife, particularly on Savannah.",
+      "wer": 0.10526315789473684,
+      "cer": 0.05
+    },
+    {
+      "lang": "en",
+      "audio": "en_e13.wav",
+      "dur": 5.36,
+      "reference": "but there are a lot of things about birds that still look like a dinosaur",
+      "hypothesis": "But there are a lot of things about birds that still look like a dinosaur.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e14.wav",
+      "dur": 10.14,
+      "reference": "women it is recommended that any women travellers say that they are married regardless of actual marital status",
+      "hypothesis": "Women is recommended that any women travelers say that they are married regardless of actual marital status.",
+      "wer": 0.1111111111111111,
+      "cer": 0.031914893617021274
+    },
+    {
+      "lang": "en",
+      "audio": "en_e15.wav",
+      "dur": 5.64,
+      "reference": "in some areas boiling water for a minute is enough in others several minutes are needed",
+      "hypothesis": "In some areas, boiling water for a minute is enough and other several minutes are needed.",
+      "wer": 0.125,
+      "cer": 0.041666666666666664
+    },
+    {
+      "lang": "en",
+      "audio": "en_e16.wav",
+      "dur": 8.58,
+      "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+      "hypothesis": "Anyone who's going to try at hot latitudes or overer mutton passes should consider the possibility of snow, ice or freezing temperatures.",
+      "wer": 0.18181818181818182,
+      "cer": 0.11206896551724138
+    },
+    {
+      "lang": "en",
+      "audio": "en_e17.wav",
+      "dur": 11.44,
+      "reference": "as a result two fish species have become extinct and two others have become endangered including the humpback chub",
+      "hypothesis": "As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e18.wav",
+      "dur": 9.6,
+      "reference": "it was ruled by the vichy french these were french people who had made peace with the germans in 1940 and worked with the invaders instead of fighting them",
+      "hypothesis": "It was ruled by the Vicki French. These were French people who had made peace with the Germans in 1940 and worked with the invaders instead of fighting them.",
+      "wer": 0.034482758620689655,
+      "cer": 0.015748031496062992
+    },
+    {
+      "lang": "en",
+      "audio": "en_e19.wav",
+      "dur": 10.12,
+      "reference": "on 15 august 1940 the allies invaded southern france the invasion was called operation dragoon",
+      "hypothesis": "On August 15, 1940, the Allies invaded southern France and the Invision was called Operation Droon.",
+      "wer": 0.3333333333333333,
+      "cer": 0.125
+    },
+    {
+      "lang": "en",
+      "audio": "en_e20.wav",
+      "dur": 8.38,
+      "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+      "hypothesis": "Alloys are basically a mixture of two or more metals. Don't forget, there are many elements on the periodic table.",
+      "wer": 0.047619047619047616,
+      "cer": 0.042105263157894736
+    },
+    {
+      "lang": "en",
+      "audio": "en_e21.wav",
+      "dur": 11.4,
+      "reference": "for example each year students from bennet school in north carolina design a website about their trip to the state capital each year the website gets remodeled but old versions are kept online to serve as a scrapbook",
+      "hypothesis": "For example, each year, students from Bennett School in North Carolina design a website about their trip to the state capitalitol. Each year, the website gets remodeled, but older versions are kept online to serve as a scrapbook.",
+      "wer": 0.07894736842105263,
+      "cer": 0.03910614525139665
+    },
+    {
+      "lang": "en",
+      "audio": "en_e22.wav",
+      "dur": 14.66,
+      "reference": "his work is of such recognized quality and detail that he is one of the very few household names among philatelists some specialize in collecting his work alone",
+      "hypothesis": "His work is of such recognized quality in detail that he is one of the very few household names among philists. Some specialize in collecting his work alone.",
+      "wer": 0.07142857142857142,
+      "cer": 0.045112781954887216
+    },
+    {
+      "lang": "en",
+      "audio": "en_e23.wav",
+      "dur": 6.3,
+      "reference": "danielle lantagne a un expert on the disease stated the outbreak was likely caused by the peacekeepers",
+      "hypothesis": "Daanelle Ligim, a U expert on the disease, stated the outbreak was likely caused by the peacekeepers.",
+      "wer": 0.17647058823529413,
+      "cer": 0.10465116279069768
+    },
+    {
+      "lang": "en",
+      "audio": "en_e24.wav",
+      "dur": 14.6,
+      "reference": "the other nominations include best picture director cinematography costume design film-editing original score production design sound editing sound mixing and original screenplay",
+      "hypothesis": "The other nominations include best picture, director of cinematography, costume design, film editing, original score, production design, sound editing, sound mixing and original screenplay.",
+      "wer": 0.13636363636363635,
+      "cer": 0.01282051282051282
+    },
+    {
+      "lang": "en",
+      "audio": "en_e25.wav",
+      "dur": 5.64,
+      "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+      "hypothesis": "Virtual teams are held to the same standard of excellence as conventional teams, but there are subtle differences.",
+      "wer": 0.05555555555555555,
+      "cer": 0.010416666666666666
+    },
+    {
+      "lang": "en",
+      "audio": "en_e26.wav",
+      "dur": 9.58,
+      "reference": "in the north the region is bounded by the sahel and in the south and west by the atlantic ocean",
+      "hypothesis": "In the north, the region is bounded by the Sahel and in the south and west by the Atlantic Ocean.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e27.wav",
+      "dur": 10.2,
+      "reference": "a well rounded athlete the tiger can climb though not well swim leap great distances and pull with five times the force of a strong human",
+      "hypothesis": "A well rounded athlete, the tiger can climb, though not well, swim, leap great distances and pull with five times the force of a strong human.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "en",
+      "audio": "en_e28.wav",
+      "dur": 6.84,
+      "reference": "he was subsequently relocated to addenbrooke's hospital in cambridge",
+      "hypothesis": "He was subsequently relocated to Addinbrouck's Hospital in Cambridge.",
+      "wer": 0.1111111111111111,
+      "cer": 0.06779661016949153
+    },
+    {
+      "lang": "en",
+      "audio": "en_e29.wav",
+      "dur": 8.34,
+      "reference": "the pyramid sound and light show is one of the most interesting things in the area for kids",
+      "hypothesis": "The pyramids Sound and light show is one of the most interesting things in the area for kids.",
+      "wer": 0.05555555555555555,
+      "cer": 0.013513513513513514
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e0.wav",
+      "dur": 13.74,
+      "reference": "大 多 数 现 代 科 研 望 远 镜 都 是 巨 型 设 施 位 于 大 气 条 件 优 良 的 偏 远 地 区",
+      "hypothesis": "大多数现代科研望远镜都是巨型设施，位于大体大气条件优良的偏远地区。",
+      "wer": 1.0,
+      "cer": 0.06896551724137931
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e1.wav",
+      "dur": 15.18,
+      "reference": "1963 年 大 坝 建 成 后 季 节 性 洪 水 被 控 制 住 了 沉 积 物 不 再 冲 散 到 河 流 里",
+      "hypothesis": "1963年大坝建成后，季节性洪水被控制住了，沉积物不再冲散到河流里。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e2.wav",
+      "dur": 15.46,
+      "reference": "它 的 长 下 颚 上 布 满 了 70 多 颗 剃 刀 般 锋 利 的 牙 齿 上 颚 上 还 有 一 排 这 意 味 着 任 何 与 它 相 遇 的 东 西 都 无 路 可 逃",
+      "hypothesis": "他的床下颚上铺满了70多颗剃刀般锋利的牙齿，上颚上还有一排，这意味着任何与他相遇的东西都无路可逃。",
+      "wer": 1.0,
+      "cer": 0.08695652173913043
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e3.wav",
+      "dur": 7.62,
+      "reference": "scotturb 403 路 公 共 汽 车 定 期 发 车 前 往 辛 特 拉 sintra 在 罗 卡 角 停 靠",
+      "hypothesis": "scool tube403路公交汽车定期发车前往新特拉，在罗卡角停靠。",
+      "wer": 1.0,
+      "cer": 0.32432432432432434
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e4.wav",
+      "dur": 6.84,
+      "reference": "这 里 几 乎 都 是 沙 滩 游 泳 很 安 全 大 部 分 地 方 都 有 新 西 兰 圣 诞 树 的 树 荫",
+      "hypothesis": "这里几乎都是沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e5.wav",
+      "dur": 7.26,
+      "reference": "当 所 有 可 用 的 资 源 在 一 个 组 织 的 职 能 部 门 之 间 得 到 有 效 利 用 时 创 造 力 和 独 创 性 就 会 发 生",
+      "hypothesis": "当所有可用的资源在一个组织的职能部门之间得到有效利用时，创造力和独创性就会发生。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e6.wav",
+      "dur": 5.04,
+      "reference": "他 随 后 被 转 送 到 剑 桥 的 阿 登 布 鲁 克 医 院",
+      "hypothesis": "他随后被传转送到剑桥的阿登布鲁克医院。",
+      "wer": 1.0,
+      "cer": 0.058823529411764705
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e7.wav",
+      "dur": 6.36,
+      "reference": "执 政 党 西 南 非 洲 人 民 组 织 swapo 也 在 议 会 选 举 中 保 持 了 多 数 席 位",
+      "hypothesis": "执政党西南非洲人民组织也在议会选举中保述了多数席位。",
+      "wer": 1.0,
+      "cer": 0.2
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e8.wav",
+      "dur": 5.1,
+      "reference": "巴 黎 人 是 出 了 名 的 以 自 我 中 心 粗 鲁 和 傲 慢",
+      "hypothesis": "巴黎人士出了名德，以自我为中心、粗鲁和傲慢。",
+      "wer": 1.0,
+      "cer": 0.16666666666666666
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e9.wav",
+      "dur": 6.96,
+      "reference": "起 初 他 被 送 往 位 于 大 雅 茅 斯 的 詹 姆 斯 佩 吉 特 医 院 进 行 救 治",
+      "hypothesis": "起初，他被送往位于大亚毛斯的詹姆斯佩吉特医院进行救治。",
+      "wer": 1.0,
+      "cer": 0.08
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e10.wav",
+      "dur": 18.44,
+      "reference": "有 些 人 认 为 他 是 对 的 但 也 有 很 多 人 持 相 反 意 见 他 们 认 为 太 阳 系 是 围 绕 着 地 球 运 转 的 太 阳 也 是 甚 至 其 他 恒 星 也 是",
+      "hypothesis": "有些人认为它是对的，但也有很多人是反对引界。他们认为太阳系是围绕着地球运转的，太阳也是，甚至其他恒星也是。",
+      "wer": 1.0,
+      "cer": 0.125
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e11.wav",
+      "dur": 15.0,
+      "reference": "就 像 月 球 对 地 球 施 加 拉 力 引 起 潮 汐 一 样 银 河 系 也 对 人 马 座 星 系 施 加 着 作 用 力",
+      "hypothesis": "就像月球对地球施加拉力，引起潮汐一样，银河系也对人马做星息，施加着作用力。",
+      "wer": 1.0,
+      "cer": 0.06060606060606061
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e12.wav",
+      "dur": 13.96,
+      "reference": "自 由 派 人 士 对 重 建 工 作 的 批 判 主 要 集 中 在 把 重 建 合 同 授 予 了 视 为 华 盛 顿 内 部 人 士 的 这 一 做 法",
+      "hypothesis": "自有派人士对重建工作的批判主要集中在把重建合同授予了市委华盛顿内部人士的这一做法。",
+      "wer": 1.0,
+      "cer": 0.075
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e13.wav",
+      "dur": 7.56,
+      "reference": "摩 尔 多 瓦 的 首 都 是 基 希 讷 乌 当 地 语 言 是 罗 马 尼 亚 语 但 俄 语 也 被 广 泛 使 用",
+      "hypothesis": "摩尔多瓦的首都是新基那乌，当地的语言是罗马尼亚语，但俄语也被广泛使用。",
+      "wer": 1.0,
+      "cer": 0.12903225806451613
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e14.wav",
+      "dur": 9.18,
+      "reference": "因 此 很 可 能 这 个 符 号 只 是 作 为 一 个 标 签 添 加 的",
+      "hypothesis": "因此，很可能这个符号只是作为一个标签添加的。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e15.wav",
+      "dur": 15.16,
+      "reference": "特朗普与土耳其总统雷杰普·塔伊普·埃尔多安recep tayyip erdoğan通话后发表了声明",
+      "hypothesis": "特朗普与土耳其总统雷杰普、塔伊普埃尔多安通话后发表了声明。",
+      "wer": 1.0,
+      "cer": 0.4
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e16.wav",
+      "dur": 8.76,
+      "reference": "这 被 称 为 化 学 物 质 的 ph 值 你 可 以 使 用 红 甘 蓝 汁 制 作 指 示 剂",
+      "hypothesis": "这被称为化学物质的TH值，你可以用红甘蓝汁制作指示剂。",
+      "wer": 1.0,
+      "cer": 0.07692307692307693
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e17.wav",
+      "dur": 15.68,
+      "reference": "在 昆 达 里 尼 瑜 伽 中 昆 达 里 尼 能 量 启 迪 能 量 通 过 瑜 伽 姿 势 呼 吸 练 习 念 语 和 视 觉 形 象 被 唤 醒",
+      "hypothesis": "在昆达里尼瑜伽中，昆达里尼能量启迪能量通过瑜伽姿势、呼吸练习、念语和视觉形象被唤醒。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e18.wav",
+      "dur": 8.46,
+      "reference": "ph 值 以 被 测 化 学 品 中 的 氢 ph 中 的 h 离 子 数 量 表 示",
+      "hypothesis": "PH值被测化学品中的氢phH中的H离子数量表示。",
+      "wer": 1.0,
+      "cer": 0.08695652173913043
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e19.wav",
+      "dur": 6.9,
+      "reference": "具 体 说 来 据 说 可 以 通 过 正 确 解 读 微 表 情 来 判 断 一 个 人 是 否 在 撒 谎",
+      "hypothesis": "具体说来，据说可以通过正确解读微表情来判断一个人是否在撒谎。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e20.wav",
+      "dur": 9.66,
+      "reference": "这 座 城 市 与 该 国 其 他 城 市 形 成 了 鲜 明 对 比 因 为 它 更 多 的 是 阿 拉 伯 风 格 而 不 是 非 洲 风 格",
+      "hypothesis": "这座城市与该国其他城市形成了鲜明的对比，因为它更多的是阿拉伯风格，而不是非洲风格。",
+      "wer": 1.0,
+      "cer": 0.02702702702702703
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e21.wav",
+      "dur": 6.96,
+      "reference": "在 中 东 温 暖 的 气 候 中 房 子 并 不 是 多 重 要",
+      "hypothesis": "在中东温暖的气候中，房子并不是多重要。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e22.wav",
+      "dur": 15.22,
+      "reference": "它 会 攻 击 任 何 进 入 水 中 的 东 西 即 使 像 霸 王 龙 之 类 的 巨 型 恐 龙 也 不 是 它 的 对 手",
+      "hypothesis": "它会攻击任何进入水中的东西，即使像霸王龙之类的巨型恐龙，也不是它的对手。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e23.wav",
+      "dur": 9.72,
+      "reference": "宇 宙 中 的 一 切 都 由 物 质 构 成 而 所 有 的 物 质 都 由 被 称 为 原 子 的 微 小 粒 子 组 成",
+      "hypothesis": "宇宙中的一切都由物质构成，而所有的物质都由被称为原子的微小颗粒组成。",
+      "wer": 1.0,
+      "cer": 0.0625
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e24.wav",
+      "dur": 11.16,
+      "reference": "他 还 参 与 了 许 多 国 家 的 纸 币 雕 版 制 作 近 期 作 品 包 括 加 拿 大 新 版 5 元 和 100 元 纸 币 正 面 的 总 理 肖 像",
+      "hypothesis": "他还参与了许多国家的纸币雕版制作，近期作品包括加拿大新版5元和100元纸币正面的总理肖像。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e25.wav",
+      "dur": 12.12,
+      "reference": "早 先 于 全 球 发 布 的 华 硕 eee pc 个 人 笔 记 本 因 成 本 节 约 及 功 能 性 因 素 成 为 2007 年 台 北 it 资 讯 月 备 受 瞩 目 的 话 题",
+      "hypothesis": "早些全球发布的华硕EPC个人笔记本，因成本节约及功能性因素成为2007年台北IT资讯月备受瞩目的话题。",
+      "wer": 1.0,
+      "cer": 0.07692307692307693
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e26.wav",
+      "dur": 11.94,
+      "reference": "自 1966 年 以 来 孙 德 尔 本 斯 一 直 是 野 生 动 物 保 护 区 据 估 计 目 前 该 区 生 活 着 400 只 皇 家 孟 加 拉 虎 和 大 约 3 万 只 梅 花 鹿",
+      "hypothesis": "自1966年以来，孙德尔本斯一直是野生动物保护区。据计目前该区生活着400只皇家孟加拉虎和大约3万只梅花鹿。",
+      "wer": 1.0,
+      "cer": 0.019230769230769232
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e27.wav",
+      "dur": 6.78,
+      "reference": "它 让 玩 家 可 以 通 过 在 空 中 移 动 设 备 来 控 制 电 子 游 戏 中 的 运 动 和 操 作",
+      "hypothesis": "他让玩家可以通过在空中移动设备来控制电子游戏中的运动和操作。",
+      "wer": 1.0,
+      "cer": 0.034482758620689655
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e28.wav",
+      "dur": 10.5,
+      "reference": "海 地 正 义 与 民 主 研 究 所 haitian institute for justice and democracy 引 用 的 独 立 研 究 表 明 是 尼 泊 尔 的 联 合 国 维 和 部 队 在 不 知 情 的 情 况 下 将 这 种 疾 病 带 到 了 海 地",
+      "hypothesis": "海地正义与民主研究所引用的独立研究表明，是尼泊尔的联合国维和部队在不知情的情况下，将这种疾病带到了海地。",
+      "wer": 1.0,
+      "cer": 0.4367816091954023
+    },
+    {
+      "lang": "zh",
+      "audio": "zh_e29.wav",
+      "dur": 7.74,
+      "reference": "他 没 有 设 定 削 减 数 额 只 是 表 示 将 根 据 中 国 的 经 济 产 出 来 决 定 数 额",
+      "hypothesis": "他没有设定削减数额，只是表示将根据中国的经济产出来决定数额。",
+      "wer": 1.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e0.wav",
+      "dur": 9.9,
+      "reference": "합금은 기본적으로 금속 두 개 이상의 혼합물이다 주기율표 상에 원소가 많이 있다는 것을 잊지 마라",
+      "hypothesis": "합금은 기본적으로 금속 두 개 이상의 혼합물이다 주기율표상의 원소가 많이 있다는 것을 잊지 마라.",
+      "wer": 0.13333333333333333,
+      "cer": 0.025
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e1.wav",
+      "dur": 13.62,
+      "reference": "\"1940년 8월 15일 연합군은 프랑스 남부를 침략했고 이 침략은 \"드래군 작전\"\"이라 불렸다.",
+      "hypothesis": "천 구백 사십 년 팔 월 십 오 일 연합군은 프랑스 남부를 침략했고 이 침략은 드래곤 작전이라 불렸다.",
+      "wer": 0.8333333333333334,
+      "cer": 0.23684210526315788
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e2.wav",
+      "dur": 7.02,
+      "reference": "그래도 관계자의 조언을 듣고 모든 표지판을 지키고 안전 경고에 세심한 주의를 기울여야 합니다",
+      "hypothesis": "그래도 관계자의 조언을 듣고고 모든 표지판을 지키고 안전경고에 세심한 주의를 기울여야 합니다.",
+      "wer": 0.23076923076923078,
+      "cer": 0.02564102564102564
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e3.wav",
+      "dur": 18.9,
+      "reference": "지하철의 정규 안내 방송은 카탈로니아어로만 제공되나 계획에 없던 운행 중단 시에는 자동 시스템을 통해 스페인어 영어 프랑스어 아라비아어 일본어를 포함한 다양한 언어로 방송됩니다",
+      "hypothesis": "지하철의 정규 안내방송은 카탈로니아 어로만 제공되나 계획이 없던 은행 중단 시에는 자동 시스템을 통해 스페인어, 영어 프랑스 아라비아어 일본어를 포함한 다양한 언어로 방송됩니다.",
+      "wer": 0.2608695652173913,
+      "cer": 0.039473684210526314
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e4.wav",
+      "dur": 4.8,
+      "reference": "교전이 발발한 직후 영국은 독일에 대한 해상 봉쇄를 시작한다",
+      "hypothesis": "교전이 발한 직후고 영국은 독일에 대한 해상 봉세를 시작한다.",
+      "wer": 0.3333333333333333,
+      "cer": 0.12
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e5.wav",
+      "dur": 17.7,
+      "reference": "기지국에 이중 라디오가 있다면 이것이 802.11a 802.11b와 802.11g가 이전 기종이라도 호환할 수 있게 해준다",
+      "hypothesis": "기지국의 이중 라디오가 있다면 이것이 팔  공 이 . 일 일 에 팔  공 이 . 일 일 비와 팔  공 이 . 일 일쥐가 이전 기종이라도 후환할 수 있게 해준다.",
+      "wer": 1.3571428571428572,
+      "cer": 0.38461538461538464
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e6.wav",
+      "dur": 12.48,
+      "reference": "겨우 2주 만에 미군과 자유 프랑스군은 프랑스 남부를 해방시키고 독일로 진격 방향을 틀고 있었다",
+      "hypothesis": "겨우 이 주 만에에 미군과 자유프랑스군은 프랑스 남부를 해방시키고 독일로 진격 방향을 틀고 있었다.",
+      "wer": 0.35714285714285715,
+      "cer": 0.05
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e7.wav",
+      "dur": 8.82,
+      "reference": "사건 발생 이후 깁슨gibson은 병원으로 이송되었으나 얼마 후 숨을 거뒀다",
+      "hypothesis": "사건 발생 이후깁 씨는 병원으로 이송되었으나 얼마 후 숨을 거뒀다.",
+      "wer": 0.2,
+      "cer": 0.24242424242424243
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e8.wav",
+      "dur": 22.38,
+      "reference": "\"기술 결정론에 대한 대부분의 해석은 두 가지 개념을 갖습니다. 기술 개발 자체가 문화나 정치 이상의 영향력을 보인다는 것과 기술은 사회적으로 통제되는 것이 아니라 오히려 사회에 본질적인 \"영향\"\"을 미칩니다.",
+      "hypothesis": "기술 결정론에 대한 대부분의 해석은 두 가지 개념을 갖 같습니다 기술 개발 자체가 문화난나 정치 이상의 영향력을 보인다는 것과 기술은 사회적으로 통제되는 것이 아니라 오히려 사회에 본질적인 영향을 미칩니다..",
+      "wer": 0.10714285714285714,
+      "cer": 0.023809523809523808
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e9.wav",
+      "dur": 13.56,
+      "reference": "대서양 허리케인의 열 번째 폭풍인 아열대 폭풍 제리가 오늘 대서양에서 생성되었습니다",
+      "hypothesis": "대서양 허리케인의 열 번째 폭풍인 아열대 폭풍 제리가 오늘 대서양에서 생성되었습니다.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e10.wav",
+      "dur": 11.22,
+      "reference": "무거운 세금을 물리는 국가의 여행객들은 때때로 상당한 금액을 아낄 수 있다 특히 주류나 담배를 살 때 그렇다",
+      "hypothesis": "무거운 세금을 물리는 국가의 여행객들은 때때로 상당한 금액을 아낄 수 있다. 특히 주류나 담배를 살 때 그렇다.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e11.wav",
+      "dur": 13.32,
+      "reference": "널리 알려진 사파리라는 표현은 특히 사바나의 멋진 아프리카의 야생동물들을 보기위한 육로 여행을 칭한다",
+      "hypothesis": "널리 알려진 사파리이라는 표현은 특히 사바나의 멋진 아프리카의 야생동물들을 보기 위한 육노여을칭한다.",
+      "wer": 0.38461538461538464,
+      "cer": 0.06818181818181818
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e12.wav",
+      "dur": 10.32,
+      "reference": "홍콩 섬은 홍콩 영토에 홍콩이라는 이름을 부여한 곳이자 많은 관광객들이 주안점으로 여기는 곳이다",
+      "hypothesis": "홍콩 섬은 홍콩 영토의 홍콩이라는 이름을 부여한 곳이자 많은 관광객들이 주한점으로 여기는 곳이다.",
+      "wer": 0.15384615384615385,
+      "cer": 0.04878048780487805
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e13.wav",
+      "dur": 9.72,
+      "reference": "교전이 발발한 직후 영국은 독일에 대한 해상 봉쇄를 시작한다",
+      "hypothesis": "교전이 발발한 직후 영국은 독일에 대한 해상 봉쇄 시작한다.",
+      "wer": 0.1111111111111111,
+      "cer": 0.04
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e14.wav",
+      "dur": 13.26,
+      "reference": "만약 내셔널 트레저라는 영화를 봤다면 아마 독립선언서의 뒷면에 보물지도가 쓰여졌다고 생각할지도 모른다",
+      "hypothesis": "만약 내셔널트저라는 영화를 봤다면 아마 독립선언서의 뒷면에 보물지도가 쓰여졌다고 생각할지도 모른다.",
+      "wer": 0.16666666666666666,
+      "cer": 0.022222222222222223
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e15.wav",
+      "dur": 9.36,
+      "reference": "보고서는 행정부의 현재 이라크 정책에 대해 거의 모든 측면에서 매우 비판적이며 즉각적인 방향 변경을 촉구합니다",
+      "hypothesis": "보고서는는 행강부의 현재 이라크 정책에 대해 거의 모든 측면에서 매우 비판적이며 즉각적인 방향 변경을 추구합니다.",
+      "wer": 0.2,
+      "cer": 0.06382978723404255
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e16.wav",
+      "dur": 13.74,
+      "reference": "왕과 왕비는 마차를 타고 자신들에게 소리를 지르고 위협을 하는 군중들에게 둘러싸인 채 파리로 돌아갔다",
+      "hypothesis": "왕과 왕빈은 마차를 타고 자신들에게 소리를 지르고 위협을 하는 군중들에게 둘러싸인 채 파리로 돌아갔다.",
+      "wer": 0.07142857142857142,
+      "cer": 0.046511627906976744
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e17.wav",
+      "dur": 10.38,
+      "reference": "일부 지역에서는 1분간 물을 끓이는 것으로 충분하다 다른 지역에서는 수 분 동안 물을 끓일 필요가 있다",
+      "hypothesis": "일부 지옥에서는1분간 물을 끓이는 것으로 충분하다 다른 지역에서는 수분 동안 물을 끓일 필요가 있다.",
+      "wer": 0.25,
+      "cer": 0.023809523809523808
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e18.wav",
+      "dur": 15.36,
+      "reference": "1537년 아순시온asunción이 설립된 이래 파라과이는 토착적인 특징과 정체성을 상당 부분 유지해 왔습니다",
+      "hypothesis": "천5백3십7년 아순시 온이 설립된 이래 파라과인은는 토착적인 특징과 정체성을 상당 부분 유지해 왔습니다.",
+      "wer": 0.3333333333333333,
+      "cer": 0.26
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e19.wav",
+      "dur": 4.68,
+      "reference": "오늘날 날개를 접을 수 없는 곤충은 잠자리와 파리밖에 없습니다",
+      "hypothesis": "어느 날 날개를 접을 수 없는 곤충은 잠자리야 파리밖 없습니다.",
+      "wer": 0.4444444444444444,
+      "cer": 0.15384615384615385
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e20.wav",
+      "dur": 12.6,
+      "reference": "합금은 기본적으로 금속 두 개 이상의 혼합물이다 주기율표 상에 원소가 많이 있다는 것을 잊지 마라",
+      "hypothesis": "합금은 기본적으로 금속 두 개 이상의 혼합물이다 주기율표상에 원소가 많이 있다는 것을 잊지 마라.",
+      "wer": 0.13333333333333333,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e21.wav",
+      "dur": 24.06,
+      "reference": "연예 뉴스 웹사이트인 tmz는 사진사가 세풀베다 대로 맞은편에 차를 세워 두고 길을 건너기 전에 계속해서 경찰서 사진을 찍으려 시도하였으며 이에 교통정리를 하던 캘리포니아 고속도로 경찰이 두 번이나 물러나도록 명령했던 것에 대해 시인하였습니다",
+      "hypothesis": "연예뉴스 웹사이트엠지는 사진사가 새플베다대로 맞은편에 차를 세워두고 길을 건너기 전에 계속해서 경찰서 사진을 찍으려 시도하였으며 이에 교통정리를 하던 캘리포니아 고속도로 경찰이 두 번이나 물러나도록 명령했던 것에 대해 시인하였습니다.",
+      "wer": 0.25,
+      "cer": 0.057692307692307696
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e22.wav",
+      "dur": 14.82,
+      "reference": "생식 계열 세포의 돌연변이만이 자녀에게 유전될 수 있고 다른 곳에서의 돌연변이는 세포 사망 또는 암을 유발할 수 있습니다",
+      "hypothesis": "생식기열 세포의 돌연변이 많이 자녀에게 유전될 수 있고, 다른 곳에서의 돌연변이는 세포 사망 또는 암을 유발할 수 있습니다.",
+      "wer": 0.2222222222222222,
+      "cer": 0.04
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e23.wav",
+      "dur": 17.52,
+      "reference": "훈는 사임했고 내각에서 에드 데이비 하원 의원에 의해 교체될 예정이다 노먼 램 하원 의원은 데이비가 떠나는 사업부 장관직을 밭을 것으로 예산된다",
+      "hypothesis": "후는 사임했고 내각에서 에드데이비 하원 의원에 의해 교체될 예정이다 노먼렘 하원 의원은 대비가 떠나는 사업부 장관직을 받을 것으로 예상된다.",
+      "wer": 0.38095238095238093,
+      "cer": 0.1
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e24.wav",
+      "dur": 13.62,
+      "reference": "비록 중앙 무대에서 연주하는 곡은 끝날 수 있지만 축제 곳곳에서는 밤늦게까지 음악을 연주할 수도 있다는 것을 잊지 마세요",
+      "hypothesis": "비록 중앙 무대에서 연주하는 곡은 끝날 수 있지만 축제 곳곳에서는 밤늦게까지 음악을 연주할 수도 있다는 것을 잊지 마세요.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e25.wav",
+      "dur": 20.64,
+      "reference": "호주의 미첼 골리는 남자 스탠딩 슈퍼-g에서 11위를 차지했습니다 체코 출신의 경쟁자 올드리치 젤리넥은 남자 좌식 슈퍼-g에서 16위로 경기를 마쳤습니다",
+      "hypothesis": "호주의 미을 골리는 남자 스탠딩 슈퍼 주에서 11위를 차지했습니다 체코 출신의 경쟁자 올드리치 젤리넥은 남자 좌식 슈퍼 주에서 16위 경기를 마쳤습니다.",
+      "wer": 0.3157894736842105,
+      "cer": 0.06153846153846154
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e26.wav",
+      "dur": 7.32,
+      "reference": "파리 사람들은 자기중심적이고 무례하고 오만하다는 평판이 있습니다",
+      "hypothesis": "파리 사람들은 자기중심적이고 무례하고 오만하다는 평판이 있습니다.",
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e27.wav",
+      "dur": 11.46,
+      "reference": "커리는 약용 식물과 향신료를 기본으로 하여 고기나 채소를 곁들이는 요리입니다",
+      "hypothesis": "커리는 약용식물과 향신료를 기으로 하여 고기나 채소를 곁들이는 요리입니다.",
+      "wer": 0.3,
+      "cer": 0.030303030303030304
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e28.wav",
+      "dur": 12.6,
+      "reference": "아이티 정의와 민주주의 연구소는 네팔의 un 평화 유지 부대가 의도치 않게 아이티에 질병을 전파시켰다는 독립적인 연구를 언급했다",
+      "hypothesis": "아이티 정의와 민주주의 연구는 네팔의 유엔 평화유지부대가 의도치 않게 아이티의 질병을 전파시켰다는 독립적인 연구를 언급했다.",
+      "wer": 0.35294117647058826,
+      "cer": 0.07272727272727272
+    },
+    {
+      "lang": "ko",
+      "audio": "ko_e29.wav",
+      "dur": 12.66,
+      "reference": "고통을 극복하는 데 필요한 약들이 경기에서는 금지된 약물이기에 복용을 할 수 없었다",
+      "hypothesis": "고통을 극복한 데 필요한 약들이 경기에서는 금지된 약물이기에 복용을 할 수 없었다.",
+      "wer": 0.08333333333333333,
+      "cer": 0.05714285714285714
+    }
+  ]
+}

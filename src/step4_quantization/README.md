@@ -213,7 +213,32 @@ Toàn bộ chi tiết kỹ thuật (job ID cụ thể, shape đã pin, bài họ
    | Thành viên | Nhiệm vụ phân công (Mô hình & Step) | Trạng thái |
    |---|---|:---:|
    | **Trần Quốc Khanh** | • Silero VAD + GTCRN + MVDR/GSC (Step 0)<br>• Zipformer-30M (Vi) (Step 1)<br>• NLLB-200-distilled-600M (Step 2) | *Đã xong*<br>—<br>*Đã xong* |
-   | **Lê Gia Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | — |
+   | **Lê Gia Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | **Đã xong** (100% NPU, ~333ms, WER 8.98%) ✅ |
    | **Trần Trung Hiếu** | • MeloTTS-ZH (Zh) (Step 3) | — |
    | **Phạm Chấn Khoa** | • Supertonic (Ko/En) (Step 3) | — |
    | **Cái Hoàng Bảo Kin** | • Piper (Vi) (Step 3) | — |
+
+---
+
+## 10. Cấu trúc thư mục Step 4
+
+Thư mục `src/step4_quantization/` được tổ chức đồng bộ theo các mô-đun của toàn hệ thống:
+
+```text
+src/step4_quantization/
+├── README.md                      # Báo cáo tổng hợp cơ chế quantization w8a16 & NPU deployment (Tài liệu này)
+├── step0_frontend/                # Step 0: VAD (Silero) + Khử ồn (GTCRN) + Beamforming (MVDR)
+├── step1_asr/                     # Step 1: Nhận dạng giọng nói tự động (ASR)
+│   ├── sensevoice/                # SenseVoice-Small (Đa ngữ En/Zh/Ko) 100% NPU (Lê Gia Khánh)
+│   │   ├── README.md              # Báo cáo kỹ thuật chi tiết toàn diện & hướng dẫn triển khai
+│   │   ├── export/                # Script xuất ONNX Graph 1 (Frontend v3) & Graph 2 (Encoder W8A16)
+│   │   ├── hub/                   # Pipeline vận hành Qualcomm AI Hub
+│   │   ├── eval/                  # Bộ đánh giá 90 câu & kiểm chứng NPU vs CPU FP32
+│   │   ├── demo/                  # Web demo server ghi âm đa đoạn thời gian thực
+│   │   └── results/               # Kết quả đo đạc JSON và CSV
+│   └── zipformer/                 # Zipformer-30M (Tiếng Việt) 100% NPU (Trần Quốc Khanh)
+│       └── README.pdf             # Slide báo cáo kỹ thuật Zipformer NPU
+├── step2_mt/                      # Step 2: Dịch máy NLLB-600M INT8
+└── step3_tts/                     # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
+```
+

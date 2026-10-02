@@ -117,14 +117,14 @@ flowchart LR
 │   ├── common.py                  # Các hàm tiện ích dùng chung (đo RTF, I/O WAV, WER/CER)
 │   ├── step0_frontend/            # Step 0: Tiền xử lý âm thanh (GTCRN denoiser, Silero VAD, MVDR beamforming)
 │   │   └── README.md              # Hướng dẫn chi tiết & benchmark Step 0
-│   ├── step1_asr/                 # Step 1: Nhận dạng giọng nói tự động (ASR) & NPU Export
+│   ├── step1_asr/                 # Step 1: Nhận dạng giọng nói tự động (ASR) & Benchmark
 │   │   ├── README.md              # Hướng dẫn chi tiết & benchmark Step 1
-│   │   ├── step4_s1_export_sensevoice_e2e_unified.py  # Xuất đồ thị SenseVoice 5 khối E2E tĩnh (100% NPU, Zero-CPU Detok)
-│   │   ├── step4_s1_prepare_calib_unified.py          # Chuẩn bị dữ liệu calibration tĩnh cho W8A16
-│   │   ├── step4_s1_quantize_w8a16_unified.py         # Biên dịch & Lượng tử hóa W8A16 trên Qualcomm AI Hub
-│   │   ├── submit_qai_hub_pipeline.py                 # Tự động hóa pipeline AI Hub (Quantize, Compile, Profile, Inference)
-│   │   ├── inspect_inference_results.py               # Giải mã HDF5 & đối chứng kết quả silicon NPU vs FP32
-│   │   └── step4_sensevoice.md                        # Báo cáo kỹ thuật chi tiết kiến trúc SenseVoice E2E NPU
+│   │   ├── fetch_asr_data.py      # Tải dữ liệu âm thanh kiểm thử chuẩn FLEURS
+│   │   ├── mix_asr_noise.py       # Trộn nhiễu công nghiệp mô phỏng nhà máy
+│   │   ├── run_all_asr.py         # Kịch bản chạy tự động benchmark toàn bộ ASR
+│   │   ├── test_asr_zipformer.py  # Đánh giá Zipformer-30M (Tiếng Việt)
+│   │   ├── test_asr_multi.py      # Đánh giá SenseVoice-Small (Anh / Trung / Hàn)
+│   │   └── test_asr_*.py          # Benchmark các mô hình đối chứng (PhoWhisper, Moonshine, Qwen3)
 │   ├── step2_mt/                  # Step 2: Dịch máy đa ngữ NLLB-600M INT8 & AlignAtt
 │   │   ├── README.md              # Hướng dẫn chi tiết & benchmark Step 2
 │   │   ├── test_mt_nllb.py        # Dịch câu đa ngữ CLI & Benchmark tự động đo BLEU
@@ -134,8 +134,21 @@ flowchart LR
 │   │   ├── test_tts_eval_quality.py       # Đánh giá độ rõ vòng lặp (Round-trip Evaluation)
 │   │   ├── quantize_supertonic.py         # Lượng tử hoá lai cho Supertonic (vocoder FP32)
 │   │   └── diagnose_supertonic_int8.py    # Bisection chẩn đoán nguyên nhân vỡ âm
-│   ├── step4_quantization/        # Step 4: Lượng tử hoá & Triển khai phần cứng Qualcomm
-│   │   └── README.md              # Báo cáo tổng hợp cơ chế quantization w8a16 & NPU deployment
+│   ├── step4_quantization/        # Step 4: Lượng tử hoá & Triển khai phần cứng Qualcomm Hexagon NPU
+│   │   ├── README.md              # Báo cáo tổng hợp cơ chế quantization w8a16 & NPU deployment
+│   │   ├── step0_frontend/        # Step 0: VAD + Denoise + Beamforming NPU
+│   │   ├── step1_asr/             # Step 1: Nhận dạng giọng nói tự động ASR
+│   │   │   ├── sensevoice/        # SenseVoice-Small (En/Zh/Ko) 100% NPU (Lê Gia Khánh)
+│   │   │   │   ├── README.md      # Báo cáo kỹ thuật toàn diện & hướng dẫn triển khai
+│   │   │   │   ├── export/        # Script xuất ONNX Graph 1 (Frontend v3) & Graph 2 (Encoder W8A16)
+│   │   │   │   ├── hub/           # Pipeline vận hành Qualcomm AI Hub
+│   │   │   │   ├── eval/          # Bộ đánh giá 90 câu & kiểm chứng NPU vs CPU FP32
+│   │   │   │   ├── demo/          # Web demo server ghi âm đa đoạn thời gian thực
+│   │   │   │   └── results/       # Kết quả đo đạc JSON và CSV
+│   │   │   └── zipformer/         # Zipformer-30M (Vi) 100% NPU (Trần Quốc Khanh)
+│   │   │       └── README.pdf     # Slide báo cáo kỹ thuật Zipformer NPU
+│   │   ├── step2_mt/              # Step 2: Dịch máy NLLB-600M INT8
+│   │   └── step3_tts/             # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
 │   └── step5_pipeline/            # Step 5: Pipeline tích hợp toàn trình Speech-to-Speech (S2S)
 │       ├── README.md              # Hướng dẫn chi tiết & kết quả đo E2E Pipeline
 │       └── pipeline_s2s.py        # Script chạy chuỗi hoàn chỉnh ASR → MT → TTS (CPU/GPU)

@@ -17,3 +17,4 @@ src/**/*.onnx
 src/**/*.onnx.json
 venv_pipeline/
 =*.*.*
+**/asr_batch_logs/

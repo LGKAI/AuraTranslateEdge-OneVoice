@@ -18,8 +18,8 @@ Sau khi đánh giá và benchmark thực nghiệm trên dữ liệu chuẩn FLEU
     *   **Hiệu năng thực đo:** CER tiếng Trung **2.3%**, CER tiếng Hàn **4.5%**, WER tiếng Anh **6.8%**. Cung cấp sự cân bằng hoàn hảo giữa độ chính xác và tốc độ xử lý.
 
 > [!TIP]
-> **Triển khai NPU & Lượng tử hóa (Step 4):** Toàn bộ quy trình nén W8A16, xuất End-to-End ONNX, xử lý đồ thị GraphSurgeon và compile lên chip NPU Qualcomm Hexagon của SenseVoice-Small được tài liệu hoá riêng tại:
-> 👉 **[`step4_sensevoice.md`](step4_sensevoice.md)**.
+> **Triển khai NPU & Lượng tử hóa (Step 4):** Toàn bộ mã nguồn xuất mô hình, lượng tử hóa W8A16, compile NPU, benchmark 90 câu và báo cáo kỹ thuật chi tiết của SenseVoice-Small được tổng hợp thống nhất tại:
+> 👉 **[`src/step4_quantization/step1_asr/sensevoice/README.md`](../step4_quantization/step1_asr/sensevoice/README.md)**.
 
 ---
 
@@ -64,13 +64,9 @@ Thư mục `src/step1_asr/` được tổ chức thành các nhóm chức năng 
 *   `test_asr_multi.py`: Kịch bản đánh giá chuyên biệt cho **SenseVoice-Small (Anh / Trung / Hàn)**.
 *   `test_asr_vi.py`, `test_asr_moonshine.py`, `test_asr_qwen.py`: Mã kiểm thử cho các mô hình đã bị loại (PhoWhisper, Moonshine, Qwen3) để đối chiếu số liệu.
 
-### 📁 Triển khai Phần cứng & NPU Deployment (Step 4 — SenseVoice-Small)
-*   [`step4_s1_export_sensevoice_e2e_unified.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_s1_export_sensevoice_e2e_unified.py): Đóng gói và xuất toàn bộ Pipeline SenseVoice (WavFrontend $\rightarrow$ Transformer Core $\rightarrow$ CTC Head $\rightarrow$ Static CTC Collapse $\rightarrow$ UTF-8 Detokenize) thành 1 file ONNX tĩnh duy nhất chạy 100% trên NPU ([`outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/model_sensevoice_e2e_unified_patched.onnx)).
-*   [`step4_s1_prepare_calib_unified.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_s1_prepare_calib_unified.py): Chuẩn bị tập dữ liệu calibration đa ngữ tĩnh chuẩn hóa Vocab Token IDs và multi-bucket sizing ([`outputs/sensevoice-e2e-onnx/calib_data_unified.npz`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/calib_data_unified.npz)).
-*   [`submit_qai_hub_pipeline.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/submit_qai_hub_pipeline.py): Kịch bản tự động hóa toàn bộ chuỗi 5 công đoạn (Upload $\rightarrow$ Quantize W8A16 $\rightarrow$ Compile QNN DLC $\rightarrow$ Profile $\rightarrow$ Silicon Inference) trên Qualcomm AI Hub, hỗ trợ quản lý trạng thái (`--submit`, `--status`, `--check-all`).
-*   [`inspect_inference_results.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/inspect_inference_results.py): Công cụ giải mã dữ liệu nhị phân HDF5 từ chip silicon NPU, đối chứng 3 chiều (Ground Truth vs ORT FP32 vs NPU W8A16 Silicon) và xuất kết quả ra JSON ([`outputs/sensevoice-e2e-onnx/inference_results_v2.json`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/inference_results_v2.json)).
-*   [`step4_sensevoice.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_sensevoice.md): Báo cáo kỹ thuật chuyên sâu về kiến trúc Single Static DAG 5 khối, giải pháp Trash-Bin Scatter, số liệu phần cứng vật lý và phân tích kết quả thực tế trên chip Dragonwing IQ-9075 EVK.
-*   [`step4_zipformer.pdf`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/src/step1_asr/step4_zipformer.pdf): Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon.
+### 📁 Tài liệu tham chiếu kiến trúc NPU
+*   Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon: [`src/step4_quantization/step1_asr/zipformer/README.pdf`](../step4_quantization/step1_asr/zipformer/README.pdf).
+*   Thư mục mã nguồn và báo cáo triển khai NPU SenseVoice-Small: [`src/step4_quantization/step1_asr/sensevoice/`](../step4_quantization/step1_asr/sensevoice/).
 
 ---
 
@@ -101,22 +97,6 @@ python test_asr_zipformer.py
 # Đánh giá SenseVoice-Small trên Anh / Trung / Hàn
 python test_asr_multi.py
 ```
-*Kết quả chi tiết được tự động xuất ra file CSV tại thư mục `outputs/`.*
+*Kết quả chi tiết được tự động xuất ra file CSV tại thư mục `outputs/` (`asr_multi_results.csv`, `asr_zipformer_results.csv`).*
 
-**Bước 3: Xuất mô hình End-to-End tĩnh & Triển khai NPU (Step 4)**
-```bash
-# 1. Xuất mô hình ONNX hợp nhất 5 khối (100% NPU, Zero-CPU Detok) & verify CPU 100%
-python step4_s1_export_sensevoice_e2e_unified.py
-
-# 2. Chuẩn bị dữ liệu calibration với Vocab Token IDs & multi-bucket sizing
-python step4_s1_prepare_calib_unified.py
-
-# 3. Submit toàn chuỗi lên Qualcomm AI Hub (Upload -> Quantize -> Compile -> Profile -> Inference)
-python submit_qai_hub_pipeline.py --submit
-
-# 4. Kiểm tra trạng thái trực tiếp của toàn bộ các jobs
-python submit_qai_hub_pipeline.py --check-all
-
-# 5. Giải mã tệp tensor H5 từ chip NPU, đối chứng 3 chiều và xuất báo cáo JSON
-python inspect_inference_results.py --export-json outputs/sensevoice-e2e-onnx/inference_results_v2.json
-```
+> Đối với các bước xuất mô hình NPU, lượng tử hóa W8A16 và kiểm thử phần cứng, vui lòng chuyển sang thư mục **[`src/step4_quantization/sensevoice/`](../step4_quantization/sensevoice/)**.

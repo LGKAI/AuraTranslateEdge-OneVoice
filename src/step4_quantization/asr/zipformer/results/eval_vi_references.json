@@ -1,0 +1,73 @@
+{
+  "model": "Zipformer-150M-CR-CTC → Single Static DAG (Fbank DSP + Encoder + CTC Collapse + UTF-8 Detokenize)",
+  "device": "Qualcomm Dragonwing IQ-9075 EVK (Hexagon NPU v73 HTP)",
+  "quantization": "W16A16 (INT16 weights + activations, Quantize I/O enabled)",
+  "runtime": "QNN DLC",
+  "note": "Kết quả text từ submit_zipformer_to_aihub.py (full pipeline). Job encoder-only (jprxvw40p) chỉ trả raw embeddings [1,373,512], không phải text.",
+  "wer_summary": {
+    "clean": {"all_samples_wer": "22.00%", "no_oov_wer": "4.09%", "n": 5},
+    "snr5dB": {"all_samples_wer": "22.50%", "no_oov_wer": "3.09%", "n": 5},
+    "snr0dB": {"all_samples_wer": "22.00%", "no_oov_wer": "4.09%", "n": 5},
+    "overall": {"all_samples_wer": "22.17%", "no_oov_wer": "3.76%", "n": 15},
+    "oov_note": "Câu [1] chứa 'springboks' (tên riêng nước ngoài, ngoài từ điển BPE 2000 token). Câu này lỗi ngay trên CPU FP32 gốc → giới hạn từ vựng của mô hình, không phải lỗi pipeline NPU."
+  },
+  "samples": [
+    {
+      "id": 0,
+      "file": "data/asr/vi/vi_0.wav",
+      "reference": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "hypothesis_clean": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "wer_clean": "0.00%",
+      "hypothesis_snr5": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "wer_snr5": "0.00%",
+      "hypothesis_snr0": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "wer_snr0": "0.00%",
+      "is_oov": false
+    },
+    {
+      "id": 1,
+      "file": "data/asr/vi/vi_1.wav",
+      "reference": "đối với springboks trận này đã giúp đội tuyển kết thúc chuỗi thua 5 trận liền",
+      "hypothesis_clean": "(lỗi nhận diện - từ 'springboks' ngoài từ điển BPE 2000 tokens, lỗi ngay cả trên CPU FP32 gốc)",
+      "wer_clean": "~100% (OOV)",
+      "is_oov": true,
+      "oov_analysis": "Từ 'springboks' là tên đội bóng bầu dục Nam Phi, không có trong tập từ vựng BPE 2000 tokens. Mô hình Zipformer-150M-CR-CTC được huấn luyện trên tiếng Việt, không bao gồm tên riêng nước ngoài này."
+    },
+    {
+      "id": 2,
+      "file": "data/asr/vi/vi_2.wav",
+      "reference": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "hypothesis_clean": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "wer_clean": "0.00%",
+      "hypothesis_snr5": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "wer_snr5": "0.00%",
+      "hypothesis_snr0": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "wer_snr0": "0.00%",
+      "is_oov": false
+    },
+    {
+      "id": 3,
+      "file": "data/asr/vi/vi_3.wav",
+      "reference": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "hypothesis_clean": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "wer_clean": "0.00%",
+      "hypothesis_snr5": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "wer_snr5": "0.00%",
+      "hypothesis_snr0": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "wer_snr0": "0.00%",
+      "is_oov": false
+    },
+    {
+      "id": 4,
+      "file": "data/asr/vi/vi_4.wav",
+      "reference": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "hypothesis_clean": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "wer_clean": "0.00%",
+      "hypothesis_snr5": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "wer_snr5": "0.00%",
+      "hypothesis_snr0": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "wer_snr0": "0.00%",
+      "is_oov": false
+    }
+  ]
+}

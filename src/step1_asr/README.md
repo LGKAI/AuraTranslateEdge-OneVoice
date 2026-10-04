@@ -18,8 +18,8 @@ Sau khi đánh giá và benchmark thực nghiệm trên dữ liệu chuẩn FLEU
     *   **Hiệu năng thực đo:** CER tiếng Trung **2.3%**, CER tiếng Hàn **4.5%**, WER tiếng Anh **6.8%**. Cung cấp sự cân bằng hoàn hảo giữa độ chính xác và tốc độ xử lý.
 
 > [!TIP]
-> **Triển khai NPU & Lượng tử hóa (Step 4):** Toàn bộ mã nguồn xuất mô hình, lượng tử hóa W8A16, compile NPU, benchmark 90 câu và báo cáo kỹ thuật chi tiết của SenseVoice-Small được tổng hợp thống nhất tại:
-> 👉 **[`src/step4_quantization/step1_asr/sensevoice/README.md`](../step4_quantization/step1_asr/sensevoice/README.md)**.
+> **Triển khai NPU & Lượng tử hóa (Step 4):** Toàn bộ mã nguồn xuất mô hình, lượng tử hóa, compile NPU và benchmark silicon của SenseVoice-Small (En/Zh/Ko) và Zipformer-150M-CR-CTC (Vi) được tổng hợp thống nhất tại:
+> 👉 **[`src/step4_quantization/asr/sensevoice/README.md`](../step4_quantization/asr/sensevoice/README.md)** & **[`src/step4_quantization/asr/zipformer/README.md`](../step4_quantization/asr/zipformer/README.md)**.
 
 ---
 
@@ -65,8 +65,9 @@ Thư mục `src/step1_asr/` được tổ chức thành các nhóm chức năng 
 *   `test_asr_vi.py`, `test_asr_moonshine.py`, `test_asr_qwen.py`: Mã kiểm thử cho các mô hình đã bị loại (PhoWhisper, Moonshine, Qwen3) để đối chiếu số liệu.
 
 ### 📁 Tài liệu tham chiếu kiến trúc NPU
-*   Tài liệu kỹ thuật của Trần Quốc Khanh về cơ chế End-to-End ASR trên NPU Qualcomm Hexagon: [`src/step4_quantization/step1_asr/zipformer/README.pdf`](../step4_quantization/step1_asr/zipformer/README.pdf).
-*   Thư mục mã nguồn và báo cáo triển khai NPU SenseVoice-Small: [`src/step4_quantization/step1_asr/sensevoice/`](../step4_quantization/step1_asr/sensevoice/).
+*   Báo cáo kỹ thuật triển khai NPU Zipformer-150M-CR-CTC (Tiếng Việt) 100% NPU: [`src/step4_quantization/asr/zipformer/README.md`](../step4_quantization/asr/zipformer/README.md).
+*   Báo cáo kỹ thuật triển khai NPU SenseVoice-Small (Anh/Trung/Hàn) 100% NPU: [`src/step4_quantization/asr/sensevoice/README.md`](../step4_quantization/asr/sensevoice/README.md).
+*   Ứng dụng Web Demo ASR tích hợp cả 4 ngôn ngữ trên NPU: [`src/step4_quantization/asr/asr_demo_server.py`](../step4_quantization/asr/asr_demo_server.py).
 
 ---
 
@@ -99,4 +100,4 @@ python test_asr_multi.py
 ```
 *Kết quả chi tiết được tự động xuất ra file CSV tại thư mục `outputs/` (`asr_multi_results.csv`, `asr_zipformer_results.csv`).*
 
-> Đối với các bước xuất mô hình NPU, lượng tử hóa W8A16 và kiểm thử phần cứng, vui lòng chuyển sang thư mục **[`src/step4_quantization/sensevoice/`](../step4_quantization/sensevoice/)**.
+> Đối với các bước xuất mô hình NPU, lượng tử hóa và kiểm thử phần cứng, vui lòng chuyển sang thư mục **[`src/step4_quantization/asr/`](../step4_quantization/asr/)**.

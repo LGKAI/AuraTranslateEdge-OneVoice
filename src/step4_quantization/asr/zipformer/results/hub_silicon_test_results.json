@@ -1,0 +1,39 @@
+{
+  "device": "Dragonwing IQ-9075 EVK",
+  "model": "Zipformer Encoder (Surgically Patched for QNN HTP)",
+  "model_id": "mmxjjx0rq",
+  "compile_job": "jp2okemrg",
+  "compile_url": "https://workbench.aihub.qualcomm.com/jobs/jp2okemrg/",
+  "compile_status": "SUCCESS",
+  "profile_job": "jgn16k9kp",
+  "profile_url": "https://workbench.aihub.qualcomm.com/jobs/jgn16k9kp/",
+  "profile_status": "SUCCESS",
+  "infer_job": "jprxvw40p",
+  "infer_url": "https://workbench.aihub.qualcomm.com/jobs/jprxvw40p/",
+  "infer_status": "SUCCESS",
+  "hardware_profile": {
+    "estimated_inference_time_ms": 126.78,
+    "first_load_time_sec": 699.096,
+    "peak_memory_mb": 6.43,
+    "compute_unit_summary": {}
+  },
+  "inference_output_info": {
+    "output_0_encoder_embeddings": {
+      "shape": [
+        1,
+        373,
+        512
+      ],
+      "dtype": "float32",
+      "description": "Encoder output embeddings (before CTC head projection)"
+    },
+    "output_1_encoder_out_lens": {
+      "shape": [
+        1
+      ],
+      "dtype": "int32",
+      "description": "Valid frame count for the output"
+    },
+    "note": "Raw encoder embeddings verified correct on NPU HTP. Full pipeline (including CTC head + detokenize) tested separately via submit_zipformer_to_aihub.py"
+  }
+}

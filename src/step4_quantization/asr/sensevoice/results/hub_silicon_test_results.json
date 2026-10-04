@@ -1,0 +1,184 @@
+{
+  "device": "Dragonwing IQ-9075 EVK",
+  "npu_offload_status": "100.00% NPU Offload (0% CPU Fallback)",
+  "hardware_profile": {
+    "frontend_v3": {
+      "latency_ms": 65.389,
+      "profile_job_id": "jgd6xz0zp",
+      "profile_url": "https://workbench.aihub.qualcomm.com/jobs/jgd6xz0zp/"
+    },
+    "encoder_w8a16": {
+      "latency_ms": 204.013,
+      "profile_job_id": "jp0ozvw2p",
+      "profile_url": "https://workbench.aihub.qualcomm.com/jobs/jp0ozvw2p/"
+    },
+    "total_latency_ms": 269.402,
+    "rtf_29s_clip": 0.009289724137931034
+  },
+  "accuracy_metrics": {
+    "en_wer": 7.4422419685577585,
+    "zh_cer": 11.028385121222106,
+    "ko_wer": 32.27813852813853
+  },
+  "jobs": {
+    "fe_compile_job_id": "jg9olx88g",
+    "fe_profile_job_id": "jgd6xz0zp",
+    "fe_infer_job_id": "jgzz341zg",
+    "enc_quantize_job_id": "jpx0kddlp",
+    "enc_compile_job_id": "jp3ojw6np",
+    "enc_profile_job_id": "jp0ozvw2p",
+    "enc_infer_job_id": "jgk6e9zo5"
+  },
+  "samples": [
+    {
+      "index": 0,
+      "lang": "en",
+      "audio_file": "en_0.wav",
+      "duration_s": 10.56,
+      "ground_truth": "however due to the slow communication channels styles in the west could lag behind by 25 to 30 year",
+      "hypothesis": "However, due to the slow communication channels, styles in the West could lag behind by 25 to 30 years.",
+      "error_rate": 0.05263157894736842,
+      "metric": "WER"
+    },
+    {
+      "index": 1,
+      "lang": "en",
+      "audio_file": "en_1.wav",
+      "duration_s": 8.76,
+      "ground_truth": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+      "hypothesis": "All nouns alongside the world safe for you always begin with a capital letter, even in the middle of a sentence.",
+      "error_rate": 0.09523809523809523,
+      "metric": "WER"
+    },
+    {
+      "index": 2,
+      "lang": "en",
+      "audio_file": "en_2.wav",
+      "duration_s": 11.46,
+      "ground_truth": "to the north and within easy reach is the romantic and fascinating town of sintra and which was made famous to foreigners after a glowing account of its splendours recorded by lord byron",
+      "hypothesis": "To the north and within easy reach is a romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of the splenous recorded by Lord Byron.",
+      "error_rate": 0.09090909090909091,
+      "metric": "WER"
+    },
+    {
+      "index": 3,
+      "lang": "en",
+      "audio_file": "en_3.wav",
+      "duration_s": 5.76,
+      "ground_truth": "the cabbage juice changes color depending on how acidic or basic alkaline the chemical is",
+      "hypothesis": "The cabbage juice changes color depending on how acid, basic alkaline the chemical is.",
+      "error_rate": 0.13333333333333333,
+      "metric": "WER"
+    },
+    {
+      "index": 4,
+      "lang": "en",
+      "audio_file": "en_4.wav",
+      "duration_s": 4.32,
+      "ground_truth": "many people don't think about them as dinosaurs because they have feathers and can fly",
+      "hypothesis": "Many people don't think about them as dinosaurs because they have feathers and can fly.",
+      "error_rate": 0.0,
+      "metric": "WER"
+    },
+    {
+      "index": 5,
+      "lang": "zh",
+      "audio_file": "zh_0.wav",
+      "duration_s": 10.38,
+      "ground_truth": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+      "hypothesis": "这并不是告别，这是一个篇章的结束，也是新篇章的开始。",
+      "error_rate": 0.13043478260869565,
+      "metric": "CER"
+    },
+    {
+      "index": 6,
+      "lang": "zh",
+      "audio_file": "zh_1.wav",
+      "duration_s": 8.28,
+      "ground_truth": "钙 钾 等 元 素 属 于 金 属 银 和 金 等 元 素 当 然 也 是 金 属",
+      "hypothesis": "钙钾等元素属于金属银河金等元素，当然也是金属。",
+      "error_rate": 0.14285714285714285,
+      "metric": "CER"
+    },
+    {
+      "index": 7,
+      "lang": "zh",
+      "audio_file": "zh_2.wav",
+      "duration_s": 13.86,
+      "ground_truth": "桥 下 垂 直 净 空 15 米 该 项 目 于 2011 年 8 月 完 工 但 直 到 2017 年 3 月 才 开 始 通 车",
+      "hypothesis": "桥下垂直净空15米，该项目于2011年8月完工，但直到2017年3月才开始通车。",
+      "error_rate": 0.08108108108108109,
+      "metric": "CER"
+    },
+    {
+      "index": 8,
+      "lang": "zh",
+      "audio_file": "zh_3.wav",
+      "duration_s": 15.42,
+      "ground_truth": "适 当 使 用 博 客 可 以 使 学 生 变 得 更 善 于 分 析 和 进 行 思 辨 通 过 积 极 回 应 网 络 材 料 学 生 们 可 以 在 他 人 文 章 的 上 下 文 语 境 中 找 到 自 己 的 立 场 并 能 够 针 对 特 定 问 题 提 出 自 己 的 观 点 oravec 2002",
+      "hypothesis": "适当使用博客可以使学生变得更善于分析和进行思辨，通过积极回忆网络材料，学生们可以在他人的文章的上下文语境中找到自己的立场，并能够针对特定问题提出自己的观点work2002。",
+      "error_rate": 0.13253012048192772,
+      "metric": "CER"
+    },
+    {
+      "index": 9,
+      "lang": "zh",
+      "audio_file": "zh_4.wav",
+      "duration_s": 12.9,
+      "ground_truth": "科 学 家 们 可 以 得 出 结 论 暗 物 质 对 其 他 暗 物 质 的 影 响 方 式 与 普 通 物 质 相 同",
+      "hypothesis": "科学家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。",
+      "error_rate": 0.06451612903225806,
+      "metric": "CER"
+    },
+    {
+      "index": 10,
+      "lang": "ko",
+      "audio_file": "ko_0.wav",
+      "duration_s": 12.48,
+      "ground_truth": "다리 밑 수직 간격은 15미터이며 공사는 2011년 8월에 마무리되었으며 해당 다리의 통행금지는 2017년 3월까지이다",
+      "hypothesis": "다리미 수직 간격은 15미터이며 공사는 2011년 8월에 마무리되었으며, 해당 다리의 통행금는 2017년 3월까지이다.",
+      "error_rate": 0.21428571428571427,
+      "metric": "WER"
+    },
+    {
+      "index": 11,
+      "lang": "ko",
+      "audio_file": "ko_1.wav",
+      "duration_s": 10.8,
+      "ground_truth": "델 포트로가 2세트에서 먼저 어드밴티지를 얻었지만 6 대 6이 된 후 다시 타이 브레이크가 필요했다",
+      "hypothesis": "데 포트로가 이 세트에서 먼저 어드벤티즈 얻었지만 6 대6이 된 후 다시 타이 브레이크가 필요했다.",
+      "error_rate": 0.4,
+      "metric": "WER"
+    },
+    {
+      "index": 12,
+      "lang": "ko",
+      "audio_file": "ko_2.wav",
+      "duration_s": 8.94,
+      "ground_truth": "염소 사육은 대략 일만 년 전에 이란의 자그로스산맥에서 시작한 것으로 보입니다",
+      "hypothesis": "염소 사육은 대략 1만년 전 이란의 자그로스 산맥에서 시작 것으로 보입니다.",
+      "error_rate": 0.5454545454545454,
+      "metric": "WER"
+    },
+    {
+      "index": 13,
+      "lang": "ko",
+      "audio_file": "ko_3.wav",
+      "duration_s": 12.54,
+      "ground_truth": "겨울에 북발트해를 건널 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다",
+      "hypothesis": "겨울에 북 발트를 건넬 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다.",
+      "error_rate": 0.1875,
+      "metric": "WER"
+    },
+    {
+      "index": 14,
+      "lang": "ko",
+      "audio_file": "ko_4.wav",
+      "duration_s": 12.12,
+      "ground_truth": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대그래프에 비유된다",
+      "hypothesis": "홍콩의 스카라을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명이이 비치는 모습 때문에 반짝이는 막대 그래프에 비유된다.",
+      "error_rate": 0.26666666666666666,
+      "metric": "WER"
+    }
+  ]
+}

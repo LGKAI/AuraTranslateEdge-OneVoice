@@ -136,19 +136,25 @@ flowchart LR
 │   │   └── diagnose_supertonic_int8.py    # Bisection chẩn đoán nguyên nhân vỡ âm
 │   ├── step4_quantization/        # Step 4: Lượng tử hoá & Triển khai phần cứng Qualcomm Hexagon NPU
 │   │   ├── README.md              # Báo cáo tổng hợp cơ chế quantization w8a16 & NPU deployment
-│   │   ├── step0_frontend/        # Step 0: VAD + Denoise + Beamforming NPU
-│   │   ├── step1_asr/             # Step 1: Nhận dạng giọng nói tự động ASR
+│   │   ├── asr/                   # ASR 100% NPU (SenseVoice En/Zh/Ko + Zipformer Vi)
+│   │   │   ├── asr_demo_server.py # Unified Web demo server ghi âm đa đoạn NPU (SenseVoice + Zipformer)
 │   │   │   ├── sensevoice/        # SenseVoice-Small (En/Zh/Ko) 100% NPU (Lê Gia Khánh)
 │   │   │   │   ├── README.md      # Báo cáo kỹ thuật toàn diện & hướng dẫn triển khai
 │   │   │   │   ├── export/        # Script xuất ONNX Graph 1 (Frontend v3) & Graph 2 (Encoder W8A16)
-│   │   │   │   ├── hub/           # Pipeline vận hành Qualcomm AI Hub
+│   │   │   │   ├── hub/           # Pipeline vận hành Qualcomm AI Hub (submit, compile, profile, inference)
 │   │   │   │   ├── eval/          # Bộ đánh giá 90 câu & kiểm chứng NPU vs CPU FP32
-│   │   │   │   ├── demo/          # Web demo server ghi âm đa đoạn thời gian thực
-│   │   │   │   └── results/       # Kết quả đo đạc JSON và CSV
-│   │   │   └── zipformer/         # Zipformer-30M (Vi) 100% NPU (Trần Quốc Khanh)
-│   │   │       └── README.pdf     # Slide báo cáo kỹ thuật Zipformer NPU
-│   │   ├── step2_mt/              # Step 2: Dịch máy NLLB-600M INT8
-│   │   └── step3_tts/             # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
+│   │   │   │   ├── diagnostics/   # Phân tích đồ thị & độ chính xác FP16
+│   │   │   │   ├── experiments/   # Thử nghiệm graph fusion
+│   │   │   │   └── results/       # Kết quả đo đạc JSON và CSV từ NPU thật
+│   │   │   └── zipformer/         # Zipformer-150M-CR-CTC (Vi) 100% NPU (Trần Quốc Khanh)
+│   │   │       ├── README.md      # Báo cáo kỹ thuật chi tiết & kết quả đo kiểm trên chip silicon
+│   │   │       ├── deploy_zipformer_hub.py    # Script compile + profile + inference encoder trên AI Hub
+│   │   │       ├── submit_zipformer_to_aihub.py # Script submit full pipeline lên AI Hub & tính WER
+│   │   │       ├── step4_hardware/ # Bộ công cụ phẫu thuật ONNX đồ thị, calibration & benchmark
+│   │   │       ├── vendored_zipformer/ # Định nghĩa kiến trúc lõi Zipformer
+│   │   │       └── results/       # Kết quả đo kiểm chip thật từ Qualcomm AI Hub
+│   │   ├── mt/                    # Step 2: Dịch máy NLLB-600M
+│   │   └── tts/                   # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
 │   └── step5_pipeline/            # Step 5: Pipeline tích hợp toàn trình Speech-to-Speech (S2S)
 │       ├── README.md              # Hướng dẫn chi tiết & kết quả đo E2E Pipeline
 │       └── pipeline_s2s.py        # Script chạy chuỗi hoàn chỉnh ASR → MT → TTS (CPU/GPU)
@@ -181,8 +187,8 @@ cd src/step0_frontend && python run_all.py
 
 # 2. Step 1: ASR Pipeline (Kiểm tra định tuyến hoặc đối chứng NPU)
 cd ../step1_asr && python test_asr_multi.py
-# Hoặc giải mã kết quả thực thi NPU Hexagon v73:
-python inspect_inference_results.py
+# Hoặc khởi chạy Web Demo Server ASR hợp nhất (SenseVoice + Zipformer NPU):
+python ../step4_quantization/asr/asr_demo_server.py --port 8420
 
 # 3. Step 2: Dịch máy (NLLB-200 dịch câu bất kỳ từ CLI hoặc đo BLEU)
 cd ../step2_mt && python test_mt_nllb.py "Xin chào, tôi là trợ lý AI." --src vi --tgt en

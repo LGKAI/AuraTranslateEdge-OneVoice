@@ -212,8 +212,8 @@ Toàn bộ chi tiết kỹ thuật (job ID cụ thể, shape đã pin, bài họ
 
    | Thành viên | Nhiệm vụ phân công (Mô hình & Step) | Trạng thái |
    |---|---|:---:|
-   | **Trần Quốc Khanh** | • Silero VAD + GTCRN + MVDR/GSC (Step 0)<br>• Zipformer-30M (Vi) (Step 1)<br>• NLLB-200-distilled-600M (Step 2) | *Đã xong*<br>—<br>*Đã xong* |
-   | **Lê Gia Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | **Đã xong** (100% NPU, ~333ms, WER 8.98%) ✅ |
+   | **Trần Quốc Khanh** | • Silero VAD + GTCRN + MVDR/GSC (Step 0)<br>• Zipformer-150M-CR-CTC (Vi) (Step 1)<br>• NLLB-200-distilled-600M (Step 2) | *Đã xong*<br>**Đã xong** (100% NPU, ~126.8ms, WER 3.09%) ✅<br>*Đã xong* |
+   | **Lê Gia Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | **Đã xong** (100% NPU, ~269.4ms, WER 8.98%) ✅ |
    | **Trần Trung Hiếu** | • MeloTTS-ZH (Zh) (Step 3) | — |
    | **Phạm Chấn Khoa** | • Supertonic (Ko/En) (Step 3) | — |
    | **Cái Hoàng Bảo Kin** | • Piper (Vi) (Step 3) | — |
@@ -227,18 +227,24 @@ Thư mục `src/step4_quantization/` được tổ chức đồng bộ theo các
 ```text
 src/step4_quantization/
 ├── README.md                      # Báo cáo tổng hợp cơ chế quantization w8a16 & NPU deployment (Tài liệu này)
-├── step0_frontend/                # Step 0: VAD (Silero) + Khử ồn (GTCRN) + Beamforming (MVDR)
-├── step1_asr/                     # Step 1: Nhận dạng giọng nói tự động (ASR)
+├── asr/                           # Step 1: Nhận dạng giọng nói tự động (ASR)
+│   ├── asr_demo_server.py         # Unified FastAPI demo server đa luồng NPU (SenseVoice + Zipformer)
 │   ├── sensevoice/                # SenseVoice-Small (Đa ngữ En/Zh/Ko) 100% NPU (Lê Gia Khánh)
 │   │   ├── README.md              # Báo cáo kỹ thuật chi tiết toàn diện & hướng dẫn triển khai
 │   │   ├── export/                # Script xuất ONNX Graph 1 (Frontend v3) & Graph 2 (Encoder W8A16)
-│   │   ├── hub/                   # Pipeline vận hành Qualcomm AI Hub
+│   │   ├── hub/                   # Pipeline vận hành Qualcomm AI Hub (submit, compile, profile, inference)
 │   │   ├── eval/                  # Bộ đánh giá 90 câu & kiểm chứng NPU vs CPU FP32
-│   │   ├── demo/                  # Web demo server ghi âm đa đoạn thời gian thực
-│   │   └── results/               # Kết quả đo đạc JSON và CSV
-│   └── zipformer/                 # Zipformer-30M (Tiếng Việt) 100% NPU (Trần Quốc Khanh)
-│       └── README.pdf             # Slide báo cáo kỹ thuật Zipformer NPU
-├── step2_mt/                      # Step 2: Dịch máy NLLB-600M INT8
-└── step3_tts/                     # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
+│   │   ├── diagnostics/           # Công cụ phân tích đồ thị & số học FP16
+│   │   ├── experiments/           # Các thử nghiệm graph fusion
+│   │   └── results/               # Kết quả đo đạc JSON và CSV từ NPU thật
+│   └── zipformer/                 # Zipformer-150M-CR-CTC (Tiếng Việt) 100% NPU (Trần Quốc Khanh)
+│       ├── README.md              # Báo cáo kỹ thuật toàn diện & kết quả đo kiểm chip silicon
+│       ├── deploy_zipformer_hub.py # Script compile + profile + inference encoder trên Qualcomm AI Hub
+│       ├── submit_zipformer_to_aihub.py # Script submit full pipeline lên AI Hub & tính WER
+│       ├── step4_hardware/        # Công cụ phẫu thuật ONNX đồ thị, calibration & benchmark
+│       ├── vendored_zipformer/    # Định nghĩa kiến trúc lõi Zipformer (icefall / k2)
+│       └── results/               # Kết quả đo kiểm chip thật từ Qualcomm AI Hub
+├── mt/                            # Step 2: Dịch máy NLLB-600M
+└── tts/                           # Step 3: Tổng hợp giọng nói TTS (Piper, Supertonic, MeloTTS)
 ```
 

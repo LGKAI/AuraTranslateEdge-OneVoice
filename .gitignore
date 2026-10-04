@@ -8,8 +8,12 @@ data/mixed/
 data/mt/flores200_dataset.tar.gz
 data/mt/raw/
 outputs/
-__pycache__/
-*.pyc
+**/__pycache__/
+*.py[cod]
+*.onnx
+*.npz
+*.dlc
+*.pkl
 .ipynb_checkpoints/
 .vscode/
 third_party/zipformer/
@@ -18,3 +22,5 @@ src/**/*.onnx.json
 venv_pipeline/
 =*.*.*
 **/asr_batch_logs/
+*.tmp
+third_party/**/*.tmp

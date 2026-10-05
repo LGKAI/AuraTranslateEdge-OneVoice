@@ -14,7 +14,7 @@ Chạy: uvicorn asr_demo_server:app --host 127.0.0.1 --port 8420
 Tunnel: cloudflared tunnel --url http://127.0.0.1:8420
      or: ngrok http 8420
 """
-import sys, os, subprocess, tempfile, time, uuid, threading, json
+import sys, os, subprocess, tempfile, time, uuid, threading, json, glob
 sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np
 import soundfile as sf
@@ -97,7 +97,6 @@ def get_zip_target():
         _zip_enc_model = hub.get_model(ZIP_ENC_TARGET_MODEL_ID)
     return _zip_enc_model
 
-
 # ──────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────
@@ -107,17 +106,98 @@ def decode_bytes_sv(arr):
     raw = bytes(int(b) & 0xFF for b in arr)
     return raw.replace(b"\x00", b"").decode("utf-8", errors="replace").strip()
 
+_zip_dec_sess = None
+_zip_joi_sess = None
+_zip_sp = None
 
-def decode_zip_encoder(enc_out: np.ndarray, enc_lens: np.ndarray) -> str:
-    """
-    Zipformer encoder-only output: enc_out [1, T, 512] are raw embeddings.
-    The compiled model (mqeyydzym) is encoder-only — it does NOT include CTC head.
-    We return a message instructing to use the full pipeline for text output.
-    This is consistent with what job jprxvw40p returns: shape [1, 373, 512].
-    """
-    t_valid = int(enc_lens.reshape(-1)[0]) if enc_lens is not None else enc_out.shape[1]
-    return f"[Encoder output: {enc_out.shape} ({t_valid} valid frames) — dùng full pipeline để lấy text]"
+def get_zip_decoder():
+    """Lazy load local RNN-T decoder, joiner, and SentencePiece tokenizer for Vietnamese."""
+    global _zip_dec_sess, _zip_joi_sess, _zip_sp
+    if _zip_dec_sess is None:
+        import onnxruntime as ort
+        import sentencepiece as spm
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        root_dir = os.path.dirname(os.path.dirname(os.path.dirname(base_dir)))
+        snap_pattern = os.path.join(
+            root_dir, "third_party", "zipformer",
+            "models--hynt--Zipformer-30M-RNNT-6000h", "snapshots", "*"
+        )
+        candidates = glob.glob(snap_pattern)
+        snap_dir = None
+        for cand in candidates:
+            if (os.path.exists(os.path.join(cand, "decoder-epoch-20-avg-10.onnx")) and
+                os.path.exists(os.path.join(cand, "joiner-epoch-20-avg-10.onnx")) and
+                os.path.exists(os.path.join(cand, "bpe.model"))):
+                snap_dir = cand
+                break
+        if not snap_dir:
+            raise FileNotFoundError(f"Không tìm thấy folder snapshot Zipformer với decoder/joiner/bpe tại: {snap_pattern}")
 
+        so = ort.SessionOptions()
+        so.log_severity_level = 3
+        _zip_dec_sess = ort.InferenceSession(os.path.join(snap_dir, "decoder-epoch-20-avg-10.onnx"), so, providers=["CPUExecutionProvider"])
+        _zip_joi_sess = ort.InferenceSession(os.path.join(snap_dir, "joiner-epoch-20-avg-10.onnx"), so, providers=["CPUExecutionProvider"])
+        _zip_sp = spm.SentencePieceProcessor()
+        _zip_sp.load(os.path.join(snap_dir, "bpe.model"))
+    return _zip_dec_sess, _zip_joi_sess, _zip_sp
+
+def decode_zip_rnnt(enc_arr: np.ndarray, t_valid: int, max_tokens: int = 150, max_sym_per_frame: int = 3) -> str:
+    """
+    Greedy RNN-T decoder on CPU host for Zipformer embeddings produced by Qualcomm NPU.
+    enc_arr: shape (1, T, 512) or (T, 512)
+    t_valid: number of valid acoustic frames
+    """
+    try:
+        dec_sess, joi_sess, sp = get_zip_decoder()
+    except Exception as e:
+        return f"[Lỗi load decoder Zipformer: {e}]"
+
+    if enc_arr.ndim == 2:
+        enc_arr = enc_arr[None, :, :]
+
+    T = min(int(t_valid), enc_arr.shape[1])
+    if T <= 0:
+        return "(Âm thanh quá ngắn hoặc không có tiếng nói)"
+
+    hyp = [-1, -1]
+    y = np.array([hyp], dtype=np.int64)
+    decoder_out = dec_sess.run(None, {"y": y})[0]
+
+    tokens = []
+    t = 0
+    last_emit_frame = None
+    sym_this_frame = 0
+
+    while t < T and len(tokens) < max_tokens:
+        emit_idx = None
+        emit_token = None
+        for i in range(t, T):
+            enc = enc_arr[0, i:i+1, :].reshape(1, 512).astype(np.float32)
+            dec = decoder_out.reshape(1, 512).astype(np.float32)
+            logits = joi_sess.run(None, {"encoder_out": enc, "decoder_out": dec})[0]
+            token = int(np.argmax(logits.reshape(-1)))
+            if token != 0:  # 0 is BLANK_ID
+                emit_idx = i
+                emit_token = token
+                break
+        if emit_idx is None:
+            break
+        tokens.append(emit_token)
+        hyp = hyp[1:] + [emit_token]
+        y = np.array([hyp], dtype=np.int64)
+        decoder_out = dec_sess.run(None, {"y": y})[0]
+
+        if emit_idx == last_emit_frame:
+            sym_this_frame += 1
+        else:
+            last_emit_frame = emit_idx
+            sym_this_frame = 1
+        t = emit_idx + 1 if sym_this_frame >= max_sym_per_frame else emit_idx
+
+    text = sp.decode(tokens).strip()
+    if not text:
+        return "(Không phát hiện giọng nói rõ ràng)"
+    return text
 
 def compute_fbank(wav: np.ndarray, sr: int = 16000) -> np.ndarray:
     """Compute 80-dim log-Mel filterbank (Kaldi-compatible)."""
@@ -135,14 +215,12 @@ def compute_fbank(wav: np.ndarray, sr: int = 16000) -> np.ndarray:
     except ImportError:
         raise RuntimeError("kaldi_native_fbank không được cài. Chạy: pip install kaldi_native_fbank")
 
-
 def get_ffmpeg_binary():
     try:
         import imageio_ffmpeg
         return imageio_ffmpeg.get_ffmpeg_exe()
     except Exception:
         return "ffmpeg"
-
 
 def webm_to_wav16k(raw_bytes: bytes) -> np.ndarray:
     import io
@@ -180,7 +258,6 @@ def webm_to_wav16k(raw_bytes: bytes) -> np.ndarray:
                 except Exception:
                     pass
 
-
 def set_stage(st, key, label):
     now = time.time()
     if st.get("stage_started_at") is not None:
@@ -192,7 +269,6 @@ def set_stage(st, key, label):
     st["stage_key"] = key
     st["stage_label"] = label
     st["stage_started_at"] = now
-
 
 def poll_ai_hub_job(job, st, phase_prefix: str):
     last_ai_state = None
@@ -209,7 +285,6 @@ def poll_ai_hub_job(job, st, phase_prefix: str):
             err_msg = status.message or ai_state
             raise RuntimeError(f"{phase_prefix} thất bại trên AI Hub: {err_msg}")
         time.sleep(2)
-
 
 # ──────────────────────────────────────────────
 # SenseVoice batch inference (zh/en/ko)
@@ -293,7 +368,6 @@ def run_batch_sensevoice(job_id: str, wavs: list, lang_code: int):
         st["status"] = "error"
         st["error"] = str(e)
 
-
 # ──────────────────────────────────────────────
 # Zipformer batch inference (vi)
 # ──────────────────────────────────────────────
@@ -346,22 +420,26 @@ def run_batch_zipformer(job_id: str, wavs: list):
 
         set_stage(st, "download_zip", "Encoder xong. Tải kết quả về...")
         out = infer_job.download_output_data()
-        # output_0: [1, 373, 512] encoder embeddings (float32)
-        # output_1: [1] encoder_out_lens (int32)
-        out_keys = list(out.keys())
-        enc_outs  = out[out_keys[0]]   # list of np arrays, one per sample
-        enc_lens  = out[out_keys[1]] if len(out_keys) > 1 else [None] * n_clips
-        log(f"Kết quả: {len(enc_outs)} outputs, shape={np.asarray(enc_outs[0]).shape}")
+        # Phân loại outputs theo ndim: 3D là embeddings, 1D là encoder_out_lens
+        enc_outs = None
+        enc_lens = None
+        for k, v in out.items():
+            arr0 = np.asarray(v[0])
+            if arr0.ndim == 3:
+                enc_outs = v
+            else:
+                enc_lens = v
+        if enc_outs is None:
+            enc_outs = list(out.values())[0]
+        log(f"Kết quả NPU: {len(enc_outs)} outputs, shape={np.asarray(enc_outs[0]).shape}")
 
+        set_stage(st, "decode_zip", "Đang giải mã văn bản (RNN-T Decoder + SentencePiece)...")
         clips_result = []
         for i in range(n_clips):
             enc_arr  = np.asarray(enc_outs[i])
             lens_arr = np.asarray(enc_lens[i]) if enc_lens[i] is not None else None
-            t_valid  = int(lens_arr.reshape(-1)[0]) if lens_arr is not None else enc_arr.shape[-2]
-            text = (
-                f"✅ Encoder NPU OK — {enc_arr.shape} embeddings ({t_valid} valid frames). "
-                f"Dùng full pipeline (submit_zipformer_to_aihub.py) để nhận text cuối."
-            )
+            t_valid  = int(lens_arr.reshape(-1)[0]) if lens_arr is not None else enc_arr.shape[1]
+            text = decode_zip_rnnt(enc_arr, t_valid)
             clips_result.append({
                 "index": i,
                 "text": text,
@@ -369,15 +447,13 @@ def run_batch_zipformer(job_id: str, wavs: list):
                 "npu_ms": NPU_MS_ZIP,
                 "model": "Zipformer",
             })
-            log(f"  Clip {i}: {enc_arr.shape} ({t_valid} frames, NPU ref: {NPU_MS_ZIP}ms)")
-
+            log(f"  Clip {i} ({clip_durations[i]}s, {t_valid} frames, NPU ref: {NPU_MS_ZIP}ms): {text}")
         _finalize_job(st, job_id, clips_result, n_clips, t0, NPU_MS_ZIP, log_lines, log)
     except Exception as e:
         log(f"LỖI: {e}")
         _save_log(job_id, log_lines)
         st["status"] = "error"
         st["error"] = str(e)
-
 
 # ──────────────────────────────────────────────
 # Shared finalize
@@ -387,7 +463,6 @@ def _save_log(job_id, log_lines):
     with open(log_path, "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines))
     return log_path
-
 
 def _finalize_job(st, job_id, clips_result, n_clips, t0, npu_ms_per_clip, log_lines, log):
     set_stage(st, "done", "Hoàn tất!")
@@ -407,7 +482,6 @@ def _finalize_job(st, job_id, clips_result, n_clips, t0, npu_ms_per_clip, log_li
         "history": st["history"],
         "log_path": log_path,
     }
-
 
 # ──────────────────────────────────────────────
 # API Endpoints
@@ -446,7 +520,6 @@ async def transcribe_batch(audios: List[UploadFile] = File(...), lang: str = For
     t.start()
     return JSONResponse({"job_id": job_id, "n_clips": len(wavs), "model": JOBS[job_id]["model"]})
 
-
 @app.get("/api/status/{job_id}")
 async def status(job_id: str):
     st = JOBS.get(job_id)
@@ -456,7 +529,6 @@ async def status(job_id: str):
     resp["stage_elapsed_s"] = round(time.time() - st["stage_started_at"], 1) if st.get("stage_started_at") else 0
     return JSONResponse(resp)
 
-
 @app.get("/api/log/{job_id}")
 async def get_log(job_id: str):
     log_path = os.path.join(LOG_DIR, f"batch_{job_id}.log")
@@ -465,11 +537,9 @@ async def get_log(job_id: str):
     with open(log_path, encoding="utf-8") as f:
         return JSONResponse({"log": f.read()})
 
-
 @app.get("/", response_class=HTMLResponse)
 async def index():
     return HTML_PAGE.replace("__MAX_CLIPS__", str(MAX_CLIPS_PER_BATCH))
-
 
 # ──────────────────────────────────────────────
 # Frontend HTML
@@ -872,7 +942,6 @@ renderQueue();
 </html>
 """
 
-
 def start_cloudflare_tunnel(port: int):
     """Tự động tìm hoặc tải cloudflared.exe và tạo public HTTPS link."""
     import urllib.request, shutil
@@ -911,7 +980,6 @@ def start_cloudflare_tunnel(port: int):
 
     t = threading.Thread(target=run_tunnel, daemon=True)
     t.start()
-
 
 if __name__ == "__main__":
     import uvicorn

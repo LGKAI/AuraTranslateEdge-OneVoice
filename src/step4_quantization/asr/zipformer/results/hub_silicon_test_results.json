@@ -1,39 +1,121 @@
 {
   "device": "Dragonwing IQ-9075 EVK",
-  "model": "Zipformer Encoder (Surgically Patched for QNN HTP)",
-  "model_id": "mmxjjx0rq",
-  "compile_job": "jp2okemrg",
-  "compile_url": "https://workbench.aihub.qualcomm.com/jobs/jp2okemrg/",
-  "compile_status": "SUCCESS",
-  "profile_job": "jgn16k9kp",
-  "profile_url": "https://workbench.aihub.qualcomm.com/jobs/jgn16k9kp/",
+  "compile_job": "jgd6x4oep",
+  "compile_target_model": "mnz009rzm",
+  "profile_job": "j56oym105",
   "profile_status": "SUCCESS",
-  "infer_job": "jprxvw40p",
-  "infer_url": "https://workbench.aihub.qualcomm.com/jobs/jprxvw40p/",
+  "infer_job": "jpv26mwjg",
   "infer_status": "SUCCESS",
-  "hardware_profile": {
-    "estimated_inference_time_ms": 126.78,
-    "first_load_time_sec": 699.096,
-    "peak_memory_mb": 6.43,
-    "compute_unit_summary": {}
+  "profile_metrics": {
+    "estimated_inference_time_ms": 184.307,
+    "first_load_time_sec": 910.992357,
+    "peak_memory_mb": 7.778304
   },
-  "inference_output_info": {
-    "output_0_encoder_embeddings": {
-      "shape": [
-        1,
-        373,
-        512
-      ],
-      "dtype": "float32",
-      "description": "Encoder output embeddings (before CTC head projection)"
+  "by_condition": {
+    "clean": {
+      "wer": 0.0747,
+      "n": 5
     },
-    "output_1_encoder_out_lens": {
-      "shape": [
-        1
-      ],
-      "dtype": "int32",
-      "description": "Valid frame count for the output"
+    "snr5": {
+      "wer": 0.0622,
+      "n": 5
     },
-    "note": "Raw encoder embeddings verified correct on NPU HTP. Full pipeline (including CTC head + detokenize) tested separately via submit_zipformer_to_aihub.py"
-  }
+    "snr0": {
+      "wer": 0.0869,
+      "n": 5
+    }
+  },
+  "overall_wer": 0.0746,
+  "predictions": [
+    {
+      "condition": "clean",
+      "reference": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "hypothesis": "VĂN HOÁ VÀ BỘ LẠC CỔ XƯA ĐÃ BẮT ĐẦU GIỮ NHỮNG CON VẬT NÀY ĐỂ DỄ LẤY SỮA TÓC THỊT VÀ DA",
+      "wer": 0.0435
+    },
+    {
+      "condition": "clean",
+      "reference": "đối với springboks trận này đã giúp đội tuyển kết thúc chuỗi thua 5 trận liền",
+      "hypothesis": "ĐỐI VỚI SPRI BOOK TRẬN NÀY ĐÃ GIÚP ĐỘI TUYỂN KẾT THÚC CHUỖ THUA NĂM TRẬN LIỀN",
+      "wer": 0.25
+    },
+    {
+      "condition": "clean",
+      "reference": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "hypothesis": "NÓ CŨNG TẤN CÔNG MỌI THỨ TRONG NƯỚC NGAY CẢ KHỦNG LONG KHỔNG LỒ NHƯ TBE CŨNG KHÔNG PHẢI LÀ ĐỐI THỦ VỚI NÓ",
+      "wer": 0.08
+    },
+    {
+      "condition": "clean",
+      "reference": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "hypothesis": "SỐ NGƯỜI CÓ MẶT QUÁ LỚN NÊN VIỆC MỌI NGƯỜI TỚI ĐƯỢC NƠI TỔ CHỨC LỄ TANG TẠI QUẢNG TRƯỜNG THÁNH PETER LÀ KHÔNG THỂ",
+      "wer": 0.0
+    },
+    {
+      "condition": "clean",
+      "reference": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "hypothesis": "CHÂU ÂU LÀ LỤC ĐỊA TƯƠNG ĐỐI NHỎ NHƯNG CÓ NHIỀU QUỐC GIA ĐỘC LẬP THÔNG THƯỜNG VIỆC ĐI QUA NHIỀU QUỐC GIA ĐỒNG NGHĨA VỚI VIỆC PHẢI XIN THỊ THỰC VÀ XÉT HỘ CHIẾU NHIỀU LẦN",
+      "wer": 0.0
+    },
+    {
+      "condition": "snr5",
+      "reference": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "hypothesis": "VĂN HOÁ VÀ BỘ LẠC CỔ XƯA ĐÃ BẮT ĐẦU GIỮ NHỮNG CON VẬT NÀY ĐỂ DỄ LẤY SỮA TÓC THỊT VÀ DA",
+      "wer": 0.0435
+    },
+    {
+      "condition": "snr5",
+      "reference": "đối với springboks trận này đã giúp đội tuyển kết thúc chuỗi thua 5 trận liền",
+      "hypothesis": "ĐỐI VỚI SRIK TRẬN NÀY ĐÃ GIÚP ĐỘI TUYỂN KẾT THÚC CHUỖ THUA NĂM TRẬN LIỀN",
+      "wer": 0.1875
+    },
+    {
+      "condition": "snr5",
+      "reference": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "hypothesis": "NÓ CŨNG TẤN CÔNG MỌI THỨ TRONG NƯỚC NGAY CẢ KHỦNG LONG KHỔNG LỒ NHƯ TI CŨNG KHÔNG PHẢI LÀ ĐỐI THỦ VỚI NÓ",
+      "wer": 0.08
+    },
+    {
+      "condition": "snr5",
+      "reference": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "hypothesis": "SỐ NGƯỜI CÓ MẶT QUÁ LỚN NÊN VIỆC MỌI NGƯỜI TỚI ĐƯỢC NƠI TỔ CHỨC LỄ TANG TẠI QUẢNG TRƯỜNG THÁNH PETER LÀ KHÔNG THỂ",
+      "wer": 0.0
+    },
+    {
+      "condition": "snr5",
+      "reference": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "hypothesis": "CHÂU ÂU LÀ LỤC ĐỊA TƯƠNG ĐỐI NHỎ NHƯNG CÓ NHIỀU QUỐC GIA ĐỘC LẬP THÔNG THƯỜNG VIỆC ĐI QUA NHIỀU QUỐC GIA ĐỒNG NGHĨA VỚI VIỆC PHẢI XIN THỊ THỰC VÀ XÉT HỘ CHIẾU NHIỀU LẦN",
+      "wer": 0.0
+    },
+    {
+      "condition": "snr0",
+      "reference": "văn hóa và bộ lạc cổ xưa đã bắt đầu giữ những con vật này để dễ lấy sữa tóc thịt và da",
+      "hypothesis": "VĂN HOÁ VÀ BỘ CỔ XƯA ĐÃ BẮT ĐẦU GIỮ NHỮNG CON VẬT NÀY ĐỂ DỄ LẤY SỮA TÓC THỊT VÀ DA",
+      "wer": 0.087
+    },
+    {
+      "condition": "snr0",
+      "reference": "đối với springboks trận này đã giúp đội tuyển kết thúc chuỗi thua 5 trận liền",
+      "hypothesis": "ĐỐI VỚI SRINGW TRẬN NÀY ĐÃ GIÚP ĐỘI TUYỂN KẾT THÚC CHUỖ THUA NĂM TRẬN LIỀN",
+      "wer": 0.1875
+    },
+    {
+      "condition": "snr0",
+      "reference": "nó cũng tấn công mọi thứ trong nước ngay cả khủng long khổng lồ như t rex cũng không phải là đối thủ với nó",
+      "hypothesis": "NÓ CŨNG TẤN CÔNG MỌI THỨ TRONG NƯỚC NGAY CẢ KHỦNG LONG KHỔNG LỒ NHƯ KI CŨNG KHÔNG PHẢI LÀ ĐỐI THỦ VỚI NÓ",
+      "wer": 0.08
+    },
+    {
+      "condition": "snr0",
+      "reference": "số người có mặt quá lớn nên việc mọi người tới được nơi tổ chức lễ tang tại quảng trường thánh peter là không thể",
+      "hypothesis": "SỐ NGƯỜI CÓ MẶT QUÁ LỚN NÊN VIỆC MỌI NGƯỜI TỚI ĐƯỢC NƠI TỔ CHỨC LỄ TAN TẠI QUẢNG TRƯỜNG THNH PETER LÀ KHÔNG THỂ",
+      "wer": 0.08
+    },
+    {
+      "condition": "snr0",
+      "reference": "châu âu là lục địa tương đối nhỏ nhưng có nhiều quốc gia độc lập thông thường việc đi qua nhiều quốc gia đồng nghĩa với việc phải xin thị thực và xét hộ chiếu nhiều lần",
+      "hypothesis": "CHÂU ÂU LÀ LỤC ĐỊA TƯƠNG ĐỐI NHỎ NHƯNG CÓ NHIỀU QUỐC GIA ĐỘC LẬP THÔNG THƯỜNG VIỆC ĐI QUA NHIỀU QUỐC GIA ĐỒNG NGHĨA VỚI VIỆC PHẢI XIN THỊ THỰC VÀ XÉT HỘ CHIẾU NHIỀU LẦN",
+      "wer": 0.0
+    }
+  ]
 }

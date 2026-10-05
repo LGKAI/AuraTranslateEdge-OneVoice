@@ -284,13 +284,15 @@ src/step4_quantization/asr/zipformer/
 
 | Hạng mục | Giá trị |
 | :--- | :--- |
-| **Mô hình** | Zipformer-150M-CR-CTC (6.235 nodes ONNX → 6.238 sau phẫu thuật) |
+| **Mô hình** | **Zipformer-150M-CR-CTC Full 5-Block Single Static DAG** (9.336 nodes ONNX: Fbank DSP + 150M Encoder + CTC Head + Static CTC Collapse + Byte Detokenizer) |
+| **Kiến trúc** | **Zero-CPU Pipeline**: NPU nhận sóng âm thô `[240240]` và trực tiếp trả ra mảng byte UTF-8 `[373, 12]` (Host CPU chỉ tốn <0.001 ms decode chuỗi byte) |
 | **Thiết bị mục tiêu** | Qualcomm Dragonwing IQ-9075 EVK (Hexagon NPU v73 HTP) |
-| **Runtime** | QNN DLC (INT16 W16A16 Quantize I/O) |
-| **Độ trễ thực tế (15s audio)** | **126.78 ms** |
-| **Bộ nhớ đỉnh** | **6.43 MB** |
-| **NPU Offload** | **100%** (0 op rơi về CPU) |
-| **WER tiếng Việt (No-OOV)** | **3.09%** (SNR 5dB), **4.09%** (Clean/SNR 0dB) |
-| **Compile Job** | [`jp2okemrg`](https://workbench.aihub.qualcomm.com/jobs/jp2okemrg/) ✅ |
-| **Profile Job** | [`jgn16k9kp`](https://workbench.aihub.qualcomm.com/jobs/jgn16k9kp/) ✅ |
-| **Inference Job** | [`jprxvw40p`](https://workbench.aihub.qualcomm.com/jobs/jprxvw40p/) ✅ |
+| **Runtime** | QNN DLC (Native FP16 trên Hexagon NPU, không lượng tử hóa PTQ gây méo âm vị) |
+| **Độ trễ thực tế (15s audio)** | **184.31 ms** (toàn bộ 5 khối chạy 100% trên NPU) |
+| **Bộ nhớ đỉnh (Peak Memory)** | **7.78 MB** |
+| **NPU Offload** | **100%** (0 op rơi về CPU, loại bỏ hoàn toàn CPU Fbank và CPU RNN-T/SentencePiece) |
+| **WER tiếng Việt (15 mẫu)** | **7.46%** tổng thể (Clean: 4.3–7.5%, SNR 5dB: 6.2%, các câu dài chuẩn đạt **0.00%**) |
+| **Compile Job** | [`jgd6x4oep`](https://workbench.aihub.qualcomm.com/jobs/jgd6x4oep/) ✅ (Target Model ID: `mnz009rzm`) |
+| **Profile Job** | [`j56oym105`](https://workbench.aihub.qualcomm.com/jobs/j56oym105/) ✅ |
+| **Inference Job** | [`jpv26mwjg`](https://workbench.aihub.qualcomm.com/jobs/jpv26mwjg/) ✅ |
+

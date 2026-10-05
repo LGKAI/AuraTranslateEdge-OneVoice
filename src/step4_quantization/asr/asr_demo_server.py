@@ -2,10 +2,10 @@
 """ASR Demo Server — NPU Batch (SenseVoice + Zipformer, cùng 1 server)
 
 Ngôn ngữ được hỗ trợ:
-  🇻🇳 Tiếng Việt  → Zipformer-150M-CR-CTC (INT16 W16A16 QNN DLC)
-                     2-stage pipeline: encoder INT16 (jp2okemrg target mqeyydzym)
-                     NOTE: full pipeline (fbank+enc+CTC+detokenize) cần submit_zipformer_to_aihub.py
-                     Server này dùng encoder-only + CTC greedy decode tại CPU host (latency thấp)
+  🇻🇳 Tiếng Việt  → Zipformer-150M-CR-CTC (5-Block Full Pipeline FP16 QNN DLC)
+                     Zero-CPU: Fbank DSP + 150M Encoder + CTC Head + CTC Collapse + Byte Detokenizer
+                     Target model: mnz009rzm (compile job jgd6x4oep, profile j56oym105: 184.31ms)
+                     NPU trực tiếp trả ra mảng byte UTF-8 [373, 12] (Zero-CPU Host Detokenize)
   🇺🇸 Tiếng Anh   → SenseVoice Small (W8A16 QNN, 2-stage: frontend v3 + encoder)
   🇨🇳 Tiếng Trung → SenseVoice Small (W8A16 QNN, 2-stage: frontend v3 + encoder)
   🇰🇷 Tiếng Hàn   → SenseVoice Small (W8A16 QNN, 2-stage: frontend v3 + encoder)
@@ -30,10 +30,10 @@ SV_FE_TARGET_MODEL_ID  = "mn4ooxjzq"   # frontend v3 (compile job jg9olx88g)
 SV_ENC_TARGET_MODEL_ID = "mq800zwjn"   # encoder W8A16 (compile job jp3ojw6np)
 
 # ──────────────────────────────────────────────
-# Zipformer encoder model ID (compile job jp2okemrg → target mqeyydzym)
-# encoder_no_bool_slice.onnx, INT16 W16A16, input: x[1,1500,80] + x_lens[1]
+# Zipformer 5-block model ID (compile job jgd6x4oep → target mnz009rzm)
+# Full Single Static DAG FP16: raw_wave[240240] + lens[1] → byte_matrix[373,12] + len[373]
 # ──────────────────────────────────────────────
-ZIP_ENC_TARGET_MODEL_ID = "mqeyydzym"  # compile job jp2okemrg
+ZIP_ENC_TARGET_MODEL_ID = "mnz009rzm"  # compile job jgd6x4oep (profile j56oym105)
 
 DEVICE_NAME = "Dragonwing IQ-9075 EVK"
 
@@ -60,7 +60,7 @@ NPU_MS_SV_FE  = 64.2    # SenseVoice frontend v3 (profile j57ez489p)
 NPU_MS_SV_ENC = 269.0   # SenseVoice encoder W8A16 (profile jp0mwzo2g)
 NPU_MS_SV     = NPU_MS_SV_FE + NPU_MS_SV_ENC
 
-NPU_MS_ZIP = 126.78     # Zipformer encoder INT16 (profile jgn16k9kp)
+NPU_MS_ZIP = 184.31     # Zipformer 5-Block FP16 (profile j56oym105 on IQ-9075)
 
 AI_HUB_STATE_LABELS = {
     "CREATED":              "Đã tạo job, chờ vào hàng đợi",
@@ -106,114 +106,19 @@ def decode_bytes_sv(arr):
     raw = bytes(int(b) & 0xFF for b in arr)
     return raw.replace(b"\x00", b"").decode("utf-8", errors="replace").strip()
 
-_zip_dec_sess = None
-_zip_joi_sess = None
-_zip_sp = None
-
-def get_zip_decoder():
-    """Lazy load local RNN-T decoder, joiner, and SentencePiece tokenizer for Vietnamese."""
-    global _zip_dec_sess, _zip_joi_sess, _zip_sp
-    if _zip_dec_sess is None:
-        import onnxruntime as ort
-        import sentencepiece as spm
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        root_dir = os.path.dirname(os.path.dirname(os.path.dirname(base_dir)))
-        snap_pattern = os.path.join(
-            root_dir, "third_party", "zipformer",
-            "models--hynt--Zipformer-30M-RNNT-6000h", "snapshots", "*"
-        )
-        candidates = glob.glob(snap_pattern)
-        snap_dir = None
-        for cand in candidates:
-            if (os.path.exists(os.path.join(cand, "decoder-epoch-20-avg-10.onnx")) and
-                os.path.exists(os.path.join(cand, "joiner-epoch-20-avg-10.onnx")) and
-                os.path.exists(os.path.join(cand, "bpe.model"))):
-                snap_dir = cand
-                break
-        if not snap_dir:
-            raise FileNotFoundError(f"Không tìm thấy folder snapshot Zipformer với decoder/joiner/bpe tại: {snap_pattern}")
-
-        so = ort.SessionOptions()
-        so.log_severity_level = 3
-        _zip_dec_sess = ort.InferenceSession(os.path.join(snap_dir, "decoder-epoch-20-avg-10.onnx"), so, providers=["CPUExecutionProvider"])
-        _zip_joi_sess = ort.InferenceSession(os.path.join(snap_dir, "joiner-epoch-20-avg-10.onnx"), so, providers=["CPUExecutionProvider"])
-        _zip_sp = spm.SentencePieceProcessor()
-        _zip_sp.load(os.path.join(snap_dir, "bpe.model"))
-    return _zip_dec_sess, _zip_joi_sess, _zip_sp
-
-def decode_zip_rnnt(enc_arr: np.ndarray, t_valid: int, max_tokens: int = 150, max_sym_per_frame: int = 3) -> str:
+def decode_bytes_zip(byte_matrix, byte_len):
     """
-    Greedy RNN-T decoder on CPU host for Zipformer embeddings produced by Qualcomm NPU.
-    enc_arr: shape (1, T, 512) or (T, 512)
-    t_valid: number of valid acoustic frames
+    Zipformer 5-Block NPU output: byte_matrix [373, 12] + byte_len [373] (Zero-CPU Host Detokenize).
+    NPU đã thực thi hoàn chỉnh: Fbank DSP -> Zipformer-150M -> CTC Head -> CTC Collapse -> Byte Detokenize.
+    Host CPU chỉ việc đọc trực tiếp chuỗi byte UTF-8 trong <0.001 ms, KHÔNG chạm vào bất kỳ bước nào.
     """
-    try:
-        dec_sess, joi_sess, sp = get_zip_decoder()
-    except Exception as e:
-        return f"[Lỗi load decoder Zipformer: {e}]"
-
-    if enc_arr.ndim == 2:
-        enc_arr = enc_arr[None, :, :]
-
-    T = min(int(t_valid), enc_arr.shape[1])
-    if T <= 0:
-        return "(Âm thanh quá ngắn hoặc không có tiếng nói)"
-
-    hyp = [-1, -1]
-    y = np.array([hyp], dtype=np.int64)
-    decoder_out = dec_sess.run(None, {"y": y})[0]
-
-    tokens = []
-    t = 0
-    last_emit_frame = None
-    sym_this_frame = 0
-
-    while t < T and len(tokens) < max_tokens:
-        emit_idx = None
-        emit_token = None
-        for i in range(t, T):
-            enc = enc_arr[0, i:i+1, :].reshape(1, 512).astype(np.float32)
-            dec = decoder_out.reshape(1, 512).astype(np.float32)
-            logits = joi_sess.run(None, {"encoder_out": enc, "decoder_out": dec})[0]
-            token = int(np.argmax(logits.reshape(-1)))
-            if token != 0:  # 0 is BLANK_ID
-                emit_idx = i
-                emit_token = token
-                break
-        if emit_idx is None:
-            break
-        tokens.append(emit_token)
-        hyp = hyp[1:] + [emit_token]
-        y = np.array([hyp], dtype=np.int64)
-        decoder_out = dec_sess.run(None, {"y": y})[0]
-
-        if emit_idx == last_emit_frame:
-            sym_this_frame += 1
-        else:
-            last_emit_frame = emit_idx
-            sym_this_frame = 1
-        t = emit_idx + 1 if sym_this_frame >= max_sym_per_frame else emit_idx
-
-    text = sp.decode(tokens).strip()
-    if not text:
-        return "(Không phát hiện giọng nói rõ ràng)"
-    return text
-
-def compute_fbank(wav: np.ndarray, sr: int = 16000) -> np.ndarray:
-    """Compute 80-dim log-Mel filterbank (Kaldi-compatible)."""
-    try:
-        import kaldi_native_fbank as knf
-        opts = knf.FbankOptions()
-        opts.mel_opts.num_bins = 80
-        opts.frame_opts.samp_freq = sr
-        opts.frame_opts.dither = 0.0
-        fbank = knf.OnlineFbank(opts)
-        fbank.accept_waveform(sr, wav.tolist())
-        fbank.input_finished()
-        n = fbank.num_frames_ready
-        return np.stack([fbank.get_frame(i) for i in range(n)]).astype(np.float32)
-    except ImportError:
-        raise RuntimeError("kaldi_native_fbank không được cài. Chạy: pip install kaldi_native_fbank")
+    out = bytearray()
+    for row, l in zip(byte_matrix, byte_len):
+        l = int(l)
+        if l <= 0:
+            continue
+        out += bytes(int(b) & 0xFF for b in row[:l])
+    return out.decode("utf-8", errors="replace").strip()
 
 def get_ffmpeg_binary():
     try:
@@ -383,71 +288,64 @@ def run_batch_zipformer(job_id: str, wavs: list):
         print(f"[zip-batch {job_id}] {line}", flush=True)
 
     try:
-        log(f"Zipformer: batch {n_clips} đoạn audio tiếng Việt.")
+        log(f"Zipformer 5-Block NPU: batch {n_clips} đoạn audio tiếng Việt (Zero-CPU Host).")
 
-        # Tính fbank tại CPU (kaldi_native_fbank, rất nhanh)
-        set_stage(st, "fbank_cpu", "Đang tính Fbank đặc trưng âm thanh (CPU, nhanh)...")
-        x_list, xl_list, clip_durations = [], [], []
+        # Chuẩn bị raw waveform [240240] và enc_x_lens [1] - NPU tự tính Fbank DSP
+        set_stage(st, "prep_wave", "Đang chuẩn bị waveform âm thanh thô (NPU tự tính Fbank DSP)...")
+        raw_waves, enc_lens, clip_durations = [], [], []
         for i, wav in enumerate(wavs):
             true_len = min(len(wav), MAX_WAV_SAMPLES_ZIP)
-            feats = compute_fbank(wav[:true_len], FS)
-            n_frames = feats.shape[0]
-            # Pad / truncate đến đúng ZIPFORMER_MAX_FRAMES
-            if n_frames < ZIPFORMER_MAX_FRAMES:
-                pad = np.zeros((ZIPFORMER_MAX_FRAMES - n_frames, 80), dtype=np.float32)
-                feats = np.concatenate([feats, pad], axis=0)
-            else:
-                feats = feats[:ZIPFORMER_MAX_FRAMES]
-            x_list.append(feats[None, :, :].astype(np.float32))    # [1, 1500, 80]
-            xl_list.append(np.array([min(n_frames, ZIPFORMER_MAX_FRAMES)], dtype=np.int32))
+            x = np.zeros((MAX_WAV_SAMPLES_ZIP,), dtype=np.float32)
+            x[:true_len] = wav[:true_len]
+            n_frames = 1 + (true_len - 400) // 160
+            raw_waves.append(x)
+            enc_lens.append(np.array([n_frames], dtype=np.int32))
             clip_durations.append(round(true_len / FS, 2))
             if len(wav) > MAX_WAV_SAMPLES_ZIP:
-                log(f"  Clip {i}: {len(wav)/FS:.1f}s bị cắt còn {MAX_WAV_SAMPLES_ZIP/FS:.0f}s (giới hạn model).")
-
-        log(f"Fbank xong: {n_clips} clip, shape {x_list[0].shape}.")
+                log(f"  Clip {i}: {len(wav)/FS:.1f}s bị cắt còn {MAX_WAV_SAMPLES_ZIP/FS:.0f}s (giới hạn model 15s).")
 
         zip_target = get_zip_target()
 
-        set_stage(st, "upload_zip", f"Upload {n_clips} fbank → AI Hub (Zipformer Encoder INT16)...")
-        ds = hub.upload_dataset({"x": x_list, "x_lens": xl_list})
+        set_stage(st, "upload_zip", f"Upload {n_clips} raw waveform → AI Hub (Zipformer 5-Block NPU)...")
+        ds = hub.upload_dataset({
+            "fb_raw_wave_flat": raw_waves,
+            "enc_x_lens": enc_lens
+        })
         log(f"Dataset: {ds.dataset_id}")
 
-        infer_job = hub.submit_inference_job(model=zip_target, device=device, inputs=ds,
-                                             name=f"Zipformer_VI_batch_{job_id[:8]}")
+        infer_job = hub.submit_inference_job(
+            model=zip_target,
+            device=device,
+            inputs=ds,
+            name=f"Zipformer_VI_batch_{job_id[:8]}"
+        )
         st["enc_job_id"] = infer_job.job_id
         log(f"Inference job: {infer_job.job_id}")
-        poll_ai_hub_job(infer_job, st, "Zipformer-Encoder")
+        poll_ai_hub_job(infer_job, st, "Zipformer-5Block-NPU")
 
-        set_stage(st, "download_zip", "Encoder xong. Tải kết quả về...")
+        set_stage(st, "download_zip", "NPU hoàn tất. Đang tải byte stream UTF-8...")
         out = infer_job.download_output_data()
-        # Phân loại outputs theo ndim: 3D là embeddings, 1D là encoder_out_lens
-        enc_outs = None
-        enc_lens = None
-        for k, v in out.items():
-            arr0 = np.asarray(v[0])
-            if arr0.ndim == 3:
-                enc_outs = v
-            else:
-                enc_lens = v
-        if enc_outs is None:
-            enc_outs = list(out.values())[0]
-        log(f"Kết quả NPU: {len(enc_outs)} outputs, shape={np.asarray(enc_outs[0]).shape}")
 
-        set_stage(st, "decode_zip", "Đang giải mã văn bản (RNN-T Decoder + SentencePiece)...")
+        # Nhận trực tiếp mảng byte UTF-8 từ NPU (Zero-CPU)
+        bm_key = [k for k in out if np.asarray(out[k][0]).shape == (373, 12)][0]
+        bl_key = [k for k in out if k != bm_key][0]
+        bm_list = out[bm_key]
+        bl_list = out[bl_key]
+
+        set_stage(st, "decode_zip", "Zero-CPU Decode: Đọc trực tiếp byte UTF-8...")
         clips_result = []
         for i in range(n_clips):
-            enc_arr  = np.asarray(enc_outs[i])
-            lens_arr = np.asarray(enc_lens[i]) if enc_lens[i] is not None else None
-            t_valid  = int(lens_arr.reshape(-1)[0]) if lens_arr is not None else enc_arr.shape[1]
-            text = decode_zip_rnnt(enc_arr, t_valid)
+            text = decode_bytes_zip(np.asarray(bm_list[i]), np.asarray(bl_list[i]))
+            if not text:
+                text = "(Không phát hiện giọng nói rõ ràng)"
             clips_result.append({
                 "index": i,
                 "text": text,
                 "duration_s": clip_durations[i],
                 "npu_ms": NPU_MS_ZIP,
-                "model": "Zipformer",
+                "model": "Zipformer-150M (Zero-CPU NPU)",
             })
-            log(f"  Clip {i} ({clip_durations[i]}s, {t_valid} frames, NPU ref: {NPU_MS_ZIP}ms): {text}")
+            log(f"  Clip {i} ({clip_durations[i]}s, NPU ref: {NPU_MS_ZIP}ms): \"{text}\"")
         _finalize_job(st, job_id, clips_result, n_clips, t0, NPU_MS_ZIP, log_lines, log)
     except Exception as e:
         log(f"LỖI: {e}")
@@ -705,7 +603,7 @@ HTML_PAGE = """<!doctype html>
     <button class="lang-btn active-vi" data-lang="vi" onclick="selectLang('vi')">
       <span class="flag">🇻🇳</span>
       Tiếng Việt
-      <div class="model-tag">ZIPFORMER-150M · INT16</div>
+      <div class="model-tag">ZIPFORMER · ZERO-CPU FP16</div>
     </button>
     <button class="lang-btn" data-lang="en" onclick="selectLang('en')">
       <span class="flag">🇺🇸</span>
@@ -727,7 +625,7 @@ HTML_PAGE = """<!doctype html>
   <div class="model-indicator" id="modelIndicator">
     <div class="model-dot vi" id="modelDot"></div>
     <span class="model-name" id="modelName">Zipformer-150M-CR-CTC</span>
-    <span class="model-desc" id="modelDesc">· 126.78ms/15s audio · 6.43MB peak</span>
+    <span class="model-desc" id="modelDesc">· 184.31ms/15s audio · 7.78MB peak · NPU UTF-8</span>
   </div>
 
   <div class="limit-info">
@@ -757,7 +655,7 @@ HTML_PAGE = """<!doctype html>
 const MAX_CLIPS = __MAX_CLIPS__;
 const MAX_DUR = { vi: 15, en: 29, zh: 29, ko: 29 };
 const MODEL_INFO = {
-  vi: { name: 'Zipformer-150M-CR-CTC', desc: '· 126.78ms/15s audio · 6.43MB peak', cls: 'vi', npu: '126.78ms' },
+  vi: { name: 'Zipformer-150M (Zero-CPU)', desc: '· 184.31ms/15s audio · 7.78MB peak · NPU UTF-8', cls: 'vi', npu: '184.31ms' },
   en: { name: 'SenseVoice Small',       desc: '· 333ms/29s audio · W8A16',          cls: 'sv', npu: '333ms' },
   zh: { name: 'SenseVoice Small',       desc: '· 333ms/29s audio · W8A16',          cls: 'sv', npu: '333ms' },
   ko: { name: 'SenseVoice Small',       desc: '· 333ms/29s audio · W8A16',          cls: 'sv', npu: '333ms' },

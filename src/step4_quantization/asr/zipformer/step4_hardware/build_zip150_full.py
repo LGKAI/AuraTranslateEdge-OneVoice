@@ -16,7 +16,7 @@ import sentencepiece as spm
 
 ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"
 os.chdir(ROOT)
-sys.path.insert(0, os.path.join(ROOT, "src", "step4_quantization", "step1_asr", "zipformer", "step4_hardware"))
+sys.path.insert(0, os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "step4_hardware"))
 from prepare_zipformer_for_qnn import find_bool_slices, wrap_bool_slice
 from fbank_matmul_verify import WINDOW, MEL_MAT, DFT_RE, DFT_IM, FRAME_LEN, FRAME_SHIFT, PREEMPH
 

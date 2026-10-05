@@ -17,7 +17,7 @@ ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"
 os.chdir(ROOT)
 
 ONNX_PATH = os.path.join(ROOT, "outputs", "zip150_full_npu", "zip150_full_pipeline.onnx")
-RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "step1_asr", "zipformer", "results")
+RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 DEVICE_NAME = "Dragonwing IQ-9075 EVK"
@@ -34,12 +34,14 @@ def prep_wave(wav):
 
 def decode_output(byte_matrix, byte_len):
     out = bytearray()
+    byte_matrix = np.asarray(byte_matrix).reshape(-1, 12)
+    byte_len = np.asarray(byte_len).reshape(-1)
     for row, l in zip(byte_matrix, byte_len):
         l = int(l)
         if l <= 0:
             continue
         out += bytes(int(b) & 0xFF for b in row[:l])
-    return out.decode("utf-8", errors="replace")
+    return out.decode("utf-8", errors="replace").strip()
 
 def poll_job(job, label, interval=25):
     print(f"[{label}] Job {job.job_id} submitted: {job.url}")
@@ -67,63 +69,36 @@ def main():
                 items.append((tag, r["transcript"], w, os.path.basename(f)))
     print(f"Loaded {len(items)} evaluation samples across clean, snr5, snr0.")
 
-    # 2. Prepare calibration dataset
-    calib_x, calib_lens = [], []
-    for _, _, w, _ in items[:5] + items[5:8]:  # 5 clean + 3 snr5
-        x, n = prep_wave(w)
-        calib_x.append(x)
-        calib_lens.append(np.array([n], np.int64))
-
-    print(f"Uploading calibration dataset ({len(calib_x)} samples)...")
-    calib_ds = hub.upload_dataset(
-        {"fb_raw_wave_flat": calib_x, "enc_x_lens": calib_lens},
-        name="zip150_full_calib_w16a16"
-    )
-    print(f"Calibration dataset uploaded: {calib_ds}")
-
-    # 3. Quantize W16A16
-    print(f"\n--- Submitting Quantize Job (W16A16) ---")
-    qjob = hub.submit_quantize_job(
-        model=ONNX_PATH,
-        calibration_data=calib_ds,
-        weights_dtype=hub.QuantizeDtype.INT16,
-        activations_dtype=hub.QuantizeDtype.INT16,
-        name="Zipformer150M_W16A16_Quantize"
-    )
-    qst = poll_job(qjob, "QUANT")
-    if qst.code != "SUCCESS":
-        sys.exit(f"Quantize failed: {qst.message}")
-
-    q_model = qjob.get_target_model()
-
-    # 4. Compile for Dragonwing IQ-9075 EVK
     device = hub.Device(DEVICE_NAME)
-    print(f"\n--- Submitting Compile Job for {DEVICE_NAME} ---")
+
+    # 2. Compile directly to Native FP16 on Qualcomm NPU (No PTQ degradation, Zero-CPU architecture)
+    print(f"\n--- Submitting Compile Job (Native FP16) for {DEVICE_NAME} ---")
     cjob = hub.submit_compile_job(
-        model=q_model,
+        model=ONNX_PATH,
         device=device,
         input_specs={
             "fb_raw_wave_flat": ((N_SAMPLES,), "float32"),
             "enc_x_lens": ((1,), "int64")
         },
-        options="--target_runtime qnn_dlc --quantize_io --truncate_64bit_io",
-        name="Zipformer150M_W16A16_Compile_QNN"
+        options="--target_runtime qnn_dlc --truncate_64bit_io",
+        name="Zipformer150M_Full_FP16_Direct_Compile"
     )
     cst = poll_job(cjob, "COMPILE")
     if cst.code != "SUCCESS":
         sys.exit(f"Compile failed: {cst.message}")
 
     target_model = cjob.get_target_model()
+    print(f"Target model ID: {target_model.model_id}")
 
-    # 5. Profile on Hardware
+    # 3. Profile on Hardware
     print(f"\n--- Submitting Profile Job on {DEVICE_NAME} ---")
     pjob = hub.submit_profile_job(
         model=target_model,
         device=device,
-        name="Zipformer150M_W16A16_Profile"
+        name="Zipformer150M_Full_FP16_Profile"
     )
 
-    # 6. Run Hardware Inference
+    # 4. Run Hardware Inference
     print(f"\n--- Submitting Silicon Inference Job (15 samples) ---")
     infer_inputs = {
         "fb_raw_wave_flat": [prep_wave(w)[0].astype(np.float32) for _, _, w, _ in items],
@@ -133,7 +108,7 @@ def main():
         model=target_model,
         device=device,
         inputs=infer_inputs,
-        name="Zipformer150M_W16A16_Silicon_Inference"
+        name="Zipformer150M_Full_FP16_Silicon_Inference"
     )
 
     pst = poll_job(pjob, "PROFILE")
@@ -159,7 +134,7 @@ def main():
     inference_records = []
     if ist.code == "SUCCESS":
         out = ijob.download_output_data()
-        bm_key = [k for k in out if np.asarray(out[k][0]).shape == (373, 12)][0]
+        bm_key = [k for k in out if 12 in np.asarray(out[k][0]).shape or np.asarray(out[k][0]).ndim > 1][0]
         bl_key = [k for k in out if k != bm_key][0]
 
         for (tag, ref, w, fname), bm, bl in zip(items, out[bm_key], out[bl_key]):

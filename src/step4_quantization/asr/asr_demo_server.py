@@ -26,8 +26,8 @@ import qai_hub as hub
 # ──────────────────────────────────────────────
 # SenseVoice model IDs (2-stage: frontend → encoder)
 # ──────────────────────────────────────────────
-SV_FE_TARGET_MODEL_ID = "mq26z3d0n"   # frontend v3 (compile job j57ez99vp)
-SV_ENC_COMPILE_JOB    = "jprlmj9kp"   # encoder W8A16 (quantize jp8edvwqp, compile jprlmj9kp)
+SV_FE_TARGET_MODEL_ID  = "mn4ooxjzq"   # frontend v3 (compile job jg9olx88g)
+SV_ENC_TARGET_MODEL_ID = "mq800zwjn"   # encoder W8A16 (compile job jp3ojw6np)
 
 # ──────────────────────────────────────────────
 # Zipformer encoder model ID (compile job jp2okemrg → target mqeyydzym)
@@ -88,7 +88,7 @@ def get_sv_targets():
     if _sv_fe_model is None:
         _sv_fe_model = hub.get_model(SV_FE_TARGET_MODEL_ID)
     if _sv_enc_model is None:
-        _sv_enc_model = hub.get_job(SV_ENC_COMPILE_JOB).get_target_model()
+        _sv_enc_model = hub.get_model(SV_ENC_TARGET_MODEL_ID)
     return _sv_fe_model, _sv_enc_model
 
 def get_zip_target():
@@ -197,7 +197,8 @@ def set_stage(st, key, label):
 def poll_ai_hub_job(job, st, phase_prefix: str):
     last_ai_state = None
     while True:
-        ai_state = str(job.get_status().state).replace("State.", "")
+        status = job.get_status()
+        ai_state = str(status.state).replace("State.", "")
         if ai_state != last_ai_state:
             label = f"{phase_prefix}: {AI_HUB_STATE_LABELS.get(ai_state, ai_state)}"
             set_stage(st, f"{phase_prefix}_{ai_state}", label)
@@ -205,7 +206,8 @@ def poll_ai_hub_job(job, st, phase_prefix: str):
         if ai_state == "SUCCESS":
             return
         if ai_state in ("FAILED", "TIMEOUT"):
-            raise RuntimeError(f"{phase_prefix} thất bại trên AI Hub: {ai_state}")
+            err_msg = status.message or ai_state
+            raise RuntimeError(f"{phase_prefix} thất bại trên AI Hub: {err_msg}")
         time.sleep(2)
 
 
@@ -323,7 +325,7 @@ def run_batch_zipformer(job_id: str, wavs: list):
             else:
                 feats = feats[:ZIPFORMER_MAX_FRAMES]
             x_list.append(feats[None, :, :].astype(np.float32))    # [1, 1500, 80]
-            xl_list.append(np.array([min(n_frames, ZIPFORMER_MAX_FRAMES)], dtype=np.int64))
+            xl_list.append(np.array([min(n_frames, ZIPFORMER_MAX_FRAMES)], dtype=np.int32))
             clip_durations.append(round(true_len / FS, 2))
             if len(wav) > MAX_WAV_SAMPLES_ZIP:
                 log(f"  Clip {i}: {len(wav)/FS:.1f}s bị cắt còn {MAX_WAV_SAMPLES_ZIP/FS:.0f}s (giới hạn model).")

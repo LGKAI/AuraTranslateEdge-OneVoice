@@ -238,10 +238,10 @@ def run_batch_sensevoice(job_id: str, wavs: list, lang_code: int):
 
         set_stage(st, "upload_enc", "Upload fbank → AI Hub (SenseVoice Encoder)...")
         ds2 = hub.upload_dataset({
-            "fbank":          fbanks,
             "speech_lengths": sls,
             "language":       [np.array([lang_code], dtype=np.int32)] * n_clips,
             "textnorm":       [np.array([TEXTNORM_WITHITN], dtype=np.int32)] * n_clips,
+            "fbank":          fbanks,
         })
         enc_job = hub.submit_inference_job(model=enc_target, device=device, inputs=ds2)
         st["enc_job_id"] = enc_job.job_id

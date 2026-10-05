@@ -24,3 +24,4 @@ venv_pipeline/
 **/asr_batch_logs/
 *.tmp
 third_party/**/*.tmp
+*.exe

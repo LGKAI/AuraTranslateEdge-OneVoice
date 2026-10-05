@@ -136,23 +136,49 @@ def compute_fbank(wav: np.ndarray, sr: int = 16000) -> np.ndarray:
         raise RuntimeError("kaldi_native_fbank không được cài. Chạy: pip install kaldi_native_fbank")
 
 
+def get_ffmpeg_binary():
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        return "ffmpeg"
+
+
 def webm_to_wav16k(raw_bytes: bytes) -> np.ndarray:
-    with tempfile.NamedTemporaryFile(suffix=".webm", delete=False) as f_in:
+    import io
+    # Khả năng 1: Âm thanh đã là chuẩn WAV (đọc trực tiếp không cần ffmpeg)
+    try:
+        wav, sr = sf.read(io.BytesIO(raw_bytes), dtype="float32")
+        if wav.ndim > 1:
+            wav = wav.mean(axis=1)
+        if sr == FS:
+            return wav
+    except Exception:
+        pass
+
+    # Khả năng 2: Âm thanh webm/opus từ trình duyệt -> giải mã qua ffmpeg
+    ffmpeg_bin = get_ffmpeg_binary()
+    with tempfile.NamedTemporaryFile(suffix=".raw", delete=False) as f_in:
         f_in.write(raw_bytes)
         in_path = f_in.name
     out_path = in_path + ".wav"
     try:
         subprocess.run(
-            ["ffmpeg", "-y", "-i", in_path, "-ar", str(FS), "-ac", "1", "-f", "wav", out_path],
+            [ffmpeg_bin, "-y", "-i", in_path, "-ar", str(FS), "-ac", "1", "-f", "wav", out_path],
             check=True, capture_output=True,
         )
         wav, sr = sf.read(out_path, dtype="float32")
         assert sr == FS
+        if wav.ndim > 1:
+            wav = wav.mean(axis=1)
         return wav
     finally:
         for p in (in_path, out_path):
             if os.path.exists(p):
-                os.remove(p)
+                try:
+                    os.remove(p)
+                except Exception:
+                    pass
 
 
 def set_stage(st, key, label):
@@ -843,3 +869,61 @@ renderQueue();
 </body>
 </html>
 """
+
+
+def start_cloudflare_tunnel(port: int):
+    """Tự động tìm hoặc tải cloudflared.exe và tạo public HTTPS link."""
+    import urllib.request, shutil
+    cloudflared_path = shutil.which("cloudflared")
+    if not cloudflared_path:
+        local_cf = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cloudflared.exe")
+        if not os.path.exists(local_cf):
+            print("\n⬇️ Đang tải Cloudflare Tunnel (cloudflared.exe) để tạo public HTTPS link...")
+            url = "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe"
+            try:
+                urllib.request.urlretrieve(url, local_cf)
+                print("✅ Tải xong cloudflared.exe!\n")
+            except Exception as e:
+                print(f"⚠️ Không thể tải tự động cloudflared: {e}")
+                print("Bạn có thể tải thủ công từ: https://github.com/cloudflare/cloudflared/releases")
+                return
+        cloudflared_path = local_cf
+
+    def run_tunnel():
+        try:
+            p = subprocess.Popen(
+                [cloudflared_path, "tunnel", "--url", f"http://127.0.0.1:{port}"],
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace"
+            )
+            for line in p.stdout:
+                if "trycloudflare.com" in line:
+                    for word in line.split():
+                        if "trycloudflare.com" in word and word.startswith("http"):
+                            print("\n" + "="*68)
+                            print("🌐 PUBLIC HTTPS URL (Dùng được Micro trên mọi thiết bị/điện thoại):")
+                            print(f"👉 {word}")
+                            print("="*68 + "\n", flush=True)
+                            break
+        except Exception as e:
+            print(f"⚠️ Lỗi khởi động Cloudflare Tunnel: {e}")
+
+    t = threading.Thread(target=run_tunnel, daemon=True)
+    t.start()
+
+
+if __name__ == "__main__":
+    import uvicorn
+    import argparse
+    parser = argparse.ArgumentParser(description="AuraTranslate Edge — ASR Demo Server")
+    parser.add_argument("--host", default="0.0.0.0", help="Địa chỉ host (mặc định: 0.0.0.0)")
+    parser.add_argument("--port", type=int, default=8420, help="Cổng server (mặc định: 8420)")
+    parser.add_argument("--share", action="store_true", help="Tự động mở public HTTPS link qua Cloudflare Tunnel")
+    args = parser.parse_args()
+
+    if args.share:
+        start_cloudflare_tunnel(args.port)
+
+    print(f"\n🚀 Khởi chạy ASR Demo Server tại: http://localhost:{args.port}")
+    if not args.share:
+        print("💡 Muốn tạo public link HTTPS chia sẻ cho Leader/máy khác? Chạy lại với cờ: --share")
+    uvicorn.run(app, host=args.host, port=args.port)

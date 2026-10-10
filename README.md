@@ -1,4 +1,4 @@
-# AuraTranslate Edge — Offline NPU-Native Speech-to-Speech Translation Device
+# AuraTranslate Edge — OneVoice AI Challenge 2026
 
 **AuraTranslate Edge** là thiết bị phiên dịch giọng nói hai chiều (Speech-to-Speech Translation) hoạt động **100% offline, NPU-native** trên nền tảng **Qualcomm Dragonwing IQ-9075 EVK** (SoC Qualcomm Hexagon NPU v73, lên tới 100 dense TOPS). Hệ thống kết nối chuỗi xử lý **Audio Front-end → ASR → MT → TTS** cho 4 ngôn ngữ: **Tiếng Việt (VI) ⇄ Tiếng Hàn (KO) / Tiếng Trung (ZH) / Tiếng Anh (EN)**, được thiết kế chuyên biệt cho môi trường công nghiệp có độ ồn cao (70–95 dB SPL) như các nhà máy FDI, công trường xây dựng, và trung tâm logistics tại Việt Nam.
 

@@ -1,0 +1,7 @@
+T24 compile j5q4mvreg
+T24 compile SUCCESS
+[31m
+[0m
+T24 profile j57o7nkng | infer jpx0dr38p
+T24 infer FAILED wall 4072s The process ended because it exceeded the maximum execution time. Consult the runtime log for more details.
+T24 profile failed: 'execution_detail'

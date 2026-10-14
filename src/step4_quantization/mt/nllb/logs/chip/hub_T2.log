@@ -1,0 +1,16 @@
+T2 compile jgk699mn5
+T2 compile SUCCESS
+[31m
+[0m
+T2 profile jgk698xn5 | infer j5q4mvqog
+T2 infer SUCCESS wall 669s
+  [0] vie->eng identical=True | hw It
+  [1] vie->eng identical=True | hw I
+  [2] eng->vie identical=True | hw V
+  [3] eng->kor identical=True | hw 오늘
+  [4] kor->eng identical=True | hw Hello
+  [5] zho->eng identical=True | hw I
+  [6] eng->zho identical=True | hw
+  [7] kor->vie identical=True | hw Hãy
+T2 IDENTICAL 8/8
+T2 PROFILE 23.8 ms | layers 1309 {'NPU': 1309} | peak mem 7 MB | first load 62s

@@ -1,0 +1,16 @@
+T16 compile jg9oxdj8g
+T16 compile SUCCESS
+[31m
+[0m
+T16 profile jgd6z486p | infer jp4e94m2g
+T16 infer SUCCESS wall 3381s
+  [0] vie->eng identical=True | hw It's a beautiful day, let's go for a walk.
+  [1] vie->eng identical=True | hw I want to set a table for you two tonight.
+  [2] eng->vie identical=True | hw Vui lòng bật đèn trong phòng khách. - -
+  [3] eng->kor identical=True | hw 오늘 날씨는 햇볕이 잘 드는 편한 바람으로
+  [4] kor->eng identical=True | hw Hello, the weather is really nice today.
+  [5] zho->eng identical=True | hw I want to book a table for two tonight. I'm
+  [6] eng->zho identical=True | hw 机器翻译帮助人们在各种语言中交流.
+  [7] kor->vie identical=True | hw Hãy cho tôi biết cách nhanh nhất để đến ga.
+T16 IDENTICAL 8/8
+T16 PROFILE 275.6 ms | layers 7617 {'NPU': 7617} | peak mem 7 MB | first load 861s

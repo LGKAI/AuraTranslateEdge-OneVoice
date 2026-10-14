@@ -1,0 +1,16 @@
+T8 compile jp0ovv7np
+T8 compile SUCCESS
+[31m
+[0m
+T8 profile jp3ow6jnp | infer jgod482k5
+T8 infer SUCCESS wall 1657s
+  [0] vie->eng identical=True | hw It's a beautiful day,
+  [1] vie->eng identical=True | hw I want to set a table for
+  [2] eng->vie identical=True | hw Vui lòng bật đèn trong phòng
+  [3] eng->kor identical=True | hw 오늘 날씨는 햇볕이 잘
+  [4] kor->eng identical=True | hw Hello, the weather is really nice
+  [5] zho->eng identical=True | hw I want to book a table for
+  [6] eng->zho identical=True | hw 机器翻译帮助人们
+  [7] kor->vie identical=True | hw Hãy cho tôi biết cách nhanh nhất
+T8 IDENTICAL 8/8
+T8 PROFILE 100.1 ms | layers 4087 {'NPU': 4087} | peak mem 6 MB | first load 385s

@@ -25,3 +25,5 @@ venv_pipeline/
 *.tmp
 third_party/**/*.tmp
 *.exe
+**/work/*.onnx
+**/work/hw_*.npy

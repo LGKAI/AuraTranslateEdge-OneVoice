@@ -1,0 +1,9 @@
+vie_Latn->eng_Latn [16 tok in, 18 out, 2.7s] Hôm nay trời đẹp quá, chúng ta cùng đi dạo nhé. => It's a beautiful day, let's go for a walk.
+vie_Latn->eng_Latn [14 tok in, 14 out, 1.0s] Tôi muốn đặt một bàn cho hai người vào tối nay. => I want to set a table for you two tonight.
+eng_Latn->vie_Latn [13 tok in, 12 out, 0.9s] Please turn on the lights in the living room. => Vui lòng bật đèn trong phòng khách.
+eng_Latn->kor_Hang [15 tok in, 15 out, 1.1s] The weather today is sunny with a light breeze. => 오늘 날씨는 햇볕이 잘 드는 편한 바람으로
+kor_Hang->eng_Latn [12 tok in, 12 out, 1.1s] 안녕하세요, 오늘 날씨가 정말 좋네요. => Hello, the weather is really nice today.
+zho_Hans->eng_Latn [12 tok in, 13 out, 1.2s] 我想预订今晚两个人的餐桌。 => I want to book a table for two tonight.
+eng_Latn->zho_Hans [11 tok in, 16 out, 1.6s] Machine translation helps people communicate across languages. => 机器翻译帮助人们在各种语言中交流.
+kor_Hang->vie_Latn [12 tok in, 14 out, 1.3s] 기차역까지 가는 가장 빠른 길을 알려 주세요. => Hãy cho tôi biết cách nhanh nhất để đến ga.
+params M: 615.073792 | vocab 256206 | d_model 1024 | enc/dec layers 12 12

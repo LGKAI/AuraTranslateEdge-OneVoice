@@ -1,0 +1,9 @@
+torch
+transformers==4.46.3
+optimum
+onnx
+onnxruntime
+sentencepiece
+qai-hub
+numpy
+sacrebleu

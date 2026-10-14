@@ -1,0 +1,3 @@
+T=16: exported 1.98 GB in 67s
+  nodes 12710 | ops {'Add': 2442, 'MatMul': 2429, 'Constant': 1668, 'Identity': 1448, 'Transpose': 1411, 'Reshape': 1254, 'LayerNormalization': 614, 'Mul': 411} | external data tensors: 0
+  ORT == torch: True | ids [256047, 3291, 248116, 248066, 9, 56417, 4039, 248079, 3190, 248116, 248066, 405, 351, 9, 74171, 248075]

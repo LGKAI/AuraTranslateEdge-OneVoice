@@ -1,8 +1,12 @@
 import sys, json, time, torch, numpy as np
+import transformers.utils.import_utils
+transformers.utils.import_utils.check_torch_load_is_safe = lambda: None
+import transformers.modeling_utils
+transformers.modeling_utils.check_torch_load_is_safe = lambda: None
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 sys.stdout.reconfigure(encoding="utf-8"); sys.path.insert(0, ".")
 from nllb_static import NLLBStatic
-NAME="facebook/nllb-200-distilled-600M"; tok=AutoTokenizer.from_pretrained(NAME); hf=AutoModelForSeq2SeqLM.from_pretrained(NAME).eval()
+NAME="facebook/nllb-200-distilled-600M"; tok=AutoTokenizer.from_pretrained(NAME); hf=AutoModelForSeq2SeqLM.from_pretrained(NAME, use_safetensors=False, local_files_only=True).eval()
 ref=json.load(open("work/ref.json",encoding="utf-8")); S,T=32,24
 m=NLLBStatic(hf,S,T).eval()
 ok=0

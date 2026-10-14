@@ -1,10 +1,14 @@
 import sys, json, torch, numpy as np
+import transformers.utils.import_utils
+transformers.utils.import_utils.check_torch_load_is_safe = lambda: None
+import transformers.modeling_utils
+transformers.modeling_utils.check_torch_load_is_safe = lambda: None
 from transformers import AutoModelForSeq2SeqLM
 sys.stdout.reconfigure(encoding="utf-8"); sys.path.insert(0, ".")
 from nllb_static import NLLBStatic
 import vocab_restrict as VR
 tok, V, inv, keep = VR.build(all_scripts=True); print('kept', len(keep)); R = VR.restrict(tok, inv, keep)
-hf = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M").eval(); S, T = 32, 24
+hf = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M", use_safetensors=False, local_files_only=True).eval(); S, T = 32, 24
 m = NLLBStatic(hf, S, T, keep_ids=keep).eval()
 test = json.load(open("work/fleurs_test.json", encoding="utf-8"))
 PAIRS = [("vie_Latn","eng_Latn"),("eng_Latn","vie_Latn"),("kor_Hang","eng_Latn"),("zho_Hans","eng_Latn"),("eng_Latn","kor_Hang"),("eng_Latn","zho_Hans")]

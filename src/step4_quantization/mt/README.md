@@ -10,14 +10,20 @@ Mỗi dòng là một graph có số bước giải mã khác nhau. "Giống CPU
 
 | Số bước giải mã (T) | Kết quả | Layer trên NPU | Thời gian chip | Nạp model lần đầu |
 |---|---|---|---|---|
-| 2 | **8/8 giống CPU** | 1309/1309 | 23.8 ms | 62 s |
-| 8 | **8/8 giống CPU** | 4087/4087 | 100.1 ms | 385 s |
-| **16** | **8/8 giống CPU** | **7617/7617** | **275.6 ms** | 861 s |
+| 2 | **8/8 giống CPU** | 1309/1309 (100% HTP) | 23.8 ms | 62 s |
+| 8 | **8/8 giống CPU** | 4087/4087 (100% HTP) | 100.1 ms | 385 s |
+| **16** | **8/8 giống CPU (100%)** | **7617/7617 (100% HTP)** | **215.87 ms** | 865.9 s |
 | 24 | **không chạy được**: quá thời gian tối đa của AI Hub (4072 s) | — | — | — |
 
-Vậy với một graph, **T=16 là mức lớn nhất đã chạy được**. Job ID từng lần: `docs/ket_qua_chip.md`.
-8 câu thử (6 hướng dịch: Việt↔Anh, Anh→Hàn, Hàn→Anh, Trung↔Anh, Hàn→Việt) cho đúng bản dịch như CPU, ví dụ trên chip:
-"Hôm nay trời đẹp quá, chúng ta cùng đi dạo nhé." → "It's a beautiful day, let's go for a walk."
+Vậy với một graph, **T=16 là mức tối ưu lớn nhất đã chạy thành công trên chip thật Dragonwing IQ-9075 EVK**.
+- **Compile Job chính thức** (`leogiakhanh1609@gmail.com`): [`jgd62w9lp`](https://workbench.aihub.qualcomm.com/jobs/jgd62w9lp/) (**SUCCESS**, 100% NPU offload).
+- **Profile Job chính thức**: [`jp1o6ly25`](https://workbench.aihub.qualcomm.com/jobs/jp1o6ly25/) (**215.87 ms**, RAM đỉnh 6.59 MB).
+- **Inference Job chính thức**: [`jgd629eep`](https://workbench.aihub.qualcomm.com/jobs/jgd629eep/) (**8/8 câu trùng khớp 100% từng token**).
+- Chi tiết kết quả JSON đã lưu tại: `results/hub_silicon_test_results_T16.json` (và nhật ký đo kiểm tại `docs/ket_qua_chip.md`).
+
+8 câu thử nghiệm (bao phủ 6 hướng dịch: Việt ↔ Anh, Anh → Hàn, Hàn → Anh, Trung ↔ Anh, Hàn → Việt) cho kết quả trên silicon thật giống 100% từng token so với PyTorch CPU, ví dụ:
+- "Hôm nay trời đẹp quá, chúng ta cùng đi dạo nhé." → "It's a beautiful day, let's go for a walk."
+- "Tôi muốn đặt một bàn cho hai người vào tối nay." → "I want to set a table for you two tonight."
 
 ## Cách làm (đơn giản)
 
@@ -32,23 +38,34 @@ Vậy với một graph, **T=16 là mức lớn nhất đã chạy được**. J
 
 - Câu nguồn tối đa 32 token; bản dịch tối đa T−1 token (với T=16 là 15). Câu dài hơn phải chia câu.
 - Mới thử 8 câu ngắn đối chiếu với CPU; **chưa đo BLEU** trên tập lớn và chưa nối với đầu ra ASR thật.
-- Bản fp16 (không lượng tử), nặng khoảng 1 GB. Cắt từ vựng xuống 42k làm hỏng chất lượng (xem `docs/cach_hoat_dong.md`).
+- Bản fp16 (không lượng tử), nặng khoảng 1.98 GB. Cắt từ vựng xuống 42k làm hỏng chất lượng (xem `docs/cach_hoat_dong.md`).
 - Máy chủ vẫn làm: tách token (SentencePiece), cắt tại EOS, giải mã chữ. AI Hub chỉ chạy từng model, không chạy mã tuỳ ý.
 - Encoder cũ của dự án từng lệch nhiều trên chip (cosine 0.2–0.8 khi lượng tử); bản này viết lại bằng fp16 và khớp CPU trên 8 câu thử.
 
 ## Chạy lại
 
-Yêu cầu: Python 3.11, `pip install -r requirements.txt`, `qai-hub` đã cấu hình. Chạy từ thư mục `nllb_npu/` (file sinh ra nằm ở `work/`, đã `.gitignore`).
+Yêu cầu: Python 3.11 / 3.12, `pip install -r requirements.txt`, `qai-hub` đã cấu hình. Chạy từ thư mục `src/step4_quantization/mt/nllb/` (các file sinh ra nằm ở `work/`, đã được đưa vào `.gitignore` tổng).
 
 ```bash
-python step0_cpu_ref.py                  # tải model, dịch 8 câu trên CPU -> work/ref.json
-python step1_cpu_static.py               # graph tĩnh (T=24, trên CPU) khớp HF generate: 8/8
-python step3b_parity_allscripts.py       # cắt từ vựng 139k: 48/48 câu giống HF
-python step4_export.py 16                # xuất ONNX T=16 (~2 GB) -> work/nllb_S32_T16.onnx
-python hub_nllb.py T16 work/nllb_S32_T16.onnx 16     # compile + profile + inference trên chip, so với CPU
+cd src/step4_quantization/mt/nllb
+
+# 1. Tải model, dịch 8 câu trên CPU -> work/ref.json
+python step0_cpu_ref.py
+
+# 2. Kiểm tra graph tĩnh (T=24, trên CPU) khớp HF generate: 8/8
+python step1_cpu_static.py
+
+# 3. Cắt từ vựng 139k: 48/48 câu FLEURS giống HF
+python step3b_parity_allscripts.py
+
+# 4. Xuất ONNX T=16 (~1.98 GB, 12.710 nodes) -> work/nllb_S32_T16.onnx
+python step4_export.py 16
+
+# 5. Compile + profile + inference trên chip Dragonwing, đối chiếu kết quả
+python hub_nllb.py T16 work/nllb_S32_T16.onnx 16
 ```
 
-Với `hub_nllb.py`, đặt biến `REUSE=1` để dùng lại bản đã compile (không compile lại).
+Với `hub_nllb.py`, đặt biến môi trường `REUSE=1` (PowerShell: `$env:REUSE="1"`) để dùng lại bản compile đã có mà không cần compile lại.
 
 ## Các file
 

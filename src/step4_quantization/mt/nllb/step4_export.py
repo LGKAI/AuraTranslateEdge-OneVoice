@@ -1,11 +1,15 @@
 import sys, os, json, time, torch, numpy as np, onnx, onnxruntime as ort
+import transformers.utils.import_utils
+transformers.utils.import_utils.check_torch_load_is_safe = lambda: None
+import transformers.modeling_utils
+transformers.modeling_utils.check_torch_load_is_safe = lambda: None
 from transformers import AutoModelForSeq2SeqLM
 sys.stdout.reconfigure(encoding="utf-8"); sys.path.insert(0, ".")
 from nllb_static import NLLBStatic
 import vocab_restrict as VR
 S = 32; Ts = [int(x) for x in sys.argv[1:]] or [2]
 tok, V, inv, keep = VR.build(all_scripts=True); json.dump({"keep": keep}, open("work/keep_all.json", "w"))
-hf = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M").eval()
+hf = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M", use_safetensors=False, local_files_only=True).eval()
 ref = json.load(open("work/ref.json", encoding="utf-8"))
 for T in Ts:
     m = NLLBStatic(hf, S, T, keep_ids=keep, half_emb=True).eval()

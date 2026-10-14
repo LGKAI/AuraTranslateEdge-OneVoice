@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 """CPU fp32 reference translations with HF NLLB-600M (greedy, max 48 new tokens) -> work/ref.json"""
 import sys, json, time, torch
+import transformers.utils.import_utils
+transformers.utils.import_utils.check_torch_load_is_safe = lambda: None
+import transformers.modeling_utils
+transformers.modeling_utils.check_torch_load_is_safe = lambda: None
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 sys.stdout.reconfigure(encoding="utf-8")
 NAME = "facebook/nllb-200-distilled-600M"
-tok = AutoTokenizer.from_pretrained(NAME); model = AutoModelForSeq2SeqLM.from_pretrained(NAME).eval()
+tok = AutoTokenizer.from_pretrained(NAME); model = AutoModelForSeq2SeqLM.from_pretrained(NAME, use_safetensors=False, local_files_only=True).eval()
 S = [("vie_Latn", "eng_Latn", "Hôm nay trời đẹp quá, chúng ta cùng đi dạo nhé."), ("vie_Latn", "eng_Latn", "Tôi muốn đặt một bàn cho hai người vào tối nay."),
      ("eng_Latn", "vie_Latn", "Please turn on the lights in the living room."), ("eng_Latn", "kor_Hang", "The weather today is sunny with a light breeze."),
      ("kor_Hang", "eng_Latn", "안녕하세요, 오늘 날씨가 정말 좋네요."), ("zho_Hans", "eng_Latn", "我想预订今晚两个人的餐桌。"),

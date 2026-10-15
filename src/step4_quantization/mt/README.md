@@ -67,10 +67,39 @@ python hub_nllb.py T16 work/nllb_S32_T16.onnx 16
 
 Với `hub_nllb.py`, đặt biến môi trường `REUSE=1` (PowerShell: `$env:REUSE="1"`) để dùng lại bản compile đã có mà không cần compile lại.
 
+## Chạy MT Demo Dashboard (`mt_demo_server.py`)
+
+Tương tự như ASR Demo Dashboard (`asr_demo_server.py`), dự án cung cấp máy chủ web demo trực quan cho mô hình dịch máy **NLLB-600M** tích hợp NPU Qualcomm và mô phỏng CPU:
+
+```bash
+cd src/step4_quantization/mt
+
+# Khởi chạy server demo (mặc định cổng 8430):
+python mt_demo_server.py --port 8430
+
+# Hoặc dùng uvicorn trực tiếp:
+uvicorn mt_demo_server:app --host 127.0.0.1 --port 8430
+
+# Tự động tạo public link HTTPS qua Cloudflare Tunnel (chia sẻ ra mạng ngoài):
+python mt_demo_server.py --port 8430 --share
+```
+
+Truy cập: `http://localhost:8430`
+
+**Các tính năng trên Dashboard:**
+1. **6 Hướng dịch đa ngữ:** Việt ↔ Anh, Anh ↔ Trung, Anh ↔ Hàn, Hàn ↔ Việt (kèm nút đổi chiều nhanh `⇄`).
+2. **Hai chế độ thực thi (Dual Engines):**
+   - 🟢 **NPU Qualcomm Dragonwing (Cloud Hub):** Chạy trực tiếp trên chip NPU vật lý (`mqy498l5q`, 7.617 layers Hexagon HTP v73, đo latency 215.87 ms).
+   - ⚡ **Local CPU (ONNX Runtime):** Chạy tức thì trong ~30ms trên file `nllb/work/nllb_S32_T16.onnx` để thử nghiệm câu dịch nhanh mà không phải chờ hàng đợi AI Hub.
+3. **8 Câu mẫu đối chiếu FLEURS:** Click 1 chạm để tự động điền câu và chọn cặp ngôn ngữ chuẩn.
+4. **Timeline trạng thái thời gian thực:** Hiển thị từng giai đoạn (Tokenize → Upload → Provisioning → Running on NPU → Detokenize).
+5. **Chi tiết Token IDs trên silicon:** Xem mảng raw token IDs và các subword tokens do chip sinh ra.
+
 ## Các file
 
 | File | Việc |
 |---|---|
+| `mt_demo_server.py` | Dashboard Web demo dịch máy đa ngữ NPU / CPU |
 | `nllb_static.py` | Mô hình tĩnh: encoder + T bước giải mã trong một graph |
 | `vocab_restrict.py` | Chọn tập token giữ lại và tách token theo tập đó |
 | `step0_cpu_ref.py` | Bản dịch tham chiếu trên CPU |

@@ -37,7 +37,9 @@ src/step4_quantization/asr/
 
 ## 2. Hướng dẫn Khởi chạy ASR Dashboard
 
-Tệp [`asr_demo_server.py`](asr_demo_server.py) là máy chủ tích hợp phục vụ giao diện thu âm thời gian thực, tự động định tuyến ngôn ngữ và gửi tensor lên Qualcomm AI Hub để chạy trên chip NPU thật.
+Tệp [`asr_demo_server.py`](asr_demo_server.py) là máy chủ tích hợp phục vụ giao diện thu âm thời gian thực, tự động định tuyến ngôn ngữ và hỗ trợ hai bộ máy thực thi:
+* ⚡ **Local CPU (ONNX Runtime, ~100–300 ms):** Chạy trực tiếp mô hình ONNX (`zip150_full_pipeline.onnx` và `model_sv_frontend_v3_inline.onnx` + `model_sv_enc_cls_inline.onnx`) trên CPU cục bộ, cho kết quả tức thì để kiểm thử mà không cần chờ hàng đợi AI Hub.
+* 🟢 **NPU Qualcomm Dragonwing (Cloud AI Hub):** Gửi tensor trực tiếp lên phần cứng NPU chip thật (Dragonwing IQ-9075 EVK) trên Qualcomm AI Hub để đo kiểm benchmark và profile thực tế.
 
 ### Cách 1: Chạy Local (Nội bộ trên máy cá nhân)
 

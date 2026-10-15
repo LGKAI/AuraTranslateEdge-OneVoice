@@ -18,10 +18,17 @@ import sys, os, subprocess, tempfile, time, uuid, threading, json, glob
 sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np
 import soundfile as sf
+import onnxruntime as ort
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from typing import List
 import qai_hub as hub
+
+# Đường dẫn ONNX local
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+ZIP_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "zip150_full_npu", "zip150_full_pipeline.onnx")
+SV_FE_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "sensevoice-e2e-onnx", "model_sv_frontend_v3_inline.onnx")
+SV_ENC_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "sensevoice-e2e-onnx", "model_sv_enc_cls_inline.onnx")
 
 # ──────────────────────────────────────────────
 # SenseVoice model IDs (2-stage: frontend → encoder)
@@ -96,6 +103,38 @@ def get_zip_target():
     if _zip_enc_model is None:
         _zip_enc_model = hub.get_model(ZIP_ENC_TARGET_MODEL_ID)
     return _zip_enc_model
+
+# ──────────────────────────────────────────────
+# Local ONNX CPU Session cache (lazy load)
+# ──────────────────────────────────────────────
+_local_zip_session = None
+_local_sv_fe_session = None
+_local_sv_enc_session = None
+
+def get_local_zip_session():
+    global _local_zip_session
+    if _local_zip_session is None:
+        if not os.path.exists(ZIP_ONNX_PATH):
+            raise FileNotFoundError(f"Không tìm thấy model Zipformer tại {ZIP_ONNX_PATH}")
+        opts = ort.SessionOptions()
+        opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL
+        opts.log_severity_level = 3
+        _local_zip_session = ort.InferenceSession(ZIP_ONNX_PATH, opts, providers=["CPUExecutionProvider"])
+    return _local_zip_session
+
+def get_local_sv_sessions():
+    global _local_sv_fe_session, _local_sv_enc_session
+    opts = ort.SessionOptions()
+    opts.log_severity_level = 3
+    if _local_sv_fe_session is None:
+        if not os.path.exists(SV_FE_ONNX_PATH):
+            raise FileNotFoundError(f"Không tìm thấy model SV Frontend tại {SV_FE_ONNX_PATH}")
+        _local_sv_fe_session = ort.InferenceSession(SV_FE_ONNX_PATH, opts, providers=["CPUExecutionProvider"])
+    if _local_sv_enc_session is None:
+        if not os.path.exists(SV_ENC_ONNX_PATH):
+            raise FileNotFoundError(f"Không tìm thấy model SV Encoder tại {SV_ENC_ONNX_PATH}")
+        _local_sv_enc_session = ort.InferenceSession(SV_ENC_ONNX_PATH, opts, providers=["CPUExecutionProvider"])
+    return _local_sv_fe_session, _local_sv_enc_session
 
 # ──────────────────────────────────────────────
 # Helpers
@@ -354,6 +393,122 @@ def run_batch_zipformer(job_id: str, wavs: list):
         st["error"] = str(e)
 
 # ──────────────────────────────────────────────
+# Local CPU Batch Runners (ONNX Runtime)
+# ──────────────────────────────────────────────
+def run_batch_zipformer_local(job_id: str, wavs: list):
+    st = JOBS[job_id]
+    t0 = time.time()
+    n_clips = len(wavs)
+    log_lines = []
+
+    def log(msg):
+        line = f"[{time.strftime('%H:%M:%S')}] {msg}"
+        log_lines.append(line)
+        print(f"[zip-local {job_id}] {line}", flush=True)
+
+    try:
+        log(f"Zipformer 5-Block Local CPU: batch {n_clips} đoạn audio tiếng Việt.")
+        set_stage(st, "prep_wave", "Đang tiền xử lý raw waveform...")
+        sess = get_local_zip_session()
+
+        clips_result = []
+        set_stage(st, "infer_cpu", f"Đang chạy zip150_full_pipeline.onnx trên CPU (N={n_clips})...")
+        for i, wav in enumerate(wavs):
+            true_len = min(len(wav), MAX_WAV_SAMPLES_ZIP)
+            x = np.zeros(MAX_WAV_SAMPLES_ZIP, dtype=np.float32)
+            x[:true_len] = wav[:true_len]
+            n_frames = 1 + (true_len - 400) // 160
+            dur_s = round(true_len / FS, 2)
+
+            t_start = time.time()
+            out = sess.run(None, {
+                "fb_raw_wave_flat": x,
+                "enc_x_lens": np.array([n_frames], dtype=np.int64)
+            })
+            inf_ms = round((time.time() - t_start) * 1000, 1)
+            bm, bl = out[0], out[1]
+            text = decode_bytes_zip(bm, bl)
+            if not text:
+                text = "(Không phát hiện giọng nói rõ ràng)"
+            clips_result.append({
+                "index": i,
+                "text": text,
+                "duration_s": dur_s,
+                "npu_ms": NPU_MS_ZIP,
+                "infer_ms": inf_ms,
+                "model": "Zipformer-150M (Local CPU ONNX)",
+            })
+            log(f"  Clip {i} ({dur_s}s, CPU {inf_ms}ms | NPU ref {NPU_MS_ZIP}ms): \"{text}\"")
+
+        _finalize_job(st, job_id, clips_result, n_clips, t0, NPU_MS_ZIP, log_lines, log)
+    except Exception as e:
+        log(f"LỖI: {e}")
+        _save_log(job_id, log_lines)
+        st["status"] = "error"
+        st["error"] = str(e)
+
+def run_batch_sensevoice_local(job_id: str, wavs: list, lang_code: int):
+    st = JOBS[job_id]
+    t0 = time.time()
+    n_clips = len(wavs)
+    log_lines = []
+
+    def log(msg):
+        line = f"[{time.strftime('%H:%M:%S')}] {msg}"
+        log_lines.append(line)
+        print(f"[sv-local {job_id}] {line}", flush=True)
+
+    try:
+        log(f"SenseVoice Local CPU: batch {n_clips} đoạn audio (lang code={lang_code}).")
+        set_stage(st, "prep_wave", "Đang tiền xử lý raw audio...")
+        fe_sess, enc_sess = get_local_sv_sessions()
+
+        clips_result = []
+        set_stage(st, "infer_cpu", f"Đang chạy SenseVoice (Frontend + Encoder) trên CPU (N={n_clips})...")
+        for i, wav in enumerate(wavs):
+            true_len = min(len(wav), MAX_WAV_SAMPLES_SV)
+            wav_padded = np.zeros((1, MAX_WAV_SAMPLES_SV), dtype=np.float32)
+            wav_padded[0, :true_len] = wav[:true_len]
+            dur_s = round(true_len / FS, 2)
+
+            t_start = time.time()
+            fe_out = fe_sess.run(None, {
+                "wav": wav_padded,
+                "wav_len": np.array([true_len], dtype=np.int32)
+            })
+            fk = 0 if fe_out[0].shape == (1, 500, 560) else 1
+            fbank = fe_out[fk].astype(np.float32)
+            speech_lengths = fe_out[1 - fk].astype(np.int32)
+
+            enc_out = enc_sess.run(None, {
+                "fbank": fbank,
+                "speech_lengths": speech_lengths,
+                "language": np.array([lang_code], dtype=np.int32),
+                "textnorm": np.array([TEXTNORM_WITHITN], dtype=np.int32)
+            })
+            inf_ms = round((time.time() - t_start) * 1000, 1)
+            raw_bytes_arr = enc_out[0]
+            text = decode_bytes_sv(raw_bytes_arr)
+            if not text:
+                text = "(Không phát hiện giọng nói rõ ràng)"
+            clips_result.append({
+                "index": i,
+                "text": text,
+                "duration_s": dur_s,
+                "npu_ms": NPU_MS_SV,
+                "infer_ms": inf_ms,
+                "model": "SenseVoice Small (Local CPU ONNX)",
+            })
+            log(f"  Clip {i} ({dur_s}s, CPU {inf_ms}ms | NPU ref {NPU_MS_SV}ms): \"{text}\"")
+
+        _finalize_job(st, job_id, clips_result, n_clips, t0, NPU_MS_SV, log_lines, log)
+    except Exception as e:
+        log(f"LỖI: {e}")
+        _save_log(job_id, log_lines)
+        st["status"] = "error"
+        st["error"] = str(e)
+
+# ──────────────────────────────────────────────
 # Shared finalize
 # ──────────────────────────────────────────────
 def _save_log(job_id, log_lines):
@@ -367,12 +522,14 @@ def _finalize_job(st, job_id, clips_result, n_clips, t0, npu_ms_per_clip, log_li
     elapsed = time.time() - t0
     npu_total = npu_ms_per_clip * n_clips
     outside_s = round(elapsed - npu_total / 1000, 1)
-    log(f"XONG. Tổng: {elapsed:.1f}s | NPU (N={n_clips}×{npu_ms_per_clip}ms): {npu_total/1000:.2f}s | Ngoài chip: {outside_s}s")
+    engine = st.get("engine", "npu")
+    log(f"XONG. Tổng: {elapsed:.1f}s | Engine: {engine} | NPU (N={n_clips}×{npu_ms_per_clip}ms): {npu_total/1000:.2f}s | Ngoài chip: {outside_s}s")
     log_path = _save_log(job_id, log_lines)
     st["status"] = "done"
     st["result"] = {
         "clips": clips_result,
         "n_clips": n_clips,
+        "engine": engine,
         "elapsed_total_s": round(elapsed, 1),
         "npu_total_ms": round(npu_total, 1),
         "npu_per_clip_ms": npu_ms_per_clip,
@@ -385,7 +542,11 @@ def _finalize_job(st, job_id, clips_result, n_clips, t0, npu_ms_per_clip, log_li
 # API Endpoints
 # ──────────────────────────────────────────────
 @app.post("/api/transcribe_batch")
-async def transcribe_batch(audios: List[UploadFile] = File(...), lang: str = Form("vi")):
+async def transcribe_batch(
+    audios: List[UploadFile] = File(...),
+    lang: str = Form("vi"),
+    engine: str = Form("cpu_local")
+):
     if len(audios) == 0:
         return JSONResponse({"error": "Chưa có đoạn audio nào."}, status_code=400)
     if len(audios) > MAX_CLIPS_PER_BATCH:
@@ -406,17 +567,25 @@ async def transcribe_batch(audios: List[UploadFile] = File(...), lang: str = For
     JOBS[job_id] = {
         "status": "running", "stage_key": None, "stage_label": None,
         "stage_started_at": None, "history": [], "result": None, "error": None,
-        "lang": lang, "model": "Zipformer" if lang == "vi" else "SenseVoice",
+        "lang": lang, "engine": engine,
+        "model": "Zipformer" if lang == "vi" else "SenseVoice",
     }
     set_stage(JOBS[job_id], "start", "Đang khởi động...")
 
-    if lang == "vi":
-        t = threading.Thread(target=run_batch_zipformer, args=(job_id, wavs), daemon=True)
+    if engine == "cpu_local":
+        if lang == "vi":
+            t = threading.Thread(target=run_batch_zipformer_local, args=(job_id, wavs), daemon=True)
+        else:
+            lang_code = LID_DICT.get(lang, 4)
+            t = threading.Thread(target=run_batch_sensevoice_local, args=(job_id, wavs, lang_code), daemon=True)
     else:
-        lang_code = LID_DICT.get(lang, 4)
-        t = threading.Thread(target=run_batch_sensevoice, args=(job_id, wavs, lang_code), daemon=True)
+        if lang == "vi":
+            t = threading.Thread(target=run_batch_zipformer, args=(job_id, wavs), daemon=True)
+        else:
+            lang_code = LID_DICT.get(lang, 4)
+            t = threading.Thread(target=run_batch_sensevoice, args=(job_id, wavs, lang_code), daemon=True)
     t.start()
-    return JSONResponse({"job_id": job_id, "n_clips": len(wavs), "model": JOBS[job_id]["model"]})
+    return JSONResponse({"job_id": job_id, "n_clips": len(wavs), "model": JOBS[job_id]["model"], "engine": engine})
 
 @app.get("/api/status/{job_id}")
 async def status(job_id: str):
@@ -517,6 +686,27 @@ HTML_PAGE = """<!doctype html>
   .model-dot.sv { background: var(--accent-sv); }
   .model-name { font-weight: 600; }
   .model-desc { color: var(--muted); margin-left: 4px; }
+
+  /* Engine Selector */
+  .engine-toggle-card {
+    background: var(--card); border: 1px solid var(--border2); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .engine-info { display: flex; flex-direction: column; gap: 2px; }
+  .engine-title { font-size: 13px; font-weight: 600; color: var(--text); }
+  .engine-sub { font-size: 11px; color: var(--muted); }
+  .engine-pills { display: flex; gap: 6px; }
+  .engine-pill {
+    padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border2);
+    background: #0f131a; color: var(--muted); font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .engine-pill.active-npu {
+    background: rgba(74, 222, 128, 0.12); border-color: var(--green); color: var(--green);
+  }
+  .engine-pill.active-cpu {
+    background: rgba(34, 211, 238, 0.12); border-color: var(--cyan); color: var(--cyan);
+  }
 
   /* Recording controls */
   .controls { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -628,6 +818,18 @@ HTML_PAGE = """<!doctype html>
     <span class="model-desc" id="modelDesc">· 184.31ms/15s audio · 7.78MB peak · NPU UTF-8</span>
   </div>
 
+  <!-- Chọn Engine -->
+  <div class="engine-toggle-card">
+    <div class="engine-info">
+      <div class="engine-title">Bộ máy thực thi (Execution Engine)</div>
+      <div class="engine-sub" id="engineDesc">Chạy đồ thị trực tiếp trên CPU cục bộ trong ~100-300ms</div>
+    </div>
+    <div class="engine-pills">
+      <div class="engine-pill active-cpu" id="pillCpu" onclick="setEngine('cpu_local')">⚡ Local CPU (Tức thì ~300ms)</div>
+      <div class="engine-pill" id="pillNpu" onclick="setEngine('npu')">🟢 NPU Dragonwing (Cloud Hub)</div>
+    </div>
+  </div>
+
   <div class="limit-info">
     🎙️ Ghi không giới hạn số đoạn (tối đa <b>__MAX_CLIPS__ đoạn/lần</b>).
     Mỗi đoạn: <b id="maxDurTxt">≤15s (Zipformer)</b> · Gửi 1 lượt → NPU xử lý cả batch, chỉ "trả thuế" tải model 1 lần.
@@ -662,9 +864,26 @@ const MODEL_INFO = {
 };
 
 let currentLang = 'vi';
+let currentEngine = 'cpu_local';
 let mediaRecorder, currentChunks = [], stream;
 let clips = [];
 let recording = false;
+
+function setEngine(eng) {
+  currentEngine = eng;
+  const pCpu = document.getElementById('pillCpu');
+  const pNpu = document.getElementById('pillNpu');
+  const desc = document.getElementById('engineDesc');
+  if (eng === 'cpu_local') {
+    pCpu.className = 'engine-pill active-cpu';
+    pNpu.className = 'engine-pill';
+    desc.textContent = 'Mô phỏng đồ thị ONNX trực tiếp trên CPU Execution Provider (< 300ms)';
+  } else {
+    pCpu.className = 'engine-pill';
+    pNpu.className = 'engine-pill active-npu';
+    desc.textContent = 'Gửi job thực thi trực tiếp trên NPU Hexagon HTP v73 (Dragonwing IQ-9075 EVK qua AI Hub)';
+  }
+}
 
 const recBtn   = document.getElementById('recBtn');
 const sendBtn  = document.getElementById('sendBtn');
@@ -748,6 +967,7 @@ sendBtn.onclick = async () => {
   const form = new FormData();
   clips.forEach((c, i) => form.append('audios', c.blob, 'clip' + i + '.webm'));
   form.append('lang', currentLang);
+  form.append('engine', currentEngine);
 
   let jobId, modelUsed;
   try {
@@ -763,14 +983,14 @@ sendBtn.onclick = async () => {
 function renderTimeline(history, curLabel, curElapsed, curKey) {
   let html = '';
   for (const h of history) {
-    const run = h.key && h.key.includes('RUNNING_INFERENCE');
+    const run = h.key && (h.key.includes('RUNNING_INFERENCE') || h.key.includes('infer_cpu'));
     html += '<div class="tl-item done' + (run?' running':'') + '">' +
       '<div class="tl-dot"></div>' +
       '<div class="tl-label">' + esc(h.label) + '</div>' +
       '<div class="tl-time">' + fmtS(h.duration_s) + '</div></div>';
   }
   if (curLabel) {
-    const run = curKey && curKey.includes('RUNNING_INFERENCE');
+    const run = curKey && (curKey.includes('RUNNING_INFERENCE') || curKey.includes('infer_cpu'));
     html += '<div class="tl-item active' + (run?' running':'') + '">' +
       '<div class="tl-dot"></div>' +
       '<div class="tl-label">' + esc(curLabel) + '</div>' +
@@ -792,12 +1012,14 @@ async function pollStatus(jobId, modelUsed) {
       renderTimeline(r.history, null, 0, null);
       const isSV = modelUsed !== 'Zipformer';
       const info = isSV ? MODEL_INFO[currentLang] : MODEL_INFO.vi;
+      const isCpu = r.engine === 'cpu_local';
       summaryBox.innerHTML =
         '<div class="summary' + (isSV?' sv-summary':'') + '">' +
+        '<div class="sum-row">⚙️ Bộ máy thực thi <span class="sum-val">' + (isCpu ? '⚡ Local CPU (ONNX Runtime)' : '🟢 Qualcomm NPU Dragonwing IQ-9075 EVK') + '</span></div>' +
         '<div class="sum-row">⏱️ Tổng thời gian batch <span class="sum-val">' + fmtS(r.elapsed_total_s) + '</span></div>' +
         '<div class="sum-row">⚡ NPU thuần (' + r.n_clips + '×' + fmtMs(r.npu_per_clip_ms) + ') <span class="sum-val">' + fmtMs(r.npu_total_ms) + '</span></div>' +
-        '<div class="sum-row">📡 Ngoài chip (upload/download/queue) <span class="sum-val">' + fmtS(r.outside_chip_s) + '</span></div>' +
-        '<div class="sum-note">NPU per-clip là hằng số kiến trúc đo qua Profiler (100 lần chạy liên tục). AI Hub không hỗ trợ đo riêng từng mẫu trong batch.</div>' +
+        (isCpu ? '' : '<div class="sum-row">📡 Ngoài chip (upload/download/queue) <span class="sum-val">' + fmtS(r.outside_chip_s) + '</span></div>') +
+        '<div class="sum-note">' + (isCpu ? 'Đang chạy mô phỏng trực tiếp đồ thị ONNX trên CPU bằng ONNX Runtime Execution Provider.' : 'NPU per-clip là hằng số kiến trúc đo qua Profiler (100 lần chạy liên tục). AI Hub không hỗ trợ đo riêng từng mẫu trong batch.') + '</div>' +
         '</div>';
 
       resultTable.innerHTML = r.clips.map(c => {

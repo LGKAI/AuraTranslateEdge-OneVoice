@@ -22,6 +22,7 @@ src/**/*.onnx.json
 venv_pipeline/
 =*.*.*
 **/asr_batch_logs/
+**/mt_batch_logs/
 *.tmp
 third_party/**/*.tmp
 *.exe

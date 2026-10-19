@@ -29,7 +29,7 @@ src/step4_quantization/asr/asr_batch_logs/
 src/step4_quantization/mt/mt_batch_logs/
 src/step4_quantization/mt/nllb/work/*.onnx
 src/step4_quantization/mt/nllb/work/hw_*.npy
-src/step4_quantization/tts/tts_batch_logs/
+src/step4_quantization/tts/tts_generated_audio/
 src/step4_quantization/tts/melotts/work/*.npy
 src/step4_quantization/tts/melotts/work/wav_*
 src/step4_quantization/tts/melotts/MeloTTS/

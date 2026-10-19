@@ -145,5 +145,5 @@ Nếu bạn muốn tự quản lý tiến trình đường hầm riêng:
 
 1. **Chuyển đổi 4 Ngôn ngữ Linh hoạt:** Click chọn nhanh 🇻🇳 Tiếng Việt, 🇺🇸 English, 🇰🇷 한국어, hoặc 🇨🇳 中文 với thông số phần cứng NPU hiển thị tương ứng.
 2. **Bộ câu mẫu Tiêu chuẩn 1-chạm:** Cung cấp sẵn các mẫu câu giao tiếp đời sống, hội thoại du lịch và câu chuẩn FLEURS kèm bản dịch đối soát.
-3. **Trình phát m thanh Trực quan:** Tích hợp bộ tạo sóng âm (Audio Waveform Visualizer), thanh đo âm lượng (VU Meter) và hỗ trợ tải trực tiếp tệp âm thanh `.wav` về máy.
+3. **Trình phát Âm thanh Trực quan:** Tích hợp bộ tạo sóng âm (Audio Waveform Visualizer), thanh đo âm lượng (VU Meter) và hỗ trợ tải trực tiếp tệp âm thanh `.wav` về máy.
 4. **Giám sát Phần cứng Thời gian thực:** Báo cáo chi tiết số lượng lớp NPU (NPU Layer Offload), RAM đỉnh, độ trễ phần cứng thuần (Hardware Latency) và các mã Job ID chính thức từ Qualcomm AI Hub.

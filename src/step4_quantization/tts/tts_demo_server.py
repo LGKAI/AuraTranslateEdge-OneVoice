@@ -303,7 +303,7 @@ TTS_CONFIG = {
 }
 
 # ──────────────────────────────────────────────
-# Động cơ Tổng hợp m thanh Thật (Native Speech Engines)
+# Động cơ Tổng hợp Âm thanh Thật (Native Speech Engines)
 # ──────────────────────────────────────────────
 _piper_voice = None
 _supertonic_tts = None
@@ -1121,7 +1121,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <!-- Text Area -->
                 <div class="textarea-box">
                     <div class="textarea-header">
-                        <span>📝 Nhập Văn bản Cần Phát m thanh (Hỗ trợ câu tùy ý):</span>
+                        <span>📝 Nhập Văn bản Cần Phát Âm thanh (Hỗ trợ câu tùy ý):</span>
                         <span id="charCount" style="font-size: 11.5px; color: var(--text-dim);">0 ký tự</span>
                     </div>
                     <textarea id="ttsTextInput" placeholder="Nhập câu cần tổng hợp giọng nói..." oninput="onTextChange()"></textarea>
@@ -1147,7 +1147,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <!-- Right: Playback, Hardware Telemetry & Architecture -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">🎧 Kết quả Phát lại m thanh & Telemetry</div>
+                    <div class="card-title">🎧 Kết quả Phát lại Âm thanh & Telemetry</div>
                     <span id="playerEngineBadge" class="audio-spec-badge">NPU Native</span>
                 </div>
 

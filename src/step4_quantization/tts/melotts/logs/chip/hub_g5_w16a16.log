@@ -1,0 +1,12 @@
+Loading model from cache C:\Users\Admin\AppData\Local\Temp\jieba.cache
+zero bias added to 2 convs
+calibration samples: 60
+g5_w16a16 quantize jpe6ykl1g
+g5_w16a16 quantize SUCCESS
+g5_w16a16 compile j5wy4q43g
+g5_w16a16 compile SUCCESS
+[31m
+[0m
+g5_w16a16 profile jgn1k3jjp | infer jp2oel26g
+g5_w16a16 infer FAILED wall 896s Failed to profile the model: Failed to call QnnModel_composeGraphsFromDlc: MODEL_GRAPH_ERROR.
+g5_w16a16 profile failed: 'execution_detail'

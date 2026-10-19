@@ -1,0 +1,5 @@
+erftanh compile jgod4knd5
+erftanh compile SUCCESS
+erftanh infer jpx0dny9p
+erftanh infer SUCCESS 574s
+erftanh ONE-STEP cos vs CPU fp32 per ODE step: {0: 0.99765, 1: 0.97858, 2: 0.95608, 3: 0.94849, 4: 0.9409}

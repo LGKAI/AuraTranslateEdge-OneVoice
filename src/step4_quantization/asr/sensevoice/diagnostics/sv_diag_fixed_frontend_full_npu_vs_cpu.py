@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """So sanh fbank DAY DU (sau mel/log/LFR/CMVN) cua frontend DA FIX: NPU that (job jp4yzyjvp)
 vs CPU fp32. Truoc gio chi moi verify Stage A (power spectrum) tren NPU -- chua verify phan
 log/LFR/CMVN sau khi fix. Gia thuyet: bo scale x32768 lam gia tri mel qua nho -> tran so
@@ -9,7 +9,7 @@ import numpy as np
 import onnxruntime as ort
 import qai_hub as hub
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 FE_FIXED = os.path.join(OUT_DIR, "model_sv_frontend_fixed_inline.onnx")
 calib = np.load(os.path.join(OUT_DIR, "calib_data_unified_fixed.npz"))
 labels = ["en_0","en_1","en_2","en_3","en_4","zh_0","zh_1","zh_2","zh_3","zh_4","ko_0","ko_1","ko_2","ko_3","ko_4"]
@@ -34,3 +34,4 @@ for i in range(len(npu_list)):
     maxabs = float(np.abs(a - b).max())
     bad_frames = int((np.abs(a - b).max(axis=1) > 0.5).sum())
     print(f"{labels[i]:6s} {cos:10.6f} {rel:12.5f} {maxabs:9.4f} {bad_frames:6d}/{n_valid:<10d} {b.min():9.3f} {a.min():9.3f}")
+

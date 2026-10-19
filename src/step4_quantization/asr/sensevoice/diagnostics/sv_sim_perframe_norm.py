@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Mo phong fp16 (lam tron sau MOI buoc, ca weights DFT/mel_fb) cho 3 cach xu ly scale:
   A) k toan cuc (nhu hien tai/2^4)   B) chuan hoa THEO TUNG FRAME: frame/peak*P, bu 2*log(peak/P*...) sau log.
 So voi tham chieu fp32 chinh xac (wav*32768, clamp 1e-10)."""
@@ -11,7 +11,7 @@ import torch.nn.functional as F
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "export"))
 from step4_s1_export_sensevoice_e2e_unified import build_mel_filterbank, FRAME_SAMPLES, HOP_SAMPLES, N_FFT
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 calib = np.load(os.path.join(OUT_DIR, "calib_data_unified_fixed.npz"))
 labels = ["en_0","en_1","en_2","en_3","en_4","zh_0","zh_1","zh_2","zh_3","zh_4","ko_0","ko_1","ko_2","ko_3","ko_4"]
 
@@ -84,3 +84,4 @@ print(f"\nTot nhat: P={best[1]}  mean|dlog|={best[0]:.4f}")
 print("Tung mau (mean|dlog|, %bin>0.5) voi P tot nhat:")
 for lbl, (m, f) in zip(labels, best[2]):
     print(f"  {lbl}: {m:.4f}  {100*f:.2f}%")
+

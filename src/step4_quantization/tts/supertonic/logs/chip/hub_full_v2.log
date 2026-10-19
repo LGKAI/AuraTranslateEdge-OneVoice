@@ -1,0 +1,6 @@
+full_v2 compile j56odzn75 https://workbench.aihub.qualcomm.com/jobs/j56odzn75/
+full_v2 compile SUCCESS
+full_v2 profile jgn17m9mp | infer jprxn24ep
+full_v2 infer SUCCESS wall 1646s
+full_v2 saved ['output_0', 'output_1'] {'output_0': (1, 460800), 'output_1': (1,)}
+full_v2 profile SUCCESS

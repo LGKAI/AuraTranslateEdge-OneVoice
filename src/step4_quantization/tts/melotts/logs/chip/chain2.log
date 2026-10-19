@@ -1,0 +1,11 @@
+chain2 VITS infer jpe6y0rvg
+chain2 infer SUCCESS wall 1139s
+  [0] frames 274 | CER 0.00 | 今天天气真好，我们一起去公园散步吧。
+  [1] frames 162 | CER 0.00 | 请把客厅的灯打开。
+  [2] frames 218 | CER 0.08 | 我想预定今晚两个人的餐桌。
+  [3] frames 253 | CER 0.06 | 机器饭译可以帮助人们跨越语言沟通。
+  [4] frames 162 | CER 0.00 | 火车站怎么走最快？
+  [5] frames 187 | CER 0.00 | 这家餐厅的菜非常好吃。
+  [6] frames 218 | CER 0.00 | 明天早上我有一个重要的会议。
+  [7] frames 169 | CER 0.22 | 请问附近有没有油点？
+chain2 (BERT on NPU -> host expand -> VITS on NPU) mean CER 0.046

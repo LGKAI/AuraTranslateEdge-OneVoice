@@ -213,11 +213,12 @@ python pipeline_s2s.py --device cuda
 
 | Thành viên | Vai trò | Chuyên môn | Phạm vi đóng góp chính |
 |---|---|---|---|
-| **Trần Quốc Khánh** | **Team Lead** | Project Manager, Model Optimisation | Triển khai Dịch máy (MT) + Triển khai ASR tiếng Việt + Tích hợp Pipeline toàn chuỗi + Rà soát hệ thống |
-| **Lê Gia Khánh** | **AI Engineer** | UI/UX, User Research | Triển khai ASR (Trung / Hàn / Anh) + Xây dựng Bài toán thực tế & Phân tích đối tượng người dùng |
-| **Phạm Chấn Khoa** | **AI Engineer** | Business Analyst, Model Quantization | Triển khai TTS (Hàn / Anh) + Thu thập dữ liệu + Xây dựng giải pháp kinh doanh (Business Solution) |
-| **Cái Hoàng Bảo Kin** | **AI Engineer** | NLP, MT Evaluation | Khảo sát & Đánh giá mô hình Dịch máy + Thiết kế chính sách Streaming MT + Thiết kế kiến trúc AI |
-| **Trần Trung Hiếu** | **AI Engineer** | Edge AI Optimisation, System Architecture | Triển khai TTS (Trung) + Lượng tử hoá phần cứng NPU + Thiết kế kiến trúc hệ thống tổng thể |
+| **Trần Quốc Khanh** | **Team Lead** | Project Manager, Model Optimisation | Triển khai MT (NLLB) + Tích hợp Pipeline toàn chuỗi + Rà soát hệ thống |
+| **Lê Gia Khánh** | **AI Engineer** | Speech AI, User Research | Triển khai ASR (Zipformer, SenseVoice) + Xây dựng Bài toán thực tế & Phân tích đối tượng người dùng |
+| **Trần Trung Hiếu** | **AI Engineer** | Edge AI Optimisation, System Architecture | Triển khai TTS (MeloTTS) + Lượng tử hoá phần cứng NPU + Thiết kế kiến trúc hệ thống |
+| **Phạm Chấn Khoa** | **AI Engineer** | Business Analyst, Voice AI | Triển khai TTS (Supertonic) + Thu thập dữ liệu + Xây dựng giải pháp kinh doanh (Business Solution) |
+| **Cái Hoàng Bảo Kin** | **AI Engineer** | NLP, AI Architecture | Triển khai TTS (Piper) + Khảo sát & Đánh giá mô hình + Thiết kế chính sách Streaming + Thiết kế kiến trúc AI |
+
 
 ---
 

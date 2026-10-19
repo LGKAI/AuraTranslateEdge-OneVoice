@@ -1,0 +1,5 @@
+compile jpx0dm6jp
+compile SUCCESS
+infer SUCCESS
+ve_rotS_cut_L150 step 0: Concat_3 valid-frame cos 0.21138
+ve_rotS_cut_L150 step 4: Concat_3 valid-frame cos 0.35921

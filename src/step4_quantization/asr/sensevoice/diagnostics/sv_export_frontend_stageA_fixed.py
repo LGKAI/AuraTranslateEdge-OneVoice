@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Fix thu nghiem: KHONG scale wav x32768 TRUOC FFT-matmul (gay tich luy vuot fp16 tren NPU
 that -- da xac nhan bang stage-diag: avg cos_sim chi 0.24, max_abs_diff ~1e9-1e10, dung
 bang binh phuong fp16_max ~4.29e9).
@@ -24,7 +24,7 @@ from step4_s1_export_sensevoice_e2e_unified import (
     build_mel_filterbank, MAX_WAV_SAMPLES, FRAME_SAMPLES, HOP_SAMPLES, N_FFT, N_MELS,
 )
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 MAX_RAW_FRAMES = 2900
 SCALE = float(1 << 15)
 
@@ -85,3 +85,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

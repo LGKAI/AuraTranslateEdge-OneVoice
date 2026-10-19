@@ -1,0 +1,8 @@
+expand_a compile jp0o6xm2p
+expand_a compile SUCCESS
+[31m
+[0m
+expand_a profile jp8j1kk85 | infer jgj3q888p
+expand_a infer SUCCESS wall 893s
+expand_a OUTPUT output_0: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+expand_a PROFILE 0.2 ms | layers 5 {'NPU': 5} | peak mem 10 MB | first load 0s

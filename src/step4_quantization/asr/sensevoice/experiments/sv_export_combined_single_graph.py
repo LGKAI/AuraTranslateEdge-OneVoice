@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Gop Frontend (DA FIX loi tran so fp16) + Encoder+Classifier thanh 1 GRAPH ONNX DUY NHAT:
 wav, wav_len, language, textnorm -> byte_stream.
 
@@ -25,7 +25,7 @@ from step4_s1_export_sensevoice_e2e_unified import (
     MODEL_ID_HF, MODEL_ID_MS,
 )
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 SCALE = float(1 << 15)
 LOG_SCALE_COMPENSATION = 2.0 * math.log(SCALE)
 SAFE_CLAMP_MIN_FP16 = 1e-10 / (SCALE ** 2)
@@ -197,3 +197,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

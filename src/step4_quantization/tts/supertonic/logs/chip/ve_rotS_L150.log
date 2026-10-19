@@ -1,0 +1,4 @@
+compile j5m9d46yg
+compile SUCCESS
+infer SUCCESS
+ve_rotS_L150 ONE-STEP cos per ODE step: {0: 0.99765, 1: 0.9775, 2: 0.95602, 3: 0.94806, 4: 0.9407}

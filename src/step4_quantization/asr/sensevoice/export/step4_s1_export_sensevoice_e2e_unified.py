@@ -50,8 +50,9 @@ import torch.nn.functional as F
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 DATA_DIR = os.path.join(ROOT, "data", "asr")
 
 # SenseVoice WavFrontend thông số

@@ -28,8 +28,9 @@ import soundfile as sf
 import kaldi_native_fbank as knf
 import qai_hub as hub
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-ENCODER_ONNX = os.path.join(ROOT, "outputs", "zipformer-qnn", "encoder_no_bool_slice.onnx")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+ENCODER_ONNX = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zipformer-qnn", "encoder_no_bool_slice.onnx")
+
 HW_JOB = "jpv7m6kjp"
 FIXED_FRAMES = 1500
 

@@ -6,8 +6,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np
 import onnxruntime as ort
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 CALIB_WAV_NPZ = os.path.join(OUT_DIR, "calib_data_unified_v2_wide.npz")
 
 sess_fe = ort.InferenceSession(os.path.join(OUT_DIR, "model_sv_frontend.onnx"), providers=["CPUExecutionProvider"])

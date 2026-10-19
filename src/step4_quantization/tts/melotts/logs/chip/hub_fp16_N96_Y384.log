@@ -1,0 +1,8 @@
+Loading model from cache C:\Users\Admin\AppData\Local\Temp\jieba.cache
+fp16_N96_Y384 compile jp8j1zm85
+fp16_N96_Y384 compile SUCCESS
+[31m
+[0m
+fp16_N96_Y384 profile jgd62oqlp | infer jp4e3vvlg
+fp16_N96_Y384 infer FAILED wall 499s Failed to profile the model: QNN_COMMON_ERROR_MEM_ALLOC: Memory allocation related error.
+fp16_N96_Y384 profile failed: 'execution_detail'

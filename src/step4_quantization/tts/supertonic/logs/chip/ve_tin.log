@@ -1,0 +1,5 @@
+compile j5q4mr3mg
+compile SUCCESS
+infer jprxn2yep
+infer SUCCESS
+ONE-STEP cos vs CPU fp32 (time_emb precomputed): {0: 0.99766, 1: 0.97738, 2: 0.95606, 3: 0.94811, 4: 0.94073}

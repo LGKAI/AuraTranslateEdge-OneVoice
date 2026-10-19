@@ -210,13 +210,13 @@ Toàn bộ chi tiết kỹ thuật (job ID cụ thể, shape đã pin, bài họ
 
    > **Nền tảng thực thi:** bộ công cụ Dragonwing IQ-9075 EVK + chip Qualcomm Hexagon NPU v73
 
-   | Thành viên | Nhiệm vụ phân công (Mô hình & Step) | Trạng thái |
-   |---|---|:---:|
-   | **Trần Quốc Khanh** | • Silero VAD + GTCRN + MVDR/GSC (Step 0)<br>• Zipformer-150M-CR-CTC (Vi) (Step 1)<br>• NLLB-200-distilled-600M (Step 2) | *Đã xong*<br>**Đã xong** (100% NPU, ~126.8ms, WER 3.09%) ✅<br>*Đã xong* |
-   | **Lê Gia Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | **Đã xong** (100% NPU, ~269.4ms, WER 8.98%) ✅ |
-   | **Trần Trung Hiếu** | • MeloTTS-ZH (Zh) (Step 3) | — |
-   | **Phạm Chấn Khoa** | • Supertonic (Ko/En) (Step 3) | — |
-   | **Cái Hoàng Bảo Kin** | • Piper (Vi) (Step 3) | — |
+   | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thành viên&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nhiệm vụ phân công (Mô hình & Step)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Trạng thái |
+   |:--------------------------------------|:----------------------------------------------------------------------|:----------:|
+   | **Trần&nbsp;Quốc&nbsp;Khanh** | • Silero VAD + GTCRN + MVDR/GSC (Step 0)<br>• Zipformer-150M-CR-CTC (Vi) (Step 1)<br>• NLLB-200-distilled-600M (Step 2) | Đã xong ✅<br>Đã xong ✅<br>Đã xong ✅ |
+   | **Lê&nbsp;Gia&nbsp;Khánh** | • SenseVoice-Small (En/Zh/Ko) (Step 1) | Đã xong ✅ |
+   | **Trần&nbsp;Trung&nbsp;Hiếu** | • MeloTTS-ZH (Zh) (Step 3) | Đã xong ✅ |
+   | **Phạm&nbsp;Chấn&nbsp;Khoa** | • Supertonic (Ko/En) (Step 3) | Đã xong ✅ |
+   | **Cái&nbsp;Hoàng&nbsp;Bảo&nbsp;Kin** | • Piper (Vi) (Step 3) | Đã xong ✅ |
 
 ---
 

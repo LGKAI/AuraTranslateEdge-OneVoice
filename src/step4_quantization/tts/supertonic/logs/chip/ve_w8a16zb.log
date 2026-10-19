@@ -1,0 +1,7 @@
+w8a16zb quantize jp8j401k5
+w8a16zb quantize SUCCESS
+w8a16zb compile jglw16yjp
+w8a16zb compile SUCCESS
+w8a16zb infer jpy87j3rg
+w8a16zb infer SUCCESS 476s
+w8a16zb ONE-STEP cos vs CPU fp32 per ODE step: {0: 0.99802, 1: 0.9819, 2: 0.95307, 3: 0.91638, 4: 0.76186}

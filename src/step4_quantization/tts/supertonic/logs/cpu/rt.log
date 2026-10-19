@@ -1,0 +1,28 @@
+[0] en dur orig 4.31s static 4.32s | orig WER 0.15 | static WER 0.00
+     static hyp: The quick brown fox jumps over the lazy dog near the river bank.
+[1] en dur orig 2.95s static 3.00s | orig WER 0.00 | static WER 0.00
+     static hyp: Please turn on the lights in the living room.
+[2] en dur orig 4.47s static 4.46s | orig WER 0.00 | static WER 0.00
+     static hyp: Machine translation helps people communicate across languages.
+[3] en dur orig 3.47s static 3.48s | orig WER 0.00 | static WER 0.00
+     static hyp: I would like to book a table for two people tonight.
+[4] en dur orig 3.20s static 3.20s | orig WER 0.00 | static WER 0.00
+     static hyp: The weather today is sunny with a light breeze.
+[5] en dur orig 3.57s static 3.55s | orig WER 0.00 | static WER 0.00
+     static hyp: Please call me back as soon as you finish the meeting.
+[6] ko dur orig 3.52s static 3.55s | orig WER 1.40 | static WER 1.40
+     static hyp: 안녕 하 세요 오늘 날씨 가 정말 좋 네요.
+[7] ko dur orig 4.50s static 4.53s | orig WER 1.00 | static WER 1.00
+     static hyp: 저는 내일 아침 에 회 의가 있 어서 일찍 일어 나야 합니다.
+[8] ko dur orig 3.54s static 3.55s | orig WER 0.86 | static WER 0.86
+     static hyp: 이 음식 은 정말 맛있 어서 또 먹 고 싶어요.
+[9] ko dur orig 3.80s static 3.83s | orig WER 0.57 | static WER 0.57
+     static hyp: 기차역 까지, 가 는 가장 빠른 길을 알려 주세요.
+[10] ko dur orig 4.47s static 4.46s | orig WER 1.43 | static WER 1.43
+     static hyp: 인공지능 기술 은 우리 생활 을 빠르 게 바꾸 고 있 습니다.
+[11] ko dur orig 4.35s static 4.39s | orig WER 1.33 | static WER 1.33
+     static hyp: 주말 에는 가족 과 함께 공원 에서 산책 을 합니다.
+orig    en: mean WER 2.6%  CER 0.0%  (n=6)
+orig    ko: mean WER 109.8%  CER 0.0%  (n=6)
+static  en: mean WER 0.0%  CER 0.0%  (n=6)
+static  ko: mean WER 109.8%  CER 0.0%  (n=6)

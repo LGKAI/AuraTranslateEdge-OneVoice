@@ -104,8 +104,9 @@ def patch_mask_outliers(onnx_path: str, patched_path: str, clip_val: float = -30
     print(f"[patch_mask] Clipped {patched} outlier initializers to {clip_val} -> Saved {patched_path}")
     return patched
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 
 
 class FrontendGraph(torch.nn.Module):

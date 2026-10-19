@@ -1,0 +1,8 @@
+Loading model from cache C:\Users\Admin\AppData\Local\Temp\jieba.cache
+full_fp16 compile jpy8m6m8g
+full_fp16 compile SUCCESS
+[31m
+[0m
+full_fp16 profile jpe6ykzog | infer jgzznrmog
+full_fp16 infer FAILED wall 3117s Failed to profile the model: QNN_COMMON_ERROR_GENERAL: General error, which has not been identified as any other error type.
+full_fp16 profile failed: 'execution_detail'

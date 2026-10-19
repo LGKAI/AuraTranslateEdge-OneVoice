@@ -20,10 +20,12 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results")
+OUT_DIR = os.path.join(RESULTS_DIR, "sensevoice-e2e-onnx")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
-RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "step1_asr", "sensevoice", "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(OUT_DIR, exist_ok=True)
+
 
 CHECKPOINT_FILE = os.path.join(OUT_DIR, "qai_hub_pipeline_checkpoint.json")
 

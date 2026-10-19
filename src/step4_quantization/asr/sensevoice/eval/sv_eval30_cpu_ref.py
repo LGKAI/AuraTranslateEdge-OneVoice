@@ -7,7 +7,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np, onnxruntime as ort
 from sv_eval30_common import *
 
-OUT = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+OUT = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 items = load_items()
 so = ort.SessionOptions(); so.intra_op_num_threads = 4
 sess = ort.InferenceSession(os.path.join(OUT, "model_sv_combined_single_inline.onnx"), so, providers=["CPUExecutionProvider"])

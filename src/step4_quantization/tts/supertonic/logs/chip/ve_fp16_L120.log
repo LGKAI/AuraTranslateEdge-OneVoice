@@ -1,0 +1,5 @@
+fp16 compile j5wy1mz6g
+fp16 compile SUCCESS
+fp16 infer jpx0der3p
+fp16 infer SUCCESS 572s
+fp16 ONE-STEP cos vs CPU fp32 per ODE step: {0: 0.99767, 1: 0.97681, 2: 0.9585, 3: 0.95753, 4: 0.95775}

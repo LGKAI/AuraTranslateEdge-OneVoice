@@ -13,12 +13,13 @@ from onnx import helper, numpy_helper, TensorProto
 import onnx.compose as oc
 import sentencepiece as spm
 
-ROOT = r"C:\Users\Admin\Downloads\OneVoice"; os.chdir(ROOT); sys.path.insert(0, os.path.join(ROOT, "src", "step4_hardware"))
+ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"; os.chdir(ROOT); sys.path.insert(0, os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "step4_hardware"))
 from fbank_matmul_verify import WINDOW, MEL_MAT, DFT_RE, DFT_IM, FRAME_LEN, FRAME_SHIFT, PREEMPH
 NFFT = 512
 
-D = "third_party_zipformer_150m_crctc"
-OUT = os.path.join(ROOT, "outputs", "zip150_full_npu"); os.makedirs(OUT, exist_ok=True)
+D = os.path.join(ROOT, "third_party", "zipformer", "third_party_zipformer_150m_crctc")
+OUT = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_full_npu"); os.makedirs(OUT, exist_ok=True)
+
 T = 1500
 N_SAMPLES = (T - 1) * FRAME_SHIFT + FRAME_LEN   # 240240
 # QUAN TRONG: encoder Zipformer2 downsample T=1500 frame input xuong 1 SO CO DINH T_OUT frame o dau ra

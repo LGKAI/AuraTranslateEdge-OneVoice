@@ -1,0 +1,14 @@
+[0] en lat fused/chain 62/62 | wav cos 1.000001 | tail 0.0e+00 | WER 0.00 CER 0.00
+[1] en lat fused/chain 43/43 | wav cos 1.000002 | tail 0.0e+00 | WER 0.00 CER 0.00
+[2] en lat fused/chain 64/64 | wav cos 1.000003 | tail 0.0e+00 | WER 0.00 CER 0.00
+[3] en lat fused/chain 50/50 | wav cos 1.000002 | tail 0.0e+00 | WER 0.00 CER 0.00
+[4] en lat fused/chain 46/46 | wav cos 1.000002 | tail 0.0e+00 | WER 0.00 CER 0.00
+[5] en lat fused/chain 51/51 | wav cos 1.000002 | tail 0.0e+00 | WER 0.00 CER 0.00
+[6] ko lat fused/chain 51/51 | wav cos 1.000003 | tail 0.0e+00 | WER 1.00 CER 0.13
+[7] ko lat fused/chain 65/65 | wav cos 1.000003 | tail 0.0e+00 | WER 1.00 CER 0.14
+[8] ko lat fused/chain 51/51 | wav cos 1.000003 | tail 0.0e+00 | WER 0.86 CER 0.00
+[9] ko lat fused/chain 55/55 | wav cos 1.000002 | tail 0.0e+00 | WER 0.43 CER 0.06
+[10] ko lat fused/chain 64/64 | wav cos 1.000005 | tail 0.0e+00 | WER 1.43 CER 0.00
+[11] ko lat fused/chain 63/63 | wav cos 1.000004 | tail 0.0e+00 | WER 1.33 CER 0.00
+fused-CPU en: WER 0.0%  CER 0.0%  (n=6)
+fused-CPU ko: WER 100.8%  CER 5.4%  (n=6)

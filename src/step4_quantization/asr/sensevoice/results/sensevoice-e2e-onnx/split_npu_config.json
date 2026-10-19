@@ -1,0 +1,48 @@
+{
+  "frontend_onnx": "src\\step4_quantization\\asr\\sensevoice\\results\\sensevoice-e2e-onnx\\model_sv_frontend_v3_inline.onnx",
+  "encoder_classifier_onnx": "src\\step4_quantization\\asr\\sensevoice\\results\\sensevoice-e2e-onnx\\model_sv_enc_cls_patched.onnx",
+
+  "frontend_input_shapes": {
+    "wav": [
+      1,
+      464000
+    ],
+    "wav_len": [
+      1
+    ]
+  },
+  "frontend_output_shapes": {
+    "fbank": [
+      1,
+      500,
+      560
+    ],
+    "speech_lengths": [
+      1
+    ]
+  },
+  "enc_cls_input_shapes": {
+    "fbank": [
+      1,
+      500,
+      560
+    ],
+    "speech_lengths": [
+      1
+    ],
+    "language": [
+      1
+    ],
+    "textnorm": [
+      1
+    ]
+  },
+  "enc_cls_output_shapes": {
+    "byte_stream": [
+      1,
+      12096
+    ]
+  },
+  "target_hardware": "Qualcomm Dragonwing IQ-9075 EVK (Hexagon NPU v73)",
+  "recipe": "Frontend: KHONG quantize (fp16 tren NPU) | Encoder+Classifier: W8A16"
+}

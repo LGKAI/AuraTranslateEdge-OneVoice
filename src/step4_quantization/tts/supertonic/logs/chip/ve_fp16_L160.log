@@ -1,0 +1,5 @@
+fp16 compile jp1ovqql5
+fp16 compile SUCCESS
+fp16 infer jpy87vn4g
+fp16 infer SUCCESS 490s
+fp16 ONE-STEP cos vs CPU fp32 per ODE step: {0: 0.99756, 1: 0.98717, 2: 0.95235, 3: 0.93791, 4: 0.9269}

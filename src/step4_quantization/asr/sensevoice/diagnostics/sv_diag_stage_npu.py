@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Compile 2 checkpoint (stageA_power, stageB_mellog) len NPU that, chay inference tren
 15-sample test set, so sanh voi tham chieu CPU fp32 (ONNXRuntime) de tim buoc gay sai lech."""
 import sys, os, json, time
@@ -7,8 +7,8 @@ import numpy as np
 import onnxruntime as ort
 import qai_hub as hub
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 DEVICE_NAME = "Dragonwing IQ-9075 EVK"
 CALIB_NPZ = os.path.join(OUT_DIR, "calib_data_unified_fixed.npz")
 
@@ -78,3 +78,4 @@ print("  stageC_full_fbank (da biet truoc): avg_cos_sim~0.90-0.97  avg_rel_L2~0.
 with open(os.path.join(OUT_DIR, "stage_diag_summary.json"), "w", encoding="utf-8") as f:
     json.dump(results_summary, f, indent=2, ensure_ascii=False)
 print("\nSaved:", os.path.join(OUT_DIR, "stage_diag_summary.json"), flush=True)
+

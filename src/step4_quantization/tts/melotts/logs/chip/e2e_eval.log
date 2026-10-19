@@ -1,0 +1,13 @@
+BERT PROFILE jprxwy6vp: 10.7 ms | layers 690 {'NPU': 690} | peak mem 7 MB | first load 16s
+VITS PROFILE jp8j172z5: 702.5 ms | layers 2193 {'NPU': 2193} | peak mem 11 MB | first load 432s
+  [vits_cpuBERT 0] 2.98s CER 0.00 | 今天天气真好，我们一起去公园散步吧。
+  [vits_cpuBERT 1] 1.82s CER 0.38 | 行吧，客厅丢灯打开。
+  [vits_cpuBERT 2] 2.48s CER 0.17 | 我想一定今晚两个人的餐桌。
+  [vits_cpuBERT 3] 2.91s CER 0.38 | 引起发疑可以帮助人们跨越与眼沟通。
+  [vits_cpuBERT 4] 1.89s CER 0.00 | 火车站怎么走最快？
+  [vits_cpuBERT 5] 2.07s CER 0.00 | 这家餐厅的菜非常好吃。
+  [vits_cpuBERT 6] 2.37s CER 0.08 | 明天早上我有一个重要的会宴。
+  [vits_cpuBERT 7] 1.88s CER 0.44 | 你们附近有没有有点？
+vits_cpuBERT: mean CER 0.180
+NPU BERT vs CPU BERT features cosine per sentence: [0.99997, 0.99998, 0.99998, 0.99998, 0.99993, 0.99997, 0.99998, 0.99998]
+chain VITS infer job j56ow03y5

@@ -1,0 +1,54 @@
+  WeightNorm.apply(module, name, dim)
+BertForMaskedLM has generative capabilities, as `prepare_inputs_for_generation` is explicitly overwritten. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
+  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
+  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
+  - If you are not the owner of the model architecture class, please contact the model code owner to update it.
+Some weights of the model checkpoint at hfl/chinese-roberta-wwm-ext-large were not used when initializing BertForMaskedLM: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\Admin\AppData\Local\Temp\jieba.cache
+Loading model cost 1.210 seconds.
+Prefix dict has been built successfully.
+Removing weight norm...
+[0] host 0.00 static 0.00 | 今天天气真好，我们一起去公园散步吧。 | 今天天气真好，我们一起去公园散步吧。
+[1] host 0.25 static 0.00 | 请把客厅的灯打开。 | 请把客厅的灯打开。
+[2] host 0.08 static 0.08 | 我想预订今晚两个人的餐桌。 | 我想预定今晚两个人的餐桌。
+[3] host 0.00 static 0.00 | 机器翻译可以帮助人们跨越语言沟通。 | 机器翻译可以帮助人们跨越语言沟通。
+[4] host 0.00 static 0.00 | 火车站怎么走最快？ | 火车站怎么走最快？
+[5] host 0.00 static 0.00 | 这家餐厅的菜非常好吃。 | 这家餐厅的菜非常好吃。
+[6] host 0.00 static 0.00 | 明天早上我有一个重要的会议。 | 明天早上我有一个重要的会议。
+[7] host 0.00 static 0.00 | 请问附近有没有药店？ | 请问附近有没有药店？
+[8] host 0.06 static 0.06 | 这意味着任何与它相遇的东西都无路可逃 | 这意味着任何与他相遇的东西都无路可逃。
+[9] host 0.00 static 0.00 | 场景在金字塔上展示，不同的金字塔被点亮 | 场景在金字塔上展示，不同的金字塔被点亮。
+[10] host 0.00 static 0.00 | 然而事实并非如此 | 然而，事实并非如此。
+[11] host 0.12 static 0.12 | 州长办公室表示，伤者中有十九人是警察 | 州长办公室表示伤者，中有19人是警察。
+[12] host 0.00 static 0.00 | 植物在自然环境中状态最好 | 植物在自然环境中状态最好。
+[13] host 0.00 static 0.00 | 阿皮亚是萨摩亚的首都 | 阿皮亚是萨摩亚的首都。
+[14] host 0.00 static 0.00 | 实地考察是任何教学活动的重要组成部分 | 实地考察是任何教学活动的重要组成部分。
+[15] host 0.00 static 0.10 | 手写原稿未能保留下来 | 手写原狗未能保留下来。
+[16] host 0.00 static 0.00 | 很显然，这是一支无往不胜的球队 | 很显然，这是一支无往不胜的球队。
+[17] host 0.00 static 0.00 | 把滑雪路线想象成类似的徒步路线 | 把滑雪路线想象成类似的徒步路线。
+[18] host 0.33 static 0.33 | 摩尔多瓦的首都是基希讷乌 | 摩尔多瓦的首都是鸡心任物。
+[19] host 0.05 static 0.05 | 当地语言是罗马尼亚语，但俄语也被广泛使用 | 当地语言是罗马尼亚语，大俄语也被广泛使用。
+[20] host 0.14 static 0.14 | 博客还能帮助学生提高写作能力 | 不课还能帮助学生提高写作能力。
+[21] host 0.00 static 0.00 | 月球的表面由岩石和灰尘组成 | 月球的表面由岩石和灰尘组成。
+[22] host 0.00 static 0.00 | 月球的外层叫做地壳 | 月球的外层叫做地壳。
+[23] host 0.00 static 0.00 | 目前还没有发布海啸预警 | 目前还没有发布海啸预警。
+[24] host 0.17 static 0.17 | 穆罕默德对尘世生活之外的事十分感兴趣 | 默罕默德对城市生活之外的事十分感兴趣。
+[25] host 0.00 static 0.00 | 这会让参加社会活动变得容易得多 | 这会让参加社会活动变得容易得多。
+[26] host 0.00 static 0.00 | 事实上，即使知道它的存在，也不容易找到 | 事实上，即使知道它的存在，也不容易找到。
+[27] host 0.00 static 0.00 | 一旦进入洞穴，就完全与世隔绝了 | 一旦进入洞穴，就完全与世隔绝了。
+[28] host 0.00 static 0.00 | 圣彼得堡游轮包括城内观光活动 | 圣彼得堡游轮包括城内观光活动。
+[29] host 0.33 static 0.33 | 跳羚队以五连败收官 | 跳令对于五连败收官。
+[30] host 0.07 static 0.07 | 电视报道显示，有白烟从工厂里冒出 | 电视报道显示，里有白烟从工厂里冒出。
+[31] host 0.29 static 0.29 | 猪携带该疾病，然后通过蚊子传染给人类 | 猪血打呆疾病，然后通过文字传染给人类。
+[32] host 0.00 static 0.00 | 有些人专门收集他的作品 | 有些人专门收集他的作品。
+[33] host 0.05 static 0.05 | 它的舌头有可能是分叉的，对此我们尚不确定 | 他的舌头有可能是分叉的，对此我们尚不确定。
+[34] host 0.06 static 0.06 | 合金基本上由两种或以上金属混合而成 | 合金基本上有两种或以上金属混合而成。
+[35] host 0.06 static 0.06 | 不要忘记一点，元素周期表上有很多元素 | 不要忘记一点元素周期流上有很多元素。
+[36] host 0.00 static 0.00 | 浪漫主义具有很强的文化决定论色彩 | 浪漫主义具有很强的文化决定论色彩。
+[37] host 0.25 static 0.25 | 这源于歌德、费希特和施莱格尔等作家 | 这源于歌蚪、费西特和施莱格尔等座驾。
+[38] host 0.17 static 0.17 | 巴黎人是出了名的以自我中心、粗鲁和傲慢 | 阿里人士出了名的以自我中心、粗鲁和傲慢。
+[39] host 0.06 static 0.06 | 这是一个篇章的结束，也是新篇章的开始 | 这是一个篇章的结束，不也是新篇章的开始。
+MEAN CER host-front 0.064 | static-table front 0.060 | n=40

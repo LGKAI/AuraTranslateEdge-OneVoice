@@ -1,0 +1,9 @@
+onnx
+onnxruntime
+numpy
+scipy
+soundfile
+jiwer
+qai-hub
+supertonic
+onnxconverter-common

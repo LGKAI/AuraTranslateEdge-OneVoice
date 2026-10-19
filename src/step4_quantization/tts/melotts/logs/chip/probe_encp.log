@@ -1,0 +1,925 @@
+Scheduled compile job (jgk6463v5) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jgk6463v5/
+encp compile jgk6463v5
+Waiting for compile job (jgk6463v5) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ✅ SUCCESS                          
+encp compile SUCCESS 
+[31m
+===WARNING===
+submit_profile_job is deprecated and will be removed in a future release. Use submit_inference_job(..., profile=True) going forward. submit_profile_job now returns an InferenceJob.
+===WARNING===
+[0m
+Input data was not specified. Random data will be used for inputs.
+Scheduled inference job (j5q4y43eg) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/j5q4y43eg/
+Scheduled inference job (jglwxw32p) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jglwxw32p/
+encp profile j5q4y43eg | infer jglwxw32p
+Waiting for inference job (jglwxw32p) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ✅ SUCCESS                          
+encp infer SUCCESS wall 908s 
+encp OUTPUT output_0: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_1: cosine vs ORT-CPU per sample [1.0, 1.0, 0.99986, 0.99992]
+encp OUTPUT output_2: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_3: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_4: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_5: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_6: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_7: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_8: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_9: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_10: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_11: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_12: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp OUTPUT output_13: cosine vs ORT-CPU per sample [1.0, 1.0, 1.0, 1.0]
+encp PROFILE 2.3 ms | layers 428 {'NPU': 428} | peak mem 11 MB | first load 1s

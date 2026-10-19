@@ -1,0 +1,26 @@
+{
+ "full_fp16": {
+  "compile": "jpe6812og",
+  "opts": "--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io",
+  "profile": "jprxoqxkp",
+  "infer": "jp2o46o6g"
+ },
+ "full_dbg": {
+  "compile": "jgk69vjv5",
+  "opts": "--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io",
+  "profile": "jpx0d9w8p",
+  "infer": "j5m9dej7g"
+ },
+ "full_v2": {
+  "compile": "j56odzn75",
+  "opts": "--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io",
+  "profile": "jgn17m9mp",
+  "infer": "jprxn24ep"
+ },
+ "full_v3": {
+  "compile": "jprxn9nep",
+  "opts": "--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io",
+  "profile": "jpe6l2l0g",
+  "infer": "jgzz4w46g"
+ }
+}

@@ -1,4 +1,4 @@
-import os
+﻿import os
 # -*- coding: utf-8 -*-
 import sys, json, os, re
 sys.stdout.reconfigure(encoding="utf-8")
@@ -14,10 +14,10 @@ import onnxruntime as ort
 import torchaudio.compliance.kaldi as K
 import jiwer
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
 QUANT_MODEL_PATH = os.environ.get("SV_QDQ_MODEL", "job_jprlmdevp_qdq_onnx/model.onnx")  # QDQ onnx tai tu quantize job (graph gop cu)
-CALIB_NPZ = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx", "calib_data_unified_fixed.npz")
+CALIB_NPZ = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx", "calib_data_unified_fixed.npz")
 
 FS=16000; N_MELS=80; FRAME_SAMPLES=400; HOP_SAMPLES=160; N_FFT=512; LFR_M,LFR_N=7,6; MAX_LFR=500
 window = torch.hamming_window(FRAME_SAMPLES, periodic=False)
@@ -137,3 +137,4 @@ for idx in targets:
     metric = cer(ref, hyp) if lang == "zh" else (jiwer.wer(norm_wer(ref), norm_wer(hyp)) if norm_wer(hyp) else 1.0)
     print(f"[{lang}] {os.path.basename(item['path'])} (frontend bypass -> fp32) {'CER' if lang=='zh' else 'WER'}={metric*100:5.1f}%  HYP={hyp[:70]!r}", flush=True)
     os.remove(tmp_path)
+

@@ -1,0 +1,1382 @@
+Scheduled link job (jprx0xv7p) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jprx0xv7p/
+link jprx0xv7p
+Waiting for link job (jprx0xv7p) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ⏳ LINKING_MODELS        █░ 1/2 .. 
+    ⏳ LINKING_MODELS        █░ 1/2 ...
+    ⏳ LINKING_MODELS        █░ 1/2    
+    ⏳ LINKING_MODELS        █░ 1/2 .  
+    ✅ SUCCESS                          
+link SUCCESS
+[31m
+===WARNING===
+submit_profile_job is deprecated and will be removed in a future release. Use submit_inference_job(..., profile=True) going forward. submit_profile_job now returns an InferenceJob.
+===WARNING===
+[0m
+Input data was not specified. Random data will be used for inputs.
+Scheduled inference job (j5m9m9e9g) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/j5m9m9e9g/
+Scheduled inference job (jgn1n10qp) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jgn1n10qp/
+profile j5m9m9e9g | infer jgn1n10qp
+Waiting for inference job (jgn1n10qp) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ✅ SUCCESS                          
+infer SUCCESS 
+  [0] frames 279 | CER 0.00 | 今天天气真好，我们一起去公园散步吧。 | 今天天气真好，我们一起去公园散步吧。
+  [1] frames 161 | CER 0.12 | 请把客厅的灯打开。 | 请把客厅的都打开。
+  [2] frames 223 | CER 0.08 | 我想预订今晚两个人的餐桌。 | 我想预定今晚两个人的餐桌。
+  [3] frames 261 | CER 0.00 | 机器翻译可以帮助人们跨越语言沟通。 | 机器翻译可以帮助人们跨越语言沟通。
+  [4] frames 173 | CER 0.00 | 火车站怎么走最快？ | 火车站怎么走最快？
+  [5] frames 200 | CER 0.00 | 这家餐厅的菜非常好吃。 | 这家餐厅的菜非常好吃。
+  [6] frames 219 | CER 0.00 | 明天早上我有一个重要的会议。 | 明天早上我有一个重要的会议。
+  [7] frames 171 | CER 0.00 | 请问附近有没有药店？ | 请问附近有没有药店？
+  [8] frames 287 | CER 0.06 | 这意味着任何与它相遇的东西都无路可逃 | 这意味着任何与他相遇的东西都无路可逃。
+  [9] frames 311 | CER 0.00 | 场景在金字塔上展示，不同的金字塔被点亮 | 场景在金字塔上展示，不同的金字塔被点亮。
+  [10] frames 156 | CER 0.00 | 然而事实并非如此 | 然而，事实并非如此。
+  [11] frames 312 | CER 0.18 | 州长办公室表示，伤者中有十九人是警察 | 州长办公室表示伤重，中有19人是警察。
+  [12] frames 228 | CER 0.00 | 植物在自然环境中状态最好 | 植物在自然环境中状态最好。
+  [13] frames 190 | CER 0.00 | 阿皮亚是萨摩亚的首都 | 阿皮亚是萨摩亚的首都。
+  [14] frames 305 | CER 0.00 | 实地考察是任何教学活动的重要组成部分 | 实地考察是任何教学活动的重要组成部分。
+  [15] frames 179 | CER 0.10 | 手写原稿未能保留下来 | 手写原狗未能保留下来。
+  [16] frames 251 | CER 0.00 | 很显然，这是一支无往不胜的球队 | 很显然，这是一支无往不胜的球队。
+  [17] frames 265 | CER 0.00 | 把滑雪路线想象成类似的徒步路线 | 把滑雪路线想象成类似的徒步路线。
+  [18] frames 211 | CER 0.33 | 摩尔多瓦的首都是基希讷乌 | 摩尔多瓦的首都是鸡心任物。
+  [19] frames 318 | CER 0.05 | 当地语言是罗马尼亚语，但俄语也被广泛使用 | 当地语言是罗马尼亚语，大俄语也被广泛使用。
+  [20] frames 247 | CER 0.14 | 博客还能帮助学生提高写作能力 | 不课还能帮助学生提高写作能力。
+  [21] frames 229 | CER 0.00 | 月球的表面由岩石和灰尘组成 | 月球的表面由岩石和灰尘组成。
+  [22] frames 173 | CER 0.00 | 月球的外层叫做地壳 | 月球的外层叫做地壳。
+  [23] frames 200 | CER 0.00 | 目前还没有发布海啸预警 | 目前还没有发布海啸预警。
+  [24] frames 314 | CER 0.17 | 穆罕默德对尘世生活之外的事十分感兴趣 | 默罕默德对城市生活之外的事十分感兴趣。
+  [25] frames 265 | CER 0.00 | 这会让参加社会活动变得容易得多 | 这会让参加社会活动变得容易得多。
+  [26] frames 300 | CER 0.00 | 事实上，即使知道它的存在，也不容易找到 | 事实上，即使知道它的存在，也不容易找到。
+  [27] frames 243 | CER 0.00 | 一旦进入洞穴，就完全与世隔绝了 | 一旦进入洞穴，就完全与世隔绝了。
+  [28] frames 250 | CER 0.00 | 圣彼得堡游轮包括城内观光活动 | 圣彼得堡游轮包括城内观光活动。
+  [29] frames 181 | CER 0.33 | 跳羚队以五连败收官 | 跳令对于五连败收官。
+  [30] frames 278 | CER 0.07 | 电视报道显示，有白烟从工厂里冒出 | 电视报道显示，里有白烟从工厂里冒出。
+  [31] frames 287 | CER 0.29 | 猪携带该疾病，然后通过蚊子传染给人类 | 猪血打呆疾病，然后通过文字传染给人类。
+  [32] frames 194 | CER 0.00 | 有些人专门收集他的作品 | 有些人专门收集他的作品。
+  [33] frames 310 | CER 0.05 | 它的舌头有可能是分叉的，对此我们尚不确定 | 他的舌头有可能是分叉的，对此我们尚不确定。
+  [34] frames 308 | CER 0.06 | 合金基本上由两种或以上金属混合而成 | 合金基本上有两种或以上金属混合而成。
+  [35] frames 300 | CER 0.06 | 不要忘记一点，元素周期表上有很多元素 | 不要忘记一点元素周期流上有很多元素。
+  [36] frames 286 | CER 0.00 | 浪漫主义具有很强的文化决定论色彩 | 浪漫主义具有很强的文化决定论色彩。
+  [37] frames 275 | CER 0.25 | 这源于歌德、费希特和施莱格尔等作家 | 这源于歌蚪、费西特和施莱格尔等座驾。
+  [38] frames 292 | CER 0.17 | 巴黎人是出了名的以自我中心、粗鲁和傲慢 | 阿里人士出了名的以自我中心、粗鲁和傲慢。
+  [39] frames 295 | CER 0.06 | 这是一个篇章的结束，也是新篇章的开始 | 这是一个篇章的结束，不也是新篇章的开始。
+ONE-GRAPH Melo CER: first 8 0.026 | FLEURS clauses 0.074 | all 0.064
+PROFILE 720.2 ms | layers 3451 {'NPU': 3451} | first load 0.9s | peak 9 MB

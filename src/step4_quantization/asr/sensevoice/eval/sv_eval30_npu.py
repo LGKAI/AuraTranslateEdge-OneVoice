@@ -10,7 +10,8 @@ import numpy as np
 import qai_hub as hub
 from sv_eval30_common import *
 
-OUT = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+OUT = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 FE_V3_TARGET = "mq26z3d0n"        # frontend v3 da compile (job j57ez99vp)
 ENC_COMPILE_JOB = "jprlmj9kp"     # encoder quantized W8A16
 device = hub.Device("Dragonwing IQ-9075 EVK")

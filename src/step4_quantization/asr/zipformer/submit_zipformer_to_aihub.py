@@ -16,9 +16,10 @@ import qai_hub as hub
 ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"
 os.chdir(ROOT)
 
-ONNX_PATH = os.path.join(ROOT, "outputs", "zip150_full_npu", "zip150_full_pipeline.onnx")
 RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results")
+ONNX_PATH = os.path.join(RESULTS_DIR, "zip150_full_npu", "zip150_full_pipeline.onnx")
 os.makedirs(RESULTS_DIR, exist_ok=True)
+
 
 DEVICE_NAME = "Dragonwing IQ-9075 EVK"
 N_SAMPLES = 240240  # 15.015s @ 16kHz (exactly 1500 frames)

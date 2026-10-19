@@ -1,0 +1,8 @@
+torch
+onnx
+onnxruntime
+piper-tts
+qai-hub
+huggingface_hub
+numpy
+scipy

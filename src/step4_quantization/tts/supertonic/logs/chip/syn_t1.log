@@ -1,0 +1,3 @@
+syn_t1 compile SUCCESS
+syn_t1 infer SUCCESS
+syn_t1 cos all 1.00000 | valid-frames cos 1.00000 | max abs err 0.032 (max|ref| 39.45)

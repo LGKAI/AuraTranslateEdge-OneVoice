@@ -1,0 +1,17 @@
+Loading model from cache C:\Users\Admin\AppData\Local\Temp\jieba.cache
+g2 compile jgod83vd5
+g2 compile SUCCESS
+[31m
+[0m
+g2 profile jgn1k39mp | infer jprxwe4ep
+g2 infer SUCCESS wall 2603s
+  [0] frames npu/cpu 274/279 | cos -0.0103 | peak 0.24 | CER 0.00 | 今天天气真好，我们一起去公园散步吧。
+  [1] frames npu/cpu 162/161 | cos 0.0119 | peak 0.14 | CER 0.00 | 请把客厅的灯打开。
+  [2] frames npu/cpu 218/223 | cos 0.1453 | peak 0.14 | CER 0.08 | 我想预定今晚两个人的餐桌。
+  [3] frames npu/cpu 253/261 | cos 0.0374 | peak 0.25 | CER 0.06 | 机器饭译可以帮助人们跨越语言沟通。
+  [4] frames npu/cpu 162/173 | cos -0.0202 | peak 0.13 | CER 0.00 | 火车站怎么走最快？
+  [5] frames npu/cpu 187/201 | cos 0.0434 | peak 0.12 | CER 0.00 | 这家餐厅的菜非常好吃。
+  [6] frames npu/cpu 219/219 | cos 0.1207 | peak 0.20 | CER 0.00 | 明天早上我有一个重要的会议。
+  [7] frames npu/cpu 169/171 | cos 0.2313 | peak 0.14 | CER 0.22 | 请问附近有没有油点？
+g2 NPU mean CER 0.046
+g2 PROFILE 703.3 ms | layers 3511 {'NPU': 3511} | peak mem 9 MB | first load 604s

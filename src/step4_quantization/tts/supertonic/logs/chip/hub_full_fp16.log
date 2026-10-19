@@ -1,0 +1,6 @@
+full_fp16 compile jpe6812og https://workbench.aihub.qualcomm.com/jobs/jpe6812og/
+full_fp16 compile SUCCESS
+full_fp16 profile jprxoqxkp | infer jp2o46o6g
+full_fp16 infer SUCCESS wall 1406s
+full_fp16 saved ['output_0', 'output_1'] {'output_0': (1, 460800), 'output_1': (1,)}
+full_fp16 profile SUCCESS

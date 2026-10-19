@@ -26,9 +26,10 @@ import qai_hub as hub
 
 # Đường dẫn ONNX local
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-ZIP_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "zip150_full_npu", "zip150_full_pipeline.onnx")
-SV_FE_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "sensevoice-e2e-onnx", "model_sv_frontend_v3_inline.onnx")
-SV_ENC_ONNX_PATH = os.path.join(ROOT_DIR, "outputs", "sensevoice-e2e-onnx", "model_sv_enc_cls_inline.onnx")
+ZIP_ONNX_PATH = os.path.join(ROOT_DIR, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_full_npu", "zip150_full_pipeline.onnx")
+SV_FE_ONNX_PATH = os.path.join(ROOT_DIR, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx", "model_sv_frontend_v3_inline.onnx")
+SV_ENC_ONNX_PATH = os.path.join(ROOT_DIR, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx", "model_sv_enc_cls_inline.onnx")
+
 
 # ──────────────────────────────────────────────
 # SenseVoice model IDs (2-stage: frontend → encoder)

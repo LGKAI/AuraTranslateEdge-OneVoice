@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Test model GOP (combined single-graph, mnlz5pg3q) tren bo 15 mau test THAT tren NPU,
 de biet chinh xac WER/CER cua chinh model dang dung trong demo (chua tung do truoc do -
 truoc gio chi do model 2-graph tach roi)."""
@@ -8,8 +8,8 @@ import numpy as np
 import jiwer
 import qai_hub as hub
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
 DEVICE_NAME = "Dragonwing IQ-9075 EVK"
 
@@ -82,3 +82,4 @@ for lang, vals in results.items():
 
 with open(os.path.join(OUT_DIR, "combined_full_test_result.json"), "w", encoding="utf-8") as f:
     json.dump({lang: float(np.mean(vals)*100) for lang, vals in results.items()}, f, indent=2)
+

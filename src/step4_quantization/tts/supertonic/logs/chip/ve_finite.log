@@ -1,0 +1,5 @@
+finite compile jpe6lk40g
+finite compile SUCCESS
+finite infer jg9oxw8lg
+finite infer SUCCESS 508s
+finite ONE-STEP cos vs CPU fp32 per ODE step: {0: 0.99765, 1: 0.9775, 2: 0.95602, 3: 0.94806, 4: 0.9407}

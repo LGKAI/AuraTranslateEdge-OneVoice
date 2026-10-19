@@ -6,8 +6,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np, jiwer, onnxruntime as ort
 import qai_hub as hub
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 DATA = os.path.join(ROOT, "data", "asr")
 device = hub.Device("Dragonwing IQ-9075 EVK")
 labels = ["en_0","en_1","en_2","en_3","en_4","zh_0","zh_1","zh_2","zh_3","zh_4","ko_0","ko_1","ko_2","ko_3","ko_4"]

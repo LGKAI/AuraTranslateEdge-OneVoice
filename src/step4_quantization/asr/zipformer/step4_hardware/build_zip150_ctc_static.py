@@ -10,9 +10,10 @@ from onnx import helper, numpy_helper, TensorProto
 import sentencepiece as spm
 import kaldi_native_fbank as knf
 
-ROOT = r"C:\Users\Admin\Downloads\OneVoice"; os.chdir(ROOT); sys.path.insert(0, os.path.join(ROOT, "src", "step4_hardware"))
+ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"; os.chdir(ROOT); sys.path.insert(0, os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "step4_hardware"))
 from prepare_zipformer_for_qnn import find_bool_slices, wrap_bool_slice
-D = "third_party_zipformer_150m_crctc"; OUT = os.path.join(ROOT, "outputs", "zip150_ctc"); os.makedirs(OUT, exist_ok=True)
+D = os.path.join(ROOT, "third_party", "zipformer", "third_party_zipformer_150m_crctc"); OUT = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_ctc"); os.makedirs(OUT, exist_ok=True)
+
 T = 1500
 norm = lambda s: re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", s.lower().strip(), flags=re.UNICODE)).strip()
 sp = spm.SentencePieceProcessor(); sp.load(os.path.join(D, "bpe.model"))

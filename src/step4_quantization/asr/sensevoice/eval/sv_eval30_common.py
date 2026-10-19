@@ -3,7 +3,8 @@
 import os, re, json
 import numpy as np, soundfile as sf, jiwer
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+
 MANIFEST = os.path.join(ROOT, "data", "manifest_eval30.json")
 MAX_WAV_SAMPLES = 464000
 LID = {"zh": 3, "en": 4, "ko": 12}

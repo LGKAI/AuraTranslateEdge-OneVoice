@@ -1,0 +1,6 @@
+full_v3 compile jprxn9nep https://workbench.aihub.qualcomm.com/jobs/jprxn9nep/
+full_v3 compile SUCCESS
+full_v3 profile jpe6l2l0g | infer jgzz4w46g
+full_v3 infer SUCCESS wall 1496s
+full_v3 saved ['output_0', 'output_1'] {'output_0': (1, 460800), 'output_1': (1,)}
+full_v3 profile SUCCESS

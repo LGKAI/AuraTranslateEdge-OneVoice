@@ -1,0 +1,198 @@
+{
+ "orig": [
+  {
+   "lang": "en",
+   "ref": "The quick brown fox jumps over the lazy dog near the river bank.",
+   "hyp": "The quick brown fox jumps over the lazy dog near the riverbank.",
+   "wer": 0.15384615384615385,
+   "cer": 0.0,
+   "sec": 4.306598639455783
+  },
+  {
+   "lang": "en",
+   "ref": "Please turn on the lights in the living room.",
+   "hyp": "Please turn on the lights in the living room.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 2.9456462585034013
+  },
+  {
+   "lang": "en",
+   "ref": "Machine translation helps people communicate across languages.",
+   "hyp": "Machine translation helps people communicate across languages.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 4.471836734693878
+  },
+  {
+   "lang": "en",
+   "ref": "I would like to book a table for two people tonight.",
+   "hyp": "I would like to book a table for two people tonight.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.4661224489795917
+  },
+  {
+   "lang": "en",
+   "ref": "The weather today is sunny with a light breeze.",
+   "hyp": "The weather today is sunny with a light breeze.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.1965986394557824
+  },
+  {
+   "lang": "en",
+   "ref": "Please call me back as soon as you finish the meeting.",
+   "hyp": "Please call me back as soon as you finish the meeting.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.570498866213152
+  },
+  {
+   "lang": "ko",
+   "ref": "안녕하세요, 오늘 날씨가 정말 좋네요.",
+   "hyp": "안녕 하 세요 오늘 날씨 가 정말 좋 네요.",
+   "wer": 1.4,
+   "cer": 0.0,
+   "sec": 3.519705215419501
+  },
+  {
+   "lang": "ko",
+   "ref": "저는 내일 아침에 회의가 있어서 일찍 일어나야 합니다.",
+   "hyp": "저는 내일 아침 에 회 의가 있 어서 일찍 일어 나야 합니다.",
+   "wer": 1.0,
+   "cer": 0.0,
+   "sec": 4.504421768707483
+  },
+  {
+   "lang": "ko",
+   "ref": "이 음식은 정말 맛있어서 또 먹고 싶어요.",
+   "hyp": "이 음식 은 정말 맛있 어서 또 먹 고 싶어요.",
+   "wer": 0.8571428571428571,
+   "cer": 0.0,
+   "sec": 3.5402267573696147
+  },
+  {
+   "lang": "ko",
+   "ref": "기차역까지 가는 가장 빠른 길을 알려 주세요.",
+   "hyp": "기차역 까지, 가 는 가장 빠른 길을 알려 주세요.",
+   "wer": 0.5714285714285714,
+   "cer": 0.0,
+   "sec": 3.80172335600907
+  },
+  {
+   "lang": "ko",
+   "ref": "인공지능 기술은 우리 생활을 빠르게 바꾸고 있습니다.",
+   "hyp": "인공지능 기술 은 우리 생활 을 빠르 게 바꾸 고 있 습니다.",
+   "wer": 1.4285714285714286,
+   "cer": 0.0,
+   "sec": 4.473492063492063
+  },
+  {
+   "lang": "ko",
+   "ref": "주말에는 가족과 함께 공원에서 산책을 합니다.",
+   "hyp": "주말 에는 가족 과 함께 공원 에서 산책 을 합니다.",
+   "wer": 1.3333333333333333,
+   "cer": 0.0,
+   "sec": 4.350430839002268
+  }
+ ],
+ "static": [
+  {
+   "lang": "en",
+   "ref": "The quick brown fox jumps over the lazy dog near the river bank.",
+   "hyp": "The quick brown fox jumps over the lazy dog near the river bank.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 4.31891156462585
+  },
+  {
+   "lang": "en",
+   "ref": "Please turn on the lights in the living room.",
+   "hyp": "Please turn on the lights in the living room.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 2.995374149659864
+  },
+  {
+   "lang": "en",
+   "ref": "Machine translation helps people communicate across languages.",
+   "hyp": "Machine translation helps people communicate across languages.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 4.458231292517007
+  },
+  {
+   "lang": "en",
+   "ref": "I would like to book a table for two people tonight.",
+   "hyp": "I would like to book a table for two people tonight.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.4829931972789114
+  },
+  {
+   "lang": "en",
+   "ref": "The weather today is sunny with a light breeze.",
+   "hyp": "The weather today is sunny with a light breeze.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.2043537414965986
+  },
+  {
+   "lang": "en",
+   "ref": "Please call me back as soon as you finish the meeting.",
+   "hyp": "Please call me back as soon as you finish the meeting.",
+   "wer": 0.0,
+   "cer": 0.0,
+   "sec": 3.5526530612244898
+  },
+  {
+   "lang": "ko",
+   "ref": "안녕하세요, 오늘 날씨가 정말 좋네요.",
+   "hyp": "안녕 하 세요 오늘 날씨 가 정말 좋 네요.",
+   "wer": 1.4,
+   "cer": 0.0,
+   "sec": 3.5526530612244898
+  },
+  {
+   "lang": "ko",
+   "ref": "저는 내일 아침에 회의가 있어서 일찍 일어나야 합니다.",
+   "hyp": "저는 내일 아침 에 회 의가 있 어서 일찍 일어 나야 합니다.",
+   "wer": 1.0,
+   "cer": 0.0,
+   "sec": 4.527891156462585
+  },
+  {
+   "lang": "ko",
+   "ref": "이 음식은 정말 맛있어서 또 먹고 싶어요.",
+   "hyp": "이 음식 은 정말 맛있 어서 또 먹 고 싶어요.",
+   "wer": 0.8571428571428571,
+   "cer": 0.0,
+   "sec": 3.5526530612244898
+  },
+  {
+   "lang": "ko",
+   "ref": "기차역까지 가는 가장 빠른 길을 알려 주세요.",
+   "hyp": "기차역 까지, 가 는 가장 빠른 길을 알려 주세요.",
+   "wer": 0.5714285714285714,
+   "cer": 0.0,
+   "sec": 3.8312925170068026
+  },
+  {
+   "lang": "ko",
+   "ref": "인공지능 기술은 우리 생활을 빠르게 바꾸고 있습니다.",
+   "hyp": "인공지능 기술 은 우리 생활 을 빠르 게 바꾸 고 있 습니다.",
+   "wer": 1.4285714285714286,
+   "cer": 0.0,
+   "sec": 4.458231292517007
+  },
+  {
+   "lang": "ko",
+   "ref": "주말에는 가족과 함께 공원에서 산책을 합니다.",
+   "hyp": "주말 에는 가족 과 함께 공원 에서 산책 을 합니다.",
+   "wer": 1.3333333333333333,
+   "cer": 0.0,
+   "sec": 4.388571428571429
+  }
+ ]
+}

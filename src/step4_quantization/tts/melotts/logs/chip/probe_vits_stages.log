@@ -1,0 +1,507 @@
+Scheduled compile job (jp3o9onnp) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jp3o9onnp/
+vits_stages compile jp3o9onnp
+Waiting for compile job (jp3o9onnp) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ CREATED               ░░ 0/2 .. 
+    ⏳ CREATED               ░░ 0/2 ...
+    ⏳ CREATED               ░░ 0/2    
+    ⏳ CREATED               ░░ 0/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .. 
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 ...
+    ⏳ OPTIMIZING_MODEL      █░ 1/2    
+    ⏳ OPTIMIZING_MODEL      █░ 1/2 .  
+    ✅ SUCCESS                          
+vits_stages compile SUCCESS 
+[31m
+===WARNING===
+submit_profile_job is deprecated and will be removed in a future release. Use submit_inference_job(..., profile=True) going forward. submit_profile_job now returns an InferenceJob.
+===WARNING===
+[0m
+Input data was not specified. Random data will be used for inputs.
+Scheduled inference job (jgj373dep) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jgj373dep/
+Scheduled inference job (jpe6z6ovg) successfully. To see the status and results:
+    https://workbench.aihub.qualcomm.com/jobs/jpe6z6ovg/
+vits_stages profile jgj373dep | infer jpe6z6ovg
+Waiting for inference job (jpe6z6ovg) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ CREATED               ░░░ 0/3 .. 
+    ⏳ CREATED               ░░░ 0/3 ...
+    ⏳ CREATED               ░░░ 0/3    
+    ⏳ CREATED               ░░░ 0/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .. 
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 ...
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3    
+    ⏳ PROVISIONING_DEVICE   █░░ 1/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ✅ SUCCESS                          
+vits_stages infer SUCCESS wall 419s 
+vits_stages OUTPUT output_0: cosine vs ORT-CPU per sample [0.92692, 0.91142, 0.92925, 0.92761]
+vits_stages OUTPUT output_1: cosine vs ORT-CPU per sample [0.89163, 0.85139, 0.88211, 0.89903]
+vits_stages OUTPUT output_2: cosine vs ORT-CPU per sample [0.59116, 0.66813, 0.64615, 0.66492]
+vits_stages OUTPUT output_3: cosine vs ORT-CPU per sample [0.80589, 0.84402, 0.69676, 0.68881]
+Waiting for inference job (jgj373dep) completion. Type Ctrl+C to stop waiting at any time.
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .. 
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 ...
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3    
+    ⏳ MEASURING_PERFORMANCE ██░ 2/3 .  
+    ✅ SUCCESS                          
+vits_stages PROFILE 24.6 ms | layers 1596 {'NPU': 1596} | peak mem 9 MB | first load 8s

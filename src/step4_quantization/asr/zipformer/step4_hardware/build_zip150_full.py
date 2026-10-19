@@ -21,8 +21,9 @@ from prepare_zipformer_for_qnn import find_bool_slices, wrap_bool_slice
 from fbank_matmul_verify import WINDOW, MEL_MAT, DFT_RE, DFT_IM, FRAME_LEN, FRAME_SHIFT, PREEMPH
 
 D = os.path.join(ROOT, "third_party", "zipformer", "third_party_zipformer_150m_crctc")
-OUT_CTC = os.path.join(ROOT, "outputs", "zip150_ctc")
-OUT_FULL = os.path.join(ROOT, "outputs", "zip150_full_npu")
+RESULTS_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results")
+OUT_CTC = os.path.join(RESULTS_DIR, "zip150_ctc")
+OUT_FULL = os.path.join(RESULTS_DIR, "zip150_full_npu")
 os.makedirs(OUT_CTC, exist_ok=True)
 os.makedirs(OUT_FULL, exist_ok=True)
 

@@ -59,7 +59,9 @@ def collapse(ids):
 
 T = 1500
 so = ort.SessionOptions(); so.log_severity_level = 3
-sess = ort.InferenceSession("outputs/zip150_ctc/zip150_ctc_static_1500.onnx", so, providers=["CPUExecutionProvider"])
+zip150_ctc_path = "src/step4_quantization/asr/zipformer/results/zip150_ctc/zip150_ctc_static_1500.onnx"
+sess = ort.InferenceSession(zip150_ctc_path, so, providers=["CPUExecutionProvider"])
+
 
 rows = [r for r in json.load(open("data/asr/manifest.json", encoding="utf-8")) if r["lang"] == "vi"]
 sys.stdout.reconfigure(encoding="utf-8")

@@ -1,0 +1,37 @@
+[
+ {
+  "stage": "encoder",
+  "job": "jprx3q2vp",
+  "status": "SUCCESS",
+  "wall_s": 387.6,
+  "n": 1
+ },
+ {
+  "stage": "sdp",
+  "job": "jgd619krp",
+  "status": "SUCCESS",
+  "wall_s": 1020.8,
+  "n": 1
+ },
+ {
+  "stage": "monotonic_aligner",
+  "job": "jgzz3dj4g",
+  "status": "SUCCESS",
+  "wall_s": 795.3,
+  "n": 1
+ },
+ {
+  "stage": "flow",
+  "job": "jpx0kky8p",
+  "status": "SUCCESS",
+  "wall_s": 423.4,
+  "n": 1
+ },
+ {
+  "stage": "decoder",
+  "job": "jg9ollrlg",
+  "status": "SUCCESS",
+  "wall_s": 724.3,
+  "n": 7
+ }
+]

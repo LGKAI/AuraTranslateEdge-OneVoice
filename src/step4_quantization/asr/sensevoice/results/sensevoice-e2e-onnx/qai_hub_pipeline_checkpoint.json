@@ -1,0 +1,15 @@
+{
+  "fe_model_id": "mnwvv3rxq",
+  "fe_compile_job_id": "jg9olx88g",
+  "fe_target_model_id": "mn4ooxjzq",
+  "fe_profile_job_id": "jgd6xz0zp",
+  "enc_model_id": "mq800zrjn",
+  "calib_dataset_id": "d7ovxolg2",
+  "enc_quantize_job_id": "jpx0kddlp",
+  "enc_quantized_model_id": "mq266xrwn",
+  "enc_compile_job_id": "jp3ojw6np",
+  "enc_target_model_id": "mq800zwjn",
+  "enc_profile_job_id": "jp0ozvw2p",
+  "fe_infer_job_id": "jgzz341zg",
+  "enc_infer_job_id": "jgk6e9zo5"
+}

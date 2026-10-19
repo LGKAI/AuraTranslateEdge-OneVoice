@@ -6,8 +6,9 @@ import soundfile as sf
 import jiwer
 import qai_hub as hub
 
-ROOT = r"C:\Users\Admin\Downloads\OneVoice"; os.chdir(ROOT)
-RESULT = "outputs/zip150_full_npu/result_iq9075.json"
+ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"; os.chdir(ROOT)
+RESULT = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_full_npu", "result_iq9075.json")
+
 N_SAMPLES = 240240
 norm = lambda s: re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", s.lower().strip(), flags=re.UNICODE)).strip()
 

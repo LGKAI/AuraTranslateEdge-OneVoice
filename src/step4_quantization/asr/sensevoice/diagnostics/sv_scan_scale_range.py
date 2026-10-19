@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Do dai gia tri trung gian cua frontend (wav KHONG scale) tren CPU, de chon he so scale k
 sao cho: |real|,|imag|*k < ~200 (de real^2 khong tran 65504) VA mel*k^2 > 6.1e-5 (fp16
 normal min) o phan lon bin. Sau do mo phong lam tron fp16 tai tung buoc de chon k tot nhat."""
@@ -11,7 +11,7 @@ import torch.nn.functional as F
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "export"))
 from step4_s1_export_sensevoice_e2e_unified import build_mel_filterbank, FRAME_SAMPLES, HOP_SAMPLES, N_FFT
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 calib = np.load(os.path.join(OUT_DIR, "calib_data_unified_fixed.npz"))
 
 window = torch.hamming_window(FRAME_SAMPLES)
@@ -62,3 +62,4 @@ for exp in [0, 2, 4, 5, 6, 7, 8, 9, 10, 12, 15]:
         uf += int((mel16 < 6.1e-5)[valid].sum()); of += int(torch.isinf(pw16).sum()); tot += int(valid.sum())
     d = torch.cat(diffs)
     print(f"{'2^'+str(exp):>8s} {d.max().item():14.3f} {d.mean().item():15.5f} {100*uf/tot:14.3f}% {of:10d}")
+

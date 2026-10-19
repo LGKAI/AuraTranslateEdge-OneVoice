@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Chay model GOP (combined, fp16-architecture nhung chay o CPU fp32 qua ONNXRuntime) tren
 5 mau en, so sanh voi baseline goc (7.56%) va ket qua NPU that (12.78%) de xac dinh: gap
 nam o ban than graph/encoder fp16, hay o nhieu phan cung NPU that con sot lai."""
@@ -8,8 +8,8 @@ import numpy as np
 import onnxruntime as ort
 import jiwer
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
 ONNX_PATH = os.path.join(OUT_DIR, "model_sv_combined_single_inline.onnx")
 
@@ -60,3 +60,4 @@ for item in en_items:
 
 print(f"\n=== EN avg WER (combined graph, CPU fp32): {np.mean(results)*100:.2f}% ===", flush=True)
 print("So sanh: baseline goc fp32 = 7.56% | NPU that (sau fix) = 12.78%", flush=True)
+

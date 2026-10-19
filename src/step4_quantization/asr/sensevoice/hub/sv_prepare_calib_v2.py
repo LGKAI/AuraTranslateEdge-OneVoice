@@ -8,9 +8,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np
 import soundfile as sf
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 
 MAX_WAV_SAMPLES = 464000
 LID_DICT = {"zh": 3, "en": 4, "ko": 12}

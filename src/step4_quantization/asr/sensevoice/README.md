@@ -337,8 +337,9 @@ python eval/fetch_asr_eval30.py                 # -> data/asr_eval30/, data/mani
 
 # 1. Xuất Graph 2 (Encoder + Classifier) và chuyển sang inline ONNX
 python export/step4_s1_export_sensevoice_split_npu.py
-python export/inline_onnx.py outputs/sensevoice-e2e-onnx/model_sv_enc_cls_patched.onnx \
-                              outputs/sensevoice-e2e-onnx/model_sv_enc_cls_inline.onnx
+python export/inline_onnx.py results/sensevoice-e2e-onnx/model_sv_enc_cls_patched.onnx \
+                              results/sensevoice-e2e-onnx/model_sv_enc_cls_inline.onnx
+
 
 # 2. Xuất Graph 1 (Frontend v3 chuẩn hóa theo frame)
 python export/sv_export_frontend_v3_perframe.py

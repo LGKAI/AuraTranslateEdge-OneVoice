@@ -8,13 +8,14 @@ import numpy as np, onnxruntime as ort, soundfile as sf, jiwer
 import sentencepiece as spm, kaldi_native_fbank as knf
 import qai_hub as hub
 
-ROOT = r"C:\Users\Admin\Downloads\OneVoice"; os.chdir(ROOT)
-ONNX = os.path.join(ROOT, "outputs", "zip150_ctc", "zip150_ctc_static_1500.onnx")
-RESULT = os.path.join(ROOT, "outputs", "zip150_ctc", "result_iq9075.json")
+ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"; os.chdir(ROOT)
+ONNX = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_ctc", "zip150_ctc_static_1500.onnx")
+RESULT = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_ctc", "result_iq9075.json")
 DEVICE = "Dragonwing IQ-9075 EVK"
 T = 1500
 norm = lambda s: re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", s.lower().strip(), flags=re.UNICODE)).strip()
-sp = spm.SentencePieceProcessor(); sp.load("third_party_zipformer_150m_crctc/bpe.model")
+sp = spm.SentencePieceProcessor(); sp.load(os.path.join(ROOT, "third_party", "zipformer", "third_party_zipformer_150m_crctc", "bpe.model"))
+
 
 
 def fbank(wav):

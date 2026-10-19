@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import sys, json, os
 sys.stdout.reconfigure(encoding="utf-8")
 import numpy as np
 import onnxruntime as ort
 import qai_hub as hub
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
-OUT_DIR = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
+OUT_DIR = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 CALIB_NPZ = os.path.join(OUT_DIR, "calib_data_unified_fixed.npz")
 FE_ONNX = os.path.join(OUT_DIR, "model_sv_frontend_inline.onnx")
 
@@ -42,3 +42,4 @@ for i in range(len(fbank_npu_list)):
     lbl = labels[i] if i < len(labels) else f"idx{i}"
     q = wer_cer.get(lbl, -1)
     print(f"  [{lbl}] cos_sim={cos:.6f}  max_abs_diff={max_abs:.5f}  rel_L2={rel_l2:.5f}  (chain_result={q}%)")
+

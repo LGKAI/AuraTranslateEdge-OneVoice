@@ -1,0 +1,6 @@
+full_dbg compile jgk69vjv5 https://workbench.aihub.qualcomm.com/jobs/jgk69vjv5/
+full_dbg compile SUCCESS
+full_dbg profile jpx0d9w8p | infer j5m9dej7g
+full_dbg infer SUCCESS wall 1354s
+full_dbg saved ['output_0', 'output_1', 'output_2', 'output_3', 'output_4', 'output_5'] {'output_0': (1, 460800), 'output_1': (1,), 'output_2': (1, 256, 96), 'output_3': (1, 144, 150), 'output_4': (1, 144, 150), 'output_5': (1,)}
+full_dbg profile SUCCESS

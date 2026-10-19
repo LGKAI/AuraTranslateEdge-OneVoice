@@ -1,0 +1,4 @@
+w16a16 quantize jpv290rmg
+w16a16 quantize SUCCESS
+w16a16 compile jp0ov3lep
+w16a16 compile FAILED QAIRT converter failed with exit code 1

@@ -21,7 +21,8 @@ from step4_s1_export_sensevoice_e2e_unified import (
     FRAME_SAMPLES, HOP_SAMPLES, N_FFT, LFR_M, LFR_N,
 )
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
+
 P_TARGET = 2.0
 LOG_SC2 = 2.0 * math.log(float(1 << 15))
 LOG_FLOOR = math.log(1e-10)

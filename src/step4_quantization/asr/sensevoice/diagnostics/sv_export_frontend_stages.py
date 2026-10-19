@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Xuat 3 checkpoint nho cua frontend de bypass test tren NPU that, tim chinh xac
 buoc tinh toan nao gay sai lech lon (FFT-matmul / log / LFR-unfold-reshape).
 
@@ -18,7 +18,7 @@ from step4_s1_export_sensevoice_e2e_unified import (
     build_mel_filterbank, MAX_WAV_SAMPLES, FRAME_SAMPLES, HOP_SAMPLES, N_FFT, N_MELS,
 )
 
-OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice"), "outputs", "sensevoice-e2e-onnx")
+OUT_DIR = os.path.join(os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"), "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx")
 MAX_RAW_FRAMES = 2900
 
 
@@ -112,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

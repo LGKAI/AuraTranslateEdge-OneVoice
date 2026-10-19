@@ -1,4 +1,4 @@
-import os
+﻿import os
 # -*- coding: utf-8 -*-
 import sys, json, os
 sys.stdout.reconfigure(encoding="utf-8")
@@ -11,10 +11,10 @@ import soundfile as sf
 import onnxruntime as ort
 import torchaudio.compliance.kaldi as K
 
-ROOT = os.environ.get("SV_ROOT", r"C:\Users\Admin\Downloads\AuraTranslateEdge-OneVoice")
+ROOT = os.environ.get("SV_ROOT", r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice")
 DATA_DIR = os.path.join(ROOT, "data", "asr")
 QUANT_MODEL = os.environ.get("SV_QDQ_DEBUG_MODEL", "job_jprlmdevp_qdq_onnx/model_a4_layernorm_debug.onnx")  # QDQ onnx tai tu quantize job + debug outputs LayerNorm
-CALIB_NPZ = os.path.join(ROOT, "outputs", "sensevoice-e2e-onnx", "calib_data_unified_fixed.npz")
+CALIB_NPZ = os.path.join(ROOT, "src", "step4_quantization", "asr", "sensevoice", "results", "sensevoice-e2e-onnx", "calib_data_unified_fixed.npz")
 
 FS=16000; N_MELS=80; FRAME_SAMPLES=400; HOP_SAMPLES=160; N_FFT=512; LFR_M,LFR_N=7,6; MAX_LFR=500
 window = torch.hamming_window(FRAME_SAMPLES, periodic=False)
@@ -148,3 +148,4 @@ for i, (name, _) in enumerate(ln_modules):
     rel_err = float(np.linalg.norm(fa-qa) / (np.linalg.norm(fa)+1e-9))
     flag = '  <-- THAP' if cs < 0.9 else ''
     print(f'{i:4d} {name:30s} {cs:10.4f} {rel_err:12.4f}{flag}')
+

@@ -8,8 +8,9 @@ import onnxruntime as ort
 import soundfile as sf
 import jiwer
 
-ROOT = r"C:\Users\Admin\Downloads\OneVoice"; os.chdir(ROOT)
-ONNX = "outputs/zip150_full_npu/zip150_full_pipeline.onnx"
+ROOT = r"d:\ChuyenNganhAI\AuraTranslateEdge-OneVoice"; os.chdir(ROOT)
+ONNX = os.path.join(ROOT, "src", "step4_quantization", "asr", "zipformer", "results", "zip150_full_npu", "zip150_full_pipeline.onnx")
+
 N_SAMPLES = 240240
 norm = lambda s: re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", s.lower().strip(), flags=re.UNICODE)).strip()
 

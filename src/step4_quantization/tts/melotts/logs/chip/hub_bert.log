@@ -1,0 +1,8 @@
+bert compile jp2oel86g
+bert compile SUCCESS
+[31m
+[0m
+bert profile jp0o6lq0p | infer jp8j1z9q5
+bert infer SUCCESS wall 1116s
+bert OUTPUT output_0: cosine vs ORT-CPU per sample [0.99997, 0.99998, 0.99998, 0.99998, 0.99993, 0.99998, 0.99998, 0.99998]
+bert PROFILE 10.7 ms | layers 690 {'NPU': 690} | peak mem 5 MB | first load 16s

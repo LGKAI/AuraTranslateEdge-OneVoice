@@ -5,6 +5,7 @@ data/**/*.m4a
 data/**/*.ogg
 !data/**/.gitkeep
 data/mixed/
+data/phase3_sample_dataset/
 data/mt/flores200_dataset.tar.gz
 data/mt/raw/
 outputs/

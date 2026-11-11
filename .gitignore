@@ -1,3 +1,6 @@
+# ==========================================
+# Audio & Raw Media Files
+# ==========================================
 data/**/*.wav
 data/**/*.flac
 data/**/*.mp3
@@ -6,26 +9,51 @@ data/**/*.ogg
 !data/**/.gitkeep
 data/mixed/
 data/phase3_sample_dataset/
+data/prototype_sample_dataset/
 data/mt/flores200_dataset.tar.gz
 data/mt/raw/
 outputs/
+
+# ==========================================
+# Python & Bytecode Caches
+# ==========================================
 **/__pycache__/
 *.py[cod]
-*.onnx
-*.onnx.data
-*.npz
-*.dlc
-*.pkl
 .ipynb_checkpoints/
 .vscode/
-third_party/zipformer/
-src/**/*.onnx
-src/**/*.onnx.json
 venv_pipeline/
 =*.*.*
 *.tmp
 third_party/**/*.tmp
 *.exe
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Heavy Model Weights & Binary Contexts
+# ==========================================
+*.onnx
+*.onnx.data
+*.npz
+*.dlc
+*.bin
+*.pkl
+
+# Preserve required static runtime assets in s2s_edge
+!s2s_edge/assets/**
+!s2s_edge/assets/*.npz
+!s2s_edge/assets/*.npy
+
+# ==========================================
+# Third-party & Legacy Step 4 Caches
+# ==========================================
+third_party/zipformer/
+src/**/*.onnx
+src/**/*.onnx.json
 src/step4_quantization/asr/asr_batch_logs/
 src/step4_quantization/mt/mt_batch_logs/
 src/step4_quantization/mt/nllb/work/*.onnx
@@ -39,3 +67,24 @@ src/step4_quantization/tts/piper/data/
 src/step4_quantization/tts/piper/**/*.log
 src/step4_quantization/tts/supertonic/work/
 src/step4_quantization/tts/supertonic/**/*.npy
+
+# ==========================================
+# s2s_edge Runtime Directories & Outputs
+# ==========================================
+models/
+s2s_edge/models/
+golden/
+golden_13b/
+golden_13b_b4/
+s2s_edge/golden/
+s2s_edge/golden_13b/
+s2s_edge/golden_13b_b4/
+logs/
+s2s_edge/logs/
+logs/*.wav
+samples/*.wav
+s2s_edge/samples/*.wav
+
+# Organisers' sample-set evaluation logs (keep out of public repo)
+eval/cpu_ref/
+s2s_edge/eval/cpu_ref/

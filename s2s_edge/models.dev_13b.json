@@ -1,0 +1,40 @@
+{
+ "asr_vi": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_pkg/dev_onnx/zip150_ctc_static_1500.onnx"
+ },
+ "tts_vi": {
+  "onnx": "C:/Users/Admin/Downloads/piper/g2p/piper_vi_full_g8.onnx"
+ },
+ "tts_zh": {
+  "onnx": "C:/Users/Admin/Downloads/melo_npu/work/melo_one.onnx"
+ },
+ "tts_enko": {
+  "onnx": "C:/Users/Admin/Downloads/supertonic_npu/build/supertonic_full_v3.onnx"
+ },
+ "mt_enc": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_npu/work/nllb13/nllb13_enc.onnx/nllb13_enc.onnx",
+  "S": 64
+ },
+ "asr_xx_frontend": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_pkg/dev_onnx/sv_frontend_v3.onnx"
+ },
+ "asr_xx_encoder": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_pkg/dev_onnx/sv_enc_cls.onnx"
+ },
+ "mt_decB": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_npu/work/nllb13/nllb13_decB2.onnx/nllb13_decB2.onnx",
+  "Tm": 96,
+  "B": 2,
+  "L": 24,
+  "H": 16,
+  "dk": 64
+ },
+ "mt_dec": {
+  "onnx": "C:/Users/Admin/Downloads/s2s_npu/work/nllb13/nllb13_dec.onnx/nllb13_dec.onnx",
+  "Tm": 96,
+  "L": 24,
+  "H": 16,
+  "dk": 64
+ },
+ "_golden": "golden_13b"
+}

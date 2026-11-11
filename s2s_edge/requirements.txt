@@ -1,0 +1,11 @@
+numpy
+scipy
+soundfile
+sentencepiece
+kaldi-native-fbank
+onnxruntime
+psutil
+# optional
+sounddevice
+jiwer
+sacrebleu

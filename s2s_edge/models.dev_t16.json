@@ -1,0 +1,8 @@
+{
+ "asr_vi": {"onnx": "C:/Users/Admin/Downloads/s2s_pkg/dev_onnx/zip150_ctc_static_1500.onnx"},
+ "asr_xx": {"onnx": "C:/Users/Admin/Downloads/AuraTranslateEdge-OneVoice/outputs/sensevoice-e2e-onnx/model_sv_combined_single_inline.onnx"},
+ "mt": {"onnx": "C:/Users/Admin/Downloads/nllb_npu/work/nllb_S32_T16.onnx"},
+ "tts_vi": {"onnx": "C:/Users/Admin/Downloads/piper/g2p/piper_vi_full_g8.onnx"},
+ "tts_zh": {"onnx": "C:/Users/Admin/Downloads/melo_npu/work/melo_one.onnx"},
+ "tts_enko": {"onnx": "C:/Users/Admin/Downloads/supertonic_npu/build/supertonic_full_v3.onnx"}
+}

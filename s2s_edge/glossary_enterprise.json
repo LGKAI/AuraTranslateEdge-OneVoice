@@ -1,0 +1,347 @@
+{
+ "_note": "DRAFT enterprise glossary (2026-11-10). Keys are matched case-sensitively: each term is listed as written, lowercase and Capitalised. 'vi' = how Piper should read the Latin word inside Vietnamese output; 'zh'/'ko' = replacement for a Latin span inside Chinese/Korean output. Not validated on audio: run Q5 (docs/device_plan.md) before shipping.",
+ "Email": {
+  "vi": "i meo",
+  "zh": "电子邮件",
+  "ko": "이메일"
+ },
+ "email": {
+  "vi": "i meo",
+  "zh": "电子邮件",
+  "ko": "이메일"
+ },
+ "Deadline": {
+  "vi": "đét lai",
+  "zh": "截止日期",
+  "ko": "마감일"
+ },
+ "deadline": {
+  "vi": "đét lai",
+  "zh": "截止日期",
+  "ko": "마감일"
+ },
+ "meeting": {
+  "vi": "mít tinh",
+  "zh": "会议",
+  "ko": "회의"
+ },
+ "Meeting": {
+  "vi": "mít tinh",
+  "zh": "会议",
+  "ko": "회의"
+ },
+ "KPI": {
+  "vi": "ca pê i",
+  "zh": "KPI",
+  "ko": "KPI"
+ },
+ "kpi": {
+  "vi": "ca pê i",
+  "zh": "KPI",
+  "ko": "KPI"
+ },
+ "file": {
+  "vi": "phai",
+  "zh": "文件",
+  "ko": "파일"
+ },
+ "File": {
+  "vi": "phai",
+  "zh": "文件",
+  "ko": "파일"
+ },
+ "laptop": {
+  "vi": "láp tốp",
+  "zh": "笔记本电脑",
+  "ko": "노트북"
+ },
+ "Laptop": {
+  "vi": "láp tốp",
+  "zh": "笔记本电脑",
+  "ko": "노트북"
+ },
+ "online": {
+  "vi": "on lai",
+  "zh": "在线",
+  "ko": "온라인"
+ },
+ "Online": {
+  "vi": "on lai",
+  "zh": "在线",
+  "ko": "온라인"
+ },
+ "offline": {
+  "vi": "óp lai",
+  "zh": "离线",
+  "ko": "오프라인"
+ },
+ "Offline": {
+  "vi": "óp lai",
+  "zh": "离线",
+  "ko": "오프라인"
+ },
+ "ok": {
+  "vi": "ô kê",
+  "zh": "OK",
+  "ko": "오케이"
+ },
+ "OK": {
+  "vi": "ô kê",
+  "zh": "OK",
+  "ko": "오케이"
+ },
+ "Zalo": {
+  "vi": "da lô",
+  "zh": "Zalo",
+  "ko": "잘로"
+ },
+ "zalo": {
+  "vi": "da lô",
+  "zh": "Zalo",
+  "ko": "잘로"
+ },
+ "facebook": {
+  "vi": "phây búc",
+  "zh": "脸书",
+  "ko": "페이스북"
+ },
+ "Facebook": {
+  "vi": "phây búc",
+  "zh": "脸书",
+  "ko": "페이스북"
+ },
+ "google": {
+  "vi": "gu gồ",
+  "zh": "谷歌",
+  "ko": "구글"
+ },
+ "Google": {
+  "vi": "gu gồ",
+  "zh": "谷歌",
+  "ko": "구글"
+ },
+ "microsoft": {
+  "vi": "mai crô xóp",
+  "zh": "微软",
+  "ko": "마이크로소프트"
+ },
+ "Microsoft": {
+  "vi": "mai crô xóp",
+  "zh": "微软",
+  "ko": "마이크로소프트"
+ },
+ "samsung": {
+  "vi": "sam sung",
+  "zh": "三星",
+  "ko": "삼성"
+ },
+ "Samsung": {
+  "vi": "sam sung",
+  "zh": "三星",
+  "ko": "삼성"
+ },
+ "Hyundai": {
+  "vi": "hơn đai",
+  "zh": "现代",
+  "ko": "현대"
+ },
+ "hyundai": {
+  "vi": "hơn đai",
+  "zh": "现代",
+  "ko": "현대"
+ },
+ "excel": {
+  "vi": "éc xen",
+  "zh": "Excel",
+  "ko": "엑셀"
+ },
+ "Excel": {
+  "vi": "éc xen",
+  "zh": "Excel",
+  "ko": "엑셀"
+ },
+ "powerpoint": {
+  "vi": "pao ơ poi",
+  "zh": "PowerPoint",
+  "ko": "파워포인트"
+ },
+ "PowerPoint": {
+  "vi": "pao ơ poi",
+  "zh": "PowerPoint",
+  "ko": "파워포인트"
+ },
+ "word": {
+  "vi": "uốt",
+  "zh": "Word",
+  "ko": "워드"
+ },
+ "Word": {
+  "vi": "uốt",
+  "zh": "Word",
+  "ko": "워드"
+ },
+ "Wifi": {
+  "vi": "oai phai",
+  "zh": "无线网络",
+  "ko": "와이파이"
+ },
+ "wifi": {
+  "vi": "oai phai",
+  "zh": "无线网络",
+  "ko": "와이파이"
+ },
+ "password": {
+  "vi": "pát quớt",
+  "zh": "密码",
+  "ko": "비밀번호"
+ },
+ "Password": {
+  "vi": "pát quớt",
+  "zh": "密码",
+  "ko": "비밀번호"
+ },
+ "website": {
+  "vi": "web sai",
+  "zh": "网站",
+  "ko": "웹사이트"
+ },
+ "Website": {
+  "vi": "web sai",
+  "zh": "网站",
+  "ko": "웹사이트"
+ },
+ "App": {
+  "vi": "áp",
+  "zh": "应用",
+  "ko": "앱"
+ },
+ "app": {
+  "vi": "áp",
+  "zh": "应用",
+  "ko": "앱"
+ },
+ "teams": {
+  "vi": "tim",
+  "zh": "Teams",
+  "ko": "팀즈"
+ },
+ "Teams": {
+  "vi": "tim",
+  "zh": "Teams",
+  "ko": "팀즈"
+ },
+ "zoom": {
+  "vi": "dum",
+  "zh": "Zoom",
+  "ko": "줌"
+ },
+ "Zoom": {
+  "vi": "dum",
+  "zh": "Zoom",
+  "ko": "줌"
+ },
+ "report": {
+  "vi": "ri pót",
+  "zh": "报告",
+  "ko": "보고서"
+ },
+ "Report": {
+  "vi": "ri pót",
+  "zh": "报告",
+  "ko": "보고서"
+ },
+ "slide": {
+  "vi": "xờ lai",
+  "zh": "幻灯片",
+  "ko": "슬라이드"
+ },
+ "Slide": {
+  "vi": "xờ lai",
+  "zh": "幻灯片",
+  "ko": "슬라이드"
+ },
+ "team": {
+  "vi": "tim",
+  "zh": "团队",
+  "ko": "팀"
+ },
+ "Team": {
+  "vi": "tim",
+  "zh": "团队",
+  "ko": "팀"
+ },
+ "project": {
+  "vi": "prô dếch",
+  "zh": "项目",
+  "ko": "프로젝트"
+ },
+ "Project": {
+  "vi": "prô dếch",
+  "zh": "项目",
+  "ko": "프로젝트"
+ },
+ "hanoi": {
+  "vi": "hà nội",
+  "zh": "河内",
+  "ko": "하노이"
+ },
+ "Hanoi": {
+  "vi": "hà nội",
+  "zh": "河内",
+  "ko": "하노이"
+ },
+ "Saigon": {
+  "vi": "sài gòn",
+  "zh": "西贡",
+  "ko": "사이공"
+ },
+ "saigon": {
+  "vi": "sài gòn",
+  "zh": "西贡",
+  "ko": "사이공"
+ },
+ "Da Nang": {
+  "vi": "đà nẵng",
+  "zh": "岘港",
+  "ko": "다낭"
+ },
+ "da nang": {
+  "vi": "đà nẵng",
+  "zh": "岘港",
+  "ko": "다낭"
+ },
+ "vietnam": {
+  "vi": "việt nam",
+  "zh": "越南",
+  "ko": "베트남"
+ },
+ "Vietnam": {
+  "vi": "việt nam",
+  "zh": "越南",
+  "ko": "베트남"
+ },
+ "korea": {
+  "vi": "hàn quốc",
+  "zh": "韩国",
+  "ko": "한국"
+ },
+ "Korea": {
+  "vi": "hàn quốc",
+  "zh": "韩国",
+  "ko": "한국"
+ },
+ "china": {
+  "vi": "trung quốc",
+  "zh": "中国",
+  "ko": "중국"
+ },
+ "China": {
+  "vi": "trung quốc",
+  "zh": "中国",
+  "ko": "중국"
+ },
+ "_asr_fix": {
+  "vi": {},
+  "en": {}
+ }
+}

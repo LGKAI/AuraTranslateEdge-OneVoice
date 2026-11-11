@@ -1,0 +1,15 @@
+{
+ "lang": {
+  "vie_Latn": 256193,
+  "eng_Latn": 256047,
+  "zho_Hans": 256200,
+  "kor_Hang": 256098
+ },
+ "offset": 1,
+ "special": {
+  "bos": 0,
+  "pad": 1,
+  "eos": 2,
+  "unk": 3
+ }
+}

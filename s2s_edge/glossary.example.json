@@ -1,0 +1,6 @@
+{
+ "Samsung":   {"vi": "sam sung", "zh": "三星", "ko": "삼성"},
+ "Hyundai":   {"vi": "hơn đai", "zh": "现代", "ko": "현대"},
+ "Excel":     {"vi": "éc xen",  "zh": "Excel", "ko": "엑셀"},
+ "_asr_fix":  {"vi": {"ếch xen": "Excel", "sam sung": "Samsung"}, "en": {"sam sung": "Samsung"}}
+}

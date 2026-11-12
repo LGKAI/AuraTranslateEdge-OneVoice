@@ -68,7 +68,7 @@ Chuỗi xử lý dữ liệu âm thanh toàn trình (End-to-End Pipeline) của 
 flowchart TD
     subgraph Audio_Capture ["1. Thu nhận & Phân đoạn"]
         A["Micro USB / WAV Input (16kHz Mono)"] --> B["Adaptive Energy VAD (host, numpy)"]
-        B --> C["Cắt đoạn tiếng nói (<= 14.5s)"]
+        B --> C["Cắt đoạn tiếng nói (≤ 14.5s)"]
     end
 
     subgraph ASR_Stage ["2. Nhận dạng giọng nói (ASR NPU)"]
@@ -86,16 +86,16 @@ flowchart TD
     subgraph MT_Stage ["4. Dịch máy đa ngữ (MT NPU)"]
         F --> G["mt_enc: NLLB-200-600M Encoder (FP16, static 64 tokens)"]
         G --> H{"Giải mã tuần tự (Host Loop)"}
-        H -->|Nhanh (15.2 ms/step)| I1["mt_dec: Greedy Step Decoder"]
-        H -->|Chất lượng cao (30.8 ms/step)| I2["mt_decB: 4-Beam Step Decoder"]
-        I1 --> J["Detokenizer & Chuẩn hoá số sang chữ (Number-to-Words)"]
+        H -->|Chế độ Nhanh| I1["mt_dec: Greedy Step Decoder (15.2 ms/step)"]
+        H -->|Chế độ Chuẩn| I2["mt_decB: 4-Beam Step Decoder (30.8 ms/step)"]
+        I1 --> J["Detokenizer & Chuẩn hoá số sang chữ"]
         I2 --> J
     end
 
     subgraph TTS_Stage ["5. Tổng hợp giọng nói (TTS NPU)"]
-        J -->|Tiếng Việt| K1["tts_vi: Piper vais1000 (VITS byte-level, <=26 từ/chunk)"]
-        J -->|Tiếng Trung| K2["tts_zh: MeloTTS-ZH (Static G2P Table + BERT, <=20 ký tự/chunk)"]
-        J -->|Tiếng Anh / Hàn| K3["tts_enko: Supertonic-3 (Flow-Matching 5-ODE, <=82 ký tự/chunk)"]
+        J -->|Tiếng Việt| K1["tts_vi: Piper vais1000 (VITS byte-level, ≤ 26 từ/chunk)"]
+        J -->|Tiếng Trung| K2["tts_zh: MeloTTS-ZH (Static G2P Table + BERT, ≤ 20 ký tự/chunk)"]
+        J -->|Tiếng Anh / Hàn| K3["tts_enko: Supertonic-3 (Flow-Matching 5-ODE, ≤ 82 ký tự/chunk)"]
     end
 
     subgraph Audio_Play ["6. Phát âm thanh"]

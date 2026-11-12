@@ -60,7 +60,7 @@ Script [`pipeline_s2s.py`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/s
 | **TỔNG CỘNG** | **Toàn bộ Pipeline S2S** | **4 Ngôn ngữ, Chạy Offline 100%** | **≈ 1.38 GB** |
 
 > [!TIP]
-> Toàn bộ pipeline chỉ chiếm **~1.38 GB bộ nhớ lưu trữ**, nằm thoải mái trong dung lượng RAM 8GB của bo mạch biên **Rubik Pi 3 (Qualcomm QCS6490)** hoặc kit **Qualcomm Dragonwing IQ-9075 EVK**, đảm bảo tính khả thi cao nhất khi triển khai thực địa.
+> Toàn bộ pipeline chỉ chiếm **~1.38 GB bộ nhớ lưu trữ**, nạp và vận hành trọn vẹn trong RAM 16GB của thiết bị **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** cũng như kit **Qualcomm Dragonwing IQ-9075 EVK** (Hexagon NPU v73), đảm bảo tính khả thi cao nhất khi triển khai thực địa.
 
 ---
 

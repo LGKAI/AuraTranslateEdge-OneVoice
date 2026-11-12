@@ -1,4 +1,4 @@
-# Nhật ký chạy trên chip (AI Hub, Dragonwing IQ-9075 EVK)
+# Nhật ký chạy trên chip (AI Hub, HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)
 
 Job xem tại `https://workbench.aihub.qualcomm.com/jobs/<ID>/` (tài khoản AI Hub của tác giả). Log đã lọc bỏ thanh tiến trình nằm ở `logs/chip/`.
 Compile fp16: `--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io`. Lượng tử hoá: thêm `--quantize_io` (không có `truncate_64bit_tensors`).

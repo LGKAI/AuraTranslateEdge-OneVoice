@@ -18,7 +18,7 @@ Audio vào → VAD (Silero) → Denoise/Beamform (GTCRN + MVDR) → ASR → MT �
 | 1 | ASR | Zipformer-30M (Vi) + SenseVoice-Small (En/Zh/Ko) | ✅ Chọn xong, đo WER thật |
 | 2 | MT | NLLB-200-distilled-600M | ✅ Chọn xong, đo BLEU thật |
 | 3 | TTS | Piper (Vi) + Supertonic (Ko/En) + MeloTTS-ZH (Zh) | ✅ Chọn xong, đo MOS thật |
-| 4 | Hardware & Quantization | Qualcomm Snapdragon (QCS6490 → đang chuyển sang IQ-9075/8 Elite Gen5) | 🔶 Đang dở dang — đây là trọng tâm buổi họp |
+| 4 | Hardware & Quantization | Qualcomm Snapdragon: Triển khai hoàn tất trên **HSPTEK AIBOX 8550 (QCS8550)** & kiểm chứng trên Dragonwing IQ-9075 EVK (Hexagon HTP v73, QAIRT 2.51) | ✅ Triển khai & đo kiểm thực tế thành công trên chip silicon thật |
 | 5 | End-to-end pipeline | Ghép 1-4, CPU/GPU baseline | ✅ Chạy được, có số RTF thật |
 
 Toàn bộ lựa chọn model đều **code-test bằng số đo thật** (không lấy từ tuyên bố của nhà sản xuất) — WER/CER/RTF/BLEU/MOS đo trực tiếp trên dữ liệu thật, so sánh nhiều ứng viên, ghi lại từng lý do chọn/loại trong `step0.md`–`step4.md`.

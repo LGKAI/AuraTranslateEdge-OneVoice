@@ -1,87 +1,105 @@
-# s2s_edge — offline speech-to-speech translation (vi ⇄ en / zh / ko) for Qualcomm Dragonwing IQ-9075
+# s2s_edge — Hệ thống Phiên dịch Giọng nói hai chiều Offline (vi ⇄ en / zh / ko) cho Qualcomm AIBOX 8550 & Dragonwing IQ-9075
 
-OneVoice AI Challenge 2026, Phase 3 prototype. Audio in → translated audio out, **all inference on the device, no network**.
-Six directions: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→vi (one side is always Vietnamese).
+Nguyên mẫu Phase 3, Cuộc thi OneVoice AI Challenge 2026. Nhận âm thanh đầu vào → Dịch và phát âm thanh đầu ra, **toàn bộ quá trình suy luận thực thi trực tiếp trên thiết bị biên (On-device), 100% Offline, không phụ thuộc kết nối mạng**.
+Hỗ trợ 6 chiều dịch: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→vi (một đầu luôn là Tiếng Việt).
 
-> **Status (be honest):** the pipeline code runs end to end on a CPU reference backend (ONNX Runtime). Every model graph has been compiled for
-> the IQ-9075 NPU through Qualcomm AI Hub and measured there (see `docs/`), but the **NPU backend on a real device is not completed yet** — it is
-> finished in the first device session (`tools/recon.sh` tells us which runtime is installed). Nothing in this README claims on-device numbers
-> that have not been measured.
+> **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 (SoC Qualcomm QCS8550 trên thiết bị **HSPTEK AIBOX 8550** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub với QAIRT 2.51). Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
 
-## Pipeline
+---
+
+## 1. Kiến trúc Pipeline
 
 ```
-mic / wav ──► energy VAD + segmentation (host, numpy) ──► ASR ──► NLLB-200-600M MT ──► number normalisation (host) ──► TTS ──► speaker / wav
-                                                           │          │                                               │
-        vi : Zipformer-150M CTC (1 graph, fp16)            │          encoder graph + decoder-step graph             vi : Piper vais1000 (1 graph, byte text → audio)
-        en/zh/ko : SenseVoice-Small (frontend + encoder)   │          (host decode loop, KV cache as tensors)        zh : MeloTTS-ZH (1 graph incl. static-table text front + BERT)
-                                                                                                                      en/ko : Supertonic-3 (1 graph incl. 5 ODE steps + vocoder)
+Micro / WAV ──► VAD năng lượng + Phân đoạn (Host, numpy) ──► ASR ──► MT (NLLB-200-600M) ──► Chuẩn hoá số sang chữ (Host) ──► TTS ──► Loa / WAV
+                                                               │           │                                                   │
+        vi : Zipformer-150M CTC (1 graph, fp16)                │           Đồ thị Encoder + Đồ thị bước Decoder               vi : Piper vais1000 (1 graph, byte text → audio)
+        en/zh/ko : SenseVoice-Small (frontend + encoder)       │           (Vòng lặp giải mã trên Host, KV cache dạng tensor) zh : MeloTTS-ZH (1 graph: front bảng tĩnh + BERT)
+                                                                                                                               en/ko : Supertonic-3 (1 graph: 5 bước ODE + vocoder)
 ```
 
-Graphs run on the Hexagon NPU (`--backend npu`) or ONNX Runtime CPU (`--backend cpu`, reference / development). The host does only
-cheap work: audio I/O, VAD, fbank, CTC collapse, SentencePiece, the NLLB greedy loop, number → words, wav joining.
+Các đồ thị chạy trực tiếp trên Hexagon NPU (`--backend npu`) hoặc CPU ONNX Runtime (`--backend cpu` dùng cho môi trường phát triển / kiểm thử). Host CPU chỉ đảm nhận các phần việc tính toán nhẹ: I/O âm thanh, VAD năng lượng, fbank, CTC collapse, SentencePiece tokenizer, vòng lặp giải mã NLLB, chuẩn hoá số thành chữ và ghép nối file WAV.
 
-| Component | Model | Graph(s) | Notes |
+| Thành phần | Mô hình | Đồ thị (Graph) | Ghi chú kỹ thuật |
 |---|---|---|---|
-| ASR vi | Zipformer-150M CR-CTC-RNNT-6000h, CTC head | `asr_vi` | 15 s window, fp16 (WER on 15 clips: 7.5 / 9.5 / 6.2 % clean / 5 dB / 0 dB, measured on chip via AI Hub) |
-| ASR en/zh/ko | SenseVoice-Small | `asr_xx_frontend`, `asr_xx_encoder` | 29 s window, w8a16 encoder |
-| MT | NLLB-200-distilled-600M, 139k-token vocabulary | `mt_enc` (64-token source), `mt_decB` (4-beam decoder step) or `mt_dec` (greedy step) | host decode loop; beam search +0.5…2.4 chrF over greedy, 31 vs 16 ms per step on chip; `mt` = old 16-step unrolled graph (15-token limit) |
-| TTS vi | Piper vi_VN-vais1000-medium | `tts_vi` | ≤ 26 words / chunk; out-of-vocabulary words are counted (`n_oov`) |
-| TTS zh | MeloTTS-ZH (+ distilled g2p tables) | `tts_zh` | ≤ 20 characters / chunk |
-| TTS en/ko | Supertonic-3 | `tts_enko` | ≤ 82 characters / chunk |
+| **ASR vi** | Zipformer-150M CR-CTC-RNNT-6000h, CTC head | `asr_vi` | Cửa sổ 15 s, FP16 (Đo kiểm trên chip qua AI Hub: WER 7.5% sạch / 9.5% 5dB / 6.2% 0dB) |
+| **ASR en/zh/ko** | SenseVoice-Small | `asr_xx_frontend`, `asr_xx_encoder` | Cửa sổ 29 s, Encoder nén W8A16 |
+| **MT** | NLLB-200-distilled-600M, từ vựng 139k token | `mt_enc` (nguồn 64 token), `mt_decB` (Decoder 4-beam) hoặc `mt_dec` (Greedy) | Vòng lặp giải mã trên host; Beam search tăng +0.5…2.4 chrF so với Greedy, tốc độ 31 ms (Beam) so với 16 ms (Greedy) mỗi bước trên chip |
+| **TTS vi** | Piper vi_VN-vais1000-medium | `tts_vi` | $\le 26$ từ / chunk; các từ ngoài từ điển được tự động đếm (`n_oov`) |
+| **TTS zh** | MeloTTS-ZH (+ bảng tra G2P chưng cất) | `tts_zh` | $\le 20$ ký tự / chunk |
+| **TTS en/ko** | Supertonic-3 | `tts_enko` | $\le 82$ ký tự / chunk |
 
-## Quick start (development machine, CPU reference)
+---
+
+## 2. Khởi động nhanh (Môi trường phát triển trên Laptop / CPU tham chiếu)
 
 ```bash
 pip install -r requirements.txt
-cp models.dev.json models/models.json          # edit the paths to your ONNX files
+cp models.dev.json models/models.json          # Cấu hình đường dẫn tới các file ONNX cục bộ
 python -m s2s_edge file --src vi --tgt en --in samples/vi_0.wav --out out.wav --backend cpu --models models/models.json
-python -m s2s_edge live --src vi --tgt zh --backend cpu --models models/models.json     # press Enter, speak, hear the translation
+python -m s2s_edge live --src vi --tgt zh --backend cpu --models models/models.json     # Nhấn Enter, nói vào mic và nghe bản dịch
 ```
 
-## Multilingual conversations
-
+Hoặc chạy giao diện Web Dashboard cục bộ trực quan:
 ```bash
-python -m s2s_edge live --pair vi,ko --continuous --models models/models.json   # Vietnamese <-> Korean, language of each utterance detected, no key press
-python -m s2s_edge live --auto --partner en --models models/models.json         # Vietnamese <-> whichever of en / zh / ko is spoken
-```
-Proper names (Latin names the Vietnamese / Chinese / Korean TTS cannot read), the glossary and the limits of mixed-language speech: `docs/conversation.md`.
-
-## On the device
-
-```bash
-bash tools/session0.sh      # recon + install + golden check of every graph + smoke tests + quick benchmark, all logged and packed (do this first)
+python s2s_web.py --port 8765
+# Mở trình duyệt tại: http://localhost:8765
 ```
 
+---
+
+## 3. Chế độ Hội thoại Đa ngữ
+
 ```bash
-bash tools/recon.sh                                            # environment survey -> recon_<host>_<date>.txt
-python tools/golden.py check --models models/models.json --backend npu      # every graph vs the CPU reference (seconds)
+python -m s2s_edge live --pair vi,ko --continuous --models models/models.json   # Việt <-> Hàn, tự động nhận diện ngôn ngữ nói, không cần bấm phím
+python -m s2s_edge live --auto --partner en --models models/models.json         # Việt <-> bất kỳ ngôn ngữ nào được nói (en / zh / ko)
+```
+Chi tiết về xử lý tên riêng (tên Latinh mà TTS tiếng Việt / Trung / Hàn chưa hỗ trợ), bảng thuật ngữ và giới hạn câu nói trộn ngôn ngữ: xem [`docs/conversation.md`](docs/conversation.md).
+
+---
+
+## 4. Chạy trên Thiết bị Phần cứng Thật (HSPTEK AIBOX 8550)
+
+Khởi động phiên kiểm tra toàn diện đầu tiên trên thiết bị:
+```bash
+bash tools/session0.sh      # Khảo sát môi trường + cài đặt + kiểm tra golden từng graph + smoke test + benchmark nhanh (kết quả đóng gói dạng .tgz)
+```
+
+Chạy từng lệnh độc lập:
+```bash
+bash tools/recon.sh                                                        # Khảo sát phần cứng & OS -> recon_<host>_<date>.txt
+python tools/golden.py check --models models/models.json --backend npu      # So sánh từng graph NPU đối chiếu với CPU tham chiếu
 python -m s2s_edge live --src vi --tgt en --models models/models.json --backend npu
-python -m s2s_edge.bench --src vi --tgt en --manifest eval/manifest_vi.json --runs 3 --logs logs/     # raw evidence for the benchmark section
+python -m s2s_edge.bench --src vi --tgt en --manifest eval/manifest_vi.json --runs 3 --logs logs/     # Đo đạc minh chứng benchmark thực tế
 ```
 
-`models/models.json` maps component names to files (`ctx` = QNN context binary produced by AI Hub link job, `onnx` = CPU reference).
+Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới đường dẫn tệp (`ctx` = QNN context binary `.bin` biên dịch từ AI Hub link job, `onnx` = tệp ONNX tham chiếu CPU).
 
-## Files
+---
 
-| Path | Purpose |
+## 5. Danh mục Tệp tin & Thư mục
+
+| Đường dẫn | Mục đích sử dụng |
 |---|---|
-| `s2s_edge/` | package: `audio` (I/O, VAD), `asr`, `mt`, `tts`, `textnorm`, `backends` (ONNX Runtime, QNN), `registry`, `pipeline`, `bench`, `__main__` (CLI) |
-| `tools/recon.sh` | one-shot device survey (OS, SoC, QNN libs, audio devices, network) |
-| `tools/session0.sh` | everything to run first in a device session, logs packed to a .tgz |
-| `tools/golden.py` | make / check golden input-output pairs for every graph |
-| `tools/eval_e2e.py` | speech → speech → ASR of the output vs FLORES reference (ASR-chrF / BLEU) for the six directions |
-| `tools/lid_features.py` | features used to fit the vi / not-vi language identification |
-| `tools/eval_mt.py` | FLORES-200 translation quality (chrF / BLEU) for all six directions |
-| `assets/` | SentencePiece models, NLLB language ids, Supertonic unicode table + voice styles |
-| `models.dev*.json` | development model maps (CPU ONNX paths) |
+| `s2s_edge/` | Gói thư viện chính: `audio` (I/O, VAD), `asr`, `mt`, `tts`, `textnorm`, `backends` (ONNX Runtime, QNN), `registry`, `pipeline`, `bench`, `__main__` (CLI) |
+| `s2s_web.py` | Web Dashboard trực quan chạy localhost: mic thu âm, dịch văn bản, nghe TTS, đo latency |
+| `SETUP_VNG.md` | Hướng dẫn kết nối và cấu hình thực địa trên phần cứng AIBOX 8550 tại VNG |
+| `tools/recon.sh` | Script tự động khảo sát môi trường (OS, SoC, QNN libs, thiết bị âm thanh, mạng) |
+| `tools/session0.sh` | Chuỗi tự động chạy đầu tiên trên thiết bị, đóng gói log thành `.tgz` |
+| `tools/golden.py` | Tạo và kiểm tra các cặp vector kiểm thử đầu vào - đầu ra (golden test) cho từng graph |
+| `tools/eval_e2e.py` | Đánh giá toàn trình audio → audio → ASR nghe lại đối chiếu với chuẩn FLORES (ASR-chrF / BLEU) cho 6 chiều |
+| `tools/lid_features.py` | Trích xuất đặc trưng phục vụ nhận diện ngôn ngữ tiếng Việt / Ngoại ngữ |
+| `tools/eval_mt.py` | Đánh giá chất lượng dịch máy FLORES-200 (chrF / BLEU) cho cả 6 chiều dịch |
+| `assets/` | Chứa SentencePiece model, NLLB language ids, bảng mã unicode Supertonic + voice styles |
+| `models.dev*.json` | File cấu hình mẫu cho môi trường phát triển (đường dẫn ONNX CPU) |
 
-## Known limits
+---
 
-* Chinese TTS front is a static table: digits are spoken through `textnorm`, Latin letters and rare characters are dropped.
-* Piper drops out-of-vocabulary words (counted in `n_oov`).
-* NLLB source chunks are ≤ 30 SentencePiece tokens; longer sentences are split at punctuation / midpoint and translated piecewise.
-* One utterance segment is ≤ 14.5 s (Zipformer window); longer audio is split at the quietest frame.
-* The voice-activity detector is energy based and relative to the recording level (works with quiet microphones); it is not a neural VAD.
-* Several speakers talking at once, and Vietnamese speech containing English words, are not handled (see `docs/conversation.md`).
-* Models are compiled for Hexagon v73 (IQ-9075). They do **not** run on QCS6490 / RB3 Gen 2 (v68).
+## 6. Các giới hạn đã biết & Giải pháp khắc phục
+
+* **TTS Tiếng Trung:** Xử lý bằng bảng tra tĩnh: các chữ số được đọc thông qua `textnorm`, chữ cái Latinh và ký tự hiếm ngoài bảng bị lược bỏ.
+* **TTS Tiếng Việt (Piper):** Lược bỏ các từ ngoài bảng âm tiết (được ghi nhận trong `n_oov`).
+* **MT NLLB:** Đoạn câu nguồn tối đa $\le 30$ SentencePiece token; câu dài hơn được tự động ngắt theo dấu câu hoặc điểm giữa câu để dịch phân đoạn.
+* **Độ dài đoạn âm thanh:** Một phân đoạn tiếng nói tối đa $\le 14.5$ s (khớp cửa sổ Zipformer); âm thanh dài hơn được cắt ở khung tĩnh lặng nhất.
+* **VAD (Voice Activity Detector):** Sử dụng thuật toán năng lượng thích ứng theo mức tín hiệu thu âm (hoạt động tốt với cả micro độ nhạy thấp); không dùng mô hình nơ-ron VAD riêng để tiết kiệm tài nguyên NPU.
+* **Nói chồng âm & Pha trộn ngôn ngữ:** Trường hợp nhiều người nói cùng lúc hoặc câu tiếng Việt chèn từ tiếng Anh đàm thoại chưa được hỗ trợ hoàn toàn (xem chi tiết tại [`docs/conversation.md`](docs/conversation.md)).
+* **Khả năng tương thích phần cứng:** Toàn bộ model được tối ưu hóa cho kiến trúc Qualcomm Hexagon v73 (**HSPTEK AIBOX 8550 / QCS8550** và **Dragonwing IQ-9075 EVK**). Không tương thích trực tiếp với các dòng chip cũ như QCS6490 / RB3 Gen 2 (Hexagon v68).

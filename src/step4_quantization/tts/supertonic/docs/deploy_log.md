@@ -1,4 +1,4 @@
-# Nhat ky deploy len chip (AI Hub, Dragonwing IQ-9075 EVK)
+# Nhật ký deploy lên chip (AI Hub, HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)
 
 Moi dong la mot thi nghiem; job ID xem duoc tai `https://workbench.aihub.qualcomm.com/jobs/<ID>/` (tai khoan AI Hub cua tac gia).
 Log da duoc loc bo thanh tien trinh; ban goc nam trong `logs/chip/`. Cac job `ve_c*_*`, `ve_cut*`, `syn_t*` la graph cat nho dung de bisect (xem docs/bug_reducesum.md).

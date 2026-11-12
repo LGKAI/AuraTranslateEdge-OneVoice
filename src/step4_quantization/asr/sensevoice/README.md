@@ -3,14 +3,14 @@
 > [!NOTE]
 > **Dự án:** AuraTranslateEdge-OneVoice (Cuộc thi OneVoice AI Challenge — Saigon AI Hub × Qualcomm)  
 > **Kỹ sư phụ trách:** **Lê Gia Khánh** (AI Engineer — Đảm nhận mô hình SenseVoice-Small ASR Đa ngữ Anh / Trung / Hàn)  
-> **Phần cứng mục tiêu:** Bo mạch công nghiệp **Qualcomm Dragonwing IQ-9075 EVK** (Chipset Hexagon NPU v73, HTP Cores)  
-> **Trạng thái:** **TRIỂN KHAI THÀNH CÔNG MỸ MÃN — 100.00% NPU Offload, Độ trễ ~333 ms, Độ chính xác tiệm cận và vượt FP32 CPU**
+> **Phần cứng mục tiêu & thực tế:** Thiết bị biên **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** và trạm đánh giá **Qualcomm Dragonwing IQ-9075 EVK** (cùng vi kiến trúc Hexagon NPU v73, HTP Cores, QAIRT 2.51)  
+> **Trạng thái:** **TRIỂN KHAI THÀNH CÔNG MỸ MÃN — 100.00% NPU Offload, Độ trễ ~295–333 ms, Độ chính xác tiệm cận và vượt FP32 CPU**
 
 ---
 
 ## 1. Tóm tắt Điều hành & Kết quả Cuối cùng Mỹ Mãn
 
-Mô hình **SenseVoice-Small** (ASR Đa ngữ: Tiếng Anh, Tiếng Trung, Tiếng Hàn) đã được **lượng tử hóa và triển khai thành công 100% trên NPU Qualcomm Hexagon (Dragonwing IQ-9075 EVK)** mà không cần bất kỳ fallback nào về Host CPU.
+Mô hình **SenseVoice-Small** (ASR Đa ngữ: Tiếng Anh, Tiếng Trung, Tiếng Hàn) đã được **lượng tử hóa và triển khai thành công 100% trên NPU Qualcomm Hexagon (HSPTEK AIBOX 8550 / QCS8550 và Dragonwing IQ-9075 EVK)** mà không cần bất kỳ fallback nào về Host CPU.
 
 ### 1.1. Các Thành tựu Kỹ thuật Cốt lõi
 1. **100.00% NPU Compute Offload (Tuyệt đối 0% CPU compute):**

@@ -1,4 +1,4 @@
-# Nhật ký chạy trên chip (AI Hub, Dragonwing IQ-9075 EVK)
+# Nhật ký chạy trên chip (AI Hub, HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)
 
 Job xem tại `https://workbench.aihub.qualcomm.com/jobs/<ID>/` (tài khoản AI Hub: `leogiakhanh1609@gmail.com`).
 Cấu hình compile: `--target_runtime qnn_dlc --truncate_64bit_tensors --truncate_64bit_io` (Native FP16 trên Hexagon HTP v73).

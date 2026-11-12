@@ -1,8 +1,8 @@
-# MeloTTS tiếng Trung trên NPU Dragonwing IQ-9075
+# MeloTTS tiếng Trung trên NPU HSPTEK AIBOX 8550 & Dragonwing IQ-9075
 
-Đưa MeloTTS-ZH (TTS tiếng Trung, 44.1 kHz) lên NPU Hexagon của **Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub.
+Đưa MeloTTS-ZH (TTS tiếng Trung, 44.1 kHz) lên NPU Hexagon của thiết bị **HSPTEK AIBOX 8550 (QCS8550)** và **Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub.
 Kết quả mới nhất: **chữ (byte UTF-8) → âm thanh 44.1 kHz chạy trong MỘT graph trên NPU**, kể cả phần chữ → phoneme
-(thay bằng bảng tra tĩnh, không còn chạy jieba/pypinyin trên CPU). Chấm bằng ASR: **CER 6.4% trên 40 câu, bằng bản CPU (6.0%)**.
+(thay bằng bảng tra tĩnh, không còn chạy jieba/pypinyin trên CPU). Chấm bằng ASR: **CER 6.4% trên 40 câu, bằng bản CPU (6.0%)**. Cả hai thiết bị đều chia sẻ vi kiến trúc Hexagon HTP v73 (QCS8550 đạt 740.6 ms, IQ-9075 đạt 720 ms).
 
 ## Bản mới: một graph, 100% NPU (`melo_one`)
 

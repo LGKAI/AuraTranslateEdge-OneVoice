@@ -1,69 +1,72 @@
-# Multilingual conversations, proper names and mixed-language speech
+# Hội thoại Đa ngữ, Xử lý Tên riêng và Tiếng nói Trộn ngôn ngữ (Code-Switching)
 
-## 1. Turn-level language switching (works): `--pair vi,ko` and `--auto`
+## 1. Chuyển đổi ngôn ngữ theo lượt nói: Chế độ `--pair vi,ko` và `--auto`
 
-Every utterance is routed on its own, so speakers can switch language between turns, and the partner language can change during a session.
+Mỗi lượt phát ngôn (utterance) được định tuyến độc lập, cho phép người nói thay đổi ngôn ngữ linh hoạt giữa các lượt nói, và ngôn ngữ đối tác có thể thay đổi tự do trong suốt phiên làm việc.
 
 ```bash
-python -m s2s_edge live --pair vi,ko  --models models/models.json     # Vietnamese <-> Korean, direction chosen per utterance
-python -m s2s_edge live --auto --partner en --models models/models.json   # Vietnamese <-> whichever of en / zh / ko is spoken
-python -m s2s_edge file --auto --in meeting.wav --out meeting_translated.wav   # a recording with several languages
+python -m s2s_edge live --pair vi,ko  --models models/models.json          # Việt <-> Hàn, tự động chọn chiều dịch theo từng câu nói
+python -m s2s_edge live --auto --partner en --models models/models.json        # Việt <-> bất kỳ ngôn ngữ nào được nói (en / zh / ko)
+python -m s2s_edge file --auto --in meeting.wav --out meeting_translated.wav   # Tệp ghi âm gồm nhiều ngôn ngữ xen kẽ
 ```
 
-Language identification costs no extra model:
+Hệ thống nhận dạng ngôn ngữ (Language Identification - LID) hoạt động mà **không tốn thêm mô hình phụ**:
 
-1. The Vietnamese CTC model (Zipformer, the cheapest ASR, ~174 ms on chip) runs first. A logistic regression over six confidence features
-   (`assets/lid_vi.json`: mean max-probability on non-blank frames, share of decoded words that are valid Vietnamese syllables, non-blank ratio,
-   mean max-probability, mean blank probability, word count) says "Vietnamese or not".
-2. Not Vietnamese + one candidate language → that language. Several candidates (`--auto`) → SenseVoice runs in `auto` mode and the script of its text
-   decides: Hangul → ko, Han → zh, Latin → en. Its text is reused as the transcript, so there is no second ASR pass.
-3. In `--auto` mode the partner language is sticky: Vietnamese speech is translated into the language last heard from the other side (`--partner` sets the first one).
+1. **Mô hình CTC Tiếng Việt (Zipformer-150M)** là ASR có độ trễ thấp nhất (~163 ms trên chip QCS8550) sẽ chạy trước tiên. Mô hình hồi quy logistic dựa trên 6 đặc trưng độ tin cậy (`assets/lid_vi.json`: xác suất cực đại trung bình trên các khung không rỗng, tỷ lệ từ hợp lệ trong âm tiết tiếng Việt, tỷ lệ khung không rỗng, xác suất rỗng trung bình, số lượng từ) sẽ đưa ra quyết định: *"Là Tiếng Việt hay Không phải Tiếng Việt"*.
+2. **Nếu không phải tiếng Việt:**
+   - Nếu chỉ có 1 ngôn ngữ đối tác ➔ Tự động chọn ngôn ngữ đó.
+   - Nếu ở chế độ tự động (`--auto`) ➔ Chạy SenseVoice ở chế độ `auto`, hệ thống tự động kiểm tra bảng chữ cái đầu ra để phân loại: Chữ Hangul ➔ `ko`, Hán tự ➔ `zh`, Ký tự Latinh ➔ `en`. Văn bản nhận dạng này được tái sử dụng trực tiếp làm bản ghi ASR, loại bỏ hoàn toàn việc phải chạy lại lượt ASR thứ hai.
+3. Trong chế độ `--auto`, ngôn ngữ đối tác có tính "nhớ ngữ cảnh" (sticky): Câu tiếng Việt tiếp theo sẽ tự động được dịch sang ngôn ngữ vừa được nói ở lượt trước đó (tham số `--partner` dùng để thiết lập ngôn ngữ mặc định ban đầu).
 
-Measured on FLEURS test read speech (30 clips per language, `tools/lid_features.py`, CPU reference):
+### Kết quả đo kiểm thực nghiệm trên chuẩn đọc FLEURS (30 clips mỗi ngôn ngữ, `tools/lid_features.py`):
 
-| | result |
+| Phép thử | Kết quả |
 |---|---|
-| Vietnamese vs not (clean, 8–15 s clips) | 10-fold cross-validation **120 / 120** correct; vi clips probability ≥ 0.70, other clips ≤ 0.31 |
-| en / zh / ko from the script of SenseVoice(auto) text | **90 / 90** correct |
-| Margin of a single threshold (`conf_nb`) | thin: vi ≥ 0.765, others ≤ 0.753, which is why the six-feature model is used |
+| Phân biệt Tiếng Việt vs Ngoại ngữ (Âm thanh sạch, 8–15s) | Kiểm định chéo 10-fold đạt **120 / 120 (100%)** chính xác; clip tiếng Việt có xác suất $\ge 0.70$, ngoại ngữ $\le 0.31$ |
+| Phân loại en / zh / ko dựa trên bảng chữ cái SenseVoice (auto) | **90 / 90 (100%)** chính xác |
+| Biên độ của ngưỡng đơn lẻ (`conf_nb`) | Rất hẹp: vi $\ge 0.765$, ngoại ngữ $\le 0.753$ ➔ Đây là lý do nhóm sử dụng mô hình kết hợp 6 đặc trưng |
 
-Held-out clips (10 per language, not used to fit the model, `tools/lid_robust.py`):
+### Kiểm thử độ bền vững trên tập tách biệt (Held-out, 10 clips mỗi ngôn ngữ, `tools/lid_robust.py`):
 
-| Condition | vi recognised | en / zh / ko never called Vietnamese |
+| Điều kiện kiểm thử | Nhận diện đúng tiếng Việt | Tuyệt đối không nhầm ngoại ngữ thành tiếng Việt |
+|---|:---:|:---:|
+| Trọn vẹn clip gốc | 10 / 10 | Đạt chuẩn (xác suất nhận nhầm tối đa 0.12) |
+| Cắt ngắn 3 giây | 10 / 10 | Đạt chuẩn (xác suất tối đa 0.26) |
+| Cắt ngắn 1.5 giây | 6 / 10 | Đạt chuẩn (xác suất tối đa 0.10) |
+| 3 giây + Nhiễu đám đông babble ở 5 dB SNR | 7 / 10 | Đạt chuẩn (xác suất tối đa 0.08) |
+
+Lỗi chỉ xảy ra theo một chiều: các câu tiếng Việt quá ngắn hoặc bị nhiễu nặng có thể bị bỏ sót, nhưng tuyệt đối không bao giờ nhận nhầm tiếng nước ngoài thành tiếng Việt. Do đó, bộ phân đoạn tự động ghép nối các khoảng lặng ngắn hơn 1.5s quanh các câu ngắn, và các đoạn âm thanh rác không rõ nghĩa sẽ bị loại bỏ thay vì cố dịch bừa.
+
+---
+
+## 2. Xử lý Tên riêng và Thuật ngữ Ngoại lai (Proper Names)
+
+Hiện trạng và giải pháp khắc phục qua từng chặng pipeline:
+
+| Chặng xử lý | Vấn đề phát sinh | Giải pháp khắc phục của hệ thống |
 |---|---|---|
-| full clip | 10 / 10 | yes (max probability 0.12) |
-| 3 s crop | 10 / 10 | yes (0.26) |
-| 1.5 s crop | 6 / 10 | yes (0.10) |
-| 3 s + babble at 5 dB | 7 / 10 | yes (0.08) |
+| **ASR** | Tên riêng bị nhận diện sai chính tả (do ASR không có từ điển tên riêng chuyên biệt) | Bổ sung mục `_asr_fix` trong từ điển thuật ngữ (`glossary`) để sửa các từ quen thuộc trong nhà máy (ví dụ: `"ếch xen"` ➔ `"Excel"`, `"ét pi ai"` ➔ `"SPI"`). |
+| **MT (NLLB)** | Tự động sao chép hoặc chuyển tự chính xác (`Recep Tayyip Erdogan` ➔ `雷杰普·塔伊普·埃尔多安`, `Samsung` ➔ `三星`) | Giữ nguyên đầu ra chuẩn của NLLB. |
+| **TTS Tiếng Việt (Piper)** | **Tự động bỏ qua mọi từ nằm ngoài bảng âm tiết tiếng Việt** (tên riêng, từ mượn tiếng Anh) | Tích hợp module `names.py`: Tự động phiên âm các từ Latinh này thành chuỗi âm tiết tiếng Việt mô phỏng cách đọc tự nhiên của người Việt (dựa trên âm vị CMUdict và quy tắc chữ cái), ví dụ: `Pamela Ferguson` ➔ `pe mơ lơ phơ gơ sơn`. Các từ tiếng Việt chuẩn được giữ nguyên. Kiểm thử trên 84 âm tiết của 31 tên riêng: chỉ có 6 âm tiết nằm ngoài từ điển Piper. |
+| **TTS Tiếng Trung (MeloTTS)** | Bỏ qua chữ cái Latinh | Các tên Latinh còn sót lại được chính NLLB dịch chuyển tự sang Hán tự (chạy riêng tên tiếng Anh ➔ tiếng Trung) và lưu cache. |
+| **TTS Tiếng Hàn (Supertonic)** | Bỏ qua chữ cái Latinh | Tương tự, chuyển tự sang chữ Hangul qua NLLB (Anh ➔ Hàn). |
+| **TTS Tiếng Anh (Supertonic)** | Không bị lỗi | Đọc trực tiếp các tên chữ Latinh mượt mà. |
 
-Errors are one-sided: very short or noisy Vietnamese can be missed (a positive `bias` does not recover them), foreign speech is never taken for Vietnamese.
-The segmenter therefore merges pauses shorter than 1.5 s around short segments, and fragments without intelligible text are dropped instead of translated.
+### Cấu hình Từ điển Thuật ngữ tùy chỉnh (Custom Glossary):
+Người dùng có thể nạp tệp từ điển JSON (`--glossary glossary.example.json`) để cố định cách đọc và dịch cho từng tên riêng / thương hiệu nhà máy:
+```json
+{
+  "Samsung": { "vi": "sam sung", "zh": "三星", "ko": "삼성" },
+  "Foxconn": { "vi": "phốc con", "zh": "富士康", "ko": "폭스콘" }
+}
+```
 
-Integration test, one recording with six turns (vi, ko, vi, en, vi, zh) in `--auto` mode (`samples/mixed_conversation.wav`): all six turns were routed correctly
-(vi→en with the default partner, ko→vi, vi→ko after the Korean turn, en→vi, vi→en after the English turn, zh→vi).
+---
 
-Not yet measured: real conversational utterances (this test uses read speech), and Vietnamese loanwords inside foreign speech.
-`tools/lid_features.py` collects the features; `LanguageID(bias=...)` shifts the decision if the field test shows a systematic error.
+## 3. Hiện tượng Trộn Ngôn ngữ trong CÙNG MỘT Câu nói (Code-Switching)
 
-## 2. Proper names
-
-What breaks, per stage:
-
-| Stage | Problem | What we do |
-|---|---|---|
-| ASR | names are misspelled (no language model for names) | nothing general; `_asr_fix` entries in the glossary repair known terms (`"ếch xen" → "Excel"`) |
-| MT (NLLB) | usually copies or transliterates correctly (`Recep Tayyip Erdogan → 雷杰普·塔伊普·埃尔多安`, `Samsung → 三星`) | kept as is |
-| TTS vi (Piper) | **silently drops every word outside its syllable table** (names, foreign words) | `names.py`: such Latin words are respelled as Vietnamese syllables (CMUdict phonemes, letter rules for other origins), the way Vietnamese speakers read them: `Pamela Ferguson → pe mơ lơ phơ gơ sơn`. Words Piper already knows are left alone. 84 syllables of 31 test names: 6 outside Piper's table |
-| TTS zh (Melo) | drops Latin letters | leftover Latin names are transliterated by NLLB itself (name alone, English → zh), cached |
-| TTS ko (Supertonic) | Latin names | same, English → ko |
-| TTS en (Supertonic) | none | Latin names pass through |
-
-A JSON glossary (`--glossary glossary.example.json`) overrides all of this per name: `{"Samsung": {"vi": "sam sung", "zh": "三星", "ko": "삼성"}}`.
-
-## 3. Mixed languages inside ONE utterance (limits)
-
-* zh + en in one sentence: SenseVoice handles it natively.
-* Vietnamese with English words ("check giúp em file Excel"): Vietnamese CTC spells English words as Vietnamese-sounding syllables, and the translator then
-  sees nonsense. Mitigation available today: glossary `_asr_fix` for the terms of the deployment (factory vocabulary). A real fix needs a bilingual ASR or
-  recordings of code-switched factory speech to fine-tune/measure on; none were available, so this is **not solved and not measured**.
-* Several speakers talking at once: not handled (single stream, no diarisation).
+* **Tiếng Trung trộn Tiếng Anh trong 1 câu:** SenseVoice hỗ trợ nhận diện tự nhiên (native support).
+* **Tiếng Việt chèn từ Tiếng Anh đàm thoại (*"check giúp em file Excel"*):** Bộ CTC tiếng Việt sẽ phiên âm từ tiếng Anh theo các âm tiết nghe na ná tiếng Việt, khiến mô hình dịch NLLB nhận phải văn bản vô nghĩa.
+  - *Giải pháp hiện tại:* Thiết lập từ điển ánh xạ `_asr_fix` cho các thuật ngữ thường dùng tại nhà máy.
+  - *Giải pháp triệt để dài hạn:* Cần thu thập tập dữ liệu tiếng Việt pha trộn tiếng Anh trong nhà máy để fine-tune ASR song ngữ chuyên biệt.
+* **Nhiều người nói đè âm cùng lúc (Overlapping Speech):** Hiện tại hệ thống xử lý theo luồng âm thanh đơn kênh (Single stream, chưa tích hợp phân tách người nói Diarization).

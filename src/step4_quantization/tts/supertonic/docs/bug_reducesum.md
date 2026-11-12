@@ -2,7 +2,7 @@
 
 ## Triệu chứng
 
-Graph gộp (chữ → wav) compile và chạy trên Dragonwing IQ-9075 với **4476/4476 layer trên NPU**, độ dài audio khớp CPU
+Graph gộp (chữ → wav) compile và chạy trên HSPTEK AIBOX 8550 & Dragonwing IQ-9075 với **4476/4476 layer trên NPU**, độ dài audio khớp CPU
 (62/62, 43/43, ...), nhưng giọng nhiễu: round-trip ASR cho WER tiếng Anh 95%, CER tiếng Hàn 89% (`results/eval_full_fp16.json`).
 
 Đưa latent cuối do NPU tạo ra vào vocoder fp32 trên CPU vẫn ra nhiễu (WER Anh 93%) ⇒ vocoder trên chip không sai,

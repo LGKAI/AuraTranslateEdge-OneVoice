@@ -1,7 +1,7 @@
-# Supertonic 3 TTS trên NPU Dragonwing IQ-9075 — một graph, một lần inference
+# Supertonic 3 TTS trên NPU HSPTEK AIBOX 8550 & Dragonwing IQ-9075 — một graph, một lần inference
 
 Đưa toàn bộ chuỗi **chữ → âm thanh** của Supertonic 3 (tiếng Anh, tiếng Hàn) lên NPU Hexagon của
-**Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub, dưới dạng **một graph ONNX duy nhất, một lần gọi inference**.
+thiết bị **HSPTEK AIBOX 8550 (QCS8550)** và **Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub, dưới dạng **một graph ONNX duy nhất, một lần gọi inference**.
 Đo bằng phần cứng thật, có job ID và log đầy đủ.
 
 > Mọi số liệu dưới đây là kết quả thật của tác giả trên tài khoản AI Hub của họ. Mẫu đánh giá nhỏ

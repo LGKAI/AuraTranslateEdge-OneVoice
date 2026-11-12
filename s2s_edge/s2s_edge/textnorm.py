@@ -139,10 +139,25 @@ _VI_EXCLAM_WORDS = re.compile(
 _VI_EXCLAM_LAST = {"quá", "lắm", "nào"}
 
 _SPLIT_PATTERNS = [
-    (re.compile(r"^(xin chào|chào (?:anh|chị|em|bạn|bác|chú|cô|mọi người))\s+(?=(?:tôi|chúng tôi|em|mình)\b)", re.IGNORECASE), r"\1! "),
+    (re.compile(r"^(xin chào|chào (?:anh|chị|em|bạn|bác|chú|cô|mọi người))\s+(?=(?:tôi|chúng tôi|em|mình|cho)\b)", re.IGNORECASE), r"\1! "),
     (re.compile(r"^(vâng|đúng rồi|được rồi|dạ|ừ|chắc chắn rồi)\s+(?=(?:tôi|chúng tôi|em|mình|chúng ta|anh|chị)\b)", re.IGNORECASE), r"\1. "),
-    (re.compile(r"\b(được không|đúng không|phải không)\s+(?=(?:tôi|chúng tôi|em|mình|chúng ta)\b)", re.IGNORECASE), r"\1? "),
+    (re.compile(r"\b(được không|đúng không|phải không|hay không)((?:\s+(?:anh|chị|em|bác|chú|cô|bạn|ạ|nhé|nha))?)\s+(?!(?:thì|hay|mà|nên|rồi|chứ|vậy|nhỉ|à|ư)\b)(?=\S+\s+\S+)", re.IGNORECASE), r"\1\2? "),
+    (re.compile(r"\b(hài lòng|xong rồi|đủ rồi|tốt rồi|được rồi|cảm ơn(?:\s+(?:anh|chị|em|bác|cô|chú|bạn|ạ))?)\s+(?=(?:bao nhiêu tiền|hết bao nhiêu|mất bao nhiêu|tổng cộng)\b)", re.IGNORECASE), r"\1. "),
+    (re.compile(r"\b(chút đi|sớm đi|trước đi|ngay đi|thôi đi)\s+(?=.+\b(?:thế nào|như nào|mấy giờ|ở đâu|được không)\b)", re.IGNORECASE), r"\1. "),
 ]
+
+_VI_CAP_SUBS = [
+    (re.compile(r"\bthứ\s+(hai|ba|tư|năm|sáu|bảy)\b", re.IGNORECASE), lambda m: "thứ " + m.group(1).capitalize()),
+    (re.compile(r"\bchủ nhật\b", re.IGNORECASE), lambda _: "Chủ nhật"),
+    (re.compile(r"\b(việt nam|hà nội|hồ chí minh|sài gòn|đà nẵng|trung quốc|hàn quốc|nhật bản|hoa kỳ|châu âu|châu á)\b", re.IGNORECASE), lambda m: m.group(1).title()),
+    (re.compile(r"\btiếng\s+(việt|anh|hàn|trung|nhật|pháp|đức)\b", re.IGNORECASE), lambda m: "tiếng " + m.group(1).capitalize()),
+]
+
+
+def _cap_vi(s):
+    for pat, repl in _VI_CAP_SUBS:
+        s = pat.sub(repl, s)
+    return s[:1].upper() + s[1:]
 
 
 def _punct_clause(c):
@@ -178,7 +193,7 @@ def _punct_clause(c):
     if last_mark == "?" and is_q: mark = "?"
     elif last_mark == "!" and is_ex: mark = "!"
 
-    return s[:1].upper() + s[1:] + mark
+    return _cap_vi(s) + mark
 
 
 def vi_punct(text):

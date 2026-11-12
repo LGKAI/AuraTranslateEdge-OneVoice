@@ -28,8 +28,14 @@ class OrtGraph(Graph):
     def __init__(self, path, name=None):
         super().__init__(); import onnxruntime as ort
         so = ort.SessionOptions(); so.log_severity_level = 3; so.enable_cpu_mem_arena = False; so.enable_mem_pattern = False
-        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
-        self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"]); self.name = name or os.path.basename(path)
+        large_or_ext = os.path.exists(path + ".data") or (os.path.exists(path) and os.path.getsize(path) > 200_000_000)
+        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL if large_or_ext else ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
+        try:
+            self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"])
+        except Exception:
+            so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL
+            self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"])
+        self.name = name or os.path.basename(path)
         self.in_names = [i.name for i in self.s.get_inputs()]
         self.in_types = {i.name: {"tensor(int64)": np.int64, "tensor(int32)": np.int32, "tensor(float)": np.float32, "tensor(float16)": np.float16}.get(i.type, np.float32) for i in self.s.get_inputs()}
 

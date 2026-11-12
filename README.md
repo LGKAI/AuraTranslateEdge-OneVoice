@@ -158,7 +158,7 @@ Kiểm định vòng lặp trên 8 đoạn âm thanh FLEURS mỗi chiều (Âm t
 
 ### 4.3. Đánh giá trên tập dữ liệu mẫu của Ban Tổ Chức (BTC Sample Dataset)
 
-Đo kiểm bằng [`tools/eval_btc.py`](s2s_edge/tools/eval_btc.py) trên tập dữ liệu mẫu được lưu tại [`data/prototype_sample_dataset/`](data/prototype_sample_dataset/):
+Đo kiểm bằng [`tools/eval_btc.py`](s2s_edge/tools/eval_btc.py) trên tập dữ liệu mẫu được lưu tại [`data/phase3_sample_dataset/`](data/phase3_sample_dataset/):
 - **Cặp Vie-Eng (100 câu):** ASR tiếng Việt đạt WER thấp (4–7%), Piper TTS phát âm hoàn chỉnh 100/100 câu không gặp lỗi Out-Of-Vocabulary.
 - **Cặp Vie-Kor & Vie-Man (180 câu):** Hệ thống đọc chính xác các mẫu câu hội thoại thường ngày và thuật ngữ kỹ thuật, độ trễ phản hồi tức thời.
 
@@ -168,15 +168,17 @@ Kiểm định vòng lặp trên 8 đoạn âm thanh FLEURS mỗi chiều (Âm t
 
 ```
 AuraTranslateEdge-OneVoice/
-├── .gitignore                         # Đã hợp nhất toàn diện mọi quy tắc nén & file nhị phân
+├── .gitignore                         # Quy tắc bỏ qua cache, audio thô và file nhị phân nặng
 ├── requirements.txt                   # Thư viện Python tổng thể dự án
 ├── README.md                          # Tài liệu kỹ thuật tổng quan (file hiện tại)
 │
 ├── s2s_edge/                          # ENGINE TRIỂN KHAI EDGE CHÍNH THỨC (PHASE 3)
 │   ├── README.md                      # Chi tiết kiến trúc NPU Qualcomm Hexagon v73
 │   ├── requirements.txt               # Dependencies tối giản phục vụ chạy on-device (7 gói)
+│   ├── s2s_web.py                     # Giao diện Web Dashboard cục bộ thử nghiệm S2S
+│   ├── glossary.example.json          # File cấu hình thuật ngữ mẫu
 │   ├── glossary_enterprise.json       # Bảng thuật ngữ chuyên ngành công nghiệp & FDI
-│   ├── models.dev.json                # Cấu hình đường dẫn model ONNX tham chiếu CPU
+│   ├── models.dev*.json               # Cấu hình đường dẫn model ONNX tham chiếu CPU
 │   ├── assets/                        # Dữ liệu tĩnh runtime (Tokenizers, Vocab, Styles)
 │   │   ├── nllb_spm.model             # SentencePiece model cho NLLB-200
 │   │   ├── zipformer_bpe.model        # BPE model cho Zipformer Vi
@@ -184,55 +186,55 @@ AuraTranslateEdge-OneVoice/
 │   │   ├── supertonic_unicode_indexer.json
 │   │   ├── piper_vi_words.txt         # Từ điển từ vựng Piper tiếng Việt
 │   │   └── vi_capu/                   # Từ điển khôi phục dấu câu & chữ hoa
-│   ├── docs/                          # Báo cáo chuyên sâu Phase 3
-│   │   ├── aibox8550_report.pdf       # Đánh giá chi tiết thiết bị HSPTEK AIBOX 8550
-│   │   ├── chip_results.md            # Bảng tổng hợp thời gian chip đo qua AI Hub
-│   │   ├── device_plan.pdf            # Kế hoạch điều hành buổi đo kiểm tại VNG Campus
-│   │   └── quality_ideas.pdf          # Tổng hợp cải tiến phục hồi dấu câu & chất lượng
+│   ├── docs/                          # Tài liệu kỹ thuật & báo cáo chuyên sâu Phase 3
+│   ├── eval/                          # Bộ dữ liệu chia tập đánh giá (`btc_split.json`)
+│   ├── models_relinked/               # Danh sách liên kết model QNN cho AIBOX 8550
 │   ├── s2s_edge/                      # Module mã nguồn thực thi chính
 │   │   ├── __main__.py                # CLI Entrypoint (lệnh 'file', 'live', 'inspect')
 │   │   ├── audio.py                   # I/O âm thanh, resampling và Adaptive Energy VAD
 │   │   ├── backends.py                # Wrapper trừu tượng hoá NPU (QNN) và CPU (ONNXRuntime)
 │   │   ├── asr.py                     # Wrapper Zipformer-150M và SenseVoice-Small
+│   │   ├── denoise.py                 # Mô-đun khử nhiễu GTCRN tuỳ chọn
 │   │   ├── punct_vi.py                # Phục hồi dấu câu & chữ hoa tiếng Việt
-│   │   ├── textnorm.py                # Chuẩn hoá số sang chữ (vi, en, zh, ko)
+│   │   ├── textnorm.py                # Chuẩn hoá số sang chữ & khôi phục dấu câu/ngắt câu
+│   │   ├── names.py                   # Xử lý phiên âm tên riêng ngoại lai
 │   │   ├── mt.py                      # Host decode loop cho NLLB (Greedy & 4-Beam)
 │   │   ├── tts.py                     # Wrapper Piper, MeloTTS và Supertonic-3
+│   │   ├── registry.py                # Bộ quản lý nạp đồ thị và warmup mô hình
 │   │   ├── conversation.py            # Quản lý phiên hội thoại song ngữ hai chiều
-│   │   └── pipeline.py                # Lớp điều phối toàn trình S2S
+│   │   ├── pipeline.py                # Lớp điều phối toàn trình S2S
+│   │   └── bench.py                   # Đo kiểm độ trễ & hiệu năng đầu-cuối
 │   └── tools/                         # Bộ công cụ vận hành thiết bị & kiểm thử
 │       ├── recon.sh                   # Khảo sát phần cứng, driver, NPU trên AIBOX 8550
 │       ├── session0.sh                # Script tự động hoá kiểm tra lần đầu trên thiết bị
 │       ├── golden.py                  # Kiểm chứng sai số NPU vs CPU parity
 │       ├── eval_btc.py                # Đánh giá chất lượng trên tập dữ liệu mẫu BTC
+│       ├── eval_vi_punct.py           # Kiểm thử độ chính xác phục hồi dấu câu tiếng Việt
 │       ├── run_btc.sh                 # Kịch bản chạy toàn bộ tập BTC và đóng gói log
 │       └── thermal_soak.py            # Kiểm tra độ ổn định nhiệt độ & quá nhiệt
 │
 ├── data/                              # DỮ LIỆU ĐO KIỂM & TẬP MẪU
-│   ├── prototype_sample_dataset/      # Tập dữ liệu mẫu của BTC (Vie-Eng, Vie-Kor, Vie-Man)
-│   ├── asr/                           # Dữ liệu đối chứng FLEURS theo ngôn ngữ
+│   ├── phase3_sample_dataset/         # Tập dữ liệu mẫu Phase 3 của BTC (Vie-Eng, Vie-Kor, Vie-Man)
+│   ├── asr/                           # Dữ liệu đối chứng ASR theo ngôn ngữ
+│   ├── asr_mixed/                     # Dữ liệu ASR trộn nhiễu nhiều mức SNR
+│   ├── clean/                         # Mẫu âm thanh sạch chuẩn hoá
 │   ├── mt/                            # Dữ liệu đối chứng FLORES-200
 │   └── noise/                         # Tạp âm công nghiệp mô phỏng
 │
 ├── docs/                              # TÀI LIỆU KỸ THUẬT & HỒ SƠ ĐỀ ÁN
-│   ├── report_aibox8550.pdf           # Báo cáo đánh giá phần cứng HSPTEK AIBOX 8550
-│   ├── plan_os_hardware.pdf           # Kế hoạch hệ điều hành & phần cứng hoàn chỉnh
-│   ├── plan_pipeline.pdf              # Kế hoạch kiến trúc pipeline toàn trình
-│   ├── report_asr.pdf                 # Báo cáo kiểm thử nhận diện giọng nói ASR
-│   ├── report_mt.pdf                  # Báo cáo kiểm thử dịch máy MT NLLB
-│   ├── report_tts.pdf                 # Báo cáo kiểm thử tổng hợp giọng nói TTS
-│   ├── phase3_prototype_submission_draft.md # Bản nháp thuyết minh nộp bài Phase 3
-│   ├── phase3_prototype_submission.docx     # Hồ sơ nộp bài Phase 3 Prototype
-│   └── phase3_prototype_submission_brief.pdf
 │
 ├── src/                               # KHO NGHIÊN CỨU & MÔ-ĐUN HOÁ BAN ĐẦU
-│   ├── step1_asr/                     # Thử nghiệm Zipformer-30M & SenseVoice FP32
+│   ├── step1_asr/                     # Thử nghiệm Zipformer & SenseVoice FP32
 │   ├── step2_mt/                      # Thử nghiệm NLLB CTranslate2 INT8
 │   ├── step3_tts/                     # Thử nghiệm Piper, Supertonic, MeloTTS
 │   ├── step4_quantization/            # Xuất đồ thị NPU & Thử nghiệm Qualcomm AI Hub
 │   └── step5_pipeline/                # Pipeline kết nối CPU ban đầu
 │
-└── outputs/                           # Log kết quả, báo cáo đo đạc và đồ thị benchmark
+├── third_party/                       # MÃ NGUỒN & TRỌNG SỐ BÊN THỨ BA
+│   ├── gtcrn/                         # Mô hình lọc nhiễu giọng nói GTCRN ONNX
+│   └── zipformer/                     # Trọng số tham chiếu Zipformer-30M / 150M
+│
+└── outputs/                           # Log kết quả, báo cáo đo đạc và kết quả kiểm thử
 ```
 
 ---
@@ -274,7 +276,7 @@ cd s2s_edge
 
 # Chạy đánh giá trên 10 câu mẫu cặp Việt - Anh
 python tools/eval_btc.py \
-    --data ../data/prototype_sample_dataset \
+    --data ../data/phase3_sample_dataset \
     --models models.dev.json \
     --backend cpu \
     --dirs vi-en,en-vi \
@@ -302,7 +304,7 @@ bash tools/session0.sh
 python tools/golden.py check --models models_qcs8550/models.json --backend npu
 
 # 5. Chạy toàn bộ bài test dữ liệu BTC trên NPU và đóng gói log nộp bài
-bash tools/run_btc.sh /home/user/data/prototype_sample_dataset 0 models_qcs8550/models.json
+bash tools/run_btc.sh /home/user/data/phase3_sample_dataset 0 models_qcs8550/models.json
 ```
 
 ---

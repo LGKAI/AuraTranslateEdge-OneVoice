@@ -1,0 +1,149 @@
+{
+  "results": [
+    {
+      "id": "VE-0371",
+      "wav": "data/phase3_sample_dataset/Vie-Eng dataset/Vie-Eng/wav/VE-0371.wav",
+      "duration_s": 3.4,
+      "target_lang": "en",
+      "gold_vi": "Hạn cuối là thứ Sáu đúng không?",
+      "gold_en": "The deadline is Friday, right?",
+      "vad_segments_count": 1,
+      "asr_raw_joined": "hẹn cuối là thứ sáu đúng không",
+      "asr_restored_joined": "Hẹn cuối là thứ Sáu đúng không?",
+      "split_sentences": [
+        "Hẹn cuối là thứ Sáu đúng không?"
+      ],
+      "mt_en_joined": "The last one's Friday, right?",
+      "segments": [
+        {
+          "segment_index": 0,
+          "span_s": [
+            0.44,
+            1.9
+          ],
+          "asr_raw": "hẹn cuối là thứ sáu đúng không",
+          "asr_restored": "Hẹn cuối là thứ Sáu đúng không?",
+          "split_sentences": [
+            "Hẹn cuối là thứ Sáu đúng không?"
+          ],
+          "mt_en": "The last one's Friday, right?",
+          "cpu_elapsed_s": 15.931
+        }
+      ]
+    },
+    {
+      "id": "VK-0755",
+      "wav": "data/phase3_sample_dataset/Vie-Kor dataset/Vie_voice/VK-0755.wav",
+      "duration_s": 2.74,
+      "target_lang": "ko",
+      "gold_vi": "Tôi rất hài lòng. Bao nhiêu tiền?",
+      "gold_ko": "아주 만족스러워요. 얼마예요?",
+      "vad_segments_count": 2,
+      "asr_raw_joined": "tôi rất hài lòng bao nhiêu tiền",
+      "asr_restored_joined": "Tôi rất hài lòng. Bao nhiêu tiền?",
+      "split_sentences": [
+        "Tôi rất hài lòng.",
+        "Bao nhiêu tiền?"
+      ],
+      "mt_ko_joined": "정말 만족합니다 얼마나 많은 돈을?",
+      "mt_en_joined": "I'm very pleased. How much money?",
+      "segments": [
+        {
+          "segment_index": 0,
+          "span_s": [
+            0.18,
+            1.5
+          ],
+          "asr_raw": "tôi rất hài lòng",
+          "asr_restored": "Tôi rất hài lòng.",
+          "split_sentences": [
+            "Tôi rất hài lòng."
+          ],
+          "mt_ko": "정말 만족합니다",
+          "mt_en": "I'm very pleased.",
+          "cpu_elapsed_s": 24.267
+        },
+        {
+          "segment_index": 1,
+          "span_s": [
+            1.88,
+            2.68
+          ],
+          "asr_raw": "bao nhiêu tiền",
+          "asr_restored": "Bao nhiêu tiền?",
+          "split_sentences": [
+            "Bao nhiêu tiền?"
+          ],
+          "mt_ko": "얼마나 많은 돈을?",
+          "mt_en": "How much money?",
+          "cpu_elapsed_s": 27.122
+        }
+      ]
+    },
+    {
+      "id": "VM-4870",
+      "wav": "data/phase3_sample_dataset/Vie-Man dataset/Vie_voice/VM-4870.wav",
+      "duration_s": 7.04,
+      "target_lang": "zh",
+      "gold_vi": "Ngày mai là Chủ nhật, người đi xe chắc chắn sẽ rất đông, chúng ta đi sớm chút đi. Bẩy rưỡi đi thế nào?",
+      "gold_zh": "明天是星期天，坐车的人肯定很多，我们早点去吧。七点半怎么样？",
+      "vad_segments_count": 3,
+      "asr_raw_joined": "ngày mai là chủ nhật người đi xe chắc chắn sẽ rất đông chúng ta đi sớm chút đi bảy rưỡi đi thế nào",
+      "asr_restored_joined": "Ngày mai là Chủ nhật người đi xe chắc chắn sẽ rất đông. Chúng ta đi sớm chút đi. Bảy rưỡi đi thế nào?",
+      "split_sentences": [
+        "Ngày mai là Chủ nhật người đi xe chắc chắn sẽ rất đông.",
+        "Chúng ta đi sớm chút đi.",
+        "Bảy rưỡi đi thế nào?"
+      ],
+      "mt_zh_joined": "明天是星期日,车辆肯定会很大. 我们要早点走. 七半怎么样?",
+      "mt_en_joined": "Tomorrow is Sunday. It's definitely going to be a busy drive. Let's go a little early. How's the seven and a half?",
+      "segments": [
+        {
+          "segment_index": 0,
+          "span_s": [
+            0.0,
+            3.36
+          ],
+          "asr_raw": "ngày mai là chủ nhật người đi xe chắc chắn sẽ rất đông",
+          "asr_restored": "Ngày mai là Chủ nhật người đi xe chắc chắn sẽ rất đông.",
+          "split_sentences": [
+            "Ngày mai là Chủ nhật người đi xe chắc chắn sẽ rất đông."
+          ],
+          "mt_zh": "明天是星期日,车辆肯定会很大.",
+          "mt_en": "Tomorrow is Sunday. It's definitely going to be a busy drive.",
+          "cpu_elapsed_s": 40.64
+        },
+        {
+          "segment_index": 1,
+          "span_s": [
+            3.66,
+            5.12
+          ],
+          "asr_raw": "chúng ta đi sớm chút đi",
+          "asr_restored": "Chúng ta đi sớm chút đi.",
+          "split_sentences": [
+            "Chúng ta đi sớm chút đi."
+          ],
+          "mt_zh": "我们要早点走.",
+          "mt_en": "Let's go a little early.",
+          "cpu_elapsed_s": 23.355
+        },
+        {
+          "segment_index": 2,
+          "span_s": [
+            5.38,
+            6.52
+          ],
+          "asr_raw": "bảy rưỡi đi thế nào",
+          "asr_restored": "Bảy rưỡi đi thế nào?",
+          "split_sentences": [
+            "Bảy rưỡi đi thế nào?"
+          ],
+          "mt_zh": "七半怎么样?",
+          "mt_en": "How's the seven and a half?",
+          "cpu_elapsed_s": 23.113
+        }
+      ]
+    }
+  ]
+}

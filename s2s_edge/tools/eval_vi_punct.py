@@ -11,7 +11,10 @@ files = ["Vie-Eng dataset/Vie-Eng/OneVoice_V_to_E_samples_100.xlsx", "Vie-Kor da
 sents = [str(r[1]).strip() for f in files for r in list(openpyxl.load_workbook(os.path.join(a.data, f), read_only=True).active.values)[1:] if r and r[0]]
 sents = [s for s in sents if s and s[-1] in ".?!"]; cm = {(g, p): 0 for g in "?." for p in "?."}; bad = []
 for s in sents:
-    gold = "?" if s[-1] == "?" else "."; pred = vi_punct(re.sub(r"[^\w\s]", "", s).lower())[-1]; cm[(gold, pred)] += 1
+    gold = "?" if s[-1] == "?" else "."
+    pred_raw = vi_punct(re.sub(r"[^\w\s]", "", s).lower())[-1]
+    pred = "?" if pred_raw == "?" else "."
+    cm[(gold, pred)] += 1
     if gold != pred: bad.append((gold, s))
 ok = cm[("?", "?")] + cm[(".", ".")]
 print(f"accuracy {ok}/{len(sents)} = {ok / len(sents):.3f}   questions found {cm[('?', '?')]}/{cm[('?', '?')] + cm[('?', '.')]}   statements kept {cm[('.', '.')]}/{cm[('.', '.')] + cm[('.', '?')]}")

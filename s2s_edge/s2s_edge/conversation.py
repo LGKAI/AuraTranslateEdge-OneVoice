@@ -28,7 +28,8 @@ def restore_vi(text):
         from .punct_vi import get
         from .registry import ASSETS
         m = get(ASSETS)
-        if m is not None: return m(text)
+        if m is not None:
+            return vi_punct(m(text))
     return vi_punct(text)
 
 HANGUL = re.compile(r"[가-힣ᄀ-ᇿ]"); HAN = re.compile(r"[一-鿿]"); LATIN = re.compile(r"[A-Za-z]")

@@ -1,4 +1,4 @@
-# AuraTranslate Edge — OneVoice
+# AuraTranslate Edge - OneVoice
 
 OneVoice AI Challenge 2026
 

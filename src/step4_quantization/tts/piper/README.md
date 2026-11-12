@@ -1,13 +1,13 @@
-# Piper (tiếng Việt) trên NPU HSPTEK AIBOX 8550 & Dragonwing IQ-9075 qua Qualcomm AI Hub
+# Piper (tiếng Việt) trên NPU HSPTEK AIBOX 8550 (QCS8550) qua Qualcomm AI Hub
 
-Giọng `vi_VN-vais1000-medium` (Piper/VITS). Mục tiêu: chữ → âm thanh, toàn bộ phần mạng chạy trên NPU Hexagon v73 của thiết bị **HSPTEK AIBOX 8550 (QCS8550)** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK**.
+Giọng `vi_VN-vais1000-medium` (Piper/VITS). Mục tiêu: chữ → âm thanh, toàn bộ phần mạng chạy trên NPU Hexagon v73 của thiết bị **HSPTEK AIBOX 8550 (QCS8550)**.
 
 ## Kết quả (đo thật trên AI Hub & trên phần cứng AIBOX 8550)
 | Thử nghiệm | Kết quả |
 |---|---|
 | 5 graph riêng (encoder, sdp, aligner, flow, decoder) | 5/5 chạy, 100% layer trên NPU (403/619/19/310/117). Cosine từng tầng so fp32 ≥ 0.9999 trên cùng đầu vào |
 | Chữ→phoneme trên NPU (`g2p_only`) | Giống hệt espeak ở 3/3 câu, 168/168 layer NPU, 12.5 ms |
-| **Một graph duy nhất: byte UTF-8 → âm thanh** (`fullg8`) | Chạy 1 lần inference, **2077/2077 layer NPU**, 480 ms trên IQ-9075 và 520 ms trên QCS8550 (AIBOX 8550), ra audio 22.05 kHz |
+| **Một graph duy nhất: byte UTF-8 → âm thanh** (`fullg8`) | Chạy 1 lần inference, **2077/2077 layer NPU**, 520 ms trên QCS8550 (AIBOX 8550), ra audio 22.05 kHz |
 
 Chưa kiểm: độ dễ hiểu bằng ASR/nghe thật (chỉ so sóng âm; cosine sóng thấp vì lệch 1–3 frame độ dài do fp16 ở SDP, không có nghĩa là sai).
 

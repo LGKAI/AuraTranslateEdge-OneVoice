@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""TTS Demo Server — Multi-Engine NPU Text-to-Speech Dashboard (HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)
+"""TTS Demo Server — Multi-Engine NPU Text-to-Speech Dashboard (HSPTEK AIBOX 8550)
 
 Hỗ trợ tổng hợp giọng nói hai chiều thời gian thực cho 4 ngôn ngữ:
   🇻🇳 Tiếng Việt (Piper-VITS - vi_VN-vais1000-medium, 22.05 kHz)
@@ -9,7 +9,7 @@ Hỗ trợ tổng hợp giọng nói hai chiều thời gian thực cho 4 ngôn 
 
 Kiến trúc & Tối ưu hóa:
   - 100% NPU Native: Toàn bộ chuỗi Text -> Waveform đóng gói thành Single Static DAG
-  - Hexagon HTP v73: 0% CPU Fallback trên phần cứng HSPTEK AIBOX 8550 (QCS8550) & Dragonwing IQ-9075 EVK
+  - Hexagon HTP v73: 0% CPU Fallback trên phần cứng HSPTEK AIBOX 8550 (QCS8550)
   - Piper-VITS: Bảng tra G2P tĩnh 29.484 âm tiết + Vocoder cửa sổ (2077 layers NPU, 480-520 ms)
   - Supertonic 3: Vá lỗi ReduceSum phần cứng HTP bằng Reshape+MatMul (4476 layers NPU, 701-748 ms, 0.0% WER)
   - MeloTTS-ZH: Bảng tra tĩnh chưng cất 7.335 token + BERT 22 lớp + VITS (3451 layers NPU, 720-740 ms, 6.4% CER)
@@ -39,7 +39,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(CUR_DIR)))
 GEN_DIR = os.path.join(CUR_DIR, "tts_generated_audio")
 os.makedirs(GEN_DIR, exist_ok=True)
 
-DEVICE_NAME = "HSPTEK AIBOX 8550 / Dragonwing IQ-9075"
+DEVICE_NAME = "HSPTEK AIBOX 8550 (QCS8550)"
 DEVICE_CORE = "Qualcomm Hexagon NPU v73 (HTP Cores)"
 
 # ──────────────────────────────────────────────
@@ -400,7 +400,7 @@ def generate_real_audio(lang: str, text: str, out_wav_path: str) -> bool:
 # ──────────────────────────────────────────────
 app = FastAPI(
     title="AuraTranslate Edge — TTS Multi-Engine NPU Dashboard",
-    description="Unified Text-to-Speech Dashboard for HSPTEK AIBOX 8550 & Qualcomm Dragonwing IQ-9075 EVK (Hexagon HTP v73)",
+    description="Unified Text-to-Speech Dashboard for HSPTEK AIBOX 8550 (Hexagon HTP v73)",
     version="2.0.0"
 )
 
@@ -1070,7 +1070,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </div>
             <div class="hardware-badge">
                 <div class="chip-dot"></div>
-                <span style="font-size: 13px; font-weight: 600; color: #f8fafc;">HSPTEK AIBOX 8550 / IQ-9075</span>
+                <span style="font-size: 13px; font-weight: 600; color: #f8fafc;">HSPTEK AIBOX 8550</span>
                 <span style="font-size: 11px; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 12px;">100 TOPS</span>
             </div>
         </header>

@@ -1,6 +1,6 @@
 # Module TTS — Tổng hợp Giọng nói Đa ngữ trên Qualcomm Hexagon NPU
 
-Thư mục này quản lý toàn bộ mã nguồn tối ưu hóa đồ thị tĩnh, biên dịch NPU, vá lỗi vi kiến trúc phần cứng và ứng dụng Web Dashboard thời gian thực cho hệ thống chuyển văn bản thành giọng nói (**Text-to-Speech - TTS**) 4 ngôn ngữ trên thiết bị **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK** (chia sẻ vi kiến trúc Hexagon NPU v73, 100 dense TOPS, QAIRT 2.51):
+Thư mục này quản lý toàn bộ mã nguồn tối ưu hóa đồ thị tĩnh, biên dịch NPU, vá lỗi vi kiến trúc phần cứng và ứng dụng Web Dashboard thời gian thực cho hệ thống chuyển văn bản thành giọng nói (**Text-to-Speech - TTS**) 4 ngôn ngữ trên thiết bị **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** (vi kiến trúc Hexagon NPU v73, QAIRT 2.51):
 
 | Ngôn ngữ | Mô hình | Kiến trúc Graph NPU | Tần số mẫu | NPU Offload | Độ trễ NPU (Profile thật) | RAM đỉnh | Độ chính xác / Chất lượng |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |

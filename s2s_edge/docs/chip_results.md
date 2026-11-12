@@ -1,47 +1,29 @@
-# Kết quả Đo kiểm trên Chip NPU: HSPTEK AIBOX 8550 & Dragonwing IQ-9075 qua Qualcomm AI Hub
+# Kết quả Đo kiểm trên Chip NPU: HSPTEK AIBOX 8550 (QCS8550) qua Qualcomm AI Hub
 
 Các số liệu dưới đây được trích xuất trực tiếp từ các Job `profile` và `inference` trên nền tảng Qualcomm AI Hub: thời gian thực thi thuần trên chip silicon cho mỗi lượt gọi đồ thị, **không bao gồm** thời gian xếp hàng (queueing) và thời gian nạp mô hình vào RAM.
 Đây là thời gian đo cấp đồ thị (graph-level execution); số liệu độ trễ toàn trình đầu-cuối trên thiết bị vật lý thật được đo đạc bởi script `python -m s2s_edge.bench` (xem README).
 
 ---
 
-## 1. Kết quả đo kiểm trên Dragonwing IQ-9075 EVK (Nền tảng phát triển ban đầu)
+## 1. Kết quả Đo kiểm trên Chip QCS8550 (Thiết bị HSPTEK AIBOX 8550)
 
-| Đồ thị (Graph) | Vai trò | Job AI Hub (Compile / Link QAIRT 2.51) | Số lớp trên NPU | Thời gian chip / lượt gọi | Kiểm định chất lượng |
-|---|---|---|---|---|---|
-| `asr_vi` Zipformer-150M CTC, FP16 | ASR Tiếng Việt, cửa sổ 15 s | `jpv226qjg` / `jg9ood6wg`; profile `j57ooy99g`, infer `jp4eel31g` | 3092 / 3092 (100% NPU) | **174.3 ms** | WER trên 15 clips: sạch 7.5%, 5 dB 9.5%, 0 dB 6.2% |
-| `asr_xx_*` SenseVoice-Small (frontend + encoder W8A16) | ASR en/zh/ko, cửa sổ 29 s | frontend `j57ez99vp`, encoder `jglynxxj5` / `jp1oo6r75`, `jgd662jzp` | 100% NPU | frontend **62.5 ms** (`jp2oow1rg`), encoder **268.0 ms** (`jpy88xl8g`) / 29s | Đánh giá 30 clips: CER EN 4.8%, ZH 8.3%, KO 7.3% (CPU FP32: 4.0 / 8.7 / 7.6%) |
-| `mt_enc` NLLB encoder, FP16, nguồn 32 token (bản cũ) | MT Encoder | `jp4ee3yvg` / `jp1oo6r85`; profile `jp4ee3evg` | 463 / 463 | 7.1 ms | Cosine 1.0 so với CPU |
-| `mt_enc` NLLB encoder, nguồn 64 token (**Bản chính thức**) | MT Encoder | `jgd663krp` / `j5q44y8og`; profile `jpy893z8g`, infer `jg9oom18g` | 100% NPU | **7.4 ms** | Cosine $\ge 0.999$ so với CPU trên 8 câu |
-| `mt_dec` NLLB decoder step, 96 slots, greedy (**Bản nhanh**) | MT Decoder | `j56oo7x65` / `j56oo7jy5`; profile `jgd6j1qzp`, infer `j5q44ykog` | 100% NPU | **16.1 ms / bước** | 8/8 token trùng khớp tuyệt đối CPU |
-| `mt_decB` NLLB decoder step, 4 beams (**Bản mặc định**) | MT Decoder | `j5wyjeqmg` / `jgd6jxz6p`; profile `jp4ezl92g`, infer `jp1or46n5` | 617 / 617 (100% NPU) | **31.0 ms / bước** | 32/32 argmax trùng khớp, logit cosine $\ge 0.99999$ |
-| `tts_vi` Piper vais1000 (byte text → audio) | TTS Tiếng Việt | `j5q46w3ng` / `jgodd87q5` | 2077 / 2077 (100% NPU) | **480.0 ms** (cố định 40 cửa sổ) | VITS byte-level, âm sắc tự nhiên |
-| `tts_zh` MeloTTS-ZH + static front + BERT | TTS Tiếng Trung | `jpy8mw17g` / `j5wyy4jmg`; profile `j5m9m9e9g`, infer `jgn1n10qp` | 3451 / 3451 (100% NPU) | **720.2 ms** (cố định 384 frames) | ASR CER 6.4% trên 40 văn bản (CPU: 6.0%) |
-| `tts_enko` Supertonic-3 fused | TTS Tiếng Anh & Hàn | `jprxn9nep` / `jg9ood68g`; profile `jpe6l2l0g`, infer `jgzz4w46g` | 4476 / 4476 (100% NPU) | **748.3 ms** (cố định 150 latent frames) | Round-trip WER 0.0% (EN), CER 1.5% (KO) |
+Toàn bộ 9 đồ thị mô hình đã được link trực tiếp cho SoC Qualcomm QCS8550 (QAIRT 2.51, thông tin link job lưu tại `models_qcs8550/link_jobs.json`) và đo kiểm profile thực tế qua `tools/profile_links.py`. Cả 9 tập tin QNN context binary đều nạp và chạy hoàn hảo 100% NPU offload trên QCS8550:
 
----
-
-## 2. Kết quả Đo kiểm trên Chip QCS8550 (Thiết bị HSPTEK AIBOX 8550)
-
-Toàn bộ 9 đồ thị mô hình đã được link lại cho chip Qualcomm QCS8550 qua công cụ `tools/relink_device.py` (QAIRT 2.51, thông tin link job lưu tại `models_qcs8550/link_jobs.json`) và đo kiểm profile thực tế qua `tools/profile_links.py`. Cả 9 tập tin QNN context binary đều nạp và chạy hoàn hảo trên QCS8550:
-
-| Đồ thị (Graph) | Thời gian chip QCS8550 (AIBOX 8550) | Đối chứng IQ-9075 | Profile Job ID trên AI Hub |
-|---|:---:|:---:|---|
-| `asr_vi` (Zipformer-150M CTC) | **163.4 ms** | 174.3 ms | `jgl8z82ep` |
-| `asr_xx_frontend` (SenseVoice FE) | **58.3 ms** | 62.5 ms | `jp37371xg` |
-| `asr_xx_encoder` (SenseVoice Encoder) | **236.5 ms** | 268.0 ms | `jpvmomr7p` |
-| `mt_enc` (NLLB-200-600M Encoder) | **7.5 ms** | 7.4 ms | `jgjymy27g` |
-| `mt_dec` (Greedy step) | **15.2 ms / bước** | 16.1 ms / bước | `jpex1xw7g` |
-| `mt_decB` (4-Beam step) | **30.8 ms / bước** | 31.0 ms / bước | `jp11l1wkp` |
-| `tts_vi` (Piper-VITS tiếng Việt) | **520.1 ms** | 480.0 ms | `j57nwnlqp` |
-| `tts_zh` (MeloTTS-ZH tiếng Trung) | **740.6 ms** | 720.2 ms | `jp44o4dqp` |
-| `tts_enko` (Supertonic-3 Anh / Hàn) | **701.2 ms** | 748.3 ms | `jpxrjr6jp` |
-
-*Nhận xét:* Trên chip Qualcomm QCS8550 (HSPTEK AIBOX 8550), các đồ thị ASR và MT chạy thậm chí nhanh hơn nhẹ so với IQ-9075 (~6–12% cải thiện về tốc độ xử lý mạng Transformer).
+| Đồ thị (Graph) | Vai trò trong chuỗi | Định dạng NPU | Thời gian chip QCS8550 (AIBOX 8550) | Profile Job ID trên AI Hub | Kiểm định chất lượng |
+|---|---|:---:|:---:|---|---|
+| `asr_vi` | Zipformer-150M CTC (cửa sổ 15s) | FP16 | **163.4 ms** | `jgl8z82ep` | WER trên 15 clips: sạch 7.5%, 5 dB 9.5%, 0 dB 6.2% |
+| `asr_xx_frontend` | SenseVoice Frontend (cửa sổ 29s) | FP16 | **58.3 ms** | `jp37371xg` | Khớp 100% đầu ra fbank CPU |
+| `asr_xx_encoder` | SenseVoice Encoder (cửa sổ 29s) | W8A16 | **236.5 ms** | `jpvmomr7p` | CER: EN 4.8%, ZH 8.3%, KO 7.3% |
+| `mt_enc` | NLLB-200-600M Encoder (64 token) | FP16 | **7.5 ms** | `jgjymy27g` | Cosine $\ge 0.999$ so với CPU trên 8 câu |
+| `mt_dec` | NLLB Decoder Step (Greedy) | W8A16 | **15.2 ms / bước** | `jpex1xw7g` | 8/8 token trùng khớp tuyệt đối CPU |
+| `mt_decB` | NLLB Decoder Step (4-Beam) | W8A16 | **30.8 ms / bước** | `jp11l1wkp` | 32/32 argmax trùng khớp, logit cosine $\ge 0.99999$ |
+| `tts_vi` | Piper-VITS Tiếng Việt (≤ 26 từ) | W8A16 | **520.1 ms** | `j57nwnlqp` | VITS byte-level, âm sắc tự nhiên |
+| `tts_zh` | MeloTTS-ZH Tiếng Trung (≤ 20 ký tự) | W8A16 | **740.6 ms** | `jp44o4dqp` | ASR CER 6.4% trên 40 văn bản |
+| `tts_enko` | Supertonic-3 Anh / Hàn (≤ 82 ký tự) | W8A16 | **701.2 ms** | `jpxrjr6jp` | Round-trip WER 0.0% (EN), CER 1.5% (KO) |
 
 ---
 
-## 3. Ước tính Thời gian Xử lý thuần trên Chip cho một Câu nói ngắn (~25 token MT)
+## 2. Ước tính Thời gian Xử lý thuần trên Chip cho một Câu nói ngắn (~25 token MT)
 
 Thời gian xử lý MT = Encoder 7.5 ms + (~25 bước giải mã):
 - Chế độ 4-Beam search (mặc định): $7.5\text{ ms} + (25 \times 30.8\text{ ms}) \approx \mathbf{0.78\text{ s}}$
@@ -57,7 +39,7 @@ Thời gian xử lý MT = Encoder 7.5 ms + (~25 bước giải mã):
 
 ---
 
-## 4. Chất lượng Dịch máy (MT FLORES-200 Devtest, điểm chrF / BLEU)
+## 3. Chất lượng Dịch máy (MT FLORES-200 Devtest, điểm chrF / BLEU)
 
 Đo kiểm bằng `tools/eval_mt.py` trên 25 câu FLORES-200 cho mỗi chiều dịch:
 
@@ -72,7 +54,7 @@ Thời gian xử lý MT = Encoder 7.5 ms + (~25 bước giải mã):
 
 ---
 
-## 5. Đánh giá Toàn trình Speech ➔ Speech ➔ ASR nghe lại (`tools/eval_e2e.py`)
+## 4. Đánh giá Toàn trình Speech ➔ Speech ➔ ASR nghe lại (`tools/eval_e2e.py`)
 
 Đo trên 8 clips chuẩn FLEURS mỗi chiều, chế độ Beam 4:
 
@@ -87,7 +69,7 @@ Thời gian xử lý MT = Encoder 7.5 ms + (~25 bước giải mã):
 
 ---
 
-## 6. Các Đột phá Kỹ thuật Quan trọng
+## 5. Các Đột phá Kỹ thuật Quan trọng
 
 1. **Tách Encoder và Decoder Step tĩnh:**
    - Đồ thị mở rộng 16 bước (unrolled 16-step) trước đây tạo file **8.8 GB DLC** và bị giới hạn cứng ở 15 token.

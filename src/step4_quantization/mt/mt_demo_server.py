@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""MT Demo Server — NPU Machine Translation (NLLB-600M Native FP16 on HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)
+"""MT Demo Server — NPU Machine Translation (NLLB-600M Native FP16 on HSPTEK AIBOX 8550)
 
 Hỗ trợ dịch hai chiều 6 hướng giữa:
   🇻🇳 Tiếng Việt (vie_Latn) ↔ 🇺🇸 Tiếng Anh (eng_Latn)
@@ -32,7 +32,7 @@ import qai_hub as hub
 # ──────────────────────────────────────────────
 # Cấu hình Model & Thiết bị phần cứng
 # ──────────────────────────────────────────────
-DEVICE_NAME = "HSPTEK AIBOX 8550 / Dragonwing IQ-9075 EVK"
+DEVICE_NAME = "HSPTEK AIBOX 8550 (QCS8550)"
 NLLB_TARGET_MODEL_ID = "mqy498l5q"   # Compile job jgd62w9lp trên tài khoản leogiakhanh1609@gmail.com
 COMPILE_JOB_ID       = "jgd62w9lp"
 PROFILE_JOB_ID       = "jp1o6ly25"
@@ -281,7 +281,7 @@ def run_translation_job(job_id: str, sentences: List[str], src_lang: str, tgt_la
             ds = hub.upload_dataset({"src_ids": A, "tgt_lang": L}, name=f"nllb_demo_batch_{job_id[:8]}")
             log(f"Dataset uploaded: {ds.dataset_id}")
 
-            set_stage(st, "queue_npu", "Đang gửi inference job lên chip (HSPTEK AIBOX 8550 & IQ-9075 EVK)...")
+            set_stage(st, "queue_npu", "Đang gửi inference job lên chip HSPTEK AIBOX 8550...")
             ij = hub.submit_inference_job(
                 model=tm,
                 device=device,
@@ -621,7 +621,7 @@ HTML_PAGE = """<!doctype html>
 <div class="hero">
   <div class="hero-tag">Qualcomm Hexagon HTP v73 · Native FP16</div>
   <h1>🌐 AuraTranslate Edge — <span class="highlight">NLLB-600M MT</span></h1>
-  <div class="tagline">Dịch máy đa ngữ thời thực 100% NPU · HSPTEK AIBOX 8550 & IQ-9075 EVK (Single Static Graph T=16)</div>
+  <div class="tagline">Dịch máy đa ngữ thời thực 100% NPU · HSPTEK AIBOX 8550 (Single Static Graph T=16)</div>
   <div class="specs-bar">
     <div class="spec-pill">Mô hình: <b>NLLB-200-distilled-600M</b></div>
     <div class="spec-pill">Độ trễ chip thật: <b>215.87 ms / câu</b></div>
@@ -718,7 +718,7 @@ HTML_PAGE = """<!doctype html>
     } else {
       pCpu.className = 'engine-pill';
       pNpu.className = 'engine-pill active-npu';
-      desc.textContent = 'Gửi job thực thi trực tiếp trên NPU Hexagon HTP v73 (HSPTEK AIBOX 8550 & IQ-9075 EVK qua AI Hub)';
+      desc.textContent = 'Gửi job thực thi trực tiếp trên NPU Hexagon HTP v73 (HSPTEK AIBOX 8550 qua AI Hub)';
     }
   }
 
@@ -838,7 +838,7 @@ HTML_PAGE = """<!doctype html>
     sum.style.display = 'block';
     sum.className = 'summary';
     sum.innerHTML = `
-      <div class="sum-row"><span>Bộ máy thực thi:</span><span class="sum-val">${res.engine === 'cpu_local' ? '⚡ CPU Local (ONNX Runtime)' : '🟢 Qualcomm NPU HSPTEK AIBOX 8550 & IQ-9075'}</span></div>
+      <div class="sum-row"><span>Bộ máy thực thi:</span><span class="sum-val">${res.engine === 'cpu_local' ? '⚡ CPU Local (ONNX Runtime)' : '🟢 Qualcomm NPU HSPTEK AIBOX 8550'}</span></div>
       <div class="sum-row"><span>Số câu đã dịch:</span><span class="sum-val">${res.n_sentences} câu</span></div>
       <div class="sum-row"><span>Tổng thời gian:</span><span class="sum-val">${res.elapsed_total_s}s</span></div>
       <div class="sum-row"><span>Độ trễ NPU tham chiếu:</span><span class="sum-val">${res.npu_ref_ms} ms (${res.n_sentences} × ${res.npu_per_sentence_ms} ms)</span></div>

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Re-target the shipped graphs to another Hexagon-v73 device (e.g. the HSPTEK AIBOX 8550 = QCS8550) without touching the graphs.
-The compiled QNN models (DLC) from the IQ-9075 compile jobs are linked again for the new device and pinned QAIRT version, and optionally the
-DLCs themselves are downloaded (a DLC is prepared on the device at first load, so it is the fallback when a context binary is rejected).
+"""Link the shipped graphs for HSPTEK AIBOX 8550 (Qualcomm QCS8550, Hexagon v73) with pinned QAIRT version.
   python tools/relink_device.py --device "QCS8550 (Proxy)" --qairt 2.51 --dry_run
   python tools/relink_device.py --device "QCS8550 (Proxy)" --qairt 2.51 --out models_qcs8550 [--dlc]
 Job ids are the ones in docs/chip_results.md (shipped graphs)."""

@@ -1,11 +1,11 @@
-# NLLB-600M (dịch máy) trên NPU HSPTEK AIBOX 8550 & Dragonwing IQ-9075 — không còn vòng lặp từng token
+# NLLB-600M (dịch máy) trên NPU HSPTEK AIBOX 8550 — không còn vòng lặp từng token
 
 Dịch máy kiểu NLLB sinh từng token một (vòng lặp). Gọi chip qua AI Hub cho mỗi token thì rất chậm
 (mỗi lần gọi mất vài chục phút). Thư mục này đưa **cả encoder và nhiều bước giải mã vào một graph duy nhất**,
 nên mỗi câu chỉ cần **một lần gọi**: vào là các id token của câu nguồn, ra là các id token của bản dịch.
-Mô hình đã được đo kiểm thành công trên chip **Qualcomm Dragonwing IQ-9075 EVK** qua AI Hub và triển khai thực địa trọn vẹn trên thiết bị phần cứng **HSPTEK AIBOX 8550 (QCS8550)**.
+Mô hình đã được đo kiểm thành công qua AI Hub và triển khai thực địa trọn vẹn trên thiết bị phần cứng **HSPTEK AIBOX 8550 (QCS8550)**.
 
-## Kết quả trên chip (đo thật, Dragonwing IQ-9075 EVK & AIBOX 8550, qua Qualcomm AI Hub)
+## Kết quả trên chip (đo thật trên Qualcomm AI Hub - Hexagon HTP v73)
 
 Mỗi dòng là một graph có số bước giải mã khác nhau. "Giống CPU" là so 8 câu dịch với bản chạy trên CPU.
 

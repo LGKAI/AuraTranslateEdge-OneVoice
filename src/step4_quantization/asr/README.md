@@ -1,6 +1,6 @@
 # Module ASR — Nhận dạng Giọng nói Tự động trên Qualcomm Hexagon NPU
 
-Thư mục này quản lý toàn bộ mã nguồn lượng tử hóa, biên dịch NPU, đo kiểm phần cứng và ứng dụng Web Dashboard thời gian thực cho 4 ngôn ngữ trên thiết bị **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK** (chia sẻ vi kiến trúc Hexagon NPU v73, QAIRT 2.51):
+Thư mục này quản lý toàn bộ mã nguồn lượng tử hóa, biên dịch NPU, đo kiểm phần cứng và ứng dụng Web Dashboard thời gian thực cho 4 ngôn ngữ trên thiết bị **HSPTEK AIBOX 8550 (Qualcomm Snapdragon QCS8550)** (vi kiến trúc Hexagon NPU v73, QAIRT 2.51):
 
 | Ngôn ngữ | Mô hình | Độ chính xác Lượng tử | NPU Offload | Độ trễ NPU (Profile thật) |
 | :--- | :--- | :---: | :---: | :---: |

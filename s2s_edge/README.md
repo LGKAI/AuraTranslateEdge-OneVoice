@@ -1,9 +1,9 @@
-# s2s_edge — Hệ thống Phiên dịch Giọng nói hai chiều Offline (vi ⇄ en / zh / ko) cho Qualcomm AIBOX 8550 & Dragonwing IQ-9075
+# s2s_edge — Hệ thống Phiên dịch Giọng nói hai chiều Offline (vi ⇄ en / zh / ko) cho HSPTEK AIBOX 8550 (QCS8550)
 
 Nguyên mẫu Phase 3, Cuộc thi OneVoice AI Challenge 2026. Nhận âm thanh đầu vào → Dịch và phát âm thanh đầu ra, **toàn bộ quá trình suy luận thực thi trực tiếp trên thiết bị biên (On-device), 100% Offline, không phụ thuộc kết nối mạng**.
 Hỗ trợ 6 chiều dịch: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→vi (một đầu luôn là Tiếng Việt).
 
-> **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 (SoC Qualcomm QCS8550 trên thiết bị **HSPTEK AIBOX 8550** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK** qua Qualcomm AI Hub với QAIRT 2.51). Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
+> **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 trên thiết bị **HSPTEK AIBOX 8550 (SoC Qualcomm QCS8550)** qua Qualcomm AI Hub với QAIRT 2.51. Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
 
 ---
 
@@ -82,7 +82,7 @@ Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới �
 |---|---|
 | `s2s_edge/` | Gói thư viện chính: `audio` (I/O, VAD), `asr`, `mt`, `tts`, `textnorm`, `backends` (ONNX Runtime, QNN), `registry`, `pipeline`, `bench`, `__main__` (CLI) |
 | `s2s_web.py` | Web Dashboard trực quan chạy localhost: mic thu âm, dịch văn bản, nghe TTS, đo latency |
-| `SETUP_VNG.md` | Hướng dẫn kết nối và cấu hình thực địa trên phần cứng AIBOX 8550 tại VNG |
+| `docs/VNG_SETUP.md` | Hướng dẫn kết nối và cấu hình thực địa trên phần cứng AIBOX 8550 tại VNG |
 | `tools/recon.sh` | Script tự động khảo sát môi trường (OS, SoC, QNN libs, thiết bị âm thanh, mạng) |
 | `tools/session0.sh` | Chuỗi tự động chạy đầu tiên trên thiết bị, đóng gói log thành `.tgz` |
 | `tools/golden.py` | Tạo và kiểm tra các cặp vector kiểm thử đầu vào - đầu ra (golden test) cho từng graph |
@@ -102,4 +102,4 @@ Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới �
 * **Độ dài đoạn âm thanh:** Một phân đoạn tiếng nói tối đa $\le 14.5$ s (khớp cửa sổ Zipformer); âm thanh dài hơn được cắt ở khung tĩnh lặng nhất.
 * **VAD (Voice Activity Detector):** Sử dụng thuật toán năng lượng thích ứng theo mức tín hiệu thu âm (hoạt động tốt với cả micro độ nhạy thấp); không dùng mô hình nơ-ron VAD riêng để tiết kiệm tài nguyên NPU.
 * **Nói chồng âm & Pha trộn ngôn ngữ:** Trường hợp nhiều người nói cùng lúc hoặc câu tiếng Việt chèn từ tiếng Anh đàm thoại chưa được hỗ trợ hoàn toàn (xem chi tiết tại [`docs/conversation.md`](docs/conversation.md)).
-* **Khả năng tương thích phần cứng:** Toàn bộ model được tối ưu hóa cho kiến trúc Qualcomm Hexagon v73 (**HSPTEK AIBOX 8550 / QCS8550** và **Dragonwing IQ-9075 EVK**). Không tương thích trực tiếp với các dòng chip cũ như QCS6490 / RB3 Gen 2 (Hexagon v68).
+* **Khả năng tương thích phần cứng:** Toàn bộ model được tối ưu hóa trực tiếp cho thiết bị **HSPTEK AIBOX 8550** (SoC Qualcomm QCS8550, kiến trúc NPU Hexagon v73, QAIRT 2.51). Không tương thích trực tiếp với các dòng chip cũ như QCS6490 / RB3 Gen 2 (Hexagon v68).

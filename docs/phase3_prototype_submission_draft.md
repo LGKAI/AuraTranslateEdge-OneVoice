@@ -14,7 +14,7 @@ Mọi số liệu trình bày dưới đây đều dựa trên kết quả đo k
 | **Các ngôn ngữ demo** | Tiếng Việt ⇄ Tiếng Anh / Tiếng Trung / Tiếng Hàn (trọn vẹn 6 chiều dịch), tích hợp chế độ đàm thoại hai chiều `--pair` và nhận diện tự động `--auto` |
 | **Kịch bản kiểm thử** | Đàm thoại thực tế tại phân xưởng sản xuất nhà máy (~30 phút) giữa Quản lý FDI và Công nhân Việt Nam |
 | **Điều kiện môi trường kiểm thử** | Thử nghiệm trong điều kiện nhiễu công xưởng (SNR từ 0 dB đến 20 dB), khoảng cách thu âm micro từ 0.5m đến 2m |
-| **Thiết bị phần cứng demo thực tế** | **HSPTEK AIBOX 8550** (SoC Qualcomm Snapdragon QCS8550, Hexagon NPU v73, RAM 16 GB LPDDR5x, 128 GB UFS, Ubuntu 22.04 LTS, QAIRT 2.51) cùng trạm đo kiểm vật lý đối chứng **Qualcomm Dragonwing IQ-9075 EVK** |
+| **Thiết bị phần cứng demo thực tế** | **HSPTEK AIBOX 8550** (SoC Qualcomm Snapdragon QCS8550, Hexagon NPU v73, RAM 16 GB LPDDR5x, 128 GB UFS, Ubuntu 22.04 LTS, QAIRT 2.51) |
 | **Năng lực & Tiến độ kỹ thuật** | Toàn bộ chuỗi Pipeline: ASR (Zipformer-150M / SenseVoice) ➔ MT (NLLB-200-600M giải mã Host Loop trên đồ thị tĩnh NPU) ➔ TTS (Piper / MeloTTS / Supertonic); cả 9 đồ thị mô hình đều được compile và link thành QNN Context Binary cho Hexagon v73 và kiểm chứng 100% NPU offload trên chip silicon thật (`docs/chip_results.md`). Các đột phá mới: Single-graph TTS cho cả 3 engine, NLLB tách Encoder 64 token và 4-beam decoder step, tự động phục hồi dấu câu tiếng Việt (`punct_vi`), nhận diện ngôn ngữ theo từng câu nói (LID), và xử lý tên riêng ngoại lai (`names.py`). Đã chạy thực tế trên thiết bị phần cứng AIBOX 8550 tại VNG. |
 
 ---
@@ -40,7 +40,7 @@ Ghi hình toàn màn hình:
   - TTS Tiếng Anh / Hàn: Supertonic-3 (Flow-matching 5 ODE steps single graph, 100% NPU).
   - Host CPU: I/O âm thanh, VAD năng lượng thích ứng, fbank, SentencePiece, logic beam search, chuẩn hoá số sang chữ.
 * **Môi trường Runtime:** QAI AppBuilder 2.51.40 (QAIRT 2.51) trên Ubuntu 22.04 / 24.04 aarch64, Python 3.10 / 3.12. Chạy hoàn toàn độc lập, không gửi bất kỳ request nào ra ngoài mạng.
-* **Yêu cầu phần cứng tối thiểu:** Thiết bị SoC Qualcomm có NPU Hexagon v73 (**HSPTEK AIBOX 8550** hoặc dòng Snapdragon 8 Gen 2 / IQ-9075); RAM $\ge 8$ GB (tập mô hình chiếm ~2.2–3.5 GB RAM); bộ nhớ trống $\ge 8$ GB; Micro + Loa USB ngoài (ALSA `snd-usb-audio`).
+* **Yêu cầu phần cứng tối thiểu:** Thiết bị SoC Qualcomm có NPU Hexagon v73 (**HSPTEK AIBOX 8550** / SoC Qualcomm QCS8550); RAM $\ge 8$ GB (tập mô hình chiếm ~2.2–3.5 GB RAM); bộ nhớ trống $\ge 8$ GB; Micro + Loa USB ngoài (ALSA `snd-usb-audio`).
 
 ---
 

@@ -9,8 +9,7 @@ import sys
 import json
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/ (for common.py)
-from common import list_audio_files, load_wav, save_wav
-from step0_frontend.mix_noise import get_noise_segment, mix_at_snr, SNR_DB_LIST
+from common import list_audio_files, load_wav, save_wav, get_noise_segment, mix_at_snr, SNR_DB_LIST
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 NOISE_DIR = os.path.join(ROOT, "data", "noise")

@@ -43,7 +43,7 @@ SV_ENC_TARGET_MODEL_ID = "mq800zwjn"   # encoder W8A16 (compile job jp3ojw6np)
 # ──────────────────────────────────────────────
 ZIP_ENC_TARGET_MODEL_ID = "mnz009rzm"  # compile job jgd6x4oep (profile j56oym105)
 
-DEVICE_NAME = "HSPTEK AIBOX 8550 / Dragonwing IQ-9075 EVK"
+DEVICE_NAME = "HSPTEK AIBOX 8550 (QCS8550)"
 
 # ──────────────────────────────────────────────
 # Limits
@@ -783,7 +783,7 @@ HTML_PAGE = """<!doctype html>
 <body>
 <div class="hero">
   <h1>🎙️ AuraTranslate Edge — <span class="vi">Zipformer</span> + <span class="sv">SenseVoice</span></h1>
-  <div class="tagline">Nhận diện tiếng nói thời thực trên NPU Qualcomm · HSPTEK AIBOX 8550 & IQ-9075</div>
+  <div class="tagline">Nhận diện tiếng nói thời thực trên NPU Qualcomm · HSPTEK AIBOX 8550</div>
   <div class="npu-badge">100% NPU · Hexagon HTP v73 · INT16 / W8A16</div>
 </div>
 
@@ -882,7 +882,7 @@ function setEngine(eng) {
   } else {
     pCpu.className = 'engine-pill';
     pNpu.className = 'engine-pill active-npu';
-    desc.textContent = 'Gửi job thực thi trực tiếp trên NPU Hexagon HTP v73 (HSPTEK AIBOX 8550 & IQ-9075 EVK qua AI Hub)';
+    desc.textContent = 'Gửi job thực thi trực tiếp trên NPU Hexagon HTP v73 (HSPTEK AIBOX 8550 qua AI Hub)';
   }
 }
 
@@ -1016,7 +1016,7 @@ async function pollStatus(jobId, modelUsed) {
       const isCpu = r.engine === 'cpu_local';
       summaryBox.innerHTML =
         '<div class="summary' + (isSV?' sv-summary':'') + '">' +
-        '<div class="sum-row">⚙️ Bộ máy thực thi <span class="sum-val">' + (isCpu ? '⚡ Local CPU (ONNX Runtime)' : '🟢 Qualcomm NPU HSPTEK AIBOX 8550 & IQ-9075') + '</span></div>' +
+        '<div class="sum-row">⚙️ Bộ máy thực thi <span class="sum-val">' + (isCpu ? '⚡ Local CPU (ONNX Runtime)' : '🟢 Qualcomm NPU HSPTEK AIBOX 8550') + '</span></div>' +
         '<div class="sum-row">⏱️ Tổng thời gian batch <span class="sum-val">' + fmtS(r.elapsed_total_s) + '</span></div>' +
         '<div class="sum-row">⚡ NPU thuần (' + r.n_clips + '×' + fmtMs(r.npu_per_clip_ms) + ') <span class="sum-val">' + fmtMs(r.npu_total_ms) + '</span></div>' +
         (isCpu ? '' : '<div class="sum-row">📡 Ngoài chip (upload/download/queue) <span class="sum-val">' + fmtS(r.outside_chip_s) + '</span></div>') +

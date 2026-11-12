@@ -1,4 +1,4 @@
-# Báo cáo Kỹ thuật: Lượng tử hóa & Triển khai Zipformer ASR trên Qualcomm NPU (HSPTEK AIBOX 8550 & Dragonwing IQ-9075)
+# Báo cáo Kỹ thuật: Lượng tử hóa & Triển khai Zipformer ASR trên Qualcomm NPU (HSPTEK AIBOX 8550)
 
 Tài liệu này tổng hợp toàn bộ báo cáo kỹ thuật, cơ chế toán học, nhật ký xử lý lỗi (Debug Log) và kết quả đo kiểm thực tế trên chip silicon khi triển khai mô hình nhận dạng tiếng nói tự động **Zipformer ASR** thành một **Đồ thị Tính toán Tĩnh duy nhất (Single Static DAG)** chạy **100% trên NPU Qualcomm** (không qua CPU Host).
 
@@ -7,7 +7,7 @@ Tài liệu này tổng hợp toàn bộ báo cáo kỹ thuật, cơ chế toán
 ## 1. Tổng quan Dự án & Bối cảnh Kiến trúc Zipformer ASR
 
 ### 1.1. Tóm tắt Thực thi (Executive Summary)
-Mục tiêu cốt lõi của dự án là đóng gói toàn bộ Pipeline nhận dạng tiếng nói tự động (Zipformer ASR) thành một Đồ thị Tính toán Tĩnh duy nhất (**Single Static DAG**) chạy 100% trên NPU Qualcomm Hexagon v73 HTP (thiết bị **HSPTEK AIBOX 8550 / QCS8550** và trạm đo kiểm **Qualcomm Dragonwing IQ-9075 EVK**) mà không thông qua bất kỳ bước xử lý trung gian nào trên CPU Host.
+Mục tiêu cốt lõi của dự án là đóng gói toàn bộ Pipeline nhận dạng tiếng nói tự động (Zipformer ASR) thành một Đồ thị Tính toán Tĩnh duy nhất (**Single Static DAG**) chạy 100% trên NPU Qualcomm Hexagon v73 HTP (thiết bị **HSPTEK AIBOX 8550 / QCS8550**) mà không thông qua bất kỳ bước xử lý trung gian nào trên CPU Host.
 
 * **Cơ chế End-to-End:** Tích hợp 4 khối xử lý:
   $$\text{Fbank DSP} \longrightarrow \text{Zipformer Encoder} \longrightarrow \text{CTC Collapse} \longrightarrow \text{UTF-8 Detokenize}$$

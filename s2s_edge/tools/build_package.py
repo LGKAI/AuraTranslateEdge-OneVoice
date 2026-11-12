@@ -10,7 +10,7 @@ MAP = {"asr_vi": "asr_vi_zip150_ctc_fp16", "asr_xx_frontend": "asr_xx_sensevoice
        "mt_enc": "mt_enc_nllb_s64", "mt_dec": "mt_dec_nllb_s64", "mt_decB": "mt_decB_nllb_s64", "tts_vi": "tts_vi_piper_fullg8", "tts_zh": "tts_zh_melo_one", "tts_enko": "tts_enko_supertonic_full_v3"}
 
 INSTALL = """#!/usr/bin/env bash
-# Offline install (no network needed), aarch64 Linux with a Hexagon v73 NPU (Dragonwing IQ-9075, QCS8550 boxes).
+# Offline install (no network needed), aarch64 Linux with a Hexagon v73 NPU on HSPTEK AIBOX 8550 (QCS8550).
 #   wheelhouse/        Python 3.12, glibc >= 2.39 (Ubuntu 24.04)
 #   wheelhouse_cp310/  Python 3.10, glibc >= 2.35 (Ubuntu 22.04)
 # Both carry qai_appbuilder 2.51.40 = the QAIRT 2.51 runtime the context binaries in models/ were linked for.

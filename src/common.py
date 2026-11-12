@@ -140,3 +140,51 @@ def normalize_text_for_cer(s):
     transcriptions. Word-level WER scoring must NOT use this: spaces are the
     actual word boundaries there."""
     return re.sub(r"\s+", "", normalize_text(s))
+
+
+SNR_DB_LIST = [0, 5, 10, 15, 20]
+
+
+def synthetic_factory_noise(n_samples, sr=SR, seed=0):
+    """Fallback noise (motor hum + band-limited broadband + random bursts),
+    used only when data/noise/ is empty -- lets the pipeline run with zero setup."""
+    rng = np.random.default_rng(seed)
+    t = np.arange(n_samples) / sr
+    hum = 0.15 * np.sin(2 * np.pi * 100 * t) + 0.08 * np.sin(2 * np.pi * 150 * t)
+    broadband = rng.normal(0, 1, n_samples)
+    kernel = np.ones(9) / 9
+    broadband = np.convolve(broadband, kernel, mode="same")
+    bursts = np.zeros(n_samples)
+    n_bursts = max(n_samples // sr, 1)
+    for _ in range(n_bursts):
+        start = int(rng.integers(0, max(n_samples - sr // 10, 1)))
+        length = int(rng.integers(sr // 40, sr // 10))
+        length = min(length, n_samples - start)
+        bursts[start:start + length] += rng.normal(0, 0.6, length)
+    noise = hum + 0.3 * broadband + bursts
+    peak = np.max(np.abs(noise)) + 1e-8
+    return (noise / peak * 0.5).astype(np.float32)
+
+
+def get_noise_segment(length, noise_files, seed=0):
+    import random
+    if not noise_files:
+        return synthetic_factory_noise(length, seed=seed)
+    rng = random.Random(seed)
+    path = rng.choice(noise_files)
+    noise = load_wav(path)
+    if len(noise) < length:
+        reps = length // len(noise) + 1
+        noise = np.tile(noise, reps)
+    start = rng.randint(0, max(len(noise) - length, 0))
+    return noise[start:start + length]
+
+
+def mix_at_snr(clean, noise, snr_db):
+    clean_power = np.mean(clean ** 2) + 1e-12
+    noise_power = np.mean(noise ** 2) + 1e-12
+    target_noise_power = clean_power / (10 ** (snr_db / 10))
+    scale = np.sqrt(target_noise_power / noise_power)
+    mixed = clean + noise * scale
+    return mixed.astype(np.float32)
+

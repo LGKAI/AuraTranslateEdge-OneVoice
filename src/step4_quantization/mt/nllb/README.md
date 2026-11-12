@@ -1,10 +1,10 @@
-# NLLB-600M (dịch máy) trên NPU HSPTEK AIBOX 8550 & Dragonwing IQ-9075 — không còn vòng lặp từng token
+# NLLB-600M (dịch máy) trên NPU HSPTEK AIBOX 8550 — không còn vòng lặp từng token
 
 Dịch máy kiểu NLLB sinh từng token một (vòng lặp). Gọi chip qua AI Hub cho mỗi token thì rất chậm
 (mỗi lần gọi mất vài chục phút). Thư mục này đưa **cả encoder và nhiều bước giải mã vào một graph duy nhất**,
 nên mỗi câu chỉ cần **một lần gọi**: vào là các id token của câu nguồn, ra là các id token của bản dịch.
 
-*(Lưu ý: Đồ thị tương thích hoàn toàn trên cả **HSPTEK AIBOX 8550 (SoC QCS8550)** và **Dragonwing IQ-9075 EVK** do cùng kiến trúc Hexagon HTP v73).*
+*(Đồ thị tối ưu hóa trực tiếp cho **HSPTEK AIBOX 8550 (SoC Qualcomm QCS8550)**, kiến trúc Hexagon HTP v73).*
 
 ## Kết quả trên chip (đo thật trên Qualcomm AI Hub - Hexagon HTP v73)
 
@@ -17,11 +17,11 @@ Mỗi dòng là một graph có số bước giải mã khác nhau. "Giống CPU
 | **16** | **8/8 giống CPU (100%)** | **7617/7617 (100% HTP)** | **215.87 ms** | 865.9 s |
 | 24 | **không chạy được**: quá thời gian tối đa của AI Hub (4072 s) | — | — | — |
 
-Vậy với một graph, **T=16 là mức tối ưu lớn nhất đã chạy thành công trên chip thật (HSPTEK AIBOX 8550 & Dragonwing IQ-9075 EVK)**.
+Vậy với một graph, **T=16 là mức tối ưu lớn nhất đã chạy thành công trên chip thật (HSPTEK AIBOX 8550)**.
 - **Compile Job chính thức** (`leogiakhanh1609@gmail.com`): [`jgd62w9lp`](https://workbench.aihub.qualcomm.com/jobs/jgd62w9lp/) (**SUCCESS**, 100% NPU offload).
 - **Profile Job chính thức**: [`jp1o6ly25`](https://workbench.aihub.qualcomm.com/jobs/jp1o6ly25/) (**215.87 ms**, RAM đỉnh 6.59 MB).
 - **Inference Job chính thức**: [`jgd629eep`](https://workbench.aihub.qualcomm.com/jobs/jgd629eep/) (**8/8 câu trùng khớp 100% từng token**).
-- Chi tiết kết quả JSON đã lưu tại: `results/hub_silicon_test_results_T16.json` (và nhật ký đo kiểm tại `docs/ket_qua_chip.md`).
+- Chi tiết kết quả JSON đã lưu tại: `results/hub_silicon_test_results_T16.json`.
 
 8 câu thử nghiệm (bao phủ 6 hướng dịch: Việt ↔ Anh, Anh → Hàn, Hàn → Anh, Trung ↔ Anh, Hàn → Việt) cho kết quả trên silicon thật giống 100% từng token so với PyTorch CPU, ví dụ:
 - "Hôm nay trời đẹp quá, chúng ta cùng đi dạo nhé." → "It's a beautiful day, let's go for a walk."

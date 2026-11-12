@@ -1,11 +1,10 @@
 # Step 5 — Pipeline Dịch Giọng nói sang Giọng nói Toàn trình (Speech-to-Speech - S2S)
 
 Tài liệu chi tiết các bước thành phần liên quan:
-*   Tiền xử lý âm thanh: [`../../docs/step0.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/docs/step0.md)
-*   Nhận dạng giọng nói (ASR): [`../../docs/step1.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/docs/step1.md)
-*   Dịch máy đa ngữ (MT): [`../../docs/step2.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/docs/step2.md)
-*   Tổng hợp giọng nói (TTS): [`../../docs/step3.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/docs/step3.md)
-*   Lượng tử hoá phần cứng & Thiết bị biên: [`../../docs/step4.md`](file:///d:/ChuyenNganhAI/AuraTranslateEdge-OneVoice/docs/step4.md)
+*   Nhận dạng giọng nói (ASR): [`../step1_asr/README.md`](../step1_asr/README.md)
+*   Dịch máy đa ngữ (MT): [`../step2_mt/README.md`](../step2_mt/README.md)
+*   Tổng hợp giọng nói (TTS): [`../step3_tts/README.md`](../step3_tts/README.md)
+*   Lượng tử hoá phần cứng NPU: [`../step4_quantization/asr/`](../step4_quantization/asr/), [`../step4_quantization/mt/`](../step4_quantization/mt/), [`../step4_quantization/tts/`](../step4_quantization/tts/)
 
 Mô-đun Step 5 chịu trách nhiệm ghép nối tuần hoàn tất cả các mô hình đã được kiểm chứng và lượng tử hoá từ Step 1 đến Step 4 thành một chuỗi **Speech-to-Speech (S2S)** hoàn chỉnh, đo đạc độ trễ từng chặng, độ trễ toàn trình (End-to-End Latency) và chất lượng chuyển đổi đa ngữ hai chiều giữa **Tiếng Việt và 3 ngoại ngữ: Anh, Trung, Hàn**.
 

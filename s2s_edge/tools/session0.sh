@@ -2,7 +2,7 @@
 # Run ONCE at the start of a device session (QDC or board): survey, install, check every graph, smoke test, quick benchmark.
 # Every step is logged to logs/session0_<date>/ and no step aborts the others; the folder is also packed as logs/session0_<date>.tgz to copy back.
 # Model sets are tried in order until every graph passes the golden check; the chosen one is written to logs/models_ok.txt:
-#   MODELS env var (if set), models_qcs8550/models.json (AIBOX 8550), models/models.json (IQ-9075 link)
+#   MODELS env var (if set), models_qcs8550/models.json (AIBOX 8550 QCS8550)
 # Usage (from the package root):  bash tools/session0.sh
 set -u
 cd "$(dirname "$0")/.."

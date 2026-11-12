@@ -1,13 +1,10 @@
-# AuraTranslate Edge — OneVoice AI Challenge 2026
+# AuraTranslate Edge — OneVoice
 
-[![Qualcomm Hexagon](https://img.shields.io/badge/Qualcomm-Hexagon%20HTP%20v73-0052CC?logo=qualcomm&logoColor=white)](https://www.qualcomm.com/)
-[![Target Hardware](https://img.shields.io/badge/Hardware-HSPTEK%20AIBOX%208550%20%2F%20IQ--9075-FF6600)](docs/hardware/report_aibox_8550.pdf)
-[![Offline Edge](https://img.shields.io/badge/Inference-100%25%20Offline%20%7C%20Zero%20Network-success)](s2s_edge/README.md)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+OneVoice AI Challenge 2026
 
-**AuraTranslate Edge** là thiết bị phiên dịch giọng nói hai chiều (Speech-to-Speech Edge Translation Appliance) hoạt động **100% offline, NPU-native** trên nền tảng phần cứng **Qualcomm Hexagon HTP v73** (Trọng tâm Phase 3: **HSPTEK AIBOX 8550 / QCS8550** và **Qualcomm Dragonwing IQ-9075 EVK**). 
+**AuraTranslate Edge** là thiết bị phiên dịch giọng nói hai chiều (Speech-to-Speech Edge Translation Appliance) hoạt động **100% offline, NPU-native** trên nền tảng phần cứng **Qualcomm Hexagon HTP v73** (Trọng tâm Phase 3: **HSPTEK AIBOX 8550 / SoC Qualcomm QCS8550**). 
 
-Hệ thống kết nối chuỗi xử lý đầu cuối toàn diện: **Audio Front-end (VAD thích ứng) → ASR → Chuẩn hoá & Phục hồi dấu câu tiếng Việt → MT (Dịch máy NLLB) → TTS (Tổng hợp âm thanh)**, hỗ trợ trọn vẹn 6 chiều dịch hai chiều:
+Hệ thống kết nối chuỗi xử lý đầu cuối trực tiếp: **VAD năng lượng thích ứng → ASR (Zipformer / SenseVoice) → Chuẩn hoá & Phục hồi dấu câu tiếng Việt (`punct_vi`) → MT (Dịch máy NLLB) → TTS (Tổng hợp âm thanh Piper / MeloTTS / Supertonic)**, hỗ trợ trọn vẹn 6 chiều dịch hai chiều:
 $$\text{Tiếng Việt (VI)} \longleftrightarrow \text{Tiếng Anh (EN)} \;\big|\; \text{Tiếng Hàn (KO)} \;\big|\; \text{Tiếng Trung (ZH)}$$
 
 Dự án được đồng thiết kế (hardware-software co-design) bởi đội ngũ **Gia Sư Đỉnh Cao** cho cuộc thi **OneVoice AI Challenge 2026** (do **Saigon AI Hub × Qualcomm** tổ chức), hướng tới giải quyết bài toán giao tiếp thời gian thực không độ trễ, bảo mật tuyệt đối tại các nhà máy sản xuất FDI, khu công nghiệp và môi trường thương mại song phương.
@@ -40,23 +37,23 @@ Toàn bộ pipeline phiên dịch của dự án được đóng gói trong engi
 
 ## 2. Nền tảng phần cứng mục tiêu (Hardware Platforms)
 
-Trong Phase 3, hệ thống tập trung triển khai và đo kiểm trực tiếp trên thiết bị **HSPTEK AIBOX 8550**, đồng thời kế thừa trọn vẹn kết quả tối ưu từ trạm phát triển **Dragonwing IQ-9075 EVK** (cả hai cùng chia sẻ vi kiến trúc NPU Hexagon thế hệ **v73**):
+Trong Phase 3, hệ thống tập trung triển khai và đo kiểm trực tiếp trên thiết bị phần cứng mục tiêu **HSPTEK AIBOX 8550** (SoC Qualcomm QCS8550, NPU Hexagon HTP v73, QAIRT 2.51):
 
-| Thông số / Đặc tính | HSPTEK AIBOX 8550 (Thiết bị thử nghiệm Phase 3) | Dragonwing IQ-9075 EVK (Nền tảng đối chứng) |
-|---|---|---|
-| **SoC / Vi xử lý** | **Qualcomm QCS8550** (Snapdragon 8 Gen 2 for IoT) | **Qualcomm IQ-9075** |
-| **Kiến trúc NPU** | **Qualcomm Hexagon HTP v73** (lên tới 48 INT8 TOPS) | **Qualcomm Hexagon HTP v73** (lên tới 100 dense TOPS) |
-| **Hệ số tương thích w8a16** | ✅ **Tương thích 100%** (Cùng tập lệnh HTP v73) | ✅ **Tương thích 100%** (Đã đo kiểm và verify qua AI Hub) |
-| **Dung lượng RAM** | **16 GB LPDDR5x** | **36 GB LPDDR5** |
-| **Bộ nhớ trong (Storage)** | 128 GB UFS 3.1 / 4.0 | 128 GB UFS |
-| **Hệ điều hành** | Ubuntu 22.04 LTS (Kernel 5.15 aarch64, glibc 2.35) | Ubuntu 22.04 LTS (Kernel aarch64) |
-| **Giao thức gọi NPU** | FastRPC (`/dev/fastrpc-cdsp`), `libcdsprpc.so`, QAIRT 2.51 | FastRPC, `libcdsprpc.so`, QAIRT 2.51 |
-| **Công suất tiêu thụ (TDP)** | **SoC ~3.5 – 12 W** (Toàn hộp: ~5.8 – 8.8 W, tản nhiệt nhôm thụ động) | SoC ~3.8 – 20 W |
-| **Giao diện âm thanh (Audio I/O)** | Không tích hợp sẵn mic/loa trong; cắm ngoài qua cổng USB 3.0 (`snd-usb-audio`) | ReSpeaker 4-Mic Array + Loa 3.5mm / USB |
-| **Kết nối vận hành** | USB Type-C (ADB shell / RNDIS USB Ethernet Gadget `192.168.1.100`) | RJ45 Gigabit Ethernet / Serial UART |
+| Thông số / Đặc tính | HSPTEK AIBOX 8550 (Thiết bị triển khai Phase 3) |
+|---|---|
+| **SoC / Vi xử lý** | **Qualcomm QCS8550** (Snapdragon 8 Gen 2 for IoT) |
+| **Kiến trúc NPU** | **Qualcomm Hexagon HTP v73** (lên tới 48 INT8 TOPS) |
+| **Định dạng tối ưu** | ✅ **W8A16 & Native FP16** (100% NPU offload qua QAIRT 2.51) |
+| **Dung lượng RAM** | **16 GB LPDDR5x** (đáp ứng nạp an toàn bộ mô hình ~2.2 GB) |
+| **Bộ nhớ trong (Storage)** | 128 GB UFS 3.1 / 4.0 |
+| **Hệ điều hành** | Ubuntu 22.04 LTS (Kernel 5.15 aarch64, glibc 2.35, Python 3.10) |
+| **Giao thức gọi NPU** | FastRPC (`/dev/adsprpc-smd`), `libcdsprpc.so`, user `system` |
+| **Công suất tiêu thụ (TDP)** | **SoC ~3.5 – 12 W** (Toàn hộp: ~5.8 – 8.8 W, tản nhiệt nhôm thụ động) |
+| **Giao diện âm thanh (Audio I/O)** | Micro + Loa ngoài qua cổng USB 3.0 (ALSA `snd-usb-audio`) |
+| **Kết nối vận hành** | USB Type-C (ADB shell) / Cổng mạng RJ45 Ethernet |
 
 > [!NOTE]
-> Báo cáo khảo sát phần cứng chi tiết và kế hoạch đo kiểm on-device tại VNG Campus được lưu tại [`docs/hardware/plan_os_hardware.pdf`](docs/hardware/plan_os_hardware.pdf) và [`docs/hardware/report_aibox_8550.pdf`](docs/hardware/report_aibox_8550.pdf).
+> Báo cáo khảo sát phần cứng chi tiết và kế hoạch đo kiểm on-device tại VNG Campus được lưu tại [`docs/plan_os_hardware.pdf`](docs/plan_os_hardware.pdf) và [`docs/report_aibox8550.pdf`](docs/report_aibox8550.pdf).
 
 ---
 
@@ -107,19 +104,19 @@ flowchart TD
 
 ### Chi tiết 9 đồ thị mô hình chạy trên Qualcomm Hexagon NPU v73
 
-Dưới đây là bảng số liệu đo kiểm thực tế từ Qualcomm AI Hub trên chip **QCS8550 (HSPTEK AIBOX 8550)** và **IQ-9075 EVK** với QAIRT 2.51:
+Dưới đây là bảng số liệu đo kiểm thực tế từ Qualcomm AI Hub trên chip **Qualcomm QCS8550 (HSPTEK AIBOX 8550)** với QAIRT 2.51:
 
-| Mô hình / Đồ thị | Vai trò trong chuỗi | Độ dài cửa sổ / Giới hạn | Định dạng NPU | Thời gian chip QCS8550 | Thời gian chip IQ-9075 | Đánh giá độ chính xác (Quality Metric) |
-|---|---|---|:---:|:---:|:---:|---|
-| **`asr_vi`** | ASR Tiếng Việt (Zipformer-150M CTC) | 15 giây âm thanh | FP16 | **163.4 ms** | 174.3 ms | WER: clean 7.5%, 5 dB 9.5%, 0 dB 6.2% |
-| **`asr_xx_frontend`** | Tiền xử lý fbank SenseVoice (EN/ZH/KO) | 29 giây âm thanh | FP16 | **58.3 ms** | 62.5 ms | Khớp 100% đầu ra fbank CPU |
-| **`asr_xx_encoder`** | ASR Đa ngữ (SenseVoice-Small) | 29 giây âm thanh | W8A16 | **236.5 ms** | 268.0 ms | CER: EN 4.8%, ZH 8.3%, KO 7.3% |
-| **`mt_enc`** | NLLB-200-600M Encoder | 64 token đầu vào | FP16 | **7.5 ms** | 7.4 ms | Cosine similarity $\ge 0.9999$ vs FP32 CPU |
-| **`mt_dec`** | NLLB Decoder Step (Chế độ nhanh) | 1 token/step (96 slots) | W8A16 | **15.2 ms / step** | 16.1 ms / step | 100% token khớp argmax với CPU Greedy |
-| **`mt_decB`** | NLLB Decoder Step (Chế độ chuẩn) | 4 beams/step | W8A16 | **30.8 ms / step** | 31.0 ms / step | Logit cosine $\ge 0.99999$, tăng +0.5…2.4 chrF |
-| **`tts_vi`** | TTS Tiếng Việt (Piper vais1000) | $\le 26$ từ / chunk | W8A16 | **520.1 ms** | 480.0 ms | VITS byte-level, âm sắc tự nhiên, không rác âm |
-| **`tts_zh`** | TTS Tiếng Trung (MeloTTS-ZH) | $\le 20$ ký tự / chunk | W8A16 | **740.6 ms** | 720.2 ms | ASR CER 6.4% trên 40 câu thử nghiệm |
-| **`tts_enko`** | TTS Tiếng Anh & Hàn (Supertonic-3) | $\le 82$ ký tự / chunk | W8A16 | **701.2 ms** | 748.3 ms | Round-trip WER: 0.0% (EN), CER: 1.5% (KO) |
+| Mô hình / Đồ thị | Vai trò trong chuỗi | Độ dài cửa sổ / Giới hạn | Định dạng NPU | Thời gian chip QCS8550 | Đánh giá độ chính xác (Quality Metric) |
+|---|---|---|:---:|:---:|---|
+| **`asr_vi`** | ASR Tiếng Việt (Zipformer-150M CTC) | 15 giây âm thanh | FP16 | **163.4 ms** | WER: clean 7.5%, 5 dB 9.5%, 0 dB 6.2% |
+| **`asr_xx_frontend`** | Tiền xử lý fbank SenseVoice (EN/ZH/KO) | 29 giây âm thanh | FP16 | **58.3 ms** | Khớp 100% đầu ra fbank CPU |
+| **`asr_xx_encoder`** | ASR Đa ngữ (SenseVoice-Small) | 29 giây âm thanh | W8A16 | **236.5 ms** | CER: EN 4.8%, ZH 8.3%, KO 7.3% |
+| **`mt_enc`** | NLLB-200-600M Encoder | 64 token đầu vào | FP16 | **7.5 ms** | Cosine similarity $\ge 0.9999$ vs FP32 CPU |
+| **`mt_dec`** | NLLB Decoder Step (Chế độ nhanh) | 1 token/step (96 slots) | W8A16 | **15.2 ms / step** | 100% token khớp argmax với CPU Greedy |
+| **`mt_decB`** | NLLB Decoder Step (Chế độ chuẩn) | 4 beams/step | W8A16 | **30.8 ms / step** | Logit cosine $\ge 0.99999$, tăng +0.5…2.4 chrF |
+| **`tts_vi`** | TTS Tiếng Việt (Piper vais1000) | $\le 26$ từ / chunk | W8A16 | **520.1 ms** | VITS byte-level, âm sắc tự nhiên, không rác âm |
+| **`tts_zh`** | TTS Tiếng Trung (MeloTTS-ZH) | $\le 20$ ký tự / chunk | W8A16 | **740.6 ms** | ASR CER 6.4% trên 40 câu thử nghiệm |
+| **`tts_enko`** | TTS Tiếng Anh & Hàn (Supertonic-3) | $\le 82$ ký tự / chunk | W8A16 | **701.2 ms** | Round-trip WER: 0.0% (EN), CER: 1.5% (KO) |
 
 ### Ước tính độ trễ chip toàn trình cho 1 câu nói ngắn (~25 token MT)
 
@@ -218,16 +215,17 @@ AuraTranslateEdge-OneVoice/
 │   └── noise/                         # Tạp âm công nghiệp mô phỏng
 │
 ├── docs/                              # TÀI LIỆU KỸ THUẬT & HỒ SƠ ĐỀ ÁN
-│   ├── hardware/                      # Kế hoạch & hướng dẫn phần cứng
-│   │   ├── plan_os_hardware.pdf       # Kế hoạch hệ điều hành & phần cứng hoàn chỉnh
-│   │   ├── plan_os_hardware.tex       # Mã nguồn LaTeX chuẩn hoá Overleaf
-│   │   ├── report_aibox_8550.pdf      # Báo cáo đánh giá phần cứng AIBOX 8550
-│   │   └── KIMQ8550/                  # Tài liệu hãng HSPTEK (Carrier Board, OS update)
-│   ├── software/                      # Báo cáo thử nghiệm Step 0 -> Step 4
-│   └── phase3_prototype_submission.docx # Hồ sơ nộp bài Phase 3 Prototype
+│   ├── report_aibox8550.pdf           # Báo cáo đánh giá phần cứng HSPTEK AIBOX 8550
+│   ├── plan_os_hardware.pdf           # Kế hoạch hệ điều hành & phần cứng hoàn chỉnh
+│   ├── plan_pipeline.pdf              # Kế hoạch kiến trúc pipeline toàn trình
+│   ├── report_asr.pdf                 # Báo cáo kiểm thử nhận diện giọng nói ASR
+│   ├── report_mt.pdf                  # Báo cáo kiểm thử dịch máy MT NLLB
+│   ├── report_tts.pdf                 # Báo cáo kiểm thử tổng hợp giọng nói TTS
+│   ├── phase3_prototype_submission_draft.md # Bản nháp thuyết minh nộp bài Phase 3
+│   ├── phase3_prototype_submission.docx     # Hồ sơ nộp bài Phase 3 Prototype
+│   └── phase3_prototype_submission_brief.pdf
 │
 ├── src/                               # KHO NGHIÊN CỨU & MÔ-ĐUN HOÁ BAN ĐẦU
-│   ├── step0_frontend/                # Thử nghiệm GTCRN & Silero VAD
 │   ├── step1_asr/                     # Thử nghiệm Zipformer-30M & SenseVoice FP32
 │   ├── step2_mt/                      # Thử nghiệm NLLB CTranslate2 INT8
 │   ├── step3_tts/                     # Thử nghiệm Piper, Supertonic, MeloTTS
@@ -247,8 +245,8 @@ Phù hợp cho lập trình viên phát triển tính năng mới, kiểm thử 
 
 ```bash
 # 1. Cài đặt môi trường Python 3.10 hoặc 3.11
-git clone https://github.com/Khanhhh239/OneVoice.git
-cd OneVoice
+git clone https://github.com/LGKAI/AuraTranslateEdge-OneVoice.git
+cd AuraTranslateEdge-OneVoice
 pip install -r requirements.txt
 
 # 2. Chuyển vào thư mục engine s2s_edge

@@ -1,0 +1,9 @@
+{
+  "id": "EV-2748",
+  "original_peak": 0.007415771484375,
+  "original_rms": 0.000200008595129475,
+  "zero_fraction": 0.774800755033557,
+  "gain": 67.42386831275721,
+  "independent_asr_after_peak_normalization": "",
+  "note": "Gain only, source file unchanged. Independent ASR is not human gold."
+}

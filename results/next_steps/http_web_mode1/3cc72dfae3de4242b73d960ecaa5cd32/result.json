@@ -1,0 +1,208 @@
+{
+  "id": "3cc72dfae3de4242b73d960ecaa5cd32",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 11.9583125,
+  "output_seconds": 16.840408163265305,
+  "elapsed_seconds": 14.725523541994335,
+  "input_url": "/audio/3cc72dfae3de4242b73d960ecaa5cd32/input.wav",
+  "output_url": "/audio/3cc72dfae3de4242b73d960ecaa5cd32/output.wav",
+  "detail_url": "/audio/3cc72dfae3de4242b73d960ecaa5cd32/result.json",
+  "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+  "translation": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+  "tts_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "mt": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+      "tts_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+      "tts_format": {
+        "stage": "tts_hybrid",
+        "lang": "en",
+        "input": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+        "output": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+        "spans": [
+          {
+            "start": 190,
+            "end": 200,
+            "kind": "identifier",
+            "raw": "0912345678",
+            "value": {
+              "characters": "0912345678"
+            },
+            "spoken": "zero nine one two three four five six seven eight",
+            "source": "context"
+          }
+        ],
+        "protected_ranges": [
+          [
+            190,
+            239
+          ]
+        ],
+        "warnings": [],
+        "seconds": 0.0005449160016723908,
+        "identifier_model": "CRF loaded",
+        "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+        "planned_chunks": [
+          "meeting at fourteen o'clock four days ten November of the year two thousand no two six",
+          "Tickets for five thousand denarii are reduced by ten per cent.",
+          "Temperature three to seven years c call",
+          "zero nine one two three four five six seven eight"
+        ],
+        "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+        "preprocessed_chunk_lengths": [
+          96,
+          71,
+          49,
+          59
+        ]
+      },
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.27976866599783534,
+        "source_normalize_s": 3.986613374996523,
+        "mt_s": 2.198752374999458,
+        "tts_s": 5.892831584002124,
+        "total_s": 12.35796599999594,
+        "graph_s": 8.047121706003963,
+        "graph_calls": 72,
+        "host_s": 4.310844293991977,
+        "audio_in_s": 11.9583125,
+        "audio_out_s": 16.840408163265305
+      },
+      "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "span": [
+        0.0,
+        11.9583125
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_identifiers",
+      "lang": "vi",
+      "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "output": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "converted": [
+        {
+          "source": "không chín một hai ba bốn năm sáu bảy tám",
+          "canonical": "0912345678"
+        }
+      ],
+      "policy": "recognized digit words to literal identifier characters; no missing digits inferred"
+    },
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "output": [
+        "cuộc họp lúc mười bốn giờ bốn ngày mười",
+        "tháng mười một năm hai nghìn không hai sáu",
+        "giá vé năm nghìn đồng giảm mười phần trăm",
+        "nhiệt độ ba bảy năm độ c gọi số 0912345678"
+      ],
+      "seconds": 3.985695625000517,
+      "attempts": 2,
+      "content_preserved": true
+    }
+  ],
+  "source_mode": "1",
+  "effective_profile": {
+    "vad_profile": "legacy",
+    "vad_profile_origin": "arg",
+    "vad_options": {
+      "pad_ms": 150,
+      "min_sil_ms": 500,
+      "merge_gap_s": 1.5,
+      "short_s": 3.0
+    },
+    "ort_policy": "basic",
+    "ort_policy_origin": "arg",
+    "source_mode": "1",
+    "source_mode_origin": "arg",
+    "tts_format": "hybrid",
+    "tts_format_origin": "env"
+  },
+  "ort_sessions": {
+    "asr_vi": {
+      "name": "asr_vi",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+      "size_bytes": 596925289,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "basic",
+      "effective_ort_level": "ORT_ENABLE_BASIC",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_ENABLE_BASIC",
+          "ok": true
+        }
+      ]
+    },
+    "mt_enc": {
+      "name": "mt_enc",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+      "size_bytes": 991368468,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "basic",
+      "effective_ort_level": "ORT_ENABLE_BASIC",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_ENABLE_BASIC",
+          "ok": true
+        }
+      ]
+    },
+    "mt_decB": {
+      "name": "mt_decB",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+      "size_bytes": 1276245977,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "basic",
+      "effective_ort_level": "ORT_ENABLE_BASIC",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_ENABLE_BASIC",
+          "ok": true
+        }
+      ]
+    },
+    "tts_enko": {
+      "name": "tts_enko",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+      "size_bytes": 398278832,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "basic",
+      "effective_ort_level": "ORT_ENABLE_BASIC",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_ENABLE_BASIC",
+          "ok": true
+        }
+      ]
+    }
+  },
+  "code_fingerprint": {
+    "git_head": "43ea359b42ae274f32f6e24eeb9b5018dc2a93ea",
+    "s2s_edge_sha256": "ee6605f6a6270afa8812f94fc4e65921879a6cc71c5d2d7a30a982e81740f87d"
+  },
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

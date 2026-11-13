@@ -1,0 +1,33 @@
+{
+  "asr_vi": {
+    "onnx": "../build/zip150/zip150_ctc_static_1500.onnx"
+  },
+  "asr_xx_frontend": {
+    "onnx": "../build/sensevoice/sv_frontend_v3.onnx"
+  },
+  "asr_xx_encoder": {
+    "onnx": "../build/sensevoice/sv_enc_cls.onnx"
+  },
+  "mt_enc": {
+    "onnx": "../build/nllb/nllb_enc.onnx",
+    "S": 64
+  },
+  "mt_dec": {
+    "onnx": "../build/nllb/nllb_dec.onnx",
+    "Tm": 96
+  },
+  "mt_decB": {
+    "onnx": "../build/nllb/nllb_decB.onnx",
+    "Tm": 96,
+    "B": 4
+  },
+  "tts_vi": {
+    "onnx": "../src/step4_quantization/tts/piper/g2p/build/piper_vi_full_g8.onnx"
+  },
+  "tts_enko": {
+    "onnx": "../build/supertonic/supertonic_full_N96_L150_s5.onnx"
+  },
+  "tts_zh": {
+    "onnx": "../build/melo/melo_one.onnx"
+  }
+}

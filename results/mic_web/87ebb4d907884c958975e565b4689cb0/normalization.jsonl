@@ -1,0 +1,2 @@
+{"stage": "asr_segmentation", "lang": "en", "input": "Let's take a grand check on dinner.", "output": ["Let's take a grand check on dinner."], "seconds": 0.9396859159969608, "attempts": 1, "content_preserved": true}
+{"stage": "tts", "lang": "vi", "input": "Chúng ta hãy kiểm tra giá của bữa tối.", "identifiers": [], "identifier_spoken_text": "Chúng ta hãy kiểm tra giá của bữa tối.", "output": "Chúng ta hãy kiểm tra giá của bữa tối.", "seconds": 0.3179052080013207, "tokens": 51, "model": "ByT5-Vi-Normalization + learned span tags", "digits_remaining": false}

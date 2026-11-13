@@ -4,13 +4,18 @@
 #   * LD_LIBRARY_PATH must be set BEFORE python starts (the loader reads it once), so a plain `python ...` could pick /usr/lib/libQnnHtpV73Stub.so;
 #   * qai_appbuilder only sets ADSP_LIBRARY_PATH when it is empty, so a pre-set system value would load the 2.41 skel with the 2.51 stub.
 # The system dirs stay after ours (FastRPC also needs the box's own shell files). Set S2S_SYSTEM_QNN=1 to leave both variables untouched.
+# syslibs/ holds libatomic.so.1 (Ubuntu 22.04 arm64), needed by the QNN libs; it is only used when the box itself does not have it.
+_S2S_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)
+if ! ldconfig -p 2>/dev/null | grep -q "libatomic.so.1 "; then
+  export LD_LIBRARY_PATH="$_S2S_ROOT/syslibs${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"; echo "[env] system has no libatomic.so.1: using $_S2S_ROOT/syslibs" >&2
+fi
 if [ "${S2S_SYSTEM_QNN:-0}" != "1" ]; then
-  QAI=$(python -c "import qai_appbuilder, os; print(os.path.dirname(qai_appbuilder.__file__))" 2>/dev/null)
+  QAI=$(python -c "import importlib.util, os; s = importlib.util.find_spec('qai_appbuilder'); print(os.path.dirname(s.origin) if s else '')" 2>/dev/null)
   if [ -n "$QAI" ] && [ -d "$QAI/libs" ]; then
     export LD_LIBRARY_PATH="$QAI/libs:$QAI${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     export ADSP_LIBRARY_PATH="$QAI/libs;/usr/lib/rfsa/adsp;/dsp"
   else
-    echo "[env] qai_appbuilder not importable: run install.sh first" >&2
+    echo "[env] qai_appbuilder not installed in this python: run install.sh first" >&2
   fi
 fi
 echo "[env] LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}" >&2

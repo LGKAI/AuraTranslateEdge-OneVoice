@@ -9,6 +9,10 @@ $$\text{Tiếng Việt (VI)} \longleftrightarrow \text{Tiếng Anh (EN)} \;\big|
 
 Dự án được đồng thiết kế (hardware-software co-design) bởi đội ngũ **Gia Sư Đỉnh Cao** cho cuộc thi **OneVoice AI Challenge 2026** (do **Saigon AI Hub × Qualcomm** tổ chức), hướng tới giải quyết bài toán giao tiếp thời gian thực không độ trễ, bảo mật tuyệt đối tại các nhà máy sản xuất FDI, khu công nghiệp và môi trường thương mại song phương.
 
+> [!IMPORTANT]
+> - **Web Demo trực quan trên Localhost (`web_demo/`):** chạy `python web_demo/server.py` (Windows local models) hoặc `S2S_ENGINE=mock python web_demo/server.py` (chế độ test UI), mở `http://localhost:8000` (xem [`web_demo/README.md`](web_demo/README.md)).
+> - **Triển khai trên HSPTEK AIBOX 8550 (bản gộp ASR + MT 3.3B routing + Hybrid TTS + Web Demo):** xem [`s2s_edge/HUONG_DAN_CHAY_BOX.md`](s2s_edge/HUONG_DAN_CHAY_BOX.md). Trên hộp chỉ cần một lệnh: `bash s2s_edge/start.sh demo`.
+
 ---
 
 ## 1. Hiện trạng kỹ thuật & Điểm đột phá cốt lõi (Key Technical Differentiators)
@@ -174,66 +178,39 @@ AuraTranslateEdge-OneVoice/
 │
 ├── s2s_edge/                          # ENGINE TRIỂN KHAI EDGE CHÍNH THỨC (PHASE 3)
 │   ├── README.md                      # Chi tiết kiến trúc NPU Qualcomm Hexagon v73
-│   ├── requirements.txt               # Dependencies tối giản phục vụ chạy on-device (7 gói)
-│   ├── s2s_web.py                     # Giao diện Web Dashboard cục bộ thử nghiệm S2S
+│   ├── HUONG_DAN_CHAY_BOX.md          # Hướng dẫn cài đặt và chạy demo trên AIBOX 8550
+│   ├── requirements.txt               # Dependencies tối giản phục vụ chạy on-device
+│   ├── install.sh / start.sh / run_demo.sh  # Scripts triển khai 1 lệnh trên AIBOX 8550
+│   ├── s2s_web.py                     # Giao diện Web Dashboard cục bộ (Torch/CPU fallback)
 │   ├── glossary.example.json          # File cấu hình thuật ngữ mẫu
 │   ├── glossary_enterprise.json       # Bảng thuật ngữ chuyên ngành công nghiệp & FDI
-│   ├── models.dev*.json               # Cấu hình đường dẫn model ONNX tham chiếu CPU
-│   ├── assets/                        # Dữ liệu tĩnh runtime (Tokenizers, Vocab, Styles)
-│   │   ├── nllb_spm.model             # SentencePiece model cho NLLB-200
-│   │   ├── zipformer_bpe.model        # BPE model cho Zipformer Vi
-│   │   ├── supertonic_styles.npz      # Style embeddings cho Supertonic-3 TTS
-│   │   ├── supertonic_unicode_indexer.json
-│   │   ├── piper_vi_words.txt         # Từ điển từ vựng Piper tiếng Việt
-│   │   └── vi_capu/                   # Từ điển khôi phục dấu câu & chữ hoa
-│   ├── docs/                          # Tài liệu kỹ thuật & báo cáo chuyên sâu Phase 3
-│   ├── eval/                          # Bộ dữ liệu chia tập đánh giá (`btc_split.json`)
+│   ├── models.dev*.json               # Cấu hình đường dẫn model ONNX tham chiếu CPU (kèm ASR buckets)
+│   ├── models_qcs8550/                # Cấu hình NPU AIBOX 8550 (NLLB-3.3B route + 600M + Fast)
+│   ├── assets/                        # Dữ liệu tĩnh runtime (Tokenizers, Vocab, CMVN, Styles)
+│   ├── docs/                          # Tài liệu kỹ thuật & báo cáo tích hợp Phase 3
+│   ├── eval/                          # Bộ dữ liệu chia tập & rubric đánh giá MT
 │   ├── models_relinked/               # Danh sách liên kết model QNN cho AIBOX 8550
-│   ├── s2s_edge/                      # Module mã nguồn thực thi chính
-│   │   ├── __main__.py                # CLI Entrypoint (lệnh 'file', 'live', 'inspect')
-│   │   ├── audio.py                   # I/O âm thanh, resampling và Adaptive Energy VAD
-│   │   ├── backends.py                # Wrapper trừu tượng hoá NPU (QNN) và CPU (ONNXRuntime)
-│   │   ├── asr.py                     # Wrapper Zipformer-150M và SenseVoice-Small
-│   │   ├── denoise.py                 # Mô-đun khử nhiễu GTCRN tuỳ chọn
-│   │   ├── punct_vi.py                # Phục hồi dấu câu & chữ hoa tiếng Việt
-│   │   ├── textnorm.py                # Chuẩn hoá số sang chữ & khôi phục dấu câu/ngắt câu
-│   │   ├── names.py                   # Xử lý phiên âm tên riêng ngoại lai
-│   │   ├── mt.py                      # Host decode loop cho NLLB (Greedy & 4-Beam)
-│   │   ├── tts.py                     # Wrapper Piper, MeloTTS và Supertonic-3
-│   │   ├── registry.py                # Bộ quản lý nạp đồ thị và warmup mô hình
-│   │   ├── conversation.py            # Quản lý phiên hội thoại song ngữ hai chiều
-│   │   ├── pipeline.py                # Lớp điều phối toàn trình S2S
-│   │   └── bench.py                   # Đo kiểm độ trễ & hiệu năng đầu-cuối
-│   └── tools/                         # Bộ công cụ vận hành thiết bị & kiểm thử
-│       ├── recon.sh                   # Khảo sát phần cứng, driver, NPU trên AIBOX 8550
-│       ├── session0.sh                # Script tự động hoá kiểm tra lần đầu trên thiết bị
-│       ├── golden.py                  # Kiểm chứng sai số NPU vs CPU parity
-│       ├── eval_btc.py                # Đánh giá chất lượng trên tập dữ liệu mẫu BTC
-│       ├── eval_vi_punct.py           # Kiểm thử độ chính xác phục hồi dấu câu tiếng Việt
-│       ├── run_btc.sh                 # Kịch bản chạy toàn bộ tập BTC và đóng gói log
-│       └── thermal_soak.py            # Kiểm tra độ ổn định nhiệt độ & quá nhiệt
+│   ├── s2s_edge/                      # Module mã nguồn thực thi chính (ASR, VAD, MT 3.3B/600M, Hybrid TTS, WebUI)
+│   ├── tests/                         # Bộ kiểm thử đơn vị (ASR clean, MT clean/long/text)
+│   └── tools/                         # Bộ công cụ vận hành thiết bị, benchmark & kiểm thử
 │
-├── data/                              # DỮ LIỆU ĐO KIỂM & TẬP MẪU
-│   ├── phase3_sample_dataset/         # Tập dữ liệu mẫu Phase 3 của BTC (Vie-Eng, Vie-Kor, Vie-Man)
-│   ├── asr/                           # Dữ liệu đối chứng ASR theo ngôn ngữ
-│   ├── asr_mixed/                     # Dữ liệu ASR trộn nhiễu nhiều mức SNR
-│   ├── clean/                         # Mẫu âm thanh sạch chuẩn hoá
-│   ├── mt/                            # Dữ liệu đối chứng FLORES-200
-│   └── noise/                         # Tạp âm công nghiệp mô phỏng
+├── web_demo/                          # WEB DEMO STREAMING PIPELINE (LOCALHOST / AIBOX)
+│   ├── server.py                      # HTTP/NDJSON streaming server (/api/translate, /api/text, /api/health)
+│   ├── engine.py                      # Adapter S2SEngine (AIBOX/ONNX), LocalTorchEngine (Windows), MockEngine
+│   ├── test_engine.py                 # Kiểm thử Web Demo độc lập không cần tải weight
+│   └── static/                        # Giao diện web hiện đại (mic, upload WAV, sửa text ASR dịch lại)
 │
-├── docs/                              # TÀI LIỆU KỸ THUẬT & HỒ SƠ ĐỀ ÁN
-│
-├── src/                               # KHO NGHIÊN CỨU & MÔ-ĐUN HOÁ BAN ĐẦU
-│   ├── step1_asr/                     # Thử nghiệm Zipformer & SenseVoice FP32
-│   ├── step2_mt/                      # Thử nghiệm NLLB CTranslate2 INT8
-│   ├── step3_tts/                     # Thử nghiệm Piper, Supertonic, MeloTTS
-│   ├── step4_quantization/            # Xuất đồ thị NPU & Thử nghiệm Qualcomm AI Hub
-│   └── step5_pipeline/                # Pipeline kết nối CPU ban đầu
-│
-├── third_party/                       # MÃ NGUỒN & TRỌNG SỐ BÊN THỨ BA
-│   ├── gtcrn/                         # Mô hình lọc nhiễu giọng nói GTCRN ONNX
-│   └── zipformer/                     # Trọng số tham chiếu Zipformer-30M / 150M
-│
+├── web/                               # Giao diện web thu âm/batch phục vụ tools/s2s_web.py
+├── tools/                             # Bộ công cụ đo kiểm Plan-01, export ONNX, S2S web launcher & audit
+├── tests/                             # Bộ test tích hợp toàn hệ thống (VAD/ORT profiles, Hybrid TTS, Entities)
+├── models/                            # Manifest & cấu hình mô hình CPU tham chiếu (`models.cpu.json`)
+├── data/                              # Dữ liệu đo kiểm & tập mẫu (`phase3_sample_dataset`, `asr`, `mt`, `noise`)
+├── docs/                              # Tài liệu kỹ thuật, workflow & hồ sơ đề án
+├── src/                               # Mã nguồn nghiên cứu & lượng tử hoá theo từng bước (`step1_asr` .. `step5_pipeline`)
+├── third_party/                       # Mã nguồn & trọng số bên thứ ba (`gtcrn`, `zipformer`)
+├── research/                          # Benchmark chuẩn hoá định dạng TTS đa ngữ (`tts_format_benchmark`)
+├── reports/                           # Báo cáo đánh giá tích hợp ASR, TTS Hybrid & audio audit
+├── results/                           # Dữ liệu log/JSON đối chứng E2E và benchmark tự động
 └── outputs/                           # Log kết quả, báo cáo đo đạc và kết quả kiểm thử
 ```
 
@@ -241,7 +218,22 @@ AuraTranslateEdge-OneVoice/
 
 ## 6. Hướng dẫn cài đặt & Thực thi (Quick Start Guide)
 
-### 6.1. Chạy thử nghiệm trên máy tính cá nhân (CPU Reference Mode)
+### 6.1. Chạy Web Demo Pipeline trên Localhost (Windows / Linux)
+
+Để quay video demo hoặc thử nghiệm giao diện streaming trực tiếp trên trình duyệt (`http://localhost:8000` — hỗ trợ micro, kéo/thả file âm thanh, và chỉnh sửa text ASR dịch lại):
+
+```bash
+# 1. Chạy Web Demo với model AI cục bộ trên máy (Zipformer + SenseVoice + NLLB-600M + Piper/Supertonic)
+python web_demo/server.py
+
+# Hoặc chạy chế độ Mock để test/quay nhanh giao diện không cần chờ nạp model (PowerShell):
+$env:S2S_ENGINE="mock"; python web_demo/server.py
+
+# Hoặc chạy Dashboard quản trị cũ (cổng 8765):
+python s2s_edge/s2s_web.py --port 8765
+```
+
+### 6.2. Chạy thử nghiệm CLI (CPU Reference Mode)
 
 Phù hợp cho lập trình viên phát triển tính năng mới, kiểm thử prompt dấu câu, hoặc kiểm tra logic dịch thuật trước khi nạp lên NPU.
 

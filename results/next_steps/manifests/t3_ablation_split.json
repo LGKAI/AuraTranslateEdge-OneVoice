@@ -1,0 +1,194 @@
+{
+  "split_id": "t3_ablation_split_v1",
+  "created_at": "2026-11-13",
+  "policy": "Native human audio and synthetic TTS fixtures are tracked separately; no synthetic audio is classified as native holdout.",
+  "native_availability": {
+    "en": {"available": true, "source": "../en-vi/BTC", "count_used": 6},
+    "vi": {"available": false, "reason": "No local native human VI WAVs found in workspace (data/asr/vi/*.wav absent; data/clean/vi only has .gitkeep)."},
+    "ko": {"available": false, "reason": "No local native human KO WAVs found in workspace (data/asr/ko/*.wav absent; data/clean/ko only has .gitkeep)."},
+    "zh": {"available": false, "reason": "No local native human ZH WAVs found in workspace (data/asr/zh/*.wav absent; data/clean/zh only has .gitkeep)."}
+  },
+  "native_en_dev": [
+    {
+      "id": "native_en_dev_EV0358",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-0358_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "seven hundred thirty four main street harper valley oregon six seven two nine seven",
+      "expected_entities": ["734", "67297"]
+    },
+    {
+      "id": "native_en_dev_EV0157",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-0157_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "play only all music released between the year one thousand nine hundred and ninety and two thousand",
+      "expected_entities": ["1990", "2000"]
+    },
+    {
+      "id": "native_en_dev_EV0491",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-0491_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "you'll just need roughly ten dollars for food and gas money my friend is driving so we usually all chip in a few dollars for gas money",
+      "expected_entities": ["10"]
+    }
+  ],
+  "native_en_holdout": [
+    {
+      "id": "native_en_holdout_EV1508",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-1508_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "i'll uh look at it like when my usual working hours are like from twelve o clock till three o clock or something",
+      "expected_entities": ["12", "3"]
+    },
+    {
+      "id": "native_en_holdout_EV3459",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-3459_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "thirty two years old okay could you tell me the first line of your address and your postcode please",
+      "expected_entities": ["32"]
+    },
+    {
+      "id": "native_en_holdout_EV3775",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-3775_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "get me a taxi to take me to the airport on friday at five thirty in the morning",
+      "expected_entities": ["530"]
+    }
+  ],
+  "synthetic_dev": [
+    {
+      "id": "syn_en_special",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/en_to_vi_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50, with a 15% discount. The temperature is 37.5°C. My flight is VN123, and my ZIP code is 67297.",
+      "expected_entities": ["330", "15", "2026", "15.50", "15%", "37.5", "VN", "123", "67297"]
+    },
+    {
+      "id": "syn_en_clear",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "results/neural_fix/audio/en_input_clear.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50, with a 15% discount. The temperature is 37.5°C. My flight is VN123. My ZIP code is 67297. Call 0912345678.",
+      "expected_entities": ["330", "15", "2026", "15.50", "15%", "37.5", "67297", "0912345678"]
+    },
+    {
+      "id": "syn_en_multilingual",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "results/multilingual_tts_format/hybrid/en.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "The meeting is at 3:30 PM on 21/12/2027. The price is $18.25. The temperature is 36.8 degrees Celsius. My ZIP code is 04782. My phone number is 0908246135. The flight is VN247.",
+      "expected_entities": ["2027", "18", "36.8", "04782", "0908246135"]
+    },
+    {
+      "id": "syn_vi_special_to_en",
+      "src": "vi",
+      "tgt": "en",
+      "input_wav": "results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Cuộc họp lúc 14h45 ngày 15/11/2026. Giá vé 50.000 đồng, giảm 15%. Nhiệt độ 37,5°C. Xin gọi số 0912 345 678.",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_vi_clear_to_ko",
+      "src": "vi",
+      "tgt": "ko",
+      "input_wav": "results/neural_fix/audio/vi_input_clear.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Cuộc họp lúc 3:30 chiều ngày 15/11/2026. Giá vé 50.000 đồng, giảm 15%. Nhiệt độ 37,5°C. Xin gọi số 0912345678. Mã bưu chính là 67297.",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_vi_multilingual_to_zh",
+      "src": "vi",
+      "tgt": "zh",
+      "input_wav": "results/multilingual_tts_format/hybrid/vi.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Cuộc họp lúc 3:30 chiều ngày 21/12/2027. Giá là $18.25. Nhiệt độ 36,8°C. Mã ZIP 04782. Điện thoại 0908246135. Chuyến bay VN247. Số nhà 734.",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_ko_e2e",
+      "src": "ko",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/vi_to_ko.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Synthetic KO output of vi_to_en_special_input",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_ko_hybrid",
+      "src": "ko",
+      "tgt": "vi",
+      "input_wav": "results/hybrid_format/s2s/audio/vi_to_ko.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Synthetic KO output of vi_to_en_special_input",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_ko_multilingual",
+      "src": "ko",
+      "tgt": "vi",
+      "input_wav": "results/multilingual_tts_format/hybrid/ko.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "회의는 2027년 12월 21일 3:30에 있습니다. 가격은 18.25달러입니다. 온도는 36.8도입니다. 우편번호는 04782입니다. 전화번호는 0908246135입니다. 항공편은 VN247입니다.",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_zh_e2e",
+      "src": "zh",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/vi_to_zh.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Synthetic ZH output of vi_to_en_special_input",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_zh_hybrid",
+      "src": "zh",
+      "tgt": "vi",
+      "input_wav": "results/hybrid_format/s2s/audio/vi_to_zh.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Synthetic ZH output of vi_to_en_special_input",
+      "expected_entities": []
+    },
+    {
+      "id": "syn_zh_multilingual",
+      "src": "zh",
+      "tgt": "vi",
+      "input_wav": "results/multilingual_tts_format/hybrid/zh.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "会议在2027年12月21日3:30开始。价格是18.25美元。温度是36.8摄氏度。邮政编码是04782。电话号码是0908246135。航班号是VN247。",
+      "expected_entities": []
+    }
+  ],
+  "paired_vad_core_ids": [
+    "native_en_dev_EV0358",
+    "native_en_dev_EV0157",
+    "native_en_holdout_EV1508",
+    "syn_en_special",
+    "syn_vi_special_to_en",
+    "syn_ko_e2e",
+    "syn_zh_e2e"
+  ],
+  "paired_ort_core_cases": [
+    {"id": "native_en_dev_EV0358", "src": "en", "tgt": "vi", "input_wav": "../en-vi/BTC/EV-0358_in.wav", "input_kind": "native_human_speech"},
+    {"id": "syn_vi_special_to_en", "src": "vi", "tgt": "en", "input_wav": "results/e2e/audio/vi_to_en_special_input.wav", "input_kind": "synthetic_tts_fixture"},
+    {"id": "syn_vi_multilingual_to_zh", "src": "vi", "tgt": "zh", "input_wav": "results/multilingual_tts_format/hybrid/vi.wav", "input_kind": "synthetic_tts_fixture"},
+    {"id": "syn_ko_e2e", "src": "ko", "tgt": "vi", "input_wav": "results/e2e/audio/vi_to_ko.wav", "input_kind": "synthetic_tts_fixture"}
+  ]
+}

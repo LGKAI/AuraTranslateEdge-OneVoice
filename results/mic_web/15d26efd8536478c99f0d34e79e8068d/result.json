@@ -1,0 +1,94 @@
+{
+  "id": "15d26efd8536478c99f0d34e79e8068d",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 3.2,
+  "output_seconds": 2.3219954648526078,
+  "elapsed_seconds": 7.142170540999359,
+  "input_url": "/audio/15d26efd8536478c99f0d34e79e8068d/input.wav",
+  "output_url": "/audio/15d26efd8536478c99f0d34e79e8068d/output.wav",
+  "detail_url": "/audio/15d26efd8536478c99f0d34e79e8068d/result.json",
+  "asr": "Just to confirm, you set the alarm to go off at 800.",
+  "translation": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+  "tts_text": "chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "Just to confirm, you set the alarm to go off at 8:00.",
+      "asr_before_normalization": "Just to confirm, you set the alarm to go off at 800.",
+      "mt": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+      "tts_text": "chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+      "tts_format": {
+        "stage": "tts_hybrid",
+        "lang": "vi",
+        "input": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+        "output": "Chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+        "spans": [
+          {
+            "start": 38,
+            "end": 39,
+            "kind": "number",
+            "raw": "8",
+            "value": {
+              "sign": "",
+              "whole": "8",
+              "fraction": ""
+            },
+            "spoken": "tám",
+            "source": "grammar"
+          }
+        ],
+        "protected_ranges": [
+          [
+            38,
+            41
+          ]
+        ],
+        "warnings": [],
+        "seconds": 0.0017529579999973066,
+        "identifier_model": "CRF loaded",
+        "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+        "planned_chunks": [
+          "chỉ để xác nhận, anh đặt báo động vào tám giờ."
+        ],
+        "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+      },
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.4097716249998484,
+        "source_normalize_s": 0.9532493330007128,
+        "mt_s": 0.5045889169996371,
+        "tts_s": 0.4901377919995866,
+        "total_s": 2.357747666999785,
+        "graph_s": 1.32613362500706,
+        "graph_calls": 20,
+        "host_s": 1.031614041992725,
+        "audio_in_s": 3.2,
+        "audio_out_s": 2.3219954648526078
+      },
+      "asr_raw": "Just to confirm, you set the alarm to go off at 800.",
+      "span": [
+        0.0,
+        3.2
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "Just to confirm, you set the alarm to go off at 800.",
+      "output": [
+        "Just to confirm, you set the alarm to go off at 8:00."
+      ],
+      "seconds": 0.9487481249998382,
+      "attempts": 1,
+      "content_preserved": true
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

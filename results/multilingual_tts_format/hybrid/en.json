@@ -1,0 +1,171 @@
+{
+  "lang": "en",
+  "mode": "hybrid",
+  "input": "The meeting is at 3:30 PM on 21/12/2027. The price is $18.25. The temperature is 36.8 degrees Celsius. My ZIP code is 04782. My phone number is 0908246135. The flight is VN247.",
+  "normalized_text": "The meeting is at three thirty pee em on December twenty first two thousand twenty-seven. The price is eighteen dollars twenty-five cents. The temperature is thirty-six point eight degrees Celsius. My ZIP code is zero four seven eight two. My phone number is zero nine zero eight two four six one three five. The flight is vee en two four seven.",
+  "synth_chunks": [
+    "The meeting is at three thirty pee em on",
+    "December twenty first two thousand twenty-seven.",
+    "The price is eighteen dollars twenty-five cents.",
+    "The temperature is thirty-six point eight degrees Celsius.",
+    "My ZIP code is zero four seven eight two.",
+    "My phone number is zero nine zero eight two four six one three five.",
+    "The flight is vee en two four seven."
+  ],
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/en.wav",
+  "sample_rate": 44100,
+  "output_seconds": 24.973333333333333,
+  "elapsed_seconds": 11.674957333001657,
+  "format_trace": {
+    "stage": "tts_hybrid",
+    "lang": "en",
+    "input": "The meeting is at 3:30 PM on 21/12/2027. The price is $18.25. The temperature is 36.8 degrees Celsius. My ZIP code is 04782. My phone number is 0908246135. The flight is VN247.",
+    "output": "The meeting is at three thirty pee em on December twenty first two thousand twenty-seven. The price is eighteen dollars twenty-five cents. The temperature is thirty-six point eight degrees Celsius. My ZIP code is zero four seven eight two. My phone number is zero nine zero eight two four six one three five. The flight is vee en two four seven.",
+    "spans": [
+      {
+        "start": 18,
+        "end": 25,
+        "kind": "time",
+        "raw": "3:30 PM",
+        "value": {
+          "hour": 3,
+          "minute": 30,
+          "second": null,
+          "ampm": "PM"
+        },
+        "spoken": "three thirty pee em",
+        "source": "grammar"
+      },
+      {
+        "start": 29,
+        "end": 39,
+        "kind": "date",
+        "raw": "21/12/2027",
+        "value": {
+          "year": 2027,
+          "month": 12,
+          "day": 21
+        },
+        "spoken": "December twenty first two thousand twenty-seven",
+        "source": "grammar"
+      },
+      {
+        "start": 54,
+        "end": 60,
+        "kind": "money",
+        "raw": "$18.25",
+        "value": {
+          "currency": "USD",
+          "number": {
+            "sign": "",
+            "whole": "18",
+            "fraction": "25"
+          }
+        },
+        "spoken": "eighteen dollars twenty-five cents",
+        "source": "grammar"
+      },
+      {
+        "start": 81,
+        "end": 85,
+        "kind": "number",
+        "raw": "36.8",
+        "value": {
+          "sign": "",
+          "whole": "36",
+          "fraction": "8"
+        },
+        "spoken": "thirty-six point eight",
+        "source": "grammar"
+      },
+      {
+        "start": 118,
+        "end": 123,
+        "kind": "identifier",
+        "raw": "04782",
+        "value": {
+          "characters": "04782"
+        },
+        "spoken": "zero four seven eight two",
+        "source": "context"
+      },
+      {
+        "start": 144,
+        "end": 154,
+        "kind": "identifier",
+        "raw": "0908246135",
+        "value": {
+          "characters": "0908246135"
+        },
+        "spoken": "zero nine zero eight two four six one three five",
+        "source": "context"
+      },
+      {
+        "start": 170,
+        "end": 175,
+        "kind": "identifier",
+        "raw": "VN247",
+        "value": {
+          "characters": "VN247"
+        },
+        "spoken": "vee en two four seven",
+        "source": "context"
+      }
+    ],
+    "protected_ranges": [
+      [
+        18,
+        37
+      ],
+      [
+        41,
+        88
+      ],
+      [
+        103,
+        137
+      ],
+      [
+        158,
+        180
+      ],
+      [
+        213,
+        238
+      ],
+      [
+        259,
+        307
+      ],
+      [
+        323,
+        344
+      ]
+    ],
+    "warnings": [],
+    "seconds": 0.010907500000030268,
+    "identifier_model": "CRF loaded",
+    "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+    "planned_chunks": [
+      "The meeting is at three thirty pee em on",
+      "December twenty first two thousand twenty-seven.",
+      "The price is eighteen dollars twenty-five cents.",
+      "The temperature is thirty-six point eight degrees Celsius.",
+      "My ZIP code is zero four seven eight two.",
+      "My phone number is zero nine zero eight two four six one three five.",
+      "The flight is vee en two four seven."
+    ],
+    "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+    "preprocessed_chunk_lengths": [
+      50,
+      57,
+      57,
+      67,
+      50,
+      77,
+      45
+    ]
+  },
+  "finite": true,
+  "scope": "actual TTS only; authored format probes, not S2S or a human listening score"
+}

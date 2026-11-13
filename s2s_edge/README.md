@@ -4,6 +4,8 @@ Nguyên mẫu Phase 3, Cuộc thi OneVoice AI Challenge 2026. Nhận âm thanh �
 Hỗ trợ 6 chiều dịch: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→vi (một đầu luôn là Tiếng Việt).
 
 > **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 trên thiết bị **HSPTEK AIBOX 8550 (SoC Qualcomm QCS8550)** qua Qualcomm AI Hub với QAIRT 2.51. Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
+>
+> **Chạy trên hộp AIBOX 8550 (gói đã gộp, web điều khiển, MT 3.3B, lọc rác ASR/MT): xem `../HUONG_DAN_CHAY_BOX.md`** ở thư mục gốc repo. Sơ đồ file và lệnh chi tiết: `docs/HUONG_DAN.md`, các thay đổi 13/11: `docs/THAY_DOI_VA_CACH_CHAY.md`.
 
 ---
 
@@ -34,6 +36,7 @@ Các đồ thị chạy trực tiếp trên Hexagon NPU (`--backend npu`) hoặc
 
 ```bash
 pip install -r requirements.txt
+# Lưu ý: backend CPU cần các file ONNX export, KHÔNG có trong gói cài đặt (gói chỉ có context binary cho NPU)
 cp models.dev.json models/models.json          # Cấu hình đường dẫn tới các file ONNX cục bộ
 python -m s2s_edge file --src vi --tgt en --in samples/vi_0.wav --out out.wav --backend cpu --models models/models.json
 python -m s2s_edge live --src vi --tgt zh --backend cpu --models models/models.json     # Nhấn Enter, nói vào mic và nghe bản dịch
@@ -41,9 +44,15 @@ python -m s2s_edge live --src vi --tgt zh --backend cpu --models models/models.j
 
 Hoặc chạy giao diện Web Dashboard cục bộ trực quan:
 ```bash
-python s2s_web.py --port 8765
+python s2s_dashboard.py --port 8765
 # Mở trình duyệt tại: http://localhost:8765
 ```
+
+---
+
+### ASR: cửa sổ nhiều kích thước, RNN-T, đặc trưng SenseVoice trên host
+
+Mỗi ASR có thể có nhiều đồ thị tĩnh (khoá `asr_vi@<frame>`, `asr_xx_encoder@<frame LFR>` trong models.json); pipeline chạy cửa sổ nhỏ nhất vừa câu nói, nên câu 3 s không phải trả giá cửa sổ 15 s / 29 s. Zipformer tiếng Việt giải mã bằng nhánh RNN-T khi có `asr_vi_decoder` + `asr_vi_joiner`; SenseVoice tính đặc trưng trên host khi `"_sv_frontend": "host"`. Mẫu cấu hình: `models.dev_asr_buckets.json`. Chi tiết, số đo và cách build/link trên AI Hub: [`docs/asr_optimization.md`](docs/asr_optimization.md); đánh giá riêng ASR: `python tools/eval_asr.py`, kiểm tra nhanh không cần model: `python tools/test_asr_host.py`.
 
 ---
 
@@ -58,6 +67,8 @@ Chi tiết về xử lý tên riêng (tên Latinh mà TTS tiếng Việt / Trung
 ---
 
 ## 4. Chạy trên Thiết bị Phần cứng Thật (HSPTEK AIBOX 8550)
+
+Bản tích hợp (Plan-01 + ASR speed/accuracy): profile mặc định, dựng gói với `--asr-config`, fallback trên box → [`docs/aibox8550_integration.md`](docs/aibox8550_integration.md).
 
 Khởi động phiên kiểm tra toàn diện đầu tiên trên thiết bị:
 ```bash
@@ -81,7 +92,7 @@ Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới �
 | Đường dẫn | Mục đích sử dụng |
 |---|---|
 | `s2s_edge/` | Gói thư viện chính: `audio` (I/O, VAD), `asr`, `mt`, `tts`, `textnorm`, `backends` (ONNX Runtime, QNN), `registry`, `pipeline`, `bench`, `__main__` (CLI) |
-| `s2s_web.py` | Web Dashboard trực quan chạy localhost: mic thu âm, dịch văn bản, nghe TTS, đo latency |
+| `s2s_dashboard.py` | Web Dashboard trực quan chạy localhost: mic thu âm, dịch văn bản, nghe TTS, đo latency |
 | `docs/VNG_SETUP.md` | Hướng dẫn kết nối và cấu hình thực địa trên phần cứng AIBOX 8550 tại VNG |
 | `tools/recon.sh` | Script tự động khảo sát môi trường (OS, SoC, QNN libs, thiết bị âm thanh, mạng) |
 | `tools/session0.sh` | Chuỗi tự động chạy đầu tiên trên thiết bị, đóng gói log thành `.tgz` |
@@ -99,7 +110,7 @@ Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới �
 * **TTS Tiếng Trung:** Xử lý bằng bảng tra tĩnh: các chữ số được đọc thông qua `textnorm`, chữ cái Latinh và ký tự hiếm ngoài bảng bị lược bỏ.
 * **TTS Tiếng Việt (Piper):** Lược bỏ các từ ngoài bảng âm tiết (được ghi nhận trong `n_oov`).
 * **MT NLLB:** Đoạn câu nguồn tối đa $\le 30$ SentencePiece token; câu dài hơn được tự động ngắt theo dấu câu hoặc điểm giữa câu để dịch phân đoạn.
-* **Độ dài đoạn âm thanh:** Một phân đoạn tiếng nói tối đa $\le 14.5$ s (khớp cửa sổ Zipformer); âm thanh dài hơn được cắt ở khung tĩnh lặng nhất.
-* **VAD (Voice Activity Detector):** Sử dụng thuật toán năng lượng thích ứng theo mức tín hiệu thu âm (hoạt động tốt với cả micro độ nhạy thấp); không dùng mô hình nơ-ron VAD riêng để tiết kiệm tài nguyên NPU.
+* **Độ dài đoạn âm thanh:** Một phân đoạn tiếng nói tối đa 14 s (`S2S_SEG_MAX_S`, vừa cửa sổ Zipformer 14,5 s); âm thanh dài hơn được cắt ở khung tĩnh lặng nhất.
+* **VAD (Voice Activity Detector):** Sử dụng thuật toán năng lượng thích ứng theo mức tín hiệu thu âm (hoạt động tốt với cả micro độ nhạy thấp), có ngưỡng trễ (hysteresis) để giữ âm cuối yếu và gộp các ngắt ngắn trong câu; không dùng mô hình nơ-ron VAD riêng để tiết kiệm tài nguyên NPU.
 * **Nói chồng âm & Pha trộn ngôn ngữ:** Trường hợp nhiều người nói cùng lúc hoặc câu tiếng Việt chèn từ tiếng Anh đàm thoại chưa được hỗ trợ hoàn toàn (xem chi tiết tại [`docs/conversation.md`](docs/conversation.md)).
 * **Khả năng tương thích phần cứng:** Toàn bộ model được tối ưu hóa trực tiếp cho thiết bị **HSPTEK AIBOX 8550** (SoC Qualcomm QCS8550, kiến trúc NPU Hexagon v73, QAIRT 2.51). Không tương thích trực tiếp với các dòng chip cũ như QCS6490 / RB3 Gen 2 (Hexagon v68).

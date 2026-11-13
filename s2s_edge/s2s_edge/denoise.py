@@ -5,6 +5,12 @@ import numpy as np
 N_FFT, HOP = 512, 256
 
 
+def _ort_session(path, so=None, providers=None):
+    """The REAL onnxruntime.InferenceSession. qai_appbuilder replaces the onnxruntime module with its QNN wrapper (breaks plain CPU models: "backend library does not exist"); s2s_edge/__init__ keeps the real one."""
+    from . import _ort_real
+    return _ort_real.InferenceSession(path, so, providers=providers or ["CPUExecutionProvider"])
+
+
 def _win(): return np.sqrt(np.hanning(N_FFT + 1)[:-1]).astype(np.float32)                    # sqrt of the periodic Hann window, as torch.hann_window(512).pow(0.5)
 
 
@@ -25,8 +31,8 @@ def istft(spec, length):
 
 class Gtcrn:
     def __init__(self, onnx_path):
-        import onnxruntime as ort
-        so = ort.SessionOptions(); so.log_severity_level = 3; self.s = ort.InferenceSession(onnx_path, so, providers=["CPUExecutionProvider"])
+        from . import _ort_real as ort
+        so = ort.SessionOptions(); so.log_severity_level = 3; self.s = _ort_session(onnx_path, so, providers=["CPUExecutionProvider"])
 
     def __call__(self, wav):
         if len(wav) < N_FFT: return wav

@@ -1,0 +1,42 @@
+{
+  "id": "EV-5301",
+  "mode": "default",
+  "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-5301_in.wav",
+  "input_sha256": "4916aa131db37013611802f6cf4deb2ad8cdae2b4f055ccef559954c37a65a02",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/default/EV-5301_out.wav",
+  "sample_rate": 22050,
+  "input_seconds": 3.2,
+  "output_seconds": 2.5658049886621317,
+  "elapsed_seconds": 1.6461485419968085,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "Just to confirm, you set the alarm to go off at 800.",
+      "asr_before_normalization": "Just to confirm, you set the alarm to go off at 800.",
+      "mt": "Chỉ để xác nhận, anh đã đặt báo động lên 08:00.",
+      "tts_text": "chỉ để xác nhận, anh đã đặt báo động lên tám : không .",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.4486455840014969,
+        "source_normalize_s": 2.3458000214304775e-05,
+        "mt_s": 0.6779427500005113,
+        "tts_s": 0.5186588329997903,
+        "total_s": 1.6452706250020128,
+        "graph_s": 1.5576515019965882,
+        "graph_calls": 21,
+        "host_s": 0.08761912300542463,
+        "audio_in_s": 3.2,
+        "audio_out_s": 2.5658049886621317
+      },
+      "span": [
+        0.0,
+        3.2
+      ]
+    }
+  ],
+  "input_kind": "original audio; no transcript supplied",
+  "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+}

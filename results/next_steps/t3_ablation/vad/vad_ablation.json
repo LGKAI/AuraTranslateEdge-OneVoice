@@ -1,0 +1,4718 @@
+{
+  "experiment": "3a_vad_ablation",
+  "fixed": {
+    "ort_policy": "auto",
+    "source_mode": "0",
+    "tts_format": "hybrid",
+    "backend": "cpu"
+  },
+  "seed": 20261113,
+  "repeats": 3,
+  "seeded_orders": [
+    {
+      "rep": 0,
+      "order": [
+        "upstream",
+        "legacy"
+      ]
+    },
+    {
+      "rep": 1,
+      "order": [
+        "upstream",
+        "legacy"
+      ]
+    },
+    {
+      "rep": 2,
+      "order": [
+        "upstream",
+        "legacy"
+      ]
+    }
+  ],
+  "registry_init_s": 0.0003,
+  "golden_warmup_s": 7.3357,
+  "golden_warmup": {
+    "asr_xx_frontend": [
+      0.01,
+      null
+    ],
+    "asr_xx_encoder": [
+      1.83,
+      null
+    ],
+    "mt_enc": [
+      0.0,
+      null
+    ],
+    "mt_decB": [
+      0.0,
+      null
+    ],
+    "tts_vi": [
+      0.59,
+      null
+    ],
+    "asr_vi": [
+      0.58,
+      null
+    ],
+    "tts_enko": [
+      0.23,
+      null
+    ],
+    "tts_zh": [
+      1.92,
+      null
+    ]
+  },
+  "ort_sessions": {
+    "mt_enc": {
+      "name": "mt_enc",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+      "size_bytes": 991368468,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "mt_decB": {
+      "name": "mt_decB",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+      "size_bytes": 1276245977,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "asr_xx_frontend": {
+      "name": "asr_xx_frontend",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+      "size_bytes": 1228928,
+      "external_data": false,
+      "large_or_ext": false,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_ENABLE_BASIC",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_ENABLE_BASIC",
+          "ok": true
+        }
+      ]
+    },
+    "asr_xx_encoder": {
+      "name": "asr_xx_encoder",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+      "size_bytes": 941305187,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "tts_vi": {
+      "name": "tts_vi",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+      "size_bytes": 215699842,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "asr_vi": {
+      "name": "asr_vi",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+      "size_bytes": 596925289,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "tts_enko": {
+      "name": "tts_enko",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+      "size_bytes": 398278832,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    },
+    "tts_zh": {
+      "name": "tts_zh",
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+      "size_bytes": 1312973091,
+      "external_data": false,
+      "large_or_ext": true,
+      "ort_policy": "auto",
+      "effective_ort_level": "ORT_DISABLE_ALL",
+      "ort_fallback": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "level": "ORT_DISABLE_ALL",
+          "ok": true
+        }
+      ]
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "cpu": "Apple M5",
+    "cpu_count": 10,
+    "libraries": {
+      "numpy": "1.26.4",
+      "scipy": "1.17.1",
+      "onnxruntime": "1.31.1",
+      "soundfile": "0.14.0",
+      "sentencepiece": "0.2.3",
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2"
+    },
+    "env": {
+      "S2S_NEURAL_TN": "0",
+      "S2S_TTS_FORMAT": "hybrid",
+      "S2S_ORT_POLICY": "auto",
+      "OMP_NUM_THREADS": "4"
+    }
+  },
+  "summary": {
+    "legacy": {
+      "core_sum_total_s": {
+        "n": 3,
+        "median": 41.0356,
+        "min": 40.776,
+        "max": 45.5275,
+        "p95_descriptive": 45.0783
+      },
+      "per_case": {
+        "native_en_dev_EV0358": {
+          "total_s": {
+            "n": 3,
+            "median": 1.9205,
+            "min": 1.8612,
+            "max": 2.2703,
+            "p95_descriptive": 2.2353
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.4433,
+            "min": 0.4298,
+            "max": 0.476,
+            "p95_descriptive": 0.4727
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 0.6597,
+            "min": 0.6226,
+            "max": 0.8043,
+            "p95_descriptive": 0.7898
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 0.817,
+            "min": 0.8083,
+            "max": 0.9891,
+            "p95_descriptive": 0.9719
+          },
+          "segments": 1
+        },
+        "native_en_dev_EV0157": {
+          "total_s": {
+            "n": 3,
+            "median": 2.0997,
+            "min": 1.9574,
+            "max": 2.3738,
+            "p95_descriptive": 2.3464
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.4619,
+            "min": 0.4306,
+            "max": 0.7049,
+            "p95_descriptive": 0.6806
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 0.7424,
+            "min": 0.707,
+            "max": 0.8409,
+            "p95_descriptive": 0.831
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 0.8273,
+            "min": 0.8194,
+            "max": 0.8948,
+            "p95_descriptive": 0.8881
+          },
+          "segments": 1
+        },
+        "native_en_holdout_EV1508": {
+          "total_s": {
+            "n": 3,
+            "median": 2.4749,
+            "min": 2.4382,
+            "max": 2.9199,
+            "p95_descriptive": 2.8754
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.4295,
+            "min": 0.4257,
+            "max": 0.4576,
+            "p95_descriptive": 0.4548
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 1.2033,
+            "min": 1.1745,
+            "max": 1.2356,
+            "p95_descriptive": 1.2324
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 0.8336,
+            "min": 0.8135,
+            "max": 1.2578,
+            "p95_descriptive": 1.2154
+          },
+          "segments": 1
+        },
+        "syn_en_special": {
+          "total_s": {
+            "n": 3,
+            "median": 8.0226,
+            "min": 7.8807,
+            "max": 9.3055,
+            "p95_descriptive": 9.1772
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 1.3864,
+            "min": 1.2834,
+            "max": 1.7343,
+            "p95_descriptive": 1.6995
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 3.3613,
+            "min": 3.2844,
+            "max": 4.0774,
+            "p95_descriptive": 4.0058
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 3.3121,
+            "min": 3.2739,
+            "max": 3.4923,
+            "p95_descriptive": 3.4743
+          },
+          "segments": 3
+        },
+        "syn_vi_special_to_en": {
+          "total_s": {
+            "n": 3,
+            "median": 14.1159,
+            "min": 14.0646,
+            "max": 15.6505,
+            "p95_descriptive": 15.497
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.313,
+            "min": 0.2153,
+            "max": 0.3577,
+            "p95_descriptive": 0.3532
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 4.6393,
+            "min": 4.607,
+            "max": 5.607,
+            "p95_descriptive": 5.5102
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 9.1463,
+            "min": 9.1338,
+            "max": 9.4424,
+            "p95_descriptive": 9.4128
+          },
+          "segments": 1
+        },
+        "syn_ko_e2e": {
+          "total_s": {
+            "n": 3,
+            "median": 6.4327,
+            "min": 6.3612,
+            "max": 6.8321,
+            "p95_descriptive": 6.7922
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 1.3679,
+            "min": 1.2969,
+            "max": 1.4404,
+            "p95_descriptive": 1.4331
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 2.6495,
+            "min": 2.6404,
+            "max": 2.8194,
+            "p95_descriptive": 2.8024
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 2.4231,
+            "min": 2.4145,
+            "max": 2.571,
+            "p95_descriptive": 2.5562
+          },
+          "segments": 3
+        },
+        "syn_zh_e2e": {
+          "total_s": {
+            "n": 3,
+            "median": 6.1754,
+            "min": 5.9693,
+            "max": 6.2127,
+            "p95_descriptive": 6.209
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.8728,
+            "min": 0.8564,
+            "max": 0.9345,
+            "p95_descriptive": 0.9283
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 2.7985,
+            "min": 2.6244,
+            "max": 2.8321,
+            "p95_descriptive": 2.8287
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 2.4791,
+            "min": 2.4715,
+            "max": 2.4861,
+            "p95_descriptive": 2.4854
+          },
+          "segments": 2
+        }
+      },
+      "all_clips_total_segments": 36,
+      "checked_entity_passes": 7,
+      "checked_entity_total": 9
+    },
+    "upstream": {
+      "core_sum_total_s": {
+        "n": 3,
+        "median": 60.8471,
+        "min": 59.9727,
+        "max": 61.1404,
+        "p95_descriptive": 61.1111
+      },
+      "per_case": {
+        "native_en_dev_EV0358": {
+          "total_s": {
+            "n": 3,
+            "median": 4.6692,
+            "min": 4.5692,
+            "max": 4.684,
+            "p95_descriptive": 4.6825
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 1.3208,
+            "min": 1.3093,
+            "max": 1.3289,
+            "p95_descriptive": 1.3281
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 0.9276,
+            "min": 0.9035,
+            "max": 0.9393,
+            "p95_descriptive": 0.9381
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 2.4151,
+            "min": 2.3316,
+            "max": 2.4443,
+            "p95_descriptive": 2.4414
+          },
+          "segments": 3
+        },
+        "native_en_dev_EV0157": {
+          "total_s": {
+            "n": 3,
+            "median": 3.3005,
+            "min": 3.2887,
+            "max": 3.4183,
+            "p95_descriptive": 3.4065
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.8921,
+            "min": 0.8735,
+            "max": 0.904,
+            "p95_descriptive": 0.9028
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 0.8601,
+            "min": 0.822,
+            "max": 0.8973,
+            "p95_descriptive": 0.8936
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 1.5661,
+            "min": 1.5622,
+            "max": 1.6285,
+            "p95_descriptive": 1.6223
+          },
+          "segments": 2
+        },
+        "native_en_holdout_EV1508": {
+          "total_s": {
+            "n": 3,
+            "median": 5.457,
+            "min": 5.2542,
+            "max": 5.4587,
+            "p95_descriptive": 5.4585
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 1.3332,
+            "min": 1.2861,
+            "max": 1.3428,
+            "p95_descriptive": 1.3418
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 1.7403,
+            "min": 1.5949,
+            "max": 1.7436,
+            "p95_descriptive": 1.7433
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 2.3812,
+            "min": 2.3158,
+            "max": 2.43,
+            "p95_descriptive": 2.4251
+          },
+          "segments": 3
+        },
+        "syn_en_special": {
+          "total_s": {
+            "n": 3,
+            "median": 13.0914,
+            "min": 12.8055,
+            "max": 13.6124,
+            "p95_descriptive": 13.5603
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 3.1616,
+            "min": 3.0126,
+            "max": 3.3684,
+            "p95_descriptive": 3.3477
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 4.26,
+            "min": 4.0162,
+            "max": 4.4988,
+            "p95_descriptive": 4.4749
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 5.7436,
+            "min": 5.6688,
+            "max": 5.7755,
+            "p95_descriptive": 5.7723
+          },
+          "segments": 7
+        },
+        "syn_vi_special_to_en": {
+          "total_s": {
+            "n": 3,
+            "median": 13.9519,
+            "min": 13.823,
+            "max": 14.5982,
+            "p95_descriptive": 14.5336
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 0.211,
+            "min": 0.1745,
+            "max": 0.2187,
+            "p95_descriptive": 0.2179
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 4.6369,
+            "min": 4.4903,
+            "max": 5.1155,
+            "p95_descriptive": 5.0676
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 9.1004,
+            "min": 9.0435,
+            "max": 9.198,
+            "p95_descriptive": 9.1882
+          },
+          "segments": 1
+        },
+        "syn_ko_e2e": {
+          "total_s": {
+            "n": 3,
+            "median": 10.5923,
+            "min": 10.4695,
+            "max": 10.6931,
+            "p95_descriptive": 10.683
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 2.5885,
+            "min": 2.5702,
+            "max": 2.6269,
+            "p95_descriptive": 2.6231
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 3.1701,
+            "min": 3.0046,
+            "max": 3.2972,
+            "p95_descriptive": 3.2845
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 4.8326,
+            "min": 4.7681,
+            "max": 4.8938,
+            "p95_descriptive": 4.8877
+          },
+          "segments": 6
+        },
+        "syn_zh_e2e": {
+          "total_s": {
+            "n": 3,
+            "median": 9.3154,
+            "min": 9.2254,
+            "max": 9.6823,
+            "p95_descriptive": 9.6456
+          },
+          "asr_s": {
+            "n": 3,
+            "median": 2.2313,
+            "min": 2.1678,
+            "max": 2.2651,
+            "p95_descriptive": 2.2617
+          },
+          "mt_s": {
+            "n": 3,
+            "median": 3.0439,
+            "min": 2.9075,
+            "max": 3.3333,
+            "p95_descriptive": 3.3044
+          },
+          "tts_s": {
+            "n": 3,
+            "median": 4.0856,
+            "min": 4.083,
+            "max": 4.1026,
+            "p95_descriptive": 4.1009
+          },
+          "segments": 5
+        }
+      },
+      "all_clips_total_segments": 77,
+      "checked_entity_passes": 5,
+      "checked_entity_total": 9
+    }
+  },
+  "full_audit": {
+    "legacy": [
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_dev_EV0358.wav",
+        "output_sha256": "be4895e7aa499bb5552612775b3c675f7de42cb43ef5961e3871525351917e92",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            5.71
+          ]
+        ],
+        "vad_s": 0.128188,
+        "total_s": 2.5139,
+        "asr_s": 0.4702,
+        "source_normalize_s": 0.0001,
+        "mt_s": 0.7814,
+        "tts_s": 0.6197,
+        "graph_s": 1.7478,
+        "host_s": 0.1237,
+        "asr_raw": "734 Main Street, Harper Valley Oregon,67297.",
+        "asr_prepared": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+        "tts_texts": [
+          "bảy trăm ba mươi bốn main street, harper valley oregon, sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_dev_EV0157.wav",
+        "output_sha256": "b91852dca25a87b9ed3428e5054c9f45bf9af7660edf2b9fc455fd068741b484",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.49,
+            7.93
+          ]
+        ],
+        "vad_s": 0.000217,
+        "total_s": 1.7862,
+        "asr_s": 0.4243,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.6065,
+        "tts_s": 0.7545,
+        "graph_s": 1.6963,
+        "host_s": 0.089,
+        "asr_raw": "Play only all music released between the year 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành từ năm 1990 đến năm 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành từ năm một nghìn chín trăm chín mươi đến năm hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_dev_EV0491",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0491_in.wav",
+        "input_sha256": "3e48fc6003e32d68970312d26942479b2ad273acfbbca445398994731b8c5e45",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_dev_EV0491.wav",
+        "output_sha256": "94bfe811595affb0ada877dc41116a4e64dc95967de37be4a22a30dcfc403e6c",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            9.03
+          ]
+        ],
+        "vad_s": 0.000271,
+        "total_s": 3.3088,
+        "asr_s": 0.448,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.7683,
+        "tts_s": 1.0913,
+        "graph_s": 3.0685,
+        "host_s": 0.2391,
+        "asr_raw": "You'll just need roughly $10 for food and gas money. my friend is driving so we usually all chip in a few dollars for gas money.",
+        "asr_prepared": "You'll just need roughly $10 for food and gas money. my friend is driving so we usually all chip in a few dollars for gas money.",
+        "mt": "Bạn chỉ cần khoảng 10 đô la cho tiền lương thực và xăng. Bạn tôi đang lái xe nên chúng tôi thường trả vài đô la cho tiền xăng.",
+        "tts_texts": [
+          "bạn chỉ cần khoảng mười đô la cho tiền lương thực và xăng. bạn tôi đang lái xe nên chúng tôi thường trả vài đô la cho tiền xăng."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "10"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_holdout_EV1508.wav",
+        "output_sha256": "534a72de15f360a4372e6b1ef602bfb74e0d18eac19a6bd24c77b3a6337fc6d2",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            8.72
+          ]
+        ],
+        "vad_s": 0.00034,
+        "total_s": 2.0508,
+        "asr_s": 0.4983,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.0247,
+        "tts_s": 0.5265,
+        "graph_s": 1.8972,
+        "host_s": 0.1524,
+        "asr_raw": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "mt": "Tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ 12 giờ đến 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ mười hai giờ đến ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_holdout_EV3459",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3459_in.wav",
+        "input_sha256": "1c19a7f392572af4646e67b4ee167ef00aae468c69d2dcaf716951a1884760b7",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_holdout_EV3459.wav",
+        "output_sha256": "8a5ff5b0be869cc57cc31188b2064dcf058f53284f83272864c804ed36e9f98a",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.23,
+            5.43
+          ]
+        ],
+        "vad_s": 0.000227,
+        "total_s": 1.9796,
+        "asr_s": 0.3415,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.1132,
+        "tts_s": 0.5238,
+        "graph_s": 1.7905,
+        "host_s": 0.1881,
+        "asr_raw": "That are two years old. Okayk, could you tell me the first line of your address and your postcode, please.",
+        "asr_prepared": "That are two years old. Okayk, could you tell me the first line of your address and your postcode, please.",
+        "mt": "Đó là hai tuổi. Được rồi, anh có thể cho tôi biết dòng đầu tiên của địa chỉ và mã bưu điện của anh không?",
+        "tts_texts": [
+          "đó là hai tuổi. được rồi, anh có thể cho tôi biết dòng đầu tiên của địa chỉ và mã bưu điện của anh không?"
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [],
+          "missing": [
+            "32"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "native_en_holdout_EV3775",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3775_in.wav",
+        "input_sha256": "f22659c8ead783e43d765b54b909a99c9ef62dd6437cfd597f7fe6fd0351a957",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/native_en_holdout_EV3775.wav",
+        "output_sha256": "5fdaf44a2e18581c800536258e71abd316c666055944b7fcd23eb157ef80ac43",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.13,
+            5.248
+          ]
+        ],
+        "vad_s": 0.000189,
+        "total_s": 1.6827,
+        "asr_s": 0.3841,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.7494,
+        "tts_s": 0.5484,
+        "graph_s": 1.5508,
+        "host_s": 0.1311,
+        "asr_raw": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "asr_prepared": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "mt": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc 5:30 sáng.",
+        "tts_texts": [
+          "cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ sáu, lúc năm giờ ba mươi phút sáng."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "530"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_en_special.wav",
+        "output_sha256": "1228a175a6ff0e9101fe81a1fa195710f37d7e59fedcf20d4902dcaeaeda30f3",
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.33,
+            10.33
+          ],
+          [
+            10.63,
+            13.91
+          ],
+          [
+            14.19,
+            19.97
+          ]
+        ],
+        "vad_s": 0.000295,
+        "total_s": 5.6182,
+        "asr_s": 1.0777,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.3563,
+        "tts_s": 2.1806,
+        "graph_s": 5.218,
+        "host_s": 0.3966,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "syn_en_clear",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/neural_fix/audio/en_input_clear.wav",
+        "input_sha256": "31ded5fd039e8a4fcb4a8ef2c4e00690f667b66c9329ade6ecc7d5ac1c604716",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_en_clear.wav",
+        "output_sha256": "d1db0b7854b119451ae5a5a23c5871102395fbc5ecd09ee576d437bb3180055d",
+        "vad_profile": "legacy",
+        "segment_count": 5,
+        "spans": [
+          [
+            0.37,
+            6.15
+          ],
+          [
+            7.73,
+            12.45
+          ],
+          [
+            13.97,
+            17.25
+          ],
+          [
+            19.03,
+            25.53
+          ],
+          [
+            26.77,
+            30.19
+          ]
+        ],
+        "vad_s": 0.000411,
+        "total_s": 7.5141,
+        "asr_s": 1.8278,
+        "source_normalize_s": 0.0001,
+        "mt_s": 2.9501,
+        "tts_s": 2.7344,
+        "graph_s": 7.0569,
+        "host_s": 0.4554,
+        "asr_raw": "The meeting is at 330 in the afternoon on November 15, 2026. | The ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123 My ZIP code is 67297. | Call 0912,34,5678.",
+        "asr_prepared": "The meeting is at 330 in the afternoon on November 15, 2026. | The ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123 My ZIP code is 67297. | Call 0912,34,5678.",
+        "mt": "Cuộc họp là vào lúc 330 chiều ngày 15 tháng 11 năm 2026. | Chi phí vé là 15 đô la. 50 với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123 Mã ZIP của mình là 67297. | Gọi 0912,34,5678.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi chiều ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vnmột trăm hai mươi ba métã dip của mình là sáu bảy hai chín bảy.",
+          "gọi không chín một hai phẩy ba bốn phẩy năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "67297"
+          ],
+          "missing": [
+            "0912345678"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "syn_en_multilingual",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/en.wav",
+        "input_sha256": "7c3fe59a80d218996c6d761915639c93b5faba22dfea025b7248635cad9898fb",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_en_multilingual.wav",
+        "output_sha256": "b8501492e6d275d0307b811eb5e339fbf971fbf8230aedd295e058660bd021fc",
+        "vad_profile": "legacy",
+        "segment_count": 4,
+        "spans": [
+          [
+            0.07,
+            5.87
+          ],
+          [
+            6.43,
+            9.43
+          ],
+          [
+            10.15,
+            17.17
+          ],
+          [
+            17.61,
+            24.65
+          ]
+        ],
+        "vad_s": 0.000447,
+        "total_s": 6.8199,
+        "asr_s": 1.4448,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.5982,
+        "tts_s": 2.7748,
+        "graph_s": 6.4048,
+        "host_s": 0.413,
+        "asr_raw": "The meeting is at 330 PMm on December 21st, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius My ZIP code is 04782. | My phone number is 0908246135 The flight is V and 247.",
+        "asr_prepared": "The meeting is at 330 PMm on December 21st, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius My ZIP code is 04782. | My phone number is 0908246135 The flight is V and 247.",
+        "mt": "Cuộc họp là vào lúc 330 giờ chiều vào ngày 21 tháng 12 năm 2027. | Giá là 18 đô la. 25. | Nhiệt độ là 36. 8 độ C mã địa chỉ của tôi là 04782. | Số điện thoại của tôi là 0908246135 chuyến bay là V và 247.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi giờ chiều vào ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy.",
+          "giá là mười tám đô la. hai mươi lăm.",
+          "nhiệt độ là ba mươi sáu. tám độ c mã địa chỉ của tôi là không bốn bảy tám hai.",
+          "số điện thoại của tôi là không chín không tám hai bốn sáu một ba năm chuyến bay là v và hai bốn bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "2027",
+            "18",
+            "36.8",
+            "04782",
+            "0908246135"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_vi_special_to_en.wav",
+        "output_sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5",
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000267,
+        "total_s": 10.4925,
+        "asr_s": 0.2625,
+        "source_normalize_s": 0.07,
+        "mt_s": 3.161,
+        "tts_s": 6.9967,
+        "graph_s": 9.9364,
+        "host_s": 0.5539,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_vi_clear_to_ko",
+        "src": "vi",
+        "tgt": "ko",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/neural_fix/audio/vi_input_clear.wav",
+        "input_sha256": "fa05112239f7a43f9b07fdabd2aef6cae2813d4a62c8fe9323403248feedc8a5",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_vi_clear_to_ko.wav",
+        "output_sha256": "fcb09ab80d349a3e3a7fa4cfe99e3a360d5b96154fc110f6d0f7cf86098ef9da",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.0,
+            11.35
+          ],
+          [
+            12.13,
+            20.8724
+          ]
+        ],
+        "vad_s": 0.000295,
+        "total_s": 8.4545,
+        "asr_s": 0.2455,
+        "source_normalize_s": 0.0507,
+        "mt_s": 2.5129,
+        "tts_s": 5.643,
+        "graph_s": 7.9373,
+        "host_s": 0.5148,
+        "asr_raw": "cuộc họp lúc ba giờ ba phút chiều hôm nay là ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm giá mười phần trăm | nhiệt độ ba bảy năm độ cệ xin gọi số không chín một hai ba bốn năm sáu bảy tám mã biêu chính là sáu bảy hay chín bảy",
+        "asr_prepared": "Cuộc họp lúc ba giờ ba phút chiều. Hôm nay là ngày mười tháng mười một. Năm hai nghìn Không hai sáu giá vé. Năm nghìn đồng, giảm giá mười phần trăm. | Nhiệt độ: 3 7 5 độ cệ xin gọi số 0 9 1 2 3 4 5 6 7 8. Mã biêu chính là 6 7 hay 9 7?",
+        "mt": "회의는 오후 3시 3분입니다. 오늘은 11월 11일입니다. 5만 2천불 2만 6천불 5천원, 10% 할인 | 온도: 3 7 5도 전원 전화 0 9 1 2 3 4 5 6 7 8 6-7 또는 9-7?",
+        "tts_texts": [
+          "회의는 오후 삼시 삼분입니다. 오늘은 십일월 십일일입니다. 오만 이천불 이만 육천불 오천원, 십 퍼센트 할인",
+          "온도: 삼 칠 오도 전원 전화 영 구 일 이 삼 사 오 육 칠 팔 육 하이픈 칠 또는 구 하이픈 칠?"
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_vi_multilingual_to_zh",
+        "src": "vi",
+        "tgt": "zh",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/vi.wav",
+        "input_sha256": "75b0b2ec95845b2e3cabe582cbc0375149949d170c20628f5c35ff07fb29655d",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_vi_multilingual_to_zh.wav",
+        "output_sha256": "0bfe4380e3cd3fd9d703fca40666a5953333833b27a20a64c5bf967d51022db5",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.0,
+            10.66
+          ],
+          [
+            10.66,
+            16.4863
+          ]
+        ],
+        "vad_s": 0.000346,
+        "total_s": 12.11,
+        "asr_s": 0.2897,
+        "source_normalize_s": 0.063,
+        "mt_s": 3.7774,
+        "tts_s": 7.9771,
+        "graph_s": 11.3483,
+        "host_s": 0.7589,
+        "asr_raw": "cuộc họp lúc ba giờ ba phút chiều ngày hai tháng mười hai năm hai nghìn không hai bảy giá là mười tám đô la hai năm c nhiệt độ ba sáu tám độ c mã không bốn bảy tám hai | điện thoại không chín không tám hai bốn sáu một bà năm chuyến bay vn hai bốn bảy số nhà bảy trăm ba bốn",
+        "asr_prepared": "Cuộc họp lúc ba giờ ba phút chiều ngày hai tháng mười hai năm hai nghìn không hai bảy. Giá là mười tám đô la Hai năm C. Nhiệt độ ba sáu tám độ C. Mã không bốn bảy tám hai. | Điện Thoại: 0 9 0 Tám, Hai, 4 Sáu, Một Bà Năm, Chuyến Bay VN2, 4 Bảy, Số Nhà, Bảy Trăm, Ba Bốn.",
+        "mt": "在十二月二日下午三点,会议是两千零二七.价格为18美元,两年子,子和子温度为3-68摄氏度.没有四,七,八,二. | 广播:九零八,二,四六,五年级女士,越南2飞行,四七,家号,七五,三四.",
+        "tts_texts": [
+          "在十二月二日下午三点,会议是两千零二七.价格为十八美元,两年子,子和子温度为三负六十八摄氏度.没有四,七,八,二.",
+          "广播:九零八,二,四六,五年级女士,越南二飞行,四七,家号,七五,三四."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_ko_e2e.wav",
+        "output_sha256": "60db9d47487a5f60a580a59a76b1427b43e84fad40ba1c672170d82a5970d71f",
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.27,
+            5.83
+          ],
+          [
+            6.41,
+            10.63
+          ],
+          [
+            11.45,
+            16.95
+          ]
+        ],
+        "vad_s": 0.000347,
+        "total_s": 4.8666,
+        "asr_s": 1.1096,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.9941,
+        "tts_s": 1.7594,
+        "graph_s": 4.5223,
+        "host_s": 0.3409,
+        "asr_raw": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "mt": "Cuộc họp vào ngày 14 giờ 4 giờ. | Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C. | Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+        "tts_texts": [
+          "cuộc họp vào ngày mười bốn giờ bốn giờ.",
+          "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c.",
+          "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_hybrid",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/hybrid_format/s2s/audio/vi_to_ko.wav",
+        "input_sha256": "f9e1e39dd827fc52b2ab9538f2a78a65b16d03cc6cfe670a5989139752e10d7c",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_ko_hybrid.wav",
+        "output_sha256": "47f95fe761517a39da45150f3205d32970a04d78447660a952d81108a683dcbb",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.35,
+            10.51
+          ],
+          [
+            10.75,
+            13.53
+          ]
+        ],
+        "vad_s": 0.000279,
+        "total_s": 4.018,
+        "asr_s": 0.6982,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.5266,
+        "tts_s": 1.7896,
+        "graph_s": 3.7359,
+        "host_s": 0.2786,
+        "asr_raw": "회의는 열례에 내 날1 11월 2000년 2006년 500원의 티켓 가격은 10%나 줄어들었습니다 온도 37년 씨, | 전화연 91, 2 3 4, 5 678.",
+        "asr_prepared": "회의는 열례에 내 날1 11월 2000년 2006년 500원의 티켓 가격은 10%나 줄어들었습니다 온도 37년 씨, | 전화연 91, 2 3 4, 5 678.",
+        "mt": "Cuộc họp diễn ra vào ngày 1 tháng 11 năm 2000, năm 2006, giá vé 500 người giảm 10%, nhiệt độ 37 năm. | Số điện thoại là 91, 2, 3, 4, 5, 678.",
+        "tts_texts": [
+          "cuộc họp diễn ra vào ngày một tháng mười một năm hai nghìn, năm hai nghìn không trăm lẻ sáu, giá vé năm trăm người giảm mười phần trăm, nhiệt độ ba mươi bảy năm.",
+          "số điện thoại là chín một, hai, ba, bốn, năm, sáu trăm bảy mươi tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_multilingual",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/ko.wav",
+        "input_sha256": "5d59b577916618bc77e9fc6fdfbbfef2b030a74a449ae7dab93852a9ebd719b0",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_ko_multilingual.wav",
+        "output_sha256": "08fabd9b7ddbaa863ef81fbd0b401ffe656082cfe0c2bdeb1a6e2312262a7297",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.39,
+            10.75
+          ],
+          [
+            11.83,
+            21.39
+          ]
+        ],
+        "vad_s": 0.000346,
+        "total_s": 4.2569,
+        "asr_s": 0.7188,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.7318,
+        "tts_s": 1.8047,
+        "graph_s": 3.9579,
+        "host_s": 0.2975,
+        "asr_raw": "페이 2027년 12월 20일 1 3시 30분에 있습니다 가격은 18달 25입니다 온도는 36.8도입니다. | 우편 번호는 04782입니다 전화번호는 090 824 61 3호입니다 항공편은 브이엔니 47입니다.",
+        "asr_prepared": "페이 2027년 12월 20일 1 3시 30분에 있습니다 가격은 18달 25입니다 온도는 36.8도입니다. | 우편 번호는 04782입니다 전화번호는 090 824 61 3호입니다 항공편은 브이엔니 47입니다.",
+        "mt": "Pay vào ngày 20 tháng 12 năm 2027 vào lúc 01:30, giá là 18 tháng 25 và nhiệt độ là 36. 8 độ. | Điện thoại là 090 824 61 3 và chuyến bay là Bienny 47.",
+        "tts_texts": [
+          "pay vào ngày hai mươi tháng mười hai năm hai nghìn không trăm hai mươi bảy vào lúc một giờ ba mươi phút, giá là một tám tê hát á en giê hai năm và nhiệt độ là ba mươi sáu. tám độ.",
+          "điện thoại là không chín không tám hai bốn sáu một ba và chuyến bay là bin ni bốn bảy."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_zh_e2e.wav",
+        "output_sha256": "45a20b865edc0b4126f52ca60f3202a04239cf9408efebe94b80006e7f6ce328",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.23,
+            8.81
+          ],
+          [
+            9.21,
+            15.23
+          ]
+        ],
+        "vad_s": 0.000303,
+        "total_s": 4.5828,
+        "asr_s": 0.7529,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.0118,
+        "tts_s": 1.8143,
+        "graph_s": 4.2095,
+        "host_s": 0.3695,
+        "asr_raw": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "mt": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười. | Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+        "tts_texts": [
+          "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_hybrid",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/hybrid_format/s2s/audio/vi_to_zh.wav",
+        "input_sha256": "d66fad22beaa1956cb3f47b57510d160a833d47bf63ebee4cd1a167a0b171fb1",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_zh_hybrid.wav",
+        "output_sha256": "39462900b430ebd7abf4faac76f7c771d147426fa8d5990ee82ea92cb8d77ef7",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.29,
+            3.65
+          ],
+          [
+            4.13,
+            12.67
+          ]
+        ],
+        "vad_s": 0.000347,
+        "total_s": 4.3712,
+        "asr_s": 0.7466,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.7782,
+        "tts_s": 1.8445,
+        "graph_s": 4.0309,
+        "host_s": 0.3385,
+        "asr_raw": "货议在14小时4天实时1月一年，而且没有两。 | 各65000元的门票价格下降了10%，气温3年7度，其他类型电话号码0912345678。",
+        "asr_prepared": "货议在14小时4天实时1月一年，而且没有两。 | 各65000元的门票价格下降了10%，气温3年7度，其他类型电话号码0912345678。",
+        "mt": "Việc giao hàng được thực hiện trong 14 giờ 4 ngày thực tế vào tháng 1 trong một năm, và không có hai. | Giá vé 65000 đồng đã giảm 10%, nhiệt độ 3 năm 7 độ, số điện thoại khác là 0912345678.",
+        "tts_texts": [
+          "việc giao hàng được thực hiện trong mười bốn giờ bốn ngày thực tế vào tháng một trong một năm, và không có hai.",
+          "giá vé sáu mươi lăm nghìn đồng đã giảm mười phần trăm, nhiệt độ ba năm bảy độ, số điện thoại khác là không chín một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_multilingual",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/zh.wav",
+        "input_sha256": "181f81c170b28f691fd9d9578b91293eb9b44c761c27263e200d177817b4d0e8",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/legacy/syn_zh_multilingual.wav",
+        "output_sha256": "154c436cf466b85735cff51c0b97fbb72a1bef49fd5bd6a7ac627a079425847c",
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.29,
+            11.93
+          ],
+          [
+            12.45,
+            17.6416
+          ]
+        ],
+        "vad_s": 0.000352,
+        "total_s": 5.6117,
+        "asr_s": 0.7668,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.3631,
+        "tts_s": 2.4799,
+        "graph_s": 5.1899,
+        "host_s": 0.42,
+        "asr_raw": "会议在2027年12月21日3点30分开始价格48美元，25美分，温度是36.8摄氏度，邮正编码是04782。 | 电话号码是0908246135，航班号是为N247。",
+        "asr_prepared": "会议在2027年12月21日3点30分开始价格48美元，25美分，温度是36.8摄氏度，邮正编码是04782。 | 电话号码是0908246135，航班号是为N247。",
+        "mt": "Cuộc họp bắt đầu vào ngày 21 tháng 12 năm 2027, lúc 3:30 giờ, với giá 48 USD, 25 cents và nhiệt độ là 36. 8 độ C, mã chính xác là 04782  | Số điện thoại là 0908246135 và số chuyến bay là N247.",
+        "tts_texts": [
+          "cuộc họp bắt đầu vào ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy, lúc ba giờ ba mươi phút giờ, với giá bốn mươi tám đô la, hai mươi lăm sen tơ sơ và nhiệt độ là ba mươi sáu. tám độ c, mã chính xác là không bốn bảy tám hai ",
+          "số điện thoại là không chín không tám hai bốn sáu một ba năm và số chuyến bay là en hai bốn bảy."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      }
+    ],
+    "upstream": [
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_dev_EV0358.wav",
+        "output_sha256": "dc6ff54d7a6d62a15939a6579410fda69826020596ab1b32b8d2255a71460d82",
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            2.3
+          ],
+          [
+            2.44,
+            3.88
+          ],
+          [
+            4.1,
+            5.68
+          ]
+        ],
+        "vad_s": 0.000317,
+        "total_s": 5.1708,
+        "asr_s": 1.3393,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.9047,
+        "tts_s": 1.9254,
+        "graph_s": 4.9989,
+        "host_s": 0.1705,
+        "asr_raw": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "asr_prepared": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "mt": "Đường chính 734. | Harper Valley Oregon. | 6,7,29,7.",
+        "tts_texts": [
+          "đường chính bảy trăm ba mươi bốn.",
+          "harper valley oregon.",
+          "sáu phẩy bảy phẩy hai chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_dev_EV0157.wav",
+        "output_sha256": "8d09c97045d00159d7d7c6668bd95ff20f0fbab61431b051a8b9aa3a45749394",
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.52,
+            3.88
+          ],
+          [
+            4.06,
+            7.9
+          ]
+        ],
+        "vad_s": 0.000403,
+        "total_s": 2.8605,
+        "asr_s": 0.7637,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.7545,
+        "tts_s": 1.3372,
+        "graph_s": 2.7412,
+        "host_s": 0.1143,
+        "asr_raw": "Play only all music released between the year. | 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year. | 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành trong năm. | 1990 và 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành trong năm.",
+          "một nghìn chín trăm chín mươi và hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_dev_EV0491",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0491_in.wav",
+        "input_sha256": "3e48fc6003e32d68970312d26942479b2ad273acfbbca445398994731b8c5e45",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_dev_EV0491.wav",
+        "output_sha256": "95f9c173b502db38c328aa2f5b4a2f9d8c31f7e630709ae1f63fa61c231aa598",
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.0,
+            3.7
+          ],
+          [
+            3.8,
+            9.0
+          ]
+        ],
+        "vad_s": 0.000272,
+        "total_s": 3.8461,
+        "asr_s": 0.7895,
+        "source_normalize_s": 0.0001,
+        "mt_s": 1.5345,
+        "tts_s": 1.5205,
+        "graph_s": 3.5591,
+        "host_s": 0.2856,
+        "asr_raw": "You'll just need roughly $10 for food and gas money. | My friend is driving, so we usually all chip in a few dollars for gas money.",
+        "asr_prepared": "You'll just need roughly $10 for food and gas money. | My friend is driving, so we usually all chip in a few dollars for gas money.",
+        "mt": "Bạn chỉ cần khoảng 10 đô la cho tiền lương thực và xăng. | Bạn tôi đang lái xe, vì vậy chúng tôi thường trả vài đô la cho tiền xăng.",
+        "tts_texts": [
+          "bạn chỉ cần khoảng mười đô la cho tiền lương thực và xăng.",
+          "bạn tôi đang lái xe, vì vậy chúng tôi thường trả vài đô la cho tiền xăng."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "10"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_holdout_EV1508.wav",
+        "output_sha256": "da87850314928d7f933cef0a46fddf17a688669caed54a9504f5648ec9ae9185",
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            4.84
+          ],
+          [
+            5.6,
+            7.32
+          ],
+          [
+            7.62,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000355,
+        "total_s": 4.5418,
+        "asr_s": 1.1893,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.381,
+        "tts_s": 1.97,
+        "graph_s": 4.3046,
+        "host_s": 0.2358,
+        "asr_raw": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "mt": "Tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy. | Từ 12h đến 12h. | 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy.",
+          "từ mười hây hơ đến mười hây hơ.",
+          "ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "native_en_holdout_EV3459",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3459_in.wav",
+        "input_sha256": "1c19a7f392572af4646e67b4ee167ef00aae468c69d2dcaf716951a1884760b7",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_holdout_EV3459.wav",
+        "output_sha256": "24fca8df415fb404905658ab934c641c2bc1d8aa04687c22a450f9c539f0e69f",
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.26,
+            1.44
+          ],
+          [
+            1.64,
+            3.94
+          ],
+          [
+            4.26,
+            5.4
+          ]
+        ],
+        "vad_s": 0.000282,
+        "total_s": 4.5583,
+        "asr_s": 1.1661,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.3702,
+        "tts_s": 2.0207,
+        "graph_s": 4.304,
+        "host_s": 0.253,
+        "asr_raw": "That to two years old,. | Could you tell me the first time of your draft? | And the post code please.",
+        "asr_prepared": "That to two years old,. | Could you tell me the first time of your draft? | And the post code please.",
+        "mt": "Đó là cho hai tuổi. | Anh có thể cho tôi biết lần đầu tiên của draft của anh không? | Và mã bưu điện, xin vui lòng.",
+        "tts_texts": [
+          "đó là cho hai tuổi.",
+          "anh có thể cho tôi biết lần đầu tiên của đre phơt của anh không?",
+          "và mã bưu điện, xin vui lòng."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [],
+          "missing": [
+            "32"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "native_en_holdout_EV3775",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3775_in.wav",
+        "input_sha256": "f22659c8ead783e43d765b54b909a99c9ef62dd6437cfd597f7fe6fd0351a957",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/native_en_holdout_EV3775.wav",
+        "output_sha256": "50ffeaedabd815165da54d58fe770063abf129398d36a7d5187b06c497a78122",
+        "vad_profile": "upstream",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.16,
+            4.84
+          ]
+        ],
+        "vad_s": 0.000299,
+        "total_s": 1.9709,
+        "asr_s": 0.3724,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.9028,
+        "tts_s": 0.6946,
+        "graph_s": 1.7888,
+        "host_s": 0.181,
+        "asr_raw": "Get me a taxi to take me to the airport on Friday, at530 AM.",
+        "asr_prepared": "Get me a taxi to take me to the airport on Friday, at530 AM.",
+        "mt": "Đưa cho tôi một chiếc taxi đưa tôi đến sân bay vào thứ Sáu lúc 5:30 sáng.",
+        "tts_texts": [
+          "đưa cho tôi một chiếc taxi đưa tôi đến sân bay vào thứ sáu lúc năm giờ ba mươi phút sáng."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "530"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_en_special.wav",
+        "output_sha256": "d25e0884fc29da824ee48ee40626df237983c6b4efc969e47d892e9afb64cafe",
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.36,
+            4.98
+          ],
+          [
+            5.44,
+            8.06
+          ],
+          [
+            8.44,
+            10.3
+          ],
+          [
+            10.66,
+            13.88
+          ],
+          [
+            14.22,
+            16.36
+          ],
+          [
+            16.58,
+            18.48
+          ],
+          [
+            18.6,
+            19.94
+          ]
+        ],
+        "vad_s": 0.000449,
+        "total_s": 11.834,
+        "asr_s": 2.9351,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.7166,
+        "tts_s": 5.1795,
+        "graph_s": 11.2072,
+        "host_s": 0.6241,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "mt": "Cuộc họp là vào lúc 330 tối ngày 15 tháng 11 năm 2026. | Chi phí vé là 15 đô la. 50 người. | Với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123. | Và mã ZIP của tôi là 6. | 729,7.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi người.",
+          "với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vê en một hai ba.",
+          "và mã dip của tôi là sáu.",
+          "bảy trăm hai mươi chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "syn_en_clear",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/neural_fix/audio/en_input_clear.wav",
+        "input_sha256": "31ded5fd039e8a4fcb4a8ef2c4e00690f667b66c9329ade6ecc7d5ac1c604716",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_en_clear.wav",
+        "output_sha256": "569cfa84f5a567d24cf58457fca749572e5472624f60fbbdc1c8cf33c0a2e21b",
+        "vad_profile": "upstream",
+        "segment_count": 8,
+        "spans": [
+          [
+            0.4,
+            4.24
+          ],
+          [
+            4.84,
+            6.12
+          ],
+          [
+            7.76,
+            10.4
+          ],
+          [
+            10.66,
+            12.42
+          ],
+          [
+            14.0,
+            17.22
+          ],
+          [
+            19.06,
+            21.18
+          ],
+          [
+            22.56,
+            25.5
+          ],
+          [
+            26.8,
+            30.16
+          ]
+        ],
+        "vad_s": 0.000632,
+        "total_s": 13.1453,
+        "asr_s": 3.3264,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.822,
+        "tts_s": 5.9941,
+        "graph_s": 12.4794,
+        "host_s": 0.6632,
+        "asr_raw": "The meeting is at 330 in the afternoon on November 15th. | 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123. | My ZIP code is 67297. | Call 09123,45678.",
+        "asr_prepared": "The meeting is at 330 in the afternoon on November 15th. | 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123. | My ZIP code is 67297. | Call 09123,45678.",
+        "mt": "Cuộc họp là lúc 330 chiều ngày 15 tháng 11. | Năm 2026. | Chi phí vé là 15 đô la. 50 người. | Với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123. | Mã zip của tôi là 67297. | Gọi 09123,45678.",
+        "tts_texts": [
+          "cuộc họp là lúc ba trăm ba mươi chiều ngày mười lăm tháng mười một.",
+          "năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi người.",
+          "với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vê en một hai ba.",
+          "mã dip của tôi là sáu bảy hai chín bảy.",
+          "gọi chín nghìn một trăm hai mươi ba phẩy bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "67297"
+          ],
+          "missing": [
+            "0912345678"
+          ],
+          "all_preserved": false
+        }
+      },
+      {
+        "id": "syn_en_multilingual",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/en.wav",
+        "input_sha256": "7c3fe59a80d218996c6d761915639c93b5faba22dfea025b7248635cad9898fb",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_en_multilingual.wav",
+        "output_sha256": "9c6b4f46e5af524a31502f7c18bc09d08ddfc819ec11e01d7ff0621a86e44627",
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.1,
+            2.44
+          ],
+          [
+            3.04,
+            5.84
+          ],
+          [
+            6.46,
+            9.4
+          ],
+          [
+            10.18,
+            13.18
+          ],
+          [
+            14.24,
+            17.14
+          ],
+          [
+            17.64,
+            21.86
+          ],
+          [
+            22.56,
+            24.62
+          ]
+        ],
+        "vad_s": 0.000497,
+        "total_s": 12.6513,
+        "asr_s": 3.1254,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.9691,
+        "tts_s": 5.5542,
+        "graph_s": 11.9799,
+        "host_s": 0.6688,
+        "asr_raw": "The meeting is at 330 pm on. | December 21t, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius. | My ZIP code is 04782. | My phone number is 0908246135. | The flight is V and 247.",
+        "asr_prepared": "The meeting is at 330 pm on. | December 21t, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius. | My ZIP code is 04782. | My phone number is 0908246135. | The flight is V and 247.",
+        "mt": "Cuộc họp bắt đầu lúc 330 giờ tối. | Ngày 21 tháng 12 năm 2027. | Giá là 18 đô la. 25. | Nhiệt độ là 36. 8 độ C. | Mã zip của tôi là 04782. | Số điện thoại của tôi là 0908246135. | Chuyến bay là V và 247.",
+        "tts_texts": [
+          "cuộc họp bắt đầu lúc ba trăm ba mươi giờ tối.",
+          "ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy.",
+          "giá là mười tám đô la. hai mươi lăm.",
+          "nhiệt độ là ba mươi sáu. tám độ c.",
+          "mã dip của tôi là không bốn bảy tám hai.",
+          "số điện thoại của tôi là không chín không tám hai bốn sáu một ba năm.",
+          "chuyến bay là v và hai bốn bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "2027",
+            "18",
+            "36.8",
+            "04782",
+            "0908246135"
+          ],
+          "missing": [],
+          "all_preserved": true
+        }
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_vi_special_to_en.wav",
+        "output_sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5",
+        "vad_profile": "upstream",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000431,
+        "total_s": 14.9637,
+        "asr_s": 0.3418,
+        "source_normalize_s": 0.0717,
+        "mt_s": 5.3424,
+        "tts_s": 9.2042,
+        "graph_s": 14.0989,
+        "host_s": 0.8613,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_vi_clear_to_ko",
+        "src": "vi",
+        "tgt": "ko",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/neural_fix/audio/vi_input_clear.wav",
+        "input_sha256": "fa05112239f7a43f9b07fdabd2aef6cae2813d4a62c8fe9323403248feedc8a5",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_vi_clear_to_ko.wav",
+        "output_sha256": "6d71397e111c3a7a569b378a5dacaf67ad67268ab5c6d04537be291b68672286",
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.0,
+            2.02
+          ],
+          [
+            2.86,
+            6.48
+          ],
+          [
+            7.38,
+            8.84
+          ],
+          [
+            9.78,
+            11.32
+          ],
+          [
+            12.16,
+            14.18
+          ],
+          [
+            15.04,
+            17.96
+          ],
+          [
+            18.82,
+            20.8724
+          ]
+        ],
+        "vad_s": 0.000442,
+        "total_s": 17.6822,
+        "asr_s": 1.043,
+        "source_normalize_s": 0.0928,
+        "mt_s": 3.72,
+        "tts_s": 12.8229,
+        "graph_s": 16.8813,
+        "host_s": 0.7974,
+        "asr_raw": "cuộc họp lúc ba giờ ba phút chiều | hôm nay là ngày mười tháng mười một năm hai nghìn hai sáu | giá vé năm nghìn đồng | giảm giá mười phần trăm | nhiệt độ ba bảy năm độ c | xin gọi số không chín một hai ba bốn năm sáu bảy tám | mã biêu chính là sáu bảy hay chín bảy",
+        "asr_prepared": "Cuộc họp lúc 3 giờ 3 phút chiều. | Hôm nay là ngày mười tháng mười một, năm hai nghìn hai sáu. | Giá vé: 5 nghìn đồng. | Giảm giá mười phần trăm. | Nhiệt độ: 3 7 5 độ C. | Xin gọi số 0 9 1 2, 3 4 5, 6 7 8,. | Mã biêu chính là sáu bảy hay chín bảy?",
+        "mt": "회의는 오후 3시 3분입니다. | 오늘은 11월 11일이고, 2천2천6일입니다. | 티켓 가격은 5천원입니다. | 10% 할인 | 온도는 375도입니다. | 0 9 1 2 3 4 5 6 7 8 | 6-7 또는 9-7?",
+        "tts_texts": [
+          "회의는 오후 삼시 삼분입니다.",
+          "오늘은 십일월 십일일이고, 이천이천육일입니다.",
+          "티켓 가격은 오천원입니다.",
+          "십 퍼센트 할인",
+          "온도는 삼백칠십오도입니다.",
+          "영 구 일 이 삼 사 오 육 칠 팔",
+          "육 하이픈 칠 또는 구 하이픈 칠?"
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_vi_multilingual_to_zh",
+        "src": "vi",
+        "tgt": "zh",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/vi.wav",
+        "input_sha256": "75b0b2ec95845b2e3cabe582cbc0375149949d170c20628f5c35ff07fb29655d",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_vi_multilingual_to_zh.wav",
+        "output_sha256": "61ba83e5a61c712b3b2bcac4804c55c7d295b3ea91f03f1f4654d63876a61192",
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.0,
+            5.2
+          ],
+          [
+            5.28,
+            16.4863
+          ]
+        ],
+        "vad_s": 0.00045,
+        "total_s": 14.0305,
+        "asr_s": 0.3175,
+        "source_normalize_s": 0.0722,
+        "mt_s": 3.919,
+        "tts_s": 9.7152,
+        "graph_s": 13.1422,
+        "host_s": 0.8817,
+        "asr_raw": "cuộc họp lúc ba giờ ba phút chiều ngày hai tháng mười hai năm hai nghìn không hai bảy | giá là mười tám đô la hai năm cent nhiệt độ ba sáu tám độ c mã không bốn bảy tám hai điện thoại không chín không tám hai bốn sáu một bà năm chuyến bay vn hai bốn bảy số nhà bảy trăm ba bốn",
+        "asr_prepared": "Cuộc họp lúc 3 giờ 3 phút chiều ngày 2 tháng mười hai năm hai nghìn không hai. 7. | Giá Là Mười Tám Đô La Hai 5 Cent Nhiệt Độ Ba Sáu 8 Độ C Mã Không Bốn Bảy Tám Hai Điện Thoại Không Chín Không Tám Hai Bốn Sáu Một Bà Năm Chuyến Bay VN Hai Bốn Bảy Số Nhà Bảy Trăm Ba Bốn.",
+        "mt": "12月2日下午3点,会议是两千零零二.七个. | 价格是十八二五美分 热度是三六八度 不是四七八两电无九种无八种无二四六种无一种无四种无七种无三种.",
+        "tts_texts": [
+          "十二月二日下午三点,会议是两千零零二.七个.",
+          "价格是十八二五美分 热度是三六八度 不是四七八两电无九种无八种无二四六种无一种无四种无七种无三种."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_ko_e2e.wav",
+        "output_sha256": "0c765034892de4c3b2c58e8f4bd6cb4458344e83c0a93942cdea208205a0562c",
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.3,
+            1.9
+          ],
+          [
+            2.3,
+            5.8
+          ],
+          [
+            6.44,
+            10.6
+          ],
+          [
+            11.48,
+            13.48
+          ],
+          [
+            13.62,
+            14.72
+          ],
+          [
+            14.8,
+            16.92
+          ]
+        ],
+        "vad_s": 0.000395,
+        "total_s": 10.4909,
+        "asr_s": 2.6418,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.1579,
+        "tts_s": 4.6891,
+        "graph_s": 9.8986,
+        "host_s": 0.5902,
+        "asr_raw": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "mt": "Hội nghị diễn ra vào ngày 14, lúc 4 giờ. | Tháng 11 115 nghìn hai ngàn không hai sáu. | Và nhiệt độ giảm 10% trong 5000 là 375°C. | Một chiếc điện thoại chín trên máy tính xách tay. | Hai, ba. | Năm sáu bảy tám.",
+        "tts_texts": [
+          "hội nghị diễn ra vào ngày mười bốn, lúc bốn giờ.",
+          "tháng mười một một trăm mười lăm nghìn hai ngàn không hai sáu.",
+          "và nhiệt độ giảm mười phần trăm trong năm nghìn lítà ba trăm bảy mươi lăm độ xê.",
+          "một chiếc điện thoại chín trên máy tính xách tay.",
+          "hai, ba.",
+          "năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_hybrid",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/hybrid_format/s2s/audio/vi_to_ko.wav",
+        "input_sha256": "f9e1e39dd827fc52b2ab9538f2a78a65b16d03cc6cfe670a5989139752e10d7c",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_ko_hybrid.wav",
+        "output_sha256": "d2ae3d346aae6212e46f97dbca76bf78b07fa5d2406578e7115944c940fb529b",
+        "vad_profile": "upstream",
+        "segment_count": 4,
+        "spans": [
+          [
+            0.38,
+            5.56
+          ],
+          [
+            6.56,
+            8.42
+          ],
+          [
+            9.02,
+            10.48
+          ],
+          [
+            10.78,
+            13.5
+          ]
+        ],
+        "vad_s": 0.00037,
+        "total_s": 8.1996,
+        "asr_s": 1.8088,
+        "source_normalize_s": 0.0001,
+        "mt_s": 2.4564,
+        "tts_s": 3.9324,
+        "graph_s": 7.774,
+        "host_s": 0.4236,
+        "asr_raw": "회의는 열례 에 내날1 11월 2000년 2006년 5000원의 티켓 가격은, | 10 나 줄 어 들었 습니다. | 온도 37년 씨. | 전화연 9일 23 4,5 678.",
+        "asr_prepared": "회의는 열례 에 내날1 11월 2000년 2006년 5000원의 티켓 가격은, | 10 나 줄 어 들었 습니다. | 온도 37년 씨. | 전화연 9일 23 4,5 678.",
+        "mt": "Hội nghị được tổ chức vào ngày hôm qua, ngày 1 tháng 11 năm 2000 năm 2006 giá vé 5000 đồng, | Tôi đã nghe bạn nói. | Nhiệt độ 37 năm, thưa ông. | Lần gọi 9 ngày 23 4,5 678.",
+        "tts_texts": [
+          "hội nghị được tổ chức vào ngày hôm qua, ngày một tháng mười một năm hai nghìn năm hai nghìn không trăm lẻ sáu giá vé năm nghìn đồng,",
+          "tôi đã nghe bạn nói.",
+          "nhiệt độ ba mươi bảy năm, thưa ông.",
+          "lần gọi chín ngày hai mươi ba bốn phẩy năm sáu trăm bảy mươi tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_ko_multilingual",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/ko.wav",
+        "input_sha256": "5d59b577916618bc77e9fc6fdfbbfef2b030a74a449ae7dab93852a9ebd719b0",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_ko_multilingual.wav",
+        "output_sha256": "12a2ed2ec29808f196dbdda4295057a5fecbd9a03b37ac7d6a7a95b781a11589",
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.42,
+            4.74
+          ],
+          [
+            5.88,
+            8.28
+          ],
+          [
+            8.62,
+            10.72
+          ],
+          [
+            11.86,
+            14.12
+          ],
+          [
+            15.04,
+            18.16
+          ],
+          [
+            19.16,
+            21.36
+          ]
+        ],
+        "vad_s": 0.000449,
+        "total_s": 10.9494,
+        "asr_s": 2.6121,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.6794,
+        "tts_s": 4.6536,
+        "graph_s": 10.2675,
+        "host_s": 0.6777,
+        "asr_raw": "페이 는 2027 년 12 월 20 일  일 3시 30 분에 있 습니다. | 가격은 18달러 25 입니다. | 온도는 36.8도입니다. | 우편 번호는 04782입니다. | 전화번호는 영형 824 61 3호 입니다. | 항공편은 브이엔니 47입니다.",
+        "asr_prepared": "페이 는 2027 년 12 월 20 일  일 3시 30 분에 있 습니다. | 가격은 18달러 25 입니다. | 온도는 36.8도입니다. | 우편 번호는 04782입니다. | 전화번호는 영형 824 61 3호 입니다. | 항공편은 브이엔니 47입니다.",
+        "mt": "Pay là vào ngày 20 tháng 12 năm 2027 lúc 3 giờ 30 phút. | Giá của nó là 18 đô la và 25 đô la. | Nhiệt độ là 36. 8 độ. | Số thư là 04782. | Số điện thoại của chúng tôi là 824 61 3. | Chiếc máy bay này là Biennie 47.",
+        "tts_texts": [
+          "pay là vào ngày hai mươi tháng mười hai năm hai nghìn không trăm hai mươi bảy lúc ba giờ ba mươi phút.",
+          "giá của nó là mười tám đô la và hai mươi lăm đô la.",
+          "nhiệt độ là ba mươi sáu. tám độ.",
+          "số thư là không bốn bảy tám hai.",
+          "số điện thoại của chúng tôi là tám hai bốn sáu một ba.",
+          "chiếc máy bay này là bin ni bốn mươi bảy."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_zh_e2e.wav",
+        "output_sha256": "bfa4795e5a761cc0cc1e2708a3dc34ae70f632e176f9d267059de7afa249099a",
+        "vad_profile": "upstream",
+        "segment_count": 5,
+        "spans": [
+          [
+            0.26,
+            3.44
+          ],
+          [
+            3.88,
+            5.84
+          ],
+          [
+            6.38,
+            8.78
+          ],
+          [
+            9.24,
+            12.48
+          ],
+          [
+            12.94,
+            15.2
+          ]
+        ],
+        "vad_s": 0.000393,
+        "total_s": 9.2417,
+        "asr_s": 2.2117,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.0959,
+        "tts_s": 3.9282,
+        "graph_s": 8.6656,
+        "host_s": 0.5703,
+        "asr_raw": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "mt": "Cuộc họp diễn ra vào ngày 14 tháng 11 vào lúc 14:00. | Tôi không biết hai tôi không có sáu người. | Giá vé là 5.000元, giảm 1 phần mười. | Nhiệt độ là 375 độ C, hãy gọi cho số của bạn. | 912345678.",
+        "tts_texts": [
+          "cuộc họp diễn ra vào ngày mười bốn tháng mười một vào lúc mười bốn giờ.",
+          "tôi không biết hai tôi không có sáu người.",
+          "giá vé là năm nghìn nhân dân tệ, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, hãy gọi cho số của bạn.",
+          "chín một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_hybrid",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/hybrid_format/s2s/audio/vi_to_zh.wav",
+        "input_sha256": "d66fad22beaa1956cb3f47b57510d160a833d47bf63ebee4cd1a167a0b171fb1",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_zh_hybrid.wav",
+        "output_sha256": "93f5aa7491ad27ba810cdd3147c3dab61a59e5d38e56a7c0c3b3f53245c03c01",
+        "vad_profile": "upstream",
+        "segment_count": 4,
+        "spans": [
+          [
+            0.32,
+            3.62
+          ],
+          [
+            4.16,
+            7.12
+          ],
+          [
+            7.64,
+            10.28
+          ],
+          [
+            10.74,
+            12.64
+          ]
+        ],
+        "vad_s": 0.000359,
+        "total_s": 7.7157,
+        "asr_s": 1.7102,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.9068,
+        "tts_s": 3.0947,
+        "graph_s": 7.1873,
+        "host_s": 0.5245,
+        "asr_raw": "会议在14小时4天实时1月一年而且没有两。 | 各六5000元的门票价格下降了10%。 | 期温3年7度其他类型电话号码。 | 0912345678。",
+        "asr_prepared": "会议在14小时4天实时1月一年而且没有两。 | 各六5000元的门票价格下降了10%。 | 期温3年7度其他类型电话号码。 | 0912345678。",
+        "mt": "Các cuộc họp diễn ra trong 14 giờ 4 ngày thực tế vào tháng 1 năm và không có hai. | Giá vé 65.000 đồng đã giảm 10%. | Số điện thoại khác trong thời gian nhiệt độ 3 độ 7 độ. | 0912345678",
+        "tts_texts": [
+          "các cuộc họp diễn ra trong mười bốn giờ bốn ngày thực tế vào tháng một năm và không có hai.",
+          "giá vé sáu mươi lăm nghìn đồng đã giảm mười phần trăm.",
+          "số điện thoại khác trong thời gian nhiệt độ ba độ bảy độ.",
+          "không chín một hai ba bốn năm sáu bảy tám"
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      },
+      {
+        "id": "syn_zh_multilingual",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/multilingual_tts_format/hybrid/zh.wav",
+        "input_sha256": "181f81c170b28f691fd9d9578b91293eb9b44c761c27263e200d177817b4d0e8",
+        "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/t3_ablation/vad/audio/upstream/syn_zh_multilingual.wav",
+        "output_sha256": "6424644fd43ee4e381b0f54d4bcc402fcc58078f8066a2d6f1d3bb34d354e425",
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.32,
+            3.68
+          ],
+          [
+            4.22,
+            6.86
+          ],
+          [
+            7.34,
+            9.56
+          ],
+          [
+            9.98,
+            11.9
+          ],
+          [
+            12.48,
+            15.24
+          ],
+          [
+            15.76,
+            17.62
+          ]
+        ],
+        "vad_s": 0.000388,
+        "total_s": 11.6136,
+        "asr_s": 2.6165,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.4823,
+        "tts_s": 5.5094,
+        "graph_s": 10.9734,
+        "host_s": 0.6348,
+        "asr_raw": "会议在2027年12月21日3点30分。 | 开始价格48美元，25美分。 | 温度是36.8摄氏度。 | 邮政编码是04782。 | 电话号码是0908246135。 | 航班号是为N247。",
+        "asr_prepared": "会议在2027年12月21日3点30分。 | 开始价格48美元，25美分。 | 温度是36.8摄氏度。 | 邮政编码是04782。 | 电话号码是0908246135。 | 航班号是为N247。",
+        "mt": "Hội nghị sẽ diễn ra vào ngày 21 tháng 12 năm 2027, lúc 3:30 giờ. | Giá bắt đầu là 48 USD, 25 cents. | Nhiệt độ là 36. 8 độ C. | Mã nhét là 04782. | Số điện thoại là 0908246135. | Số bay là N247.",
+        "tts_texts": [
+          "hội nghị sẽ diễn ra vào ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy, lúc ba giờ ba mươi phút giờ.",
+          "giá bắt đầu là bốn mươi tám đô la, hai mươi lăm sen tơ sơ.",
+          "nhiệt độ là ba mươi sáu. tám độ c.",
+          "mã nhét là không bốn bảy tám hai.",
+          "số điện thoại là không chín không tám hai bốn sáu một ba năm.",
+          "số bay là en hai bốn bảy."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        }
+      }
+    ]
+  },
+  "paired_runs": {
+    "legacy": [
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            5.71
+          ]
+        ],
+        "vad_s": 0.000311,
+        "total_s": 1.8612,
+        "asr_s": 0.4298,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.6226,
+        "tts_s": 0.8083,
+        "graph_s": 1.7431,
+        "host_s": 0.1176,
+        "asr_raw": "734 Main Street, Harper Valley Oregon,67297.",
+        "asr_prepared": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+        "tts_texts": [
+          "bảy trăm ba mươi bốn main street, harper valley oregon, sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.49,
+            7.93
+          ]
+        ],
+        "vad_s": 0.000393,
+        "total_s": 1.9574,
+        "asr_s": 0.4306,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.707,
+        "tts_s": 0.8194,
+        "graph_s": 1.823,
+        "host_s": 0.1339,
+        "asr_raw": "Play only all music released between the year 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành từ năm 1990 đến năm 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành từ năm một nghìn chín trăm chín mươi đến năm hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000365,
+        "total_s": 2.4382,
+        "asr_s": 0.4295,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.1745,
+        "tts_s": 0.8336,
+        "graph_s": 2.2018,
+        "host_s": 0.2358,
+        "asr_raw": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "mt": "Tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ 12 giờ đến 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ mười hai giờ đến ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.33,
+            10.33
+          ],
+          [
+            10.63,
+            13.91
+          ],
+          [
+            14.19,
+            19.97
+          ]
+        ],
+        "vad_s": 0.000524,
+        "total_s": 7.8807,
+        "asr_s": 1.2834,
+        "source_normalize_s": 0.0,
+        "mt_s": 3.2844,
+        "tts_s": 3.3121,
+        "graph_s": 7.2998,
+        "host_s": 0.5801,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000353,
+        "total_s": 14.0646,
+        "asr_s": 0.2153,
+        "source_normalize_s": 0.063,
+        "mt_s": 4.6393,
+        "tts_s": 9.1463,
+        "graph_s": 13.2699,
+        "host_s": 0.7939,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.27,
+            5.83
+          ],
+          [
+            6.41,
+            10.63
+          ],
+          [
+            11.45,
+            16.95
+          ]
+        ],
+        "vad_s": 0.000433,
+        "total_s": 6.3612,
+        "asr_s": 1.2969,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.6404,
+        "tts_s": 2.4231,
+        "graph_s": 5.8766,
+        "host_s": 0.4838,
+        "asr_raw": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "mt": "Cuộc họp vào ngày 14 giờ 4 giờ. | Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C. | Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+        "tts_texts": [
+          "cuộc họp vào ngày mười bốn giờ bốn giờ.",
+          "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c.",
+          "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.23,
+            8.81
+          ],
+          [
+            9.21,
+            15.23
+          ]
+        ],
+        "vad_s": 0.000379,
+        "total_s": 6.2127,
+        "asr_s": 0.9345,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.7985,
+        "tts_s": 2.4791,
+        "graph_s": 5.6659,
+        "host_s": 0.5462,
+        "asr_raw": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "mt": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười. | Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+        "tts_texts": [
+          "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            5.71
+          ]
+        ],
+        "vad_s": 0.000328,
+        "total_s": 1.9205,
+        "asr_s": 0.4433,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.6597,
+        "tts_s": 0.817,
+        "graph_s": 1.803,
+        "host_s": 0.1171,
+        "asr_raw": "734 Main Street, Harper Valley Oregon,67297.",
+        "asr_prepared": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+        "tts_texts": [
+          "bảy trăm ba mươi bốn main street, harper valley oregon, sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.49,
+            7.93
+          ]
+        ],
+        "vad_s": 0.000375,
+        "total_s": 2.0997,
+        "asr_s": 0.4619,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.7424,
+        "tts_s": 0.8948,
+        "graph_s": 1.9643,
+        "host_s": 0.1349,
+        "asr_raw": "Play only all music released between the year 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành từ năm 1990 đến năm 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành từ năm một nghìn chín trăm chín mươi đến năm hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000389,
+        "total_s": 2.4749,
+        "asr_s": 0.4576,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.2033,
+        "tts_s": 0.8135,
+        "graph_s": 2.2491,
+        "host_s": 0.2253,
+        "asr_raw": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "mt": "Tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ 12 giờ đến 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ mười hai giờ đến ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.33,
+            10.33
+          ],
+          [
+            10.63,
+            13.91
+          ],
+          [
+            14.19,
+            19.97
+          ]
+        ],
+        "vad_s": 0.000521,
+        "total_s": 8.0226,
+        "asr_s": 1.3864,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.3613,
+        "tts_s": 3.2739,
+        "graph_s": 7.4281,
+        "host_s": 0.5936,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000447,
+        "total_s": 14.1159,
+        "asr_s": 0.313,
+        "source_normalize_s": 0.0612,
+        "mt_s": 4.607,
+        "tts_s": 9.1338,
+        "graph_s": 13.3448,
+        "host_s": 0.7703,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.27,
+            5.83
+          ],
+          [
+            6.41,
+            10.63
+          ],
+          [
+            11.45,
+            16.95
+          ]
+        ],
+        "vad_s": 0.000464,
+        "total_s": 6.4327,
+        "asr_s": 1.3679,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.6495,
+        "tts_s": 2.4145,
+        "graph_s": 5.9409,
+        "host_s": 0.4911,
+        "asr_raw": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "mt": "Cuộc họp vào ngày 14 giờ 4 giờ. | Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C. | Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+        "tts_texts": [
+          "cuộc họp vào ngày mười bốn giờ bốn giờ.",
+          "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c.",
+          "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.23,
+            8.81
+          ],
+          [
+            9.21,
+            15.23
+          ]
+        ],
+        "vad_s": 0.00039,
+        "total_s": 5.9693,
+        "asr_s": 0.8728,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.6244,
+        "tts_s": 2.4715,
+        "graph_s": 5.4308,
+        "host_s": 0.5378,
+        "asr_raw": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "mt": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười. | Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+        "tts_texts": [
+          "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            5.71
+          ]
+        ],
+        "vad_s": 0.000346,
+        "total_s": 2.2703,
+        "asr_s": 0.476,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.8043,
+        "tts_s": 0.9891,
+        "graph_s": 2.1271,
+        "host_s": 0.1424,
+        "asr_raw": "734 Main Street, Harper Valley Oregon,67297.",
+        "asr_prepared": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+        "tts_texts": [
+          "bảy trăm ba mươi bốn main street, harper valley oregon, sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.49,
+            7.93
+          ]
+        ],
+        "vad_s": 0.000544,
+        "total_s": 2.3738,
+        "asr_s": 0.7049,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.8409,
+        "tts_s": 0.8273,
+        "graph_s": 2.2483,
+        "host_s": 0.1249,
+        "asr_raw": "Play only all music released between the year 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành từ năm 1990 đến năm 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành từ năm một nghìn chín trăm chín mươi đến năm hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000372,
+        "total_s": 2.9199,
+        "asr_s": 0.4257,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.2356,
+        "tts_s": 1.2578,
+        "graph_s": 2.678,
+        "host_s": 0.2412,
+        "asr_raw": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+        "mt": "Tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ 12 giờ đến 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ nhìn vào nó như khi giờ làm việc bình thường của tôi là từ mười hai giờ đến ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.33,
+            10.33
+          ],
+          [
+            10.63,
+            13.91
+          ],
+          [
+            14.19,
+            19.97
+          ]
+        ],
+        "vad_s": 0.000724,
+        "total_s": 9.3055,
+        "asr_s": 1.7343,
+        "source_normalize_s": 0.0001,
+        "mt_s": 4.0774,
+        "tts_s": 3.4923,
+        "graph_s": 8.6317,
+        "host_s": 0.6724,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+        "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123",
+            "67297"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.00045,
+        "total_s": 15.6505,
+        "asr_s": 0.3577,
+        "source_normalize_s": 0.2425,
+        "mt_s": 5.607,
+        "tts_s": 9.4424,
+        "graph_s": 14.602,
+        "host_s": 1.0476,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.27,
+            5.83
+          ],
+          [
+            6.41,
+            10.63
+          ],
+          [
+            11.45,
+            16.95
+          ]
+        ],
+        "vad_s": 0.000793,
+        "total_s": 6.8321,
+        "asr_s": 1.4404,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.8194,
+        "tts_s": 2.571,
+        "graph_s": 6.3207,
+        "host_s": 0.5102,
+        "asr_raw": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+        "mt": "Cuộc họp vào ngày 14 giờ 4 giờ. | Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C. | Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+        "tts_texts": [
+          "cuộc họp vào ngày mười bốn giờ bốn giờ.",
+          "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c.",
+          "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "legacy",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.23,
+            8.81
+          ],
+          [
+            9.21,
+            15.23
+          ]
+        ],
+        "vad_s": 0.000534,
+        "total_s": 6.1754,
+        "asr_s": 0.8564,
+        "source_normalize_s": 0.0,
+        "mt_s": 2.8321,
+        "tts_s": 2.4861,
+        "graph_s": 5.6311,
+        "host_s": 0.5436,
+        "asr_raw": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+        "mt": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười. | Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+        "tts_texts": [
+          "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      }
+    ],
+    "upstream": [
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            2.3
+          ],
+          [
+            2.44,
+            3.88
+          ],
+          [
+            4.1,
+            5.68
+          ]
+        ],
+        "vad_s": 0.000284,
+        "total_s": 4.5692,
+        "asr_s": 1.3093,
+        "source_normalize_s": 0.0001,
+        "mt_s": 0.9276,
+        "tts_s": 2.3316,
+        "graph_s": 4.4077,
+        "host_s": 0.161,
+        "asr_raw": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "asr_prepared": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "mt": "Đường chính 734. | Harper Valley Oregon. | 6,7,29,7.",
+        "tts_texts": [
+          "đường chính bảy trăm ba mươi bốn.",
+          "harper valley oregon.",
+          "sáu phẩy bảy phẩy hai chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.52,
+            3.88
+          ],
+          [
+            4.06,
+            7.9
+          ]
+        ],
+        "vad_s": 0.000307,
+        "total_s": 3.2887,
+        "asr_s": 0.904,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.822,
+        "tts_s": 1.5622,
+        "graph_s": 3.1475,
+        "host_s": 0.1407,
+        "asr_raw": "Play only all music released between the year. | 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year. | 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành trong năm. | 1990 và 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành trong năm.",
+          "một nghìn chín trăm chín mươi và hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            4.84
+          ],
+          [
+            5.6,
+            7.32
+          ],
+          [
+            7.62,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000336,
+        "total_s": 5.2542,
+        "asr_s": 1.3428,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.5949,
+        "tts_s": 2.3158,
+        "graph_s": 4.9653,
+        "host_s": 0.2882,
+        "asr_raw": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "mt": "Tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy. | Từ 12h đến 12h. | 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy.",
+          "từ mười hây hơ đến mười hây hơ.",
+          "ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.36,
+            4.98
+          ],
+          [
+            5.44,
+            8.06
+          ],
+          [
+            8.44,
+            10.3
+          ],
+          [
+            10.66,
+            13.88
+          ],
+          [
+            14.22,
+            16.36
+          ],
+          [
+            16.58,
+            18.48
+          ],
+          [
+            18.6,
+            19.94
+          ]
+        ],
+        "vad_s": 0.000463,
+        "total_s": 13.6124,
+        "asr_s": 3.3684,
+        "source_normalize_s": 0.0001,
+        "mt_s": 4.4988,
+        "tts_s": 5.7436,
+        "graph_s": 12.9088,
+        "host_s": 0.7022,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "mt": "Cuộc họp là vào lúc 330 tối ngày 15 tháng 11 năm 2026. | Chi phí vé là 15 đô la. 50 người. | Với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123. | Và mã ZIP của tôi là 6. | 729,7.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi người.",
+          "với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vê en một hai ba.",
+          "và mã dip của tôi là sáu.",
+          "bảy trăm hai mươi chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.00063,
+        "total_s": 14.5982,
+        "asr_s": 0.2187,
+        "source_normalize_s": 0.065,
+        "mt_s": 5.1155,
+        "tts_s": 9.198,
+        "graph_s": 13.7781,
+        "host_s": 0.8191,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.3,
+            1.9
+          ],
+          [
+            2.3,
+            5.8
+          ],
+          [
+            6.44,
+            10.6
+          ],
+          [
+            11.48,
+            13.48
+          ],
+          [
+            13.62,
+            14.72
+          ],
+          [
+            14.8,
+            16.92
+          ]
+        ],
+        "vad_s": 0.000629,
+        "total_s": 10.5923,
+        "asr_s": 2.5885,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.1701,
+        "tts_s": 4.8326,
+        "graph_s": 10.0117,
+        "host_s": 0.5795,
+        "asr_raw": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "mt": "Hội nghị diễn ra vào ngày 14, lúc 4 giờ. | Tháng 11 115 nghìn hai ngàn không hai sáu. | Và nhiệt độ giảm 10% trong 5000 là 375°C. | Một chiếc điện thoại chín trên máy tính xách tay. | Hai, ba. | Năm sáu bảy tám.",
+        "tts_texts": [
+          "hội nghị diễn ra vào ngày mười bốn, lúc bốn giờ.",
+          "tháng mười một một trăm mười lăm nghìn hai ngàn không hai sáu.",
+          "và nhiệt độ giảm mười phần trăm trong năm nghìn lítà ba trăm bảy mươi lăm độ xê.",
+          "một chiếc điện thoại chín trên máy tính xách tay.",
+          "hai, ba.",
+          "năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 5,
+        "spans": [
+          [
+            0.26,
+            3.44
+          ],
+          [
+            3.88,
+            5.84
+          ],
+          [
+            6.38,
+            8.78
+          ],
+          [
+            9.24,
+            12.48
+          ],
+          [
+            12.94,
+            15.2
+          ]
+        ],
+        "vad_s": 0.000412,
+        "total_s": 9.2254,
+        "asr_s": 2.2313,
+        "source_normalize_s": 0.0001,
+        "mt_s": 2.9075,
+        "tts_s": 4.0856,
+        "graph_s": 8.6726,
+        "host_s": 0.5519,
+        "asr_raw": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "mt": "Cuộc họp diễn ra vào ngày 14 tháng 11 vào lúc 14:00. | Tôi không biết hai tôi không có sáu người. | Giá vé là 5.000元, giảm 1 phần mười. | Nhiệt độ là 375 độ C, hãy gọi cho số của bạn. | 912345678.",
+        "tts_texts": [
+          "cuộc họp diễn ra vào ngày mười bốn tháng mười một vào lúc mười bốn giờ.",
+          "tôi không biết hai tôi không có sáu người.",
+          "giá vé là năm nghìn nhân dân tệ, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, hãy gọi cho số của bạn.",
+          "chín một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 0
+      },
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            2.3
+          ],
+          [
+            2.44,
+            3.88
+          ],
+          [
+            4.1,
+            5.68
+          ]
+        ],
+        "vad_s": 0.000296,
+        "total_s": 4.6692,
+        "asr_s": 1.3208,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.9035,
+        "tts_s": 2.4443,
+        "graph_s": 4.5128,
+        "host_s": 0.1559,
+        "asr_raw": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "asr_prepared": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "mt": "Đường chính 734. | Harper Valley Oregon. | 6,7,29,7.",
+        "tts_texts": [
+          "đường chính bảy trăm ba mươi bốn.",
+          "harper valley oregon.",
+          "sáu phẩy bảy phẩy hai chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.52,
+            3.88
+          ],
+          [
+            4.06,
+            7.9
+          ]
+        ],
+        "vad_s": 0.000585,
+        "total_s": 3.3005,
+        "asr_s": 0.8735,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.8601,
+        "tts_s": 1.5661,
+        "graph_s": 3.1581,
+        "host_s": 0.1415,
+        "asr_raw": "Play only all music released between the year. | 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year. | 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành trong năm. | 1990 và 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành trong năm.",
+          "một nghìn chín trăm chín mươi và hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            4.84
+          ],
+          [
+            5.6,
+            7.32
+          ],
+          [
+            7.62,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000348,
+        "total_s": 5.4587,
+        "asr_s": 1.3332,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.7436,
+        "tts_s": 2.3812,
+        "graph_s": 5.1527,
+        "host_s": 0.3054,
+        "asr_raw": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "mt": "Tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy. | Từ 12h đến 12h. | 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy.",
+          "từ mười hây hơ đến mười hây hơ.",
+          "ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.36,
+            4.98
+          ],
+          [
+            5.44,
+            8.06
+          ],
+          [
+            8.44,
+            10.3
+          ],
+          [
+            10.66,
+            13.88
+          ],
+          [
+            14.22,
+            16.36
+          ],
+          [
+            16.58,
+            18.48
+          ],
+          [
+            18.6,
+            19.94
+          ]
+        ],
+        "vad_s": 0.000411,
+        "total_s": 13.0914,
+        "asr_s": 3.1616,
+        "source_normalize_s": 0.0001,
+        "mt_s": 4.26,
+        "tts_s": 5.6688,
+        "graph_s": 12.3678,
+        "host_s": 0.7226,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "mt": "Cuộc họp là vào lúc 330 tối ngày 15 tháng 11 năm 2026. | Chi phí vé là 15 đô la. 50 người. | Với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123. | Và mã ZIP của tôi là 6. | 729,7.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi người.",
+          "với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vê en một hai ba.",
+          "và mã dip của tôi là sáu.",
+          "bảy trăm hai mươi chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000356,
+        "total_s": 13.9519,
+        "asr_s": 0.211,
+        "source_normalize_s": 0.0598,
+        "mt_s": 4.6369,
+        "tts_s": 9.0435,
+        "graph_s": 13.1868,
+        "host_s": 0.7645,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.3,
+            1.9
+          ],
+          [
+            2.3,
+            5.8
+          ],
+          [
+            6.44,
+            10.6
+          ],
+          [
+            11.48,
+            13.48
+          ],
+          [
+            13.62,
+            14.72
+          ],
+          [
+            14.8,
+            16.92
+          ]
+        ],
+        "vad_s": 0.000354,
+        "total_s": 10.6931,
+        "asr_s": 2.6269,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.2972,
+        "tts_s": 4.7681,
+        "graph_s": 10.0978,
+        "host_s": 0.5945,
+        "asr_raw": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "mt": "Hội nghị diễn ra vào ngày 14, lúc 4 giờ. | Tháng 11 115 nghìn hai ngàn không hai sáu. | Và nhiệt độ giảm 10% trong 5000 là 375°C. | Một chiếc điện thoại chín trên máy tính xách tay. | Hai, ba. | Năm sáu bảy tám.",
+        "tts_texts": [
+          "hội nghị diễn ra vào ngày mười bốn, lúc bốn giờ.",
+          "tháng mười một một trăm mười lăm nghìn hai ngàn không hai sáu.",
+          "và nhiệt độ giảm mười phần trăm trong năm nghìn lítà ba trăm bảy mươi lăm độ xê.",
+          "một chiếc điện thoại chín trên máy tính xách tay.",
+          "hai, ba.",
+          "năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 5,
+        "spans": [
+          [
+            0.26,
+            3.44
+          ],
+          [
+            3.88,
+            5.84
+          ],
+          [
+            6.38,
+            8.78
+          ],
+          [
+            9.24,
+            12.48
+          ],
+          [
+            12.94,
+            15.2
+          ]
+        ],
+        "vad_s": 0.00036,
+        "total_s": 9.6823,
+        "asr_s": 2.2651,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.3333,
+        "tts_s": 4.083,
+        "graph_s": 9.1054,
+        "host_s": 0.5761,
+        "asr_raw": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "mt": "Cuộc họp diễn ra vào ngày 14 tháng 11 vào lúc 14:00. | Tôi không biết hai tôi không có sáu người. | Giá vé là 5.000元, giảm 1 phần mười. | Nhiệt độ là 375 độ C, hãy gọi cho số của bạn. | 912345678.",
+        "tts_texts": [
+          "cuộc họp diễn ra vào ngày mười bốn tháng mười một vào lúc mười bốn giờ.",
+          "tôi không biết hai tôi không có sáu người.",
+          "giá vé là năm nghìn nhân dân tệ, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, hãy gọi cho số của bạn.",
+          "chín một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 1
+      },
+      {
+        "id": "native_en_dev_EV0358",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+        "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            2.3
+          ],
+          [
+            2.44,
+            3.88
+          ],
+          [
+            4.1,
+            5.68
+          ]
+        ],
+        "vad_s": 0.000492,
+        "total_s": 4.684,
+        "asr_s": 1.3289,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.9393,
+        "tts_s": 2.4151,
+        "graph_s": 4.5186,
+        "host_s": 0.1647,
+        "asr_raw": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "asr_prepared": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+        "mt": "Đường chính 734. | Harper Valley Oregon. | 6,7,29,7.",
+        "tts_texts": [
+          "đường chính bảy trăm ba mươi bốn.",
+          "harper valley oregon.",
+          "sáu phẩy bảy phẩy hai chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "734"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 2
+      },
+      {
+        "id": "native_en_dev_EV0157",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0157_in.wav",
+        "input_sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 2,
+        "spans": [
+          [
+            0.52,
+            3.88
+          ],
+          [
+            4.06,
+            7.9
+          ]
+        ],
+        "vad_s": 0.000315,
+        "total_s": 3.4183,
+        "asr_s": 0.8921,
+        "source_normalize_s": 0.0,
+        "mt_s": 0.8973,
+        "tts_s": 1.6285,
+        "graph_s": 3.2682,
+        "host_s": 0.1496,
+        "asr_raw": "Play only all music released between the year. | 1990 and 2000.",
+        "asr_prepared": "Play only all music released between the year. | 1990 and 2000.",
+        "mt": "Chỉ chơi tất cả nhạc phát hành trong năm. | 1990 và 2000.",
+        "tts_texts": [
+          "chỉ chơi tất cả nhạc phát hành trong năm.",
+          "một nghìn chín trăm chín mươi và hai nghìn."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "1990",
+            "2000"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "native_en_holdout_EV1508",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "native_human_speech",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-1508_in.wav",
+        "input_sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 3,
+        "spans": [
+          [
+            0.0,
+            4.84
+          ],
+          [
+            5.6,
+            7.32
+          ],
+          [
+            7.62,
+            8.72
+          ]
+        ],
+        "vad_s": 0.000342,
+        "total_s": 5.457,
+        "asr_s": 1.2861,
+        "source_normalize_s": 0.0,
+        "mt_s": 1.7403,
+        "tts_s": 2.43,
+        "graph_s": 5.1465,
+        "host_s": 0.3099,
+        "asr_raw": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "asr_prepared": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+        "mt": "Tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy. | Từ 12h đến 12h. | 3 giờ hoặc cái gì đó.",
+        "tts_texts": [
+          "tôi sẽ xem nó như khi giờ làm việc bình thường của tôi là như vậy.",
+          "từ mười hây hơ đến mười hây hơ.",
+          "ba giờ hoặc cái gì đó."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "12",
+            "3"
+          ],
+          "missing": [],
+          "all_preserved": true
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_en_special",
+        "src": "en",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+        "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 7,
+        "spans": [
+          [
+            0.36,
+            4.98
+          ],
+          [
+            5.44,
+            8.06
+          ],
+          [
+            8.44,
+            10.3
+          ],
+          [
+            10.66,
+            13.88
+          ],
+          [
+            14.22,
+            16.36
+          ],
+          [
+            16.58,
+            18.48
+          ],
+          [
+            18.6,
+            19.94
+          ]
+        ],
+        "vad_s": 0.000467,
+        "total_s": 12.8055,
+        "asr_s": 3.0126,
+        "source_normalize_s": 0.0001,
+        "mt_s": 4.0162,
+        "tts_s": 5.7755,
+        "graph_s": 12.1033,
+        "host_s": 0.7012,
+        "asr_raw": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "asr_prepared": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+        "mt": "Cuộc họp là vào lúc 330 tối ngày 15 tháng 11 năm 2026. | Chi phí vé là 15 đô la. 50 người. | Với giảm giá 15%. | Nhiệt độ là 37. 5 độ C. | Chuyến bay của tôi là VN123. | Và mã ZIP của tôi là 6. | 729,7.",
+        "tts_texts": [
+          "cuộc họp là vào lúc ba trăm ba mươi tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+          "chi phí vé là mười lăm đô la. năm mươi người.",
+          "với giảm giá mười lăm phần trăm.",
+          "nhiệt độ là ba mươi bảy. năm độ c.",
+          "chuyến bay của tôi là vê en một hai ba.",
+          "và mã dip của tôi là sáu.",
+          "bảy trăm hai mươi chín phẩy bảy."
+        ],
+        "entity_check": {
+          "checked": true,
+          "unknown_or_unlabeled": false,
+          "matched": [
+            "330",
+            "15",
+            "2026",
+            "15.50",
+            "15%",
+            "37.5",
+            "VN",
+            "123"
+          ],
+          "missing": [
+            "67297"
+          ],
+          "all_preserved": false
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_vi_special_to_en",
+        "src": "vi",
+        "tgt": "en",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+        "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 1,
+        "spans": [
+          [
+            0.0,
+            11.9583
+          ]
+        ],
+        "vad_s": 0.000308,
+        "total_s": 13.823,
+        "asr_s": 0.1745,
+        "source_normalize_s": 0.0572,
+        "mt_s": 4.4903,
+        "tts_s": 9.1004,
+        "graph_s": 13.085,
+        "host_s": 0.7373,
+        "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+        "asr_prepared": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+        "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+        "tts_texts": [
+          "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_ko_e2e",
+        "src": "ko",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+        "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 6,
+        "spans": [
+          [
+            0.3,
+            1.9
+          ],
+          [
+            2.3,
+            5.8
+          ],
+          [
+            6.44,
+            10.6
+          ],
+          [
+            11.48,
+            13.48
+          ],
+          [
+            13.62,
+            14.72
+          ],
+          [
+            14.8,
+            16.92
+          ]
+        ],
+        "vad_s": 0.000448,
+        "total_s": 10.4695,
+        "asr_s": 2.5702,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.0046,
+        "tts_s": 4.8938,
+        "graph_s": 9.8935,
+        "host_s": 0.5751,
+        "asr_raw": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "asr_prepared": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+        "mt": "Hội nghị diễn ra vào ngày 14, lúc 4 giờ. | Tháng 11 115 nghìn hai ngàn không hai sáu. | Và nhiệt độ giảm 10% trong 5000 là 375°C. | Một chiếc điện thoại chín trên máy tính xách tay. | Hai, ba. | Năm sáu bảy tám.",
+        "tts_texts": [
+          "hội nghị diễn ra vào ngày mười bốn, lúc bốn giờ.",
+          "tháng mười một một trăm mười lăm nghìn hai ngàn không hai sáu.",
+          "và nhiệt độ giảm mười phần trăm trong năm nghìn lítà ba trăm bảy mươi lăm độ xê.",
+          "một chiếc điện thoại chín trên máy tính xách tay.",
+          "hai, ba.",
+          "năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      },
+      {
+        "id": "syn_zh_e2e",
+        "src": "zh",
+        "tgt": "vi",
+        "input_kind": "synthetic_tts_fixture",
+        "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+        "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+        "output_wav": null,
+        "output_sha256": null,
+        "vad_profile": "upstream",
+        "segment_count": 5,
+        "spans": [
+          [
+            0.26,
+            3.44
+          ],
+          [
+            3.88,
+            5.84
+          ],
+          [
+            6.38,
+            8.78
+          ],
+          [
+            9.24,
+            12.48
+          ],
+          [
+            12.94,
+            15.2
+          ]
+        ],
+        "vad_s": 0.000468,
+        "total_s": 9.3154,
+        "asr_s": 2.1678,
+        "source_normalize_s": 0.0001,
+        "mt_s": 3.0439,
+        "tts_s": 4.1026,
+        "graph_s": 8.7525,
+        "host_s": 0.562,
+        "asr_raw": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "asr_prepared": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+        "mt": "Cuộc họp diễn ra vào ngày 14 tháng 11 vào lúc 14:00. | Tôi không biết hai tôi không có sáu người. | Giá vé là 5.000元, giảm 1 phần mười. | Nhiệt độ là 375 độ C, hãy gọi cho số của bạn. | 912345678.",
+        "tts_texts": [
+          "cuộc họp diễn ra vào ngày mười bốn tháng mười một vào lúc mười bốn giờ.",
+          "tôi không biết hai tôi không có sáu người.",
+          "giá vé là năm nghìn nhân dân tệ, giảm một phần mười.",
+          "nhiệt độ là ba trăm bảy mươi lăm độ c, hãy gọi cho số của bạn.",
+          "chín một hai ba bốn năm sáu bảy tám."
+        ],
+        "entity_check": {
+          "checked": false,
+          "unknown_or_unlabeled": true,
+          "matched": [],
+          "missing": []
+        },
+        "rep": 2
+      }
+    ]
+  }
+}

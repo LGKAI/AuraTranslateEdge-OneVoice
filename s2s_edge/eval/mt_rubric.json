@@ -1,0 +1,914 @@
+{
+ "note": "MT-only rubric. Each case is a NEW sentence of the same error type as a case reported in the team review of 12/11 (not the same sentence). pass = (no 'ok' list or one of the 'ok' strings is in the output) and none of the 'bad' strings is in the output and the optional checks hold (polite: Korean sentence ends in a polite ending; question: Vietnamese output is a question; min_len: at least this many Hangul/CJK characters). Matching is case-insensitive substring.",
+ "cases": [
+  {
+   "id": "zh01",
+   "dir": "vi-zh",
+   "type": "đồng âm: bị cảm",
+   "src": "Anh ấy bị cảm hai ngày rồi, nên hôm nay không đi làm.",
+   "ok": [
+    "感冒"
+   ],
+   "bad": [
+    "感觉",
+    "感动"
+   ]
+  },
+  {
+   "id": "zh02",
+   "dir": "vi-zh",
+   "type": "đồng âm: bị cảm",
+   "src": "Tôi bị cảm nặng, họng rất đau.",
+   "ok": [
+    "感冒"
+   ],
+   "bad": [
+    "感觉",
+    "感动"
+   ]
+  },
+  {
+   "id": "zh03",
+   "dir": "vi-zh",
+   "type": "xe máy",
+   "src": "Chị tôi đi xe máy đến công ty mỗi ngày.",
+   "ok": [
+    "摩托"
+   ],
+   "bad": [
+    "自行车",
+    "脚踏车",
+    "单车"
+   ]
+  },
+  {
+   "id": "zh04",
+   "dir": "vi-zh",
+   "type": "xe máy",
+   "src": "Bạn có xe máy không? Cho tôi mượn một lát.",
+   "ok": [
+    "摩托"
+   ],
+   "bad": [
+    "自行车",
+    "脚踏车",
+    "单车"
+   ]
+  },
+  {
+   "id": "zh05",
+   "dir": "vi-zh",
+   "type": "địa danh",
+   "src": "Chuyến bay từ Hà Nội đến Bắc Kinh mất ba tiếng.",
+   "ok": [
+    "河内"
+   ],
+   "bad": [
+    "哈诺伊",
+    "哈诺依"
+   ]
+  },
+  {
+   "id": "zh06",
+   "dir": "vi-zh",
+   "type": "địa danh",
+   "src": "Khách sạn Hà Nội ở gần ga không?",
+   "ok": [
+    "河内"
+   ],
+   "bad": [
+    "哈诺伊",
+    "哈诺依"
+   ]
+  },
+  {
+   "id": "zh07",
+   "dir": "vi-zh",
+   "type": "địa danh",
+   "src": "Mùa hè năm ngoái chúng tôi đã đi chơi ở Đà Nẵng.",
+   "ok": [
+    "岘港",
+    "峴港"
+   ],
+   "bad": [
+    "达南",
+    "德纳",
+    "大南"
+   ]
+  },
+  {
+   "id": "zh08",
+   "dir": "vi-zh",
+   "type": "số + 'được không'",
+   "src": "Cái áo này giá 201 nhân dân tệ, được không?",
+   "ok": [
+    "201",
+    "二百零一",
+    "两百零一"
+   ],
+   "bad": [
+    "你好吗"
+   ]
+  },
+  {
+   "id": "zh09",
+   "dir": "vi-zh",
+   "type": "số + 'được không'",
+   "src": "Tôi trả 301 tệ, được không?",
+   "ok": [
+    "301",
+    "三百零一"
+   ],
+   "bad": [
+    "你好吗"
+   ]
+  },
+  {
+   "id": "zh10",
+   "dir": "vi-zh",
+   "type": "nước ngọt",
+   "src": "Cửa hàng này có bán nước ngọt không?",
+   "ok": [
+    "饮料",
+    "汽水",
+    "软饮",
+    "可乐"
+   ],
+   "bad": [
+    "甜水",
+    "淡水"
+   ]
+  },
+  {
+   "id": "zh11",
+   "dir": "vi-zh",
+   "type": "nước ngọt",
+   "src": "Tôi muốn mua hai chai nước ngọt.",
+   "ok": [
+    "饮料",
+    "汽水",
+    "软饮",
+    "可乐"
+   ],
+   "bad": [
+    "甜水",
+    "淡水"
+   ]
+  },
+  {
+   "id": "zh12",
+   "dir": "vi-zh",
+   "type": "thành ngữ buôn dưa lê",
+   "src": "Cuối tuần tôi thường buôn dưa lê với hàng xóm.",
+   "ok": [
+    "聊",
+    "闲谈",
+    "八卦",
+    "唠"
+   ],
+   "bad": [
+    "卖瓜",
+    "卖西瓜",
+    "卖甜瓜"
+   ]
+  },
+  {
+   "id": "zh13",
+   "dir": "vi-zh",
+   "type": "cất cánh",
+   "src": "Máy bay đi Đà Nẵng sắp cất cánh rồi.",
+   "ok": [
+    "起飞"
+   ],
+   "bad": [
+    "到达",
+    "降落",
+    "着陆"
+   ]
+  },
+  {
+   "id": "zh14",
+   "dir": "vi-zh",
+   "type": "cất cánh",
+   "src": "Máy bay vừa cất cánh lúc bảy giờ.",
+   "ok": [
+    "起飞"
+   ],
+   "bad": [
+    "到达",
+    "降落",
+    "着陆"
+   ]
+  },
+  {
+   "id": "zh15",
+   "dir": "vi-zh",
+   "type": "bơi",
+   "src": "Sáng nay tôi đã bơi một tiếng ở hồ bơi.",
+   "ok": [
+    "游"
+   ],
+   "bad": []
+  },
+  {
+   "id": "zh16",
+   "dir": "vi-zh",
+   "type": "chung cư",
+   "src": "Tôi sống trong một căn chung cư ở tầng mười.",
+   "ok": [
+    "公寓"
+   ],
+   "bad": [
+    "中心"
+   ]
+  },
+  {
+   "id": "zh17",
+   "dir": "vi-zh",
+   "type": "ký túc xá",
+   "src": "Buổi trưa tôi về ký túc xá nghỉ ngơi.",
+   "ok": [
+    "宿舍"
+   ],
+   "bad": [
+    "其他类型"
+   ]
+  },
+  {
+   "id": "zh18",
+   "dir": "vi-zh",
+   "type": "mới tới = 才到",
+   "src": "Một tiếng sau, xe buýt mới tới.",
+   "ok": [
+    "才"
+   ],
+   "bad": [
+    "新的",
+    "新公交",
+    "新巴士",
+    "新车",
+    "另一辆"
+   ]
+  },
+  {
+   "id": "zh19",
+   "dir": "vi-zh",
+   "type": "chữ rác đầu câu (ASR) Q.",
+   "src": "Q. Quyển sách này bạn đã đọc xong chưa?",
+   "ok": [
+    "书"
+   ],
+   "bad": [
+    "答案",
+    "问:",
+    "问："
+   ]
+  },
+  {
+   "id": "zh20",
+   "dir": "vi-zh",
+   "type": "chữ rác đầu câu (ASR) H.",
+   "src": "H. Hôm nay bạn đi học à?",
+   "ok": [
+    "今天"
+   ],
+   "bad": [
+    "我们要做什么",
+    "答案"
+   ]
+  },
+  {
+   "id": "zh21",
+   "dir": "vi-zh",
+   "type": "rủ rê 'thế nào?'",
+   "src": "Đi siêu thị, thế nào?",
+   "ok": [
+    "怎么样",
+    "好吗",
+    "好不好",
+    "如何"
+   ],
+   "bad": [
+    "如何去",
+    "怎么去",
+    "怎样去"
+   ]
+  },
+  {
+   "id": "zh22",
+   "dir": "vi-zh",
+   "type": "câu dài, không cắt cụt",
+   "src": "Lần này cô ấy đã tham gia kỳ thi đại học nước ngoài, kỳ thi này rất khó, nhưng cô ấy làm bài rất tốt và được điểm tối đa.",
+   "ok": [
+    "满分",
+    "最高分"
+   ],
+   "bad": []
+  },
+  {
+   "id": "ko01",
+   "dir": "vi-ko",
+   "type": "đồng âm: bị cảm",
+   "src": "Tôi bị cảm, hơi sốt.",
+   "ok": [
+    "감기"
+   ],
+   "bad": [
+    "감동",
+    "감각"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko02",
+   "dir": "vi-ko",
+   "type": "đồng âm: bị cảm",
+   "src": "Hình như anh ấy bị cảm rồi.",
+   "ok": [
+    "감기"
+   ],
+   "bad": [
+    "감동"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko03",
+   "dir": "vi-ko",
+   "type": "đồng âm: khi rỗi",
+   "src": "Khi rảnh rỗi bạn thường làm gì?",
+   "ok": [
+    "시간",
+    "여가",
+    "한가"
+   ],
+   "bad": [
+    "풀려",
+    "석방"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko04",
+   "dir": "vi-ko",
+   "type": "đồng âm: khi rỗi",
+   "src": "Lúc rảnh anh hay làm gì?",
+   "ok": [
+    "시간",
+    "여가",
+    "한가",
+    "쉴 때"
+   ],
+   "bad": [
+    "풀려",
+    "석방"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko05",
+   "dir": "vi-ko",
+   "type": "dịch vụ phòng",
+   "src": "Tôi muốn gọi dịch vụ phòng, bấm số mấy?",
+   "ok": [
+    "룸서비스",
+    "룸 서비스",
+    "객실 서비스",
+    "객실서비스"
+   ],
+   "bad": [
+    "방역",
+    "검역"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko06",
+   "dir": "vi-ko",
+   "type": "dịch vụ phòng",
+   "src": "Cho tôi gọi dịch vụ phòng nhé.",
+   "ok": [
+    "룸서비스",
+    "룸 서비스",
+    "객실 서비스",
+    "객실서비스"
+   ],
+   "bad": [
+    "방역",
+    "검역"
+   ],
+   "polite": true
+  },
+  {
+   "id": "ko07",
+   "dir": "vi-ko",
+   "type": "kính ngữ",
+   "src": "Vé xe buýt bán ở đâu?",
+   "ok": [
+    "버스"
+   ],
+   "bad": [],
+   "polite": true
+  },
+  {
+   "id": "ko08",
+   "dir": "vi-ko",
+   "type": "kính ngữ",
+   "src": "Anh dùng gì ạ?",
+   "ok": [],
+   "bad": [],
+   "polite": true
+  },
+  {
+   "id": "ko09",
+   "dir": "vi-ko",
+   "type": "dịch cụt",
+   "src": "Chị đau ở đâu?",
+   "ok": [],
+   "bad": [],
+   "polite": true,
+   "min_len": 5
+  },
+  {
+   "id": "ko10",
+   "dir": "vi-ko",
+   "type": "kính ngữ",
+   "src": "Bạn có biết nhà vệ sinh ở đâu không?",
+   "ok": [
+    "화장실"
+   ],
+   "bad": [],
+   "polite": true
+  },
+  {
+   "id": "kv01",
+   "dir": "ko-vi",
+   "type": "nhầm nghĩa 시원해요",
+   "src": "시원해요.",
+   "ok": [
+    "mát",
+    "lạnh",
+    "dễ chịu"
+   ],
+   "bad": [
+    "xin lỗi"
+   ]
+  },
+  {
+   "id": "kv02",
+   "dir": "ko-vi",
+   "type": "nhầm nghĩa 시원해요",
+   "src": "여기 정말 시원해요.",
+   "ok": [
+    "mát",
+    "lạnh",
+    "dễ chịu"
+   ],
+   "bad": [
+    "xin lỗi"
+   ]
+  },
+  {
+   "id": "kv03",
+   "dir": "ko-vi",
+   "type": "thời gian rảnh",
+   "src": "시간이 있을 때 뭐 하세요?",
+   "ok": [
+    "thời gian",
+    "rảnh"
+   ],
+   "bad": [
+    "gan"
+   ]
+  },
+  {
+   "id": "kv04",
+   "dir": "ko-vi",
+   "type": "thời gian rảnh",
+   "src": "시간 날 때 주로 뭐 하세요?",
+   "ok": [
+    "thời gian",
+    "rảnh",
+    "lúc"
+   ],
+   "bad": [
+    "gan dương"
+   ]
+  },
+  {
+   "id": "kv05",
+   "dir": "ko-vi",
+   "type": "hướng dẫn viên tiếng Việt",
+   "src": "베트남어 가이드가 있나요?",
+   "ok": [
+    "tiếng việt"
+   ],
+   "bad": []
+  },
+  {
+   "id": "kv06",
+   "dir": "ko-vi",
+   "type": "hướng dẫn viên tiếng Anh",
+   "src": "영어 가이드가 있나요?",
+   "ok": [
+    "tiếng anh"
+   ],
+   "bad": []
+  },
+  {
+   "id": "kv07",
+   "dir": "ko-vi",
+   "type": "chọn giúp",
+   "src": "이 중에서 골라 주세요.",
+   "ok": [
+    "chọn"
+   ],
+   "bad": [
+    "iec"
+   ]
+  },
+  {
+   "id": "kv08",
+   "dir": "ko-vi",
+   "type": "ai đấy",
+   "src": "누구세요?",
+   "ok": [
+    "ai"
+   ],
+   "bad": []
+  },
+  {
+   "id": "zv01",
+   "dir": "zh-vi",
+   "type": "老样子",
+   "src": "好久不见了，你还是老样子。",
+   "ok": [
+    "như xưa",
+    "như cũ",
+    "vẫn như",
+    "không đổi",
+    "như trước"
+   ],
+   "bad": [
+    "già",
+    "mất"
+   ]
+  },
+  {
+   "id": "zv02",
+   "dir": "zh-vi",
+   "type": "老样子",
+   "src": "五年没见，你一点儿没变，还是老样子。",
+   "ok": [
+    "như xưa",
+    "như cũ",
+    "vẫn như",
+    "không đổi",
+    "như trước",
+    "không thay đổi",
+    "chẳng thay đổi"
+   ],
+   "bad": [
+    "mất năm"
+   ]
+  },
+  {
+   "id": "zv03",
+   "dir": "zh-vi",
+   "type": "đại từ 她",
+   "src": "她借给你的那本书你看完了吗？",
+   "ok": [
+    "cô ấy",
+    "cô ta",
+    "chị ấy",
+    "bà ấy",
+    "cô "
+   ],
+   "bad": [
+    "anh ấy",
+    "ông"
+   ]
+  },
+  {
+   "id": "zv04",
+   "dir": "zh-vi",
+   "type": "đại từ 她",
+   "src": "她说明天她要去北京。",
+   "ok": [
+    "cô ấy",
+    "cô ta",
+    "chị ấy",
+    "bà ấy",
+    "cô "
+   ],
+   "bad": [
+    "anh ấy",
+    "ông"
+   ]
+  },
+  {
+   "id": "zv05",
+   "dir": "zh-vi",
+   "type": "mất ngữ khí hỏi",
+   "src": "你骑摩托车上学吗？",
+   "ok": [
+    "xe máy",
+    "mô tô"
+   ],
+   "bad": [
+    "xe đạp"
+   ],
+   "question": true
+  },
+  {
+   "id": "zv06",
+   "dir": "zh-vi",
+   "type": "mất ngữ khí hỏi",
+   "src": "你吃了牛肉面吗？",
+   "ok": [
+    "mì bò",
+    "bò"
+   ],
+   "bad": [],
+   "question": true
+  },
+  {
+   "id": "ev01",
+   "dir": "en-vi",
+   "type": "noon = trưa",
+   "src": "Tell me the temperature in our city at twelve noon.",
+   "ok": [
+    "trưa"
+   ],
+   "bad": [
+    "tối"
+   ]
+  },
+  {
+   "id": "ev02",
+   "dir": "en-vi",
+   "type": "noon = trưa",
+   "src": "The meeting is at 12 noon, don't be late.",
+   "ok": [
+    "trưa"
+   ],
+   "bad": [
+    "tối"
+   ]
+  },
+  {
+   "id": "ev03",
+   "dir": "en-vi",
+   "type": "minutes of the meeting",
+   "src": "I will send you the minutes of the meeting by email.",
+   "ok": [
+    "biên bản"
+   ],
+   "bad": [
+    "phút"
+   ]
+  },
+  {
+   "id": "ev04",
+   "dir": "en-vi",
+   "type": "minutes of the meeting",
+   "src": "Who is taking the minutes today?",
+   "ok": [
+    "biên bản",
+    "ghi chép"
+   ],
+   "bad": [
+    "phút"
+   ]
+  },
+  {
+   "id": "ev05",
+   "dir": "en-vi",
+   "type": "boil an egg",
+   "src": "How long should I boil an egg?",
+   "ok": [
+    "luộc"
+   ],
+   "bad": [
+    "còn lại"
+   ]
+  },
+  {
+   "id": "ev06",
+   "dir": "en-vi",
+   "type": "account name",
+   "src": "Give me the details of my Twitter account name.",
+   "ok": [
+    "tài khoản"
+   ],
+   "bad": [
+    "hồ sơ quản lý"
+   ]
+  },
+  {
+   "id": "ev07",
+   "dir": "en-vi",
+   "type": "alarm",
+   "src": "Set an alarm for six thirty tomorrow morning.",
+   "ok": [
+    "báo thức"
+   ],
+   "bad": [
+    "báo động"
+   ]
+  },
+  {
+   "id": "ev08",
+   "dir": "en-vi",
+   "type": "alarm",
+   "src": "Please wake me up with an alarm at seven.",
+   "ok": [
+    "báo thức"
+   ],
+   "bad": [
+    "báo động"
+   ]
+  },
+  {
+   "id": "ev09",
+   "dir": "en-vi",
+   "type": "feel strange",
+   "src": "My ears are ringing a little, I just feel a bit strange.",
+   "ok": [
+    "lạ",
+    "bất thường"
+   ],
+   "bad": [
+    "cắn"
+   ]
+  },
+  {
+   "id": "ev10",
+   "dir": "en-vi",
+   "type": "comes and goes",
+   "src": "Does the pain come and go, or is it constant?",
+   "ok": [
+    "lúc",
+    "khi",
+    "thỉnh thoảng",
+    "từng cơn",
+    "tái phát"
+   ],
+   "bad": [
+    "đến và đi"
+   ]
+  },
+  {
+   "id": "ev11",
+   "dir": "en-vi",
+   "type": "get out of consultation",
+   "src": "Is there anything specific you hope to get out of this consultation?",
+   "ok": [
+    "nhận được",
+    "mong",
+    "hy vọng",
+    "hi vọng"
+   ],
+   "bad": [
+    "thoát khỏi"
+   ]
+  },
+  {
+   "id": "ev12",
+   "dir": "en-vi",
+   "type": "put together",
+   "src": "Can someone put the documents together? I can combine them if you want.",
+   "ok": [
+    "ghép",
+    "gộp",
+    "kết hợp",
+    "tổng hợp",
+    "tập hợp",
+    "gom"
+   ],
+   "bad": [
+    "thả"
+   ]
+  },
+  {
+   "id": "ev13",
+   "dir": "en-vi",
+   "type": "move on",
+   "src": "Okay, let's move on to the next section quickly.",
+   "ok": [
+    "tiếp"
+   ],
+   "bad": [
+    "đi nhanh"
+   ]
+  },
+  {
+   "id": "ev14",
+   "dir": "en-vi",
+   "type": "không bỏ mất ý",
+   "src": "My friend is driving, so each of us chips in a few dollars for gas.",
+   "ok": [
+    "xăng"
+   ],
+   "bad": [],
+   "must_cover": [
+    "bạn",
+    "đô"
+   ]
+  },
+  {
+   "id": "ve01",
+   "dir": "vi-en",
+   "type": "đảo nghĩa 'tôi qua đó'",
+   "src": "Cảm ơn chị, tôi qua đó nhé.",
+   "ok": [
+    "i'll",
+    "i will",
+    "i'm coming",
+    "i am coming",
+    "come over",
+    "stop by",
+    "drop by",
+    "head over",
+    "be there"
+   ],
+   "bad": [
+    "for coming"
+   ]
+  },
+  {
+   "id": "ve02",
+   "dir": "vi-en",
+   "type": "đảo nghĩa 'tôi qua đó'",
+   "src": "Cảm ơn anh, tôi sang đó nhé.",
+   "ok": [
+    "i'll",
+    "i will",
+    "i'm coming",
+    "i am coming",
+    "come over",
+    "stop by",
+    "drop by",
+    "head over",
+    "be there",
+    "go over"
+   ],
+   "bad": [
+    "for coming"
+   ]
+  },
+  {
+   "id": "ve03",
+   "dir": "vi-en",
+   "type": "một chút",
+   "src": "Anh chờ tôi một chút.",
+   "ok": [
+    "moment",
+    "minute",
+    "second",
+    "while"
+   ],
+   "bad": []
+  },
+  {
+   "id": "ve04",
+   "dir": "vi-en",
+   "type": "một chút",
+   "src": "Chị chờ tôi một lát nhé.",
+   "ok": [
+    "moment",
+    "minute",
+    "second",
+    "while"
+   ],
+   "bad": []
+  },
+  {
+   "id": "ve05",
+   "dir": "vi-en",
+   "type": "oát",
+   "src": "Tối đa sáu mươi lăm oát.",
+   "ok": [
+    "65",
+    "sixty-five",
+    "sixty five"
+   ],
+   "bad": [
+    "year"
+   ]
+  },
+  {
+   "id": "ve06",
+   "dir": "vi-en",
+   "type": "oát",
+   "src": "Công suất tối đa là bảy mươi oát.",
+   "ok": [
+    "70",
+    "seventy"
+   ],
+   "bad": [
+    "year"
+   ]
+  }
+ ]
+}

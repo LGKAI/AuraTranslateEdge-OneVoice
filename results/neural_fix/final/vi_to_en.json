@@ -1,0 +1,85 @@
+{
+  "src": "vi",
+  "tgt": "en",
+  "input": "/Users/khoa/study/Onevoice_final_ves/AuraTranslateEdge/output/s2s-original-2026-11-12/audio/vi_to_en_special_input.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/neural_fix/final/audio/vi_to_en.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 16.622471667000355,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "mt": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+      "tts_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.14189129099941056,
+        "source_normalize_s": 6.737801084000239,
+        "mt_s": 2.2391085409999505,
+        "tts_s": 5.070673917000022,
+        "total_s": 14.189474832999622,
+        "graph_s": 7.1678291270000045,
+        "graph_calls": 72,
+        "host_s": 7.021645705999617,
+        "audio_in_s": 11.9583125,
+        "audio_out_s": 17.397687074829932
+      },
+      "span": [
+        0.0,
+        11.9583125
+      ],
+      "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám"
+    }
+  ],
+  "neural_normalization": true,
+  "normalization_model": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/models/source/qwen3-4b-instruct-mlx4",
+  "normalization_device": "Apple Metal / MLX 4-bit",
+  "normalization_trace": [
+    {
+      "stage": "asr_identifiers",
+      "lang": "vi",
+      "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "output": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "converted": [
+        {
+          "source": "không chín một hai ba bốn năm sáu bảy tám",
+          "canonical": "0912345678"
+        }
+      ],
+      "policy": "recognized digit words to literal identifier characters; no missing digits inferred"
+    },
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+      "output": [
+        "cuộc họp lúc mười bốn giờ bốn ngày mười",
+        "tháng mười một năm hai nghìn không hai sáu",
+        "giá vé năm nghìn đồng giảm mười phần trăm",
+        "nhiệt độ ba bảy năm độ c gọi số 0912345678"
+      ],
+      "seconds": 4.209850625000399,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+      "identifiers": [
+        "0912345678"
+      ],
+      "identifier_spoken_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+      "normalization_spans": [],
+      "output": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+      "seconds": 0.0003348749996803235,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ]
+}

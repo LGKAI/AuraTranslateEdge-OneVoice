@@ -1,0 +1,22 @@
+{
+  "lang": "en",
+  "mode": "default",
+  "input": "The meeting is at 3:30 PM on 21/12/2027. The price is $18.25. The temperature is 36.8 degrees Celsius. My ZIP code is 04782. My phone number is 0908246135. The flight is VN247.",
+  "normalized_text": "The meeting is at three : thirty PM on twenty-one / twelve / two thousand twenty-seven . The price is $ eighteen point two five . The temperature is thirty-six point eight degrees Celsius. My ZIP code is four thousand seven hundred eighty-two . My phone number is nine hundred eight million two hundred forty-six thousand one hundred thirty-five . The flight is VN two hundred forty-seven .",
+  "synth_chunks": [
+    "The meeting is at three :",
+    "thirty PM on twenty-one / twelve / two thousand twenty-seven .",
+    "The price is $ eighteen point two five .",
+    "The temperature is thirty-six point eight degrees Celsius.",
+    "My ZIP code is four thousand seven hundred eighty-two .",
+    "My phone number is nine hundred eight million two hundred forty-six thousand one h",
+    "undred thirty-five .",
+    "The flight is VN two hundred forty-seven ."
+  ],
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/default/en.wav",
+  "sample_rate": 44100,
+  "output_seconds": 28.636326530612244,
+  "elapsed_seconds": 10.799812167002528,
+  "finite": true,
+  "scope": "actual TTS only; authored format probes, not S2S or a human listening score"
+}

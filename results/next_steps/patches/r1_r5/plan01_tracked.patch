@@ -1,0 +1,876 @@
+diff --git a/s2s_edge/s2s_edge/__main__.py b/s2s_edge/s2s_edge/__main__.py
+index f79c25d..58999f2 100644
+--- a/s2s_edge/s2s_edge/__main__.py
++++ b/s2s_edge/s2s_edge/__main__.py
+@@ -45,8 +45,12 @@ def main():
+     ap.add_argument("--continuous", action="store_true", help="live mode without pressing Enter: always listening, translate and speak after each utterance")
+     ap.add_argument("--no-warmup", action="store_true", help="live mode: skip loading + running every needed graph once before the first utterance")
+     ap.add_argument("--no-stream", action="store_true", help="live mode: translate the whole utterance before playing (default: sentence-pipelined playback)")
++    ap.add_argument("--vad-profile", default=None, choices=["legacy", "upstream"])
++    ap.add_argument("--ort-policy", default=None, choices=["auto", "basic", "disable"])
++    ap.add_argument("--source-mode", default=None, choices=["0", "1"])
++    ap.add_argument("--tts-format", default=None, choices=["hybrid", "legacy"])
+     a = ap.parse_args()
+-    reg = Registry(a.models, a.backend, a.glossary)
++    reg = Registry(a.models, a.backend, a.glossary, ort_policy=a.ort_policy, vad_profile=a.vad_profile, source_mode=a.source_mode, tts_format=a.tts_format)
+     if a.pair: dirs = [("vi", x) for x in a.pair.split(",") if x != "vi"] + [(x, "vi") for x in a.pair.split(",") if x != "vi"]
+     elif a.auto: dirs = list(DIRECTIONS)
+     else: dirs = [(a.src, a.tgt)]
+diff --git a/s2s_edge/s2s_edge/conversation.py b/s2s_edge/s2s_edge/conversation.py
+index 993f008..5b2254a 100644
+--- a/s2s_edge/s2s_edge/conversation.py
++++ b/s2s_edge/s2s_edge/conversation.py
+@@ -29,7 +29,7 @@ def restore_vi(text):
+         from .punct_vi import get
+         from .registry import ASSETS
+         m = get(ASSETS)
+-        if m is not None: return m(text)
++        if m is not None: return vi_punct(m(text))
+     return vi_punct(text)
+ 
+ HANGUL = re.compile(r"[가-힣ᄀ-ᇿ]"); HAN = re.compile(r"[一-鿿]"); LATIN = re.compile(r"[A-Za-z]")
+@@ -46,6 +46,13 @@ class Engine:
+ 
+     def __init__(self, registry, denoise=False):
+         self.r = registry; self._asr = {}; self._tts = {}; self._mt = None; self.names = None; self.denoise = denoise; self._den = None
++        prof = getattr(registry, "profile", None)
++        if getattr(registry, "source_mode", None) is not None:
++            self.source_mode = str(registry.source_mode)
++        elif isinstance(prof, dict) and prof.get("source_mode") is not None:
++            self.source_mode = str(prof["source_mode"])
++        else:
++            self.source_mode = None
+ 
+     def prep(self, wav):
+         """Level normalisation (+ optional GTCRN speech enhancement on the CPU) before ASR."""
+@@ -75,8 +82,15 @@ class Engine:
+ 
+     def gtime(self, graphs): return sum(g.total_s for g in graphs), sum(g.calls for g in graphs)
+ 
++    def neural_enabled(self):
++        if self.source_mode is not None:
++            return self.source_mode == "1"
++        if getattr(self.r, "source_mode", None) is not None:
++            return str(self.r.source_mode) == "1"
++        return neural_textnorm.enabled()
++
+     def prepare_text(self, text, src):
+-        if text and src in ("vi", "en") and neural_textnorm.enabled():
++        if text and src in ("vi", "en") and self.neural_enabled():
+             parts = neural_textnorm.get().prepare_source(text, src, self.mt.S - 2, self.mt.encode)
+             return " ".join(parts), parts
+         return (restore_vi(text) if src == "vi" and text and VI_PUNCT else text), None
+@@ -169,8 +183,10 @@ class LanguageID:
+ 
+ 
+ class Conversation:
+-    def __init__(self, registry, pair=None, auto=False, partner="en", denoise=False):
++    def __init__(self, registry, pair=None, auto=False, partner="en", denoise=False, vad_profile=None):
++        from .registry import resolve_runtime_profile
+         self.e = Engine(registry, denoise); self.lid = LanguageID(self.e); self.auto = auto; self.partner = partner
++        self.vad_profile = resolve_runtime_profile(vad_profile=vad_profile if vad_profile is not None else getattr(registry, "vad_profile", None))["vad_profile"]
+         self.others = [l for l in (pair or ("vi", partner)) if l != "vi"] if not auto else ["en", "zh", "ko"]
+         if not auto: self.partner = self.others[0]
+ 
+@@ -182,17 +198,21 @@ class Conversation:
+         if self.auto and text and len(re.sub(r"[\W_]+", "", text)) >= 3: self.partner = src       # junk fragments must not change the partner language
+         return src, "vi", text, st
+ 
+-    def translate(self, wav, max_seg_s=12.0):
++    def translate(self, wav, max_seg_s=12.0, vad_profile=None):
++        from .registry import resolve_runtime_profile
++        prof = resolve_runtime_profile(vad_profile=vad_profile if vad_profile is not None else self.vad_profile)["vad_profile"]
+         out = []
+-        for a, b in segment(wav, max_s=max_seg_s):
++        for a, b in segment(wav, max_s=max_seg_s, vad_profile=prof):
+             seg = self.e.prep(wav[a:b]); src, tgt, text, st = self.route(seg); r = self.e.translate_segment(seg, src, tgt, text=text, prepped=True)
+             r["span"] = (a / SR, b / SR); r["lid"] = st
+             if r["mt"]: out.append(r)
+         return out
+ 
+-    def translate_stream(self, wav, max_seg_s=12.0):
++    def translate_stream(self, wav, max_seg_s=12.0, vad_profile=None):
+         """Generator: one result per sentence as soon as its audio is ready (see Engine.translate_segment_stream)."""
+-        for a, b in segment(wav, max_s=max_seg_s):
++        from .registry import resolve_runtime_profile
++        prof = resolve_runtime_profile(vad_profile=vad_profile if vad_profile is not None else self.vad_profile)["vad_profile"]
++        for a, b in segment(wav, max_s=max_seg_s, vad_profile=prof):
+             seg = self.e.prep(wav[a:b]); src, tgt, text, st = self.route(seg)
+             for r in self.e.translate_segment_stream(seg, src, tgt, text=text, prepped=True):
+                 r["span"] = (a / SR, b / SR); r["lid"] = st
+diff --git a/s2s_edge/s2s_edge/registry.py b/s2s_edge/s2s_edge/registry.py
+index 0126f9a..33df8c2 100644
+--- a/s2s_edge/s2s_edge/registry.py
++++ b/s2s_edge/s2s_edge/registry.py
+@@ -1,27 +1,127 @@
+ # -*- coding: utf-8 -*-
+ """Model registry: models.json maps component names to files. Paths are relative to the json file (or absolute for development).
+   {"asr_vi": {"onnx": ..., "ctx": ..., "name": ...}, "asr_xx": ..., "mt": ..., "tts_vi": ..., "tts_zh": ..., "tts_enko": ...}"""
+-import json, os
+-from .backends import make_graph
++import hashlib, json, os, subprocess
++from .audio import resolve_vad_options
++from .backends import make_graph, resolve_ort_policy
+ from .asr import AsrVi, AsrXx
+ from .mt import Nllb
+ from .tts import TtsVi, TtsZh, TtsEnKo
+ 
+ ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")
+ DIRECTIONS = [("vi", "en"), ("vi", "zh"), ("vi", "ko"), ("en", "vi"), ("zh", "vi"), ("ko", "vi")]
++_VALID_SOURCE_MODES = ("0", "1")
++_VALID_TTS_FORMATS = ("hybrid", "legacy", "neural")
++
++
++def resolve_runtime_profile(vad_profile=None, ort_policy=None, source_mode=None, tts_format=None):
++    """Single shared profile resolver for CLI, web, batch, stream, and evaluation harnesses."""
++    if vad_profile is not None:
++        vad_origin = "arg"
++    elif os.environ.get("S2S_VAD_PROFILE") not in (None, ""):
++        vad_origin = "env"
++    else:
++        vad_origin = "default"
++    eff_vad, vad_opts = resolve_vad_options(vad_profile=vad_profile)
++
++    if ort_policy is not None:
++        ort_origin = "arg"
++    elif os.environ.get("S2S_ORT_POLICY") not in (None, ""):
++        ort_origin = "env"
++    else:
++        ort_origin = "default"
++    eff_ort = resolve_ort_policy(ort_policy=ort_policy)
++
++    if source_mode is not None:
++        eff_src = str(source_mode)
++        src_origin = "arg"
++    elif os.environ.get("S2S_NEURAL_TN") not in (None, ""):
++        eff_src = str(os.environ.get("S2S_NEURAL_TN"))
++        src_origin = "env"
++    else:
++        eff_src = "0"
++        src_origin = "default"
++    if eff_src not in _VALID_SOURCE_MODES:
++        raise ValueError(f"Unsupported source_mode / S2S_NEURAL_TN {eff_src!r}; expected one of {_VALID_SOURCE_MODES}")
++
++    if tts_format is not None:
++        eff_tts = str(tts_format)
++        tts_origin = "arg"
++    elif os.environ.get("S2S_TTS_FORMAT") not in (None, ""):
++        eff_tts = str(os.environ.get("S2S_TTS_FORMAT"))
++        tts_origin = "env"
++    else:
++        eff_tts = "hybrid"
++        tts_origin = "default"
++    if eff_tts not in _VALID_TTS_FORMATS:
++        raise ValueError(f"Unsupported tts_format / S2S_TTS_FORMAT {eff_tts!r}; expected one of {_VALID_TTS_FORMATS}")
++
++    return {
++        "vad_profile": eff_vad,
++        "vad_profile_origin": vad_origin,
++        "vad_options": vad_opts,
++        "ort_policy": eff_ort,
++        "ort_policy_origin": ort_origin,
++        "source_mode": eff_src,
++        "source_mode_origin": src_origin,
++        "tts_format": eff_tts,
++        "tts_format_origin": tts_origin,
++    }
++
++
++def runtime_code_fingerprint(extra_files=None):
++    """Compute lightweight SHA256 fingerprint over active s2s_edge modules, optional caller files, and git HEAD."""
++    pkg_dir = os.path.dirname(os.path.abspath(__file__))
++    repo_root = os.path.dirname(os.path.dirname(pkg_dir))
++    h = hashlib.sha256()
++    for name in sorted(f for f in os.listdir(pkg_dir) if f.endswith(".py")):
++        p = os.path.join(pkg_dir, name)
++        with open(p, "rb") as f:
++            h.update(name.encode("utf-8") + b":" + hashlib.sha256(f.read()).hexdigest().encode("utf-8") + b"\n")
++    head = None
++    try:
++        head = subprocess.check_output(["git", "-C", repo_root, "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL).strip()
++    except Exception:
++        pass
++    out = {"git_head": head, "s2s_edge_sha256": h.hexdigest()}
++    if extra_files:
++        eh = hashlib.sha256()
++        for ep in sorted(os.path.abspath(str(p)) for p in extra_files):
++            if os.path.isfile(ep):
++                with open(ep, "rb") as f:
++                    eh.update(os.path.relpath(ep, repo_root).encode("utf-8") + b":" + hashlib.sha256(f.read()).hexdigest().encode("utf-8") + b"\n")
++        out["server_files_sha256"] = eh.hexdigest()
++    return out
+ 
+ 
+ class Registry:
+-    def __init__(self, config_path, backend="npu", glossary_path=None):
+-        self.cfg = json.load(open(config_path, encoding="utf-8")); self.dir = os.path.dirname(os.path.abspath(config_path)); self.backend = backend; self._cache = {}
+-        gp = glossary_path or os.environ.get("S2S_GLOSSARY"); self.glossary = json.load(open(gp, encoding="utf-8")) if gp and os.path.exists(gp) else {}
++    def __init__(self, config_path, backend="npu", glossary_path=None, ort_policy=None, vad_profile=None, source_mode=None, tts_format=None):
++        with open(config_path, encoding="utf-8") as _f:
++            self.cfg = json.load(_f)
++        self.dir = os.path.dirname(os.path.abspath(config_path)); self.backend = backend; self._cache = {}
++        gp = glossary_path or os.environ.get("S2S_GLOSSARY")
++        if gp and os.path.exists(gp):
++            with open(gp, encoding="utf-8") as _gf:
++                self.glossary = json.load(_gf)
++        else:
++            self.glossary = {}
++        self.profile = resolve_runtime_profile(vad_profile=vad_profile, ort_policy=ort_policy, source_mode=source_mode, tts_format=tts_format)
++        self.ort_policy = self.profile["ort_policy"]
++        self.vad_profile = self.profile["vad_profile"]
++        self.source_mode = self.profile["source_mode"]
++        self.tts_format = self.profile["tts_format"]
++        self.source_mode_explicit = source_mode is not None
++        self.tts_format_explicit = tts_format is not None
+ 
+     def graph(self, key):
+         if key not in self._cache:
+             spec = dict(self.cfg[key]); spec.setdefault("name", key)
+-            self._cache[key] = make_graph(self.dir, spec, self.backend)
++            self._cache[key] = make_graph(self.dir, spec, self.backend, ort_policy=self.ort_policy)
+         return self._cache[key]
+ 
++    def graph_telemetry(self):
++        return {k: g.ort_info() for k, g in self._cache.items() if hasattr(g, "ort_info")}
++
+     def files(self, keys):
+         ext = "onnx" if self.backend == "cpu" else "ctx"
+         return [os.path.join(self.dir, self.cfg[k][ext]) for k in keys]
+@@ -63,9 +163,9 @@ class Registry:
+         return self._mt_obj
+ 
+     def tts(self, lang):
+-        if lang == "vi": return TtsVi(self.graph("tts_vi"), ASSETS, self.glossary)
+-        if lang == "zh": return TtsZh(self.graph("tts_zh"))
+-        return TtsEnKo(self.graph("tts_enko"), lang, ASSETS)
++        if lang == "vi": return TtsVi(self.graph("tts_vi"), ASSETS, self.glossary, tts_format=self.tts_format)
++        if lang == "zh": return TtsZh(self.graph("tts_zh"), tts_format=self.tts_format)
++        return TtsEnKo(self.graph("tts_enko"), lang, ASSETS, tts_format=self.tts_format)
+ 
+     def gold_path(self, key):
+         """Golden vectors of a graph: the model set's own directory first (models.json "_golden", e.g. golden_13b for the NLLB-1.3B set), then golden/."""
+diff --git a/s2s_edge/s2s_edge/tts.py b/s2s_edge/s2s_edge/tts.py
+index 41d36c7..82864c6 100644
+--- a/s2s_edge/s2s_edge/tts.py
++++ b/s2s_edge/s2s_edge/tts.py
+@@ -9,6 +9,7 @@ from .textnorm import normalize
+ from .names import VietnameseNames, latin_to_vi
+ from . import neural_textnorm
+ from . import tts_format
++_tts_format = tts_format
+ 
+ def split_outputs(out):
+     """(audio, length, others) from a TTS graph's outputs, independent of their order: the AI Hub inference check on QCS8550 showed the
+@@ -79,26 +80,29 @@ def _join(waves, sr, pause=0.18):
+ class TtsVi:
+     sr = 22050; unit, max_units = "word", 26
+ 
+-    def __init__(self, graph, assets_dir=None, glossary=None):
++    def __init__(self, graph, assets_dir=None, glossary=None, tts_format=None):
+         self.g = graph; self.oov = 0; self.glossary = glossary; self.vn = None
++        self.tts_format = _tts_format.resolve_mode(tts_format)
+         if assets_dir and os.path.exists(os.path.join(assets_dir, "piper_vi_words.txt")):
+             known = set(open(os.path.join(assets_dir, "piper_vi_words.txt"), encoding="utf-8").read().splitlines())
+             self.vn = VietnameseNames(os.path.join(assets_dir, "cmudict_min.json"), known)
+ 
+     def _synth(self, piece):
+         b = unicodedata.normalize("NFC", piece).encode("utf-8")
+-        if len(b) > 512 and tts_format.mode() != 'legacy': raise ValueError('Piper input exceeds 512 UTF-8 bytes')
++        if len(b) > 512 and self.tts_format != 'legacy': raise ValueError('Piper input exceeds 512 UTF-8 bytes')
+         b = b[:512]; x = np.zeros((1, 512), np.int32); x[0, :len(b)] = list(b)
+         audio, yl, rest = split_outputs(self.g(text_bytes=x)); yl = int(round(yl)); self.oov += int(rest[0].reshape(-1)[0]) if rest else 0
+         return audio[: max(yl, 1) * 256].astype(np.float32), yl >= 1533
+ 
+     def synthesize(self, text):
+-        if tts_format.mode() == 'legacy':
++        if self.tts_format == 'legacy':
++            orig = text
+             if self.vn is not None: text = latin_to_vi(text, self.vn, self.glossary)
+             text = normalize(text.lower(), 'vi')
+             self.normalized_text = text; self.tts_input_text = text
++            self.format_trace = {'stage': 'tts_legacy', 'input': orig, 'output': text, 'spans': [], 'protected_ranges': [], 'warnings': []}
+             return _join(adaptive(text, self.max_units, 'word', self._synth), self.sr)
+-        text, self.format_trace = tts_format.prepare(text, 'vi')
++        text, self.format_trace = _tts_format.prepare(text, 'vi', mode=self.tts_format)
+         self.normalized_text = text
+         if self.vn is not None: text = latin_to_vi(text, self.vn, self.glossary)     # words outside Piper's table would be silently dropped
+         text = text.lower()
+@@ -106,13 +110,15 @@ class TtsVi:
+         def counter(s):
+             byte_count = len(unicodedata.normalize('NFC', s).encode('utf-8'))
+             return max(len(s.split()), (byte_count*self.max_units+511)//512)
+-        return _join(tts_format.adaptive(text, 'vi', self.max_units, 'word', self._synth, self.format_trace, counter=counter), self.sr)
++        return _join(_tts_format.adaptive(text, 'vi', self.max_units, 'word', self._synth, self.format_trace, counter=counter), self.sr)
+ 
+ 
+ class TtsZh:
+     sr = 44100; unit, max_units = "char", 20
+ 
+-    def __init__(self, graph): self.g = graph
++    def __init__(self, graph, tts_format=None):
++        self.g = graph
++        self.tts_format = _tts_format.resolve_mode(tts_format)
+ 
+     def _synth(self, piece):
+         b = unicodedata.normalize("NFC", piece).encode("utf-8")[:112]
+@@ -124,21 +130,25 @@ class TtsZh:
+         return audio[: max(yl, 1) * 512].astype(np.float32), yl >= 381
+ 
+     def synthesize(self, text):
+-        if tts_format.mode() == 'legacy':
+-            self.tts_input_text = normalize(text, 'zh')
++        if self.tts_format == 'legacy':
++            orig = text
++            norm_text = normalize(text, 'zh')
++            self.normalized_text = norm_text; self.tts_input_text = norm_text
++            self.format_trace = {'stage': 'tts_legacy', 'input': orig, 'output': norm_text, 'spans': [], 'protected_ranges': [], 'warnings': []}
+             return _join(adaptive(self.tts_input_text, self.max_units, 'char', self._synth), self.sr)
+-        text, self.format_trace = tts_format.prepare(text, 'zh')
++        text, self.format_trace = _tts_format.prepare(text, 'zh', mode=self.tts_format)
+         self.normalized_text = text; self.tts_input_text = text
+-        return _join(tts_format.adaptive(text, 'zh', self.max_units, 'char', self._synth, self.format_trace), self.sr)
++        return _join(_tts_format.adaptive(text, 'zh', self.max_units, 'char', self._synth, self.format_trace), self.sr)
+ 
+ 
+ class TtsEnKo:
+     sr = 44100; N = 96
+ 
+-    def __init__(self, graph, lang, assets_dir, voice="M1"):
++    def __init__(self, graph, lang, assets_dir, voice="M1", tts_format=None):
+         import json
+         from .vendor.supertonic_text import UnicodeProcessor
+-        self.g = graph; self.lang = lang; self.p = UnicodeProcessor(os.path.join(assets_dir, "supertonic_unicode_indexer.json"))
++        self.g = graph; self.lang = lang; self.tts_format = _tts_format.resolve_mode(tts_format)
++        self.p = UnicodeProcessor(os.path.join(assets_dir, "supertonic_unicode_indexer.json"))
+         st = np.load(os.path.join(assets_dir, "supertonic_styles.npz")); self.dp = st[voice + "_dp"].astype(np.float32); self.ttl = st[voice + "_ttl"].astype(np.float32)
+         self.ok = np.array([0 <= i for i in self.p.indexer])         # characters the model can embed (index -1 = unsupported)
+ 
+@@ -147,7 +157,7 @@ class TtsEnKo:
+ 
+     def _synth(self, piece):
+         s = self._clean(self.p._preprocess_text(piece, self.lang))
+-        if len(s) > self.N and tts_format.mode() != 'legacy': raise ValueError('Supertonic preprocessed input exceeds graph budget')
++        if len(s) > self.N and self.tts_format != 'legacy': raise ValueError('Supertonic preprocessed input exceeds graph budget')
+         s = s[:self.N]
+         if not s.strip(): return np.zeros(0, np.float32), False
+         cp = np.zeros((1, self.N), np.int32); cp[0, :len(s)] = [ord(c) for c in s]
+@@ -155,14 +165,14 @@ class TtsEnKo:
+         return wav[: max(lat, 1) * 3072].astype(np.float32), lat >= len(wav) // 3072 - 2
+ 
+     def synthesize(self, text):
+-        text, self.format_trace = tts_format.prepare(text, self.lang)
++        text, self.format_trace = _tts_format.prepare(text, self.lang, mode=self.tts_format)
+         self.normalized_text = text; self.tts_input_text = text
+         units = self.N - 14 if self.lang == "en" else 52            # Korean is spoken slowly: ~52 characters fill the 10 s window
+-        if tts_format.mode() == 'legacy':
++        if self.tts_format == 'legacy':
+             return _join([w for w in adaptive(text, units, 'char', self._synth) if len(w)], self.sr)
+         # Hangul expands to Jamo under NFKD; budget the actual graph input,
+         # including language markers and preprocessing expansions.
+         counter = lambda s: len(self._clean(self.p._preprocess_text(s, self.lang)))
+-        result = tts_format.adaptive(text, self.lang, self.N, 'char', self._synth, self.format_trace, counter=counter)
++        result = _tts_format.adaptive(text, self.lang, self.N, 'char', self._synth, self.format_trace, counter=counter)
+         self.format_trace['preprocessed_chunk_lengths'] = [counter(p) for p in self.format_trace.get('planned_chunks', [])]
+         return _join([w for w in result if len(w)], self.sr)
+diff --git a/s2s_edge/s2s_edge/tts_format.py b/s2s_edge/s2s_edge/tts_format.py
+index 49d8d17..a544db6 100644
+--- a/s2s_edge/s2s_edge/tts_format.py
++++ b/s2s_edge/s2s_edge/tts_format.py
+@@ -6,15 +6,19 @@ from . import hybrid_textnorm, neural_textnorm
+ from .textnorm import normalize as legacy_normalize
+ 
+ 
+-def mode():
+-    value = os.environ.get('S2S_TTS_FORMAT', 'hybrid')
++def resolve_mode(tts_format=None):
++    value = os.environ.get('S2S_TTS_FORMAT', 'hybrid') if tts_format is None else str(tts_format)
+     if value not in ('hybrid', 'legacy', 'neural'):
+         raise ValueError('S2S_TTS_FORMAT must be hybrid, legacy or neural')
+     return value
+ 
+ 
+-def prepare(text, lang):
+-    selected = mode()
++def mode(tts_format=None):
++    return resolve_mode(tts_format)
++
++
++def prepare(text, lang, mode=None):
++    selected = resolve_mode(mode)
+     if selected == 'hybrid':
+         return hybrid_textnorm.normalize(text, lang)
+     if selected == 'neural' and lang in ('en', 'vi'):
+diff --git a/tests/test_hybrid_format.py b/tests/test_hybrid_format.py
+index cb122cc..7a5be91 100644
+--- a/tests/test_hybrid_format.py
++++ b/tests/test_hybrid_format.py
+@@ -8,7 +8,7 @@ from datetime import date, timedelta
+ from pathlib import Path
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-sys.path.insert(0, str(ROOT/'s2s_edge'))
++sys.path.insert(1, str(ROOT/'s2s_edge'))
+ from s2s_edge.hybrid_textnorm import HybridNormalizer
+ from s2s_edge.tts_format import chunks
+ 
+diff --git a/tools/run_e2e.py b/tools/run_e2e.py
+index f167479..6b9eec9 100644
+--- a/tools/run_e2e.py
++++ b/tools/run_e2e.py
+@@ -1,20 +1,32 @@
+-import sys,json,time,pathlib,os,numpy as np
++import argparse, json, os, pathlib, sys, time, numpy as np
+ ROOT=pathlib.Path(__file__).resolve().parents[1]
+ sys.path.insert(0,str(ROOT/'s2s_edge'))
+-from s2s_edge.registry import Registry
++from s2s_edge.registry import Registry, resolve_runtime_profile, runtime_code_fingerprint
+ from s2s_edge.pipeline import Translator
+-from s2s_edge.audio import load_audio,save_wav,concat_results
+-src,tgt=sys.argv[1:3]
+-inputs=ROOT.parent/'AuraTranslateEdge/output/s2s-original-2026-11-12/audio'
+-p=pathlib.Path(sys.argv[3]) if len(sys.argv)>3 else inputs/('vi_to_en_special_input.wav' if src=='vi' else 'en_to_vi_special_input.wav')
+-out=pathlib.Path(os.environ.get('S2S_RESULT_DIR',str(ROOT/'results/e2e')))
++from s2s_edge.audio import load_audio,save_wav,concat_results,segment,SR
++
++ap=argparse.ArgumentParser(description='Run single-direction E2E translation on an audio file.')
++ap.add_argument('pos',nargs='*')
++ap.add_argument('--vad-profile',default=None,choices=['legacy','upstream'])
++ap.add_argument('--ort-policy',default=None,choices=['auto','basic','disable'])
++ap.add_argument('--source-mode',default=None,choices=['0','1'])
++ap.add_argument('--tts-format',default=None,choices=['hybrid','legacy'])
++ap.add_argument('--out-dir',default=None)
++args=ap.parse_args()
++if len(args.pos)<2:
++ ap.error('Expected src tgt [input_wav]')
++src,tgt=args.pos[0],args.pos[1]
++inputs=ROOT/'results/neural_fix/final/audio'
++p=pathlib.Path(args.pos[2]) if len(args.pos)>2 else inputs/('vi_to_en_special_input.wav' if src=='vi' else 'en_to_vi_special_input.wav')
++out=pathlib.Path(args.out_dir or os.environ.get('S2S_RESULT_DIR',str(ROOT/'results/e2e')))
+ (out/'audio').mkdir(parents=True,exist_ok=True)
+-if os.environ.get('S2S_NEURAL_TN','0')=='1':
++profile=resolve_runtime_profile(vad_profile=args.vad_profile,ort_policy=args.ort_policy,source_mode=args.source_mode,tts_format=args.tts_format)
++if profile['source_mode']=='1':
+  audit=out/f'{src}_to_{tgt}_normalization.jsonl';audit.write_text('')
+  os.environ.setdefault('S2S_TN_AUDIT',str(audit))
+ start=time.perf_counter()
+-r=Registry(str(ROOT/'models/models.cpu.json'),'cpu')
+-t=Translator(r,src,tgt)
++r=Registry(str(ROOT/'models/models.cpu.json'),'cpu',ort_policy=profile['ort_policy'],vad_profile=profile['vad_profile'],source_mode=profile['source_mode'],tts_format=profile['tts_format'])
++t=Translator(r,src,tgt,vad_profile=profile['vad_profile'])
+ raw_asr=[]
+ class RecordAsr:
+  def __init__(self,model):self.model=model
+@@ -24,15 +36,14 @@ class RecordAsr:
+ t.e._asr[src]=RecordAsr(t.asr)
+ print('LOADED',src,tgt,time.perf_counter()-start,flush=True)
+ results=[]
+-from s2s_edge.audio import segment,SR
+ w=load_audio(str(p))
+-for a,b in segment(w,max_s=min(t.asr.max_s,12.0)):
++for a,b in segment(w,max_s=min(t.asr.max_s,12.0),vad_profile=profile['vad_profile']):
+  z=t.translate_segment(w[a:b]); z['span']=[a/SR,b/SR];z['asr_raw']=raw_asr[-1]
+  print('SEGMENT',z['asr'],'=>',z['mt'],z['timing'],flush=True)
+  results.append(z)
+ audio,sr=concat_results(results); path=out/'audio'/f'{src}_to_{tgt}.wav';save_wav(str(path),audio,sr)
+-data={'src':src,'tgt':tgt,'input':str(p),'output':str(path),'backend':'ONNX Runtime CPU','wall_including_load_s':time.perf_counter()-start,'decoder':getattr(t.mt,'active',None),'fallbacks':getattr(t.mt,'failures',[]),'segments':[{k:v for k,v in z.items() if k!='wav'} for z in results]}
+-data['neural_normalization']=os.environ.get('S2S_NEURAL_TN','0')=='1'
++data={'src':src,'tgt':tgt,'input':str(p),'output':str(path),'backend':'ONNX Runtime CPU','wall_including_load_s':time.perf_counter()-start,'decoder':getattr(t.mt,'active',None),'fallbacks':getattr(t.mt,'failures',[]),'effective_profile':profile,'ort_sessions':r.graph_telemetry(),'code_fingerprint':runtime_code_fingerprint(),'segments':[{k:v for k,v in z.items() if k!='wav'} for z in results]}
++data['neural_normalization']=profile['source_mode']=='1'
+ if data['neural_normalization']:
+  from s2s_edge.neural_textnorm import get
+  data['normalization_model']=str(get().path)
+diff --git a/tools/s2s_web.py b/tools/s2s_web.py
+index dc29af8..84f7669 100644
+--- a/tools/s2s_web.py
++++ b/tools/s2s_web.py
+@@ -10,12 +10,19 @@ ROOT=Path(__file__).resolve().parents[1]
+ sys.path.insert(0,str(ROOT/'s2s_edge'))
+ os.environ.setdefault('S2S_NEURAL_TN','1')
+ os.environ.setdefault('S2S_TTS_FORMAT','hybrid')
++os.environ.setdefault('S2S_VAD_PROFILE','legacy')
++os.environ.setdefault('S2S_ORT_POLICY','auto')
+ os.environ.setdefault('HF_HOME','/private/tmp/s2s-hf')
+ MAX_BYTES=2*1024*1024
++from s2s_edge.registry import resolve_runtime_profile, runtime_code_fingerprint
+ 
+ class Service:
+- def __init__(self,out):
++ def __init__(self,out,vad_profile=None,ort_policy=None,source_mode=None,tts_format=None):
+   self.out=out;out.mkdir(parents=True,exist_ok=True);self.jobs={};self.lock=threading.RLock();self.pool=ThreadPoolExecutor(max_workers=1,thread_name_prefix='s2s')
++  self.vad_profile_arg=vad_profile;self.ort_policy_arg=ort_policy;self.source_mode_arg=source_mode;self.tts_format_arg=tts_format
++  self.profile=resolve_runtime_profile(vad_profile=vad_profile,ort_policy=ort_policy,source_mode=source_mode,tts_format=tts_format)
++  self.loaded_code_fingerprint=runtime_code_fingerprint(extra_files=[str(Path(__file__).resolve())])
++  self.code_fingerprint=self.loaded_code_fingerprint
+  def update(self,key,**fields):
+   with self.lock:self.jobs[key].update(fields)
+  def submit(self,data,src):
+@@ -44,7 +51,8 @@ class Service:
+    os.environ['S2S_TN_AUDIT']=str(folder/'normalization.jsonl')
+    w=load_audio(str(folder/'input.wav'))
+    if not len(w) or not np.isfinite(w).all() or float(np.max(abs(w)))<1e-5:raise ValueError('Bản thu không có tín hiệu. Hãy kiểm tra mic và nói lại.')
+-   reg=Registry(str(ROOT/'models/models.cpu.json'),'cpu');translator=Translator(reg,src,tgt)
++   profile=dict(self.profile)
++   reg=Registry(str(ROOT/'models/models.cpu.json'),'cpu',ort_policy=profile['ort_policy'],vad_profile=profile['vad_profile'],source_mode=profile['source_mode'],tts_format=profile['tts_format']);translator=Translator(reg,src,tgt,vad_profile=profile['vad_profile'])
+    raw=[];service=self
+    class ASR:
+     def __init__(self,m):self.m=m
+@@ -61,9 +69,10 @@ class Service:
+     def __getattr__(self,n):return getattr(self.m,n)
+     def synthesize(self,text):service.update(key,stage='Đang chuẩn hóa và tạo giọng nói…');return self.m.synthesize(text)
+    translator.e._asr[src]=ASR(translator.asr);translator.e._mt=MT(translator.e._mt);translator.e._tts[tgt]=TTS(translator.tts)
+-   spans=segment(w,max_s=min(translator.asr.max_s,12.0));results=[]
++   spans=segment(w,max_s=min(translator.asr.max_s,12.0),vad_profile=profile['vad_profile']);results=[]
+    if not spans:raise ValueError('Chưa nhận ra lời nói. Hãy nói rõ hơn và đưa mic lại gần.')
+-   trace_start=len(neural_textnorm.get().records) if neural_textnorm.enabled() else 0
++   neural_active=translator.e.neural_enabled()
++   trace_start=len(neural_textnorm.get().records) if neural_active else 0
+    for i,(a,b) in enumerate(spans):
+     self.update(key,segment=i+1,segments_total=len(spans))
+     result=translator.translate_segment(w[a:b]);result['asr_raw']=raw[-1];result['span']=[a/SR,b/SR];results.append(result)
+@@ -71,7 +80,8 @@ class Service:
+    if not len(audio):raise ValueError('Không nhận được nội dung để dịch. Hãy nói lại một câu ngắn, rõ hơn.')
+    if not np.isfinite(audio).all():raise RuntimeError('Mô hình trả về audio không hợp lệ.')
+    save_wav(str(folder/'output.wav'),audio,sr)
+-   result={'id':key,'status':'done','stage':'Hoàn tất','src':src,'tgt':tgt,'input_seconds':len(w)/SR,'output_seconds':len(audio)/sr,'elapsed_seconds':time.perf_counter()-start,'input_url':f'/audio/{key}/input.wav','output_url':f'/audio/{key}/output.wav','detail_url':f'/audio/{key}/result.json','asr':' '.join(z['asr_raw'] for z in results),'translation':' '.join(z['mt'] for z in results),'tts_text':' '.join(z['tts_text'] for z in results),'segments':[{k:v for k,v in z.items() if k!='wav'} for z in results],'normalization':neural_textnorm.get().records[trace_start:] if neural_textnorm.enabled() else [],'backend':'integrated ONNX CPU + learned normalization on Apple Metal','input_kind':'uploaded speech audio; no transcript provided'}
++   backend_label='integrated ONNX CPU + learned normalization on Apple Metal' if neural_active else 'integrated ONNX CPU (rule source preparation; neural_tn=0)'
++   result={'id':key,'status':'done','stage':'Hoàn tất','src':src,'tgt':tgt,'input_seconds':len(w)/SR,'output_seconds':len(audio)/sr,'elapsed_seconds':time.perf_counter()-start,'input_url':f'/audio/{key}/input.wav','output_url':f'/audio/{key}/output.wav','detail_url':f'/audio/{key}/result.json','asr':' '.join(z['asr_raw'] for z in results),'translation':' '.join(z['mt'] for z in results),'tts_text':' '.join(z['tts_text'] for z in results),'segments':[{k:v for k,v in z.items() if k!='wav'} for z in results],'normalization':neural_textnorm.get().records[trace_start:] if neural_active else [],'source_mode':profile['source_mode'],'effective_profile':profile,'ort_sessions':reg.graph_telemetry(),'code_fingerprint':self.code_fingerprint,'backend':backend_label,'input_kind':'uploaded speech audio; no transcript provided'}
+    (folder/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));self.update(key,**{k:v for k,v in result.items() if k!='id'})
+    print('DONE',key,src,tgt,round(result['elapsed_seconds'],2),flush=True)
+   except Exception as e:
+@@ -86,8 +96,7 @@ class Service:
+    j=self.jobs.get(key)
+    return dict(j) if j else None
+ 
+-def main():
+- ap=argparse.ArgumentParser();ap.add_argument('--port',type=int,default=8766);args=ap.parse_args();service=Service(ROOT/'results/mic_web')
++def build_handler(service, port):
+  class Handler(BaseHTTPRequestHandler):
+   def send(self,status,body,ctype='application/json; charset=utf-8'):
+    self.send_response(status);self.send_header('Content-Type',ctype);self.send_header('Content-Length',str(len(body)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Permissions-Policy','microphone=(self)');self.end_headers()
+@@ -103,7 +112,8 @@ def main():
+     name,ctype=static[path];return self.send(200,(ROOT/'web'/name).read_bytes(),ctype)
+    if path=='/api/health':
+     with service.lock:pending=sum(j['status'] in ('queued','running') for j in service.jobs.values())
+-    return self.json(200,{'ok':True,'pending':pending,'max_seconds':30,'normalization':os.environ['S2S_NEURAL_TN']=='1','tts_format':os.environ['S2S_TTS_FORMAT']})
++    p=service.profile
++    return self.json(200,{'ok':True,'pid':os.getpid(),'pending':pending,'max_seconds':30,'normalization':p['source_mode']=='1','source_mode':p['source_mode'],'vad_profile':p['vad_profile'],'vad_options':p['vad_options'],'ort_policy':p['ort_policy'],'tts_format':p['tts_format'],'effective_profile':dict(p),'loaded_code_fingerprint':service.loaded_code_fingerprint,'code_fingerprint':service.code_fingerprint})
+    if path.startswith('/api/jobs/'):
+     j=service.snapshot(path.rsplit('/',1)[-1]);return self.json(200,j) if j else self.json(404,{'error':'Không tìm thấy bản thu.'})
+    if path.startswith('/audio/'):
+@@ -118,7 +128,7 @@ def main():
+   def do_POST(self):
+    if urlparse(self.path).path!='/api/jobs':return self.json(404,{'error':'Not found'})
+    origin=self.headers.get('Origin')
+-   if origin and origin not in (f'http://localhost:{args.port}',f'http://127.0.0.1:{args.port}'):return self.json(403,{'error':'Hãy mở trang trên localhost.'})
++   if origin and origin not in (f'http://localhost:{port}',f'http://127.0.0.1:{port}'):return self.json(403,{'error':'Hãy mở trang trên localhost.'})
+    try:
+     src=parse_qs(urlparse(self.path).query).get('src',[''])[0]
+     if src not in ('en','vi'):raise ValueError('Hãy chọn chiều Anh → Việt hoặc Việt → Anh.')
+@@ -130,6 +140,12 @@ def main():
+    except ValueError as e:self.json(400,{'error':str(e)})
+    except Exception:
+     traceback.print_exc();self.json(500,{'error':'Không gửi được bản thu. Hãy thử lại.'})
++ return Handler
++
++def main():
++ ap=argparse.ArgumentParser();ap.add_argument('--port',type=int,default=8766);ap.add_argument('--out-dir',default=None);ap.add_argument('--vad-profile',default=None,choices=['legacy','upstream']);ap.add_argument('--ort-policy',default=None,choices=['auto','basic','disable']);ap.add_argument('--source-mode',default=None,choices=['0','1']);ap.add_argument('--tts-format',default=None,choices=['hybrid','legacy']);args=ap.parse_args()
++ service=Service(Path(args.out_dir) if args.out_dir else (ROOT/'results/mic_web'),vad_profile=args.vad_profile,ort_policy=args.ort_policy,source_mode=args.source_mode,tts_format=args.tts_format)
++ Handler=build_handler(service, args.port)
+  print(f'OneVoice mic web: http://localhost:{args.port}',flush=True)
+  ThreadingHTTPServer(('127.0.0.1',args.port),Handler).serve_forever()
+ 
+diff --git a/tools/start_s2s_web.py b/tools/start_s2s_web.py
+index 9fd1e61..5cdb77b 100644
+--- a/tools/start_s2s_web.py
++++ b/tools/start_s2s_web.py
+@@ -1,19 +1,272 @@
+-"""Start the user-facing local server outside the tool's foreground session."""
++"""Start or safely reuse the user-facing local OneVoice web server."""
+ from pathlib import Path
+-import os,sys,subprocess,time,urllib.request,json
+-root=Path(__file__).resolve().parents[1];url='http://localhost:8766'
+-def ready():
+- try:
+-  with urllib.request.urlopen(url+'/api/health',timeout=2) as r:return json.load(r).get('ok') is True
+- except Exception:return False
+-if not ready():
+- env=os.environ.copy();env.update({'S2S_NEURAL_TN':'1','S2S_TTS_FORMAT':'hybrid','HF_HOME':'/private/tmp/s2s-hf'})
+- with (root/'logs/s2s_web.log').open('a') as f:
+-  p=subprocess.Popen([sys.executable,'-u',str(root/'tools/s2s_web.py'),'--port','8766'],cwd=str(root),env=env,stdin=subprocess.DEVNULL,stdout=f,stderr=subprocess.STDOUT,start_new_session=True)
+- (root/'results/mic_web/server.pid').write_text(str(p.pid))
+- for _ in range(40):
+-  if ready():break
+-  if p.poll() is not None:raise RuntimeError('Web server exited; inspect logs/s2s_web.log')
+-  time.sleep(.25)
+- if not ready():raise RuntimeError('Web server did not become ready')
+-print(url)
++import argparse, json, os, signal, subprocess, sys, time, urllib.request
++
++root = Path(__file__).resolve().parents[1]
++if str(root / "s2s_edge") not in sys.path:
++    sys.path.insert(0, str(root / "s2s_edge"))
++
++from s2s_edge.registry import resolve_runtime_profile, runtime_code_fingerprint
++
++PROFILE_KEYS = ("source_mode", "vad_profile", "ort_policy", "tts_format")
++
++
++class LauncherError(RuntimeError):
++    """Explicit launcher failure carrying a deterministic non-zero exit code."""
++
++    def __init__(self, code: int, message: str):
++        super().__init__(message)
++        self.code = int(code)
++
++
++def _norm_env_arg(val):
++    if val in (None, ""):
++        return None
++    return str(val)
++
++
++def build_launch_env(
++    base_env=None,
++    vad_profile=None,
++    ort_policy=None,
++    source_mode=None,
++    tts_format=None,
++):
++    """Build subprocess env honoring caller S2S_NEURAL_TN/VAD/ORT/TTS settings without forcing 1 over 0."""
++    env = dict(os.environ if base_env is None else base_env)
++    if vad_profile is not None:
++        env["S2S_VAD_PROFILE"] = str(vad_profile)
++    if ort_policy is not None:
++        env["S2S_ORT_POLICY"] = str(ort_policy)
++    if source_mode is not None:
++        env["S2S_NEURAL_TN"] = str(source_mode)
++    if tts_format is not None:
++        env["S2S_TTS_FORMAT"] = str(tts_format)
++    env.setdefault("S2S_NEURAL_TN", "1")
++    env.setdefault("S2S_TTS_FORMAT", "hybrid")
++    env.setdefault("S2S_VAD_PROFILE", "legacy")
++    env.setdefault("S2S_ORT_POLICY", "auto")
++    env.setdefault("HF_HOME", "/private/tmp/s2s-hf")
++    requested_profile_from_env(env)
++    return env
++
++
++def requested_profile_from_env(env):
++    """Resolve and validate the effective runtime profile purely from the supplied mapping."""
++    return resolve_runtime_profile(
++        vad_profile=_norm_env_arg(env.get("S2S_VAD_PROFILE")),
++        ort_policy=_norm_env_arg(env.get("S2S_ORT_POLICY")),
++        source_mode=_norm_env_arg(env.get("S2S_NEURAL_TN")),
++        tts_format=_norm_env_arg(env.get("S2S_TTS_FORMAT")),
++    )
++
++
++def disk_code_fingerprint():
++    """Return current on-disk fingerprint covering s2s_edge modules, tools/s2s_web.py, and git HEAD."""
++    return runtime_code_fingerprint(extra_files=[str(root / "tools/s2s_web.py")])
++
++
++def fetch_health(url, timeout=2):
++    """Fetch /api/health JSON payload when server responds healthy, else return None."""
++    try:
++        with urllib.request.urlopen(url + "/api/health", timeout=timeout) as r:
++            data = json.load(r)
++        if isinstance(data, dict) and data.get("ok") is True:
++            return data
++        return None
++    except Exception:
++        return None
++
++
++def ready(url):
++    return fetch_health(url) is not None
++
++
++def compare_server_state(health, requested_profile, disk_fp):
++    """Verify server /api/health matches requested profile and current on-disk code fingerprint."""
++    reasons = []
++    if not isinstance(health, dict) or health.get("ok") is not True:
++        return False, ["health_not_ok"]
++
++    eff = health.get("effective_profile")
++    if not isinstance(eff, dict):
++        reasons.append("missing_effective_profile")
++
++    for key in PROFILE_KEYS:
++        want = requested_profile.get(key)
++        got_top = health.get(key)
++        if got_top != want:
++            reasons.append(f"profile_mismatch:{key}:want={want!r},got={got_top!r}")
++        if isinstance(eff, dict):
++            got_eff = eff.get(key)
++            if got_eff != want:
++                reasons.append(f"effective_profile_mismatch:{key}:want={want!r},got={got_eff!r}")
++
++    loaded_fp = health.get("loaded_code_fingerprint")
++    if not isinstance(loaded_fp, dict):
++        reasons.append("missing_loaded_code_fingerprint")
++    else:
++        for fp_key in ("s2s_edge_sha256", "server_files_sha256", "git_head"):
++            if fp_key not in loaded_fp:
++                reasons.append(f"missing_fingerprint_field:{fp_key}")
++            elif loaded_fp.get(fp_key) != disk_fp.get(fp_key):
++                reasons.append(
++                    f"stale_code:{fp_key}:loaded={loaded_fp.get(fp_key)!r},disk={disk_fp.get(fp_key)!r}"
++                )
++
++    return len(reasons) == 0, reasons
++
++
++def launch_or_reuse(
++    args,
++    *,
++    base_env=None,
++    health_fn=None,
++    fingerprint_fn=None,
++    popen_fn=None,
++    kill_fn=None,
++    sleep_fn=None,
++):
++    """Validate requested config, safely reuse matching server or reload idle server cleanly."""
++    health_fn = fetch_health if health_fn is None else health_fn
++    fingerprint_fn = disk_code_fingerprint if fingerprint_fn is None else fingerprint_fn
++    popen_fn = subprocess.Popen if popen_fn is None else popen_fn
++    kill_fn = os.kill if kill_fn is None else kill_fn
++    sleep_fn = time.sleep if sleep_fn is None else sleep_fn
++
++    env = build_launch_env(
++        base_env=base_env,
++        vad_profile=getattr(args, "vad_profile", None),
++        ort_policy=getattr(args, "ort_policy", None),
++        source_mode=getattr(args, "source_mode", None),
++        tts_format=getattr(args, "tts_format", None),
++    )
++    req_profile = requested_profile_from_env(env)
++    url = f"http://localhost:{args.port}"
++
++    health = health_fn(url)
++    was_healthy = health is not None
++    if was_healthy:
++        disk_fp = fingerprint_fn()
++        matches, reasons = compare_server_state(health, req_profile, disk_fp)
++        if matches and not getattr(args, "reload", False):
++            return {"action": "reused", "url": url, "profile": req_profile, "reasons": []}
++        if not getattr(args, "reload", False):
++            raise LauncherError(
++                2,
++                f"Existing server at {url} does not match requested profile or disk code "
++                f"(refusing unsafe reuse; pass --reload to replace when idle): {'; '.join(reasons)}",
++            )
++
++        pending = health.get("pending")
++        if not isinstance(pending, int) or isinstance(pending, bool) or pending != 0:
++            raise LauncherError(
++                3,
++                f"Refusing --reload for {url}: server reports pending={pending!r} (must be 0).",
++            )
++        pid = health.get("pid")
++        if not isinstance(pid, int) or isinstance(pid, bool) or pid <= 1:
++            raise LauncherError(
++                3,
++                f"Refusing --reload for {url}: missing or invalid server pid={pid!r}.",
++            )
++
++        kill_fn(pid, signal.SIGTERM)
++        stopped = False
++        for _ in range(40):
++            if health_fn(url) is None:
++                stopped = True
++                break
++            sleep_fn(0.25)
++        if not stopped:
++            raise LauncherError(4, f"Server pid={pid} at {url} did not stop after SIGTERM.")
++
++    cmd = [
++        sys.executable,
++        "-u",
++        str(root / "tools/s2s_web.py"),
++        "--port",
++        str(args.port),
++        "--vad-profile",
++        req_profile["vad_profile"],
++        "--ort-policy",
++        req_profile["ort_policy"],
++        "--source-mode",
++        req_profile["source_mode"],
++        "--tts-format",
++        req_profile["tts_format"],
++    ]
++    if args.out_dir:
++        cmd.extend(["--out-dir", str(args.out_dir)])
++    log_path = Path(args.log_file) if args.log_file else (root / "logs/s2s_web.log")
++    log_path.parent.mkdir(parents=True, exist_ok=True)
++    with log_path.open("a") as f:
++        proc = popen_fn(
++            cmd,
++            cwd=str(root),
++            env=env,
++            stdin=subprocess.DEVNULL,
++            stdout=f,
++            stderr=subprocess.STDOUT,
++            start_new_session=True,
++        )
++    if args.out_dir:
++        pid_path = Path(args.out_dir) / "server.pid"
++        pid_path.parent.mkdir(parents=True, exist_ok=True)
++        pid_path.write_text(str(proc.pid))
++    elif args.port == 8766:
++        pid_path = root / "results/mic_web/server.pid"
++        pid_path.parent.mkdir(parents=True, exist_ok=True)
++        pid_path.write_text(str(proc.pid))
++
++    started = False
++    for _ in range(40):
++        if health_fn(url) is not None:
++            started = True
++            break
++        if proc.poll() is not None:
++            raise RuntimeError(f"Web server exited; inspect {log_path}")
++        sleep_fn(0.25)
++    if not started:
++        raise RuntimeError("Web server did not become ready")
++    return {
++        "action": "reloaded" if was_healthy else "started",
++        "url": url,
++        "profile": req_profile,
++        "pid": proc.pid,
++    }
++
++
++def parse_args(argv=None):
++    ap = argparse.ArgumentParser(description="Start the OneVoice web server.")
++    ap.add_argument("--port", type=int, default=8766)
++    ap.add_argument("--out-dir", default=None)
++    ap.add_argument("--log-file", default=None)
++    ap.add_argument("--vad-profile", default=None, choices=["legacy", "upstream"])
++    ap.add_argument("--ort-policy", default=None, choices=["auto", "basic", "disable"])
++    ap.add_argument("--source-mode", default=None, choices=["0", "1"])
++    ap.add_argument("--tts-format", default=None, choices=["hybrid", "legacy"])
++    ap.add_argument(
++        "--reload",
++        action="store_true",
++        help="Safely SIGTERM a matching-PID idle (pending==0) server on mismatch and restart.",
++    )
++    return ap.parse_args(argv)
++
++
++def main(argv=None):
++    args = parse_args(argv)
++    try:
++        res = launch_or_reuse(args)
++    except LauncherError as exc:
++        print(f"ERROR: {exc}", file=sys.stderr, flush=True)
++        raise SystemExit(exc.code)
++    except ValueError as exc:
++        print(f"ERROR: invalid runtime configuration: {exc}", file=sys.stderr, flush=True)
++        raise SystemExit(2)
++    print(res["url"])
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())

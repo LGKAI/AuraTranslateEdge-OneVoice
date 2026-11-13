@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Đánh Giá & Đối Chiếu Lỗi Hệ Thống Speech-to-Speech Translation (EN-VI)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 15mm 18mm 15mm;
+            @bottom-right {
+                content: counter(page) "/" counter(pages);
+                font-size: 9pt;
+                color: #64748b;
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            background-color: #ffffff;
+            line-height: 1.55;
+            font-size: 10pt;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .report-header {
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .report-title-area h1 {
+            font-size: 17pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .report-subtitle {
+            font-size: 10pt;
+            color: #475569;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .meta-box {
+            text-align: right;
+            font-size: 8.5pt;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        /* Metric Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .metric-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-card.danger {
+            border-left: 4px solid #ef4444;
+            background-color: #fef2f2;
+        }
+
+        .metric-card.warning {
+            border-left: 4px solid #f59e0b;
+            background-color: #fffbeb;
+        }
+
+        .metric-card.info {
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        .metric-card.purple {
+            border-left: 4px solid #8b5cf6;
+            background-color: #f5f3ff;
+        }
+
+        .metric-value {
+            font-size: 18pt;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: #0f172a;
+        }
+
+        .metric-label {
+            font-size: 8pt;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Styling */
+        h2 {
+            font-size: 12.5pt;
+            color: #1e3a8a;
+            border-left: 4px solid #2563eb;
+            padding-left: 10px;
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 10.5pt;
+            color: #0f172a;
+            margin: 14px 0 6px 0;
+            font-weight: 600;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.5pt;
+            margin-bottom: 18px;
+            page-break-inside: auto;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        th {
+            background-color: #1e293b;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid #1e293b;
+        }
+
+        td {
+            padding: 7px 9px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .badge-danger { background-color: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+        .badge-warning { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .badge-info { background-color: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .badge-success { background-color: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+        /* Case Box */
+        .case-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .case-id {
+            font-weight: 700;
+            font-size: 9.5pt;
+            color: #1d4ed8;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            row-gap: 4px;
+            column-gap: 8px;
+            font-size: 8.5pt;
+        }
+
+        .case-label {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .case-content {
+            color: #0f172a;
+        }
+
+        .highlight-err {
+            background-color: #fecaca;
+            color: #991b1b;
+            font-weight: 600;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        /* Recommendations */
+        .rec-box {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border-radius: 0 6px 6px 0;
+            page-break-inside: avoid;
+        }
+
+        .rec-box h4 {
+            margin: 0 0 4px 0;
+            font-size: 9.5pt;
+            color: #1e40af;
+        }
+
+        .rec-box p {
+            margin: 0;
+            font-size: 8.5pt;
+            color: #1e293b;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="report-header">
+        <div class="report-title-area">
+            <h1>BÁO CÁO ĐỐI CHIẾU & PHÂN TÍCH LỖI HỆ THỐNG</h1>
+            <div class="report-subtitle">Speech-to-Speech Translation Pipeline (English → Vietnamese) | Bộ Dữ Liệu BTC</div>
+        </div>
+        <div class="meta-box">
+            <strong>Tập mẫu:</strong> 50 audio pairs<br>
+            <strong>Thư mục:</strong> <code>en-vi/BTC</code><br>
+            <strong>Ngày thực hiện:</strong> 12/11/2026<br>
+            <strong>Phương pháp:</strong> Multimodal Audio Verification
+        </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics-grid">
+        <div class="metric-card info">
+            <div class="metric-value">50</div>
+            <div class="metric-label">Tổng số mẫu kiểm thử</div>
+        </div>
+        <div class="metric-card danger">
+            <div class="metric-value">5 / 50</div>
+            <div class="metric-label">Lỗi ASR nghiêm trọng (≥30%)</div>
+        </div>
+        <div class="metric-card warning">
+            <div class="metric-value">12 / 50</div>
+            <div class="metric-label">Lỗi TTS / Tên riêng (≥10%)</div>
+        </div>
+        <div class="metric-card purple">
+            <div class="metric-value">86%</div>
+            <div class="metric-label">Cảnh báo độ trễ (43/50 Slow)</div>
+        </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <h2>1. TỔNG QUAN KIẾN TRÚC & PHƯƠNG PHÁP ĐỐI CHIẾU</h2>
+    <p>
+        Hệ thống được thiết kế theo kiến trúc <strong>Cascade Speech-to-Speech Translation</strong> tuần tự gồm 3 mắt xích chính:
+        <strong>(1) ASR Module</strong> tiếp nhận file âm thanh tiếng Anh (<code>EV-xxxx_in.wav</code>) chuyển thành văn bản tiếng Anh;
+        <strong>(2) MT Module</strong> dịch câu nhận diện sang tiếng Việt; và
+        <strong>(3) TTS Module</strong> tổng hợp câu tiếng Việt thành âm thanh đầu ra (<code>EV-xxxx_out.wav</code>).
+        Kết quả đầu ra được kiểm chứng chéo bởi một bộ ASR tiếng Việt độc lập (<code>heard</code>) để đo lường độ rõ ràng của giọng đọc và phát hiện các khiếm khuyết tổng hợp âm thanh.
+    </p>
+
+    <!-- SECTION 2 -->
+    <h2>2. PHÂN LOẠI CHI TIẾT CÁC DẠNG LỖI HỆ THỐNG</h2>
+
+    <h3>Nhóm I: Lỗi Nhận dạng Tiếng nói Đầu vào (ASR Failures)</h3>
+    <p>
+        ASR là điểm bắt đầu của chuỗi xử lý. Sai sót tại công đoạn này gây ra hiện tượng sụp đổ dây chuyền (Cascading Errors). Các lỗi điển hình được phân theo 3 nguyên nhân:
+    </p>
+    
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 1.1: Mất hoàn toàn tín hiệu do âm lượng cực thấp (Input Audio Level / Silence)</span>
+            <span class="badge badge-danger">100% Lỗi (Gãy Pipeline)</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">Mã mẫu:</div>
+            <div class="case-content"><strong>EV-2748</strong> (File: <code>BTC/EV-2748_in.wav</code>)</div>
+            <div class="case-label">Đối chiếu sóng:</div>
+            <div class="case-content">Biên độ cực đại chỉ đạt <strong>243</strong> (thang 16-bit 32.767, bình thường từ 20.000 - 25.000). Âm thanh gần như bị tắt tiếng (mute).</div>
+            <div class="case-label">Thoại gốc (Text):</div>
+            <div class="case-content"><em>"your password reset link has been sent your phone is there anything else i can help you with"</em></div>
+            <div class="case-label">ASR kết quả:</div>
+            <div class="case-content"><span class="highlight-err">[TRỐNG / EMPTY]</span> (Hệ thống không sinh ra file âm thanh đầu ra <code>EV-2748_out.wav</code>).</div>
+        </div>
+    </div>
+
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 1.2: Ảo giác ngữ âm & Nhầm lẫn nghiêm trọng do Accent / Nối âm (Acoustic Hallucination)</span>
+            <span class="badge badge-danger">Lỗi Nguy Hiểm</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">EV-0182:</div>
+            <div class="case-content">
+                Gốc: <em>"...storage on my phone <span class="highlight-err">not so wonderful</span>"</em> → ASR: <em>"...The storage I'm for, <span class="highlight-err">that's so wonderful</span>"</em>.<br>
+                <strong>Hậu quả:</strong> Đảo ngược hoàn toàn ngữ nghĩa từ chê thành khen.
+            </div>
+            <div class="case-label">EV-5269:</div>
+            <div class="case-content">
+                Gốc: <em>"...not to any medication but <span class="highlight-err">i am allergic to peanuts</span>"</em> → ASR: <em>"Not so any medication <span class="highlight-err">in vpin</span>"</em>.<br>
+                <strong>Hậu quả:</strong> <strong>Lỗi y tế nghiêm trọng</strong> — biến mất hoàn toàn thông tin bệnh nhân bị dị ứng hạt đậu phộng.
+            </div>
+            <div class="case-label">EV-0523:</div>
+            <div class="case-content">
+                Gốc: <em>"<span class="highlight-err">i am sorry to hear that um</span> how old was he..."</em> → ASR: <em>"<span class="highlight-err">Sophia</span>, old is he..."</em>.<br>
+                <strong>Hậu quả:</strong> Mất toàn bộ câu chia buồn thông cảm, biến thành gọi tên riêng người khác.
+            </div>
+            <div class="case-label">EV-1863:</div>
+            <div class="case-content">
+                Gốc: <em>"...or is it going to <span class="highlight-err">get colder</span>"</em> → ASR: <em>"...or is it going to <span class="highlight-err">that corridor though</span>"</em>.<br>
+                <strong>Hậu quả:</strong> "trời sẽ lạnh hơn" biến thành "đi vào hành lang đó".
+            </div>
+            <div class="case-label">EV-2390:</div>
+            <div class="case-content">
+                Gốc: <em>"put <span class="highlight-err">walk the dog</span> on my list"</em> → ASR: <em>"put <span class="highlight-err">work the dog</span> on my list"</em>.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h3>Nhóm II: Lỗi Dịch máy MT (Machine Translation Failures)</h3>
+    <p>
+        Bên cạnh các câu bị dịch sai do kế thừa từ ASR hỏng, bản thân module dịch máy tiếng Việt gặp 2 vấn đề bản chất:
+    </p>
+
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 2.1: Giữ nguyên văn bản tiếng Anh (Untranslated Text / Code-switching Failure)</span>
+            <span class="badge badge-warning">Lỗi Xử Lý Thực Thể</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">Mã mẫu:</div>
+            <div class="case-content"><strong>EV-0358</strong> (File: <code>BTC/EV-0358_out.wav</code>)</div>
+            <div class="case-label">Câu vào:</div>
+            <div class="case-content"><em>"seven hundred thirty four main street harper valley oregon six seven two nine seven"</em></div>
+            <div class="case-label">Bản dịch MT:</div>
+            <div class="case-content"><span class="highlight-err">"734 Main Street, Harper Valley Oregon 67297."</span> (Giữ nguyên toàn bộ tiếng Anh).</div>
+            <div class="case-label">Hậu quả TTS:</div>
+            <div class="case-content">Voice TTS tiếng Việt bị ép đánh vần ký tự tiếng Anh, đọc thành: <em>"bảy trăm ba mươi bốn mây thít ha va vê li..."</em>, phá hỏng toàn bộ trải nghiệm nghe.</div>
+        </div>
+    </div>
+
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 2.2: Dịch máy thô từng từ / Hiểu sai thành ngữ & ngữ cảnh (Literal & Contextual Error)</span>
+            <span class="badge badge-warning">Sai Lệch Ý Định</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">EV-5621:</div>
+            <div class="case-content">
+                Gốc: <em>"at twelve noon"</em> → ASR: <em>"12 PM"</em> → MT dịch: <em>"lúc <span class="highlight-err">12 giờ tối</span>"</em>.<br>
+                <strong>Hậu quả:</strong> 12 giờ trưa biến thành 12 giờ đêm/nửa đêm, sai lệch hoàn toàn thực tế thời gian.
+            </div>
+            <div class="case-label">EV-0752:</div>
+            <div class="case-content">
+                Gốc: <em>"particularly to <span class="highlight-err">get out of</span> having this consultation"</em> (thu hoạch được gì từ buổi khám) → MT dịch nghĩa đen: <em>"...đặc biệt là <span class="highlight-err">thoát khỏi cuộc tư vấn này</span>"</em> (trốn chạy).
+            </div>
+            <div class="case-label">EV-0333:</div>
+            <div class="case-content">
+                Gốc: <em>"...they are feeling <span class="highlight-err">a bit off</span>"</em> (tai cảm thấy hơi khó chịu / không ổn) → MT dịch: <em>"...tôi chỉ cảm thấy <span class="highlight-err">bị cắn</span>"</em>.
+            </div>
+            <div class="case-label">EV-1212:</div>
+            <div class="case-content">
+                Gốc: <em>"...is it there all the time or does it <span class="highlight-err">come and go</span>"</em> (cơn đau từng cơn hay liên tục) → MT dịch thô: <em>"...nó luôn ở đó hay <span class="highlight-err">nó đến và đi</span>"</em>.
+            </div>
+        </div>
+    </div>
+
+    <h3>Nhóm III: Lỗi Tổng hợp Âm thanh Đầu ra TTS (Voice Synthesis Failures)</h3>
+
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 3.1: Đánh vần tên riêng / Thương hiệu nước ngoài theo vần tiếng Việt (G2P Failure)</span>
+            <span class="badge badge-danger">Biến Dạng Giọng</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">Hiện tượng:</div>
+            <div class="case-content">Do thiếu từ điển phát âm ngoại lai (Foreign Phoneme Dictionary), TTS tiếng Việt áp dụng quy tắc ghép âm đơn âm tiết tiếng Việt cho từ mượn tiếng Anh:</div>
+            <div class="case-label">EV-4294:</div>
+            <div class="case-content">Từ <strong>"Twitter"</strong> → TTS đánh vần thành: <span class="highlight-err">"tờ - u - tơ"</span>.</div>
+            <div class="case-label">EV-4810:</div>
+            <div class="case-content">Tên <strong>"Elizabeth Rodriguez"</strong> → TTS đọc méo thành: <span class="highlight-err">"lê-zza kỳ dợ"</span>.</div>
+            <div class="case-label">EV-2401:</div>
+            <div class="case-content">Tên <strong>"Patricia Johnson"</strong> → TTS đọc thành: <span class="highlight-err">"je ser gònn"</span>.</div>
+            <div class="case-label">EV-4177:</div>
+            <div class="case-content">Tên <strong>"Michael Wilson"</strong> → TTS đọc thành: <span class="highlight-err">"micraon"</span>.</div>
+            <div class="case-label">EV-5674:</div>
+            <div class="case-content">Thương hiệu <strong>"Sprint"</strong> → TTS đọc thành: <span class="highlight-err">"xây"</span>.</div>
+        </div>
+    </div>
+
+    <div class="case-card">
+        <div class="case-header">
+            <span class="case-id">Dạng 3.2: Nuốt âm đuôi, ngắt cụt và sai cao độ thanh điệu (Acoustic Truncation)</span>
+            <span class="badge badge-warning">Khó Nghe Hiểu</span>
+        </div>
+        <div class="case-grid">
+            <div class="case-label">EV-3248:</div>
+            <div class="case-content">Văn bản: <em>"Tôi còn bao lâu để nấu trứng?"</em> → Audio thực tế bị nuốt phụ âm đuôi: <span class="highlight-err">"Tôi còn báo lâu để nấ trứ"</span> (TTS Error = 42.9%).</div>
+            <div class="case-label">EV-0240:</div>
+            <div class="case-content">Văn bản: <em>"...xin vui lòng"</em> → Phát âm biến thành: <span class="highlight-err">"...sinh phù lòng"</span>.</div>
+            <div class="case-label">EV-1725:</div>
+            <div class="case-content">Văn bản: <em>"...cửa hàng sushi"</em> → Phát âm nghe thành: <span class="highlight-err">"...cửa hàng xùi"</span>.</div>
+            <div class="case-label">EV-5301:</div>
+            <div class="case-content">Định dạng giờ: <em>"08:00"</em> → Phát âm là: <span class="highlight-err">"tám không"</span> (thay vì "tám giờ").</div>
+        </div>
+    </div>
+
+    <h3>Nhóm IV: Lỗi Hiệu năng & Độ trễ Toàn trình (End-to-End Latency)</h3>
+    <p>
+        Có <strong>43 trên tổng số 50 câu (86%)</strong> bị kích hoạt cờ cảnh báo <code>slow</code>. Tổng thời gian xử lý từ lúc kết thúc câu nói đầu vào cho đến khi phát âm thanh đầu ra đạt trung bình từ <strong>5.0 giây đến 9.3 giây</strong>. Trong mô hình đàm thoại hai chiều trực tiếp, khoảng trễ này gây ngắt quãng giao tiếp và người dùng có xu hướng tưởng hệ thống bị treo.
+    </p>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: COMPARISON TABLE -->
+    <h2>3. BẢNG TỔNG HỢP ĐỐI CHIẾU CÁC MẪU LỖI TIÊU BIỂU</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">Mã ID</th>
+                <th style="width: 26%;">Thoại Đầu Vào (English Input)</th>
+                <th style="width: 24%;">ASR Nhận Diện (English)</th>
+                <th style="width: 25%;">Bản Dịch MT (Vietnamese)</th>
+                <th style="width: 15%;">Dạng Lỗi Cốt Lõi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>EV-2748</strong></td>
+                <td>your password reset link has been sent to your phone...</td>
+                <td><span class="badge badge-danger">Trống (Empty)</span></td>
+                <td><em>(Không có)</em></td>
+                <td>Audio input âm lượng cực thấp (243/32k) gây gãy luồng</td>
+            </tr>
+            <tr>
+                <td><strong>EV-0182</strong></td>
+                <td>...storage on my phone <em>not so wonderful</em></td>
+                <td>...storage I'm for, <em>that's so wonderful</em></td>
+                <td>Khu vực lưu trữ mà tôi muốn, <em>thật tuyệt vời</em></td>
+                <td>ASR nhầm âm phủ định → Đảo ngược ý kiến</td>
+            </tr>
+            <tr>
+                <td><strong>EV-5269</strong></td>
+                <td>...not to any medication but <em>i am allergic to peanuts</em></td>
+                <td>Not so any medication <em>in vpin</em></td>
+                <td>Không có loại thuốc nào trong vpin</td>
+                <td>Lỗi y tế nghiêm trọng: Mất hoàn toàn dị ứng đậu phộng</td>
+            </tr>
+            <tr>
+                <td><strong>EV-0523</strong></td>
+                <td><em>i am sorry to hear that um</em> how old was he...</td>
+                <td><em>Sophia</em>, old is he...</td>
+                <td><em>Sophia</em>, cậu ta đã bao nhiêu tuổi...</td>
+                <td>ASR ảo giác tên người từ câu chia buồn</td>
+            </tr>
+            <tr>
+                <td><strong>EV-5621</strong></td>
+                <td>...what was the temperature in our city at <em>twelve noon</em></td>
+                <td>...temperature in our city at <em>12 PM</em></td>
+                <td>...nhiệt độ ở thành phố... lúc <em>12 giờ tối</em></td>
+                <td>MT hiểu sai 12 PM trưa thành nửa đêm</td>
+            </tr>
+            <tr>
+                <td><strong>EV-0358</strong></td>
+                <td>seven hundred thirty four main street harper valley...</td>
+                <td>734 Main Street, Harper Valley Oregon 67297.</td>
+                <td><em>734 Main Street, Harper Valley Oregon 67297.</em></td>
+                <td>Không dịch địa chỉ tiếng Anh → TTS bẻ âm dị thường</td>
+            </tr>
+            <tr>
+                <td><strong>EV-4294</strong></td>
+                <td>...including total <em>Twitter</em> followers</td>
+                <td>...including total <em>Twitter</em> followers</td>
+                <td>...hồ sơ quản lý <em>Twitter</em> của tôi...</td>
+                <td>TTS không có G2P ngoại lai: đọc thành "tờ u tơ"</td>
+            </tr>
+            <tr>
+                <td><strong>EV-3248</strong></td>
+                <td>how much time do i have to boil an egg</td>
+                <td>How much time do I have to boil an egg.</td>
+                <td>Tôi còn bao lâu để <em>nấu trứng?</em></td>
+                <td>TTS ngắt âm cuối: nghe thành "nấ trứ"</td>
+            </tr>
+            <tr>
+                <td><strong>EV-1173</strong></td>
+                <td>...worry about the <em>snowplows burying</em> my car...</td>
+                <td>...worry about a <em>snow post bearing</em> my car...</td>
+                <td>...lo lắng về <em>một cây tuyết mang xe</em>...</td>
+                <td>ASR nghe sai xe ủi tuyết → MT dịch ngớ ngẩn</td>
+            </tr>
+            <tr>
+                <td><strong>EV-1863</strong></td>
+                <td>...or is it going to <em>get colder</em></td>
+                <td>...or is it going to <em>that corridor though</em></td>
+                <td>...hay nó sẽ <em>đi vào hành lang đó?</em></td>
+                <td>Nhầm lẫn phát âm khiến bản dịch sai lệch</td>
+            </tr>
+            <tr>
+                <td><strong>EV-0752</strong></td>
+                <td>...particularly to <em>get out of</em> having this consultation</td>
+                <td>...particularly to <em>get out of</em> having this consultation</td>
+                <td>...đặc biệt là <em>thoát khỏi cuộc tư vấn này</em></td>
+                <td>MT dịch từng chữ nghĩa đen (Literal Translation)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- SECTION 4: RECOMMENDATIONS -->
+    <h2>4. ĐỀ XUẤT GIẢI PHÁP & TỐI ƯU HÓA HỆ THỐNG</h2>
+
+    <div class="rec-box">
+        <h4>1. Tầng Tiền xử lý & ASR (Audio Pre-processing & Speech Recognition)</h4>
+        <p>
+            • Tích hợp module <strong>Automatic Gain Control (AGC)</strong> và chuẩn hóa âm lượng LUFS để tự động kích âm với các mẫu micro quá nhỏ như EV-2748.<br>
+            • Triển khai bộ lọc VAD (Voice Activity Detection) để kiểm tra ngưỡng SNR (tỉ số tín hiệu trên nhiễu) trước khi nạp vào model nhận diện.<br>
+            • Tinh chỉnh ASR bằng dữ liệu đa dạng accent (đặc biệt là giọng Anh-Anh đặc sệt và nối âm lướt).
+        </p>
+    </div>
+
+    <div class="rec-box">
+        <h4>2. Tầng Dịch máy MT (Machine Translation & Entity Normalization)</h4>
+        <p>
+            • Bổ sung tầng <strong>Prompt Engineering / Post-editing</strong> cho MT: Yêu cầu xử lý chuẩn xác thời gian (ví dụ: "12 PM" / "noon" bắt buộc là "12 giờ trưa").<br>
+            • Nhận diện thực thể tên riêng và địa danh: Với địa chỉ đường phố, số nhà, cần chuẩn hóa cách đọc sang tiếng Việt (hoặc đánh dấu tag <code>&lt;lang="en"&gt;</code> để TTS chuyển bộ phát âm).
+        </p>
+    </div>
+
+    <div class="rec-box">
+        <h4>3. Tầng Tổng hợp Giọng nói TTS (Multilingual G2P & Acoustic Post-processing)</h4>
+        <p>
+            • Bổ sung từ điển phát âm <strong>Grapheme-to-Phoneme (G2P) đa ngôn ngữ</strong> cho các thương hiệu quốc tế thông dụng (Twitter, Facebook, Elizabeth, Michael, Sprint,...) để voice đọc chuẩn âm vị quốc tế thay vì đánh vần ghép vần thô.<br>
+            • Cải thiện âm đuôi (Audio Padding & Fade-out smoothing): Tránh hiện tượng cắt audio sớm ở đuôi câu khiến từ "nấu trứng" bị mất phụ âm "ng" thành "nấ trứ".
+        </p>
+    </div>
+
+    <div class="rec-box">
+        <h4>4. Kiến trúc & Độ trễ (Streaming / Cascaded Pipeline Optimization)</h4>
+        <p>
+            • Chuyển đổi từ mô hình <em>Batch-by-Batch</em> (chờ nói hết câu mới dịch) sang <strong>Streaming Speech-to-Speech (S2S)</strong> hoặc chia nhỏ chunk câu theo cụm nghĩa (syntactic chunking) để giảm độ trễ từ 5-9 giây xuống dưới 1.5 - 2 giây.
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "id": "5f318425e726435c8c094317ea2ee667",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 9.829375,
+  "output_seconds": 2.75156462585034,
+  "elapsed_seconds": 5.573117542000546,
+  "input_url": "/audio/5f318425e726435c8c094317ea2ee667/input.wav",
+  "output_url": "/audio/5f318425e726435c8c094317ea2ee667/output.wav",
+  "detail_url": "/audio/5f318425e726435c8c094317ea2ee667/result.json",
+  "asr": "At 30 PM, I buy car cost$1 million.",
+  "translation": "Lúc 3:0 giờ tối, tôi mua xe. Chi phí 1 triệu đô la.",
+  "tts_text": "lúc ba giờ tối, tôi mua xe. chi phí một triệu đô la.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "At 3:0 PM, I buy car. Cost $1 million.",
+      "asr_before_normalization": "At 30 PM, I buy car cost$1 million.",
+      "mt": "Lúc 3:0 giờ tối, tôi mua xe. Chi phí 1 triệu đô la.",
+      "tts_text": "lúc ba giờ tối, tôi mua xe. chi phí một triệu đô la.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.40266770900052506,
+        "source_normalize_s": 1.0284550830001535,
+        "mt_s": 0.7841369580000901,
+        "tts_s": 0.9682839999986754,
+        "total_s": 3.183543749999444,
+        "graph_s": 1.5881071249932575,
+        "graph_calls": 27,
+        "host_s": 1.5954366250061867,
+        "audio_in_s": 9.779375,
+        "audio_out_s": 2.75156462585034
+      },
+      "asr_raw": "At 30 PM, I buy car cost$1 million.",
+      "span": [
+        0.05,
+        9.829375
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "At 30 PM, I buy car cost$1 million.",
+      "output": [
+        "At 3:0 PM, I buy car.",
+        "Cost $1 million."
+      ],
+      "seconds": 1.0279042919992207,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Lúc 3:0 giờ tối, tôi mua xe. Chi phí 1 triệu đô la.",
+      "identifiers": [],
+      "identifier_spoken_text": "Lúc 3:0 giờ tối, tôi mua xe. Chi phí 1 triệu đô la.",
+      "output": "Lúc ba giờ tối, tôi mua xe. Chi phí một triệu đô la.",
+      "seconds": 0.4654144579999411,
+      "tokens": 67,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

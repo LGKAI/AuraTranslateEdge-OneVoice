@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OneVoice trên chip</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--fg:#1d2330;--muted:#667085;--line:#e3e6eb;--acc:#2f6fed;--ok:#1a7f4b;--bad:#c4321c;--badbg:#fff3f0;--chip:#eef2fb}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1c2027;--fg:#e6e8ec;--muted:#98a2b3;--line:#2c323c;--acc:#6b9bff;--ok:#4cc38a;--bad:#ff7a66;--badbg:#2a1d1b;--chip:#232a36}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:12px 20px;border-bottom:1px solid var(--line);background:var(--card);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+header h1{font-size:17px;margin:0 10px 0 0}.kv{color:var(--muted);font-size:12.5px}.kv b{color:var(--fg)}
+.badge{padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700}.b-ok{background:rgba(26,127,75,.15);color:var(--ok)}.b-bad{background:rgba(196,50,28,.15);color:var(--bad)}
+main{padding:14px 20px;max-width:1560px;margin:0 auto}
+.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+label{font-size:12.5px;color:var(--muted)}select,input[type=number],input[type=text]{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:inherit}
+button.act{background:var(--acc);color:#fff;border:0;border-radius:7px;padding:9px 16px;font-weight:700;cursor:pointer}button.act:disabled{opacity:.45;cursor:default}
+button.big{font-size:15px;padding:11px 20px}
+button.sec{background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;flex:1;min-width:200px}.prog>div{height:100%;width:0;background:var(--acc);transition:width .3s}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;position:sticky;top:0;background:var(--card);z-index:1}td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.bad td{background:var(--badbg)}.t{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}.ref{color:var(--muted);font-size:12px;margin-top:2px}
+.scroll{max-height:64vh;overflow:auto}.err{color:var(--bad);font-weight:600}.small{font-size:12px;color:var(--muted)}
+audio{height:30px;width:200px}.play{border:1px solid var(--line);background:var(--chip);color:var(--fg);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px}
+.tag{display:inline-block;background:rgba(196,50,28,.13);color:var(--bad);border-radius:6px;padding:1px 6px;font-size:11.5px;margin:1px 2px 1px 0;cursor:pointer}
+.seg{border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:8px}.stage{display:grid;grid-template-columns:80px 1fr 110px;gap:6px;padding:3px 0}.stage b{color:var(--muted)}
+.rec{background:var(--bad)!important}.hide{display:none}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>OneVoice: dịch nói chạy trên chip</h1><span id="dev" class="kv">đang kết nối tới hộp…</span></header>
+<main>
+<div class="tabs"><button id="tab1" class="on" onclick="tab(1)">1. Chạy 2 bộ dữ liệu</button><button id="tab2" onclick="tab(2)">2. Thử hard case (mic, file, câu chữ)</button></div>
+
+<section id="p1">
+  <div class="card">
+    <div class="row">
+      <button class="act big" id="bAll" onclick="start(['btc','adv'],0)">▶ Chạy TOÀN BỘ 2 bộ (BTC + ADV)</button>
+      <button class="sec" id="bQuick" onclick="start(['btc','adv'],5)">Chạy nhanh 5 câu mỗi chiều (thử trước)</button>
+      <button class="sec" onclick="document.getElementById('custom').classList.toggle('hide')">Tùy chọn…</button>
+      <button class="sec" id="bStop" onclick="stopBatch()" disabled>■ Dừng</button>
+      <button class="sec" id="bZip" onclick="exportZip()">⬇ Tải toàn bộ kết quả (1 file zip)</button>
+      <label>Xem lần chạy <select id="runSel" onchange="viewRun(this.value)"></select></label>
+    </div>
+    <div id="custom" class="row hide" style="margin-top:10px">
+      <label><input type="checkbox" id="cBtc" checked> BTC</label><label><input type="checkbox" id="cAdv" checked> ADV</label>
+      <label>Chiều <select id="cDir"><option value="all">cả 6</option></select></label>
+      <label>Mức ồn (ADV) <select id="cCond"><option value="all">tất cả</option><option>clean</option><option>factory_15db</option><option>construction_10db</option><option>heavy_5db</option></select></label>
+      <label>Số câu mỗi chiều <input id="cLim" type="number" min="0" value="0" style="width:70px"> (0 = tất cả)</label>
+      <button class="act" onclick="startCustom()">Chạy</button>
+    </div>
+    <div class="row" style="margin-top:10px"><div class="prog"><div id="bar"></div></div><span id="stat" class="small">chưa chạy</span></div>
+    <div class="small" style="margin-top:6px">Việc chạy diễn ra trên hộp: đóng trình duyệt vẫn chạy tiếp, mở lại trang là thấy tiến độ. Chạy xong, file zip kết quả tự tải về (results.csv, summary.csv, report.html xem offline có âm thanh, thư mục out/ chứa âm thanh dịch).</div>
+    <div id="setNote" class="small" style="margin-top:4px"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><b>Tổng hợp theo chiều</b> <span class="small">lỗi ASR so với transcript · chrF MT so với bản dịch chuẩn (chỉ BTC) · lỗi TTS = ASR nghe lại âm thanh ra so với chữ MT · chrF nghe lại = cách BTC chấm (chỉ BTC) · thời gian đo trên hộp</span>
+      <div class="scroll" style="max-height:38vh"><table id="sum"><thead><tr><th>Bộ</th><th>Chiều</th><th>Ồn</th><th>Clip</th><th>Lỗi ASR</th><th>chrF MT</th><th>Lỗi TTS</th><th>chrF nghe lại</th><th>ASR s</th><th>MT s</th><th>TTS s</th><th>Tổng s</th><th>p90 s</th><th>Có vấn đề</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="card"><b>Vấn đề tự phát hiện</b> <span class="small">(bấm để lọc)</span><div id="iss" style="margin-top:6px" class="small">chưa có</div>
+      <div class="small" style="margin-top:10px">Cách đọc: <b>ASR sai nhiều</b> → nghe âm thanh vào (ồn? giọng? nhãn sai?). <b>chrF MT thấp</b> nhưng ASR đúng → lỗi dịch. <b>TTS đọc khác chữ MT</b> → nghe âm thanh ra: số, giờ, tên riêng, từ tiếng Anh đọc sai, hoặc do ASR nghe lại nhầm (từ đồng âm). <b>Chậm</b> → xem cột MT s / TTS s. Bấm "chạy lại" ở từng dòng để thử lại sau khi sửa.</div>
+    </div>
+  </div>
+
+  <div class="card"><div class="row"><b>Từng clip</b>
+    <label><input type="checkbox" id="fBad" onchange="render()"> chỉ clip có vấn đề</label>
+    <label>Chiều <select id="fDir" onchange="render()"><option value="all">tất cả</option></select></label>
+    <label>Vấn đề <select id="fIss" onchange="render()"><option value="all">tất cả</option></select></label>
+    <span id="cnt" class="small"></span></div>
+    <div class="scroll"><table id="res"><thead><tr><th>Clip</th><th>Âm thanh vào</th><th>ASR</th><th>MT</th><th>TTS (nghe) + ASR nghe lại</th><th>Tổng</th><th>Vấn đề</th><th></th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<section id="p2" class="hide">
+  <div class="grid2">
+    <div class="card"><b>Thu âm hoặc gửi file</b>
+      <div class="row" style="margin-top:8px">
+        <label><input type="checkbox" id="streamOn" checked> Phát nối câu (đọc câu 1 trong lúc dịch câu 2, như chế độ live)</label>
+        <label>Chế độ <select id="mmode" onchange="mmode()"><option value="pair">hội thoại (tự nhận ngôn ngữ)</option><option value="dir">chiều cố định</option></select></label>
+        <label id="pairBox">Cặp <select id="pair"><option>vi,en</option><option selected>vi,ko</option><option>vi,zh</option></select></label>
+        <label id="mdirBox" class="hide">Chiều <select id="mdir"></select></label>
+      </div>
+      <div class="row" style="margin-top:8px"><button class="act" id="recBtn" onclick="toggleRec()">● Thu âm</button>
+        <label class="sec" style="padding:7px 12px;border:1px solid var(--line);border-radius:7px;cursor:pointer;color:var(--fg)">Gửi file WAV/MP3<input type="file" id="file" accept="audio/*" class="hide" onchange="sendFile(this)"></label>
+        <span id="recStat" class="small"></span></div>
+      <div class="small" style="margin-top:6px">Mic laptop → cáp USB → hộp chạy ASR → MT → TTS trên NPU → phát lại ở laptop.</div>
+    </div>
+    <div class="card"><b>Thử câu chữ (bỏ qua ASR)</b> <span class="small">để thử MT và cách TTS đọc số, giờ, ngày, tên riêng…</span>
+      <div class="row" style="margin-top:8px"><label>Từ <select id="tSrc"><option>vi</option><option>en</option><option>zh</option><option>ko</option></select></label>
+        <label>sang <select id="tTgt"><option>en</option><option>vi</option><option>zh</option><option selected>ko</option></select></label><span class="small">(chọn giống nhau = chỉ đọc TTS)</span></div>
+      <div class="row" style="margin-top:8px"><input type="text" id="tText" style="flex:1;min-width:260px" value="Cuộc họp lúc 3:30 chiều ngày 15/11/2026 ở phòng 204."><button class="act" onclick="sendText()">Chạy</button></div>
+    </div>
+  </div>
+  <div id="micOut"></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id); let INFO=null, RUN=null, ROWS=[], polling=false, autoZip=false;
+const DIRS=["vi-en","en-vi","vi-ko","ko-vi","vi-zh","zh-vi"];
+const ISS={asr_empty:"ASR không nghe ra",asr_bad:"ASR sai nhiều",mt_empty:"MT rỗng",mt_repeat:"MT lặp",mt_length:"độ dài dịch lạ",mt_low:"chrF MT thấp",tts_empty:"TTS câm",tts_bad:"TTS đọc khác chữ",slow:"chậm (RTF>1)",error:"lỗi chạy",mt_fallback:"MT lùi về 600M",asr_cleaned:"ASR đã lọc rác"};
+const f2=x=>(x==null?"–":Number(x).toFixed(2)), esc=s=>(s??"").toString().replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function tab(n){[1,2].forEach(i=>{$("p"+i).classList.toggle("hide",i!==n);$("tab"+i).classList.toggle("on",i===n)})}
+async function api(path,opt){const r=await fetch(path,opt);const j=await r.json().catch(()=>({error:"HTTP "+r.status}));if(!r.ok||j.error)throw new Error(j.error||("HTTP "+r.status));return j}
+function b64wav(b){if(!b)return null;const u=Uint8Array.from(atob(b),c=>c.charCodeAt(0));return URL.createObjectURL(new Blob([u],{type:"audio/wav"}))}
+async function init(){
+  try{INFO=await api("/api/info")}catch(e){$("dev").innerHTML='<span class="badge b-bad">không kết nối được hộp</span> '+esc(e.message)+' · kiểm tra: hộp đang chạy tools/box_serve.sh, laptop đã chạy tools/laptop_web.py';return}
+  const d=INFO.device,npu=d.backend==="npu";
+  $("dev").innerHTML=`<span class="badge ${npu?"b-ok":"b-bad"}">${npu?"NPU":"KHÔNG PHẢI NPU: "+esc(d.backend)}</span> máy <b>${esc(d.host)}</b> · ${esc(d.machine)} · SoC id <b>${esc(d.soc_id||"?")}</b> · ${esc(d.os)} · model <b>${esc(d.models.split("/").slice(-2).join("/"))}</b> · perf ${esc(d.perf)} · FastRPC ${esc((d.fastrpc||[]).join(", ")||"không thấy")}`;
+  DIRS.forEach(x=>["cDir","fDir","mdir"].forEach(s=>$(s).insertAdjacentHTML("beforeend",`<option>${x}</option>`)));
+  Object.entries(ISS).forEach(([k,v])=>$("fIss").insertAdjacentHTML("beforeend",`<option value="${k}">${v}</option>`));
+  const c=INFO.counts; $("setNote").textContent="Dữ liệu trên hộp ("+INFO.data_root+"): "+Object.keys(c).map(s=>s.toUpperCase()+" "+Object.values(c[s]).reduce((a,b)=>a+b,0)+" clip").join(" · ")+(c.adv?" · ADV không có bản dịch chuẩn nên không có chrF; chấm ASR, TTS và nghe.":"");
+  if(!INFO.sets.length){$("bAll").disabled=$("bQuick").disabled=true;$("setNote").textContent="Không thấy dữ liệu trên hộp: cần /root/onevoice/onevoice_btc_data và onevoice_btc_adv (hoặc đặt S2S_DATA)"}
+  const mt=INFO.mt||{}; if(mt.degraded){document.querySelector("header").insertAdjacentHTML("afterend",`<div style="background:#c4321c;color:#fff;padding:10px 20px;font-weight:700">⚠ MT LÙI VỀ 600M: NLLB-3.3B KHÔNG chạy được (${esc((mt.errors||[]).join(" | ")).slice(0,300)}). Các chiều ${esc(JSON.stringify(Object.keys(mt.route||{}).filter(k=>mt.route[k]==="mt33")))} đang dùng model có lỗi. Kết quả của lần chạy này KHÔNG phải của 3.3B.</div>`)}else if(mt.route){$("dev").insertAdjacentHTML("beforeend",` · MT: <b>3.3B</b> cho ${esc(Object.keys(mt.route).filter(k=>mt.route[k]==="mt33").join(", "))}, 600M cho ${esc(Object.keys(mt.route).filter(k=>mt.route[k]==="mt600").join(", "))}`)}
+  fillRuns(INFO.runs); const b=INFO.batch; if(b&&b.running){RUN=b.run;autoZip=true;poll()}else if(INFO.runs.length)viewRun(INFO.runs[0]);
+}
+function fillRuns(runs){$("runSel").innerHTML=runs.map(r=>`<option${r===RUN?" selected":""}>${esc(r)}</option>`).join("")||"<option value=''>(chưa có)</option>"}
+async function start(sets,limit,dirs,cond){
+  try{const r=await api("/api/batch/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sets,limit,dirs:dirs||DIRS,cond:cond||"all"})});
+    RUN=r.run;ROWS=[];render();autoZip=true;fillRuns([RUN,...[...$("runSel").options].map(o=>o.value).filter(Boolean)]);poll()}catch(e){alert(e.message)}}
+function startCustom(){const sets=[...($("cBtc").checked?["btc"]:[]),...($("cAdv").checked?["adv"]:[])];if(!sets.length)return;const d=$("cDir").value;start(sets,+$("cLim").value||0,d==="all"?DIRS:[d],$("cCond").value)}
+async function stopBatch(){await api("/api/batch/stop",{method:"POST"});autoZip=false}
+async function poll(){if(polling)return;polling=true;$("bStop").disabled=false;$("bAll").disabled=$("bQuick").disabled=true;
+  try{while(true){const b=await api("/api/batch/status");const n=await api(`/api/rows?run=${encodeURIComponent(RUN)}&since=${ROWS.length}`);if(n.rows.length){ROWS.push(...n.rows);render()}
+    const el=(Date.now()/1000-b.started),eta=b.done?el/b.done*(b.total-b.done):0;
+    $("bar").style.width=(b.total?100*b.done/b.total:0)+"%";$("stat").textContent=`${b.done}/${b.total} clip · ${Math.floor(el/60)} phút đã chạy${b.running?` · còn khoảng ${Math.ceil(eta/60)} phút · đang chạy ${b.current}`:""}${b.error?" · LỖI: "+b.error:""}`;
+    await refreshSum(); if(!b.running||b.run!==RUN)break; await new Promise(r=>setTimeout(r,2000))}}
+  catch(e){$("stat").textContent="mất kết nối: "+e.message+" (mở lại trang để theo dõi tiếp; việc chạy trên hộp không dừng)"}
+  polling=false;$("bStop").disabled=true;$("bAll").disabled=$("bQuick").disabled=false;
+  if(autoZip&&ROWS.length){autoZip=false;$("stat").textContent+=" · xong, đang tạo file zip…";exportZip()}}
+async function viewRun(r){if(!r)return;RUN=r;const n=await api(`/api/rows?run=${encodeURIComponent(r)}&since=0`);ROWS=n.rows;render();refreshSum();$("stat").textContent=`lần chạy ${r}: ${ROWS.length} clip`}
+function exportZip(){if(!RUN)return;const a=document.createElement("a");a.href="/api/export?run="+encodeURIComponent(RUN);a.download="";document.body.appendChild(a);a.click();a.remove()}
+async function refreshSum(){if(!RUN)return;const s=await api("/api/summary?run="+encodeURIComponent(RUN));
+  $("sum").tBodies[0].innerHTML=s.summary.map(x=>`<tr><td>${x.set}</td><td><b>${x.dir}</b></td><td>${x.cond==="all"?"":x.cond}</td><td class="num">${x.n}</td><td class="num">${x.asr_err==null?"–":x.asr_metric+" "+x.asr_err+"%"}</td><td class="num">${x.chrf??"–"}</td><td class="num">${x.tts_err==null?"–":x.tts_metric+" "+x.tts_err+"%"}</td><td class="num">${x.heard_chrf??"–"}</td><td class="num">${f2(x.asr_s)}</td><td class="num">${f2(x.mt_s)}</td><td class="num">${f2(x.tts_s)}</td><td class="num"><b>${f2(x.total_s)}</b></td><td class="num">${f2(x.p90_s)}</td><td class="num">${x.n_issues}</td></tr>`).join("");
+  $("iss").innerHTML=s.issues.length?s.issues.map(i=>`<span class="tag" onclick="$('fIss').value='${i.code}';$('fBad').checked=true;render()">${esc(i.text)}: ${i.n}</span>`).join(" "):"không có"}
+function render(){const fb=$("fBad").checked,fd=$("fDir").value,fi=$("fIss").value;
+  const list=ROWS.filter(r=>(!fb||r.issues.length)&&(fd==="all"||r.dir===fd)&&(fi==="all"||r.issues.includes(fi)));
+  $("cnt").textContent=`${list.length} / ${ROWS.length} clip`; const tb=$("res").tBodies[0]; const show=list.slice(-600).reverse();
+  tb.innerHTML=show.map(r=>{const src=`/api/audio?set=${r.set}&dir=${r.dir}&id=${encodeURIComponent(r.id)}`,out=r.file?`/api/out?run=${encodeURIComponent(r.run)}&file=${encodeURIComponent(r.file)}`:"";
+    return `<tr class="${r.issues.length?"bad":""}"><td><b>${r.dir}</b> <span class="small">${r.set}</span><br><span class="small">${esc(r.id)}${r.cond?"<br>"+r.cond:""}</span><div class="t">${f2(r.audio_s)} s</div></td>
+    <td><button class="play" onclick="this.outerHTML='<audio controls autoplay src=&quot;${src}&quot;></audio>'">▶ nghe</button><div class="ref">gốc: ${esc(r.text)}</div></td>
+    <td>${r.error?'<span class="err">'+esc(r.error)+'</span>':esc(r.asr)||'<i class="small">(không nghe ra)</i>'}<div class="t">${f2(r.asr_s)} s · lỗi <span class="${r.asr_err>30?"err":""}">${r.asr_err??"–"}%</span></div></td>
+    <td>${esc(r.mt)}<div class="t">${f2(r.mt_s)} s${r.chrf!=null?" · chrF "+r.chrf:""}</div>${r.ref?`<div class="ref">chuẩn: ${esc(r.ref)}</div>`:""}</td>
+    <td>${out?`<button class="play" onclick="this.outerHTML='<audio controls autoplay src=&quot;${out}&quot;></audio>'">▶ nghe bản dịch</button>`:'<i class="small">không có âm thanh</i>'}<div class="ref">nghe lại: ${esc(r.heard)}</div><div class="t">${f2(r.tts_s)} s · ra ${f2(r.out_audio_s)} s · lỗi TTS <span class="${r.tts_err>30?"err":""}">${r.tts_err??"–"}%</span></div></td>
+    <td class="num"><b>${f2(r.total_s)} s</b><div class="t">NPU ${f2(r.graph_s)} s</div></td>
+    <td>${r.issues.map(i=>`<span class="tag">${ISS[i]||i}</span>`).join("")}</td>
+    <td><button class="play" onclick="rerun(this,'${r.set}','${r.dir}','${esc(r.id)}')">chạy lại</button></td></tr>`}).join("")+(list.length>600?`<tr><td colspan=8 class="small">… hiện 600 clip mới nhất; xem đủ trong report.html của file zip</td></tr>`:"")}
+async function rerun(btn,set,dir,id){btn.disabled=true;btn.textContent="đang chạy…";
+  try{const r=await api("/api/run_item",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({set,dir,id,run:RUN})});
+    const i=ROWS.findIndex(x=>x.set===set&&x.dir===dir&&x.id===id);if(i>=0)ROWS[i]=r;else ROWS.push(r);render();refreshSum()}catch(e){btn.textContent="lỗi";alert(e.message)}}
+// ---------------- hard cases
+function mmode(){const p=$("mmode").value==="pair";$("pairBox").classList.toggle("hide",!p);$("mdirBox").classList.toggle("hide",p)}
+let rec=null;
+async function toggleRec(){
+  if(rec){const r=rec;rec=null;r.proc.disconnect();r.src.disconnect();r.stream.getTracks().forEach(t=>t.stop());const sr=r.ctx.sampleRate;await r.ctx.close();
+    $("recBtn").textContent="● Thu âm";$("recBtn").classList.remove("rec");const n=r.buf.reduce((a,b)=>a+b.length,0),x=new Float32Array(n);let o=0;r.buf.forEach(b=>{x.set(b,o);o+=b.length});
+    if(n<sr*0.3){$("recStat").textContent="quá ngắn";return}return sendPcm(resample(x,sr,16000))}
+  try{const stream=await navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:false}});
+    const ctx=new AudioContext(),src=ctx.createMediaStreamSource(stream),proc=ctx.createScriptProcessor(4096,1,1),buf=[];
+    proc.onaudioprocess=e=>buf.push(new Float32Array(e.inputBuffer.getChannelData(0)));src.connect(proc);proc.connect(ctx.destination);
+    rec={stream,ctx,src,proc,buf};$("recBtn").textContent="■ Dừng và dịch";$("recBtn").classList.add("rec");$("recStat").textContent="đang thu…"}
+  catch(e){$("recStat").textContent="không mở được mic: "+e.message}}
+function resample(x,from,to){if(from===to)return x;const r=from/to,n=Math.floor(x.length/r),y=new Float32Array(n);for(let i=0;i<n;i++){const a=i*r,i0=Math.floor(a),f=a-i0;y[i]=(x[i0]||0)*(1-f)+(x[i0+1]||0)*f}return y}
+function wav16(x){const b=new ArrayBuffer(44+x.length*2),v=new DataView(b),w=(o,s)=>[...s].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));
+  w(0,"RIFF");v.setUint32(4,36+x.length*2,true);w(8,"WAVE");w(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,16000,true);v.setUint32(28,32000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,x.length*2,true);
+  for(let i=0;i<x.length;i++)v.setInt16(44+i*2,Math.max(-1,Math.min(1,x[i]))*32767,true);return new Blob([b],{type:"audio/wav"})}
+async function sendFile(inp){const f=inp.files[0];if(!f)return;inp.value="";const ctx=new AudioContext();const ab=await ctx.decodeAudioData(await f.arrayBuffer());await ctx.close();sendPcm(resample(ab.getChannelData(0),ab.sampleRate,16000),f.name)}
+async function sendStream(x,name,blob,q){
+  const card=document.createElement("div");card.className="card";card.innerHTML=`<div class="row"><b>${esc(name||new Date().toLocaleTimeString())}</b><span class="small">vào ${(x.length/16000).toFixed(1)} s · phát nối câu</span><audio controls src="${URL.createObjectURL(blob)}"></audio></div><div class="segs"></div><div class="foot small">đang dịch trên hộp…</div>`;
+  $("micOut").prepend(card);const segs=card.querySelector(".segs"),foot=card.querySelector(".foot");const t0=performance.now();let firstPlay=null;
+  const queue=[];let playing=false;const playNext=()=>{if(playing||!queue.length)return;playing=true;const a=new Audio(queue.shift());if(firstPlay===null)firstPlay=(performance.now()-t0)/1000;a.onended=a.onerror=()=>{playing=false;playNext()};a.play().catch(()=>{playing=false;playNext()})};
+  const r=await fetch("/api/stream?"+q,{method:"POST",headers:{"Content-Type":"audio/wav"},body:blob});if(!r.ok||!r.body)throw new Error("HTTP "+r.status);
+  const rd=r.body.getReader(),dec=new TextDecoder();let buf="";
+  const handle=it=>{if(it.error)throw new Error(it.error);
+    if(it.done){const rt=(performance.now()-t0)/1000;foot.innerHTML=`Âm thanh đầu tiên: <b>${f2(it.first_audio_s)} s</b> trên hộp sau khi nhận xong âm thanh (<b>${f2(firstPlay)} s</b> tính cả truyền qua cáp) · dịch xong cả đoạn sau <b>${f2(it.total_s)} s</b> (${it.n} câu, âm thanh vào ${it.audio_s} s) · nghe lại: ${esc(it.heard)} · vòng laptop↔hộp ${rt.toFixed(2)} s`;return}
+    const url=b64wav(it.wav_b64);segs.insertAdjacentHTML("beforeend",`<div class="seg"><div class="small">câu ${it.i} · ${it.src} → ${it.tgt} · xong sau ${f2(it.at_s)} s</div><div class="stage"><b>ASR</b><div>${esc(it.asr)}</div><span class="t">${f2(it.timing.asr_s)} s</span></div><div class="stage"><b>MT</b><div>${esc(it.mt)}</div><span class="t">${f2(it.timing.mt_s)} s</span></div><div class="stage"><b>TTS</b><div class="small">${f2(it.timing.audio_out_s)} s âm thanh</div><span class="t">${f2(it.timing.tts_s)} s</span></div></div>`);
+    if(url){queue.push(url);playNext()}};
+  while(true){const{value,done}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});let k;while((k=buf.indexOf("\n"))>=0){const line=buf.slice(0,k);buf=buf.slice(k+1);if(line.trim())handle(JSON.parse(line))}}
+  if(!segs.children.length)foot.textContent="(không nghe ra gì: xin nói lại)"}
+async function sendPcm(x,name){const blob=wav16(x);const q=$("mmode").value==="pair"?"pair="+$("pair").value:(()=>{const[s,t]=$("mdir").value.split("-");return`src=${s}&tgt=${t}`})();
+  $("recStat").textContent=`đang dịch trên hộp… (${(x.length/16000).toFixed(1)} s)`;const t0=performance.now();
+  if($("streamOn").checked){try{await sendStream(x,name,blob,q);$("recStat").textContent="xong"}catch(e){$("recStat").textContent="lỗi: "+e.message}return}
+  try{const r=await api("/api/translate?"+q,{method:"POST",headers:{"Content-Type":"audio/wav"},body:blob}),rt=(performance.now()-t0)/1000,T=r.timing,out=b64wav(r.wav_b64);
+    const segs=r.segments.map(s=>`<div class="seg"><div class="small">${s.src} → ${s.tgt}</div><div class="stage"><b>ASR</b><div>${esc(s.asr)}</div><span class="t">${f2(s.timing.asr_s)} s</span></div>
+      <div class="stage"><b>MT</b><div>${esc(s.mt)}</div><span class="t">${f2(s.timing.mt_s)} s</span></div><div class="stage"><b>TTS</b><div class="small">${f2(s.timing.audio_out_s)} s âm thanh</div><span class="t">${f2(s.timing.tts_s)} s</span></div></div>`).join("")||'<div class="seg small">(không nghe ra gì: xin nói lại)</div>';
+    $("micOut").insertAdjacentHTML("afterbegin",`<div class="card"><div class="row"><b>${esc(name||new Date().toLocaleTimeString())}</b><span class="small">vào ${r.audio_s} s</span><audio controls src="${URL.createObjectURL(blob)}"></audio><span>→</span>${out?`<audio controls autoplay src="${out}"></audio>`:""}</div>${segs}
+      <div class="stage"><b>Nghe lại</b><div>${esc(r.heard)}</div><span class="t">${f2(r.heard_s)} s</span></div>
+      <div class="row" style="margin-top:6px"><span>Trên hộp: ASR <b>${f2(T.asr_s)}</b> · MT <b>${f2(T.mt_s)}</b> · TTS <b>${f2(T.tts_s)}</b> · tổng <b>${f2(T.total_s)}</b> s (NPU ${f2(T.graph_s)} s)</span><span class="small">vòng laptop↔hộp ${rt.toFixed(2)} s</span></div></div>`);
+    $("recStat").textContent="xong"}catch(e){$("recStat").textContent="lỗi: "+e.message}}
+async function sendText(){const body={text:$("tText").value,src:$("tSrc").value,tgt:$("tTgt").value};if(!body.text.trim())return;
+  try{const r=await api("/api/text",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}),out=b64wav(r.wav_b64);
+    $("micOut").insertAdjacentHTML("afterbegin",`<div class="card"><div class="small">câu chữ ${r.src} → ${r.tgt}</div><div class="stage"><b>Vào</b><div>${esc(r.text)}</div><span></span></div>
+      <div class="stage"><b>MT</b><div>${esc(r.mt)}</div><span class="t">${f2(r.mt_s)} s</span></div><div class="stage"><b>TTS</b><div>${out?`<audio controls autoplay src="${out}"></audio>`:"không có"}</div><span class="t">${f2(r.tts_s)} s</span></div>
+      <div class="stage"><b>Nghe lại</b><div>${esc(r.heard)}</div><span class="t">lỗi TTS <span class="${r.tts_err>30?"err":""}">${r.tts_err??"–"}%</span></span></div></div>`)}catch(e){alert(e.message)}}
+init();
+</script>
+</body>
+</html>

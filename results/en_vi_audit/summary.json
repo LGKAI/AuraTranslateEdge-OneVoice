@@ -1,0 +1,49 @@
+{
+  "cases": 50,
+  "input_wav": 50,
+  "output_wav": 49,
+  "missing_output": [
+    "EV-2748"
+  ],
+  "adv_cases": 0,
+  "all_existing_wav_finite": true,
+  "logged_tts_error_zero": 24,
+  "logged_asr_error_over_20": 16,
+  "logged_flags": {
+    "asr_bad": 3,
+    "tts_bad": 2,
+    "slow": 43
+  },
+  "logged_metrics_not_human_quality": {
+    "asr_err": {
+      "n": 50,
+      "mean": 15.33,
+      "median": 8.0
+    },
+    "chrf": {
+      "n": 49,
+      "mean": 55.46326530612245,
+      "median": 56.7
+    },
+    "tts_err": {
+      "n": 49,
+      "mean": 6.2326530612244895,
+      "median": 3.3
+    },
+    "total_s": {
+      "n": 50,
+      "mean": 6.952404,
+      "median": 6.209099999999999
+    },
+    "mt_s": {
+      "n": 50,
+      "mean": 4.460444,
+      "median": 4.1095500000000005
+    },
+    "tts_s": {
+      "n": 50,
+      "mean": 1.496778,
+      "median": 1.1888
+    }
+  }
+}

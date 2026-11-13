@@ -1,0 +1,174 @@
+{
+  "lang": "vi",
+  "mode": "hybrid",
+  "input": "Cuộc họp lúc 3:30 chiều ngày 21/12/2027. Giá là $18.25. Nhiệt độ 36,8°C. Mã ZIP 04782. Điện thoại 0908246135. Chuyến bay VN247. Số nhà 734.",
+  "normalized_text": "cuộc họp lúc ba giờ ba mươi phút chiều ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy. giá là mười tám đô la hai mươi lăm xen. nhiệt độ ba mươi sáu phẩy tám độ xê. mã dip không bốn bảy tám hai. điện thoại không chín không tám hai bốn sáu một ba năm. chuyến bay vê en hai bốn bảy. số nhà bảy trăm ba mươi bốn.",
+  "synth_chunks": [
+    "cuộc họp lúc ba giờ ba mươi phút chiều ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy.",
+    "giá là mười tám đô la hai mươi lăm xen. nhiệt độ ba mươi sáu phẩy tám độ xê. mã dip không bốn bảy tám hai.",
+    "điện thoại không chín không tám hai bốn sáu một ba năm. chuyến bay vê en hai bốn bảy. số nhà bảy trăm ba mươi bốn."
+  ],
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/vi.wav",
+  "sample_rate": 22050,
+  "output_seconds": 16.48625850340136,
+  "elapsed_seconds": 2.7633796249974694,
+  "format_trace": {
+    "stage": "tts_hybrid",
+    "lang": "vi",
+    "input": "Cuộc họp lúc 3:30 chiều ngày 21/12/2027. Giá là $18.25. Nhiệt độ 36,8°C. Mã ZIP 04782. Điện thoại 0908246135. Chuyến bay VN247. Số nhà 734.",
+    "output": "Cuộc họp lúc ba giờ ba mươi phút chiều ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy. Giá là mười tám đô la hai mươi lăm xen. Nhiệt độ ba mươi sáu phẩy tám độ xê. Mã ZIP không bốn bảy tám hai. Điện thoại không chín không tám hai bốn sáu một ba năm. Chuyến bay vê en hai bốn bảy. Số nhà bảy trăm ba mươi bốn.",
+    "spans": [
+      {
+        "start": 13,
+        "end": 17,
+        "kind": "time",
+        "raw": "3:30",
+        "value": {
+          "hour": 3,
+          "minute": 30,
+          "second": null,
+          "ampm": ""
+        },
+        "spoken": "ba giờ ba mươi phút",
+        "source": "grammar"
+      },
+      {
+        "start": 29,
+        "end": 39,
+        "kind": "date",
+        "raw": "21/12/2027",
+        "value": {
+          "year": 2027,
+          "month": 12,
+          "day": 21
+        },
+        "spoken": "hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy",
+        "source": "grammar"
+      },
+      {
+        "start": 48,
+        "end": 54,
+        "kind": "money",
+        "raw": "$18.25",
+        "value": {
+          "currency": "USD",
+          "number": {
+            "sign": "",
+            "whole": "18",
+            "fraction": "25"
+          }
+        },
+        "spoken": "mười tám đô la hai mươi lăm xen",
+        "source": "grammar"
+      },
+      {
+        "start": 65,
+        "end": 71,
+        "kind": "measure",
+        "raw": "36,8°C",
+        "value": {
+          "number": {
+            "sign": "",
+            "whole": "36",
+            "fraction": "8"
+          },
+          "unit": "°c"
+        },
+        "spoken": "ba mươi sáu phẩy tám độ xê",
+        "source": "grammar"
+      },
+      {
+        "start": 80,
+        "end": 85,
+        "kind": "identifier",
+        "raw": "04782",
+        "value": {
+          "characters": "04782"
+        },
+        "spoken": "không bốn bảy tám hai",
+        "source": "context"
+      },
+      {
+        "start": 98,
+        "end": 108,
+        "kind": "identifier",
+        "raw": "0908246135",
+        "value": {
+          "characters": "0908246135"
+        },
+        "spoken": "không chín không tám hai bốn sáu một ba năm",
+        "source": "context"
+      },
+      {
+        "start": 121,
+        "end": 126,
+        "kind": "identifier",
+        "raw": "VN247",
+        "value": {
+          "characters": "VN247"
+        },
+        "spoken": "vê en hai bốn bảy",
+        "source": "context"
+      },
+      {
+        "start": 135,
+        "end": 138,
+        "kind": "number",
+        "raw": "734",
+        "value": {
+          "sign": "",
+          "whole": "734",
+          "fraction": ""
+        },
+        "spoken": "bảy trăm ba mươi bốn",
+        "source": "grammar"
+      }
+    ],
+    "protected_ranges": [
+      [
+        13,
+        32
+      ],
+      [
+        44,
+        109
+      ],
+      [
+        118,
+        149
+      ],
+      [
+        160,
+        186
+      ],
+      [
+        195,
+        216
+      ],
+      [
+        229,
+        272
+      ],
+      [
+        285,
+        302
+      ],
+      [
+        311,
+        331
+      ]
+    ],
+    "warnings": [],
+    "seconds": 0.0020341250019555446,
+    "identifier_model": "CRF loaded",
+    "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+    "planned_chunks": [
+      "cuộc họp lúc ba giờ ba mươi phút chiều ngày hai mươi mốt tháng mười hai năm hai nghìn không trăm hai mươi bảy.",
+      "giá là mười tám đô la hai mươi lăm xen. nhiệt độ ba mươi sáu phẩy tám độ xê. mã dip không bốn bảy tám hai.",
+      "điện thoại không chín không tám hai bốn sáu một ba năm. chuyến bay vê en hai bốn bảy. số nhà bảy trăm ba mươi bốn."
+    ],
+    "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+  },
+  "finite": true,
+  "scope": "actual TTS only; authored format probes, not S2S or a human listening score"
+}

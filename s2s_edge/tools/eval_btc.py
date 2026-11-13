@@ -133,7 +133,7 @@ for d in a.dirs.split(","):
     for it in man:
         w = load_audio_any(it["wav"]); r = tr.translate(w)
         asr = " ".join(x["asr"] for x in r).strip(); j = "" if tgt == "zh" else " "; mt = j.join(x["mt"] for x in r).strip()
-        mt_gold = tr.mt(it["src_text"], src, tgt) if it["src_text"].strip() and not a.no_gold else ""
+        mt_gold = tr.e.translate_text(it["src_text"], src, tgt) if it["src_text"].strip() and not a.no_gold else ""
         tm = {k: round(sum(x["timing"][k] for x in r), 4) for k in ("asr_s", "mt_s", "tts_s", "total_s", "graph_s")} if r else {}
         heard = ""
         if out_asr is not None and r:

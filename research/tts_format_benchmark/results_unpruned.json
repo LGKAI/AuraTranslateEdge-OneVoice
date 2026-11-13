@@ -1,0 +1,6924 @@
+{
+  "environment": {
+    "python": "3.11.18 (main, Oct 26 2026, 11:32:31) [Clang 21.1.8 ]",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "cpu_count": 10,
+    "threads_mlm": 4,
+    "repo_commit": "abe8e30f33228fa3189025a935113c219b8f4ede",
+    "nemo_commit": "ddadfb2a38d2bc6b8cc6232c4f915eb60f500688",
+    "initial_rss_mb": 170.06592,
+    "rss_before_lm_mb": 397.983744,
+    "rss_after_lm_mb": 662.011904,
+    "final_rss_mb": 1680.818176,
+    "init_seconds": {
+      "vi": 1.9281222090003212,
+      "en": 0.5167026670001178,
+      "mlm": 1.8663963330000115
+    },
+    "repeats": 3,
+    "elapsed_seconds": 39.779840917,
+    "training": {
+      "sentences": 2304,
+      "seconds": 0.23530104199971902,
+      "token_accuracy_train": 1.0
+    },
+    "artifact_bytes": {
+      "en_ordinal.fst": 51418,
+      "en_digits.fst": 1706,
+      "en_fraction.fst": 136450,
+      "vi_date.fst": 651482,
+      "vi_digits.fst": 1930,
+      "vi_cardinal.fst": 183114,
+      "en_decimal.fst": 105522,
+      "en_date.fst": 144782,
+      "vi_time.fst": 48226,
+      "vi_code.fst": 4110,
+      "en_cardinal.fst": 206538,
+      "vi_ordinal.fst": 101350,
+      "en_time.fst": 13726,
+      "vi_decimal.fst": 308714,
+      "tagger.crfsuite": 28916,
+      "en_code.fst": 2990,
+      "vi_fraction.fst": 303274
+    },
+    "nemo_far_bytes": {
+      "en_tn_post_processing.far": 329268,
+      "en_tn_True_deterministic_cased__tokenize.far": 7747267,
+      "vi_tn_True_deterministic_verbalizer.far": 1621271,
+      "vi_tn_True_deterministic_cased_tokenize.far": 4102171,
+      "vi_tn_post_processing.far": 13948,
+      "en_tn_True_deterministic_verbalizer.far": 1599827
+    },
+    "package_bytes": {
+      "pynini": 310868,
+      "pywrapfst": 25519,
+      "sklearn": 31371508,
+      "sklearn_crfsuite": 53008,
+      "torch": 590620165,
+      "transformers": 56744568
+    },
+    "environment_bytes": 1590875191,
+    "mlm_parameters": 135445755,
+    "mlm_files": {
+      "hub/models--distilbert--distilbert-base-multilingual-cased/snapshots/45c032ab32cc946ad88a166f7cb282f58c753c2e/model.safetensors": 541795680,
+      "hub/models--distilbert--distilbert-base-multilingual-cased/snapshots/45c032ab32cc946ad88a166f7cb282f58c753c2e/config.json": 466,
+      "hub/models--distilbert--distilbert-base-multilingual-cased/snapshots/45c032ab32cc946ad88a166f7cb282f58c753c2e/tokenizer.json": 1961828,
+      "hub/models--distilbert--distilbert-base-multilingual-cased/snapshots/45c032ab32cc946ad88a166f7cb282f58c753c2e/vocab.txt": 995526
+    }
+  },
+  "summary": {
+    "B0": {
+      "passed": 35,
+      "total": 96,
+      "p50_ms": 0.014041499753147946,
+      "p95_ms": 0.02105219984969153,
+      "by_lang": {
+        "en": {
+          "passed": 18,
+          "total": 48
+        },
+        "vi": {
+          "passed": 17,
+          "total": 48
+        }
+      },
+      "by_level": {
+        "1-Easy": {
+          "passed": 23,
+          "total": 24
+        },
+        "2-Formats": {
+          "passed": 3,
+          "total": 24
+        },
+        "3-Context": {
+          "passed": 7,
+          "total": 24
+        },
+        "4-Edge": {
+          "passed": 2,
+          "total": 24
+        }
+      },
+      "by_kind": {
+        "cardinal": {
+          "passed": 17,
+          "total": 19
+        },
+        "code": {
+          "passed": 0,
+          "total": 8
+        },
+        "date": {
+          "passed": 1,
+          "total": 9
+        },
+        "decimal": {
+          "passed": 2,
+          "total": 8
+        },
+        "electronic": {
+          "passed": 0,
+          "total": 4
+        },
+        "foreign": {
+          "passed": 2,
+          "total": 4
+        },
+        "fraction": {
+          "passed": 0,
+          "total": 4
+        },
+        "measure": {
+          "passed": 0,
+          "total": 6
+        },
+        "money": {
+          "passed": 2,
+          "total": 4
+        },
+        "ordinal": {
+          "passed": 1,
+          "total": 2
+        },
+        "percent": {
+          "passed": 2,
+          "total": 2
+        },
+        "plain": {
+          "passed": 4,
+          "total": 4
+        },
+        "range": {
+          "passed": 0,
+          "total": 2
+        },
+        "score": {
+          "passed": 2,
+          "total": 2
+        },
+        "telephone": {
+          "passed": 0,
+          "total": 8
+        },
+        "time": {
+          "passed": 2,
+          "total": 8
+        },
+        "version": {
+          "passed": 0,
+          "total": 2
+        }
+      }
+    },
+    "M1": {
+      "passed": 62,
+      "total": 96,
+      "p50_ms": 4.659354000068561,
+      "p95_ms": 14.455260849967958,
+      "by_lang": {
+        "en": {
+          "passed": 34,
+          "total": 48
+        },
+        "vi": {
+          "passed": 28,
+          "total": 48
+        }
+      },
+      "by_level": {
+        "1-Easy": {
+          "passed": 24,
+          "total": 24
+        },
+        "2-Formats": {
+          "passed": 18,
+          "total": 24
+        },
+        "3-Context": {
+          "passed": 13,
+          "total": 24
+        },
+        "4-Edge": {
+          "passed": 7,
+          "total": 24
+        }
+      },
+      "by_kind": {
+        "cardinal": {
+          "passed": 18,
+          "total": 19
+        },
+        "code": {
+          "passed": 2,
+          "total": 8
+        },
+        "date": {
+          "passed": 5,
+          "total": 9
+        },
+        "decimal": {
+          "passed": 6,
+          "total": 8
+        },
+        "electronic": {
+          "passed": 1,
+          "total": 4
+        },
+        "foreign": {
+          "passed": 2,
+          "total": 4
+        },
+        "fraction": {
+          "passed": 4,
+          "total": 4
+        },
+        "measure": {
+          "passed": 6,
+          "total": 6
+        },
+        "money": {
+          "passed": 3,
+          "total": 4
+        },
+        "ordinal": {
+          "passed": 2,
+          "total": 2
+        },
+        "percent": {
+          "passed": 2,
+          "total": 2
+        },
+        "plain": {
+          "passed": 4,
+          "total": 4
+        },
+        "range": {
+          "passed": 0,
+          "total": 2
+        },
+        "score": {
+          "passed": 1,
+          "total": 2
+        },
+        "telephone": {
+          "passed": 0,
+          "total": 8
+        },
+        "time": {
+          "passed": 6,
+          "total": 8
+        },
+        "version": {
+          "passed": 0,
+          "total": 2
+        }
+      }
+    },
+    "M2": {
+      "passed": 59,
+      "total": 96,
+      "p50_ms": 4.280146000155582,
+      "p95_ms": 13.430587500033626,
+      "by_lang": {
+        "en": {
+          "passed": 34,
+          "total": 48
+        },
+        "vi": {
+          "passed": 25,
+          "total": 48
+        }
+      },
+      "by_level": {
+        "1-Easy": {
+          "passed": 22,
+          "total": 24
+        },
+        "2-Formats": {
+          "passed": 17,
+          "total": 24
+        },
+        "3-Context": {
+          "passed": 14,
+          "total": 24
+        },
+        "4-Edge": {
+          "passed": 6,
+          "total": 24
+        }
+      },
+      "by_kind": {
+        "cardinal": {
+          "passed": 15,
+          "total": 19
+        },
+        "code": {
+          "passed": 4,
+          "total": 8
+        },
+        "date": {
+          "passed": 5,
+          "total": 9
+        },
+        "decimal": {
+          "passed": 6,
+          "total": 8
+        },
+        "electronic": {
+          "passed": 1,
+          "total": 4
+        },
+        "foreign": {
+          "passed": 2,
+          "total": 4
+        },
+        "fraction": {
+          "passed": 4,
+          "total": 4
+        },
+        "measure": {
+          "passed": 4,
+          "total": 6
+        },
+        "money": {
+          "passed": 3,
+          "total": 4
+        },
+        "ordinal": {
+          "passed": 2,
+          "total": 2
+        },
+        "percent": {
+          "passed": 2,
+          "total": 2
+        },
+        "plain": {
+          "passed": 4,
+          "total": 4
+        },
+        "range": {
+          "passed": 0,
+          "total": 2
+        },
+        "score": {
+          "passed": 1,
+          "total": 2
+        },
+        "telephone": {
+          "passed": 0,
+          "total": 8
+        },
+        "time": {
+          "passed": 6,
+          "total": 8
+        },
+        "version": {
+          "passed": 0,
+          "total": 2
+        }
+      }
+    },
+    "M3": {
+      "passed": 36,
+      "total": 96,
+      "p50_ms": 66.66183350012034,
+      "p95_ms": 181.45845055023528,
+      "by_lang": {
+        "en": {
+          "passed": 22,
+          "total": 48
+        },
+        "vi": {
+          "passed": 14,
+          "total": 48
+        }
+      },
+      "by_level": {
+        "1-Easy": {
+          "passed": 15,
+          "total": 24
+        },
+        "2-Formats": {
+          "passed": 6,
+          "total": 24
+        },
+        "3-Context": {
+          "passed": 5,
+          "total": 24
+        },
+        "4-Edge": {
+          "passed": 10,
+          "total": 24
+        }
+      },
+      "by_kind": {
+        "cardinal": {
+          "passed": 11,
+          "total": 19
+        },
+        "code": {
+          "passed": 2,
+          "total": 8
+        },
+        "date": {
+          "passed": 3,
+          "total": 9
+        },
+        "decimal": {
+          "passed": 1,
+          "total": 8
+        },
+        "electronic": {
+          "passed": 0,
+          "total": 4
+        },
+        "foreign": {
+          "passed": 2,
+          "total": 4
+        },
+        "fraction": {
+          "passed": 1,
+          "total": 4
+        },
+        "measure": {
+          "passed": 3,
+          "total": 6
+        },
+        "money": {
+          "passed": 0,
+          "total": 4
+        },
+        "ordinal": {
+          "passed": 2,
+          "total": 2
+        },
+        "percent": {
+          "passed": 1,
+          "total": 2
+        },
+        "plain": {
+          "passed": 4,
+          "total": 4
+        },
+        "range": {
+          "passed": 0,
+          "total": 2
+        },
+        "score": {
+          "passed": 0,
+          "total": 2
+        },
+        "telephone": {
+          "passed": 3,
+          "total": 8
+        },
+        "time": {
+          "passed": 3,
+          "total": 8
+        },
+        "version": {
+          "passed": 0,
+          "total": 2
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "VI-001",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Có 25 người.",
+      "target": "25",
+      "expected": [
+        "Có hai mươi lăm người."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Có hai mươi lăm người.",
+          "pass": true,
+          "latencies_ms": [
+            0.024292000034620287,
+            0.016833000245242147,
+            0.0162080000336573
+          ]
+        },
+        "M1": {
+          "text": "Có hai mươi lăm người.",
+          "pass": true,
+          "latencies_ms": [
+            4.167832999883103,
+            3.7230409998301184,
+            3.789750000123604
+          ]
+        },
+        "M2": {
+          "text": "Có hai mươi lăm người.",
+          "pass": true,
+          "latencies_ms": [
+            3.2704579998608097,
+            3.1298750000132713,
+            3.1921670001793245
+          ]
+        },
+        "M3": {
+          "text": "Có hai mươi lăm người.",
+          "pass": true,
+          "latencies_ms": [
+            74.59295799981192,
+            75.04337499995017,
+            74.31450000012774
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "25",
+          "options": [
+            [
+              "cardinal",
+              "hai mươi lăm"
+            ],
+            [
+              "telephone",
+              "hai năm"
+            ],
+            [
+              "code",
+              "hai năm"
+            ],
+            [
+              "plain",
+              "25"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-002",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Tổng cộng 105 vé.",
+      "target": "105",
+      "expected": [
+        "Tổng cộng một trăm lẻ năm vé."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Tổng cộng một trăm lẻ năm vé.",
+          "pass": true,
+          "latencies_ms": [
+            0.017750000097294105,
+            0.015625000287400326,
+            0.019874999907187885
+          ]
+        },
+        "M1": {
+          "text": "Tổng cộng một trăm linh năm vé.",
+          "pass": true,
+          "latencies_ms": [
+            5.1450830001158465,
+            5.036250000102882,
+            5.205417000070156
+          ]
+        },
+        "M2": {
+          "text": "Tổng cộng một trăm linh năm vé.",
+          "pass": true,
+          "latencies_ms": [
+            4.623457999969105,
+            4.528292000031797,
+            4.975374999958149
+          ]
+        },
+        "M3": {
+          "text": "Tổng cộng một trăm linh năm vé.",
+          "pass": true,
+          "latencies_ms": [
+            68.41383300024972,
+            68.21733299966581,
+            68.99654200014993
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "105",
+          "options": [
+            [
+              "cardinal",
+              "một trăm linh năm"
+            ],
+            [
+              "telephone",
+              "một không năm"
+            ],
+            [
+              "code",
+              "một không năm"
+            ],
+            [
+              "plain",
+              "105"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-003",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Có 1.200 người.",
+      "target": "1.200",
+      "expected": [
+        "Có một nghìn hai trăm người."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Có một nghìn hai trăm người.",
+          "pass": true,
+          "latencies_ms": [
+            0.016583000160608208,
+            0.015625000287400326,
+            0.014333999843074707
+          ]
+        },
+        "M1": {
+          "text": "Có một nghìn hai trăm người.",
+          "pass": true,
+          "latencies_ms": [
+            5.601959000159695,
+            5.486999999902764,
+            5.380332999720849
+          ]
+        },
+        "M2": {
+          "text": "Có một nghìn hai trăm người.",
+          "pass": true,
+          "latencies_ms": [
+            5.124708000039391,
+            5.061708000084764,
+            5.008250000173575
+          ]
+        },
+        "M3": {
+          "text": "Có 1.200 người.",
+          "pass": false,
+          "latencies_ms": [
+            53.005290999863064,
+            52.509249999729946,
+            53.892333999556286
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1.200",
+          "options": [
+            [
+              "cardinal",
+              "một nghìn hai trăm"
+            ],
+            [
+              "plain",
+              "1.200"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-004",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "decimal",
+      "text": "Giá trị là 37,5.",
+      "target": "37,5",
+      "expected": [
+        "Giá trị là ba mươi bảy phẩy năm."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Giá trị là ba mươi bảy phẩy năm .",
+          "pass": true,
+          "latencies_ms": [
+            0.01595799994902336,
+            0.018834000002243556,
+            0.015582999822072452
+          ]
+        },
+        "M1": {
+          "text": "Giá trị là ba mươi bảy phẩy năm.",
+          "pass": true,
+          "latencies_ms": [
+            4.776708000008512,
+            5.118874999880063,
+            4.915292000077898
+          ]
+        },
+        "M2": {
+          "text": "Giá trị là ba mươi bảy phẩy năm.",
+          "pass": true,
+          "latencies_ms": [
+            4.3157919999430305,
+            4.497207999975217,
+            4.466332999982114
+          ]
+        },
+        "M3": {
+          "text": "Giá trị là ba mươi bảy phẩy năm.",
+          "pass": true,
+          "latencies_ms": [
+            71.18008299994472,
+            71.98495900001944,
+            72.03966699989905
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "37,5",
+          "options": [
+            [
+              "decimal",
+              "ba mươi bảy phẩy năm"
+            ],
+            [
+              "plain",
+              "37,5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-005",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "percent",
+      "text": "Giảm 15%.",
+      "target": "15%",
+      "expected": [
+        "Giảm mười lăm phần trăm."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Giảm mười lăm phần trăm.",
+          "pass": true,
+          "latencies_ms": [
+            0.015208000149868894,
+            0.013584000043920241,
+            0.012667000191868283
+          ]
+        },
+        "M1": {
+          "text": "Giảm mười lăm phần trăm.",
+          "pass": true,
+          "latencies_ms": [
+            3.8418750000346336,
+            3.6776249999093125,
+            3.6959160001970304
+          ]
+        },
+        "M2": {
+          "text": "Giảm mười lăm phần trăm.",
+          "pass": true,
+          "latencies_ms": [
+            3.3143340001515753,
+            3.246125000259781,
+            3.26120899990201
+          ]
+        },
+        "M3": {
+          "text": "Giảm mười lăm phần trăm.",
+          "pass": true,
+          "latencies_ms": [
+            53.01758299992798,
+            54.010167000342335,
+            53.43920799987245
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "15%",
+          "options": [
+            [
+              "measure",
+              "mười lăm phần trăm"
+            ],
+            [
+              "plain",
+              "15%"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-006",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "money",
+      "text": "Giá 50.000 đồng.",
+      "target": "50.000 đồng",
+      "expected": [
+        "Giá năm mươi nghìn đồng."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Giá năm mươi nghìn đồng.",
+          "pass": true,
+          "latencies_ms": [
+            0.01516700012871297,
+            0.014042000202607596,
+            0.01329199994870578
+          ]
+        },
+        "M1": {
+          "text": "Giá năm mươi nghìn đồng.",
+          "pass": true,
+          "latencies_ms": [
+            4.703249999693071,
+            4.60158300029434,
+            4.657625000163534
+          ]
+        },
+        "M2": {
+          "text": "Giá năm mươi nghìn đồng.",
+          "pass": true,
+          "latencies_ms": [
+            4.35891699999047,
+            4.312709000259929,
+            4.317916999752924
+          ]
+        },
+        "M3": {
+          "text": "Giá 50.000 đồng.",
+          "pass": false,
+          "latencies_ms": [
+            64.2449580000175,
+            62.99420799996369,
+            65.03754200002732
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "50.000 đồng",
+          "options": [
+            [
+              "money",
+              "năm mươi nghìn đồng"
+            ],
+            [
+              "plain",
+              "50.000 đồng"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-007",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Phòng 204.",
+      "target": "204",
+      "expected": [
+        "Phòng hai trăm lẻ bốn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Phòng hai trăm lẻ bốn .",
+          "pass": true,
+          "latencies_ms": [
+            0.013500000022759195,
+            0.012749999768857379,
+            0.015083999642229173
+          ]
+        },
+        "M1": {
+          "text": "Phòng hai trăm linh bốn.",
+          "pass": true,
+          "latencies_ms": [
+            5.515415999980178,
+            5.396791000293888,
+            5.266291999760142
+          ]
+        },
+        "M2": {
+          "text": "Phòng hai trăm linh bốn.",
+          "pass": true,
+          "latencies_ms": [
+            5.479832999753853,
+            4.843999999593507,
+            5.000624999865977
+          ]
+        },
+        "M3": {
+          "text": "Phòng hai trăm linh bốn.",
+          "pass": true,
+          "latencies_ms": [
+            67.94562499999302,
+            68.23304199997438,
+            67.98483400007171
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "204",
+          "options": [
+            [
+              "cardinal",
+              "hai trăm linh bốn"
+            ],
+            [
+              "telephone",
+              "hai không bốn"
+            ],
+            [
+              "code",
+              "hai không bốn"
+            ],
+            [
+              "plain",
+              "204"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-008",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Năm 1990.",
+      "target": "1990",
+      "expected": [
+        "Năm một nghìn chín trăm chín mươi."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Năm một nghìn chín trăm chín mươi .",
+          "pass": true,
+          "latencies_ms": [
+            0.013374999980442226,
+            0.014833000022917986,
+            0.013625000065076165
+          ]
+        },
+        "M1": {
+          "text": "Năm một nghìn chín trăm chín mươi.",
+          "pass": true,
+          "latencies_ms": [
+            8.118833000025916,
+            8.073791999777313,
+            8.191082999928767
+          ]
+        },
+        "M2": {
+          "text": "Năm 1990.",
+          "pass": false,
+          "latencies_ms": [
+            7.743499999833148,
+            8.017999999992753,
+            7.911041000170371
+          ]
+        },
+        "M3": {
+          "text": "Năm một nghìn chín trăm chín mươi.",
+          "pass": true,
+          "latencies_ms": [
+            107.66595799987044,
+            107.15637500015873,
+            107.3603329996331
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1990",
+          "options": [
+            [
+              "cardinal",
+              "một nghìn chín trăm chín mươi"
+            ],
+            [
+              "telephone",
+              "một chín chín không"
+            ],
+            [
+              "code",
+              "một chín chín không"
+            ],
+            [
+              "plain",
+              "1990"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-009",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Kết quả là 0.",
+      "target": "0",
+      "expected": [
+        "Kết quả là không."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Kết quả là không .",
+          "pass": true,
+          "latencies_ms": [
+            0.010166000265598996,
+            0.010791000022436492,
+            0.010707999990700046
+          ]
+        },
+        "M1": {
+          "text": "Kết quả là không.",
+          "pass": true,
+          "latencies_ms": [
+            0.7953340000312892,
+            0.8930419999160222,
+            0.8763750001890003
+          ]
+        },
+        "M2": {
+          "text": "Kết quả là không.",
+          "pass": true,
+          "latencies_ms": [
+            0.6412909997379757,
+            0.6844579997959954,
+            0.7090409999364056
+          ]
+        },
+        "M3": {
+          "text": "Kết quả là 0.",
+          "pass": false,
+          "latencies_ms": [
+            42.38704199997301,
+            41.83862500030955,
+            42.16654199990444
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0",
+          "options": [
+            [
+              "cardinal",
+              "không"
+            ],
+            [
+              "telephone",
+              "không"
+            ],
+            [
+              "code",
+              "không"
+            ],
+            [
+              "plain",
+              "0"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-010",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "plain",
+      "text": "Hãy chọn.",
+      "target": "Hãy chọn",
+      "expected": [
+        "Hãy chọn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hãy chọn.",
+          "pass": true,
+          "latencies_ms": [
+            0.0017500001376902219,
+            0.0014169995665724855,
+            0.0012909999895782676
+          ]
+        },
+        "M1": {
+          "text": "Hãy chọn.",
+          "pass": true,
+          "latencies_ms": [
+            0.0020829997993132565,
+            0.0019590002011682373,
+            0.0017920001482707448
+          ]
+        },
+        "M2": {
+          "text": "Hãy chọn.",
+          "pass": true,
+          "latencies_ms": [
+            0.010291999842593214,
+            0.009124999905907316,
+            0.00879199978953693
+          ]
+        },
+        "M3": {
+          "text": "Hãy chọn.",
+          "pass": true,
+          "latencies_ms": [
+            0.0018340001588512678,
+            0.0017909997040987946,
+            0.001708000127109699
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "VI-011",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "plain",
+      "text": "Xe của anh màu gì?",
+      "target": "Xe của anh màu gì",
+      "expected": [
+        "Xe của anh màu gì?"
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Xe của anh màu gì?",
+          "pass": true,
+          "latencies_ms": [
+            0.0020409997887327336,
+            0.001708000127109699,
+            0.001749999682942871
+          ]
+        },
+        "M1": {
+          "text": "Xe của anh màu gì?",
+          "pass": true,
+          "latencies_ms": [
+            0.003250000190746505,
+            0.003208000180165982,
+            0.003208000180165982
+          ]
+        },
+        "M2": {
+          "text": "Xe của anh màu gì?",
+          "pass": true,
+          "latencies_ms": [
+            0.023332999717240455,
+            0.021709000066039152,
+            0.021165999896766152
+          ]
+        },
+        "M3": {
+          "text": "Xe của anh màu gì?",
+          "pass": true,
+          "latencies_ms": [
+            0.0033330002224829514,
+            0.0033330002224829514,
+            0.0031250001484295353
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "VI-012",
+      "lang": "vi",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Có 2.000.000 vé.",
+      "target": "2.000.000",
+      "expected": [
+        "Có hai triệu vé."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Có hai triệu vé.",
+          "pass": true,
+          "latencies_ms": [
+            0.015332999737438513,
+            0.014958000065234955,
+            0.013416999991022749
+          ]
+        },
+        "M1": {
+          "text": "Có hai triệu vé.",
+          "pass": true,
+          "latencies_ms": [
+            4.153042000325513,
+            4.012082999906852,
+            4.0259160000459815
+          ]
+        },
+        "M2": {
+          "text": "Có 2.000.000 vé.",
+          "pass": false,
+          "latencies_ms": [
+            3.7694170000577287,
+            3.7324159998206596,
+            3.7014999998064013
+          ]
+        },
+        "M3": {
+          "text": "Có 2.000.000 vé.",
+          "pass": false,
+          "latencies_ms": [
+            46.32433400001901,
+            47.08812500030035,
+            46.78241700003127
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2.000.000",
+          "options": [
+            [
+              "cardinal",
+              "hai triệu"
+            ],
+            [
+              "plain",
+              "2.000.000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-001",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "There are 25 people.",
+      "target": "25",
+      "expected": [
+        "There are twenty five people."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "There are twenty-five people.",
+          "pass": true,
+          "latencies_ms": [
+            0.010875000043597538,
+            0.012041999980283435,
+            0.011374999758118065
+          ]
+        },
+        "M1": {
+          "text": "There are twenty five people.",
+          "pass": true,
+          "latencies_ms": [
+            4.298166999888053,
+            4.35358400000041,
+            4.301500000110536
+          ]
+        },
+        "M2": {
+          "text": "There are twenty five people.",
+          "pass": true,
+          "latencies_ms": [
+            3.789834000144765,
+            3.8664169996991404,
+            3.795875000378146
+          ]
+        },
+        "M3": {
+          "text": "There are twenty five people.",
+          "pass": true,
+          "latencies_ms": [
+            65.63495800037344,
+            65.47370900034366,
+            65.87450000006356
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "25",
+          "options": [
+            [
+              "cardinal",
+              "twenty five"
+            ],
+            [
+              "telephone",
+              "two five"
+            ],
+            [
+              "code",
+              "two five"
+            ],
+            [
+              "plain",
+              "25"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-002",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "We sold 105 tickets.",
+      "target": "105",
+      "expected": [
+        "We sold one hundred five tickets."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "We sold one hundred five tickets.",
+          "pass": true,
+          "latencies_ms": [
+            0.013875000149710104,
+            0.01304199986407184,
+            0.01662499971644138
+          ]
+        },
+        "M1": {
+          "text": "We sold one hundred and five tickets.",
+          "pass": true,
+          "latencies_ms": [
+            5.087499999717693,
+            5.141916999946261,
+            5.148499999904743
+          ]
+        },
+        "M2": {
+          "text": "We sold one hundred and five tickets.",
+          "pass": true,
+          "latencies_ms": [
+            4.434499999661057,
+            4.906708000362414,
+            4.572207999899547
+          ]
+        },
+        "M3": {
+          "text": "We sold one hundred and five tickets.",
+          "pass": true,
+          "latencies_ms": [
+            93.55945800007248,
+            93.92675000026429,
+            93.76399999973728
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "105",
+          "options": [
+            [
+              "cardinal",
+              "one hundred and five"
+            ],
+            [
+              "cardinal",
+              "one hundred five"
+            ],
+            [
+              "telephone",
+              "one zero five"
+            ],
+            [
+              "code",
+              "one zero five"
+            ],
+            [
+              "plain",
+              "105"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-003",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "There are 1,200 people.",
+      "target": "1,200",
+      "expected": [
+        "There are one thousand two hundred people."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "There are one thousand two hundred people.",
+          "pass": true,
+          "latencies_ms": [
+            0.014791000012337463,
+            0.013750000107393134,
+            0.019249999695603037
+          ]
+        },
+        "M1": {
+          "text": "There are one thousand two hundred people.",
+          "pass": true,
+          "latencies_ms": [
+            8.065375000114727,
+            7.666250000056607,
+            7.6814579997517285
+          ]
+        },
+        "M2": {
+          "text": "There are one thousand two hundred people.",
+          "pass": true,
+          "latencies_ms": [
+            7.4138750001111475,
+            7.349250000061147,
+            7.55979199993817
+          ]
+        },
+        "M3": {
+          "text": "There are 1,200 people.",
+          "pass": false,
+          "latencies_ms": [
+            53.354125000169006,
+            53.35020800021084,
+            53.16062499969121
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1,200",
+          "options": [
+            [
+              "cardinal",
+              "one thousand two hundred"
+            ],
+            [
+              "plain",
+              "1,200"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-004",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "decimal",
+      "text": "The value is 37.5.",
+      "target": "37.5",
+      "expected": [
+        "The value is thirty seven point five."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The value is thirty-seven point five .",
+          "pass": true,
+          "latencies_ms": [
+            0.014916000054654432,
+            0.016917000266403193,
+            0.014792000001762062
+          ]
+        },
+        "M1": {
+          "text": "The value is thirty seven point five.",
+          "pass": true,
+          "latencies_ms": [
+            6.064084000172443,
+            6.335999999919295,
+            6.143208000139566
+          ]
+        },
+        "M2": {
+          "text": "The value is thirty seven point five.",
+          "pass": true,
+          "latencies_ms": [
+            5.858790999809571,
+            5.777584000043134,
+            5.642916999931913
+          ]
+        },
+        "M3": {
+          "text": "The value is 37.5.",
+          "pass": false,
+          "latencies_ms": [
+            51.909041999806504,
+            52.00150000018766,
+            51.53724999991027
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "37.5",
+          "options": [
+            [
+              "decimal",
+              "thirty seven point five"
+            ],
+            [
+              "plain",
+              "37.5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-005",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "percent",
+      "text": "Save 15%.",
+      "target": "15%",
+      "expected": [
+        "Save fifteen percent."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Save fifteen percent.",
+          "pass": true,
+          "latencies_ms": [
+            0.012208999578433577,
+            0.011207999705220573,
+            0.01104199964174768
+          ]
+        },
+        "M1": {
+          "text": "Save fifteen percent.",
+          "pass": true,
+          "latencies_ms": [
+            4.215208000005077,
+            3.995000000031723,
+            3.9619170001969906
+          ]
+        },
+        "M2": {
+          "text": "Save fifteen percent.",
+          "pass": true,
+          "latencies_ms": [
+            3.711833000124898,
+            3.579749999971682,
+            3.6275830002523435
+          ]
+        },
+        "M3": {
+          "text": "Save 15%.",
+          "pass": false,
+          "latencies_ms": [
+            47.76054100011606,
+            47.623749999729625,
+            48.79537499982689
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "15%",
+          "options": [
+            [
+              "measure",
+              "fifteen percent"
+            ],
+            [
+              "plain",
+              "15%"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-006",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "money",
+      "text": "It costs $15.50.",
+      "target": "$15.50",
+      "expected": [
+        "It costs fifteen dollars fifty cents.",
+        "It costs fifteen dollars and fifty cents."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "It costs $ fifteen point five zero .",
+          "pass": false,
+          "latencies_ms": [
+            0.016959000276983716,
+            0.017124999885709258,
+            0.01741599999149912
+          ]
+        },
+        "M1": {
+          "text": "It costs fifteen dollars fifty cents.",
+          "pass": true,
+          "latencies_ms": [
+            4.907083000034618,
+            4.50733300021966,
+            4.531250000127329
+          ]
+        },
+        "M2": {
+          "text": "It costs fifteen dollars fifty cents.",
+          "pass": true,
+          "latencies_ms": [
+            4.359999999905995,
+            4.046208000090701,
+            4.006083999684051
+          ]
+        },
+        "M3": {
+          "text": "It costs $15.50.",
+          "pass": false,
+          "latencies_ms": [
+            56.28345800005263,
+            55.30449999969278,
+            54.83879199982766
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "$15.50",
+          "options": [
+            [
+              "money",
+              "fifteen dollars fifty cents"
+            ],
+            [
+              "plain",
+              "$15.50"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-007",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "Room 204.",
+      "target": "204",
+      "expected": [
+        "Room two hundred four.",
+        "Room two oh four."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Room two hundred four .",
+          "pass": true,
+          "latencies_ms": [
+            0.012542000149551313,
+            0.012791999779437901,
+            0.014708999970025616
+          ]
+        },
+        "M1": {
+          "text": "Room two hundred and four.",
+          "pass": true,
+          "latencies_ms": [
+            5.522707999716658,
+            5.587874999946507,
+            5.055665999861958
+          ]
+        },
+        "M2": {
+          "text": "Room two hundred and four.",
+          "pass": true,
+          "latencies_ms": [
+            4.899582999769336,
+            4.704666999714391,
+            4.579957999794715
+          ]
+        },
+        "M3": {
+          "text": "Room two hundred and four.",
+          "pass": true,
+          "latencies_ms": [
+            90.76833300014187,
+            90.82629100021222,
+            90.73600000010629
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "204",
+          "options": [
+            [
+              "cardinal",
+              "two hundred and four"
+            ],
+            [
+              "cardinal",
+              "two hundred four"
+            ],
+            [
+              "telephone",
+              "two zero four"
+            ],
+            [
+              "code",
+              "two zero four"
+            ],
+            [
+              "plain",
+              "204"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-008",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "date",
+      "text": "The year is 1990.",
+      "target": "1990",
+      "expected": [
+        "The year is nineteen ninety.",
+        "The year is one thousand nine hundred ninety."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The year is one thousand nine hundred ninety .",
+          "pass": true,
+          "latencies_ms": [
+            0.013374999980442226,
+            0.014333000308397459,
+            0.013750000107393134
+          ]
+        },
+        "M1": {
+          "text": "The year is nineteen ninety.",
+          "pass": true,
+          "latencies_ms": [
+            6.3145419999273145,
+            6.135041000106867,
+            6.221375000222906
+          ]
+        },
+        "M2": {
+          "text": "The year is nineteen ninety.",
+          "pass": true,
+          "latencies_ms": [
+            6.008332999954291,
+            6.089834000249539,
+            5.9946249998574785
+          ]
+        },
+        "M3": {
+          "text": "The year is nineteen ninety.",
+          "pass": true,
+          "latencies_ms": [
+            140.4526250003073,
+            140.15595800037772,
+            141.37279199985642
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1990",
+          "options": [
+            [
+              "date",
+              "nineteen ninety"
+            ],
+            [
+              "cardinal",
+              "one thousand nine hundred and ninety"
+            ],
+            [
+              "cardinal",
+              "one thousand nine hundred ninety"
+            ],
+            [
+              "telephone",
+              "one nine nine zero"
+            ],
+            [
+              "code",
+              "one nine nine zero"
+            ],
+            [
+              "plain",
+              "1990"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-009",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "The result is 0.",
+      "target": "0",
+      "expected": [
+        "The result is zero."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The result is zero .",
+          "pass": true,
+          "latencies_ms": [
+            0.011833000371552771,
+            0.010416999884910183,
+            0.010624999958963599
+          ]
+        },
+        "M1": {
+          "text": "The result is zero.",
+          "pass": true,
+          "latencies_ms": [
+            1.4670000000478467,
+            1.5261250000548898,
+            1.3502090000656608
+          ]
+        },
+        "M2": {
+          "text": "The result is zero.",
+          "pass": true,
+          "latencies_ms": [
+            1.229209000030096,
+            1.1666660002447315,
+            1.1297089999970922
+          ]
+        },
+        "M3": {
+          "text": "The result is zero.",
+          "pass": true,
+          "latencies_ms": [
+            45.847500000036234,
+            45.46945899983257,
+            46.227750000070955
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0",
+          "options": [
+            [
+              "cardinal",
+              "zero"
+            ],
+            [
+              "telephone",
+              "zero"
+            ],
+            [
+              "code",
+              "zero"
+            ],
+            [
+              "plain",
+              "0"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-010",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "plain",
+      "text": "Please choose.",
+      "target": "Please choose",
+      "expected": [
+        "Please choose."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Please choose.",
+          "pass": true,
+          "latencies_ms": [
+            0.0018340001588512678,
+            0.001500000053056283,
+            0.001416000031895237
+          ]
+        },
+        "M1": {
+          "text": "Please choose.",
+          "pass": true,
+          "latencies_ms": [
+            0.005709000106435269,
+            0.0021670002752216533,
+            0.0022089998310548253
+          ]
+        },
+        "M2": {
+          "text": "Please choose.",
+          "pass": true,
+          "latencies_ms": [
+            0.010750000001280569,
+            0.009459000011702301,
+            0.009625000075175194
+          ]
+        },
+        "M3": {
+          "text": "Please choose.",
+          "pass": true,
+          "latencies_ms": [
+            0.0021670002752216533,
+            0.002166000285797054,
+            0.002000000222324161
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "EN-011",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "plain",
+      "text": "What colour is your car?",
+      "target": "What colour is your car",
+      "expected": [
+        "What colour is your car?"
+      ],
+      "outputs": {
+        "B0": {
+          "text": "What colour is your car?",
+          "pass": true,
+          "latencies_ms": [
+            0.0020410002434800845,
+            0.0018749997252598405,
+            0.0017089996617869474
+          ]
+        },
+        "M1": {
+          "text": "What colour is your car?",
+          "pass": true,
+          "latencies_ms": [
+            0.003499999820633093,
+            0.003416000254219398,
+            0.0032920002013270278
+          ]
+        },
+        "M2": {
+          "text": "What colour is your car?",
+          "pass": true,
+          "latencies_ms": [
+            0.023332999717240455,
+            0.021583000034297584,
+            0.02112499987561023
+          ]
+        },
+        "M3": {
+          "text": "What colour is your car?",
+          "pass": true,
+          "latencies_ms": [
+            0.003458000264799921,
+            0.0033340002119075507,
+            0.003499999820633093
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "EN-012",
+      "lang": "en",
+      "level": "1-Easy",
+      "kind": "cardinal",
+      "text": "We sold 2,000,000 tickets.",
+      "target": "2,000,000",
+      "expected": [
+        "We sold two million tickets."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "We sold two million tickets.",
+          "pass": true,
+          "latencies_ms": [
+            0.016125000001920853,
+            0.014333999843074707,
+            0.012709000202448806
+          ]
+        },
+        "M1": {
+          "text": "We sold two million tickets.",
+          "pass": true,
+          "latencies_ms": [
+            7.12820799981273,
+            7.225415999982943,
+            7.129291000183002
+          ]
+        },
+        "M2": {
+          "text": "We sold two million tickets.",
+          "pass": true,
+          "latencies_ms": [
+            7.007749999957014,
+            7.076459000018076,
+            6.976749999921594
+          ]
+        },
+        "M3": {
+          "text": "We sold 2,000,000 tickets.",
+          "pass": false,
+          "latencies_ms": [
+            52.77262500021607,
+            52.636750000147,
+            53.68779199989149
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2,000,000",
+          "options": [
+            [
+              "cardinal",
+              "two million"
+            ],
+            [
+              "plain",
+              "2,000,000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-013",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "time",
+      "text": "Hẹn lúc 3:30.",
+      "target": "3:30",
+      "expected": [
+        "Hẹn lúc ba giờ ba mươi.",
+        "Hẹn lúc ba giờ ba mươi phút."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hẹn lúc ba : ba mươi .",
+          "pass": false,
+          "latencies_ms": [
+            0.015583999811497051,
+            0.015208000149868894,
+            0.017875000139611075
+          ]
+        },
+        "M1": {
+          "text": "Hẹn lúc ba giờ ba mươi phút.",
+          "pass": true,
+          "latencies_ms": [
+            3.5494160001690034,
+            3.501041000163241,
+            3.7724160001744167
+          ]
+        },
+        "M2": {
+          "text": "Hẹn lúc ba giờ ba mươi phút.",
+          "pass": true,
+          "latencies_ms": [
+            3.243374999783555,
+            3.1303750001825392,
+            3.2837920002748433
+          ]
+        },
+        "M3": {
+          "text": "Hẹn lúc 3:30.",
+          "pass": false,
+          "latencies_ms": [
+            61.59441699992385,
+            60.28162499978862,
+            61.152874999606865
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3:30",
+          "options": [
+            [
+              "time",
+              "ba giờ ba mươi phút"
+            ],
+            [
+              "plain",
+              "3:30"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-014",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "time",
+      "text": "Hẹn lúc 14h45.",
+      "target": "14h45",
+      "expected": [
+        "Hẹn lúc mười bốn giờ bốn mươi lăm.",
+        "Hẹn lúc mười bốn giờ bốn mươi lăm phút."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hẹn lúc mười bốn h bốn mươi lăm .",
+          "pass": false,
+          "latencies_ms": [
+            0.015791999885550467,
+            0.015625000287400326,
+            0.019624999822553946
+          ]
+        },
+        "M1": {
+          "text": "Hẹn lúc mười bốn giờ bốn mươi lăm phút.",
+          "pass": true,
+          "latencies_ms": [
+            6.696874999761349,
+            6.750959000328294,
+            6.820125000103872
+          ]
+        },
+        "M2": {
+          "text": "Hẹn lúc mười bốn giờ bốn mươi lăm phút.",
+          "pass": true,
+          "latencies_ms": [
+            6.226999999853433,
+            6.285375000061322,
+            6.427541999983077
+          ]
+        },
+        "M3": {
+          "text": "Hẹn lúc mười bốn giờ bốn mươi lăm phút.",
+          "pass": true,
+          "latencies_ms": [
+            108.68062500003361,
+            110.08562500001062,
+            110.17549999996845
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "14h45",
+          "options": [
+            [
+              "time",
+              "mười bốn giờ bốn mươi lăm phút"
+            ],
+            [
+              "code",
+              "một bốn hát bốn năm"
+            ],
+            [
+              "plain",
+              "14h45"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-015",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "date",
+      "text": "Hẹn vào 15/11/2026.",
+      "target": "15/11/2026",
+      "expected": [
+        "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+        "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hẹn vào mười lăm / mười một / hai nghìn không trăm hai mươi sáu .",
+          "pass": false,
+          "latencies_ms": [
+            0.020833999769820366,
+            0.02300000005561742,
+            0.021915999695920618
+          ]
+        },
+        "M1": {
+          "text": "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu.",
+          "pass": true,
+          "latencies_ms": [
+            15.191959000276256,
+            15.586583000185783,
+            15.09670899986304
+          ]
+        },
+        "M2": {
+          "text": "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu.",
+          "pass": true,
+          "latencies_ms": [
+            13.873832999706792,
+            13.836500000252272,
+            13.842374999967433
+          ]
+        },
+        "M3": {
+          "text": "Hẹn vào 15/11/2026.",
+          "pass": false,
+          "latencies_ms": [
+            160.0254169998152,
+            161.84354200004236,
+            161.55741699958526
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "15/11/2026",
+          "options": [
+            [
+              "date",
+              "ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu"
+            ],
+            [
+              "plain",
+              "15/11/2026"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-016",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "telephone",
+      "text": "Gọi 0912 345 678.",
+      "target": "0912 345 678",
+      "expected": [
+        "Gọi không chín một hai ba bốn năm sáu bảy tám."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Gọi chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám .",
+          "pass": false,
+          "latencies_ms": [
+            0.021209000351518625,
+            0.01929199970618356,
+            0.020916999801556813
+          ]
+        },
+        "M1": {
+          "text": "Gọi không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            16.831082999942737,
+            16.698207999979786,
+            16.439583999726892
+          ]
+        },
+        "M2": {
+          "text": "Gọi 0912 345 678.",
+          "pass": false,
+          "latencies_ms": [
+            15.678791000027559,
+            15.668292000100337,
+            15.552291000403784
+          ]
+        },
+        "M3": {
+          "text": "Gọi không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            317.4037080002563,
+            301.94470800006457,
+            298.72195799998735
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0912 345 678",
+          "options": [
+            [
+              "cardinal",
+              "không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám"
+            ],
+            [
+              "telephone",
+              "không chín một hai ba bốn năm sáu bảy tám"
+            ],
+            [
+              "code",
+              "không chín một hai ba bốn năm sáu bảy tám"
+            ],
+            [
+              "plain",
+              "0912 345 678"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-017",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "code",
+      "text": "Chuyến bay VN123.",
+      "target": "VN123",
+      "expected": [
+        "Chuyến bay vê en một hai ba."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Chuyến bay VN một trăm hai mươi ba .",
+          "pass": false,
+          "latencies_ms": [
+            0.015209000139293494,
+            0.014916000054654432,
+            0.015083000107551925
+          ]
+        },
+        "M1": {
+          "text": "Chuyến bay VN một trăm hai mươi ba.",
+          "pass": false,
+          "latencies_ms": [
+            5.151916000158963,
+            5.312334000336705,
+            5.298999999922671
+          ]
+        },
+        "M2": {
+          "text": "Chuyến bay VN123.",
+          "pass": false,
+          "latencies_ms": [
+            4.935833000217826,
+            5.057000000306289,
+            5.082041000150639
+          ]
+        },
+        "M3": {
+          "text": "Chuyến bay VN123.",
+          "pass": false,
+          "latencies_ms": [
+            107.27158400004555,
+            106.61612500007323,
+            105.83204099975774
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "VN123",
+          "options": [
+            [
+              "cardinal",
+              "VN một trăm hai mươi ba"
+            ],
+            [
+              "code",
+              "vê en một hai ba"
+            ],
+            [
+              "plain",
+              "VN123"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-018",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "decimal",
+      "text": "Giá trị là 0,125.",
+      "target": "0,125",
+      "expected": [
+        "Giá trị là không phẩy một hai năm."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Giá trị là một trăm hai mươi lăm .",
+          "pass": false,
+          "latencies_ms": [
+            0.018125000224245014,
+            0.016665999737597303,
+            0.014332999853650108
+          ]
+        },
+        "M1": {
+          "text": "Giá trị là không phẩy một hai năm.",
+          "pass": true,
+          "latencies_ms": [
+            6.143084000086674,
+            6.038832999820443,
+            6.117709000136529
+          ]
+        },
+        "M2": {
+          "text": "Giá trị là không phẩy một hai năm.",
+          "pass": true,
+          "latencies_ms": [
+            5.745333000049868,
+            5.78045900010693,
+            5.55625000015425
+          ]
+        },
+        "M3": {
+          "text": "Giá trị là 0,125.",
+          "pass": false,
+          "latencies_ms": [
+            61.6056670000944,
+            61.817708000035054,
+            61.879459000010684
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0,125",
+          "options": [
+            [
+              "decimal",
+              "không phẩy một hai năm"
+            ],
+            [
+              "plain",
+              "0,125"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-019",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "cardinal",
+      "text": "Nhiệt độ là -5.",
+      "target": "-5",
+      "expected": [
+        "Nhiệt độ là âm năm."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Nhiệt độ là - năm .",
+          "pass": false,
+          "latencies_ms": [
+            0.013500000022759195,
+            0.012250000054336851,
+            0.012584000160131836
+          ]
+        },
+        "M1": {
+          "text": "Nhiệt độ là âm năm.",
+          "pass": true,
+          "latencies_ms": [
+            1.9715839998752926,
+            1.944792000358575,
+            1.8572090002635377
+          ]
+        },
+        "M2": {
+          "text": "Nhiệt độ là âm năm.",
+          "pass": true,
+          "latencies_ms": [
+            1.689665999947465,
+            1.679417000104877,
+            1.6002500001377484
+          ]
+        },
+        "M3": {
+          "text": "Nhiệt độ là -5.",
+          "pass": false,
+          "latencies_ms": [
+            68.20137500017154,
+            68.13624999995227,
+            68.37350000023434
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "-5",
+          "options": [
+            [
+              "cardinal",
+              "âm năm"
+            ],
+            [
+              "telephone",
+              "năm"
+            ],
+            [
+              "code",
+              "năm"
+            ],
+            [
+              "plain",
+              "-5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-020",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "measure",
+      "text": "Đường dài 10 km.",
+      "target": "10 km",
+      "expected": [
+        "Đường dài mười ki lô mét.",
+        "Đường dài mười ki lô mét."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Đường dài mười km.",
+          "pass": false,
+          "latencies_ms": [
+            0.014082999769016169,
+            0.012958000297658145,
+            0.01754200002324069
+          ]
+        },
+        "M1": {
+          "text": "Đường dài mười ki lô mét.",
+          "pass": true,
+          "latencies_ms": [
+            3.4208329998364206,
+            3.1645830003981246,
+            3.0902089997653093
+          ]
+        },
+        "M2": {
+          "text": "Đường dài mười ki lô mét.",
+          "pass": true,
+          "latencies_ms": [
+            2.844000000095548,
+            2.7605420000327285,
+            2.7465419998407015
+          ]
+        },
+        "M3": {
+          "text": "Đường dài 10 km.",
+          "pass": false,
+          "latencies_ms": [
+            79.10724999965169,
+            79.0182079999795,
+            80.01429200021448
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "10 km",
+          "options": [
+            [
+              "measure",
+              "mười ki lô mét"
+            ],
+            [
+              "code",
+              "một không ca em"
+            ],
+            [
+              "plain",
+              "10 km"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-021",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "measure",
+      "text": "Nhiệt độ 25°C.",
+      "target": "25°C",
+      "expected": [
+        "Nhiệt độ hai mươi lăm độ xê.",
+        "Nhiệt độ hai mươi lăm độ c."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Nhiệt độ hai mươi lăm °C.",
+          "pass": false,
+          "latencies_ms": [
+            0.012542000149551313,
+            0.012917000276502222,
+            0.015458000234502833
+          ]
+        },
+        "M1": {
+          "text": "Nhiệt độ hai mươi lăm độ C.",
+          "pass": true,
+          "latencies_ms": [
+            3.7232089998724405,
+            3.778749999582942,
+            4.179584000212344
+          ]
+        },
+        "M2": {
+          "text": "Nhiệt độ 25°C.",
+          "pass": false,
+          "latencies_ms": [
+            3.3857919997899444,
+            3.4056670001518796,
+            3.510583999741357
+          ]
+        },
+        "M3": {
+          "text": "Nhiệt độ 25°C.",
+          "pass": false,
+          "latencies_ms": [
+            65.11108299991974,
+            64.04066699997202,
+            63.50125000017215
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "25°C",
+          "options": [
+            [
+              "measure",
+              "hai mươi lăm độ C"
+            ],
+            [
+              "plain",
+              "25°C"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-022",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "ordinal",
+      "text": "Đây là lần thứ 21.",
+      "target": "21",
+      "expected": [
+        "Đây là lần thứ hai mươi mốt."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Đây là lần thứ hai mươi mốt .",
+          "pass": true,
+          "latencies_ms": [
+            0.014666999959445093,
+            0.014791000012337463,
+            0.014000000192027073
+          ]
+        },
+        "M1": {
+          "text": "Đây là lần thứ hai mươi mốt.",
+          "pass": true,
+          "latencies_ms": [
+            3.654790999917168,
+            3.3308339998256997,
+            3.5840830000779533
+          ]
+        },
+        "M2": {
+          "text": "Đây là lần thứ hai mươi mốt.",
+          "pass": true,
+          "latencies_ms": [
+            3.106499999830703,
+            3.0013750001671724,
+            3.085958000156097
+          ]
+        },
+        "M3": {
+          "text": "Đây là lần thứ hai mươi mốt.",
+          "pass": true,
+          "latencies_ms": [
+            77.6113339998119,
+            77.65816600021935,
+            77.25458400000207
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "21",
+          "options": [
+            [
+              "cardinal",
+              "hai mươi mốt"
+            ],
+            [
+              "telephone",
+              "hai một"
+            ],
+            [
+              "code",
+              "hai một"
+            ],
+            [
+              "plain",
+              "21"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-023",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "fraction",
+      "text": "Lấy 2/3 lượng bột.",
+      "target": "2/3",
+      "expected": [
+        "Lấy hai phần ba lượng bột.",
+        "Lấy hai trên ba lượng bột."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Lấy hai / ba lượng bột.",
+          "pass": false,
+          "latencies_ms": [
+            0.014416999874811154,
+            0.01474999999118154,
+            0.014291999832494184
+          ]
+        },
+        "M1": {
+          "text": "Lấy hai phần ba lượng bột.",
+          "pass": true,
+          "latencies_ms": [
+            2.8397080000104324,
+            2.837458999692899,
+            2.9090419998283323
+          ]
+        },
+        "M2": {
+          "text": "Lấy hai phần ba lượng bột.",
+          "pass": true,
+          "latencies_ms": [
+            2.532833999794093,
+            2.515250000215019,
+            2.5295000000369328
+          ]
+        },
+        "M3": {
+          "text": "Lấy 2/3 lượng bột.",
+          "pass": false,
+          "latencies_ms": [
+            76.55583399991883,
+            74.99429200015584,
+            76.41224999997576
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2/3",
+          "options": [
+            [
+              "fraction",
+              "hai phần ba"
+            ],
+            [
+              "date",
+              "ngày hai tháng ba"
+            ],
+            [
+              "plain",
+              "2/3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-024",
+      "lang": "vi",
+      "level": "2-Formats",
+      "kind": "range",
+      "text": "Chờ từ 3-5 ngày.",
+      "target": "3-5",
+      "expected": [
+        "Chờ từ ba đến năm ngày."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Chờ từ ba - năm ngày.",
+          "pass": false,
+          "latencies_ms": [
+            0.01729199993860675,
+            0.015916999927867437,
+            0.015249999705702066
+          ]
+        },
+        "M1": {
+          "text": "Chờ từ ba âm năm ngày.",
+          "pass": false,
+          "latencies_ms": [
+            3.116750000117463,
+            2.902167000229383,
+            2.8704589999506425
+          ]
+        },
+        "M2": {
+          "text": "Chờ từ ba âm năm ngày.",
+          "pass": false,
+          "latencies_ms": [
+            2.731707999828359,
+            2.6277920001120947,
+            2.60070900003484
+          ]
+        },
+        "M3": {
+          "text": "Chờ từ 3-5 ngày.",
+          "pass": false,
+          "latencies_ms": [
+            90.44991700011451,
+            90.43266599974231,
+            89.48691700015843
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3-5",
+          "options": [
+            [
+              "cardinal",
+              "ba âm năm"
+            ],
+            [
+              "date",
+              "ngày ba tháng năm"
+            ],
+            [
+              "telephone",
+              "ba năm"
+            ],
+            [
+              "code",
+              "ba năm"
+            ],
+            [
+              "plain",
+              "3-5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-013",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "time",
+      "text": "Meet at 3:30 PM.",
+      "target": "3:30 PM",
+      "expected": [
+        "Meet at three thirty p m.",
+        "Meet at three thirty pm."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Meet at three : thirty PM.",
+          "pass": true,
+          "latencies_ms": [
+            0.019041000086872373,
+            0.012624999726540409,
+            0.014374999864230631
+          ]
+        },
+        "M1": {
+          "text": "Meet at three thirty PM.",
+          "pass": true,
+          "latencies_ms": [
+            6.486249999852589,
+            6.245415999728721,
+            6.204082999829552
+          ]
+        },
+        "M2": {
+          "text": "Meet at three thirty PM.",
+          "pass": true,
+          "latencies_ms": [
+            5.969959000140079,
+            5.7575000000724685,
+            5.806124999708118
+          ]
+        },
+        "M3": {
+          "text": "Meet at 3:30 PM.",
+          "pass": false,
+          "latencies_ms": [
+            50.226457999997365,
+            51.20874999965963,
+            51.4459590003753
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3:30 PM",
+          "options": [
+            [
+              "time",
+              "three thirty PM"
+            ],
+            [
+              "plain",
+              "3:30 PM"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-014",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "time",
+      "text": "Meet at 14:45.",
+      "target": "14:45",
+      "expected": [
+        "Meet at fourteen forty five.",
+        "Meet at two forty five p m."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Meet at fourteen : forty-five .",
+          "pass": true,
+          "latencies_ms": [
+            0.018374999854131602,
+            0.01516700012871297,
+            0.01329199994870578
+          ]
+        },
+        "M1": {
+          "text": "Meet at fourteen forty five.",
+          "pass": true,
+          "latencies_ms": [
+            7.6927089999117015,
+            7.634124999640335,
+            7.242208000207029
+          ]
+        },
+        "M2": {
+          "text": "Meet at fourteen forty five.",
+          "pass": true,
+          "latencies_ms": [
+            7.202457999937906,
+            7.229374999951688,
+            7.042208000257233
+          ]
+        },
+        "M3": {
+          "text": "Meet at 14:45.",
+          "pass": false,
+          "latencies_ms": [
+            54.00562499971784,
+            48.7162909998915,
+            47.304499999881955
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "14:45",
+          "options": [
+            [
+              "time",
+              "fourteen forty five"
+            ],
+            [
+              "plain",
+              "14:45"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-015",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "date",
+      "text": "Meet on 11/15/2026.",
+      "target": "11/15/2026",
+      "expected": [
+        "Meet on november fifteenth twenty twenty six.",
+        "Meet on november fifteenth two thousand twenty six.",
+        "Meet on the fifteenth of november twenty twenty six."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Meet on eleven / fifteen / two thousand twenty-six .",
+          "pass": false,
+          "latencies_ms": [
+            0.016125000001920853,
+            0.015083000107551925,
+            0.013584000043920241
+          ]
+        },
+        "M1": {
+          "text": "Meet on november fifteenth twenty twenty six.",
+          "pass": true,
+          "latencies_ms": [
+            4.891791000318335,
+            4.661082999973587,
+            4.554874999939784
+          ]
+        },
+        "M2": {
+          "text": "Meet on november fifteenth twenty twenty six.",
+          "pass": true,
+          "latencies_ms": [
+            4.183666999779234,
+            4.147249999732594,
+            4.10825000017212
+          ]
+        },
+        "M3": {
+          "text": "Meet on 11/15/2026.",
+          "pass": false,
+          "latencies_ms": [
+            61.414415999934135,
+            60.14508299995214,
+            60.44787499968152
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "11/15/2026",
+          "options": [
+            [
+              "date",
+              "november fifteenth twenty twenty six"
+            ],
+            [
+              "plain",
+              "11/15/2026"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-016",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "telephone",
+      "text": "Call 555-0123.",
+      "target": "555-0123",
+      "expected": [
+        "Call five five five zero one two three.",
+        "Call five five five oh one two three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Call five hundred fifty-five - one hundred twenty-three .",
+          "pass": false,
+          "latencies_ms": [
+            0.012833999790018424,
+            0.012083999990863958,
+            0.0144999999065476
+          ]
+        },
+        "M1": {
+          "text": "Call five hundred and fifty five - zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            6.21312500015847,
+            6.196625000029599,
+            6.446790999689256
+          ]
+        },
+        "M2": {
+          "text": "Call five hundred and fifty five - zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            5.891291000352794,
+            6.010707999848819,
+            5.968040999960067
+          ]
+        },
+        "M3": {
+          "text": "Call five five five zero one two three.",
+          "pass": true,
+          "latencies_ms": [
+            97.01762500026234,
+            96.13712500004112,
+            96.11116699988997
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "555-0123",
+          "options": [
+            [
+              "cardinal",
+              "five hundred and fifty five - zero one two three"
+            ],
+            [
+              "telephone",
+              "five five five zero one two three"
+            ],
+            [
+              "code",
+              "five five five zero one two three"
+            ],
+            [
+              "plain",
+              "555-0123"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-017",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "code",
+      "text": "Flight VN123.",
+      "target": "VN123",
+      "expected": [
+        "Flight v n one two three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Flight VN one hundred twenty-three .",
+          "pass": false,
+          "latencies_ms": [
+            0.012292000064917374,
+            0.011666999853332527,
+            0.013500000022759195
+          ]
+        },
+        "M1": {
+          "text": "Flight VN one two three.",
+          "pass": false,
+          "latencies_ms": [
+            1.2830840000788157,
+            1.2612919999810401,
+            1.36258300017289
+          ]
+        },
+        "M2": {
+          "text": "Flight VN one two three.",
+          "pass": false,
+          "latencies_ms": [
+            1.0751660001915297,
+            1.0505420000299637,
+            1.1091249998571584
+          ]
+        },
+        "M3": {
+          "text": "Flight VN123.",
+          "pass": false,
+          "latencies_ms": [
+            64.03470799978095,
+            65.49658299991279,
+            64.79908299979797
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "VN123",
+          "options": [
+            [
+              "plain",
+              "VN one two three"
+            ],
+            [
+              "code",
+              "v n one two three"
+            ],
+            [
+              "plain",
+              "VN123"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-018",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "decimal",
+      "text": "The value is 0.125.",
+      "target": "0.125",
+      "expected": [
+        "The value is zero point one two five."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The value is one hundred twenty-five .",
+          "pass": false,
+          "latencies_ms": [
+            0.015125000118132448,
+            0.012334000075497897,
+            0.012792000234185252
+          ]
+        },
+        "M1": {
+          "text": "The value is zero point one two five.",
+          "pass": true,
+          "latencies_ms": [
+            5.153291000169702,
+            5.019249999804742,
+            4.988125000181753
+          ]
+        },
+        "M2": {
+          "text": "The value is zero point one two five.",
+          "pass": true,
+          "latencies_ms": [
+            4.611915999703342,
+            4.63733400010824,
+            4.857875000197964
+          ]
+        },
+        "M3": {
+          "text": "The value is 0.125.",
+          "pass": false,
+          "latencies_ms": [
+            49.58929199983686,
+            51.88612500023737,
+            50.04025000016554
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0.125",
+          "options": [
+            [
+              "decimal",
+              "zero point one two five"
+            ],
+            [
+              "plain",
+              "0.125"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-019",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "cardinal",
+      "text": "The temperature is -5.",
+      "target": "-5",
+      "expected": [
+        "The temperature is minus five.",
+        "The temperature is negative five."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The temperature is - five .",
+          "pass": false,
+          "latencies_ms": [
+            0.011250000170548446,
+            0.010457999906066107,
+            0.010833000033017015
+          ]
+        },
+        "M1": {
+          "text": "The temperature is minus five.",
+          "pass": true,
+          "latencies_ms": [
+            3.669250000257307,
+            3.5636250004245085,
+            3.6527090001072793
+          ]
+        },
+        "M2": {
+          "text": "The temperature is minus five.",
+          "pass": true,
+          "latencies_ms": [
+            3.330000000005384,
+            3.2685000001038134,
+            3.294249999726162
+          ]
+        },
+        "M3": {
+          "text": "The temperature is -5.",
+          "pass": false,
+          "latencies_ms": [
+            64.21941700000389,
+            64.69141599973227,
+            67.02295800005231
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "-5",
+          "options": [
+            [
+              "cardinal",
+              "minus five"
+            ],
+            [
+              "telephone",
+              "five"
+            ],
+            [
+              "code",
+              "five"
+            ],
+            [
+              "plain",
+              "-5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-020",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "measure",
+      "text": "The road is 10 km long.",
+      "target": "10 km",
+      "expected": [
+        "The road is ten kilometers long.",
+        "The road is ten kilometres long."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The road is ten km long.",
+          "pass": false,
+          "latencies_ms": [
+            0.010125000244443072,
+            0.00983300014922861,
+            0.011000000085914508
+          ]
+        },
+        "M1": {
+          "text": "The road is ten kilometers long.",
+          "pass": true,
+          "latencies_ms": [
+            4.15866699995604,
+            4.165374999956839,
+            4.3608329997368855
+          ]
+        },
+        "M2": {
+          "text": "The road is ten kilometers long.",
+          "pass": true,
+          "latencies_ms": [
+            3.841582999939419,
+            3.8526669995917473,
+            4.013000000213651
+          ]
+        },
+        "M3": {
+          "text": "The road is 10 km long.",
+          "pass": false,
+          "latencies_ms": [
+            67.08162499990067,
+            66.59075000015946,
+            67.11058399969261
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "10 km",
+          "options": [
+            [
+              "measure",
+              "ten kilometers"
+            ],
+            [
+              "code",
+              "one zero k m"
+            ],
+            [
+              "plain",
+              "10 km"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-021",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "measure",
+      "text": "It is 25°C outside.",
+      "target": "25°C",
+      "expected": [
+        "It is twenty five degrees celsius outside.",
+        "It is twenty five degrees c outside."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "It is twenty-five °C outside.",
+          "pass": false,
+          "latencies_ms": [
+            0.012584000160131836,
+            0.011374999758118065,
+            0.011749999885068974
+          ]
+        },
+        "M1": {
+          "text": "It is twenty five degrees Celsius outside.",
+          "pass": true,
+          "latencies_ms": [
+            4.131749999942258,
+            4.104042000108166,
+            4.196832999696198
+          ]
+        },
+        "M2": {
+          "text": "It is twenty five degrees Celsius outside.",
+          "pass": true,
+          "latencies_ms": [
+            3.705083000113518,
+            3.695708000122977,
+            3.725042000041867
+          ]
+        },
+        "M3": {
+          "text": "It is twenty five degrees Celsius outside.",
+          "pass": true,
+          "latencies_ms": [
+            48.64754100026403,
+            47.898583999995026,
+            48.04854099984368
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "25°C",
+          "options": [
+            [
+              "measure",
+              "twenty five degrees Celsius"
+            ],
+            [
+              "plain",
+              "25°C"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-022",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "ordinal",
+      "text": "This is my 21st visit.",
+      "target": "21st",
+      "expected": [
+        "This is my twenty first visit."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "This is my twenty-one st visit.",
+          "pass": false,
+          "latencies_ms": [
+            0.011833000371552771,
+            0.012208000043756329,
+            0.010708999980124645
+          ]
+        },
+        "M1": {
+          "text": "This is my twenty first visit.",
+          "pass": true,
+          "latencies_ms": [
+            4.103624999970634,
+            4.101042000002053,
+            4.107999999632739
+          ]
+        },
+        "M2": {
+          "text": "This is my twenty first visit.",
+          "pass": true,
+          "latencies_ms": [
+            3.607875000398053,
+            3.631750000295142,
+            3.699708000112878
+          ]
+        },
+        "M3": {
+          "text": "This is my twenty first visit.",
+          "pass": true,
+          "latencies_ms": [
+            69.62095800008683,
+            68.9278749996447,
+            72.0448749998468
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "21st",
+          "options": [
+            [
+              "ordinal",
+              "twenty first"
+            ],
+            [
+              "code",
+              "two one s t"
+            ],
+            [
+              "plain",
+              "21st"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-023",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "fraction",
+      "text": "Take 2/3 of the flour.",
+      "target": "2/3",
+      "expected": [
+        "Take two thirds of the flour."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Take two / three of the flour.",
+          "pass": false,
+          "latencies_ms": [
+            0.011874999927385943,
+            0.011416999768698588,
+            0.013333999959286302
+          ]
+        },
+        "M1": {
+          "text": "Take two thirds of the flour.",
+          "pass": true,
+          "latencies_ms": [
+            3.2210839999606833,
+            3.1410839997079165,
+            3.4166249997724663
+          ]
+        },
+        "M2": {
+          "text": "Take two thirds of the flour.",
+          "pass": true,
+          "latencies_ms": [
+            2.8654170000663726,
+            2.850082999884762,
+            2.906124999753956
+          ]
+        },
+        "M3": {
+          "text": "Take two thirds of the flour.",
+          "pass": true,
+          "latencies_ms": [
+            49.297333999675175,
+            50.70070900001156,
+            51.991208999879746
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2/3",
+          "options": [
+            [
+              "fraction",
+              "two thirds"
+            ],
+            [
+              "plain",
+              "2/3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-024",
+      "lang": "en",
+      "level": "2-Formats",
+      "kind": "range",
+      "text": "Wait 3-5 days.",
+      "target": "3-5",
+      "expected": [
+        "Wait three to five days."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Wait three - five days.",
+          "pass": false,
+          "latencies_ms": [
+            0.012166000033175806,
+            0.01050000037139398,
+            0.010333000318496488
+          ]
+        },
+        "M1": {
+          "text": "Wait three - five days.",
+          "pass": false,
+          "latencies_ms": [
+            4.704834000222036,
+            4.7739999999976135,
+            4.836875000364671
+          ]
+        },
+        "M2": {
+          "text": "Wait three - five days.",
+          "pass": false,
+          "latencies_ms": [
+            4.467624999961117,
+            4.383625000173197,
+            4.376332999981969
+          ]
+        },
+        "M3": {
+          "text": "Wait 3-5 days.",
+          "pass": false,
+          "latencies_ms": [
+            66.36475000004793,
+            65.29116599995177,
+            63.88758399998551
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3-5",
+          "options": [
+            [
+              "cardinal",
+              "three - five"
+            ],
+            [
+              "telephone",
+              "three five"
+            ],
+            [
+              "code",
+              "three five"
+            ],
+            [
+              "plain",
+              "3-5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-025",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "date",
+      "text": "Lịch hẹn ngày 1/4.",
+      "target": "1/4",
+      "expected": [
+        "Lịch hẹn ngày một tháng tư.",
+        "Lịch hẹn ngày mùng một tháng tư."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Lịch hẹn ngày một / bốn .",
+          "pass": false,
+          "latencies_ms": [
+            0.015874999917286914,
+            0.01699999984339229,
+            0.014958000065234955
+          ]
+        },
+        "M1": {
+          "text": "Lịch hẹn ngày một phần tư.",
+          "pass": false,
+          "latencies_ms": [
+            2.8887919997941935,
+            3.0562500000996806,
+            2.9809160000695556
+          ]
+        },
+        "M2": {
+          "text": "Lịch hẹn ngày một tháng tư.",
+          "pass": true,
+          "latencies_ms": [
+            2.546499999880325,
+            2.7596660002018325,
+            2.537124999889784
+          ]
+        },
+        "M3": {
+          "text": "Lịch hẹn ngày 1/4.",
+          "pass": false,
+          "latencies_ms": [
+            99.54816599974947,
+            100.3087920003054,
+            98.73658400010754
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1/4",
+          "options": [
+            [
+              "fraction",
+              "một phần tư"
+            ],
+            [
+              "date",
+              "ngày một tháng tư"
+            ],
+            [
+              "fraction",
+              "một phần bốn"
+            ],
+            [
+              "plain",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-026",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "fraction",
+      "text": "Ăn 1/4 chiếc bánh.",
+      "target": "1/4",
+      "expected": [
+        "Ăn một phần tư chiếc bánh.",
+        "Ăn một trên bốn chiếc bánh."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Ăn một / bốn chiếc bánh.",
+          "pass": false,
+          "latencies_ms": [
+            0.01662499971644138,
+            0.013208000382292084,
+            0.015083999642229173
+          ]
+        },
+        "M1": {
+          "text": "Ăn một phần tư chiếc bánh.",
+          "pass": true,
+          "latencies_ms": [
+            3.053375000035885,
+            2.8921250000166765,
+            2.8737920001731254
+          ]
+        },
+        "M2": {
+          "text": "Ăn một phần tư chiếc bánh.",
+          "pass": true,
+          "latencies_ms": [
+            2.6901249998445564,
+            2.5799169998208527,
+            2.4931670000114536
+          ]
+        },
+        "M3": {
+          "text": "Ăn 1/4 chiếc bánh.",
+          "pass": false,
+          "latencies_ms": [
+            83.8669579998168,
+            82.3462080002173,
+            82.95524999994086
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1/4",
+          "options": [
+            [
+              "fraction",
+              "một phần tư"
+            ],
+            [
+              "date",
+              "ngày một tháng tư"
+            ],
+            [
+              "fraction",
+              "một phần bốn"
+            ],
+            [
+              "plain",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-027",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "telephone",
+      "text": "Gọi số khẩn cấp 114.",
+      "target": "114",
+      "expected": [
+        "Gọi số khẩn cấp một một bốn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Gọi số khẩn cấp một trăm mười bốn .",
+          "pass": false,
+          "latencies_ms": [
+            0.01583299990670639,
+            0.014082999769016169,
+            0.015749999874969944
+          ]
+        },
+        "M1": {
+          "text": "Gọi số khẩn cấp một trăm mười bốn.",
+          "pass": false,
+          "latencies_ms": [
+            6.319083000107639,
+            6.273957999837876,
+            6.177708999985043
+          ]
+        },
+        "M2": {
+          "text": "Gọi số khẩn cấp một trăm mười bốn.",
+          "pass": false,
+          "latencies_ms": [
+            5.807542000184185,
+            5.777207999926759,
+            5.961917000149697
+          ]
+        },
+        "M3": {
+          "text": "Gọi số khẩn cấp một trăm mười bốn.",
+          "pass": false,
+          "latencies_ms": [
+            84.70854200004396,
+            85.30666600017867,
+            85.46945899979619
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "114",
+          "options": [
+            [
+              "cardinal",
+              "một trăm mười bốn"
+            ],
+            [
+              "telephone",
+              "một một bốn"
+            ],
+            [
+              "code",
+              "một một bốn"
+            ],
+            [
+              "plain",
+              "114"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-028",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "cardinal",
+      "text": "Có 114 người đang chờ.",
+      "target": "114",
+      "expected": [
+        "Có một trăm mười bốn người đang chờ."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Có một trăm mười bốn người đang chờ.",
+          "pass": true,
+          "latencies_ms": [
+            0.014417000329558505,
+            0.01595899993844796,
+            0.01633300007597427
+          ]
+        },
+        "M1": {
+          "text": "Có một trăm mười bốn người đang chờ.",
+          "pass": true,
+          "latencies_ms": [
+            6.53375000001688,
+            6.36987500001851,
+            6.438541000079567
+          ]
+        },
+        "M2": {
+          "text": "Có một trăm mười bốn người đang chờ.",
+          "pass": true,
+          "latencies_ms": [
+            5.816290999973717,
+            5.792333000044891,
+            5.8132500003011955
+          ]
+        },
+        "M3": {
+          "text": "Có một trăm mười bốn người đang chờ.",
+          "pass": true,
+          "latencies_ms": [
+            79.11474999991697,
+            79.39570799999274,
+            79.93624999971871
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "114",
+          "options": [
+            [
+              "cardinal",
+              "một trăm mười bốn"
+            ],
+            [
+              "telephone",
+              "một một bốn"
+            ],
+            [
+              "code",
+              "một một bốn"
+            ],
+            [
+              "plain",
+              "114"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-029",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "code",
+      "text": "Mã bưu chính 67297.",
+      "target": "67297",
+      "expected": [
+        "Mã bưu chính sáu bảy hai chín bảy."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Mã bưu chính sáu mươi bảy nghìn hai trăm chín mươi bảy .",
+          "pass": false,
+          "latencies_ms": [
+            0.018833000012818957,
+            0.017249999928026227,
+            0.015915999938442837
+          ]
+        },
+        "M1": {
+          "text": "Mã bưu chính sáu mươi bảy nghìn hai trăm chín mươi bảy.",
+          "pass": false,
+          "latencies_ms": [
+            13.029167000240705,
+            13.254875000257016,
+            12.862708000284329
+          ]
+        },
+        "M2": {
+          "text": "Mã bưu chính sáu bảy hai chín bảy.",
+          "pass": true,
+          "latencies_ms": [
+            11.900749999767868,
+            12.243875000422122,
+            12.074209000275005
+          ]
+        },
+        "M3": {
+          "text": "Mã bưu chính sáu mươi bảy nghìn hai trăm chín mươi bảy.",
+          "pass": false,
+          "latencies_ms": [
+            181.24091700019562,
+            182.55124999996042,
+            181.57558400025664
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "67297",
+          "options": [
+            [
+              "cardinal",
+              "sáu mươi bảy nghìn hai trăm chín mươi bảy"
+            ],
+            [
+              "telephone",
+              "sáu bảy hai chín bảy"
+            ],
+            [
+              "code",
+              "sáu bảy hai chín bảy"
+            ],
+            [
+              "plain",
+              "67297"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-030",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "cardinal",
+      "text": "Có 67297 người tham gia.",
+      "target": "67297",
+      "expected": [
+        "Có sáu mươi bảy nghìn hai trăm chín mươi bảy người tham gia."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Có sáu mươi bảy nghìn hai trăm chín mươi bảy người tham gia.",
+          "pass": true,
+          "latencies_ms": [
+            0.01608299999134033,
+            0.01516700012871297,
+            0.01649999967412441
+          ]
+        },
+        "M1": {
+          "text": "Có sáu mươi bảy nghìn hai trăm chín mươi bảy người tham gia.",
+          "pass": true,
+          "latencies_ms": [
+            13.264000000162923,
+            12.876416999915818,
+            12.679542000114452
+          ]
+        },
+        "M2": {
+          "text": "Có sáu bảy hai chín bảy người tham gia.",
+          "pass": false,
+          "latencies_ms": [
+            12.071582999851671,
+            12.025083999560593,
+            12.676749999627646
+          ]
+        },
+        "M3": {
+          "text": "Có sáu mươi bảy nghìn hai trăm chín mươi bảy người tham gia.",
+          "pass": true,
+          "latencies_ms": [
+            181.87487499972121,
+            180.87454199985586,
+            181.06812499991065
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "67297",
+          "options": [
+            [
+              "cardinal",
+              "sáu mươi bảy nghìn hai trăm chín mươi bảy"
+            ],
+            [
+              "telephone",
+              "sáu bảy hai chín bảy"
+            ],
+            [
+              "code",
+              "sáu bảy hai chín bảy"
+            ],
+            [
+              "plain",
+              "67297"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-031",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "decimal",
+      "text": "Số thập phân là 1,234.",
+      "target": "1,234",
+      "expected": [
+        "Số thập phân là một phẩy hai ba bốn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Số thập phân là một nghìn hai trăm ba mươi bốn .",
+          "pass": false,
+          "latencies_ms": [
+            0.01704199985397281,
+            0.01566700029798085,
+            0.017082999875128735
+          ]
+        },
+        "M1": {
+          "text": "Số thập phân là một phẩy hai ba bốn.",
+          "pass": true,
+          "latencies_ms": [
+            6.5468749999126885,
+            6.48329100022238,
+            6.6038749996550905
+          ]
+        },
+        "M2": {
+          "text": "Số thập phân là một phẩy hai ba bốn.",
+          "pass": true,
+          "latencies_ms": [
+            6.29662500023187,
+            6.312624999736727,
+            6.2542089999624295
+          ]
+        },
+        "M3": {
+          "text": "Số thập phân là 1,234.",
+          "pass": false,
+          "latencies_ms": [
+            65.02979200013215,
+            64.98083299993596,
+            65.02979200013215
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1,234",
+          "options": [
+            [
+              "decimal",
+              "một phẩy hai ba bốn"
+            ],
+            [
+              "plain",
+              "1,234"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-032",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "date",
+      "text": "Ngày phát hành 2026-11-15.",
+      "target": "2026-11-15",
+      "expected": [
+        "Ngày phát hành ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu.",
+        "Ngày phát hành mười lăm tháng mười một năm hai nghìn hai mươi sáu."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Ngày phát hành hai nghìn không trăm hai mươi sáu - mười một - mười lăm .",
+          "pass": false,
+          "latencies_ms": [
+            0.02045900009761681,
+            0.020542000129353255,
+            0.021249999917927198
+          ]
+        },
+        "M1": {
+          "text": "Ngày phát hành ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu.",
+          "pass": true,
+          "latencies_ms": [
+            15.297041999929206,
+            15.300458000183426,
+            16.216540999721474
+          ]
+        },
+        "M2": {
+          "text": "Ngày phát hành 2026-11-15.",
+          "pass": false,
+          "latencies_ms": [
+            14.558542000031593,
+            14.346041999942827,
+            14.645833000031416
+          ]
+        },
+        "M3": {
+          "text": "Ngày phát hành 2026-11-15.",
+          "pass": false,
+          "latencies_ms": [
+            195.33066699978008,
+            189.6910420000495,
+            191.63116699974125
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2026-11-15",
+          "options": [
+            [
+              "date",
+              "ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu"
+            ],
+            [
+              "telephone",
+              "hai không hai sáu một một một năm"
+            ],
+            [
+              "code",
+              "hai không hai sáu một một một năm"
+            ],
+            [
+              "plain",
+              "2026-11-15"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-033",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "code",
+      "text": "Mật khẩu là 001204.",
+      "target": "001204",
+      "expected": [
+        "Mật khẩu là không không một hai không bốn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Mật khẩu là một nghìn hai trăm lẻ bốn .",
+          "pass": false,
+          "latencies_ms": [
+            0.017708000086713582,
+            0.016125000001920853,
+            0.01795900016077212
+          ]
+        },
+        "M1": {
+          "text": "Mật khẩu là một nghìn hai trăm linh bốn.",
+          "pass": false,
+          "latencies_ms": [
+            8.428541999819572,
+            8.428583000295475,
+            8.6674590002076
+          ]
+        },
+        "M2": {
+          "text": "Mật khẩu là không không một hai không bốn.",
+          "pass": true,
+          "latencies_ms": [
+            7.990500000232714,
+            7.896250000158034,
+            7.87533299990173
+          ]
+        },
+        "M3": {
+          "text": "Mật khẩu là một nghìn hai trăm linh bốn.",
+          "pass": false,
+          "latencies_ms": [
+            99.72162500025661,
+            99.41562499989232,
+            101.47070799985158
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "001204",
+          "options": [
+            [
+              "cardinal",
+              "một nghìn hai trăm linh bốn"
+            ],
+            [
+              "telephone",
+              "không không một hai không bốn"
+            ],
+            [
+              "code",
+              "không không một hai không bốn"
+            ],
+            [
+              "plain",
+              "001204"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-034",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "score",
+      "text": "Tỷ số là 3-1.",
+      "target": "3-1",
+      "expected": [
+        "Tỷ số là ba một.",
+        "Tỷ số là ba một."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Tỷ số là ba - một .",
+          "pass": true,
+          "latencies_ms": [
+            0.014791000012337463,
+            0.01516700012871297,
+            0.016417000097135315
+          ]
+        },
+        "M1": {
+          "text": "Tỷ số là ba âm một.",
+          "pass": false,
+          "latencies_ms": [
+            2.9173749999245047,
+            2.812041000197496,
+            2.717584000038187
+          ]
+        },
+        "M2": {
+          "text": "Tỷ số là ba âm một.",
+          "pass": false,
+          "latencies_ms": [
+            2.498833000117884,
+            2.4433750004391186,
+            2.426291000119818
+          ]
+        },
+        "M3": {
+          "text": "Tỷ số là 3-1.",
+          "pass": false,
+          "latencies_ms": [
+            88.57995800008212,
+            87.91787500013015,
+            87.97162499968181
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3-1",
+          "options": [
+            [
+              "cardinal",
+              "ba âm một"
+            ],
+            [
+              "date",
+              "ngày ba tháng một"
+            ],
+            [
+              "telephone",
+              "ba một"
+            ],
+            [
+              "code",
+              "ba một"
+            ],
+            [
+              "plain",
+              "3-1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-035",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "version",
+      "text": "Phiên bản 2.10.3.",
+      "target": "2.10.3",
+      "expected": [
+        "Phiên bản hai chấm mười chấm ba."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Phiên bản hai phẩy một không . ba .",
+          "pass": false,
+          "latencies_ms": [
+            0.018000000181928044,
+            0.016959000276983716,
+            0.01970899984371499
+          ]
+        },
+        "M1": {
+          "text": "Phiên bản ngày ba tháng mười năm hai.",
+          "pass": false,
+          "latencies_ms": [
+            6.8656250000458385,
+            7.033750000118744,
+            7.394207999823266
+          ]
+        },
+        "M2": {
+          "text": "Phiên bản 2.10.3.",
+          "pass": false,
+          "latencies_ms": [
+            6.704666999667097,
+            6.578834000265488,
+            7.301499999812222
+          ]
+        },
+        "M3": {
+          "text": "Phiên bản 2.10.3.",
+          "pass": false,
+          "latencies_ms": [
+            90.73258299986264,
+            96.8482920002316,
+            93.30566700009513
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2.10.3",
+          "options": [
+            [
+              "date",
+              "ngày ba tháng mười năm hai"
+            ],
+            [
+              "date",
+              "ngày hai tháng mười năm ba"
+            ],
+            [
+              "plain",
+              "2.10.3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-036",
+      "lang": "vi",
+      "level": "3-Context",
+      "kind": "money",
+      "text": "Giá là 1.234,50 đồng.",
+      "target": "1.234,50 đồng",
+      "expected": [
+        "Giá là một nghìn hai trăm ba mươi bốn phẩy năm không đồng.",
+        "Giá là một nghìn hai trăm ba mươi bốn phẩy năm mươi đồng."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Giá là một nghìn hai trăm ba mươi bốn phẩy năm không đồng.",
+          "pass": true,
+          "latencies_ms": [
+            0.02112499987561023,
+            0.02354099979129387,
+            0.02483300022504409
+          ]
+        },
+        "M1": {
+          "text": "Giá là một nghìn hai trăm ba mươi tư phẩy năm không đồng.",
+          "pass": false,
+          "latencies_ms": [
+            11.428125000293221,
+            11.788499999966007,
+            11.963083000409824
+          ]
+        },
+        "M2": {
+          "text": "Giá là một nghìn hai trăm ba mươi tư phẩy năm không đồng.",
+          "pass": false,
+          "latencies_ms": [
+            10.73495799982993,
+            10.939083000266692,
+            11.144916999910492
+          ]
+        },
+        "M3": {
+          "text": "Giá là 1.234,50 đồng.",
+          "pass": false,
+          "latencies_ms": [
+            140.8933339998839,
+            145.6983749999381,
+            140.39562500011016
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1.234,50 đồng",
+          "options": [
+            [
+              "money",
+              "một nghìn hai trăm ba mươi tư phẩy năm không đồng"
+            ],
+            [
+              "plain",
+              "1.234,50 đồng"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-025",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "date",
+      "text": "The appointment is on 1/4.",
+      "target": "1/4",
+      "expected": [
+        "The appointment is on january fourth.",
+        "The appointment is on the fourth of january."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The appointment is on one / four .",
+          "pass": false,
+          "latencies_ms": [
+            0.012666000202443684,
+            0.01579100035087322,
+            0.010833000033017015
+          ]
+        },
+        "M1": {
+          "text": "The appointment is on one quarter.",
+          "pass": false,
+          "latencies_ms": [
+            3.1338750000031723,
+            2.97900000032314,
+            2.912999999807653
+          ]
+        },
+        "M2": {
+          "text": "The appointment is on one quarter.",
+          "pass": false,
+          "latencies_ms": [
+            2.690749999601394,
+            2.6554579999356065,
+            2.6176669998676516
+          ]
+        },
+        "M3": {
+          "text": "The appointment is on 1/4.",
+          "pass": false,
+          "latencies_ms": [
+            42.47695799995199,
+            42.11375000022599,
+            43.6147919999712
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1/4",
+          "options": [
+            [
+              "fraction",
+              "one quarter"
+            ],
+            [
+              "plain",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-026",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "fraction",
+      "text": "Eat 1/4 of the cake.",
+      "target": "1/4",
+      "expected": [
+        "Eat one quarter of the cake.",
+        "Eat one fourth of the cake."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Eat one / four of the cake.",
+          "pass": false,
+          "latencies_ms": [
+            0.01104200009649503,
+            0.01037499987432966,
+            0.011415999779273989
+          ]
+        },
+        "M1": {
+          "text": "Eat one quarter of the cake.",
+          "pass": true,
+          "latencies_ms": [
+            2.8832089997195,
+            2.9149580000193964,
+            2.924166999946465
+          ]
+        },
+        "M2": {
+          "text": "Eat one quarter of the cake.",
+          "pass": true,
+          "latencies_ms": [
+            2.560124999945401,
+            2.5680000003376335,
+            2.6107499998033745
+          ]
+        },
+        "M3": {
+          "text": "Eat 1/4 of the cake.",
+          "pass": false,
+          "latencies_ms": [
+            45.818791999863606,
+            46.38387500017416,
+            46.30979200010188
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1/4",
+          "options": [
+            [
+              "fraction",
+              "one quarter"
+            ],
+            [
+              "plain",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-027",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "telephone",
+      "text": "Call emergency number 911.",
+      "target": "911",
+      "expected": [
+        "Call emergency number nine one one."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Call emergency number nine hundred eleven .",
+          "pass": false,
+          "latencies_ms": [
+            0.012958999832335394,
+            0.012584000160131836,
+            0.012707999758276856
+          ]
+        },
+        "M1": {
+          "text": "Call emergency number nine hundred and eleven.",
+          "pass": false,
+          "latencies_ms": [
+            5.128000000240718,
+            4.893374999937805,
+            5.1115420001224265
+          ]
+        },
+        "M2": {
+          "text": "Call emergency number nine hundred and eleven.",
+          "pass": false,
+          "latencies_ms": [
+            4.565250000268861,
+            4.423583000061626,
+            4.501166999943962
+          ]
+        },
+        "M3": {
+          "text": "Call emergency number nine hundred and eleven.",
+          "pass": false,
+          "latencies_ms": [
+            89.5754999996825,
+            91.41741699977501,
+            89.26216700001532
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "911",
+          "options": [
+            [
+              "cardinal",
+              "nine hundred and eleven"
+            ],
+            [
+              "cardinal",
+              "nine eleven"
+            ],
+            [
+              "telephone",
+              "nine one one"
+            ],
+            [
+              "code",
+              "nine one one"
+            ],
+            [
+              "plain",
+              "911"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-028",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "cardinal",
+      "text": "There are 911 people waiting.",
+      "target": "911",
+      "expected": [
+        "There are nine hundred eleven people waiting."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "There are nine hundred eleven people waiting.",
+          "pass": true,
+          "latencies_ms": [
+            0.014916000054654432,
+            0.011666999853332527,
+            0.012167000022600405
+          ]
+        },
+        "M1": {
+          "text": "There are nine hundred and eleven people waiting.",
+          "pass": true,
+          "latencies_ms": [
+            4.772083000261773,
+            4.759584000112227,
+            5.042084000251634
+          ]
+        },
+        "M2": {
+          "text": "There are nine hundred and eleven people waiting.",
+          "pass": true,
+          "latencies_ms": [
+            4.312667000249348,
+            4.319749999922351,
+            4.508292000082292
+          ]
+        },
+        "M3": {
+          "text": "There are nine hundred and eleven people waiting.",
+          "pass": true,
+          "latencies_ms": [
+            89.23883299985391,
+            88.6457089995929,
+            86.98333299980732
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "911",
+          "options": [
+            [
+              "cardinal",
+              "nine hundred and eleven"
+            ],
+            [
+              "cardinal",
+              "nine eleven"
+            ],
+            [
+              "telephone",
+              "nine one one"
+            ],
+            [
+              "code",
+              "nine one one"
+            ],
+            [
+              "plain",
+              "911"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-029",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "code",
+      "text": "The ZIP code is 67297.",
+      "target": "67297",
+      "expected": [
+        "The ZIP code is six seven two nine seven."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The ZIP code is sixty-seven thousand two hundred ninety-seven .",
+          "pass": false,
+          "latencies_ms": [
+            0.013958999716123799,
+            0.013207999927544734,
+            0.012583000170707237
+          ]
+        },
+        "M1": {
+          "text": "The ZIP code is six seven two nine seven.",
+          "pass": true,
+          "latencies_ms": [
+            6.972750000386441,
+            6.817917000262241,
+            6.898124999679567
+          ]
+        },
+        "M2": {
+          "text": "The ZIP code is six seven two nine seven.",
+          "pass": true,
+          "latencies_ms": [
+            6.8098749998171115,
+            6.630416000007244,
+            6.722874999923079
+          ]
+        },
+        "M3": {
+          "text": "The ZIP code is six seven two nine seven.",
+          "pass": true,
+          "latencies_ms": [
+            56.2157079998542,
+            54.8165830000471,
+            55.113333000008424
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "67297",
+          "options": [
+            [
+              "cardinal",
+              "six seven two nine seven"
+            ],
+            [
+              "telephone",
+              "six seven two nine seven"
+            ],
+            [
+              "code",
+              "six seven two nine seven"
+            ],
+            [
+              "plain",
+              "67297"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-030",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "cardinal",
+      "text": "There are 67297 participants.",
+      "target": "67297",
+      "expected": [
+        "There are sixty seven thousand two hundred ninety seven participants."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "There are sixty-seven thousand two hundred ninety-seven participants.",
+          "pass": true,
+          "latencies_ms": [
+            0.012166000033175806,
+            0.015750000329717295,
+            0.015790999896125868
+          ]
+        },
+        "M1": {
+          "text": "There are six seven two nine seven participants.",
+          "pass": false,
+          "latencies_ms": [
+            7.184917000358837,
+            6.906250000156433,
+            6.932959000096162
+          ]
+        },
+        "M2": {
+          "text": "There are six seven two nine seven participants.",
+          "pass": false,
+          "latencies_ms": [
+            7.124958999611408,
+            6.662916999630397,
+            6.719875000271713
+          ]
+        },
+        "M3": {
+          "text": "There are six seven two nine seven participants.",
+          "pass": false,
+          "latencies_ms": [
+            50.683915999798046,
+            50.714458000129525,
+            50.22191700027179
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "67297",
+          "options": [
+            [
+              "cardinal",
+              "six seven two nine seven"
+            ],
+            [
+              "telephone",
+              "six seven two nine seven"
+            ],
+            [
+              "code",
+              "six seven two nine seven"
+            ],
+            [
+              "plain",
+              "67297"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-031",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "decimal",
+      "text": "The decimal is 1.234.",
+      "target": "1.234",
+      "expected": [
+        "The decimal is one point two three four."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The decimal is one thousand two hundred thirty-four .",
+          "pass": false,
+          "latencies_ms": [
+            0.013249999938125256,
+            0.013917000160290627,
+            0.014040999758435646
+          ]
+        },
+        "M1": {
+          "text": "The decimal is one point two three four.",
+          "pass": true,
+          "latencies_ms": [
+            6.664582999746926,
+            6.571666000127152,
+            6.460499999775493
+          ]
+        },
+        "M2": {
+          "text": "The decimal is one point two three four.",
+          "pass": true,
+          "latencies_ms": [
+            6.282040999849414,
+            6.499749999875348,
+            6.5352500000699365
+          ]
+        },
+        "M3": {
+          "text": "The decimal is 1.234.",
+          "pass": false,
+          "latencies_ms": [
+            60.26404199974422,
+            58.769957999629696,
+            59.313207999821316
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1.234",
+          "options": [
+            [
+              "decimal",
+              "one point two three four"
+            ],
+            [
+              "plain",
+              "1.234"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-032",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "date",
+      "text": "Release date: 2026-11-15.",
+      "target": "2026-11-15",
+      "expected": [
+        "Release date: november fifteenth twenty twenty six.",
+        "Release date: the fifteenth of november twenty twenty six.",
+        "Release date: november fifteenth two thousand twenty six."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Release date: two thousand twenty-six - eleven - fifteen .",
+          "pass": false,
+          "latencies_ms": [
+            0.01516700012871297,
+            0.014666999959445093,
+            0.014458999885391677
+          ]
+        },
+        "M1": {
+          "text": "Release date: november fifteenth twenty twenty six.",
+          "pass": true,
+          "latencies_ms": [
+            12.641791000078229,
+            12.680750000072294,
+            12.661959000070055
+          ]
+        },
+        "M2": {
+          "text": "Release date: november fifteenth twenty twenty six.",
+          "pass": true,
+          "latencies_ms": [
+            11.997375000191823,
+            11.723291999715002,
+            11.838458000056562
+          ]
+        },
+        "M3": {
+          "text": "Release date: 2026-11-15.",
+          "pass": false,
+          "latencies_ms": [
+            106.9935410000653,
+            103.79770800000188,
+            105.55424999984098
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2026-11-15",
+          "options": [
+            [
+              "date",
+              "november fifteenth twenty twenty six"
+            ],
+            [
+              "telephone",
+              "two zero two six one one one five"
+            ],
+            [
+              "code",
+              "two zero two six one one one five"
+            ],
+            [
+              "plain",
+              "2026-11-15"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-033",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "code",
+      "text": "The PIN is 001204.",
+      "target": "001204",
+      "expected": [
+        "The PIN is zero zero one two zero four."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The PIN is one thousand two hundred four .",
+          "pass": false,
+          "latencies_ms": [
+            0.012875000265921699,
+            0.012333000086073298,
+            0.012250000054336851
+          ]
+        },
+        "M1": {
+          "text": "The PIN is zero zero one two zero four.",
+          "pass": true,
+          "latencies_ms": [
+            1.6244579996964603,
+            1.5912909998405667,
+            1.6982080001071154
+          ]
+        },
+        "M2": {
+          "text": "The PIN is zero zero one two zero four.",
+          "pass": true,
+          "latencies_ms": [
+            1.3783750000584405,
+            1.337083000180428,
+            1.6727920001358143
+          ]
+        },
+        "M3": {
+          "text": "The PIN is zero zero one two zero four.",
+          "pass": true,
+          "latencies_ms": [
+            50.60116699996797,
+            50.19683399996211,
+            49.456666000423866
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "001204",
+          "options": [
+            [
+              "cardinal",
+              "zero zero one two zero four"
+            ],
+            [
+              "telephone",
+              "zero zero one two zero four"
+            ],
+            [
+              "code",
+              "zero zero one two zero four"
+            ],
+            [
+              "plain",
+              "001204"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-034",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "score",
+      "text": "The score is 3-1.",
+      "target": "3-1",
+      "expected": [
+        "The score is three one.",
+        "The score is three to one."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The score is three - one .",
+          "pass": true,
+          "latencies_ms": [
+            0.012958999832335394,
+            0.010791000022436492,
+            0.011666999853332527
+          ]
+        },
+        "M1": {
+          "text": "The score is three - one.",
+          "pass": true,
+          "latencies_ms": [
+            4.898208000213344,
+            4.515707999871665,
+            4.672707999816339
+          ]
+        },
+        "M2": {
+          "text": "The score is three - one.",
+          "pass": true,
+          "latencies_ms": [
+            4.337000000305125,
+            4.2476250000618165,
+            4.314750000048662
+          ]
+        },
+        "M3": {
+          "text": "The score is 3-1.",
+          "pass": false,
+          "latencies_ms": [
+            64.19662500002232,
+            62.50950000003286,
+            62.65454200001841
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "3-1",
+          "options": [
+            [
+              "cardinal",
+              "three - one"
+            ],
+            [
+              "telephone",
+              "three one"
+            ],
+            [
+              "code",
+              "three one"
+            ],
+            [
+              "plain",
+              "3-1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-035",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "version",
+      "text": "Version 2.10.3.",
+      "target": "2.10.3",
+      "expected": [
+        "Version two point ten point three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Version two point one zero . three .",
+          "pass": false,
+          "latencies_ms": [
+            0.013916999705543276,
+            0.013792000117973657,
+            0.01304199986407184
+          ]
+        },
+        "M1": {
+          "text": "Version two. ten point three.",
+          "pass": false,
+          "latencies_ms": [
+            7.092416999967099,
+            7.108582999990176,
+            7.018000000243774
+          ]
+        },
+        "M2": {
+          "text": "Version two. ten point three.",
+          "pass": false,
+          "latencies_ms": [
+            6.885958000111714,
+            6.939249999959429,
+            6.877667000026122
+          ]
+        },
+        "M3": {
+          "text": "Version 2.10.3.",
+          "pass": false,
+          "latencies_ms": [
+            53.65420799989806,
+            51.39929100005247,
+            52.20945800010668
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "2.10.3",
+          "options": [
+            [
+              "cardinal",
+              "two. ten point three"
+            ],
+            [
+              "plain",
+              "2.10.3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-036",
+      "lang": "en",
+      "level": "3-Context",
+      "kind": "money",
+      "text": "It costs $1,234.50.",
+      "target": "$1,234.50",
+      "expected": [
+        "It costs one thousand two hundred thirty four dollars fifty cents."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "It costs $ one thousand two hundred thirty-four point five zero .",
+          "pass": false,
+          "latencies_ms": [
+            0.016667000181769254,
+            0.015208000149868894,
+            0.01716599990686518
+          ]
+        },
+        "M1": {
+          "text": "It costs one thousand two hundred and thirty four dollars fifty cents.",
+          "pass": true,
+          "latencies_ms": [
+            8.397166000122525,
+            8.399875000122847,
+            8.618500000011409
+          ]
+        },
+        "M2": {
+          "text": "It costs one thousand two hundred and thirty four dollars fifty cents.",
+          "pass": true,
+          "latencies_ms": [
+            8.221208000122715,
+            8.28333300023587,
+            8.329499999945256
+          ]
+        },
+        "M3": {
+          "text": "It costs $1,234.50.",
+          "pass": false,
+          "latencies_ms": [
+            79.58212499988804,
+            79.25195799998619,
+            79.7288750000007
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "$1,234.50",
+          "options": [
+            [
+              "money",
+              "one thousand two hundred and thirty four dollars fifty cents"
+            ],
+            [
+              "plain",
+              "$1,234.50"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-037",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "telephone",
+      "text": "Gọi +84 912 345 678.",
+      "target": "+84 912 345 678",
+      "expected": [
+        "Gọi cộng tám bốn chín một hai ba bốn năm sáu bảy tám."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Gọi + tám mươi bốn chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám .",
+          "pass": false,
+          "latencies_ms": [
+            0.02433300005577621,
+            0.019582999811973423,
+            0.021625000044878107
+          ]
+        },
+        "M1": {
+          "text": "Gọi + tám mươi tư chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            19.304708000163373,
+            19.646749999992608,
+            18.744874999811145
+          ]
+        },
+        "M2": {
+          "text": "Gọi +84 912 345 678.",
+          "pass": false,
+          "latencies_ms": [
+            17.982875000143395,
+            18.08854099999735,
+            17.813042000398127
+          ]
+        },
+        "M3": {
+          "text": "Gọi + tám mươi tư chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            394.0137499998855,
+            393.72287500009406,
+            402.3860830002377
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "+84 912 345 678",
+          "options": [
+            [
+              "cardinal",
+              "+ tám mươi tư chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám"
+            ],
+            [
+              "telephone",
+              "cộng tám bốn chín một hai ba bốn năm sáu bảy tám"
+            ],
+            [
+              "plain",
+              "+84 912 345 678"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-038",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "telephone",
+      "text": "Gọi 0912 345 678.",
+      "target": "0912 345 678",
+      "expected": [
+        "Gọi không chín một hai ba bốn năm sáu bảy tám."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Gọi chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám .",
+          "pass": false,
+          "latencies_ms": [
+            0.021625000044878107,
+            0.02408299997114227,
+            0.02062499970634235
+          ]
+        },
+        "M1": {
+          "text": "Gọi không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            16.205625000111468,
+            17.291500000283122,
+            16.33470800015857
+          ]
+        },
+        "M2": {
+          "text": "Gọi 0912 345 678.",
+          "pass": false,
+          "latencies_ms": [
+            16.254707999905804,
+            15.818207999927836,
+            15.801375000137341
+          ]
+        },
+        "M3": {
+          "text": "Gọi không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám.",
+          "pass": false,
+          "latencies_ms": [
+            296.45204200005537,
+            292.63216700019257,
+            311.68704099991373
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "0912 345 678",
+          "options": [
+            [
+              "cardinal",
+              "không chín trăm mười hai ba trăm bốn mươi lăm sáu trăm bảy mươi tám"
+            ],
+            [
+              "telephone",
+              "không chín một hai ba bốn năm sáu bảy tám"
+            ],
+            [
+              "code",
+              "không chín một hai ba bốn năm sáu bảy tám"
+            ],
+            [
+              "plain",
+              "0912 345 678"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-039",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "time",
+      "text": "Hẹn lúc 03:05:09.",
+      "target": "03:05:09",
+      "expected": [
+        "Hẹn lúc ba giờ năm phút chín giây.",
+        "Hẹn lúc ba giờ không năm phút không chín giây."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hẹn lúc ba : năm : chín .",
+          "pass": false,
+          "latencies_ms": [
+            0.019459000213828404,
+            0.016583000160608208,
+            0.015833000361453742
+          ]
+        },
+        "M1": {
+          "text": "Hẹn lúc ba giờ năm phút chín giây.",
+          "pass": true,
+          "latencies_ms": [
+            5.04433300011442,
+            4.743416999644978,
+            4.715916999884939
+          ]
+        },
+        "M2": {
+          "text": "Hẹn lúc ba giờ năm phút chín giây.",
+          "pass": true,
+          "latencies_ms": [
+            4.588541999964946,
+            4.42162500030463,
+            4.429707999861421
+          ]
+        },
+        "M3": {
+          "text": "Hẹn lúc 03:05:09.",
+          "pass": false,
+          "latencies_ms": [
+            67.70791600001758,
+            66.73291700008122,
+            67.20700000005309
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "03:05:09",
+          "options": [
+            [
+              "time",
+              "ba giờ năm phút chín giây"
+            ],
+            [
+              "plain",
+              "03:05:09"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-040",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "time",
+      "text": "Hẹn lúc 24:99.",
+      "target": "24:99",
+      "expected": [
+        "Hẹn lúc 24:99."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hẹn lúc hai mươi bốn : chín mươi chín .",
+          "pass": false,
+          "latencies_ms": [
+            0.014333000308397459,
+            0.016708999737602426,
+            0.018541000372351846
+          ]
+        },
+        "M1": {
+          "text": "Hẹn lúc hai mươi tư giờ chín phút chín.",
+          "pass": false,
+          "latencies_ms": [
+            6.432499999846186,
+            6.655666999904497,
+            6.849249999959284
+          ]
+        },
+        "M2": {
+          "text": "Hẹn lúc hai mươi tư giờ chín phút chín.",
+          "pass": false,
+          "latencies_ms": [
+            6.080624999867723,
+            6.2734999996791885,
+            6.324834000224655
+          ]
+        },
+        "M3": {
+          "text": "Hẹn lúc hai mươi tư giờ chín phút chín.",
+          "pass": false,
+          "latencies_ms": [
+            79.64383399985309,
+            80.55837500023699,
+            81.72383300006913
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "24:99",
+          "options": [
+            [
+              "time",
+              "hai mươi tư giờ chín phút chín"
+            ],
+            [
+              "plain",
+              "24:99"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-041",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "date",
+      "text": "Ngày không hợp lệ: 31/02/2026.",
+      "target": "31/02/2026",
+      "expected": [
+        "Ngày không hợp lệ: 31/02/2026."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Ngày không hợp lệ: ba mươi mốt / hai / hai nghìn không trăm hai mươi sáu .",
+          "pass": false,
+          "latencies_ms": [
+            0.021165999896766152,
+            0.02191600015066797,
+            0.021583000034297584
+          ]
+        },
+        "M1": {
+          "text": "Ngày không hợp lệ: ngày ba mươi mốt tháng hai năm hai nghìn hai mươi sáu.",
+          "pass": false,
+          "latencies_ms": [
+            13.036834000104136,
+            13.18424999999479,
+            13.081041999612353
+          ]
+        },
+        "M2": {
+          "text": "Ngày không hợp lệ: ngày ba mươi mốt tháng hai năm hai nghìn hai mươi sáu.",
+          "pass": false,
+          "latencies_ms": [
+            12.401375000081316,
+            11.940834000142786,
+            12.315916000261495
+          ]
+        },
+        "M3": {
+          "text": "Ngày không hợp lệ: 31/02/2026.",
+          "pass": true,
+          "latencies_ms": [
+            162.12945799998124,
+            164.8935410003105,
+            162.37591600020096
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "31/02/2026",
+          "options": [
+            [
+              "date",
+              "ngày ba mươi mốt tháng hai năm hai nghìn hai mươi sáu"
+            ],
+            [
+              "plain",
+              "31/02/2026"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-042",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "code",
+      "text": "Mã đơn AB-0012.",
+      "target": "AB-0012",
+      "expected": [
+        "Mã đơn a bê không không một hai."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Mã đơn AB- mười hai .",
+          "pass": false,
+          "latencies_ms": [
+            0.01516700012871297,
+            0.013790999673801707,
+            0.015375000202766387
+          ]
+        },
+        "M1": {
+          "text": "Mã đơn AB âm không mười hai.",
+          "pass": false,
+          "latencies_ms": [
+            4.314166999847657,
+            4.238167000039539,
+            4.363083000043844
+          ]
+        },
+        "M2": {
+          "text": "Mã đơn AB-0012.",
+          "pass": false,
+          "latencies_ms": [
+            3.8422090001404285,
+            3.860165999867604,
+            3.955290999783756
+          ]
+        },
+        "M3": {
+          "text": "Mã đơn AB-0012.",
+          "pass": false,
+          "latencies_ms": [
+            85.99083300032362,
+            86.068042000079,
+            85.61083399990821
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "AB-0012",
+          "options": [
+            [
+              "cardinal",
+              "AB âm không mười hai"
+            ],
+            [
+              "code",
+              "a bê không không một hai"
+            ],
+            [
+              "plain",
+              "AB-0012"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-043",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "foreign",
+      "text": "Tên tôi là Patricia Johnson.",
+      "target": "Patricia Johnson",
+      "expected": [
+        "Tên tôi là pơ tri si a giôn sơn.",
+        "Tên tôi là pa tri si a giôn sơn."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Tên tôi là Patricia Johnson.",
+          "pass": false,
+          "latencies_ms": [
+            0.0028330000532150734,
+            0.002333999873371795,
+            0.002041999778157333
+          ]
+        },
+        "M1": {
+          "text": "Tên tôi là Patricia Johnson.",
+          "pass": false,
+          "latencies_ms": [
+            0.003957999979320448,
+            0.00370800034943386,
+            0.0035829998523695394
+          ]
+        },
+        "M2": {
+          "text": "Tên tôi là Patricia Johnson.",
+          "pass": false,
+          "latencies_ms": [
+            0.034624999898369424,
+            0.02391600037299213,
+            0.023208000129670836
+          ]
+        },
+        "M3": {
+          "text": "Tên tôi là Patricia Johnson.",
+          "pass": false,
+          "latencies_ms": [
+            0.004042000000481494,
+            0.003667000328277936,
+            0.0036249998629500624
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "VI-044",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "foreign",
+      "text": "Tôi muốn check-out.",
+      "target": "check-out",
+      "expected": [
+        "Tôi muốn chéc ao.",
+        "Tôi muốn chéc aut."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Tôi muốn check-out.",
+          "pass": false,
+          "latencies_ms": [
+            0.002249999852210749,
+            0.0018340001588512678,
+            0.001749999682942871
+          ]
+        },
+        "M1": {
+          "text": "Tôi muốn check-out.",
+          "pass": false,
+          "latencies_ms": [
+            0.0029170000743761193,
+            0.0028330000532150734,
+            0.0025829999685811345
+          ]
+        },
+        "M2": {
+          "text": "Tôi muốn check-out.",
+          "pass": false,
+          "latencies_ms": [
+            0.014833000022917986,
+            0.014332999853650108,
+            0.013458000012178672
+          ]
+        },
+        "M3": {
+          "text": "Tôi muốn check-out.",
+          "pass": false,
+          "latencies_ms": [
+            0.002708000010898104,
+            0.0028340000426396728,
+            0.0027910000426345505
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "VI-045",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "electronic",
+      "text": "Email là a1@example.com.",
+      "target": "a1@example.com",
+      "expected": [
+        "Email là a một a còng example chấm com."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Email là a một @example.com.",
+          "pass": false,
+          "latencies_ms": [
+            0.014041999747860245,
+            0.015500000245083356,
+            0.01474999999118154
+          ]
+        },
+        "M1": {
+          "text": "Email là a một @example.com.",
+          "pass": false,
+          "latencies_ms": [
+            2.9074580002088624,
+            3.08754100024089,
+            2.944249999927706
+          ]
+        },
+        "M2": {
+          "text": "Email là a một @example.com.",
+          "pass": false,
+          "latencies_ms": [
+            2.6475419999769656,
+            2.722875000017666,
+            2.663208999820199
+          ]
+        },
+        "M3": {
+          "text": "Email là a1@example.com.",
+          "pass": false,
+          "latencies_ms": [
+            60.33658299975286,
+            60.31375000020489,
+            60.57129200007694
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "a1@example.com",
+          "options": [
+            [
+              "cardinal",
+              "a một @example.com"
+            ],
+            [
+              "plain",
+              "a1@example.com"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-046",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "electronic",
+      "text": "Mở https://example.com/a2.",
+      "target": "https://example.com/a2",
+      "expected": [
+        "Mở hát tê tê pê ét hai chấm gạch chéo gạch chéo example chấm com gạch chéo a hai."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Mở https://example.com/a hai .",
+          "pass": false,
+          "latencies_ms": [
+            0.014500000361294951,
+            0.014250000276661012,
+            0.01395800018144655
+          ]
+        },
+        "M1": {
+          "text": "Mở https://example.com/a hai.",
+          "pass": false,
+          "latencies_ms": [
+            3.9513750002697634,
+            3.842542000256799,
+            4.0039999998953135
+          ]
+        },
+        "M2": {
+          "text": "Mở https://example.com/a hai.",
+          "pass": false,
+          "latencies_ms": [
+            3.591249999772117,
+            3.559083000254759,
+            3.6653339998338197
+          ]
+        },
+        "M3": {
+          "text": "Mở https://example.com/a2.",
+          "pass": false,
+          "latencies_ms": [
+            91.70545799997853,
+            92.46791599980497,
+            91.1641249999775
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "https://example.com/a2",
+          "options": [
+            [
+              "cardinal",
+              "https://example.com/a hai"
+            ],
+            [
+              "plain",
+              "https://example.com/a2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-047",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "measure",
+      "text": "Diện tích 12 m².",
+      "target": "12 m²",
+      "expected": [
+        "Diện tích mười hai mét vuông."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Diện tích mười hai m².",
+          "pass": false,
+          "latencies_ms": [
+            0.0139579997266992,
+            0.012791999779437901,
+            0.013249999938125256
+          ]
+        },
+        "M1": {
+          "text": "Diện tích mười hai mét vuông.",
+          "pass": true,
+          "latencies_ms": [
+            3.907125000296219,
+            3.838624999843887,
+            3.9227910001500277
+          ]
+        },
+        "M2": {
+          "text": "Diện tích 12 m².",
+          "pass": false,
+          "latencies_ms": [
+            3.4668329999476555,
+            3.433750000112923,
+            3.391749999991589
+          ]
+        },
+        "M3": {
+          "text": "Diện tích mười hai mét vuông.",
+          "pass": true,
+          "latencies_ms": [
+            46.82387499997276,
+            46.7893339996408,
+            46.85566699981791
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "12 m²",
+          "options": [
+            [
+              "measure",
+              "mười hai mét vuông"
+            ],
+            [
+              "plain",
+              "12 m²"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI-048",
+      "lang": "vi",
+      "level": "4-Edge",
+      "kind": "decimal",
+      "text": "Hệ số là 1e-3.",
+      "target": "1e-3",
+      "expected": [
+        "Hệ số là một nhân mười mũ âm ba."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Hệ số là một e- ba .",
+          "pass": false,
+          "latencies_ms": [
+            0.01341600000159815,
+            0.017624999600229785,
+            0.013916999705543276
+          ]
+        },
+        "M1": {
+          "text": "Hệ số là một e âm ba.",
+          "pass": false,
+          "latencies_ms": [
+            2.601959000003262,
+            2.9842919998372963,
+            2.701165999951627
+          ]
+        },
+        "M2": {
+          "text": "Hệ số là một e âm ba.",
+          "pass": false,
+          "latencies_ms": [
+            2.3353330002464645,
+            2.3774999999659485,
+            2.506166999864945
+          ]
+        },
+        "M3": {
+          "text": "Hệ số là 1e-3.",
+          "pass": false,
+          "latencies_ms": [
+            65.55945900026927,
+            64.70512499981851,
+            64.25079100017683
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1e-3",
+          "options": [
+            [
+              "cardinal",
+              "một e âm ba"
+            ],
+            [
+              "code",
+              "một e ba"
+            ],
+            [
+              "plain",
+              "1e-3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-037",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "telephone",
+      "text": "Call +1 202 555 0123.",
+      "target": "+1 202 555 0123",
+      "expected": [
+        "Call plus one two zero two five five five zero one two three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Call + one two hundred two five hundred fifty-five one hundred twenty-three .",
+          "pass": false,
+          "latencies_ms": [
+            0.01687499980107532,
+            0.016834000234666746,
+            0.01808399974834174
+          ]
+        },
+        "M1": {
+          "text": "Call plus one two hundred and two five hundred and fifty five zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            10.340334000375151,
+            10.23108300023523,
+            10.267374999784806
+          ]
+        },
+        "M2": {
+          "text": "Call plus one two hundred and two five hundred and fifty five zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            9.715375000268978,
+            9.667208999871946,
+            9.763416000168945
+          ]
+        },
+        "M3": {
+          "text": "Call plus one two zero two five five five zero one two three.",
+          "pass": true,
+          "latencies_ms": [
+            158.16941599996426,
+            155.81595900039247,
+            154.74612499974683
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "+1 202 555 0123",
+          "options": [
+            [
+              "cardinal",
+              "plus one two hundred and two five hundred and fifty five zero one two three"
+            ],
+            [
+              "telephone",
+              "plus one two zero two five five five zero one two three"
+            ],
+            [
+              "plain",
+              "+1 202 555 0123"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-038",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "telephone",
+      "text": "Call 202 555 0123.",
+      "target": "202 555 0123",
+      "expected": [
+        "Call two zero two five five five zero one two three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Call two hundred two five hundred fifty-five one hundred twenty-three .",
+          "pass": false,
+          "latencies_ms": [
+            0.016041999970184406,
+            0.01716699989628978,
+            0.015666999843233498
+          ]
+        },
+        "M1": {
+          "text": "Call two hundred and two five hundred and fifty five zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            9.67670799991538,
+            9.56533299995499,
+            9.75716699986151
+          ]
+        },
+        "M2": {
+          "text": "Call two hundred and two five hundred and fifty five zero one two three.",
+          "pass": false,
+          "latencies_ms": [
+            9.697625000171683,
+            9.787333000076615,
+            10.057874999802152
+          ]
+        },
+        "M3": {
+          "text": "Call two zero two five five five zero one two three.",
+          "pass": true,
+          "latencies_ms": [
+            127.98004200021751,
+            130.5339999998978,
+            130.46904199973142
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "202 555 0123",
+          "options": [
+            [
+              "cardinal",
+              "two hundred and two five hundred and fifty five zero one two three"
+            ],
+            [
+              "telephone",
+              "two zero two five five five zero one two three"
+            ],
+            [
+              "code",
+              "two zero two five five five zero one two three"
+            ],
+            [
+              "plain",
+              "202 555 0123"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-039",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "time",
+      "text": "Meet at 03:05:09.",
+      "target": "03:05:09",
+      "expected": [
+        "Meet at three oh five and nine seconds.",
+        "Meet at three hours five minutes nine seconds."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Meet at three : five : nine .",
+          "pass": false,
+          "latencies_ms": [
+            0.013124999895808287,
+            0.012417000107234344,
+            0.011916999937966466
+          ]
+        },
+        "M1": {
+          "text": "Meet at three hours five minutes and nine seconds.",
+          "pass": true,
+          "latencies_ms": [
+            3.119915999832301,
+            3.2237080004051677,
+            3.1689590000496537
+          ]
+        },
+        "M2": {
+          "text": "Meet at three hours five minutes and nine seconds.",
+          "pass": true,
+          "latencies_ms": [
+            2.8030409998791583,
+            2.919584000210307,
+            2.8591669997695135
+          ]
+        },
+        "M3": {
+          "text": "Meet at three hours five minutes and nine seconds.",
+          "pass": true,
+          "latencies_ms": [
+            56.49062500015134,
+            56.60162499998478,
+            56.08970899993437
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "03:05:09",
+          "options": [
+            [
+              "time",
+              "three hours five minutes and nine seconds"
+            ],
+            [
+              "plain",
+              "03:05:09"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-040",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "time",
+      "text": "Invalid time: 24:99.",
+      "target": "24:99",
+      "expected": [
+        "Invalid time: 24:99."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Invalid time: twenty-four : ninety-nine .",
+          "pass": false,
+          "latencies_ms": [
+            0.012083000001439359,
+            0.012209000033180928,
+            0.011874999927385943
+          ]
+        },
+        "M1": {
+          "text": "Invalid time: twenty four: ninety nine.",
+          "pass": false,
+          "latencies_ms": [
+            6.991959000060888,
+            6.903082999997423,
+            7.039624999833904
+          ]
+        },
+        "M2": {
+          "text": "Invalid time: twenty four: ninety nine.",
+          "pass": false,
+          "latencies_ms": [
+            6.826415999967139,
+            6.845166999937646,
+            6.682375000309548
+          ]
+        },
+        "M3": {
+          "text": "Invalid time: 24:99.",
+          "pass": true,
+          "latencies_ms": [
+            60.17958300026294,
+            58.726583999941795,
+            59.00766700005988
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "24:99",
+          "options": [
+            [
+              "cardinal",
+              "twenty four: ninety nine"
+            ],
+            [
+              "plain",
+              "24:99"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-041",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "date",
+      "text": "Invalid date: 02/31/2026.",
+      "target": "02/31/2026",
+      "expected": [
+        "Invalid date: 02/31/2026."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Invalid date: two / thirty-one / two thousand twenty-six .",
+          "pass": false,
+          "latencies_ms": [
+            0.01383400012855418,
+            0.013500000022759195,
+            0.01541600022392231
+          ]
+        },
+        "M1": {
+          "text": "Invalid date: february thirty first twenty twenty six.",
+          "pass": false,
+          "latencies_ms": [
+            2.1347500000956643,
+            2.23516699998072,
+            2.384500000061962
+          ]
+        },
+        "M2": {
+          "text": "Invalid date: february thirty first twenty twenty six.",
+          "pass": false,
+          "latencies_ms": [
+            1.8318749998798012,
+            1.7941250002877496,
+            1.9092500001534063
+          ]
+        },
+        "M3": {
+          "text": "Invalid date: 02/31/2026.",
+          "pass": true,
+          "latencies_ms": [
+            67.91199999997843,
+            68.0824159999247,
+            67.06350000013117
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "02/31/2026",
+          "options": [
+            [
+              "date",
+              "february thirty first twenty twenty six"
+            ],
+            [
+              "plain",
+              "02/31/2026"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-042",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "code",
+      "text": "Order AB-0012.",
+      "target": "AB-0012",
+      "expected": [
+        "Order a b zero zero one two."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Order AB- twelve .",
+          "pass": false,
+          "latencies_ms": [
+            0.011125000128231477,
+            0.010833000033017015,
+            0.010874999588850187
+          ]
+        },
+        "M1": {
+          "text": "Order AB-zero zero one two.",
+          "pass": false,
+          "latencies_ms": [
+            2.134667000063928,
+            2.2509589998662705,
+            2.077333000215731
+          ]
+        },
+        "M2": {
+          "text": "Order AB-zero zero one two.",
+          "pass": false,
+          "latencies_ms": [
+            1.8836669996744604,
+            1.822167000227637,
+            1.8512079996071407
+          ]
+        },
+        "M3": {
+          "text": "Order AB-0012.",
+          "pass": false,
+          "latencies_ms": [
+            67.3257910002576,
+            69.08249999969485,
+            67.33358300016334
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "AB-0012",
+          "options": [
+            [
+              "plain",
+              "AB-zero zero one two"
+            ],
+            [
+              "code",
+              "a b zero zero one two"
+            ],
+            [
+              "plain",
+              "AB-0012"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-043",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "foreign",
+      "text": "My name is Patricia Johnson.",
+      "target": "Patricia Johnson",
+      "expected": [
+        "My name is Patricia Johnson."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "My name is Patricia Johnson.",
+          "pass": true,
+          "latencies_ms": [
+            0.0023330003386945464,
+            0.0020829997993132565,
+            0.0019170001905877143
+          ]
+        },
+        "M1": {
+          "text": "My name is Patricia Johnson.",
+          "pass": true,
+          "latencies_ms": [
+            0.0038339999264280777,
+            0.0035000002753804438,
+            0.0036669998735305853
+          ]
+        },
+        "M2": {
+          "text": "My name is Patricia Johnson.",
+          "pass": true,
+          "latencies_ms": [
+            0.024625000150990672,
+            0.03154200021526776,
+            0.022249999801715603
+          ]
+        },
+        "M3": {
+          "text": "My name is Patricia Johnson.",
+          "pass": true,
+          "latencies_ms": [
+            0.0036249998629500624,
+            0.0035829998523695394,
+            0.003499999820633093
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "EN-044",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "foreign",
+      "text": "I want to check-out.",
+      "target": "check-out",
+      "expected": [
+        "I want to check out.",
+        "I want to check-out."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "I want to check-out.",
+          "pass": true,
+          "latencies_ms": [
+            0.001957999756996287,
+            0.001749999682942871,
+            0.001708000127109699
+          ]
+        },
+        "M1": {
+          "text": "I want to check-out.",
+          "pass": true,
+          "latencies_ms": [
+            0.007749999895168003,
+            0.00279200003205915,
+            0.002708000010898104
+          ]
+        },
+        "M2": {
+          "text": "I want to check-out.",
+          "pass": true,
+          "latencies_ms": [
+            0.018249999811814632,
+            0.017040999864548212,
+            0.01704199985397281
+          ]
+        },
+        "M3": {
+          "text": "I want to check-out.",
+          "pass": true,
+          "latencies_ms": [
+            0.003000000106112566,
+            0.0028750000637955964,
+            0.0027910000426345505
+          ]
+        }
+      },
+      "spans": []
+    },
+    {
+      "id": "EN-045",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "electronic",
+      "text": "Email a1@example.com.",
+      "target": "a1@example.com",
+      "expected": [
+        "Email a one at example dot com."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Email a one @example.com.",
+          "pass": false,
+          "latencies_ms": [
+            0.01049999991664663,
+            0.010875000043597538,
+            0.011916999937966466
+          ]
+        },
+        "M1": {
+          "text": "Email a one at example dot com.",
+          "pass": true,
+          "latencies_ms": [
+            2.3455000000467408,
+            2.3297920001823513,
+            2.193166000324709
+          ]
+        },
+        "M2": {
+          "text": "Email a one at example dot com.",
+          "pass": true,
+          "latencies_ms": [
+            1.9035830000575515,
+            1.9154579999849375,
+            1.876958000138984
+          ]
+        },
+        "M3": {
+          "text": "Email a1@example.com.",
+          "pass": false,
+          "latencies_ms": [
+            59.58499999997002,
+            59.02658300010444,
+            58.862208999926224
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "a1@example.com",
+          "options": [
+            [
+              "electronic",
+              "a one at example dot com"
+            ],
+            [
+              "plain",
+              "a1@example.com"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-046",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "electronic",
+      "text": "Open https://example.com/a2.",
+      "target": "https://example.com/a2",
+      "expected": [
+        "Open h t t p s colon slash slash example dot com slash a two."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "Open https://example.com/a two .",
+          "pass": false,
+          "latencies_ms": [
+            0.010917000054178061,
+            0.010791000022436492,
+            0.009625000075175194
+          ]
+        },
+        "M1": {
+          "text": "Open HTTPS colon slash slash example dot com slash A two.",
+          "pass": false,
+          "latencies_ms": [
+            2.872583000225859,
+            3.0211250000320433,
+            2.870084000278439
+          ]
+        },
+        "M2": {
+          "text": "Open HTTPS colon slash slash example dot com slash A two.",
+          "pass": false,
+          "latencies_ms": [
+            2.6247499999954016,
+            2.666708000106155,
+            2.6333329997214605
+          ]
+        },
+        "M3": {
+          "text": "Open https://example.com/a2.",
+          "pass": false,
+          "latencies_ms": [
+            119.1569160000654,
+            116.6372920001777,
+            121.9552500001555
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "https://example.com/a2",
+          "options": [
+            [
+              "electronic",
+              "HTTPS colon slash slash example dot com slash A two"
+            ],
+            [
+              "plain",
+              "https://example.com/a2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-047",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "measure",
+      "text": "The area is 12 m².",
+      "target": "12 m²",
+      "expected": [
+        "The area is twelve square meters.",
+        "The area is twelve square metres."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The area is twelve m².",
+          "pass": false,
+          "latencies_ms": [
+            0.01049999991664663,
+            0.010582999948383076,
+            0.010208000276179519
+          ]
+        },
+        "M1": {
+          "text": "The area is twelve square meters.",
+          "pass": true,
+          "latencies_ms": [
+            4.535417000170128,
+            4.477875000247877,
+            4.535916000349971
+          ]
+        },
+        "M2": {
+          "text": "The area is twelve square meters.",
+          "pass": true,
+          "latencies_ms": [
+            4.162416999861307,
+            4.204249999929743,
+            4.144250000081229
+          ]
+        },
+        "M3": {
+          "text": "The area is twelve square meters.",
+          "pass": true,
+          "latencies_ms": [
+            46.34941699987394,
+            46.656500000153756,
+            46.693041999787965
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "12 m²",
+          "options": [
+            [
+              "measure",
+              "twelve square meters"
+            ],
+            [
+              "plain",
+              "12 m²"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN-048",
+      "lang": "en",
+      "level": "4-Edge",
+      "kind": "decimal",
+      "text": "The coefficient is 1e-3.",
+      "target": "1e-3",
+      "expected": [
+        "The coefficient is one times ten to the minus three.",
+        "The coefficient is one times ten to the power of negative three."
+      ],
+      "outputs": {
+        "B0": {
+          "text": "The coefficient is one e- three .",
+          "pass": false,
+          "latencies_ms": [
+            0.012250000054336851,
+            0.012667000191868283,
+            0.012250000054336851
+          ]
+        },
+        "M1": {
+          "text": "The coefficient is one e-three.",
+          "pass": false,
+          "latencies_ms": [
+            4.394209000111005,
+            4.423125000357686,
+            4.238957999859849
+          ]
+        },
+        "M2": {
+          "text": "The coefficient is one e-three.",
+          "pass": false,
+          "latencies_ms": [
+            4.0594160000182455,
+            4.049582999869017,
+            3.9527499998257554
+          ]
+        },
+        "M3": {
+          "text": "The coefficient is 1e-3.",
+          "pass": false,
+          "latencies_ms": [
+            69.27883299977111,
+            69.90833400004703,
+            68.30900000022666
+          ]
+        }
+      },
+      "spans": [
+        {
+          "source": "1e-3",
+          "options": [
+            [
+              "plain",
+              "one e-three"
+            ],
+            [
+              "code",
+              "one e three"
+            ],
+            [
+              "plain",
+              "1e-3"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

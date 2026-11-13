@@ -30,8 +30,9 @@ def sent_chrf(h, r, t):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--threads", type=int, default=4); a = ap.parse_args(); torch.set_num_threads(a.threads)
-    ds = td.data("dev"); nb = NBest(); path = os.path.join(OUT, "nbest_dev.json"); cache = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    ap = argparse.ArgumentParser(); ap.add_argument("--threads", type=int, default=4); ap.add_argument("--split", default="dev"); ap.add_argument("--no_roundtrip", action="store_true")
+    a = ap.parse_args(); torch.set_num_threads(a.threads)
+    ds = td.data(a.split); nb = NBest(); path = os.path.join(OUT, f"nbest_{a.split}.json"); cache = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
     for d, (src, ref) in ds.items():                                            # 1) n-best lists (B=4, shipped parameters)
         if d in cache: continue
         s, t = d.split("-"); t0 = time.time(); cache[d] = []
@@ -39,7 +40,7 @@ def main():
         json.dump(cache, open(path, "w", encoding="utf-8"), ensure_ascii=False); print(f"n-best {d}: {len(src)} sentences, {np.mean([len(e['cands']) for e in cache[d]]):.1f} candidates each ({time.time() - t0:.0f} s)", flush=True)
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M"); m = nb.m
-    sc_path = os.path.join(OUT, "scores_dev.json"); sc = json.load(open(sc_path, encoding="utf-8")) if os.path.exists(sc_path) else {}
+    sc_path = os.path.join(OUT, f"scores_{a.split}.json"); sc = json.load(open(sc_path, encoding="utf-8")) if os.path.exists(sc_path) else {}
 
     @torch.no_grad()
     def channel(cand, source, s, t):                                            # log p(source | cand) / |source| with NLLB t -> s
@@ -52,7 +53,7 @@ def main():
         s, t = d.split("-"); t0 = time.time(); sc[d] = []
         for x, e in zip(src, cache[d]):
             ch = [channel(c, x, s, t) for _, c in e["cands"]]
-            rt = [sent_chrf(nb.translate(c, t, s, lp=1.0, nr=3, cap=2.2) if len(e["cands"]) > 1 else x, x, s) for _, c in e["cands"]]
+            rt = [0.0] * len(e["cands"]) if a.no_roundtrip else [sent_chrf(nb.translate(c, t, s, lp=1.0, nr=3, cap=2.2) if len(e["cands"]) > 1 else x, x, s) for _, c in e["cands"]]
             sc[d].append(dict(channel=ch, roundtrip=rt))
         json.dump(sc, open(sc_path, "w", encoding="utf-8"), ensure_ascii=False); print(f"scores {d} ({time.time() - t0:.0f} s)", flush=True)
 
@@ -70,7 +71,7 @@ def main():
         print(f"| {d} | {row['beam']:.1f} | {row['oracle']:.1f} | {row['channel_0.5']:.1f} | {row['channel_1.0']:.1f} | {row['roundtrip']:.1f} | {bl} ({row[f'channel_{bl}']:.1f}) |", flush=True)
     mean = lambda k: float(np.mean([res[d][k] for d in res]))
     print(f"\nmean: beam {mean('beam'):.2f} | oracle {mean('oracle'):.2f} | " + " | ".join(f"channel lam={lam} {mean(f'channel_{lam}'):.2f}" for lam in lams) + f" | round-trip {mean('roundtrip'):.2f}")
-    json.dump(res, open(os.path.join(OUT, "result.json"), "w"), indent=1)
+    json.dump(res, open(os.path.join(OUT, f"result_{a.split}.json"), "w"), indent=1)
 
 
 if __name__ == "__main__": main()

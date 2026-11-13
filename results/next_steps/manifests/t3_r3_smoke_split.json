@@ -1,0 +1,50 @@
+{
+  "split_id": "t3_r3_smoke_split_v1",
+  "created_at": "2026-11-13",
+  "policy": "Compact real-ONNX smoke split verifying R3 manifest/drift/baseline contract and R5 typed entity evaluation without mutating t3_ablation.",
+  "native_en_dev": [
+    {
+      "id": "native_en_dev_EV0358",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-0358_in.wav",
+      "input_kind": "native_human_speech",
+      "written": "seven hundred thirty four main street harper valley oregon six seven two nine seven",
+      "expected_entities": ["734", "67297"]
+    }
+  ],
+  "native_en_holdout": [],
+  "synthetic_dev": [
+    {
+      "id": "syn_en_special",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/en_to_vi_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50, with a 15% discount. The temperature is 37.5°C. My flight is VN123, and my ZIP code is 67297.",
+      "expected_entities": ["3:30 PM", "November 15, 2026", "$15.50", "15%", "37.5°C", "VN123", "67297"]
+    },
+    {
+      "id": "syn_vi_special_to_en",
+      "src": "vi",
+      "tgt": "en",
+      "input_wav": "results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "written": "Cuộc họp lúc 14h45 ngày 15/11/2026. Giá vé 50.000 đồng, giảm 15%. Nhiệt độ 37,5°C. Xin gọi số 0912 345 678.",
+      "expected_entities": []
+    }
+  ],
+  "paired_vad_core_ids": [
+    "native_en_dev_EV0358",
+    "syn_en_special"
+  ],
+  "paired_ort_core_cases": [
+    {
+      "id": "native_en_dev_EV0358",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "../en-vi/BTC/EV-0358_in.wav",
+      "input_kind": "native_human_speech"
+    }
+  ]
+}

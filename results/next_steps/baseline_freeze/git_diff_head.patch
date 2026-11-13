@@ -1,0 +1,339 @@
+diff --git a/README.md b/README.md
+index d36fcd3..aeae43e 100644
+--- a/README.md
++++ b/README.md
+@@ -165,7 +165,7 @@ Hệ thống tích hợp sẵn web server để test âm thanh trực tiếp:
+ ```bash
+ python3 tools/s2s_web.py
+ ```
+-Mở trình duyệt truy cập `http://localhost:8000` (hoặc cổng hiển thị trong log) để tải file âm thanh hoặc thu âm trực tiếp và quan sát kết quả dịch tức thì.
++Mở trình duyệt truy cập `http://localhost:8766` (hoặc cổng hiển thị trong log) để tải file âm thanh hoặc thu âm trực tiếp và quan sát kết quả dịch tức thì.
+ 
+ ### 6.4. Tái tạo Báo cáo PDF Bất kỳ lúc nào
+ Nếu muốn cập nhật số liệu hoặc tạo lại file PDF báo cáo:
+@@ -173,3 +173,7 @@ Nếu muốn cập nhật số liệu hoặc tạo lại file PDF báo cáo:
+ python3 tools/create_hybrid_tts_report.py
+ ```
+ File PDF sẽ được xuất thẳng vào thư mục `reports/bao-cao-format-tts-hybrid.pdf`.
++
++## Tích hợp asr-improvement (13/11/2026)
++
++Đã fetch và tích hợp chọn lọc VAD, hậu xử lý dấu câu/viết hoa VI và ORT fallback từ commit `1e52318`; không thay weights ASR hoặc TTS hybrid. 22 nhóm test và 6 chiều S2S trước/sau đã chạy. Còn lỗi số liệu ASR/MT và tradeoff latency; xem [báo cáo tích hợp](reports/asr_integration/REVIEW.md). Với `S2S_NEURAL_TN=0`, đường VI là CAPU + vi_punct nâng cấp; chế độ neural nguồn cũ vẫn được giữ riêng.
+diff --git a/results/mic_web/server.pid b/results/mic_web/server.pid
+index cb9acc5..6d0d46c 100644
+--- a/results/mic_web/server.pid
++++ b/results/mic_web/server.pid
+@@ -1 +1 @@
+-18418
+\ No newline at end of file
++24863
+\ No newline at end of file
+diff --git a/s2s_edge/s2s_edge/audio.py b/s2s_edge/s2s_edge/audio.py
+index f44a717..605fc23 100644
+--- a/s2s_edge/s2s_edge/audio.py
++++ b/s2s_edge/s2s_edge/audio.py
+@@ -48,7 +48,7 @@ def normalize_level(x, target_peak=0.5, below=0.2):
+     return (x * (target_peak / pk)).astype(np.float32) if 1e-5 < pk < below else x
+ 
+ 
+-def segment(x, sr=SR, max_s=12.0, min_s=0.3, frame_ms=20, pad_ms=150, min_sil_ms=500, merge_gap_s=1.5, short_s=3.0):
++def segment(x, sr=SR, max_s=12.0, min_s=0.3, frame_ms=20, pad_ms=120, min_sil_ms=320, merge_gap_s=0.32, short_s=1.1):
+     """Split a recording into utterances at pauses. Adaptive threshold from the quietest 10% of frames (works with fan noise).
+     Segments longer than max_s are cut at the quietest frame in their last 40% (never mid-word if a pause exists).
+     Returns a list of (start_sample, end_sample)."""
+diff --git a/s2s_edge/s2s_edge/backends.py b/s2s_edge/s2s_edge/backends.py
+index 6a9952e..038966e 100644
+--- a/s2s_edge/s2s_edge/backends.py
++++ b/s2s_edge/s2s_edge/backends.py
+@@ -28,8 +28,14 @@ class OrtGraph(Graph):
+     def __init__(self, path, name=None):
+         super().__init__(); import onnxruntime as ort
+         so = ort.SessionOptions(); so.log_severity_level = 3; so.enable_cpu_mem_arena = False; so.enable_mem_pattern = False
+-        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
+-        self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"]); self.name = name or os.path.basename(path)
++        large_or_ext = os.path.exists(path + ".data") or (os.path.exists(path) and os.path.getsize(path) > 200_000_000)
++        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL if large_or_ext else ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
++        try:
++            self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"])
++        except Exception:
++            so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL
++            self.s = ort.InferenceSession(path, so, providers=["CPUExecutionProvider"])
++        self.name = name or os.path.basename(path)
+         self.in_names = [i.name for i in self.s.get_inputs()]
+         self.in_types = {i.name: {"tensor(int64)": np.int64, "tensor(int32)": np.int32, "tensor(float)": np.float32, "tensor(float16)": np.float16}.get(i.type, np.float32) for i in self.s.get_inputs()}
+ 
+diff --git a/s2s_edge/s2s_edge/conversation.py b/s2s_edge/s2s_edge/conversation.py
+index 993f008..260be0c 100644
+--- a/s2s_edge/s2s_edge/conversation.py
++++ b/s2s_edge/s2s_edge/conversation.py
+@@ -29,7 +29,7 @@ def restore_vi(text):
+         from .punct_vi import get
+         from .registry import ASSETS
+         m = get(ASSETS)
+-        if m is not None: return m(text)
++        if m is not None: return vi_punct(m(text))
+     return vi_punct(text)
+ 
+ HANGUL = re.compile(r"[가-힣ᄀ-ᇿ]"); HAN = re.compile(r"[一-鿿]"); LATIN = re.compile(r"[A-Za-z]")
+diff --git a/s2s_edge/s2s_edge/textnorm.py b/s2s_edge/s2s_edge/textnorm.py
+index f58a735..a7e6aa8 100644
+--- a/s2s_edge/s2s_edge/textnorm.py
++++ b/s2s_edge/s2s_edge/textnorm.py
+@@ -122,25 +122,101 @@ def normalize(text, lang):
+ 
+ 
+ # Vietnamese ASR output is lower case without punctuation; NLLB then reads questions as statements ("anh cần thêm dây không" -> "I need more wires.").
++_VI_VOCATIVES = {"anh", "chị", "em", "bác", "chú", "cô", "bạn", "mình", "ông", "bà", "ạ", "nhé", "nha", "vậy", "thế", "ha", "hả", "nè", "nhỉ", "ơi"}
+ _VI_Q_LAST = {"không", "chưa", "à", "ư", "hả", "hở", "nhỉ", "sao", "gì", "đâu", "nào", "chứ", "hử", "ai", "mấy", "chăng"}
+-_VI_Q_WORDS = re.compile(r"\b(bao nhiêu|bao lâu|bao giờ|thế nào|như nào|ở đâu|đi đâu|đến đâu|tại sao|vì sao|làm sao|khi nào|lúc nào|mấy|có phải|phải không|được không|hay là)\b"
+-                         r"|\b\w+ nào\b(?! cũng)|\bgì\b|\b\w+ hay \w+")
+-_VI_NOT_Q = re.compile(r"\b(không sao|không có gì|chẳng sao|có gì đâu|gì cả|gì đâu|gì cũng|nào cũng|rất hay|thường hay|hay quá|hay lắm)\b"
+-                       r"|\b(biết|hiểu|nhớ|hỏi)\b.*\b(gì|đâu|nào|sao|mấy|bao|không)\b")      # "tôi không biết khi nào ..." is a statement
+-_VI_NEG_DAU = re.compile(r"\b(không|chưa|chẳng|gì)\b.*\bđâu$")                                 # "chưa quá đông đâu": negation, not "where"
++_VI_Q_WORDS = re.compile(
++    r"\b(bao nhiêu|bao lâu|bao giờ|thế nào|như nào|ở đâu|đi đâu|đến đâu|từ đâu|tại sao|vì sao|làm sao|khi nào|lúc nào|mấy|có phải|phải không|được không|hay là|đúng không)\b"
++    r"|\b\w+ nào\b(?! cũng)|\bgì\b|\b\w+ hay \w+|\bsao\b.*\b(thế|vậy)\b"
++)
++_VI_NOT_Q = re.compile(
++    r"\b(không sao|không có gì|chẳng sao|có gì đâu|gì cả|gì đâu|gì cũng|nào cũng|rất hay|thường hay|hay quá|hay lắm)\b"
++    r"|\b(tôi|chúng tôi|em|mình)\s+(không|chưa)\s+(biết|hiểu|nhớ|rõ)\b"
++)
++_VI_NEG_DAU = re.compile(r"\b(không|chưa|chẳng|gì)\b.*\bđâu$")
++_VI_EXCLAM_WORDS = re.compile(
++    r"\b(cẩn thận|chú ý|nguy hiểm|dừng lại|coi chừng|mau lên|nhanh lên|tuyệt vời|chúc mừng|hoan hô|xin chào)\b"
++)
++_VI_EXCLAM_LAST = {"quá", "lắm", "nào"}
++_VI_NUMBER_WORDS = set("không một hai ba bốn tư năm lăm sáu bảy tám chín mười mươi trăm nghìn ngàn triệu tỷ lẻ linh phẩy âm".split())
++
++_SPLIT_PATTERNS = [
++    (re.compile(r"^(xin chào|chào (?:anh|chị|em|bạn|bác|chú|cô|mọi người))\s+(?=(?:tôi|chúng tôi|em|mình|cho)\b)", re.IGNORECASE), r"\1! "),
++    (re.compile(r"^(vâng|đúng rồi|được rồi|dạ|ừ|chắc chắn rồi)\s+(?=(?:tôi|chúng tôi|em|mình|chúng ta|anh|chị)\b)", re.IGNORECASE), r"\1. "),
++    (re.compile(r"\b(được không|đúng không|phải không|hay không)((?:\s+(?:anh|chị|em|bác|chú|cô|bạn|ạ|nhé|nha))?)\s+(?!(?:thì|hay|mà|nên|rồi|chứ|vậy|nhỉ|à|ư)\b)(?=\S+\s+\S+)", re.IGNORECASE), r"\1\2? "),
++    (re.compile(r"\b(hài lòng|xong rồi|đủ rồi|tốt rồi|được rồi|cảm ơn(?:\s+(?:anh|chị|em|bác|cô|chú|bạn|ạ))?)\s+(?=(?:bao nhiêu tiền|hết bao nhiêu|mất bao nhiêu|tổng cộng)\b)", re.IGNORECASE), r"\1. "),
++    (re.compile(r"\b(chút đi|sớm đi|trước đi|ngay đi|thôi đi)\s+(?=.+\b(?:thế nào|như nào|mấy giờ|ở đâu|được không)\b)", re.IGNORECASE), r"\1. "),
++]
++
++_VI_CAP_SUBS = [
++    (re.compile(r"\bthứ\s+(hai|ba|tư|năm|sáu|bảy)\b", re.IGNORECASE), lambda m: "thứ " + m.group(1).capitalize()),
++    (re.compile(r"\bchủ nhật\b", re.IGNORECASE), lambda _: "Chủ nhật"),
++    (re.compile(r"\b(việt nam|hà nội|hồ chí minh|sài gòn|đà nẵng|trung quốc|hàn quốc|nhật bản|hoa kỳ|châu âu|châu á)\b", re.IGNORECASE), lambda m: m.group(1).title()),
++    (re.compile(r"\btiếng\s+(việt|anh|hàn|trung|nhật|pháp|đức)\b", re.IGNORECASE), lambda m: "tiếng " + m.group(1).capitalize()),
++]
++
++
++def _cap_vi(s):
++    for pat, repl in _VI_CAP_SUBS:
++        s = pat.sub(repl, s)
++    return s[:1].upper() + s[1:]
++
++
++def _punct_clause(c):
++    c = c.strip()
++    if not c: return ""
++    last_mark = c[-1] if c[-1] in ".?!" else None
++    s = c[:-1].strip() if last_mark else c
++    words = s.lower().split()
++    if not words: return c
++
++    i = len(words) - 1
++    while i > 0 and words[i] in _VI_VOCATIVES:
++        i -= 1
++    core_last = words[i]
++    low = " ".join(words)
++    tail = low if len(words) <= 12 else " ".join(words[-6:])
++
++    # 1. Question check
++    is_q = core_last in _VI_Q_LAST or bool(_VI_Q_WORDS.search(tail))
++    if _VI_NOT_Q.search(low) and core_last not in ("không", "chưa", "à", "ư", "hả", "nhỉ", "chứ", "đúng không", "phải không"):
++        is_q = False
++    if core_last == "đâu" and _VI_NEG_DAU.search(s.lower()):
++        is_q = False
++    if core_last in ("không", "chưa") and len(words) <= 2 and words[0] in ("không", "chưa", "tôi", "em"):
++        is_q = False
++    # CAPU can split a spoken numeric sequence into clauses. A numeric zero
++    # at the end of such a statement is not a yes/no question particle.
++    numeric_words = [w.strip(',;:') for w in words]
++    numeric_clause = all(w in _VI_NUMBER_WORDS or w.isdecimal() for w in numeric_words)
++    call_zero = bool(re.search(r'\b(?:gọi|liên hệ)\b.*\bsố\s+không$', low))
++    if last_mark == '.' and core_last == 'không' and (numeric_clause or call_zero):
++        is_q = False
++
++    # 2. Exclamation check
++    is_ex = bool(_VI_EXCLAM_WORDS.search(low)) or (core_last in _VI_EXCLAM_LAST and not is_q)
++    # A declarative "I don't know when/which ..." must not become an
++    # exclamation merely because the final word is "nào".
++    if _VI_NOT_Q.search(low):
++        is_ex = False
++    if is_ex and core_last in ("nào", "sao"):
++        is_q = False
++
++    mark = "?" if is_q else ("!" if is_ex else ".")
++    if last_mark == "?" and is_q: mark = "?"
++    elif last_mark == "!" and is_ex: mark = "!"
++
++    return _cap_vi(s) + mark
+ 
+ 
+ def vi_punct(text):
+-    """Restore sentence case and a final '?' or '.' on a Vietnamese ASR transcript (rule based: question particles and question words).
+-    Measured on the 431 Vietnamese sentences of the organisers' sample set (punctuation removed, then restored): see docs/aibox8550_report.md."""
++    """Restore sentence capitalization, punctuation ('?', '!', '.') and clause splitting on Vietnamese ASR transcripts.
++    Ensures interrogative and imperative contexts are preserved for accurate downstream NLLB MT translation."""
+     t = re.sub(r"\s+", " ", text).strip()
+     if not t: return t
+-    if t[-1] in ".?!": return t[:1].upper() + t[1:]
+-    words = t.lower().split(); core = words[:-1] if len(words) > 1 and words[-1] in ("ạ", "nhé", "vậy", "thế", "ha", "hả") and words[-2] in _VI_Q_LAST else words
+-    low = " ".join(words); last = core[-1]
+-    tail = low if len(words) <= 12 else " ".join(words[-5:])                    # question words inside long sentences are mostly relative ("điều gì thúc đẩy ...")
+-    q = last in _VI_Q_LAST or bool(_VI_Q_WORDS.search(tail))
+-    if _VI_NOT_Q.search(low) and last not in ("không", "chưa", "à", "ư", "hả", "nhỉ", "chứ"): q = False
+-    if last == "đâu" and _VI_NEG_DAU.search(" ".join(core)): q = False
+-    if last in ("không", "chưa") and len(core) <= 2 and core[0] in ("không", "chưa", "tôi", "em"): q = False        # bare "không" / "tôi chưa" answers
+-    return t[:1].upper() + t[1:] + ("?" if q else ".")
++
++    for pat, repl in _SPLIT_PATTERNS:
++        t = pat.sub(repl, t)
++
++    raw_clauses = [c.strip() for c in re.split(r"(?<=[.?!])\s+", t) if c.strip()]
++    out = [_punct_clause(c) for c in raw_clauses]
++    return " ".join(out)
+diff --git a/s2s_edge/tools/eval_vi_punct.py b/s2s_edge/tools/eval_vi_punct.py
+index d3100ad..b867768 100644
+--- a/s2s_edge/tools/eval_vi_punct.py
++++ b/s2s_edge/tools/eval_vi_punct.py
+@@ -11,7 +11,10 @@ files = ["Vie-Eng dataset/Vie-Eng/OneVoice_V_to_E_samples_100.xlsx", "Vie-Kor da
+ sents = [str(r[1]).strip() for f in files for r in list(openpyxl.load_workbook(os.path.join(a.data, f), read_only=True).active.values)[1:] if r and r[0]]
+ sents = [s for s in sents if s and s[-1] in ".?!"]; cm = {(g, p): 0 for g in "?." for p in "?."}; bad = []
+ for s in sents:
+-    gold = "?" if s[-1] == "?" else "."; pred = vi_punct(re.sub(r"[^\w\s]", "", s).lower())[-1]; cm[(gold, pred)] += 1
++    gold = "?" if s[-1] == "?" else "."
++    pred_raw = vi_punct(re.sub(r"[^\w\s]", "", s).lower())[-1]
++    pred = "?" if pred_raw == "?" else "."
++    cm[(gold, pred)] += 1
+     if gold != pred: bad.append((gold, s))
+ ok = cm[("?", "?")] + cm[(".", ".")]
+ print(f"accuracy {ok}/{len(sents)} = {ok / len(sents):.3f}   questions found {cm[('?', '?')]}/{cm[('?', '?')] + cm[('?', '.')]}   statements kept {cm[('.', '.')]}/{cm[('.', '.')] + cm[('.', '?')]}")
+diff --git a/sources.json b/sources.json
+index 7fc94d6..9d84a38 100644
+--- a/sources.json
++++ b/sources.json
+@@ -55,5 +55,17 @@
+       "supertonic_npu"
+     ],
+     "destination": "components"
++  },
++  "asr-improvement": {
++    "commit": "1e5231886dbf4af5bb0a6ff722bfa16223f8f3a6",
++    "paths": [
++      "s2s_edge/s2s_edge/audio.py",
++      "s2s_edge/s2s_edge/textnorm.py",
++      "s2s_edge/s2s_edge/backends.py",
++      "s2s_edge/s2s_edge/conversation.py"
++    ],
++    "destination": ".",
++    "integration": "selective frontend/postprocessing/ORT changes, two local punctuation guards; no new ASR weights",
++    "report": "reports/asr_integration/REVIEW.md"
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/tests/test_hybrid_format.py b/tests/test_hybrid_format.py
+index cb122cc..7a5be91 100644
+--- a/tests/test_hybrid_format.py
++++ b/tests/test_hybrid_format.py
+@@ -8,7 +8,7 @@ from datetime import date, timedelta
+ from pathlib import Path
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-sys.path.insert(0, str(ROOT/'s2s_edge'))
++sys.path.insert(1, str(ROOT/'s2s_edge'))
+ from s2s_edge.hybrid_textnorm import HybridNormalizer
+ from s2s_edge.tts_format import chunks
+ 
+diff --git a/tools/build_nllb_split.py b/tools/build_nllb_split.py
+index 73c9082..6785b79 100644
+--- a/tools/build_nllb_split.py
++++ b/tools/build_nllb_split.py
+@@ -42,7 +42,7 @@ class Decoder(nn.Module):
+   if B==1:return b.inv[logits.argmax(-1)].int(),k.squeeze(1),v.squeeze(1)
+   return logits,k,v
+ print('LOAD_HF',flush=True)
+-hf=AutoModelForSeq2SeqLM.from_pretrained(str(root.parent/'AuraTranslateEdge/output/s2s-original-2026-11-12/models/nllb-hf')).eval()
++hf=AutoModelForSeq2SeqLM.from_pretrained(str(root/'models/source/nllb-hf')).eval()
+ keep=np.load(root/'s2s_edge/assets/nllb_keep.npy').tolist();base=NLLBStatic(hf,S=S,T=T,keep_ids=keep,half_emb=True).eval();del hf;gc.collect()
+ out=root/'build/nllb';out.mkdir(exist_ok=True)
+ a=torch.ones(1,S,dtype=torch.int32);a[0,:3]=torch.tensor([256047,35378,2],dtype=torch.int32)
+diff --git a/tools/check_mt_numerics.py b/tools/check_mt_numerics.py
+index fc6f645..654499b 100644
+--- a/tools/check_mt_numerics.py
++++ b/tools/check_mt_numerics.py
+@@ -2,7 +2,7 @@ from pathlib import Path
+ import torch,numpy as np,json,onnxruntime as ort
+ from transformers import AutoTokenizer,AutoModelForSeq2SeqLM
+ root=Path(__file__).resolve().parents[1];torch.set_num_threads(4)
+-p=root.parent/'AuraTranslateEdge/output/s2s-original-2026-11-12/models/nllb-hf'
++p=root/'models/source/nllb-hf'
+ t=AutoTokenizer.from_pretrained(str(p),src_lang='eng_Latn');m=AutoModelForSeq2SeqLM.from_pretrained(str(p)).eval()
+ a=t('The ticket costs fifteen dollars.',return_tensors='pt');seq=a['input_ids'].numpy().astype(np.int32);x=np.ones((1,64),np.int32);x[0,:seq.shape[1]]=seq
+ so=ort.SessionOptions();so.intra_op_num_threads=4;so.graph_optimization_level=ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
+diff --git a/tools/run_e2e.py b/tools/run_e2e.py
+index f167479..b3229f8 100644
+--- a/tools/run_e2e.py
++++ b/tools/run_e2e.py
+@@ -5,7 +5,7 @@ from s2s_edge.registry import Registry
+ from s2s_edge.pipeline import Translator
+ from s2s_edge.audio import load_audio,save_wav,concat_results
+ src,tgt=sys.argv[1:3]
+-inputs=ROOT.parent/'AuraTranslateEdge/output/s2s-original-2026-11-12/audio'
++inputs=ROOT/'results/neural_fix/final/audio'
+ p=pathlib.Path(sys.argv[3]) if len(sys.argv)>3 else inputs/('vi_to_en_special_input.wav' if src=='vi' else 'en_to_vi_special_input.wav')
+ out=pathlib.Path(os.environ.get('S2S_RESULT_DIR',str(ROOT/'results/e2e')))
+ (out/'audio').mkdir(parents=True,exist_ok=True)
+diff --git a/tools/train_identifier_tagger.py b/tools/train_identifier_tagger.py
+index 18eb093..19b6497 100644
+--- a/tools/train_identifier_tagger.py
++++ b/tools/train_identifier_tagger.py
+@@ -2,7 +2,7 @@ from pathlib import Path
+ import json,sys,hashlib,pycrfsuite,random
+ r=Path(__file__).resolve().parents[1];sys.path.insert(0,str(r/'s2s_edge'))
+ from s2s_edge.identifier_tagger import tokens,features,IdentifierTagger
+-source=r.parent/'AuraTranslateEdge/research/tts_format_benchmark/train_cases.json';data=json.loads(source.read_text())
++source=r/'research/tts_format_benchmark/train_cases.json';data=json.loads(source.read_text())
+ # Extra training examples diversify character shapes and groupings. These are
+ # supervised training data generation, not inference format handlers.
+ rng=random.Random(73129);aug=[]
+diff --git a/tools/verify_neural_fix_run.py b/tools/verify_neural_fix_run.py
+index ff6bdd8..aed690a 100644
+--- a/tools/verify_neural_fix_run.py
++++ b/tools/verify_neural_fix_run.py
+@@ -2,17 +2,18 @@ from pathlib import Path
+ import json,hashlib,subprocess,difflib,shutil
+ import numpy as np,soundfile as sf
+ r=Path(__file__).resolve().parents[1];out=r/'results/neural_fix';final=out/'final'
+-cases=json.loads((r.parent/'AuraTranslateEdge/output/s2s-original-2026-11-12/cases.json').read_text())
++cases=json.loads((r/'results/reference_inputs/cases.json').read_text())
+ lines=['S2S sau bổ sung chuẩn hóa học máy - 12/11/2026','ASR/MT/TTS: graph CPU tích hợp từ các nhánh; chuẩn hóa: model cục bộ trên Apple Metal.','Input speech là fixture tổng hợp; không truyền văn bản tham chiếu vào ASR/MT.',''];summary=[]
+ for c in cases:
+  key=c['src']+'_to_'+c['tgt'];d=json.loads((final/(key+'.json')).read_text());old=json.loads((r/'results/rerun_2026-11-12'/(key+'.json')).read_text())
+  assert [z['asr_raw'] for z in d['segments']]==[z['asr_raw'] for z in old['segments']], 'ASR differs from baseline'
+  assert d['neural_normalization'] and d['segments'] and not d['fallbacks']
+- w,s=sf.read(d['output']);assert len(w)>0 and np.isfinite(w).all() and abs(w).max()>1e-4
++ w,s=sf.read(final/'audio'/(key+'.wav'));assert len(w)>0 and np.isfinite(w).all() and abs(w).max()>1e-4
+  assert all(not any(t.isdecimal() for t in z['tts_text']) for z in d['segments'])
+  for t in d['normalization_trace']:
+   if t['stage']=='asr_segmentation':assert t['content_preserved']
+- shutil.copy2(c['input_wav'],final/'audio'/Path(c['input_wav']).name)
++ source_wav=r/c['input_wav']; target_wav=final/'audio'/Path(c['input_wav']).name
++ if source_wav.resolve()!=target_wav.resolve():shutil.copy2(source_wav,target_wav)
+  lines.extend([key,'INPUT THAM CHIẾU: '+c['written'],'LỜI DÙNG ĐỂ TẠO INPUT AUDIO: '+c['spoken'],'INPUT WAV: '+d['input']])
+  for z in d['segments']:
+   lines.extend(['ASR THÔ: '+z['asr_raw'],'SAU CHUẨN HÓA NGUỒN: '+z['asr'],'BẢN DỊCH: '+z['mt'],'TEXT THỰC TẾ VÀO TTS: '+z['tts_text'],'THỜI GIAN: '+json.dumps(z['timing'])])
+@@ -22,7 +23,7 @@ for c in cases:
+ manifest={};patch=[]
+ for p in sorted((r/'s2s_edge/s2s_edge').glob('*.py')):
+  manifest[str(p.relative_to(r))]=hashlib.sha256(p.read_bytes()).hexdigest();source='s2s_edge/s2s_edge/'+p.name
+- q=subprocess.run(['git','-C',str(r.parent/'AuraTranslateEdge_branches/contest_VNG'),'show','HEAD:'+source],capture_output=True);old=q.stdout.decode() if q.returncode==0 else ''
++ q=subprocess.run(['git','-C',str(r),'show','abe8e30f33228fa3189025a935113c219b8f4ede:'+source],capture_output=True);old=q.stdout.decode() if q.returncode==0 else ''
+  if old!=p.read_text():patch.extend(difflib.unified_diff(old.splitlines(True),p.read_text().splitlines(True),fromfile='a/'+source,tofile='b/'+source))
+ (out/'implementation.patch').write_text(''.join(patch));(out/'code_sha256.json').write_text(json.dumps(manifest,indent=2))
+ models={}

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+    <style>
+      .cpu{fill:#eef3fb;stroke:#4a6fa5;stroke-width:1.4}
+      .npu{fill:#fff1e0;stroke:#d9822b;stroke-width:1.6}
+      .io{fill:#eaf7ee;stroke:#3d8b54;stroke-width:1.4}
+      .grp{fill:none;stroke:#999;stroke-dasharray:5 4}
+      .t{font-weight:600;font-size:14px}
+      .s{fill:#444;font-size:12px}
+      .h{font-weight:700;font-size:18px}
+      .ln{stroke:#444;stroke-width:1.5;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="1200" height="860" fill="#ffffff"/>
+  <text x="24" y="34" class="h">OneVoice s2s_edge on a Hexagon v73 NPU (QCS8550 / IQ-9075)</text>
+  <rect x="820" y="16" width="20" height="14" class="npu"/><text x="846" y="28" class="s">NPU graph (QNN context binary, QAIRT 2.51)</text>
+  <rect x="820" y="38" width="20" height="14" class="cpu"/><text x="846" y="50" class="s">host CPU (numpy / SentencePiece)</text>
+
+  <!-- input -->
+  <rect x="24" y="80" width="200" height="74" rx="8" class="io"/>
+  <text x="38" y="104" class="t">Input</text>
+  <text x="38" y="124" class="s">USB mic (ALSA, 16 kHz) or</text>
+  <text x="38" y="141" class="s">WAV / MP3 file, any rate</text>
+
+  <rect x="260" y="80" width="250" height="74" rx="8" class="cpu"/>
+  <text x="274" y="104" class="t">Front end</text>
+  <text x="274" y="124" class="s">resample to 16 kHz, level normalise</text>
+  <text x="274" y="141" class="s">local-level VAD: utterances of 0.3-12 s</text>
+
+  <rect x="546" y="80" width="300" height="74" rx="8" class="cpu"/>
+  <text x="560" y="104" class="t">Router (--pair vi,X / --auto)</text>
+  <text x="560" y="124" class="s">vi? logistic LID on Zipformer confidence</text>
+  <text x="560" y="141" class="s">else SenseVoice(auto): script -> en / zh / ko</text>
+  <path d="M224,117 H258" class="ln"/><path d="M510,117 H544" class="ln"/>
+
+  <!-- ASR -->
+  <rect x="24" y="186" width="1152" height="150" rx="10" class="grp"/>
+  <text x="38" y="208" class="t">1  ASR</text>
+  <rect x="60" y="222" width="330" height="96" rx="8" class="npu"/>
+  <text x="74" y="246" class="t">vi: Zipformer-150M CTC, fp16</text>
+  <text x="74" y="266" class="s">fbank on host -> 1500 frames (15 s window)</text>
+  <text x="74" y="284" class="s">174 ms per window, 335 MB</text>
+  <text x="74" y="302" class="s">WER 0.8 % on the organisers' vi clips</text>
+  <rect x="420" y="222" width="360" height="96" rx="8" class="npu"/>
+  <text x="434" y="246" class="t">en / zh / ko: SenseVoice-Small (w8a16)</text>
+  <text x="434" y="266" class="s">frontend 62 ms + encoder 268 ms per 29 s window</text>
+  <text x="434" y="284" class="s">8 + 260 MB, output keeps punctuation</text>
+  <text x="434" y="302" class="s">language id forced (zh 3, en 4, ko 12) or auto</text>
+  <rect x="810" y="222" width="340" height="96" rx="8" class="cpu"/>
+  <text x="824" y="246" class="t">Text clean-up</text>
+  <text x="824" y="266" class="s">glossary _asr_fix (domain terms)</text>
+  <text x="824" y="284" class="s">vi_punct: restore "?" / "." (97 % on BTC set)</text>
+  <text x="824" y="302" class="s">drop fragments without intelligible text</text>
+  <path d="M696,154 V186" class="ln"/>
+  <text x="396" y="274" class="s">or</text>
+  <path d="M780,270 H808" class="ln"/>
+
+  <!-- MT -->
+  <rect x="24" y="360" width="1152" height="170" rx="10" class="grp"/>
+  <text x="38" y="382" class="t">2  MT: NLLB-200-distilled-600M split into static graphs (one model, all 6 directions)</text>
+  <rect x="60" y="398" width="230" height="110" rx="8" class="cpu"/>
+  <text x="74" y="422" class="t">Tokenise / chunk</text>
+  <text x="74" y="442" class="s">SentencePiece, numbers</text>
+  <text x="74" y="460" class="s">sentences packed into</text>
+  <text x="74" y="478" class="s">64-token pieces</text>
+  <rect x="320" y="398" width="230" height="110" rx="8" class="npu"/>
+  <text x="334" y="422" class="t">Encoder (S = 64)</text>
+  <text x="334" y="442" class="s">7.4 ms per piece</text>
+  <text x="334" y="460" class="s">611 MB</text>
+  <rect x="580" y="398" width="300" height="110" rx="8" class="npu"/>
+  <text x="594" y="422" class="t">Decoder step, static KV (Tm = 96)</text>
+  <text x="594" y="442" class="s">beam 4: 31 ms / step (default, 884 MB)</text>
+  <text x="594" y="460" class="s">greedy: 16 ms / step (fast, 884 MB)</text>
+  <text x="594" y="478" class="s">~25 steps per sentence</text>
+  <rect x="910" y="398" width="240" height="110" rx="8" class="cpu"/>
+  <text x="924" y="422" class="t">Host search loop</text>
+  <text x="924" y="442" class="s">log-softmax, top-k, cache reorder</text>
+  <text x="924" y="460" class="s">no-repeat 3-gram, length guard</text>
+  <text x="924" y="478" class="s">names -> zh / ko transliteration</text>
+  <path d="M980,318 V340 H175 V396" class="ln"/>
+  <path d="M290,453 H318" class="ln"/><path d="M550,453 H578" class="ln"/>
+  <path d="M880,440 H908" class="ln"/><path d="M908,470 H880" class="ln"/>
+
+  <!-- TTS -->
+  <rect x="24" y="554" width="1152" height="150" rx="10" class="grp"/>
+  <text x="38" y="576" class="t">3  TTS (fixed windows; text re-split automatically when a window is full)</text>
+  <rect x="60" y="590" width="330" height="96" rx="8" class="npu"/>
+  <text x="74" y="614" class="t">vi: Piper VITS (byte text -> audio)</text>
+  <text x="74" y="634" class="s">480 ms per window, 120 MB</text>
+  <text x="74" y="652" class="s">foreign names respelled (CMUdict -> vi syllables)</text>
+  <rect x="420" y="590" width="330" height="96" rx="8" class="npu"/>
+  <text x="434" y="614" class="t">zh: MeloTTS (front + BERT + VITS, 1 graph)</text>
+  <text x="434" y="634" class="s">720 ms per window, 671 MB</text>
+  <text x="434" y="652" class="s">ASR CER 6.4 % on its own output</text>
+  <rect x="780" y="590" width="370" height="96" rx="8" class="npu"/>
+  <text x="794" y="614" class="t">en / ko: Supertonic-3 (fused)</text>
+  <text x="794" y="634" class="s">748 ms per window, 213 MB</text>
+  <text x="794" y="652" class="s">round trip WER 0 % (en), CER 1.5 % (ko)</text>
+  <path d="M1030,508 V532 H600 V588" class="ln"/>
+
+  <!-- output -->
+  <rect x="24" y="732" width="360" height="100" rx="8" class="io"/>
+  <text x="38" y="756" class="t">Output</text>
+  <text x="38" y="776" class="s">concatenate chunks, resample, play (aplay)</text>
+  <text x="38" y="794" class="s">or write WAV; transcript + translation printed</text>
+  <rect x="420" y="732" width="756" height="100" rx="8" class="cpu"/>
+  <text x="434" y="756" class="t">Measurement on every utterance (raw logs for the submission)</text>
+  <text x="434" y="776" class="s">asr_s / mt_s / tts_s / total_s wall time, graph_s = time inside NPU calls, host_s = rest, audio in / out seconds, RTF</text>
+  <text x="434" y="794" class="s">tools/eval_btc.py: per-clip CSV + JSON summary (src ASR error, MT chrF/BLEU, ASR of the output audio, latency p50 / p90)</text>
+  <text x="434" y="812" class="s">Chip-time estimate per short utterance: ASR 0.17-0.33 s + MT 0.4-0.8 s + TTS 0.5-0.75 s  =  about 1.2-1.7 s</text>
+  <path d="M600,686 V710 H200 V730" class="ln"/>
+</svg>

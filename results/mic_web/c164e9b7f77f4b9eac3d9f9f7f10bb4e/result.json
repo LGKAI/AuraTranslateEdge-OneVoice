@@ -1,0 +1,71 @@
+{
+  "id": "c164e9b7f77f4b9eac3d9f9f7f10bb4e",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 10.12,
+  "output_seconds": 5.915328798185941,
+  "elapsed_seconds": 7.921512750001057,
+  "input_url": "/audio/c164e9b7f77f4b9eac3d9f9f7f10bb4e/input.wav",
+  "output_url": "/audio/c164e9b7f77f4b9eac3d9f9f7f10bb4e/output.wav",
+  "detail_url": "/audio/c164e9b7f77f4b9eac3d9f9f7f10bb4e/result.json",
+  "asr": "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon.",
+  "translation": "Vào ngày 15 tháng 8 năm 1940, các đồng minh xâm lược miền Nam Pháp và In được gọi là Chiến dịch Droon.",
+  "tts_text": "vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, các đồng minh xâm lược miền nam pháp và in được gọi là chiến dịch đrun.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon.",
+      "asr_before_normalization": "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon.",
+      "mt": "Vào ngày 15 tháng 8 năm 1940, các đồng minh xâm lược miền Nam Pháp và In được gọi là Chiến dịch Droon.",
+      "tts_text": "vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, các đồng minh xâm lược miền nam pháp và in được gọi là chiến dịch đrun.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.4761738340002921,
+        "source_normalize_s": 2.2003395409992663,
+        "mt_s": 0.8279877499990107,
+        "tts_s": 1.9775069170009374,
+        "total_s": 5.4820080419995065,
+        "graph_s": 2.17077162899659,
+        "graph_calls": 32,
+        "host_s": 3.3112364130029164,
+        "audio_in_s": 8.64,
+        "audio_out_s": 5.915328798185941
+      },
+      "asr_raw": "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon.",
+      "span": [
+        1.05,
+        9.69
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon.",
+      "output": [
+        "On August 15, 1940, the Allies invaded Southern France and the In was called Operation Droon."
+      ],
+      "seconds": 2.19885958300074,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Vào ngày 15 tháng 8 năm 1940, các đồng minh xâm lược miền Nam Pháp và In được gọi là Chiến dịch Droon.",
+      "identifiers": [],
+      "identifier_spoken_text": "Vào ngày 15 tháng 8 năm 1940, các đồng minh xâm lược miền Nam Pháp và In được gọi là Chiến dịch Droon.",
+      "output": "Vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, các đồng minh xâm lược miền Nam Pháp và In được gọi là Chiến dịch Droon.",
+      "seconds": 0.9870851249997941,
+      "tokens": 177,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

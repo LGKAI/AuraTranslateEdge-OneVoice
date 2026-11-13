@@ -1,0 +1,72 @@
+{
+  "id": "c2e6901daa7b46e4b7a6191e7de347a4",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 8.1066875,
+  "output_seconds": 3.1927437641723357,
+  "elapsed_seconds": 5.8384814170003665,
+  "input_url": "/audio/c2e6901daa7b46e4b7a6191e7de347a4/input.wav",
+  "output_url": "/audio/c2e6901daa7b46e4b7a6191e7de347a4/output.wav",
+  "detail_url": "/audio/c2e6901daa7b46e4b7a6191e7de347a4/result.json",
+  "asr": "Yeah, we hanging. do yeah, we you down.",
+  "translation": "Ừ, chúng ta đang treo. Đúng vậy, chúng ta sẽ hạ cậu xuống.",
+  "tts_text": "ừ, chúng ta đang treo. đúng vậy, chúng ta sẽ hạ cậu xuống.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "Yeah, we hanging. Do yeah, we you down.",
+      "asr_before_normalization": "Yeah, we hanging. do yeah, we you down.",
+      "mt": "Ừ, chúng ta đang treo. Đúng vậy, chúng ta sẽ hạ cậu xuống.",
+      "tts_text": "ừ, chúng ta đang treo. đúng vậy, chúng ta sẽ hạ cậu xuống.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.43218187500133354,
+        "source_normalize_s": 0.9791395409993129,
+        "mt_s": 0.9115419999998267,
+        "tts_s": 1.23071974999948,
+        "total_s": 3.553583165999953,
+        "graph_s": 1.805116248997365,
+        "graph_calls": 31,
+        "host_s": 1.7484669170025882,
+        "audio_in_s": 7.58,
+        "audio_out_s": 3.1927437641723357
+      },
+      "asr_raw": "Yeah, we hanging. do yeah, we you down.",
+      "span": [
+        0.07,
+        7.65
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "Yeah, we hanging. do yeah, we you down.",
+      "output": [
+        "Yeah, we hanging.",
+        "Do yeah, we you down."
+      ],
+      "seconds": 0.9784271250009624,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Ừ, chúng ta đang treo. Đúng vậy, chúng ta sẽ hạ cậu xuống.",
+      "identifiers": [],
+      "identifier_spoken_text": "Ừ, chúng ta đang treo. Đúng vậy, chúng ta sẽ hạ cậu xuống.",
+      "output": "Ừ, chúng ta đang treo. Đúng vậy, chúng ta sẽ hạ cậu xuống.",
+      "seconds": 0.6258664159995533,
+      "tokens": 77,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

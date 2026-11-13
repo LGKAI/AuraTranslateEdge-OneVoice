@@ -1,0 +1,1289 @@
+{
+  "cwd": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS",
+  "modes": {
+    "1": {
+      "source_mode": "1",
+      "port": 8767,
+      "out_dir": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode1",
+      "server_log": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/logs/t3d_server_mode1.log",
+      "cmd": [
+        "/private/tmp/s2s-original-env/bin/python",
+        "-u",
+        "tools/s2s_web.py",
+        "--port",
+        "8767",
+        "--out-dir",
+        "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode1",
+        "--vad-profile",
+        "legacy",
+        "--ort-policy",
+        "basic",
+        "--source-mode",
+        "1"
+      ],
+      "health_startup_s": 0.5104,
+      "health": {
+        "ok": true,
+        "pending": 0,
+        "max_seconds": 30,
+        "normalization": true,
+        "source_mode": "1",
+        "vad_profile": "legacy",
+        "vad_options": {
+          "pad_ms": 150,
+          "min_sil_ms": 500,
+          "merge_gap_s": 1.5,
+          "short_s": 3.0
+        },
+        "ort_policy": "basic",
+        "tts_format": "hybrid",
+        "code_fingerprint": {
+          "git_head": "43ea359b42ae274f32f6e24eeb9b5018dc2a93ea",
+          "s2s_edge_sha256": "ee6605f6a6270afa8812f94fc4e65921879a6cc71c5d2d7a30a982e81740f87d"
+        }
+      },
+      "jobs": [
+        {
+          "src": "en",
+          "tgt": "vi",
+          "job_id": "9977811b512c4d6fb6fc6a95a9685adb",
+          "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+          "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+          "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode1/en_http_output.wav",
+          "output_sha256": "eaeeaa4f746a1e6b750a2b7f3b1c6e999aa1544b72010358a844cd123ccec3a9",
+          "output_bytes": 706894,
+          "elapsed_seconds": 15.327509624999948,
+          "input_seconds": 20.2710625,
+          "output_seconds": 16.028344671201815,
+          "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. The temperature is 37.5 degrees Celsius. My flight is VN 123, and my ZIP code is 67297.",
+          "translation": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%. Nhiệt độ là 37,5 độ C. Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là 67297.",
+          "tts_text": "cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu. giá vé là mười lăm đô la năm mươi xen với giảm giá mười lăm phần trăm. nhiệt độ là ba mươi bảy phẩy năm độ c. chuyến bay của tôi là vơn một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+          "segments": [
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50 with a 15% discount.",
+              "asr_before_normalization": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "mt": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%.",
+              "tts_text": "cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu. giá vé là mười lăm đô la năm mươi xen với giảm giá mười lăm phần trăm.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%.",
+                "output": "Cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu. Giá vé là mười lăm đô la năm mươi xen với giảm giá mười lăm phần trăm.",
+                "spans": [
+                  {
+                    "start": 16,
+                    "end": 20,
+                    "kind": "time",
+                    "raw": "3:30",
+                    "value": {
+                      "hour": 3,
+                      "minute": 30,
+                      "second": null,
+                      "ampm": ""
+                    },
+                    "spoken": "ba giờ ba mươi phút",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 34,
+                    "end": 54,
+                    "kind": "date",
+                    "raw": "15 tháng 11 năm 2026",
+                    "value": {
+                      "year": 2026,
+                      "month": 11,
+                      "day": 15
+                    },
+                    "spoken": "mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 66,
+                    "end": 77,
+                    "kind": "money",
+                    "raw": "15,50 đô la",
+                    "value": {
+                      "currency": "USD",
+                      "number": {
+                        "sign": "",
+                        "whole": "15",
+                        "fraction": "50"
+                      }
+                    },
+                    "spoken": "mười lăm đô la năm mươi xen",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 91,
+                    "end": 94,
+                    "kind": "percent",
+                    "raw": "15%",
+                    "value": {
+                      "number": {
+                        "sign": "",
+                        "whole": "15",
+                        "fraction": ""
+                      },
+                      "unit": "%"
+                    },
+                    "spoken": "mười lăm phần trăm",
+                    "source": "grammar"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    16,
+                    35
+                  ],
+                  [
+                    49,
+                    110
+                  ],
+                  [
+                    122,
+                    149
+                  ],
+                  [
+                    163,
+                    181
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.007933667002362199,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+                  "giá vé là mười lăm đô la năm mươi xen với giảm giá mười lăm phần trăm."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.438376165999216,
+                "source_normalize_s": 1.562010542002099,
+                "mt_s": 1.157716583002184,
+                "tts_s": 1.035838291994878,
+                "total_s": 4.193941582998377,
+                "graph_s": 2.452432874000806,
+                "graph_calls": 38,
+                "host_s": 1.7415087089975714,
+                "audio_in_s": 10.0,
+                "audio_out_s": 9.142902494331066
+              },
+              "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "span": [
+                0.33,
+                10.33
+              ]
+            },
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "The temperature is 37.5 degrees Celsius.",
+              "asr_before_normalization": "The temperature is 37.5 degrees Celsius.",
+              "mt": "Nhiệt độ là 37,5 độ C.",
+              "tts_text": "nhiệt độ là ba mươi bảy phẩy năm độ c.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Nhiệt độ là 37,5 độ C.",
+                "output": "Nhiệt độ là ba mươi bảy phẩy năm độ C.",
+                "spans": [
+                  {
+                    "start": 12,
+                    "end": 16,
+                    "kind": "number",
+                    "raw": "37,5",
+                    "value": {
+                      "sign": "",
+                      "whole": "37",
+                      "fraction": "5"
+                    },
+                    "spoken": "ba mươi bảy phẩy năm",
+                    "source": "grammar"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    12,
+                    32
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.00020108399621676654,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "nhiệt độ là ba mươi bảy phẩy năm độ c."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.45871700000134297,
+                "source_normalize_s": 1.038579457999731,
+                "mt_s": 0.4610852089972468,
+                "tts_s": 0.5183807909997995,
+                "total_s": 2.4767624579981202,
+                "graph_s": 1.3842672080063494,
+                "graph_calls": 15,
+                "host_s": 1.0924952499917708,
+                "audio_in_s": 3.28,
+                "audio_out_s": 2.0317460317460316
+              },
+              "asr_raw": "The temperature is 37.5 degrees Celsius.",
+              "span": [
+                10.63,
+                13.91
+              ]
+            },
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "My flight is VN 123, and my ZIP code is 67297.",
+              "asr_before_normalization": "My flight is VN 123, and my ZIP code is 67297.",
+              "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là 67297.",
+              "tts_text": "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là 67297.",
+                "output": "Chuyến bay của tôi là VN một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+                "spans": [
+                  {
+                    "start": 25,
+                    "end": 28,
+                    "kind": "identifier",
+                    "raw": "123",
+                    "value": {
+                      "characters": "123"
+                    },
+                    "spoken": "một hai ba",
+                    "source": "context"
+                  },
+                  {
+                    "start": 55,
+                    "end": 60,
+                    "kind": "identifier",
+                    "raw": "67297",
+                    "value": {
+                      "characters": "67297"
+                    },
+                    "spoken": "sáu bảy hai chín bảy",
+                    "source": "CRF proposal"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    25,
+                    35
+                  ],
+                  [
+                    62,
+                    82
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.00036587499926099554,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.5107755420031026,
+                "source_normalize_s": 1.9922558329999447,
+                "mt_s": 0.9287578750008834,
+                "tts_s": 0.525323458998173,
+                "total_s": 3.9571127090021037,
+                "graph_s": 1.8550422090120264,
+                "graph_calls": 28,
+                "host_s": 2.1020704999900772,
+                "audio_in_s": 5.78,
+                "audio_out_s": 4.35374149659864
+              },
+              "asr_raw": "My flight is VN 123, and my ZIP code is 67297.",
+              "span": [
+                14.19,
+                19.97
+              ]
+            }
+          ],
+          "normalization": [
+            {
+              "stage": "asr_segmentation",
+              "lang": "en",
+              "input": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "output": [
+                "The meeting is at 3:30 PM on November 15, 2026.",
+                "The ticket costs $15.50 with a 15% discount."
+              ],
+              "seconds": 1.5542759579984704,
+              "attempts": 1,
+              "content_preserved": true
+            },
+            {
+              "stage": "asr_segmentation",
+              "lang": "en",
+              "input": "The temperature is 37.5 degrees Celsius.",
+              "output": [
+                "The temperature is 37.5 degrees Celsius."
+              ],
+              "seconds": 1.0382454589998815,
+              "attempts": 1,
+              "content_preserved": true
+            },
+            {
+              "stage": "asr_segmentation",
+              "lang": "en",
+              "input": "My flight is VN 123, and my ZIP code is 67297.",
+              "output": [
+                "My flight is VN 123,",
+                "and my ZIP code is 67297."
+              ],
+              "seconds": 1.9917249169957358,
+              "attempts": 2,
+              "content_preserved": true
+            }
+          ],
+          "source_mode": "1",
+          "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+          "effective_profile": {
+            "vad_profile": "legacy",
+            "vad_profile_origin": "arg",
+            "vad_options": {
+              "pad_ms": 150,
+              "min_sil_ms": 500,
+              "merge_gap_s": 1.5,
+              "short_s": 3.0
+            },
+            "ort_policy": "basic",
+            "ort_policy_origin": "arg",
+            "source_mode": "1",
+            "source_mode_origin": "arg",
+            "tts_format": "hybrid",
+            "tts_format_origin": "env"
+          },
+          "ort_sessions": {
+            "asr_xx_frontend": {
+              "name": "asr_xx_frontend",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+              "size_bytes": 1228928,
+              "external_data": false,
+              "large_or_ext": false,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "asr_xx_encoder": {
+              "name": "asr_xx_encoder",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+              "size_bytes": 941305187,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_enc": {
+              "name": "mt_enc",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+              "size_bytes": 991368468,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_decB": {
+              "name": "mt_decB",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+              "size_bytes": 1276245977,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "tts_vi": {
+              "name": "tts_vi",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+              "size_bytes": 215699842,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "src": "vi",
+          "tgt": "en",
+          "job_id": "3cc72dfae3de4242b73d960ecaa5cd32",
+          "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+          "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+          "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode1/vi_http_output.wav",
+          "output_sha256": "5a7e55d66f44963534d6da18e931b5907537bb7884b9877908ed9b4dff664e45",
+          "output_bytes": 1485368,
+          "elapsed_seconds": 14.725523541994335,
+          "input_seconds": 11.9583125,
+          "output_seconds": 16.840408163265305,
+          "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "translation": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+          "tts_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+          "segments": [
+            {
+              "src": "vi",
+              "tgt": "en",
+              "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+              "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+              "mt": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+              "tts_text": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "en",
+                "input": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call 0912345678",
+                "output": "meeting at fourteen o'clock four days ten November of the year two thousand no two six Tickets for five thousand denarii are reduced by ten per cent. Temperature three to seven years c call zero nine one two three four five six seven eight",
+                "spans": [
+                  {
+                    "start": 190,
+                    "end": 200,
+                    "kind": "identifier",
+                    "raw": "0912345678",
+                    "value": {
+                      "characters": "0912345678"
+                    },
+                    "spoken": "zero nine one two three four five six seven eight",
+                    "source": "context"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    190,
+                    239
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.0005449160016723908,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "meeting at fourteen o'clock four days ten November of the year two thousand no two six",
+                  "Tickets for five thousand denarii are reduced by ten per cent.",
+                  "Temperature three to seven years c call",
+                  "zero nine one two three four five six seven eight"
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+                "preprocessed_chunk_lengths": [
+                  96,
+                  71,
+                  49,
+                  59
+                ]
+              },
+              "sr": 44100,
+              "timing": {
+                "asr_s": 0.27976866599783534,
+                "source_normalize_s": 3.986613374996523,
+                "mt_s": 2.198752374999458,
+                "tts_s": 5.892831584002124,
+                "total_s": 12.35796599999594,
+                "graph_s": 8.047121706003963,
+                "graph_calls": 72,
+                "host_s": 4.310844293991977,
+                "audio_in_s": 11.9583125,
+                "audio_out_s": 16.840408163265305
+              },
+              "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+              "span": [
+                0.0,
+                11.9583125
+              ]
+            }
+          ],
+          "normalization": [
+            {
+              "stage": "asr_identifiers",
+              "lang": "vi",
+              "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+              "output": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+              "converted": [
+                {
+                  "source": "không chín một hai ba bốn năm sáu bảy tám",
+                  "canonical": "0912345678"
+                }
+              ],
+              "policy": "recognized digit words to literal identifier characters; no missing digits inferred"
+            },
+            {
+              "stage": "asr_segmentation",
+              "lang": "vi",
+              "input": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số 0912345678",
+              "output": [
+                "cuộc họp lúc mười bốn giờ bốn ngày mười",
+                "tháng mười một năm hai nghìn không hai sáu",
+                "giá vé năm nghìn đồng giảm mười phần trăm",
+                "nhiệt độ ba bảy năm độ c gọi số 0912345678"
+              ],
+              "seconds": 3.985695625000517,
+              "attempts": 2,
+              "content_preserved": true
+            }
+          ],
+          "source_mode": "1",
+          "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+          "effective_profile": {
+            "vad_profile": "legacy",
+            "vad_profile_origin": "arg",
+            "vad_options": {
+              "pad_ms": 150,
+              "min_sil_ms": 500,
+              "merge_gap_s": 1.5,
+              "short_s": 3.0
+            },
+            "ort_policy": "basic",
+            "ort_policy_origin": "arg",
+            "source_mode": "1",
+            "source_mode_origin": "arg",
+            "tts_format": "hybrid",
+            "tts_format_origin": "env"
+          },
+          "ort_sessions": {
+            "asr_vi": {
+              "name": "asr_vi",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+              "size_bytes": 596925289,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_enc": {
+              "name": "mt_enc",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+              "size_bytes": 991368468,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_decB": {
+              "name": "mt_decB",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+              "size_bytes": 1276245977,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "tts_enko": {
+              "name": "tts_enko",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+              "size_bytes": 398278832,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "invalid_audio_http_code": 400,
+      "status": "ok",
+      "server_exit_code": -15
+    },
+    "0": {
+      "source_mode": "0",
+      "port": 8768,
+      "out_dir": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode0",
+      "server_log": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/logs/t3d_server_mode0.log",
+      "cmd": [
+        "/private/tmp/s2s-original-env/bin/python",
+        "-u",
+        "tools/s2s_web.py",
+        "--port",
+        "8768",
+        "--out-dir",
+        "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode0",
+        "--vad-profile",
+        "legacy",
+        "--ort-policy",
+        "basic",
+        "--source-mode",
+        "0"
+      ],
+      "health_startup_s": 0.5069,
+      "health": {
+        "ok": true,
+        "pending": 0,
+        "max_seconds": 30,
+        "normalization": false,
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "vad_options": {
+          "pad_ms": 150,
+          "min_sil_ms": 500,
+          "merge_gap_s": 1.5,
+          "short_s": 3.0
+        },
+        "ort_policy": "basic",
+        "tts_format": "hybrid",
+        "code_fingerprint": {
+          "git_head": "43ea359b42ae274f32f6e24eeb9b5018dc2a93ea",
+          "s2s_edge_sha256": "ee6605f6a6270afa8812f94fc4e65921879a6cc71c5d2d7a30a982e81740f87d"
+        }
+      },
+      "jobs": [
+        {
+          "src": "en",
+          "tgt": "vi",
+          "job_id": "41f9c9beedb44aaa8828ba342f50d03e",
+          "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+          "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+          "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode0/en_http_output.wav",
+          "output_sha256": "10b9c5257666ac22ce790169920218d2196b15b30016a6451647880b1b319a29",
+          "output_bytes": 678222,
+          "elapsed_seconds": 9.66910429100244,
+          "input_seconds": 20.2710625,
+          "output_seconds": 15.378185941043084,
+          "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. The temperature is 37.5 degrees Celsius. My flight is VN 123, and my ZIP code is 67297.",
+          "translation": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%. Nhiệt độ là 37. 5 độ C. Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+          "tts_text": "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm. nhiệt độ là ba mươi bảy. năm độ c. chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy.",
+          "segments": [
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "asr_before_normalization": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+              "tts_text": "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+                "output": "Cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+                "spans": [
+                  {
+                    "start": 20,
+                    "end": 23,
+                    "kind": "number",
+                    "raw": "330",
+                    "value": {
+                      "sign": "",
+                      "whole": "330",
+                      "fraction": ""
+                    },
+                    "spoken": "ba trăm ba mươi",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 37,
+                    "end": 57,
+                    "kind": "date",
+                    "raw": "15 tháng 11 năm 2026",
+                    "value": {
+                      "year": 2026,
+                      "month": 11,
+                      "day": 15
+                    },
+                    "spoken": "mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 69,
+                    "end": 77,
+                    "kind": "money",
+                    "raw": "15 đô la",
+                    "value": {
+                      "currency": "USD",
+                      "number": {
+                        "sign": "",
+                        "whole": "15",
+                        "fraction": ""
+                      }
+                    },
+                    "spoken": "mười lăm đô la",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 79,
+                    "end": 81,
+                    "kind": "number",
+                    "raw": "50",
+                    "value": {
+                      "sign": "",
+                      "whole": "50",
+                      "fraction": ""
+                    },
+                    "spoken": "năm mươi",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 95,
+                    "end": 98,
+                    "kind": "percent",
+                    "raw": "15%",
+                    "value": {
+                      "number": {
+                        "sign": "",
+                        "whole": "15",
+                        "fraction": ""
+                      },
+                      "unit": "%"
+                    },
+                    "spoken": "mười lăm phần trăm",
+                    "source": "grammar"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    20,
+                    35
+                  ],
+                  [
+                    49,
+                    110
+                  ],
+                  [
+                    122,
+                    136
+                  ],
+                  [
+                    138,
+                    146
+                  ],
+                  [
+                    160,
+                    178
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.012974500001291744,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá",
+                  "vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.4997590830025729,
+                "source_normalize_s": 0.0001470420029363595,
+                "mt_s": 2.0864276669963147,
+                "tts_s": 1.2426719580034842,
+                "total_s": 3.829005750005308,
+                "graph_s": 3.5100200419910834,
+                "graph_calls": 42,
+                "host_s": 0.31898570801422466,
+                "audio_in_s": 10.0,
+                "audio_out_s": 8.899092970521542
+              },
+              "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+              "span": [
+                0.33,
+                10.33
+              ]
+            },
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "The temperature is 37.5 degrees Celsius.",
+              "asr_before_normalization": "The temperature is 37.5 degrees Celsius.",
+              "mt": "Nhiệt độ là 37. 5 độ C.",
+              "tts_text": "nhiệt độ là ba mươi bảy. năm độ c.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Nhiệt độ là 37. 5 độ C.",
+                "output": "Nhiệt độ là ba mươi bảy. năm độ C.",
+                "spans": [
+                  {
+                    "start": 12,
+                    "end": 14,
+                    "kind": "number",
+                    "raw": "37",
+                    "value": {
+                      "sign": "",
+                      "whole": "37",
+                      "fraction": ""
+                    },
+                    "spoken": "ba mươi bảy",
+                    "source": "grammar"
+                  },
+                  {
+                    "start": 16,
+                    "end": 17,
+                    "kind": "number",
+                    "raw": "5",
+                    "value": {
+                      "sign": "",
+                      "whole": "5",
+                      "fraction": ""
+                    },
+                    "spoken": "năm",
+                    "source": "grammar"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    12,
+                    23
+                  ],
+                  [
+                    25,
+                    28
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.00038329199742292985,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "nhiệt độ là ba mươi bảy. năm độ c."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.4123907079992932,
+                "source_normalize_s": 1.4500001270789653e-05,
+                "mt_s": 0.5825784590051626,
+                "tts_s": 0.5655640409968328,
+                "total_s": 1.5605477080025594,
+                "graph_s": 1.4793748750016675,
+                "graph_calls": 22,
+                "host_s": 0.08117283300089184,
+                "audio_in_s": 3.28,
+                "audio_out_s": 1.8692063492063493
+              },
+              "asr_raw": "The temperature is 37.5 degrees Celsius.",
+              "span": [
+                10.63,
+                13.91
+              ]
+            },
+            {
+              "src": "en",
+              "tgt": "vi",
+              "asr": "My flight is VN 123, and my ZIP code is 67297.",
+              "asr_before_normalization": "My flight is VN 123, and my ZIP code is 67297.",
+              "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+              "tts_text": "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "vi",
+                "input": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+                "output": "Chuyến bay của tôi là VN một hai ba, và mã địa chỉ là sáu bảy hai chín bảy.",
+                "spans": [
+                  {
+                    "start": 25,
+                    "end": 28,
+                    "kind": "identifier",
+                    "raw": "123",
+                    "value": {
+                      "characters": "123"
+                    },
+                    "spoken": "một hai ba",
+                    "source": "context"
+                  },
+                  {
+                    "start": 47,
+                    "end": 52,
+                    "kind": "identifier",
+                    "raw": "67297",
+                    "value": {
+                      "characters": "67297"
+                    },
+                    "spoken": "sáu bảy hai chín bảy",
+                    "source": "context"
+                  }
+                ],
+                "protected_ranges": [
+                  [
+                    25,
+                    35
+                  ],
+                  [
+                    54,
+                    74
+                  ]
+                ],
+                "warnings": [],
+                "seconds": 0.00037366600008681417,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+              },
+              "sr": 22050,
+              "timing": {
+                "asr_s": 0.36422195799968904,
+                "source_normalize_s": 1.562500256113708e-05,
+                "mt_s": 0.7301260839958559,
+                "tts_s": 0.5581011660033255,
+                "total_s": 1.6524648330014315,
+                "graph_s": 1.5315657070023008,
+                "graph_calls": 26,
+                "host_s": 0.12089912599913077,
+                "audio_in_s": 5.78,
+                "audio_out_s": 4.1099319727891155
+              },
+              "asr_raw": "My flight is VN 123, and my ZIP code is 67297.",
+              "span": [
+                14.19,
+                19.97
+              ]
+            }
+          ],
+          "normalization": [],
+          "source_mode": "0",
+          "backend": "integrated ONNX CPU (rule source preparation; neural_tn=0)",
+          "effective_profile": {
+            "vad_profile": "legacy",
+            "vad_profile_origin": "arg",
+            "vad_options": {
+              "pad_ms": 150,
+              "min_sil_ms": 500,
+              "merge_gap_s": 1.5,
+              "short_s": 3.0
+            },
+            "ort_policy": "basic",
+            "ort_policy_origin": "arg",
+            "source_mode": "0",
+            "source_mode_origin": "arg",
+            "tts_format": "hybrid",
+            "tts_format_origin": "env"
+          },
+          "ort_sessions": {
+            "asr_xx_frontend": {
+              "name": "asr_xx_frontend",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+              "size_bytes": 1228928,
+              "external_data": false,
+              "large_or_ext": false,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "asr_xx_encoder": {
+              "name": "asr_xx_encoder",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+              "size_bytes": 941305187,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_enc": {
+              "name": "mt_enc",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+              "size_bytes": 991368468,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_decB": {
+              "name": "mt_decB",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+              "size_bytes": 1276245977,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "tts_vi": {
+              "name": "tts_vi",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+              "size_bytes": 215699842,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "src": "vi",
+          "tgt": "en",
+          "job_id": "906253e05f64411e845b486bda296954",
+          "input_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+          "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+          "output_wav": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/http_web_mode0/vi_http_output.wav",
+          "output_sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5",
+          "output_bytes": 1790012,
+          "elapsed_seconds": 12.979576792000444,
+          "input_seconds": 11.9583125,
+          "output_seconds": 20.294421768707483,
+          "asr": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "translation": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+          "tts_text": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+          "segments": [
+            {
+              "src": "vi",
+              "tgt": "en",
+              "asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+              "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+              "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+              "tts_text": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+              "tts_format": {
+                "stage": "tts_hybrid",
+                "lang": "en",
+                "input": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+                "output": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+                "spans": [],
+                "protected_ranges": [],
+                "warnings": [],
+                "seconds": 0.0008083330030785874,
+                "identifier_model": "CRF loaded",
+                "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+                "planned_chunks": [
+                  "The meeting is at fourteen four days. It's the eleventh of November.",
+                  "Five, two thousand, no. Two, six.",
+                  "Tickets for five thousand, a discount of ten per cent.",
+                  "Temperatures three, seven, five degrees C. Call the number.",
+                  "Nine, one, two, three, four, five, six, seven, eight."
+                ],
+                "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+                "preprocessed_chunk_lengths": [
+                  77,
+                  42,
+                  63,
+                  68,
+                  62
+                ]
+              },
+              "sr": 44100,
+              "timing": {
+                "asr_s": 0.150288292003097,
+                "source_normalize_s": 0.21332249999977648,
+                "mt_s": 3.4647303329984425,
+                "tts_s": 7.119876750002732,
+                "total_s": 10.948217875004048,
+                "graph_s": 10.254371829949378,
+                "graph_calls": 116,
+                "host_s": 0.69384604505467,
+                "audio_in_s": 11.9583125,
+                "audio_out_s": 20.294421768707483
+              },
+              "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+              "span": [
+                0.0,
+                11.9583125
+              ]
+            }
+          ],
+          "normalization": [],
+          "source_mode": "0",
+          "backend": "integrated ONNX CPU (rule source preparation; neural_tn=0)",
+          "effective_profile": {
+            "vad_profile": "legacy",
+            "vad_profile_origin": "arg",
+            "vad_options": {
+              "pad_ms": 150,
+              "min_sil_ms": 500,
+              "merge_gap_s": 1.5,
+              "short_s": 3.0
+            },
+            "ort_policy": "basic",
+            "ort_policy_origin": "arg",
+            "source_mode": "0",
+            "source_mode_origin": "arg",
+            "tts_format": "hybrid",
+            "tts_format_origin": "env"
+          },
+          "ort_sessions": {
+            "asr_vi": {
+              "name": "asr_vi",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+              "size_bytes": 596925289,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_enc": {
+              "name": "mt_enc",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+              "size_bytes": 991368468,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "mt_decB": {
+              "name": "mt_decB",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+              "size_bytes": 1276245977,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            },
+            "tts_enko": {
+              "name": "tts_enko",
+              "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+              "size_bytes": 398278832,
+              "external_data": false,
+              "large_or_ext": true,
+              "ort_policy": "basic",
+              "effective_ort_level": "ORT_ENABLE_BASIC",
+              "ort_fallback": false,
+              "attempts": [
+                {
+                  "attempt": 1,
+                  "level": "ORT_ENABLE_BASIC",
+                  "ok": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "invalid_audio_http_code": 400,
+      "status": "ok",
+      "server_exit_code": -15
+    }
+  }
+}

@@ -1,0 +1,2155 @@
+{
+  "run_id": "plan01_top1_legacy_basic",
+  "run_status": "ok",
+  "drift_detected": false,
+  "failure_count": 0,
+  "completed_count": 6,
+  "total_cases": 6,
+  "run_load_s": 0.001353,
+  "warmup_s": 3.817358,
+  "effective_options": {
+    "source_mode": "0",
+    "source_mode_origin": "cli",
+    "vad_profile": "legacy",
+    "vad_profile_origin": "cli",
+    "vad_options": {
+      "pad_ms": 150,
+      "min_sil_ms": 500,
+      "merge_gap_s": 1.5,
+      "short_s": 3.0
+    },
+    "ort_policy": "basic",
+    "ort_policy_origin": "cli",
+    "tts_format": "hybrid",
+    "tts_format_origin": "cli",
+    "backend": "cpu",
+    "models_config": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/models.cpu.json",
+    "warmup": 1,
+    "caller_env": {
+      "S2S_NEURAL_TN": null,
+      "S2S_VAD_PROFILE": null,
+      "S2S_ORT_POLICY": null,
+      "S2S_TTS_FORMAT": null
+    }
+  },
+  "cases": [
+    {
+      "case_id": "vi_to_en_special",
+      "src": "vi",
+      "tgt": "en",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+      "cold_load_s": 0.001353,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/vi_to_en_special.wav",
+      "output_sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5",
+      "output_seconds": 20.294421768707483,
+      "seconds": 10.963946250005392,
+      "segment_count": 1,
+      "stages": {
+        "asr_s": 0.13412279200565536,
+        "source_normalize_s": 0.03352274999633664,
+        "mt_s": 3.662973917002091,
+        "tts_s": 6.582742540995241,
+        "total_s": 10.413361999999324,
+        "graph_s": 9.926684753983864,
+        "host_s": 0.4866772460154607,
+        "graph_calls": 116.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "vi",
+          "tgt": "en",
+          "asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+          "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+          "tts_text": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "en",
+            "input": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+            "output": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+            "spans": [],
+            "protected_ranges": [],
+            "warnings": [],
+            "seconds": 0.008790042003965937,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "The meeting is at fourteen four days. It's the eleventh of November.",
+              "Five, two thousand, no. Two, six.",
+              "Tickets for five thousand, a discount of ten per cent.",
+              "Temperatures three, seven, five degrees C. Call the number.",
+              "Nine, one, two, three, four, five, six, seven, eight."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+            "preprocessed_chunk_lengths": [
+              77,
+              42,
+              63,
+              68,
+              62
+            ]
+          },
+          "sr": 44100,
+          "timing": {
+            "asr_s": 0.13412279200565536,
+            "source_normalize_s": 0.03352274999633664,
+            "mt_s": 3.662973917002091,
+            "tts_s": 6.582742540995241,
+            "total_s": 10.413361999999324,
+            "graph_s": 9.926684753983864,
+            "graph_calls": 116,
+            "host_s": 0.4866772460154607,
+            "audio_in_s": 11.9583125,
+            "audio_out_s": 20.294421768707483
+          },
+          "span": [
+            0.0,
+            11.9583125
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "vi_to_ko_special",
+      "src": "vi",
+      "tgt": "ko",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+      "cold_load_s": 0.0,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/vi_to_ko_special.wav",
+      "output_sha256": "c558f3bfe96d5c4db309f7403db3ef5f69497ec79347fc22d0f847b3e89757be",
+      "output_seconds": 16.86938775510204,
+      "seconds": 7.353575707995333,
+      "segment_count": 1,
+      "stages": {
+        "asr_s": 0.2055569160002051,
+        "source_normalize_s": 0.034376584000710864,
+        "mt_s": 3.035280000003695,
+        "tts_s": 4.071830000000773,
+        "total_s": 7.347043500005384,
+        "graph_s": 6.814518546991167,
+        "host_s": 0.5325249530142173,
+        "graph_calls": 106.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "vi",
+          "tgt": "ko",
+          "asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+          "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "mt": "회의는 14일 4시입니다. 11월 10일 5천, 2천, 아니 두, 여섯. 5천원, 10% 줄여요 온도는 3, 7, 5°C입니다. 노트북에 전화해 아홉, 한, 두, 세, 네, 다섯, 여섯, 일곱, 여덟.",
+          "tts_text": "회의는 십사일 사시입니다. 십일월 십일 오천, 이천, 아니 두, 여섯. 오천원, 십 퍼센트 줄여요 온도는 삼, 칠, 오 도입니다. 노트북에 전화해 아홉, 한, 두, 세, 네, 다섯, 여섯, 일곱, 여덟.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "ko",
+            "input": "회의는 14일 4시입니다. 11월 10일 5천, 2천, 아니 두, 여섯. 5천원, 10% 줄여요 온도는 3, 7, 5°C입니다. 노트북에 전화해 아홉, 한, 두, 세, 네, 다섯, 여섯, 일곱, 여덟.",
+            "output": "회의는 십사일 사시입니다. 십일월 십일 오천, 이천, 아니 두, 여섯. 오천원, 십 퍼센트 줄여요 온도는 삼, 칠, 오 도입니다. 노트북에 전화해 아홉, 한, 두, 세, 네, 다섯, 여섯, 일곱, 여덟.",
+            "spans": [
+              {
+                "start": 4,
+                "end": 6,
+                "kind": "number",
+                "raw": "14",
+                "value": {
+                  "sign": "",
+                  "whole": "14",
+                  "fraction": ""
+                },
+                "spoken": "십사",
+                "source": "grammar"
+              },
+              {
+                "start": 8,
+                "end": 9,
+                "kind": "number",
+                "raw": "4",
+                "value": {
+                  "sign": "",
+                  "whole": "4",
+                  "fraction": ""
+                },
+                "spoken": "사",
+                "source": "grammar"
+              },
+              {
+                "start": 15,
+                "end": 17,
+                "kind": "number",
+                "raw": "11",
+                "value": {
+                  "sign": "",
+                  "whole": "11",
+                  "fraction": ""
+                },
+                "spoken": "십일",
+                "source": "grammar"
+              },
+              {
+                "start": 19,
+                "end": 21,
+                "kind": "number",
+                "raw": "10",
+                "value": {
+                  "sign": "",
+                  "whole": "10",
+                  "fraction": ""
+                },
+                "spoken": "십",
+                "source": "grammar"
+              },
+              {
+                "start": 23,
+                "end": 24,
+                "kind": "number",
+                "raw": "5",
+                "value": {
+                  "sign": "",
+                  "whole": "5",
+                  "fraction": ""
+                },
+                "spoken": "오",
+                "source": "grammar"
+              },
+              {
+                "start": 27,
+                "end": 28,
+                "kind": "number",
+                "raw": "2",
+                "value": {
+                  "sign": "",
+                  "whole": "2",
+                  "fraction": ""
+                },
+                "spoken": "이",
+                "source": "grammar"
+              },
+              {
+                "start": 41,
+                "end": 42,
+                "kind": "number",
+                "raw": "5",
+                "value": {
+                  "sign": "",
+                  "whole": "5",
+                  "fraction": ""
+                },
+                "spoken": "오",
+                "source": "grammar"
+              },
+              {
+                "start": 46,
+                "end": 49,
+                "kind": "percent",
+                "raw": "10%",
+                "value": {
+                  "number": {
+                    "sign": "",
+                    "whole": "10",
+                    "fraction": ""
+                  },
+                  "unit": "%"
+                },
+                "spoken": "십 퍼센트",
+                "source": "grammar"
+              },
+              {
+                "start": 58,
+                "end": 59,
+                "kind": "number",
+                "raw": "3",
+                "value": {
+                  "sign": "",
+                  "whole": "3",
+                  "fraction": ""
+                },
+                "spoken": "삼",
+                "source": "grammar"
+              },
+              {
+                "start": 61,
+                "end": 62,
+                "kind": "number",
+                "raw": "7",
+                "value": {
+                  "sign": "",
+                  "whole": "7",
+                  "fraction": ""
+                },
+                "spoken": "칠",
+                "source": "grammar"
+              },
+              {
+                "start": 64,
+                "end": 67,
+                "kind": "measure",
+                "raw": "5°C",
+                "value": {
+                  "number": {
+                    "sign": "",
+                    "whole": "5",
+                    "fraction": ""
+                  },
+                  "unit": "°c"
+                },
+                "spoken": "오 도",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                4,
+                6
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                15,
+                17
+              ],
+              [
+                19,
+                20
+              ],
+              [
+                22,
+                23
+              ],
+              [
+                26,
+                27
+              ],
+              [
+                40,
+                41
+              ],
+              [
+                45,
+                50
+              ],
+              [
+                59,
+                60
+              ],
+              [
+                62,
+                63
+              ],
+              [
+                65,
+                68
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.002926375003880821,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "회의는 십사일 사시입니다. 십일월 십일 오천, 이천, 아니 두, 여섯.",
+              "오천원, 십 퍼센트 줄여요 온도는 삼, 칠, 오 도입니다.",
+              "노트북에 전화해 아홉, 한, 두, 세, 네, 다섯, 여섯, 일곱, 여덟."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits",
+            "preprocessed_chunk_lengths": [
+              85,
+              71,
+              79
+            ]
+          },
+          "sr": 44100,
+          "timing": {
+            "asr_s": 0.2055569160002051,
+            "source_normalize_s": 0.034376584000710864,
+            "mt_s": 3.035280000003695,
+            "tts_s": 4.071830000000773,
+            "total_s": 7.347043500005384,
+            "graph_s": 6.814518546991167,
+            "graph_calls": 106,
+            "host_s": 0.5325249530142173,
+            "audio_in_s": 11.9583125,
+            "audio_out_s": 16.86938775510204
+          },
+          "span": [
+            0.0,
+            11.9583125
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "vi_to_zh_special",
+      "src": "vi",
+      "tgt": "zh",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e",
+      "cold_load_s": 0.0,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/vi_to_zh_special.wav",
+      "output_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+      "output_seconds": 15.255691609977324,
+      "seconds": 11.232925958000124,
+      "segment_count": 1,
+      "stages": {
+        "asr_s": 0.1186792080043233,
+        "source_normalize_s": 0.03624079199653352,
+        "mt_s": 3.420775999999023,
+        "tts_s": 7.648795541004802,
+        "total_s": 11.224491541004681,
+        "graph_s": 10.578429787979985,
+        "host_s": 0.6460617530246964,
+        "graph_calls": 119.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "vi",
+          "tgt": "zh",
+          "asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+          "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "mt": "会议是四天上午十四点.这是11月十一.五,两千,没有.两个,六个.票价为五千元,降低了十分之一.温度为三,七,五摄氏度.打电话给零号码.九,一,二,三,四,五,六,七,八.",
+          "tts_text": "会议是四天上午十四点.这是十一月十一.五,两千,没有.两个,六个.票价为五千元,降低了十分之一.温度为三,七,五摄氏度.打电话给零号码.九,一,二,三,四,五,六,七,八.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "zh",
+            "input": "会议是四天上午十四点.这是11月十一.五,两千,没有.两个,六个.票价为五千元,降低了十分之一.温度为三,七,五摄氏度.打电话给零号码.九,一,二,三,四,五,六,七,八.",
+            "output": "会议是四天上午十四点.这是十一月十一.五,两千,没有.两个,六个.票价为五千元,降低了十分之一.温度为三,七,五摄氏度.打电话给零号码.九,一,二,三,四,五,六,七,八.",
+            "spans": [
+              {
+                "start": 13,
+                "end": 15,
+                "kind": "number",
+                "raw": "11",
+                "value": {
+                  "sign": "",
+                  "whole": "11",
+                  "fraction": ""
+                },
+                "spoken": "十一",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                13,
+                15
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.0001596669972059317,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "会议是四天上午十四点.这是十一月十一.",
+              "五,两千,没有.两个,六个.",
+              "票价为五千元,降低了十分之一.",
+              "温度为三,七,五摄氏度.打电话给零号码.",
+              "九,一,二,三,四,五,六,七,八."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 44100,
+          "timing": {
+            "asr_s": 0.1186792080043233,
+            "source_normalize_s": 0.03624079199653352,
+            "mt_s": 3.420775999999023,
+            "tts_s": 7.648795541004802,
+            "total_s": 11.224491541004681,
+            "graph_s": 10.578429787979985,
+            "graph_calls": 119,
+            "host_s": 0.6460617530246964,
+            "audio_in_s": 11.9583125,
+            "audio_out_s": 15.255691609977324
+          },
+          "span": [
+            0.0,
+            11.9583125
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "en_to_vi_special",
+      "src": "en",
+      "tgt": "vi",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/en_to_vi_special_input.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e",
+      "cold_load_s": 0.0,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/en_to_vi_special.wav",
+      "output_sha256": "10b9c5257666ac22ce790169920218d2196b15b30016a6451647880b1b319a29",
+      "output_seconds": 15.378185941043084,
+      "seconds": 6.055740290998074,
+      "segment_count": 3,
+      "stages": {
+        "asr_s": 1.2394966249921708,
+        "source_normalize_s": 4.275001265341416e-05,
+        "mt_s": 2.4460581249950337,
+        "tts_s": 2.3619013330026064,
+        "total_s": 6.047498833002464,
+        "graph_s": 5.60861979299807,
+        "host_s": 0.4388790400043945,
+        "graph_calls": 90.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "en",
+          "tgt": "vi",
+          "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+          "asr_before_normalization": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+          "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+          "tts_text": "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+            "output": "Cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm.",
+            "spans": [
+              {
+                "start": 20,
+                "end": 23,
+                "kind": "number",
+                "raw": "330",
+                "value": {
+                  "sign": "",
+                  "whole": "330",
+                  "fraction": ""
+                },
+                "spoken": "ba trăm ba mươi",
+                "source": "grammar"
+              },
+              {
+                "start": 37,
+                "end": 57,
+                "kind": "date",
+                "raw": "15 tháng 11 năm 2026",
+                "value": {
+                  "year": 2026,
+                  "month": 11,
+                  "day": 15
+                },
+                "spoken": "mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu",
+                "source": "grammar"
+              },
+              {
+                "start": 69,
+                "end": 77,
+                "kind": "money",
+                "raw": "15 đô la",
+                "value": {
+                  "currency": "USD",
+                  "number": {
+                    "sign": "",
+                    "whole": "15",
+                    "fraction": ""
+                  }
+                },
+                "spoken": "mười lăm đô la",
+                "source": "grammar"
+              },
+              {
+                "start": 79,
+                "end": 81,
+                "kind": "number",
+                "raw": "50",
+                "value": {
+                  "sign": "",
+                  "whole": "50",
+                  "fraction": ""
+                },
+                "spoken": "năm mươi",
+                "source": "grammar"
+              },
+              {
+                "start": 95,
+                "end": 98,
+                "kind": "percent",
+                "raw": "15%",
+                "value": {
+                  "number": {
+                    "sign": "",
+                    "whole": "15",
+                    "fraction": ""
+                  },
+                  "unit": "%"
+                },
+                "spoken": "mười lăm phần trăm",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                20,
+                35
+              ],
+              [
+                49,
+                110
+              ],
+              [
+                122,
+                136
+              ],
+              [
+                138,
+                146
+              ],
+              [
+                160,
+                178
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.0007544159961980768,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "cuộc họp là vào lúc ba trăm ba mươi giờ tối ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu, giá",
+              "vé là mười lăm đô la. năm mươi với giảm giá mười lăm phần trăm."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.4954664580000099,
+            "source_normalize_s": 1.900000643217936e-05,
+            "mt_s": 1.2195529169985093,
+            "tts_s": 1.2265616660006344,
+            "total_s": 2.941600041005586,
+            "graph_s": 2.6999997479870217,
+            "graph_calls": 42,
+            "host_s": 0.24160029301856412,
+            "audio_in_s": 10.0,
+            "audio_out_s": 8.899092970521542
+          },
+          "span": [
+            0.33,
+            10.33
+          ]
+        },
+        {
+          "src": "en",
+          "tgt": "vi",
+          "asr": "The temperature is 37.5 degrees Celsius.",
+          "asr_before_normalization": "The temperature is 37.5 degrees Celsius.",
+          "mt": "Nhiệt độ là 37. 5 độ C.",
+          "tts_text": "nhiệt độ là ba mươi bảy. năm độ c.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Nhiệt độ là 37. 5 độ C.",
+            "output": "Nhiệt độ là ba mươi bảy. năm độ C.",
+            "spans": [
+              {
+                "start": 12,
+                "end": 14,
+                "kind": "number",
+                "raw": "37",
+                "value": {
+                  "sign": "",
+                  "whole": "37",
+                  "fraction": ""
+                },
+                "spoken": "ba mươi bảy",
+                "source": "grammar"
+              },
+              {
+                "start": 16,
+                "end": 17,
+                "kind": "number",
+                "raw": "5",
+                "value": {
+                  "sign": "",
+                  "whole": "5",
+                  "fraction": ""
+                },
+                "spoken": "năm",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                12,
+                23
+              ],
+              [
+                25,
+                28
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.0002229999954579398,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "nhiệt độ là ba mươi bảy. năm độ c."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.3543585839943262,
+            "source_normalize_s": 1.1791002179961652e-05,
+            "mt_s": 0.5350715419990593,
+            "tts_s": 0.5682894580022548,
+            "total_s": 1.4577313749978202,
+            "graph_s": 1.3762568770034704,
+            "graph_calls": 22,
+            "host_s": 0.0814744979943498,
+            "audio_in_s": 3.28,
+            "audio_out_s": 1.8692063492063493
+          },
+          "span": [
+            10.63,
+            13.91
+          ]
+        },
+        {
+          "src": "en",
+          "tgt": "vi",
+          "asr": "My flight is VN 123, and my ZIP code is 67297.",
+          "asr_before_normalization": "My flight is VN 123, and my ZIP code is 67297.",
+          "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+          "tts_text": "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+            "output": "Chuyến bay của tôi là VN một hai ba, và mã địa chỉ là sáu bảy hai chín bảy.",
+            "spans": [
+              {
+                "start": 25,
+                "end": 28,
+                "kind": "identifier",
+                "raw": "123",
+                "value": {
+                  "characters": "123"
+                },
+                "spoken": "một hai ba",
+                "source": "context"
+              },
+              {
+                "start": 47,
+                "end": 52,
+                "kind": "identifier",
+                "raw": "67297",
+                "value": {
+                  "characters": "67297"
+                },
+                "spoken": "sáu bảy hai chín bảy",
+                "source": "context"
+              }
+            ],
+            "protected_ranges": [
+              [
+                25,
+                35
+              ],
+              [
+                54,
+                74
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.0003535840005497448,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "chuyến bay của tôi là vơn một hai ba, và mã địa chỉ là sáu bảy hai chín bảy."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.3896715829978348,
+            "source_normalize_s": 1.1959004041273147e-05,
+            "mt_s": 0.6914336659974651,
+            "tts_s": 0.5670502089997171,
+            "total_s": 1.6481674169990583,
+            "graph_s": 1.5323631680075778,
+            "graph_calls": 26,
+            "host_s": 0.11580424899148056,
+            "audio_in_s": 5.78,
+            "audio_out_s": 4.1099319727891155
+          },
+          "span": [
+            14.19,
+            19.97
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "ko_to_vi_special",
+      "src": "ko",
+      "tgt": "vi",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_ko.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b",
+      "cold_load_s": 0.0,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/ko_to_vi_special.wav",
+      "output_sha256": "37ff1e2828d5f9518dfbb74309af4f2af30233d212ffa14e1e6fe9000a76dabe",
+      "output_seconds": 10.542585034013605,
+      "seconds": 4.841667124994274,
+      "segment_count": 3,
+      "stages": {
+        "asr_s": 1.067041166999843,
+        "source_normalize_s": 3.2417003239970654e-05,
+        "mt_s": 2.041185707996192,
+        "tts_s": 1.7262887510005385,
+        "total_s": 4.834548042999813,
+        "graph_s": 4.491476247996616,
+        "host_s": 0.3430717950031976,
+        "graph_calls": 75.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "ko",
+          "tgt": "vi",
+          "asr": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯,",
+          "asr_before_normalization": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯,",
+          "mt": "Cuộc họp vào ngày 14 giờ 4 giờ.",
+          "tts_text": "cuộc họp vào ngày mười bốn giờ bốn giờ.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Cuộc họp vào ngày 14 giờ 4 giờ.",
+            "output": "Cuộc họp vào ngày mười bốn giờ bốn giờ.",
+            "spans": [
+              {
+                "start": 18,
+                "end": 20,
+                "kind": "number",
+                "raw": "14",
+                "value": {
+                  "sign": "",
+                  "whole": "14",
+                  "fraction": ""
+                },
+                "spoken": "mười bốn",
+                "source": "grammar"
+              },
+              {
+                "start": 25,
+                "end": 26,
+                "kind": "number",
+                "raw": "4",
+                "value": {
+                  "sign": "",
+                  "whole": "4",
+                  "fraction": ""
+                },
+                "spoken": "bốn",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                18,
+                26
+              ],
+              [
+                31,
+                34
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.000229124998440966,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "cuộc họp vào ngày mười bốn giờ bốn giờ."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.35398074999829987,
+            "source_normalize_s": 1.1417003406677395e-05,
+            "mt_s": 0.6046784999998636,
+            "tts_s": 0.577237999998033,
+            "total_s": 1.5359086669996032,
+            "graph_s": 1.4395068740050192,
+            "graph_calls": 23,
+            "host_s": 0.09640179299458396,
+            "audio_in_s": 5.56,
+            "audio_out_s": 2.089795918367347
+          },
+          "span": [
+            0.27,
+            5.83
+          ]
+        },
+        {
+          "src": "ko",
+          "tgt": "vi",
+          "asr": "5000원 10% 줄여요 온도는 3,75로씨 입니다.",
+          "asr_before_normalization": "5000원 10% 줄여요 온도는 3,75로씨 입니다.",
+          "mt": "Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C.",
+          "tts_text": "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Nó giảm 10 phần trăm so với 5000, và nhiệt độ là 3,75 độ C.",
+            "output": "Nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ C.",
+            "spans": [
+              {
+                "start": 8,
+                "end": 10,
+                "kind": "number",
+                "raw": "10",
+                "value": {
+                  "sign": "",
+                  "whole": "10",
+                  "fraction": ""
+                },
+                "spoken": "mười",
+                "source": "grammar"
+              },
+              {
+                "start": 28,
+                "end": 32,
+                "kind": "number",
+                "raw": "5000",
+                "value": {
+                  "sign": "",
+                  "whole": "5000",
+                  "fraction": ""
+                },
+                "spoken": "năm nghìn",
+                "source": "grammar"
+              },
+              {
+                "start": 49,
+                "end": 53,
+                "kind": "number",
+                "raw": "3,75",
+                "value": {
+                  "sign": "",
+                  "whole": "3",
+                  "fraction": "75"
+                },
+                "spoken": "ba phẩy bảy năm",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                8,
+                12
+              ],
+              [
+                30,
+                39
+              ],
+              [
+                56,
+                71
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.00042608399962773547,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "nó giảm mười phần trăm so với năm nghìn, và nhiệt độ là ba phẩy bảy năm độ c."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.3611746669994318,
+            "source_normalize_s": 1.1541000276338309e-05,
+            "mt_s": 0.6598817499980214,
+            "tts_s": 0.5596052090040757,
+            "total_s": 1.5806731670018053,
+            "graph_s": 1.4660827080151648,
+            "graph_calls": 24,
+            "host_s": 0.11459045898664044,
+            "audio_in_s": 4.22,
+            "audio_out_s": 4.121541950113379
+          },
+          "span": [
+            6.41,
+            10.63
+          ]
+        },
+        {
+          "src": "ko",
+          "tgt": "vi",
+          "asr": "노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+          "asr_before_normalization": "노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+          "mt": "Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+          "tts_text": "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+            "output": "Điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám.",
+            "spans": [],
+            "protected_ranges": [],
+            "warnings": [],
+            "seconds": 0.00021291699522407725,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "điện thoại của máy tính xách tay chín một hai tuổi, nét năm sáu bảy tám."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.3518857500021113,
+            "source_normalize_s": 9.45899955695495e-06,
+            "mt_s": 0.776625457998307,
+            "tts_s": 0.5894455419984297,
+            "total_s": 1.717966208998405,
+            "graph_s": 1.5858866659764317,
+            "graph_calls": 28,
+            "host_s": 0.13207954302197322,
+            "audio_in_s": 5.5,
+            "audio_out_s": 3.8312925170068026
+          },
+          "span": [
+            11.45,
+            16.95
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "zh_to_vi_special",
+      "src": "zh",
+      "tgt": "vi",
+      "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/e2e/audio/vi_to_zh.wav",
+      "input_kind": "synthetic_tts_fixture",
+      "input_sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e",
+      "cold_load_s": 0.0,
+      "run_load_s": 0.001353,
+      "warmup_s": 3.817358,
+      "effective_options": {
+        "source_mode": "0",
+        "vad_profile": "legacy",
+        "ort_policy": "basic",
+        "tts_format": "hybrid"
+      },
+      "status": "ok",
+      "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/next_steps/plan01_top1_legacy_basic/zh_to_vi_special.wav",
+      "output_sha256": "73ce37a2c166a8bae4493806684e9a1ba1bcd8b2c42360525752123402b19459",
+      "output_seconds": 14.965668934240362,
+      "seconds": 4.549805249997007,
+      "segment_count": 2,
+      "stages": {
+        "asr_s": 0.7163156250026077,
+        "source_normalize_s": 2.5291999918408692e-05,
+        "mt_s": 2.0559575829975074,
+        "tts_s": 1.7701561249996303,
+        "total_s": 4.542454624999664,
+        "graph_s": 4.160118043968396,
+        "host_s": 0.382336581031268,
+        "graph_calls": 72.0
+      },
+      "ort_sessions": {
+        "mt_enc": {
+          "name": "mt_enc",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_enc.onnx",
+          "size_bytes": 991368468,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "mt_decB": {
+          "name": "mt_decB",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/nllb/nllb_decB.onnx",
+          "size_bytes": 1276245977,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_frontend": {
+          "name": "asr_xx_frontend",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_frontend_v3.onnx",
+          "size_bytes": 1228928,
+          "external_data": false,
+          "large_or_ext": false,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_xx_encoder": {
+          "name": "asr_xx_encoder",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/sensevoice/sv_enc_cls.onnx",
+          "size_bytes": 941305187,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_vi": {
+          "name": "tts_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+          "size_bytes": 215699842,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "asr_vi": {
+          "name": "asr_vi",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/zip150/zip150_ctc_static_1500.onnx",
+          "size_bytes": 596925289,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_enko": {
+          "name": "tts_enko",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/supertonic/supertonic_full_N96_L150_s5.onnx",
+          "size_bytes": 398278832,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        },
+        "tts_zh": {
+          "name": "tts_zh",
+          "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/models/../build/melo/melo_one.onnx",
+          "size_bytes": 1312973091,
+          "external_data": false,
+          "large_or_ext": true,
+          "ort_policy": "basic",
+          "effective_ort_level": "ORT_ENABLE_BASIC",
+          "ort_fallback": false,
+          "attempts": [
+            {
+              "attempt": 1,
+              "level": "ORT_ENABLE_BASIC",
+              "ok": true
+            }
+          ]
+        }
+      },
+      "segments": [
+        {
+          "src": "zh",
+          "tgt": "vi",
+          "asr": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。",
+          "asr_before_normalization": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。",
+          "mt": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười.",
+          "tts_text": "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Cuộc họp ngày 14 giờ 14 giờ sáng, đó là ngày 11 tháng 11, tôi đã quyết định giá 6 vé mà không có hai người của tôi là 5.000 đô la, giảm 1 phần mười.",
+            "output": "Cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà không có hai người của tôi là năm nghìn đô la, giảm một phần mười.",
+            "spans": [
+              {
+                "start": 14,
+                "end": 16,
+                "kind": "number",
+                "raw": "14",
+                "value": {
+                  "sign": "",
+                  "whole": "14",
+                  "fraction": ""
+                },
+                "spoken": "mười bốn",
+                "source": "grammar"
+              },
+              {
+                "start": 21,
+                "end": 23,
+                "kind": "number",
+                "raw": "14",
+                "value": {
+                  "sign": "",
+                  "whole": "14",
+                  "fraction": ""
+                },
+                "spoken": "mười bốn",
+                "source": "grammar"
+              },
+              {
+                "start": 45,
+                "end": 56,
+                "kind": "date",
+                "raw": "11 tháng 11",
+                "value": {
+                  "year": null,
+                  "month": 11,
+                  "day": 11
+                },
+                "spoken": "mười một tháng mười một",
+                "source": "grammar"
+              },
+              {
+                "start": 80,
+                "end": 81,
+                "kind": "number",
+                "raw": "6",
+                "value": {
+                  "sign": "",
+                  "whole": "6",
+                  "fraction": ""
+                },
+                "spoken": "sáu",
+                "source": "grammar"
+              },
+              {
+                "start": 118,
+                "end": 129,
+                "kind": "money",
+                "raw": "5.000 đô la",
+                "value": {
+                  "currency": "USD",
+                  "number": {
+                    "sign": "",
+                    "whole": "5000",
+                    "fraction": ""
+                  }
+                },
+                "spoken": "năm nghìn đô la",
+                "source": "grammar"
+              },
+              {
+                "start": 136,
+                "end": 137,
+                "kind": "number",
+                "raw": "1",
+                "value": {
+                  "sign": "",
+                  "whole": "1",
+                  "fraction": ""
+                },
+                "spoken": "một",
+                "source": "grammar"
+              }
+            ],
+            "protected_ranges": [
+              [
+                14,
+                22
+              ],
+              [
+                27,
+                35
+              ],
+              [
+                57,
+                80
+              ],
+              [
+                104,
+                107
+              ],
+              [
+                144,
+                159
+              ],
+              [
+                166,
+                169
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.000741542004107032,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "cuộc họp ngày mười bốn giờ mười bốn giờ sáng, đó là ngày mười một tháng mười một, tôi đã quyết định giá sáu vé mà",
+              "không có hai người của tôi là năm nghìn đô la, giảm một phần mười."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.35447525000199676,
+            "source_normalize_s": 1.4042001566849649e-05,
+            "mt_s": 1.3527462079946417,
+            "tts_s": 1.182028374998481,
+            "total_s": 2.8892638749966864,
+            "graph_s": 2.640101999990293,
+            "graph_calls": 46,
+            "host_s": 0.24916187500639353,
+            "audio_in_s": 8.58,
+            "audio_out_s": 9.61891156462585
+          },
+          "span": [
+            0.23,
+            8.81
+          ]
+        },
+        {
+          "src": "zh",
+          "tgt": "vi",
+          "asr": "温度为375，摄氏多，打电话给您号码，就12345678。",
+          "asr_before_normalization": "温度为375，摄氏多，打电话给您号码，就12345678。",
+          "mt": "Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+          "tts_text": "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám.",
+          "tts_format": {
+            "stage": "tts_hybrid",
+            "lang": "vi",
+            "input": "Nhiệt độ là 375 độ C, gọi cho số của bạn là 12345678.",
+            "output": "Nhiệt độ là ba trăm bảy mươi lăm độ C, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám.",
+            "spans": [
+              {
+                "start": 12,
+                "end": 15,
+                "kind": "number",
+                "raw": "375",
+                "value": {
+                  "sign": "",
+                  "whole": "375",
+                  "fraction": ""
+                },
+                "spoken": "ba trăm bảy mươi lăm",
+                "source": "grammar"
+              },
+              {
+                "start": 44,
+                "end": 52,
+                "kind": "identifier",
+                "raw": "12345678",
+                "value": {
+                  "characters": "12345678"
+                },
+                "spoken": "một hai ba bốn năm sáu bảy tám",
+                "source": "CRF proposal"
+              }
+            ],
+            "protected_ranges": [
+              [
+                12,
+                32
+              ],
+              [
+                61,
+                91
+              ]
+            ],
+            "warnings": [],
+            "seconds": 0.0003181249994668178,
+            "identifier_model": "CRF loaded",
+            "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+            "planned_chunks": [
+              "nhiệt độ là ba trăm bảy mươi lăm độ c, gọi cho số của bạn là một hai ba bốn năm sáu bảy tám."
+            ],
+            "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+          },
+          "sr": 22050,
+          "timing": {
+            "asr_s": 0.36184037500061095,
+            "source_normalize_s": 1.1249998351559043e-05,
+            "mt_s": 0.7032113750028657,
+            "tts_s": 0.5881277500011493,
+            "total_s": 1.6531907500029774,
+            "graph_s": 1.520016043978103,
+            "graph_calls": 26,
+            "host_s": 0.13317470602487447,
+            "audio_in_s": 6.02,
+            "audio_out_s": 5.0967800453514736
+          },
+          "span": [
+            9.21,
+            15.23
+          ]
+        }
+      ]
+    }
+  ]
+}

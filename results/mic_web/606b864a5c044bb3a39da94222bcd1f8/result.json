@@ -1,0 +1,72 @@
+{
+  "id": "606b864a5c044bb3a39da94222bcd1f8",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 3.189375,
+  "output_seconds": 3.274013605442177,
+  "elapsed_seconds": 5.619949249999991,
+  "input_url": "/audio/606b864a5c044bb3a39da94222bcd1f8/input.wav",
+  "output_url": "/audio/606b864a5c044bb3a39da94222bcd1f8/output.wav",
+  "detail_url": "/audio/606b864a5c044bb3a39da94222bcd1f8/result.json",
+  "asr": "đụ má mày thằng lồn đểĩ với mẹ mày",
+  "translation": "Cut your ears, you son of a bitch, with your mother.",
+  "tts_text": "Cut your ears, you son of a bitch, with your mother.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Đụ má mày thằng lồn đểĩ với mẹ mày.",
+      "asr_before_normalization": "đụ má mày thằng lồn đểĩ với mẹ mày",
+      "mt": "Cut your ears, you son of a bitch, with your mother.",
+      "tts_text": "Cut your ears, you son of a bitch, with your mother.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.17498949999935576,
+        "source_normalize_s": 1.0418727910000598,
+        "mt_s": 0.6938121250022959,
+        "tts_s": 1.1967168339979253,
+        "total_s": 3.107391249999637,
+        "graph_s": 1.987813414008997,
+        "graph_calls": 21,
+        "host_s": 1.1195778359906399,
+        "audio_in_s": 2.48,
+        "audio_out_s": 3.274013605442177
+      },
+      "asr_raw": "đụ má mày thằng lồn đểĩ với mẹ mày",
+      "span": [
+        0.07,
+        2.55
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "đụ má mày thằng lồn đểĩ với mẹ mày",
+      "output": [
+        "Đụ má mày thằng lồn đểĩ với mẹ mày."
+      ],
+      "seconds": 1.0398822919996746,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "Cut your ears, you son of a bitch, with your mother.",
+      "identifiers": [],
+      "identifier_spoken_text": "Cut your ears, you son of a bitch, with your mother.",
+      "normalization_spans": [],
+      "output": "Cut your ears, you son of a bitch, with your mother.",
+      "seconds": 0.00014770800044061616,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

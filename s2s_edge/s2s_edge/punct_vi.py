@@ -22,6 +22,12 @@ INCORRECT = 1                                                         # d_tags: 
 PUNC = {":", ".", ",", "?"}
 
 
+def _ort_session(path, so=None, providers=None):
+    """The REAL onnxruntime.InferenceSession. qai_appbuilder replaces the onnxruntime module with its QNN wrapper (breaks plain CPU models: "backend library does not exist"); s2s_edge/__init__ keeps the real one."""
+    from . import _ort_real
+    return _ort_real.InferenceSession(path, so, providers=providers or ["CPUExecutionProvider"])
+
+
 def _is_punct(ch):
     cp = ord(ch)
     if 33 <= cp <= 47 or 58 <= cp <= 64 or 91 <= cp <= 96 or 123 <= cp <= 126: return True
@@ -130,10 +136,10 @@ def _softmax(x): e = np.exp(x - x.max(-1, keepdims=True)); return e / e.sum(-1, 
 
 class ViCapu:
     def __init__(self, onnx_path, vocab_path, verb_path=None, threads=4, iterations=3, min_len=3, chunk=48, overlap=12, min_words_cut=6, max_len=64):
-        import onnxruntime as ort
+        from . import _ort_real as ort
         verb_path = verb_path or os.path.join(os.path.dirname(vocab_path), "verb-form-vocab.txt"); self.verbs = load_verb_forms(verb_path) if os.path.exists(verb_path) else {}
         so = ort.SessionOptions(); so.intra_op_num_threads = threads
-        self.s = ort.InferenceSession(onnx_path, so, providers=["CPUExecutionProvider"]); self.names = [i.name for i in self.s.get_inputs()]
+        self.s = _ort_session(onnx_path, so, providers=["CPUExecutionProvider"]); self.names = [i.name for i in self.s.get_inputs()]
         self.wp = WordPiece(vocab_path); self.iterations, self.min_len, self.chunk, self.overlap, self.min_words_cut, self.max_len = iterations, min_len, chunk, overlap, min_words_cut, max_len
 
     def _tag(self, words):

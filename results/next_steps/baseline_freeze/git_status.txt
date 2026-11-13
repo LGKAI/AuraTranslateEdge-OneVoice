@@ -1,0 +1,25 @@
+## feat/onevoice-e2e-tts-hybrid
+ M README.md
+ M results/mic_web/server.pid
+ M s2s_edge/s2s_edge/audio.py
+ M s2s_edge/s2s_edge/backends.py
+ M s2s_edge/s2s_edge/conversation.py
+ M s2s_edge/s2s_edge/textnorm.py
+ M s2s_edge/tools/eval_vi_punct.py
+ M sources.json
+ M tests/test_hybrid_format.py
+ M tools/build_nllb_split.py
+ M tools/check_mt_numerics.py
+ M tools/run_e2e.py
+ M tools/train_identifier_tagger.py
+ M tools/verify_neural_fix_run.py
+?? docs/
+?? reports/asr_integration/
+?? reports/cleanup_2026-11-13.json
+?? reports/tts_format_port/
+?? reports/tts_format_s2s_eval_2026-11-13.md
+?? results/asr_integration/
+?? results/next_steps/
+?? results/reference_inputs/
+?? tests/test_asr_integration.py
+?? tools/evaluate_asr_integration.py

@@ -1,0 +1,73 @@
+{
+  "id": "07556356d7e14ded86af7a84fcb5e03b",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 4.16,
+  "output_seconds": 3.900952380952381,
+  "elapsed_seconds": 5.840354458001457,
+  "input_url": "/audio/07556356d7e14ded86af7a84fcb5e03b/input.wav",
+  "output_url": "/audio/07556356d7e14ded86af7a84fcb5e03b/output.wav",
+  "detail_url": "/audio/07556356d7e14ded86af7a84fcb5e03b/result.json",
+  "asr": "hẹn lúc bảy giờ năm phút không phải bảy giờ năm",
+  "translation": "It's seven o'clock and five minutes. It's not seven o'clock.",
+  "tts_text": "It's seven o'clock and five minutes. It's not seven o'clock.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Hẹn lúc bảy giờ năm phút. Không phải bảy giờ năm.",
+      "asr_before_normalization": "hẹn lúc bảy giờ năm phút không phải bảy giờ năm",
+      "mt": "It's seven o'clock and five minutes. It's not seven o'clock.",
+      "tts_text": "It's seven o'clock and five minutes. It's not seven o'clock.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.20016287499856844,
+        "source_normalize_s": 1.0598742090005544,
+        "mt_s": 0.8921819579991279,
+        "tts_s": 1.191431167000701,
+        "total_s": 3.3436502089989517,
+        "graph_s": 2.169098167001721,
+        "graph_calls": 32,
+        "host_s": 1.1745520419972308,
+        "audio_in_s": 3.64,
+        "audio_out_s": 3.900952380952381
+      },
+      "asr_raw": "hẹn lúc bảy giờ năm phút không phải bảy giờ năm",
+      "span": [
+        0.05,
+        3.69
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "hẹn lúc bảy giờ năm phút không phải bảy giờ năm",
+      "output": [
+        "Hẹn lúc bảy giờ năm phút.",
+        "Không phải bảy giờ năm."
+      ],
+      "seconds": 1.0584486250008922,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "It's seven o'clock and five minutes. It's not seven o'clock.",
+      "identifiers": [],
+      "identifier_spoken_text": "It's seven o'clock and five minutes. It's not seven o'clock.",
+      "normalization_spans": [],
+      "output": "It's seven o'clock and five minutes. It's not seven o'clock.",
+      "seconds": 0.00017029099944920745,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

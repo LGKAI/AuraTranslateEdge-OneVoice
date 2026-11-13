@@ -1,0 +1,72 @@
+{
+  "id": "74ffed2b3a6741b4ade00de54707b2fe",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 6.208,
+  "output_seconds": 3.0418140589569163,
+  "elapsed_seconds": 5.880273042001136,
+  "input_url": "/audio/74ffed2b3a6741b4ade00de54707b2fe/input.wav",
+  "output_url": "/audio/74ffed2b3a6741b4ade00de54707b2fe/output.wav",
+  "detail_url": "/audio/74ffed2b3a6741b4ade00de54707b2fe/result.json",
+  "asr": "At 10 PM, I buy a car. Go a $1 million.",
+  "translation": "Vào lúc 10 giờ tối, tôi mua một chiếc xe. Đi một triệu đô la.",
+  "tts_text": "vào lúc mười giờ tối, tôi mua một chiếc xe. đi một triệu đô la.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "At 10 PM, I buy a car. Go a $1 million.",
+      "asr_before_normalization": "At 10 PM, I buy a car. Go a $1 million.",
+      "mt": "Vào lúc 10 giờ tối, tôi mua một chiếc xe. Đi một triệu đô la.",
+      "tts_text": "vào lúc mười giờ tối, tôi mua một chiếc xe. đi một triệu đô la.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.4288663330007694,
+        "source_normalize_s": 1.1108167080001294,
+        "mt_s": 0.7872014999993553,
+        "tts_s": 1.13354929200068,
+        "total_s": 3.460433833000934,
+        "graph_s": 1.6437545839999075,
+        "graph_calls": 27,
+        "host_s": 1.8166792490010266,
+        "audio_in_s": 6.158,
+        "audio_out_s": 3.0418140589569163
+      },
+      "asr_raw": "At 10 PM, I buy a car. Go a $1 million.",
+      "span": [
+        0.05,
+        6.208
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "At 10 PM, I buy a car. Go a $1 million.",
+      "output": [
+        "At 10 PM, I buy a car.",
+        "Go a $1 million."
+      ],
+      "seconds": 1.1093786249984987,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Vào lúc 10 giờ tối, tôi mua một chiếc xe. Đi một triệu đô la.",
+      "identifiers": [],
+      "identifier_spoken_text": "Vào lúc 10 giờ tối, tôi mua một chiếc xe. Đi một triệu đô la.",
+      "output": "Vào lúc mười giờ tối, tôi mua một chiếc xe. Đi một triệu đô la.",
+      "seconds": 0.6058081669998501,
+      "tokens": 86,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

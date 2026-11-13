@@ -1,0 +1,168 @@
+{
+  "src": "en",
+  "tgt": "vi",
+  "input": "/Users/khoa/study/Onevoice_final_ves/AuraTranslateEdge/output/s2s-original-2026-11-12/audio/en_to_vi_special_input.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/neural_fix/final/audio/en_to_vi.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 18.518169458000557,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50 with a 15% discount.",
+      "asr_before_normalization": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+      "mt": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%.",
+      "tts_text": "cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu. giá vé là mười lăm phẩy năm mươi đô la với giảm giá mười lăm phần trăm.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.34687833299904014,
+        "source_normalize_s": 3.7237684589999844,
+        "mt_s": 1.0710983750013838,
+        "tts_s": 4.1655488749984215,
+        "total_s": 9.30729404199883,
+        "graph_s": 2.268923169007394,
+        "graph_calls": 38,
+        "host_s": 7.038370872991436,
+        "audio_in_s": 10.0,
+        "audio_out_s": 9.026802721088435
+      },
+      "span": [
+        0.33,
+        10.33
+      ],
+      "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount."
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The temperature is 37.5 degrees Celsius.",
+      "asr_before_normalization": "The temperature is 37.5 degrees Celsius.",
+      "mt": "Nhiệt độ là 37,5 độ C.",
+      "tts_text": "nhiệt độ là ba mươi bảy phẩy năm độ xê.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.44855712500066147,
+        "source_normalize_s": 0.9041334579997056,
+        "mt_s": 0.6128196669997124,
+        "tts_s": 0.7979809160005971,
+        "total_s": 2.7634911660006765,
+        "graph_s": 1.5040145849998225,
+        "graph_calls": 15,
+        "host_s": 1.259476581000854,
+        "audio_in_s": 3.28,
+        "audio_out_s": 2.0317460317460316
+      },
+      "span": [
+        10.63,
+        13.91
+      ],
+      "asr_raw": "The temperature is 37.5 degrees Celsius."
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "My flight is VN 123, and my ZIP code is 67297.",
+      "asr_before_normalization": "My flight is VN 123, and my ZIP code is 67297.",
+      "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là 67297.",
+      "tts_text": "chuyến bay của tôi là vê en một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.42044020899993484,
+        "source_normalize_s": 1.734251874999245,
+        "mt_s": 0.7026080410014401,
+        "tts_s": 1.0503312089986139,
+        "total_s": 3.907631333999234,
+        "graph_s": 1.4959203300004447,
+        "graph_calls": 28,
+        "host_s": 2.4117110039987892,
+        "audio_in_s": 5.78,
+        "audio_out_s": 4.574331065759637
+      },
+      "span": [
+        14.19,
+        19.97
+      ],
+      "asr_raw": "My flight is VN 123, and my ZIP code is 67297."
+    }
+  ],
+  "neural_normalization": true,
+  "normalization_model": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/models/source/qwen3-4b-instruct-mlx4",
+  "normalization_device": "Apple Metal / MLX 4-bit",
+  "normalization_trace": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+      "output": [
+        "The meeting is at 3:30 PM on November 15, 2026.",
+        "The ticket costs $15.50 with a 15% discount."
+      ],
+      "seconds": 1.4174238329997024,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%.",
+      "identifiers": [],
+      "identifier_spoken_text": "Cuộc họp là lúc 3:30 tối vào ngày 15 tháng 11 năm 2026. Giá vé là 15,50 đô la với giảm giá 15%.",
+      "output": "Cuộc họp là lúc ba giờ ba mươi phút tối vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu. Giá vé là mười lăm phẩy năm mươi đô la với giảm giá mười lăm phần trăm.",
+      "seconds": 3.1600968330003525,
+      "tokens": 243,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    },
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "The temperature is 37.5 degrees Celsius.",
+      "output": [
+        "The temperature is 37.5 degrees Celsius."
+      ],
+      "seconds": 0.9037159160016017,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Nhiệt độ là 37,5 độ C.",
+      "identifiers": [],
+      "identifier_spoken_text": "Nhiệt độ là 37,5 độ C.",
+      "output": "Nhiệt độ là ba mươi bảy phẩy năm độ xê.",
+      "seconds": 0.3060562079990632,
+      "tokens": 56,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    },
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "My flight is VN 123, and my ZIP code is 67297.",
+      "output": [
+        "My flight is VN 123,",
+        "and my ZIP code is 67297."
+      ],
+      "seconds": 1.7338380830005917,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là 67297.",
+      "identifiers": [
+        "67297"
+      ],
+      "identifier_spoken_text": "Chuyến bay của tôi là VN 123, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+      "output": "Chuyến bay của tôi là vê en một hai ba, và mã địa chỉ của tôi là sáu bảy hai chín bảy.",
+      "seconds": 0.5699131669989583,
+      "tokens": 110,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ]
+}

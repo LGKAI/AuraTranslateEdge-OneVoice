@@ -5,7 +5,8 @@ sentencepiece
 kaldi-native-fbank
 onnxruntime
 psutil
-# optional
 sounddevice
 jiwer
 sacrebleu
+# Optional, NOT listed above so the offline install never fails on a missing wheel; install.sh adds them best-effort when the wheelhouse has them:
+#   python-crfsuite   identifier CRF of the hybrid TTS normalizer (without it: context grammars only)

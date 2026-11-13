@@ -1,0 +1,123 @@
+{
+  "id": "ab87f0ee009b4aecb59e026aff24df79",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 7.797375,
+  "output_seconds": 5.544149659863946,
+  "elapsed_seconds": 8.695801415999085,
+  "input_url": "/audio/ab87f0ee009b4aecb59e026aff24df79/input.wav",
+  "output_url": "/audio/ab87f0ee009b4aecb59e026aff24df79/output.wav",
+  "detail_url": "/audio/ab87f0ee009b4aecb59e026aff24df79/result.json",
+  "asr": "hôm nay tôi có book một chuyến xe xanhn sm đến vingji để thực hiện cuộc thi",
+  "translation": "I got a book today. It's a green car. Come to Vingji for the contest.",
+  "tts_text": "I got a book today. It's a green car. Come to Vingji for the contest.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "hôm nay tôi có book một chuyến xe xanhn sm",
+      "asr_before_normalization": "hôm nay tôi có book một chuyến xe xanhn sm",
+      "mt": "I got a book today. It's a green car.",
+      "tts_text": "I got a book today. It's a green car.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.21467254100025457,
+        "source_normalize_s": 1.7178824999991775,
+        "mt_s": 0.8290624999990541,
+        "tts_s": 1.1796972090014606,
+        "total_s": 3.941314749999947,
+        "graph_s": 2.1396865799906664,
+        "graph_calls": 24,
+        "host_s": 1.8016281700092804,
+        "audio_in_s": 3.46,
+        "audio_out_s": 3.0650340136054424
+      },
+      "asr_raw": "hôm nay tôi có book một chuyến xe xanhn sm",
+      "span": [
+        0.03,
+        3.49
+      ]
+    },
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Đến Vingji để thực hiện cuộc thi.",
+      "asr_before_normalization": "đến vingji để thực hiện cuộc thi",
+      "mt": "Come to Vingji for the contest.",
+      "tts_text": "Come to Vingji for the contest.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.12471087499943678,
+        "source_normalize_s": 0.6299475420000817,
+        "mt_s": 0.36288087499997346,
+        "tts_s": 1.1540742500001215,
+        "total_s": 2.2716135419996135,
+        "graph_s": 1.5929299179970258,
+        "graph_calls": 15,
+        "host_s": 0.6786836240025877,
+        "audio_in_s": 3.64,
+        "audio_out_s": 2.2291156462585033
+      },
+      "asr_raw": "đến vingji để thực hiện cuộc thi",
+      "span": [
+        4.01,
+        7.65
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "hôm nay tôi có book một chuyến xe xanhn sm",
+      "output": [
+        "hôm nay tôi có book",
+        "một chuyến xe xanhn sm"
+      ],
+      "seconds": 1.7169286250009463,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "I got a book today. It's a green car.",
+      "identifiers": [],
+      "identifier_spoken_text": "I got a book today. It's a green car.",
+      "normalization_spans": [],
+      "output": "I got a book today. It's a green car.",
+      "seconds": 0.00014104199908615556,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    },
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "đến vingji để thực hiện cuộc thi",
+      "output": [
+        "Đến Vingji để thực hiện cuộc thi."
+      ],
+      "seconds": 0.6297013750008773,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "Come to Vingji for the contest.",
+      "identifiers": [],
+      "identifier_spoken_text": "Come to Vingji for the contest.",
+      "normalization_spans": [],
+      "output": "Come to Vingji for the contest.",
+      "seconds": 7.316700066439807e-05,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

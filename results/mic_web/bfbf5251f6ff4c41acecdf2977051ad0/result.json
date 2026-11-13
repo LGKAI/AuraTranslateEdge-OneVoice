@@ -1,0 +1,74 @@
+{
+  "id": "bfbf5251f6ff4c41acecdf2977051ad0",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 6.5386875,
+  "output_seconds": 6.240408163265307,
+  "elapsed_seconds": 8.538756458001444,
+  "input_url": "/audio/bfbf5251f6ff4c41acecdf2977051ad0/input.wav",
+  "output_url": "/audio/bfbf5251f6ff4c41acecdf2977051ad0/output.wav",
+  "detail_url": "/audio/bfbf5251f6ff4c41acecdf2977051ad0/result.json",
+  "asr": "hello tôi tên là phạm chứng khoa tôi là sinh viên trường đại học khoa học tự nhiên hcm us",
+  "translation": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+  "tts_text": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "hello tôi tên là phạm chứng khoa tôi là sinh viên trường đại học khoa học tự nhiên hcm us",
+      "asr_before_normalization": "hello tôi tên là phạm chứng khoa tôi là sinh viên trường đại học khoa học tự nhiên hcm us",
+      "mt": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+      "tts_text": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.1597068749997561,
+        "source_normalize_s": 2.3132127499993658,
+        "mt_s": 1.0836883339998167,
+        "tts_s": 2.399861875001079,
+        "total_s": 5.956469834000018,
+        "graph_s": 3.5083314580024307,
+        "graph_calls": 39,
+        "host_s": 2.448138375997587,
+        "audio_in_s": 6.32,
+        "audio_out_s": 6.240408163265307
+      },
+      "asr_raw": "hello tôi tên là phạm chứng khoa tôi là sinh viên trường đại học khoa học tự nhiên hcm us",
+      "span": [
+        0.05,
+        6.37
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "hello tôi tên là phạm chứng khoa tôi là sinh viên trường đại học khoa học tự nhiên hcm us",
+      "output": [
+        "hello tôi tên là phạm chứng khoa",
+        "tôi là sinh viên trường đại",
+        "học khoa học tự nhiên hcm us"
+      ],
+      "seconds": 2.3123029580001457,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+      "identifiers": [],
+      "identifier_spoken_text": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+      "normalization_spans": [],
+      "output": "Hello. My name's a medical malpractice. I'm a college student. natural sciences hcm us",
+      "seconds": 0.00019283300025563221,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

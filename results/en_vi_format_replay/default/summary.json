@@ -1,0 +1,128 @@
+[
+  {
+    "id": "EV-3775",
+    "mode": "default",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3775_in.wav",
+    "input_sha256": "f22659c8ead783e43d765b54b909a99c9ef62dd6437cfd597f7fe6fd0351a957",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/default/EV-3775_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 5.248,
+    "output_seconds": 4.249251700680272,
+    "elapsed_seconds": 2.6325973749990226,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "asr_before_normalization": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "mt": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc 5:30 sáng.",
+        "tts_text": "cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ sáu, lúc năm : ba mươi sáng.",
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.47292600000218954,
+          "source_normalize_s": 0.00010120799925061874,
+          "mt_s": 0.7643164170003729,
+          "tts_s": 0.5710169579979265,
+          "total_s": 1.8083605829997396,
+          "graph_s": 1.6776252899981046,
+          "graph_calls": 27,
+          "host_s": 0.130735293001635,
+          "audio_in_s": 5.118,
+          "audio_out_s": 4.249251700680272
+        },
+        "span": [
+          0.13,
+          5.248
+        ]
+      }
+    ],
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  },
+  {
+    "id": "EV-5301",
+    "mode": "default",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-5301_in.wav",
+    "input_sha256": "4916aa131db37013611802f6cf4deb2ad8cdae2b4f055ccef559954c37a65a02",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/default/EV-5301_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 3.2,
+    "output_seconds": 2.5658049886621317,
+    "elapsed_seconds": 1.6461485419968085,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "Just to confirm, you set the alarm to go off at 800.",
+        "asr_before_normalization": "Just to confirm, you set the alarm to go off at 800.",
+        "mt": "Chỉ để xác nhận, anh đã đặt báo động lên 08:00.",
+        "tts_text": "chỉ để xác nhận, anh đã đặt báo động lên tám : không .",
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.4486455840014969,
+          "source_normalize_s": 2.3458000214304775e-05,
+          "mt_s": 0.6779427500005113,
+          "tts_s": 0.5186588329997903,
+          "total_s": 1.6452706250020128,
+          "graph_s": 1.5576515019965882,
+          "graph_calls": 21,
+          "host_s": 0.08761912300542463,
+          "audio_in_s": 3.2,
+          "audio_out_s": 2.5658049886621317
+        },
+        "span": [
+          0.0,
+          3.2
+        ]
+      }
+    ],
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  },
+  {
+    "id": "EV-0358",
+    "mode": "default",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+    "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/default/EV-0358_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 5.72,
+    "output_seconds": 4.597551020408163,
+    "elapsed_seconds": 1.3769397079995542,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "734 Main Street, Harper Valley Oregon,67297.",
+        "asr_before_normalization": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+        "tts_text": "bảy trăm ba mươi bốn main street, harper valley oregon, sáu mươi bảy nghìn hai trăm chín mươi bảy .",
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.3582178329997987,
+          "source_normalize_s": 1.5249999705702066e-05,
+          "mt_s": 0.4888174169973354,
+          "tts_s": 0.5291146250019665,
+          "total_s": 1.3761651249988063,
+          "graph_s": 1.3056047479876725,
+          "graph_calls": 19,
+          "host_s": 0.07056037701113382,
+          "audio_in_s": 5.71,
+          "audio_out_s": 4.597551020408163
+        },
+        "span": [
+          0.0,
+          5.71
+        ]
+      }
+    ],
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  }
+]

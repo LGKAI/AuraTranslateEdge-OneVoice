@@ -1,0 +1,47 @@
+{
+  "asr_vi": {
+    "path": "build/zip150/zip150_ctc_static_1500.onnx",
+    "bytes": 596925289,
+    "sha256": "7c2dd9bdea0fdf6b3bde343ea7e48608e065068baeea85cf5812517718eeecb4"
+  },
+  "asr_xx_frontend": {
+    "path": "build/sensevoice/sv_frontend_v3.onnx",
+    "bytes": 1228928,
+    "sha256": "9ba6897edf735b1fc1e3f5846def4f4719d9e7b27b8d2f22b6cf8bf3758c0abd"
+  },
+  "asr_xx_encoder": {
+    "path": "build/sensevoice/sv_enc_cls.onnx",
+    "bytes": 941305187,
+    "sha256": "8daa5febf2e73649f6551ed1f1665cefb75f57dfe6e4f8226d50ca99bd108cb3"
+  },
+  "mt_enc": {
+    "path": "build/nllb/nllb_enc.onnx",
+    "bytes": 991368468,
+    "sha256": "7d6482aec6b7c7f171c95f6c4eb7db7d07f61b0774cd10cabfb9c27a98cfd92a"
+  },
+  "mt_dec": {
+    "path": "build/nllb/nllb_dec.onnx",
+    "bytes": 1276803214,
+    "sha256": "3cabf31ad907086267607aeedaed426d688ed12f96ec6657c3164c55e01d8c9a"
+  },
+  "mt_decB": {
+    "path": "build/nllb/nllb_decB.onnx",
+    "bytes": 1276245977,
+    "sha256": "766c59b8fb2b0b94e299984e24bdf14cee976cfd3f0339442c3c2d5081cc959b"
+  },
+  "tts_vi": {
+    "path": "components/piper_npu/g2p/build/piper_vi_full_g8.onnx",
+    "bytes": 215699842,
+    "sha256": "4b31090bff6b6467e8c86b392053b6159213ae215a0f6d1ee4b11cc15e458265"
+  },
+  "tts_enko": {
+    "path": "build/supertonic/supertonic_full_N96_L150_s5.onnx",
+    "bytes": 398278832,
+    "sha256": "b3caaf3109fa9c8f764b0c742d92209c59c4431bf6fbecdbb4bae3e62eeba4d6"
+  },
+  "tts_zh": {
+    "path": "build/melo/melo_one.onnx",
+    "bytes": 1312973091,
+    "sha256": "307bb3a8ab158c803b8c68a5a38ae5180a77e12af6a8d3a1bb818cef2336335c"
+  }
+}

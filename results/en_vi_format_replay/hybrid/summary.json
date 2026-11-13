@@ -1,0 +1,364 @@
+[
+  {
+    "id": "EV-3775",
+    "mode": "hybrid",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-3775_in.wav",
+    "input_sha256": "f22659c8ead783e43d765b54b909a99c9ef62dd6437cfd597f7fe6fd0351a957",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-3775_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 5.248,
+    "output_seconds": 4.6439909297052155,
+    "elapsed_seconds": 6.585149292001006,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "asr_before_normalization": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+        "mt": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc 5:30 sáng.",
+        "tts_text": "cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ sáu, lúc năm giờ ba mươi phút sáng.",
+        "tts_format": {
+          "stage": "tts_hybrid",
+          "lang": "vi",
+          "input": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc 5:30 sáng.",
+          "output": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc năm giờ ba mươi phút sáng.",
+          "spans": [
+            {
+              "start": 63,
+              "end": 67,
+              "kind": "time",
+              "raw": "5:30",
+              "value": {
+                "hour": 5,
+                "minute": 30,
+                "second": null,
+                "ampm": ""
+              },
+              "spoken": "năm giờ ba mươi phút",
+              "source": "grammar"
+            }
+          ],
+          "protected_ranges": [
+            [
+              63,
+              83
+            ]
+          ],
+          "warnings": [],
+          "seconds": 0.0034581250001792796,
+          "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+          "planned_chunks": [
+            "cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ sáu, lúc năm giờ ba mươi phút sáng."
+          ],
+          "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+        },
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.42538620800041826,
+          "source_normalize_s": 4.358874958998058,
+          "mt_s": 0.729557291000674,
+          "tts_s": 0.5147397920009098,
+          "total_s": 6.02855825000006,
+          "graph_s": 1.5338340420021268,
+          "graph_calls": 27,
+          "host_s": 4.494724207997933,
+          "audio_in_s": 5.118,
+          "audio_out_s": 4.6439909297052155
+        },
+        "span": [
+          0.13,
+          5.248
+        ]
+      }
+    ],
+    "format_trace": {
+      "stage": "tts_hybrid",
+      "lang": "vi",
+      "input": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc 5:30 sáng.",
+      "output": "Cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ Sáu, lúc năm giờ ba mươi phút sáng.",
+      "spans": [
+        {
+          "start": 63,
+          "end": 67,
+          "kind": "time",
+          "raw": "5:30",
+          "value": {
+            "hour": 5,
+            "minute": 30,
+            "second": null,
+            "ampm": ""
+          },
+          "spoken": "năm giờ ba mươi phút",
+          "source": "grammar"
+        }
+      ],
+      "protected_ranges": [
+        [
+          63,
+          83
+        ]
+      ],
+      "warnings": [],
+      "seconds": 0.0034581250001792796,
+      "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+      "planned_chunks": [
+        "cho tôi một chiếc taxi để đưa tôi đến sân bay vào thứ sáu, lúc năm giờ ba mươi phút sáng."
+      ],
+      "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+    },
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  },
+  {
+    "id": "EV-5301",
+    "mode": "hybrid",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-5301_in.wav",
+    "input_sha256": "4916aa131db37013611802f6cf4deb2ad8cdae2b4f055ccef559954c37a65a02",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-5301_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 3.2,
+    "output_seconds": 2.3219954648526078,
+    "elapsed_seconds": 2.3435172499994223,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "Just to confirm, you set the alarm to go off at 8:00.",
+        "asr_before_normalization": "Just to confirm, you set the alarm to go off at 800.",
+        "mt": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+        "tts_text": "chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+        "tts_format": {
+          "stage": "tts_hybrid",
+          "lang": "vi",
+          "input": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+          "output": "Chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+          "spans": [
+            {
+              "start": 38,
+              "end": 39,
+              "kind": "number",
+              "raw": "8",
+              "value": {
+                "sign": "",
+                "whole": "8",
+                "fraction": ""
+              },
+              "spoken": "tám",
+              "source": "grammar"
+            }
+          ],
+          "protected_ranges": [
+            [
+              38,
+              41
+            ]
+          ],
+          "warnings": [],
+          "seconds": 0.00020737500017276034,
+          "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+          "planned_chunks": [
+            "chỉ để xác nhận, anh đặt báo động vào tám giờ."
+          ],
+          "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+        },
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.4762994169977901,
+          "source_normalize_s": 0.8497374170001422,
+          "mt_s": 0.5237976250027714,
+          "tts_s": 0.4928801249989192,
+          "total_s": 2.342714583999623,
+          "graph_s": 1.4160328329962795,
+          "graph_calls": 20,
+          "host_s": 0.9266817510033434,
+          "audio_in_s": 3.2,
+          "audio_out_s": 2.3219954648526078
+        },
+        "span": [
+          0.0,
+          3.2
+        ]
+      }
+    ],
+    "format_trace": {
+      "stage": "tts_hybrid",
+      "lang": "vi",
+      "input": "Chỉ để xác nhận, anh đặt báo động vào 8 giờ.",
+      "output": "Chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+      "spans": [
+        {
+          "start": 38,
+          "end": 39,
+          "kind": "number",
+          "raw": "8",
+          "value": {
+            "sign": "",
+            "whole": "8",
+            "fraction": ""
+          },
+          "spoken": "tám",
+          "source": "grammar"
+        }
+      ],
+      "protected_ranges": [
+        [
+          38,
+          41
+        ]
+      ],
+      "warnings": [],
+      "seconds": 0.00020737500017276034,
+      "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+      "planned_chunks": [
+        "chỉ để xác nhận, anh đặt báo động vào tám giờ."
+      ],
+      "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+    },
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  },
+  {
+    "id": "EV-0358",
+    "mode": "hybrid",
+    "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+    "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-0358_out.wav",
+    "sample_rate": 22050,
+    "input_seconds": 5.72,
+    "output_seconds": 4.063492063492063,
+    "elapsed_seconds": 2.1479528329982713,
+    "decoder": "mt_decB",
+    "fallbacks": [],
+    "segments": [
+      {
+        "src": "en",
+        "tgt": "vi",
+        "asr": "734 Main Street, Harper Valley, Oregon, 67297.",
+        "asr_before_normalization": "734 Main Street, Harper Valley Oregon,67297.",
+        "mt": "734 Main Street, Harper Valley, Oregon, 67297.",
+        "tts_text": "bảy trăm ba mươi bốn main street, harper valley, oregon, sáu bảy hai chín bảy.",
+        "tts_format": {
+          "stage": "tts_hybrid",
+          "lang": "vi",
+          "input": "734 Main Street, Harper Valley, Oregon, 67297.",
+          "output": "bảy trăm ba mươi bốn Main Street, Harper Valley, Oregon, sáu bảy hai chín bảy.",
+          "spans": [
+            {
+              "start": 0,
+              "end": 3,
+              "kind": "number",
+              "raw": "734",
+              "value": {
+                "sign": "",
+                "whole": "734",
+                "fraction": ""
+              },
+              "spoken": "bảy trăm ba mươi bốn",
+              "source": "grammar"
+            },
+            {
+              "start": 40,
+              "end": 45,
+              "kind": "identifier",
+              "raw": "67297",
+              "value": {
+                "characters": "67297"
+              },
+              "spoken": "sáu bảy hai chín bảy",
+              "source": "CRF proposal"
+            }
+          ],
+          "protected_ranges": [
+            [
+              0,
+              20
+            ],
+            [
+              57,
+              77
+            ]
+          ],
+          "warnings": [],
+          "seconds": 0.0002622499996505212,
+          "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+          "planned_chunks": [
+            "bảy trăm ba mươi bốn main street, harper valley, oregon, sáu bảy hai chín bảy."
+          ],
+          "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+        },
+        "sr": 22050,
+        "timing": {
+          "asr_s": 0.33592195799792535,
+          "source_normalize_s": 0.8341712090004876,
+          "mt_s": 0.46786900000006426,
+          "tts_s": 0.5091018330022052,
+          "total_s": 2.1470640000006824,
+          "graph_s": 1.2446979169908445,
+          "graph_calls": 19,
+          "host_s": 0.9023660830098379,
+          "audio_in_s": 5.71,
+          "audio_out_s": 4.063492063492063
+        },
+        "span": [
+          0.0,
+          5.71
+        ]
+      }
+    ],
+    "format_trace": {
+      "stage": "tts_hybrid",
+      "lang": "vi",
+      "input": "734 Main Street, Harper Valley, Oregon, 67297.",
+      "output": "bảy trăm ba mươi bốn Main Street, Harper Valley, Oregon, sáu bảy hai chín bảy.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 3,
+          "kind": "number",
+          "raw": "734",
+          "value": {
+            "sign": "",
+            "whole": "734",
+            "fraction": ""
+          },
+          "spoken": "bảy trăm ba mươi bốn",
+          "source": "grammar"
+        },
+        {
+          "start": 40,
+          "end": 45,
+          "kind": "identifier",
+          "raw": "67297",
+          "value": {
+            "characters": "67297"
+          },
+          "spoken": "sáu bảy hai chín bảy",
+          "source": "CRF proposal"
+        }
+      ],
+      "protected_ranges": [
+        [
+          0,
+          20
+        ],
+        [
+          57,
+          77
+        ]
+      ],
+      "warnings": [],
+      "seconds": 0.0002622499996505212,
+      "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+      "planned_chunks": [
+        "bảy trăm ba mươi bốn main street, harper valley, oregon, sáu bảy hai chín bảy."
+      ],
+      "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+    },
+    "input_kind": "original audio; no transcript supplied",
+    "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+  }
+]

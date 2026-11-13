@@ -1,0 +1,56 @@
+{
+ "asr_vi_zip150_ctc_fp16": {
+  "job": "jgl8z82ep",
+  "ok": true,
+  "ms": 163.43,
+  "peak_mb": 94.6
+ },
+ "asr_xx_sensevoice_frontend_v3": {
+  "job": "jp37371xg",
+  "ok": true,
+  "ms": 58.28,
+  "peak_mb": 92.5
+ },
+ "asr_xx_sensevoice_encoder_q": {
+  "job": "jpvmomr7p",
+  "ok": true,
+  "ms": 236.53,
+  "peak_mb": 95.0
+ },
+ "mt_enc_nllb_s64": {
+  "job": "jgjymy27g",
+  "ok": true,
+  "ms": 7.5,
+  "peak_mb": 98.9
+ },
+ "mt_dec_nllb_s64": {
+  "job": "jpex1xw7g",
+  "ok": true,
+  "ms": 15.23,
+  "peak_mb": 132.2
+ },
+ "mt_decB_nllb_s64": {
+  "job": "jp11l1wkp",
+  "ok": true,
+  "ms": 30.75,
+  "peak_mb": 215.7
+ },
+ "tts_vi_piper_fullg8": {
+  "job": "j57nwnlqp",
+  "ok": true,
+  "ms": 520.1,
+  "peak_mb": 95.0
+ },
+ "tts_zh_melo_one": {
+  "job": "jp44o4dqp",
+  "ok": true,
+  "ms": 740.55,
+  "peak_mb": 92.0
+ },
+ "tts_enko_supertonic_full_v3": {
+  "job": "jpxrjr6jp",
+  "ok": true,
+  "ms": 701.22,
+  "peak_mb": 96.4
+ }
+}

@@ -28,6 +28,8 @@ esac
 python3 -m venv .venv || { echo "python3 -m venv failed: install the python3-venv package (offline: .deb from the OS image)"; exit 2; }
 . .venv/bin/activate
 pip install --no-index --find-links "$WH" -r requirements.txt openpyxl
+# optional extras: missing wheels only disable a feature (python-crfsuite -> identifier CRF of the hybrid TTS normalizer)
+for opt in python-crfsuite; do pip install --no-index --find-links "$WH" "$opt" || echo "optional $opt not in $WH: feature disabled"; done
 pip install --no-index --find-links "$WH" qai_appbuilder || { echo "qai_appbuilder wheel rejected (glibc $GLIBC too old?). See tools/docker_run.sh"; exit 3; }
 python3 -c "import qai_appbuilder, os; print('qai_appbuilder', os.path.dirname(qai_appbuilder.__file__))"
 echo "Before running anything: . .venv/bin/activate; . tools/env.sh   (puts the bundled QAIRT 2.51 libs ahead of any QAIRT installed on the box)"
@@ -44,19 +46,45 @@ python -m s2s_edge live --src "${1:-vi}" --tgt "${2:-en}" --models "$M" --backen
 """
 
 
+def merge_asr(cfg, path, models_out):
+    """Merge an ASR models.json fragment (bucket windows / RNN-T head / host SenseVoice features) into cfg, copying its files."""
+    frag = json.load(open(path, encoding="utf-8")); base = os.path.dirname(os.path.abspath(path))
+    asr = {k: v for k, v in frag.items() if k.startswith(("asr_", "_sv_"))}
+    if any(k == "asr_vi" or k.startswith("asr_vi@") for k in asr): [cfg.pop(k) for k in list(cfg) if k == "asr_vi" or k.startswith("asr_vi@")]
+    if any(k.startswith("asr_xx_encoder") for k in asr): [cfg.pop(k) for k in list(cfg) if k.startswith("asr_xx_encoder")]
+    for k, v in asr.items():
+        if not isinstance(v, dict): cfg[k] = v; continue
+        v = dict(v)
+        for f in ("ctx", "onnx"):
+            if f in v:
+                src = v[f] if os.path.isabs(v[f]) else os.path.join(base, v[f]); dst = os.path.join(models_out, os.path.basename(src))
+                if not os.path.exists(dst): shutil.copy(src, dst)
+                if os.path.exists(src + ".data") and not os.path.exists(dst + ".data"): shutil.copy(src + ".data", dst + ".data")
+                v[f] = os.path.basename(src)
+        v.setdefault("name", k.replace("@", "_")); cfg[k] = v
+    print("asr:", sorted(asr))
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--models-dir", required=True); ap.add_argument("--wheelhouse", default=""); ap.add_argument("--wheelhouse310", default="");ap.add_argument("--out", default="dist/s2s_edge_pkg"); ap.add_argument("--no-models", action="store_true"); ap.add_argument("--eval-dir", default=""); ap.add_argument("--eval-n", type=int, default=10)
+    ap.add_argument("--asr-config", default="", help="models.json fragment of the ASR speed/accuracy work (ctx + graph_index entries printed by "
+                    "tools/build_asr_buckets_aihub.py, asr_vi_decoder / asr_vi_joiner onnx, \"_sv_frontend\": \"host\"). Files are relative to it; "
+                    "its keys replace the single-window ASR entries. See docs/asr_optimization.md.")
     a = ap.parse_args(); out = a.out
     if os.path.exists(out): shutil.rmtree(out)
     os.makedirs(out)
     for d in ("s2s_edge", "assets", "tools", "golden", "samples"):
         if os.path.isdir(os.path.join(HERE, d)): shutil.copytree(os.path.join(HERE, d), os.path.join(out, d), ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-    for f in ("README.md", "requirements.txt"): shutil.copy(os.path.join(HERE, f), out)
-    open(os.path.join(out, "install.sh"), "w", newline="\n").write(INSTALL); open(os.path.join(out, "run_demo.sh"), "w", newline="\n").write(RUN)
+    for f in ("README.md", "requirements.txt", "glossary_enterprise.json"): shutil.copy(os.path.join(HERE, f), out)
+    for f, tmpl in (("install.sh", INSTALL), ("run_demo.sh", RUN)):          # the tracked scripts (tested on the box) win over the old templates
+        src = os.path.join(HERE, f); txt = open(src, encoding="utf-8").read() if os.path.isfile(src) else tmpl
+        open(os.path.join(out, f), "w", newline="\n").write(txt)
+    for d in ("docs", "tests", "eval", "models_qcs8550"):                     # docs/tests, eval sets, NPU model-set configs (.bin files: --models-dir or tools/sync_package.py)
+        if os.path.isdir(os.path.join(HERE, d)): shutil.copytree(os.path.join(HERE, d), os.path.join(out, d), dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.bin"))
     if a.wheelhouse and os.path.isdir(a.wheelhouse): shutil.copytree(a.wheelhouse, os.path.join(out, "wheelhouse"))
     if a.wheelhouse310 and os.path.isdir(a.wheelhouse310): shutil.copytree(a.wheelhouse310, os.path.join(out, "wheelhouse_cp310"))
     if a.eval_dir:                                              # small evaluation subset (FLEURS test audio + FLORES references) for judges
-        os.makedirs(os.path.join(out, "eval"))
+        os.makedirs(os.path.join(out, "eval"), exist_ok=True)
         for l in ("vi", "en", "zh", "ko"):
             man = json.load(open(os.path.join(a.eval_dir, f"manifest_{l}.json"), encoding="utf-8"))[: a.eval_n]; os.makedirs(os.path.join(out, "eval", l), exist_ok=True)
             for it in man: shutil.copy(os.path.join(a.eval_dir, it["path"]), os.path.join(out, "eval", l, os.path.basename(it["path"]))); it["path"] = f"{l}/" + os.path.basename(it["path"])
@@ -68,9 +96,12 @@ def main():
             src = os.path.join(a.models_dir, man[name]["file"]); dst = os.path.join("models", os.path.basename(src)); shutil.copy(src, os.path.join(out, dst))
             cfg[comp] = {"ctx": os.path.basename(src), "name": comp, "job": man[name]["job"]}
         cfg["mt_enc"]["S"] = 64; cfg["mt_dec"]["Tm"] = 96; cfg["mt_decB"].update(Tm=96, B=4)
+        if a.asr_config: merge_asr(cfg, a.asr_config, os.path.join(out, "models"))
         fast = {k: v for k, v in cfg.items() if k != "mt_decB"}                      # greedy decoding (16 ms / step on chip) ; models.json = beam search (31 ms / step, +2.4 chrF)
         json.dump(cfg, open(os.path.join(out, "models", "models.json"), "w"), indent=1); json.dump(fast, open(os.path.join(out, "models", "models_fast.json"), "w"), indent=1)
-        print("models:", {k: v["ctx"] for k, v in cfg.items()})
+        print("models:", {k: v.get("ctx", v.get("onnx")) for k, v in cfg.items() if isinstance(v, dict)})
+    crf = os.path.join(os.path.dirname(HERE), "models", "normalization", "identifier.crfsuite")   # trained by tools/train_identifier_tagger.py
+    if os.path.isfile(crf): shutil.copy(crf, os.path.join(out, "assets", "identifier.crfsuite")); print("assets: identifier.crfsuite")
     tot = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(out) for f in fs); print(f"package {out}: {tot / 1e9:.2f} GB")
 
 

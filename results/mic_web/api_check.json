@@ -1,0 +1,8 @@
+{
+  "jobs": [
+    "461a6d8684324777a32561b7e6edc9b4",
+    "1010685461ec4e259ead480a4f627f87"
+  ],
+  "both_directions": "real audio ASR/MT/TTS completed",
+  "invalid_audio_rejected": true
+}

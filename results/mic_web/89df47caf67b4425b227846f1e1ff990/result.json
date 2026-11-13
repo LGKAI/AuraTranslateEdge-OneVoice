@@ -1,0 +1,73 @@
+{
+  "id": "89df47caf67b4425b227846f1e1ff990",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 5.2266875,
+  "output_seconds": 3.6919727891156464,
+  "elapsed_seconds": 5.495960917000048,
+  "input_url": "/audio/89df47caf67b4425b227846f1e1ff990/input.wav",
+  "output_url": "/audio/89df47caf67b4425b227846f1e1ff990/output.wav",
+  "detail_url": "/audio/89df47caf67b4425b227846f1e1ff990/result.json",
+  "asr": "chuyển cho tôi một triệu rưỡi không phải mười triệu",
+  "translation": "Give me a million and a half. Not ten million.",
+  "tts_text": "Give me a million and a half. Not ten million.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Chuyển cho tôi một triệu rưỡi. Không phải mười triệu.",
+      "asr_before_normalization": "chuyển cho tôi một triệu rưỡi không phải mười triệu",
+      "mt": "Give me a million and a half. Not ten million.",
+      "tts_text": "Give me a million and a half. Not ten million.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.15903612500005693,
+        "source_normalize_s": 0.9863270410005498,
+        "mt_s": 0.7285304589986481,
+        "tts_s": 1.2062007910008106,
+        "total_s": 3.0800944160000654,
+        "graph_s": 2.0188827500005573,
+        "graph_calls": 23,
+        "host_s": 1.0612116659995081,
+        "audio_in_s": 4.52,
+        "audio_out_s": 3.6919727891156464
+      },
+      "asr_raw": "chuyển cho tôi một triệu rưỡi không phải mười triệu",
+      "span": [
+        0.05,
+        4.57
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "chuyển cho tôi một triệu rưỡi không phải mười triệu",
+      "output": [
+        "Chuyển cho tôi một triệu rưỡi.",
+        "Không phải mười triệu."
+      ],
+      "seconds": 0.9855884999997215,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "Give me a million and a half. Not ten million.",
+      "identifiers": [],
+      "identifier_spoken_text": "Give me a million and a half. Not ten million.",
+      "normalization_spans": [],
+      "output": "Give me a million and a half. Not ten million.",
+      "seconds": 0.000140125001053093,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

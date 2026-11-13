@@ -1,0 +1,42 @@
+{
+  "id": "EV-0358",
+  "mode": "default",
+  "input": "/Users/khoa/study/Onevoice_final_ves/en-vi/BTC/EV-0358_in.wav",
+  "input_sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/default/EV-0358_out.wav",
+  "sample_rate": 22050,
+  "input_seconds": 5.72,
+  "output_seconds": 4.597551020408163,
+  "elapsed_seconds": 1.3769397079995542,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "734 Main Street, Harper Valley Oregon,67297.",
+      "asr_before_normalization": "734 Main Street, Harper Valley Oregon,67297.",
+      "mt": "734 Main Street, Harper Valley Oregon, 67297.",
+      "tts_text": "bảy trăm ba mươi bốn main street, harper valley oregon, sáu mươi bảy nghìn hai trăm chín mươi bảy .",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.3582178329997987,
+        "source_normalize_s": 1.5249999705702066e-05,
+        "mt_s": 0.4888174169973354,
+        "tts_s": 0.5291146250019665,
+        "total_s": 1.3761651249988063,
+        "graph_s": 1.3056047479876725,
+        "graph_calls": 19,
+        "host_s": 0.07056037701113382,
+        "audio_in_s": 5.71,
+        "audio_out_s": 4.597551020408163
+      },
+      "span": [
+        0.0,
+        5.71
+      ]
+    }
+  ],
+  "input_kind": "original audio; no transcript supplied",
+  "backend": "ONNX Runtime CPU; neural mode also uses Apple Metal"
+}

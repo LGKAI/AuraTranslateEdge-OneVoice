@@ -1,0 +1,65 @@
+{
+  "src": "vi",
+  "tgt": "en",
+  "input": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/neural_fix/audio/vi_input_clear.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/neural_fix/clear_baseline/audio/vi_to_en.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 11.900932250000551,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Cuộc họp lúc ba giờ ba phút chiều. Hôm nay là ngày mười tháng mười một. Năm hai nghìn Không hai sáu giá vé. Năm nghìn đồng, giảm giá mười phần trăm.",
+      "asr_before_normalization": "cuộc họp lúc ba giờ ba phút chiều hôm nay là ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm giá mười phần trăm",
+      "mt": "The meeting's at 3:00 p.m. Today is the eleventh day of November. Five two thousand not two six tickets. Five thousand, a discount of ten percent.",
+      "tts_text": "The meeting's at three : zero p.m. Today is the eleventh day of November. Five two thousand not two six tickets. Five thousand, a discount of ten percent.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.1366494160010916,
+        "source_normalize_s": 0.17579791699972702,
+        "mt_s": 1.6438807079994149,
+        "tts_s": 2.491386292000243,
+        "total_s": 4.4477143330004765,
+        "graph_s": 4.041076833995248,
+        "graph_calls": 62,
+        "host_s": 0.40663749900522816,
+        "audio_in_s": 11.35,
+        "audio_out_s": 10.837959183673469
+      },
+      "span": [
+        0.0,
+        11.35
+      ],
+      "asr_raw": "cuộc họp lúc ba giờ ba phút chiều hôm nay là ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm giá mười phần trăm"
+    },
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Nhiệt độ: 3 7 5 độ cệ xin gọi số 0 9 1 2 3 4 5 6 7 8. Mã biêu chính là 6 7 hay 9 7.",
+      "asr_before_normalization": "nhiệt độ ba bảy năm độ cệ xin gọi số không chín một hai ba bốn năm sáu bảy tám mã biêu chính là sáu bảy hay chín bảy",
+      "mt": "Temperature: 375 degrees, please call 0 9 1 2 3 4 5 6 7 8. The code is 6 7 or 9 7.",
+      "tts_text": "Temperature: three hundred seventy-five degrees, please call zero nine one two three four five six seven eight . The code is six seven or nine seven .",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.10297175000050629,
+        "source_normalize_s": 0.020926082999721984,
+        "mt_s": 1.005524250000235,
+        "tts_s": 3.9481685829996422,
+        "total_s": 5.077590666000106,
+        "graph_s": 4.904140414007998,
+        "graph_calls": 40,
+        "host_s": 0.17345025199210795,
+        "audio_in_s": 8.7424375,
+        "audio_out_s": 10.878639455782313
+      },
+      "span": [
+        12.13,
+        20.8724375
+      ],
+      "asr_raw": "nhiệt độ ba bảy năm độ cệ xin gọi số không chín một hai ba bốn năm sáu bảy tám mã biêu chính là sáu bảy hay chín bảy"
+    }
+  ],
+  "neural_normalization": false
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-13",
+  "kept_pipeline": "OneVoice_E2E_HybridTTS",
+  "deleted_pipeline_folders": [
+    "AuraTranslateEdge",
+    "AuraTranslateEdge_branches",
+    "AuraTranslateEdge_tts_hybrid",
+    "OneVoice_integrated"
+  ],
+  "preserved_test_data": [
+    "Khoa",
+    "en-vi"
+  ],
+  "verified_models": [
+    "asr_vi",
+    "asr_xx_frontend",
+    "asr_xx_encoder",
+    "mt_enc",
+    "mt_dec",
+    "mt_decB",
+    "tts_vi",
+    "tts_enko",
+    "tts_zh"
+  ],
+  "repairs": [
+    "Default E2E inputs now inside kept folder",
+    "NLLB HF source retained inside models/source/nllb-hf",
+    "Training and verification paths use kept data/history",
+    "Temporary Piper model symlinks materialized",
+    "Logs, fixtures, latest port report and Git history retained"
+  ],
+  "verification": "completed",
+  "post_cleanup_e2e": {
+    "passed": true,
+    "input_inside_kept_folder": true,
+    "hybrid_TTS": true,
+    "output": "/private/tmp/onevoice-after-cleanup/audio/en_to_vi.wav",
+    "output_samples": 339089,
+    "sample_rate": 22050,
+    "scope": "runtime/dependency check only; does not certify ASR/MT meaning or pronunciation"
+  },
+  "post_cleanup_unit_tests": {
+    "passed": true,
+    "groups": 15
+  },
+  "web_server": {
+    "root": "OneVoice_E2E_HybridTTS",
+    "url": "http://localhost:8766",
+    "healthy": true,
+    "tts_format": "hybrid"
+  }
+}

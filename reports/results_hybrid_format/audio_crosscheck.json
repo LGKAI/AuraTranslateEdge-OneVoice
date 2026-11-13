@@ -1,0 +1,47 @@
+{
+  "method": "Whisper small local; forced language; no reference prompts; ASR hypotheses are not human ground truth",
+  "cases": [
+    {
+      "lang": "vi",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/vi.wav",
+      "independent_asr": "cuộc họp lúc 3 giờ 30 phút chiều ngày 21 tháng 12 năm 2027, giá là 18.25 xen, nhiệt độ 36,8 độ xe mã 04782, điện thoại 09-08-2461-359 bay VN247 số nhà 7134.",
+      "seconds": 0.6120109160001448
+    },
+    {
+      "lang": "en",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/en.wav",
+      "independent_asr": "The meeting is at 3.30 p.m. on December 21, 2027. The price is $18.25. The temperature is 36.8 degrees Celsius. My ZIP code is 04782. My phone number is 0908246135. The flight is VIN 247.",
+      "seconds": 0.3779415829994832
+    },
+    {
+      "lang": "ko",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/ko.wav",
+      "independent_asr": "회의는 2027년 12월 20일 1시 30분에 있습니다. 가격은 18달러 25센트입니다. 온도는 36.8도입니다. 우편 번호는 04782입니다. 전화번호는 0908246145입니다. 항공편은 VN247입니다.",
+      "seconds": 0.44761825000023236
+    },
+    {
+      "lang": "zh",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/zh.wav",
+      "independent_asr": "會議在2020年12月21日3點30分開始 價格48美元25美分溫度是36.8攝氏度郵政變碼是04872電話號碼是098246135航班號是維安247",
+      "seconds": 0.4371466250013327
+    },
+    {
+      "lang": "vi",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-3775_out.wav",
+      "independent_asr": "cho tôi một chiếc thắc sĩ để đưa tôi đến sân bay vào thứ 6 lúc 5 giờ 30 phút sáng.\"",
+      "seconds": 0.2248758749992703
+    },
+    {
+      "lang": "vi",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-5301_out.wav",
+      "independent_asr": "chỉ để xác nhận anh đặt báo động vào 8 giờ.",
+      "seconds": 0.1602861249994021
+    },
+    {
+      "lang": "vi",
+      "file": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-0358_out.wav",
+      "independent_asr": "734 Main Street, HVH 67297",
+      "seconds": 0.13209441700018942
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "0f38301a6a324142ae811a014b69fcc4",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 3.8986875,
+  "output_seconds": 4.1099319727891155,
+  "elapsed_seconds": 6.946381624999049,
+  "input_url": "/audio/0f38301a6a324142ae811a014b69fcc4/input.wav",
+  "output_url": "/audio/0f38301a6a324142ae811a014b69fcc4/output.wav",
+  "detail_url": "/audio/0f38301a6a324142ae811a014b69fcc4/result.json",
+  "asr": "tôi không bảo anh ấy đừng ký tôi chỉ bảo anh ấy đừng ký vội",
+  "translation": "I didn't tell him not to sign. I'm just telling him not to rush.",
+  "tts_text": "I didn't tell him not to sign. I'm just telling him not to rush.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "tôi không bảo anh ấy đừng ký tôi chỉ bảo anh ấy đừng ký vội",
+      "asr_before_normalization": "tôi không bảo anh ấy đừng ký tôi chỉ bảo anh ấy đừng ký vội",
+      "mt": "I didn't tell him not to sign. I'm just telling him not to rush.",
+      "tts_text": "I didn't tell him not to sign. I'm just telling him not to rush.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.19402595800056588,
+        "source_normalize_s": 1.8287480420003703,
+        "mt_s": 0.9540043329998298,
+        "tts_s": 1.2431473750002624,
+        "total_s": 4.219925708001028,
+        "graph_s": 2.284643169003175,
+        "graph_calls": 30,
+        "host_s": 1.9352825389978534,
+        "audio_in_s": 3.8286875,
+        "audio_out_s": 4.1099319727891155
+      },
+      "asr_raw": "tôi không bảo anh ấy đừng ký tôi chỉ bảo anh ấy đừng ký vội",
+      "span": [
+        0.07,
+        3.8986875
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "tôi không bảo anh ấy đừng ký tôi chỉ bảo anh ấy đừng ký vội",
+      "output": [
+        "tôi không bảo anh ấy đừng ký",
+        "tôi chỉ bảo anh ấy đừng ký vội"
+      ],
+      "seconds": 1.8276797920007084,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "I didn't tell him not to sign. I'm just telling him not to rush.",
+      "identifiers": [],
+      "identifier_spoken_text": "I didn't tell him not to sign. I'm just telling him not to rush.",
+      "normalization_spans": [],
+      "output": "I didn't tell him not to sign. I'm just telling him not to rush.",
+      "seconds": 0.00014658399959444068,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

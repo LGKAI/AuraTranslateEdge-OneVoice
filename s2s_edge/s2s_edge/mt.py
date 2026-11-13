@@ -6,8 +6,8 @@ import json, os, re, numpy as np
 
 S, T = 32, 16
 CODES = {"vi": "vie_Latn", "en": "eng_Latn", "zh": "zho_Hans", "ko": "kor_Hang"}
-SENT_END = re.compile(r"(?<=[\.\!\?;。！？；\n])\s*")
-CLAUSE = re.compile(r"(?<=[,，、:：])\s*")
+SENT_END = re.compile(r"(?<=[\.\!\?;])\s+|(?<=[。！？；\n])\s*")      # ASCII mark must be followed by a space: "15.000 đồng", "36.5", "a.m." are not sentence ends
+CLAUSE = re.compile(r"(?<=[,:])\s+|(?<=[，、：])\s*")              # "1,000", "7:30" are not clause breaks
 
 
 class Nllb:
@@ -54,9 +54,15 @@ class Nllb:
         return sep.join(x for x in (self._tr(p, src, tgt, depth + 1) for p in parts) if x)
 
     def __call__(self, text, src, tgt):
-        sents = [p for p in SENT_END.split(text.strip()) if p.strip()]
+        sents = split_sentences(text, src) if text.strip() else []                # same splitter as the pipeline: re-splitting is a no-op
         sep = "" if tgt == "zh" else " "
         return sep.join(x for x in (self._tr(s, src, tgt) for s in sents) if x)
+
+    def translate_atomic(self, text, src, tgt):
+        """Translate an already segmented span without splitting its decimal points."""
+        if len(self.encode(text)) > self.S - 2:
+            raise ValueError('Prepared MT span exceeds graph input length')
+        return self._tr(text, src, tgt)
 
 
 class NllbSplit(Nllb):
@@ -169,7 +175,80 @@ class MtFallback:
             except Exception as e:
                 self._drop(self.active, e); self._next(probe=False)            # raises when nothing is left
 
+    def translate_atomic(self, text, src, tgt):
+        while True:
+            try: return self.impl.translate_atomic(text, src, tgt)
+            except ValueError:
+                raise
+            except Exception as e:
+                self._drop(self.active, e); self._next(probe=False)
+
     def __getattr__(self, name):
         impl = self.__dict__.get("impl")
         if impl is None: raise AttributeError(name)
         return getattr(impl, name)
+
+
+DEFAULT_ROUTE = {"vi-zh": "mt33", "zh-vi": "mt33", "vi-ko": "mt33", "ko-vi": "mt33", "en-vi": "mt600", "vi-en": "mt600"}
+
+
+class MtRouter:
+    """Per-direction MT: NLLB-200 3.3B ("mt33") for the directions where NLLB-600M ("mt600") is known to make meaning errors, 600M for the rest
+    (route = {"vi-zh": "mt33", ...}; evidence in docs/mt33_routing.md). The TARGET is 3.3B on its directions, so falling back to 600M is never silent:
+    it prints a banner, sets `degraded`, lists the reason in `errors`, shows up in /api/info and as the issue tag mt_fallback on every affected clip
+    (webui), and `S2S_MT_STRICT=1` turns it into an error instead. `last` = the model that produced the latest translation ("mt33" / "mt600")."""
+
+    def __init__(self, small, big, route=None, log=None, strict=False, big_error=None, release_big=None):
+        self.small, self.big, self.route, self.strict, self.release_big = small, big, dict(route or DEFAULT_ROUTE), strict, release_big
+        self.log = log or (lambda m: print(m, file=sys.stderr, flush=True)); self.last = None; self.degraded = False; self.errors = []
+        if big is None: self._degrade("NLLB-3.3B could not be built/probed: " + str(big_error))
+
+    def wanted(self, src, tgt): return self.route.get(f"{src}-{tgt}", "mt600")
+
+    def uses_big(self, src, tgt): return self.big is not None and self.wanted(src, tgt) == "mt33"
+
+    def _degrade(self, why):
+        self.degraded = True; self.errors.append(why); bar = "!" * 110
+        dirs = sorted(d for d, m in self.route.items() if m == "mt33")
+        self.log(f"{bar}\n!! MT DEGRADED: NLLB-3.3B is NOT in use. Directions {dirs} are being translated by NLLB-600M, which is the model that makes the known errors.\n!! Reason: {why}\n{bar}")
+        if self.strict: raise RuntimeError("S2S_MT_STRICT=1, NLLB-3.3B unavailable: " + why)
+
+    def __call__(self, text, src, tgt):
+        if self.uses_big(src, tgt):
+            try:
+                out = self.big(text, src, tgt); self.last = "mt33"; return out
+            except Exception as e:
+                if self.strict: raise
+                self.big = None
+                if self.release_big:
+                    try: self.release_big()
+                    except Exception: pass
+                self._degrade(f"NLLB-3.3B failed while translating {src}->{tgt}: {repr(e)[:300]}")
+        self.last = "mt600"; return self.small(text, src, tgt)
+
+    def status(self):
+        return dict(route=self.route, big_in_use=self.big is not None, degraded=self.degraded, errors=self.errors[-3:], small=getattr(self.small, "active", None))
+
+    def __getattr__(self, name):                                          # calls / truncations / steps / names ... of the 600M model
+        small = self.__dict__.get("small")
+        if small is None: raise AttributeError(name)
+        return getattr(small, name)
+
+
+_SENT = re.compile(r"(?<=[\.\!\?;])\s+|(?<=[。！？；])|\s*\n+\s*")      # ASCII . ! ? ; only before a space (keeps 15.000 / 36.5 / 1,000 whole)
+_ABBR = re.compile(r"(?:^|\s)(?:Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|Mt|e\.g|i\.e|a\.m|p\.m|U\.S|TP|Tp)\.$", re.IGNORECASE)
+
+
+def split_sentences(text, lang):
+    """Sentences of a punctuated transcript (vibert-capu output for vi, SenseVoice for en/zh/ko). Pieces of < 2 words (< 3 chars for zh/ko,
+    e.g. a lone 'Vâng.') are merged into the neighbour so MT never gets a fragment out of context."""
+    parts = []
+    for p in (p.strip() for p in _SENT.split(text.strip()) if p and p.strip()):
+        if parts and _ABBR.search(parts[-1]): parts[-1] += " " + p                         # "Mr. Kim", "at 7 a.m. tomorrow": not a sentence end
+        else: parts.append(p)
+    small = (lambda p: len(re.sub(r"\W", "", p)) < 3) if lang in ("zh", "ko") else (lambda p: len(p.split()) < 2)
+    out = []
+    for p in parts:
+        if out and (small(p) or small(out[-1])): out[-1] = (out[-1] + ("" if lang in ("zh",) else " ") + p).strip()
+        else: out.append(p)
+    return out or [text]

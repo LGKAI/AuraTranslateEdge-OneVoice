@@ -1,0 +1,1092 @@
+[
+  {
+    "id": "VI-001",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Có 25 người.",
+    "target": "25",
+    "expected": [
+      "Có hai mươi lăm người."
+    ]
+  },
+  {
+    "id": "VI-002",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Tổng cộng 105 vé.",
+    "target": "105",
+    "expected": [
+      "Tổng cộng một trăm lẻ năm vé."
+    ]
+  },
+  {
+    "id": "VI-003",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Có 1.200 người.",
+    "target": "1.200",
+    "expected": [
+      "Có một nghìn hai trăm người."
+    ]
+  },
+  {
+    "id": "VI-004",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "decimal",
+    "text": "Giá trị là 37,5.",
+    "target": "37,5",
+    "expected": [
+      "Giá trị là ba mươi bảy phẩy năm."
+    ]
+  },
+  {
+    "id": "VI-005",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "percent",
+    "text": "Giảm 15%.",
+    "target": "15%",
+    "expected": [
+      "Giảm mười lăm phần trăm."
+    ]
+  },
+  {
+    "id": "VI-006",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "money",
+    "text": "Giá 50.000 đồng.",
+    "target": "50.000 đồng",
+    "expected": [
+      "Giá năm mươi nghìn đồng."
+    ]
+  },
+  {
+    "id": "VI-007",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Phòng 204.",
+    "target": "204",
+    "expected": [
+      "Phòng hai trăm lẻ bốn."
+    ]
+  },
+  {
+    "id": "VI-008",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Năm 1990.",
+    "target": "1990",
+    "expected": [
+      "Năm một nghìn chín trăm chín mươi."
+    ]
+  },
+  {
+    "id": "VI-009",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Kết quả là 0.",
+    "target": "0",
+    "expected": [
+      "Kết quả là không."
+    ]
+  },
+  {
+    "id": "VI-010",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "plain",
+    "text": "Hãy chọn.",
+    "target": "Hãy chọn",
+    "expected": [
+      "Hãy chọn."
+    ]
+  },
+  {
+    "id": "VI-011",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "plain",
+    "text": "Xe của anh màu gì?",
+    "target": "Xe của anh màu gì",
+    "expected": [
+      "Xe của anh màu gì?"
+    ]
+  },
+  {
+    "id": "VI-012",
+    "lang": "vi",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Có 2.000.000 vé.",
+    "target": "2.000.000",
+    "expected": [
+      "Có hai triệu vé."
+    ]
+  },
+  {
+    "id": "EN-001",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "There are 25 people.",
+    "target": "25",
+    "expected": [
+      "There are twenty five people."
+    ]
+  },
+  {
+    "id": "EN-002",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "We sold 105 tickets.",
+    "target": "105",
+    "expected": [
+      "We sold one hundred five tickets."
+    ]
+  },
+  {
+    "id": "EN-003",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "There are 1,200 people.",
+    "target": "1,200",
+    "expected": [
+      "There are one thousand two hundred people."
+    ]
+  },
+  {
+    "id": "EN-004",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "decimal",
+    "text": "The value is 37.5.",
+    "target": "37.5",
+    "expected": [
+      "The value is thirty seven point five."
+    ]
+  },
+  {
+    "id": "EN-005",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "percent",
+    "text": "Save 15%.",
+    "target": "15%",
+    "expected": [
+      "Save fifteen percent."
+    ]
+  },
+  {
+    "id": "EN-006",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "money",
+    "text": "It costs $15.50.",
+    "target": "$15.50",
+    "expected": [
+      "It costs fifteen dollars fifty cents.",
+      "It costs fifteen dollars and fifty cents."
+    ]
+  },
+  {
+    "id": "EN-007",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "Room 204.",
+    "target": "204",
+    "expected": [
+      "Room two hundred four.",
+      "Room two oh four."
+    ]
+  },
+  {
+    "id": "EN-008",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "date",
+    "text": "The year is 1990.",
+    "target": "1990",
+    "expected": [
+      "The year is nineteen ninety.",
+      "The year is one thousand nine hundred ninety."
+    ]
+  },
+  {
+    "id": "EN-009",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "The result is 0.",
+    "target": "0",
+    "expected": [
+      "The result is zero."
+    ]
+  },
+  {
+    "id": "EN-010",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "plain",
+    "text": "Please choose.",
+    "target": "Please choose",
+    "expected": [
+      "Please choose."
+    ]
+  },
+  {
+    "id": "EN-011",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "plain",
+    "text": "What colour is your car?",
+    "target": "What colour is your car",
+    "expected": [
+      "What colour is your car?"
+    ]
+  },
+  {
+    "id": "EN-012",
+    "lang": "en",
+    "level": "1-Easy",
+    "kind": "cardinal",
+    "text": "We sold 2,000,000 tickets.",
+    "target": "2,000,000",
+    "expected": [
+      "We sold two million tickets."
+    ]
+  },
+  {
+    "id": "VI-013",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "time",
+    "text": "Hẹn lúc 3:30.",
+    "target": "3:30",
+    "expected": [
+      "Hẹn lúc ba giờ ba mươi.",
+      "Hẹn lúc ba giờ ba mươi phút."
+    ]
+  },
+  {
+    "id": "VI-014",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "time",
+    "text": "Hẹn lúc 14h45.",
+    "target": "14h45",
+    "expected": [
+      "Hẹn lúc mười bốn giờ bốn mươi lăm.",
+      "Hẹn lúc mười bốn giờ bốn mươi lăm phút."
+    ]
+  },
+  {
+    "id": "VI-015",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "date",
+    "text": "Hẹn vào 15/11/2026.",
+    "target": "15/11/2026",
+    "expected": [
+      "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn không trăm hai mươi sáu.",
+      "Hẹn vào ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu."
+    ]
+  },
+  {
+    "id": "VI-016",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "telephone",
+    "text": "Gọi 0912 345 678.",
+    "target": "0912 345 678",
+    "expected": [
+      "Gọi không chín một hai ba bốn năm sáu bảy tám."
+    ]
+  },
+  {
+    "id": "VI-017",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "code",
+    "text": "Chuyến bay VN123.",
+    "target": "VN123",
+    "expected": [
+      "Chuyến bay vê en một hai ba."
+    ]
+  },
+  {
+    "id": "VI-018",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "decimal",
+    "text": "Giá trị là 0,125.",
+    "target": "0,125",
+    "expected": [
+      "Giá trị là không phẩy một hai năm."
+    ]
+  },
+  {
+    "id": "VI-019",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "cardinal",
+    "text": "Nhiệt độ là -5.",
+    "target": "-5",
+    "expected": [
+      "Nhiệt độ là âm năm."
+    ]
+  },
+  {
+    "id": "VI-020",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "measure",
+    "text": "Đường dài 10 km.",
+    "target": "10 km",
+    "expected": [
+      "Đường dài mười ki lô mét.",
+      "Đường dài mười ki lô mét."
+    ]
+  },
+  {
+    "id": "VI-021",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "measure",
+    "text": "Nhiệt độ 25°C.",
+    "target": "25°C",
+    "expected": [
+      "Nhiệt độ hai mươi lăm độ xê.",
+      "Nhiệt độ hai mươi lăm độ c."
+    ]
+  },
+  {
+    "id": "VI-022",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "ordinal",
+    "text": "Đây là lần thứ 21.",
+    "target": "21",
+    "expected": [
+      "Đây là lần thứ hai mươi mốt."
+    ]
+  },
+  {
+    "id": "VI-023",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "fraction",
+    "text": "Lấy 2/3 lượng bột.",
+    "target": "2/3",
+    "expected": [
+      "Lấy hai phần ba lượng bột.",
+      "Lấy hai trên ba lượng bột."
+    ]
+  },
+  {
+    "id": "VI-024",
+    "lang": "vi",
+    "level": "2-Formats",
+    "kind": "range",
+    "text": "Chờ từ 3-5 ngày.",
+    "target": "3-5",
+    "expected": [
+      "Chờ từ ba đến năm ngày."
+    ]
+  },
+  {
+    "id": "EN-013",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "time",
+    "text": "Meet at 3:30 PM.",
+    "target": "3:30 PM",
+    "expected": [
+      "Meet at three thirty p m.",
+      "Meet at three thirty pm."
+    ]
+  },
+  {
+    "id": "EN-014",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "time",
+    "text": "Meet at 14:45.",
+    "target": "14:45",
+    "expected": [
+      "Meet at fourteen forty five.",
+      "Meet at two forty five p m."
+    ]
+  },
+  {
+    "id": "EN-015",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "date",
+    "text": "Meet on 11/15/2026.",
+    "target": "11/15/2026",
+    "expected": [
+      "Meet on november fifteenth twenty twenty six.",
+      "Meet on november fifteenth two thousand twenty six.",
+      "Meet on the fifteenth of november twenty twenty six."
+    ]
+  },
+  {
+    "id": "EN-016",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "telephone",
+    "text": "Call 555-0123.",
+    "target": "555-0123",
+    "expected": [
+      "Call five five five zero one two three.",
+      "Call five five five oh one two three."
+    ]
+  },
+  {
+    "id": "EN-017",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "code",
+    "text": "Flight VN123.",
+    "target": "VN123",
+    "expected": [
+      "Flight v n one two three."
+    ]
+  },
+  {
+    "id": "EN-018",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "decimal",
+    "text": "The value is 0.125.",
+    "target": "0.125",
+    "expected": [
+      "The value is zero point one two five."
+    ]
+  },
+  {
+    "id": "EN-019",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "cardinal",
+    "text": "The temperature is -5.",
+    "target": "-5",
+    "expected": [
+      "The temperature is minus five.",
+      "The temperature is negative five."
+    ]
+  },
+  {
+    "id": "EN-020",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "measure",
+    "text": "The road is 10 km long.",
+    "target": "10 km",
+    "expected": [
+      "The road is ten kilometers long.",
+      "The road is ten kilometres long."
+    ]
+  },
+  {
+    "id": "EN-021",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "measure",
+    "text": "It is 25°C outside.",
+    "target": "25°C",
+    "expected": [
+      "It is twenty five degrees celsius outside.",
+      "It is twenty five degrees c outside."
+    ]
+  },
+  {
+    "id": "EN-022",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "ordinal",
+    "text": "This is my 21st visit.",
+    "target": "21st",
+    "expected": [
+      "This is my twenty first visit."
+    ]
+  },
+  {
+    "id": "EN-023",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "fraction",
+    "text": "Take 2/3 of the flour.",
+    "target": "2/3",
+    "expected": [
+      "Take two thirds of the flour."
+    ]
+  },
+  {
+    "id": "EN-024",
+    "lang": "en",
+    "level": "2-Formats",
+    "kind": "range",
+    "text": "Wait 3-5 days.",
+    "target": "3-5",
+    "expected": [
+      "Wait three to five days."
+    ]
+  },
+  {
+    "id": "VI-025",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "date",
+    "text": "Lịch hẹn ngày 1/4.",
+    "target": "1/4",
+    "expected": [
+      "Lịch hẹn ngày một tháng tư.",
+      "Lịch hẹn ngày mùng một tháng tư."
+    ]
+  },
+  {
+    "id": "VI-026",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "fraction",
+    "text": "Ăn 1/4 chiếc bánh.",
+    "target": "1/4",
+    "expected": [
+      "Ăn một phần tư chiếc bánh.",
+      "Ăn một trên bốn chiếc bánh."
+    ]
+  },
+  {
+    "id": "VI-027",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "telephone",
+    "text": "Gọi số khẩn cấp 114.",
+    "target": "114",
+    "expected": [
+      "Gọi số khẩn cấp một một bốn."
+    ]
+  },
+  {
+    "id": "VI-028",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "cardinal",
+    "text": "Có 114 người đang chờ.",
+    "target": "114",
+    "expected": [
+      "Có một trăm mười bốn người đang chờ."
+    ]
+  },
+  {
+    "id": "VI-029",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "code",
+    "text": "Mã bưu chính 67297.",
+    "target": "67297",
+    "expected": [
+      "Mã bưu chính sáu bảy hai chín bảy."
+    ]
+  },
+  {
+    "id": "VI-030",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "cardinal",
+    "text": "Có 67297 người tham gia.",
+    "target": "67297",
+    "expected": [
+      "Có sáu mươi bảy nghìn hai trăm chín mươi bảy người tham gia."
+    ]
+  },
+  {
+    "id": "VI-031",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "decimal",
+    "text": "Số thập phân là 1,234.",
+    "target": "1,234",
+    "expected": [
+      "Số thập phân là một phẩy hai ba bốn."
+    ]
+  },
+  {
+    "id": "VI-032",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "date",
+    "text": "Ngày phát hành 2026-11-15.",
+    "target": "2026-11-15",
+    "expected": [
+      "Ngày phát hành ngày mười lăm tháng mười một năm hai nghìn hai mươi sáu.",
+      "Ngày phát hành mười lăm tháng mười một năm hai nghìn hai mươi sáu."
+    ]
+  },
+  {
+    "id": "VI-033",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "code",
+    "text": "Mật khẩu là 001204.",
+    "target": "001204",
+    "expected": [
+      "Mật khẩu là không không một hai không bốn."
+    ]
+  },
+  {
+    "id": "VI-034",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "score",
+    "text": "Tỷ số là 3-1.",
+    "target": "3-1",
+    "expected": [
+      "Tỷ số là ba một.",
+      "Tỷ số là ba một."
+    ]
+  },
+  {
+    "id": "VI-035",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "version",
+    "text": "Phiên bản 2.10.3.",
+    "target": "2.10.3",
+    "expected": [
+      "Phiên bản hai chấm mười chấm ba."
+    ]
+  },
+  {
+    "id": "VI-036",
+    "lang": "vi",
+    "level": "3-Context",
+    "kind": "money",
+    "text": "Giá là 1.234,50 đồng.",
+    "target": "1.234,50 đồng",
+    "expected": [
+      "Giá là một nghìn hai trăm ba mươi bốn phẩy năm không đồng.",
+      "Giá là một nghìn hai trăm ba mươi bốn phẩy năm mươi đồng."
+    ]
+  },
+  {
+    "id": "EN-025",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "date",
+    "text": "The appointment is on 1/4.",
+    "target": "1/4",
+    "expected": [
+      "The appointment is on january fourth.",
+      "The appointment is on the fourth of january."
+    ]
+  },
+  {
+    "id": "EN-026",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "fraction",
+    "text": "Eat 1/4 of the cake.",
+    "target": "1/4",
+    "expected": [
+      "Eat one quarter of the cake.",
+      "Eat one fourth of the cake."
+    ]
+  },
+  {
+    "id": "EN-027",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "telephone",
+    "text": "Call emergency number 911.",
+    "target": "911",
+    "expected": [
+      "Call emergency number nine one one."
+    ]
+  },
+  {
+    "id": "EN-028",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "cardinal",
+    "text": "There are 911 people waiting.",
+    "target": "911",
+    "expected": [
+      "There are nine hundred eleven people waiting."
+    ]
+  },
+  {
+    "id": "EN-029",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "code",
+    "text": "The ZIP code is 67297.",
+    "target": "67297",
+    "expected": [
+      "The ZIP code is six seven two nine seven."
+    ]
+  },
+  {
+    "id": "EN-030",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "cardinal",
+    "text": "There are 67297 participants.",
+    "target": "67297",
+    "expected": [
+      "There are sixty seven thousand two hundred ninety seven participants."
+    ]
+  },
+  {
+    "id": "EN-031",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "decimal",
+    "text": "The decimal is 1.234.",
+    "target": "1.234",
+    "expected": [
+      "The decimal is one point two three four."
+    ]
+  },
+  {
+    "id": "EN-032",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "date",
+    "text": "Release date: 2026-11-15.",
+    "target": "2026-11-15",
+    "expected": [
+      "Release date: november fifteenth twenty twenty six.",
+      "Release date: the fifteenth of november twenty twenty six.",
+      "Release date: november fifteenth two thousand twenty six."
+    ]
+  },
+  {
+    "id": "EN-033",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "code",
+    "text": "The PIN is 001204.",
+    "target": "001204",
+    "expected": [
+      "The PIN is zero zero one two zero four."
+    ]
+  },
+  {
+    "id": "EN-034",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "score",
+    "text": "The score is 3-1.",
+    "target": "3-1",
+    "expected": [
+      "The score is three one.",
+      "The score is three to one."
+    ]
+  },
+  {
+    "id": "EN-035",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "version",
+    "text": "Version 2.10.3.",
+    "target": "2.10.3",
+    "expected": [
+      "Version two point ten point three."
+    ]
+  },
+  {
+    "id": "EN-036",
+    "lang": "en",
+    "level": "3-Context",
+    "kind": "money",
+    "text": "It costs $1,234.50.",
+    "target": "$1,234.50",
+    "expected": [
+      "It costs one thousand two hundred thirty four dollars fifty cents."
+    ]
+  },
+  {
+    "id": "VI-037",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "telephone",
+    "text": "Gọi +84 912 345 678.",
+    "target": "+84 912 345 678",
+    "expected": [
+      "Gọi cộng tám bốn chín một hai ba bốn năm sáu bảy tám."
+    ]
+  },
+  {
+    "id": "VI-038",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "telephone",
+    "text": "Gọi 0912 345 678.",
+    "target": "0912 345 678",
+    "expected": [
+      "Gọi không chín một hai ba bốn năm sáu bảy tám."
+    ]
+  },
+  {
+    "id": "VI-039",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "time",
+    "text": "Hẹn lúc 03:05:09.",
+    "target": "03:05:09",
+    "expected": [
+      "Hẹn lúc ba giờ năm phút chín giây.",
+      "Hẹn lúc ba giờ không năm phút không chín giây."
+    ]
+  },
+  {
+    "id": "VI-040",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "time",
+    "text": "Hẹn lúc 24:99.",
+    "target": "24:99",
+    "expected": [
+      "Hẹn lúc 24:99."
+    ]
+  },
+  {
+    "id": "VI-041",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "date",
+    "text": "Ngày không hợp lệ: 31/02/2026.",
+    "target": "31/02/2026",
+    "expected": [
+      "Ngày không hợp lệ: 31/02/2026."
+    ]
+  },
+  {
+    "id": "VI-042",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "code",
+    "text": "Mã đơn AB-0012.",
+    "target": "AB-0012",
+    "expected": [
+      "Mã đơn a bê không không một hai."
+    ]
+  },
+  {
+    "id": "VI-043",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "foreign",
+    "text": "Tên tôi là Patricia Johnson.",
+    "target": "Patricia Johnson",
+    "expected": [
+      "Tên tôi là pơ tri si a giôn sơn.",
+      "Tên tôi là pa tri si a giôn sơn."
+    ]
+  },
+  {
+    "id": "VI-044",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "foreign",
+    "text": "Tôi muốn check-out.",
+    "target": "check-out",
+    "expected": [
+      "Tôi muốn chéc ao.",
+      "Tôi muốn chéc aut."
+    ]
+  },
+  {
+    "id": "VI-045",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "electronic",
+    "text": "Email là a1@example.com.",
+    "target": "a1@example.com",
+    "expected": [
+      "Email là a một a còng example chấm com."
+    ]
+  },
+  {
+    "id": "VI-046",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "electronic",
+    "text": "Mở https://example.com/a2.",
+    "target": "https://example.com/a2",
+    "expected": [
+      "Mở hát tê tê pê ét hai chấm gạch chéo gạch chéo example chấm com gạch chéo a hai."
+    ]
+  },
+  {
+    "id": "VI-047",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "measure",
+    "text": "Diện tích 12 m².",
+    "target": "12 m²",
+    "expected": [
+      "Diện tích mười hai mét vuông."
+    ]
+  },
+  {
+    "id": "VI-048",
+    "lang": "vi",
+    "level": "4-Edge",
+    "kind": "decimal",
+    "text": "Hệ số là 1e-3.",
+    "target": "1e-3",
+    "expected": [
+      "Hệ số là một nhân mười mũ âm ba."
+    ]
+  },
+  {
+    "id": "EN-037",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "telephone",
+    "text": "Call +1 202 555 0123.",
+    "target": "+1 202 555 0123",
+    "expected": [
+      "Call plus one two zero two five five five zero one two three."
+    ]
+  },
+  {
+    "id": "EN-038",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "telephone",
+    "text": "Call 202 555 0123.",
+    "target": "202 555 0123",
+    "expected": [
+      "Call two zero two five five five zero one two three."
+    ]
+  },
+  {
+    "id": "EN-039",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "time",
+    "text": "Meet at 03:05:09.",
+    "target": "03:05:09",
+    "expected": [
+      "Meet at three oh five and nine seconds.",
+      "Meet at three hours five minutes nine seconds."
+    ]
+  },
+  {
+    "id": "EN-040",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "time",
+    "text": "Invalid time: 24:99.",
+    "target": "24:99",
+    "expected": [
+      "Invalid time: 24:99."
+    ]
+  },
+  {
+    "id": "EN-041",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "date",
+    "text": "Invalid date: 02/31/2026.",
+    "target": "02/31/2026",
+    "expected": [
+      "Invalid date: 02/31/2026."
+    ]
+  },
+  {
+    "id": "EN-042",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "code",
+    "text": "Order AB-0012.",
+    "target": "AB-0012",
+    "expected": [
+      "Order a b zero zero one two."
+    ]
+  },
+  {
+    "id": "EN-043",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "foreign",
+    "text": "My name is Patricia Johnson.",
+    "target": "Patricia Johnson",
+    "expected": [
+      "My name is Patricia Johnson."
+    ]
+  },
+  {
+    "id": "EN-044",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "foreign",
+    "text": "I want to check-out.",
+    "target": "check-out",
+    "expected": [
+      "I want to check out.",
+      "I want to check-out."
+    ]
+  },
+  {
+    "id": "EN-045",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "electronic",
+    "text": "Email a1@example.com.",
+    "target": "a1@example.com",
+    "expected": [
+      "Email a one at example dot com."
+    ]
+  },
+  {
+    "id": "EN-046",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "electronic",
+    "text": "Open https://example.com/a2.",
+    "target": "https://example.com/a2",
+    "expected": [
+      "Open h t t p s colon slash slash example dot com slash a two."
+    ]
+  },
+  {
+    "id": "EN-047",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "measure",
+    "text": "The area is 12 m².",
+    "target": "12 m²",
+    "expected": [
+      "The area is twelve square meters.",
+      "The area is twelve square metres."
+    ]
+  },
+  {
+    "id": "EN-048",
+    "lang": "en",
+    "level": "4-Edge",
+    "kind": "decimal",
+    "text": "The coefficient is 1e-3.",
+    "target": "1e-3",
+    "expected": [
+      "The coefficient is one times ten to the minus three.",
+      "The coefficient is one times ten to the power of negative three."
+    ]
+  }
+]

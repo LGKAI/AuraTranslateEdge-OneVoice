@@ -1,0 +1,81 @@
+{
+  "src": "en",
+  "tgt": "vi",
+  "input": "/Users/khoa/study/Onevoice_final_ves/AuraTranslateEdge/output/s2s-original-2026-11-12/audio/en_to_vi_special_input.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/rerun_2026-11-12/audio/en_to_vi.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 8.34730133300036,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+      "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.32394529199973476,
+        "mt_s": 1.0685751669998353,
+        "tts_s": 1.4520793750007215,
+        "total_s": 2.8445998340002916,
+        "graph_s": 2.675205085003654,
+        "graph_calls": 43,
+        "host_s": 0.16939474899663765,
+        "audio_in_s": 10.0,
+        "audio_out_s": 9.137142857142857
+      },
+      "span": [
+        0.33,
+        10.33
+      ],
+      "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount."
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The temperature is 37.5 degrees Celsius.",
+      "mt": "Nhiệt độ là 37. 5 độ C.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.3197587910008224,
+        "mt_s": 0.5192368749994785,
+        "tts_s": 0.48375570900043385,
+        "total_s": 1.3227513750007347,
+        "graph_s": 1.2504166650014668,
+        "graph_calls": 22,
+        "host_s": 0.07233470999926794,
+        "audio_in_s": 3.28,
+        "audio_out_s": 1.8692063492063493
+      },
+      "span": [
+        10.63,
+        13.91
+      ],
+      "asr_raw": "The temperature is 37.5 degrees Celsius."
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "My flight is VN 123, and my ZIP code is 67297.",
+      "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.3285621250006443,
+        "mt_s": 0.6209875419999662,
+        "tts_s": 0.9881446669996876,
+        "total_s": 1.9376943340002981,
+        "graph_s": 1.8383524999981091,
+        "graph_calls": 27,
+        "host_s": 0.09934183400218899,
+        "audio_in_s": 5.78,
+        "audio_out_s": 5.230340136054422
+      },
+      "span": [
+        14.19,
+        19.97
+      ],
+      "asr_raw": "My flight is VN 123, and my ZIP code is 67297."
+    }
+  ]
+}

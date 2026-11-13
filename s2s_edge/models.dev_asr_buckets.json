@@ -1,0 +1,15 @@
+{
+ "_comment": "ASR with static windows (buckets), SenseVoice host features and the Zipformer RNN-T head. ONNX from build_zip150_buckets.py --with-encoder-out and export_sensevoice_buckets.py; decoder/joiner from Hugging Face hynt/ZipFormer-150M-CR-CTC-RNNT-6000h. Copy the MT / TTS entries from models.dev.json. On the box use \"ctx\" + \"graph_index\" from tools/build_asr_buckets_aihub.py instead of \"onnx\". See docs/asr_optimization.md.",
+ "asr_vi": {"onnx": "asr_dev/zip150_ctc_rnnt_static_1500.onnx"},
+ "asr_vi@300": {"onnx": "asr_dev/zip150_ctc_rnnt_static_300.onnx"},
+ "asr_vi@500": {"onnx": "asr_dev/zip150_ctc_rnnt_static_500.onnx"},
+ "asr_vi@800": {"onnx": "asr_dev/zip150_ctc_rnnt_static_800.onnx"},
+ "asr_vi@1200": {"onnx": "asr_dev/zip150_ctc_rnnt_static_1200.onnx"},
+ "asr_vi_decoder": {"onnx": "asr_dev/decoder-epoch-11-avg-2.onnx"},
+ "asr_vi_joiner": {"onnx": "asr_dev/joiner-epoch-11-avg-2.onnx"},
+ "_sv_frontend": "host",
+ "asr_xx_encoder": {"onnx": "asr_dev/sv_enc_cls_500.onnx"},
+ "asr_xx_encoder@50": {"onnx": "asr_dev/sv_enc_cls_50.onnx"},
+ "asr_xx_encoder@100": {"onnx": "asr_dev/sv_enc_cls_100.onnx"},
+ "asr_xx_encoder@200": {"onnx": "asr_dev/sv_enc_cls_200.onnx"}
+}

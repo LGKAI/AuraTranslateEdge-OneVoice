@@ -1,0 +1,1483 @@
+{
+  "freeze_id": "pre_plan01_baseline",
+  "created_at": "2026-11-13T10:23:28+0700",
+  "git_head": "43ea359b42ae274f32f6e24eeb9b5018dc2a93ea",
+  "baseline_manifest_verified": true,
+  "source_files": {
+    "docs/workflow/README.md": {
+      "path": "docs/workflow/README.md",
+      "size": 5810,
+      "mtime_ns": 1794536596538305589,
+      "sha256": "d00fbcec7210bbd7f8efb0324fdba2e08a0e8c1b1cf68e7eab6c5550e6f6d541"
+    },
+    "docs/workflow/next-steps/01-measurement/PLAN.md": {
+      "path": "docs/workflow/next-steps/01-measurement/PLAN.md",
+      "size": 5791,
+      "mtime_ns": 1794539725742754661,
+      "sha256": "38c25232ea1b6782e27eaaaa4b2b3266c10f50ac4eaa55eb54d4850cec2f03e3"
+    },
+    "docs/workflow/next-steps/REVIEW.md": {
+      "path": "docs/workflow/next-steps/REVIEW.md",
+      "size": 5253,
+      "mtime_ns": 1794539781294180518,
+      "sha256": "035967c2cdd204d3e901ed56d2763c0dcbbf4e1eec335ff192857e43901b9e9f"
+    },
+    "docs/workflow/next-steps/SPEC.md": {
+      "path": "docs/workflow/next-steps/SPEC.md",
+      "size": 3357,
+      "mtime_ns": 1794539484075000406,
+      "sha256": "f59d8a54d1a028fb3882a398dbd5edb4eabc8edfde2b39a4dc492a690175e8a3"
+    },
+    "models/manifest.json": {
+      "path": "models/manifest.json",
+      "size": 1589,
+      "mtime_ns": 1794452706509969759,
+      "sha256": "720bad94187161889fe6fdb6d7bb368dfa4fb87ac706ec2918373f6c71f9657d"
+    },
+    "models/models.cpu.json": {
+      "path": "models/models.cpu.json",
+      "size": 714,
+      "mtime_ns": 1794452251257135725,
+      "sha256": "45bdec586cf9d75d90a9a2d5717941d182c0c2ed9ff57fb45a40c46c4c84c2d0"
+    },
+    "s2s_edge/s2s_edge/__init__.py": {
+      "path": "s2s_edge/s2s_edge/__init__.py",
+      "size": 140,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "7620750fcf1c9d9ca8ca949c7505cf8fc00692e7e83850b300f485798fa68117"
+    },
+    "s2s_edge/s2s_edge/__main__.py": {
+      "path": "s2s_edge/s2s_edge/__main__.py",
+      "size": 6214,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "ed30ac08a381964a834d202fd345911a65b6714990dc4248a5416e716d92712c"
+    },
+    "s2s_edge/s2s_edge/asr.py": {
+      "path": "s2s_edge/s2s_edge/asr.py",
+      "size": 3922,
+      "mtime_ns": 1794457755445271452,
+      "sha256": "1e47ce6aa40361e7823bbfeaff9858fadc39eb68aab3c347e9e8440f7827f449"
+    },
+    "s2s_edge/s2s_edge/audio.py": {
+      "path": "s2s_edge/s2s_edge/audio.py",
+      "size": 6809,
+      "mtime_ns": 1794538636115651329,
+      "sha256": "66157af63d40160d58cbcfeb08b7fe4c2d344fe94180d8d78681261e2317e8fc"
+    },
+    "s2s_edge/s2s_edge/backends.py": {
+      "path": "s2s_edge/s2s_edge/backends.py",
+      "size": 7235,
+      "mtime_ns": 1794538636121465116,
+      "sha256": "6be476ecfc76c0f970fda0a49069e4ee8c4365d05ffffad0971361350146b85c"
+    },
+    "s2s_edge/s2s_edge/bench.py": {
+      "path": "s2s_edge/s2s_edge/bench.py",
+      "size": 5527,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "1619d0a49c0032671a7b970bbcd62da27d277cdf11b0121dac055e6590c0818d"
+    },
+    "s2s_edge/s2s_edge/conversation.py": {
+      "path": "s2s_edge/s2s_edge/conversation.py",
+      "size": 11943,
+      "mtime_ns": 1794538636116012287,
+      "sha256": "3fb28c2f7a307b0218249d0b2971ccee18d7491bf971d5add6a878dcc0582b79"
+    },
+    "s2s_edge/s2s_edge/denoise.py": {
+      "path": "s2s_edge/s2s_edge/denoise.py",
+      "size": 1834,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "48bc728215ace93efea2f95ba96ada47bf886740316e302defd0842c58589a1b"
+    },
+    "s2s_edge/s2s_edge/format_locales.py": {
+      "path": "s2s_edge/s2s_edge/format_locales.py",
+      "size": 3958,
+      "mtime_ns": 1794496419611710842,
+      "sha256": "dddaefd4acbe63327da06112cd04051e237c17307be9f056bd4ba42df7417656"
+    },
+    "s2s_edge/s2s_edge/hybrid_textnorm.py": {
+      "path": "s2s_edge/s2s_edge/hybrid_textnorm.py",
+      "size": 19954,
+      "mtime_ns": 1794496633231000406,
+      "sha256": "4ed6dc5aa5b840ad450fd3f166c59b25294724e3c1d36dfe684f2dc945e1b235"
+    },
+    "s2s_edge/s2s_edge/identifier_tagger.py": {
+      "path": "s2s_edge/s2s_edge/identifier_tagger.py",
+      "size": 1283,
+      "mtime_ns": 1794458496564045110,
+      "sha256": "06889dd036c13abcc95e1661dbef4a99e9f7607d11ad3ba3dbe216b105dda504"
+    },
+    "s2s_edge/s2s_edge/identifiers.py": {
+      "path": "s2s_edge/s2s_edge/identifiers.py",
+      "size": 5797,
+      "mtime_ns": 1794406358140711629,
+      "sha256": "0a3595ad2dcc32492709cc7a9d81459beb5d2e6348406bf65dc8cbea8af2dd8a"
+    },
+    "s2s_edge/s2s_edge/mt.py": {
+      "path": "s2s_edge/s2s_edge/mt.py",
+      "size": 12235,
+      "mtime_ns": 1794457991069577519,
+      "sha256": "6eb0a6bd56d6bda01db92856b84bcf8b2516226482505f38b061268778c69368"
+    },
+    "s2s_edge/s2s_edge/names.py": {
+      "path": "s2s_edge/s2s_edge/names.py",
+      "size": 7689,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "b661d2642f79cf450e9208954494d94c66cdb517c164417d96d83f9387ceaeb2"
+    },
+    "s2s_edge/s2s_edge/neural_textnorm.py": {
+      "path": "s2s_edge/s2s_edge/neural_textnorm.py",
+      "size": 14915,
+      "mtime_ns": 1794459208593905695,
+      "sha256": "fb56d6221d69e1a4549f1eefcef771d8789d457236f9f91365d5641ff18dc79b"
+    },
+    "s2s_edge/s2s_edge/pipeline.py": {
+      "path": "s2s_edge/s2s_edge/pipeline.py",
+      "size": 1492,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "76ce75469f4b20e496958530029216a5de729c901e5a0d767067d0420e6f7f96"
+    },
+    "s2s_edge/s2s_edge/punct_vi.py": {
+      "path": "s2s_edge/s2s_edge/punct_vi.py",
+      "size": 11397,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "016484feb2f56eb9c18a1e6aaddb7d4236b75a9c2b49ea1a634675a80e60e053"
+    },
+    "s2s_edge/s2s_edge/registry.py": {
+      "path": "s2s_edge/s2s_edge/registry.py",
+      "size": 7204,
+      "mtime_ns": 1794402720000000000,
+      "sha256": "3679896c73871193255570ff8147bb6c492ec97b8c4a2c744ce1e4fcd42b91d9"
+    },
+    "s2s_edge/s2s_edge/textnorm.py": {
+      "path": "s2s_edge/s2s_edge/textnorm.py",
+      "size": 9863,
+      "mtime_ns": 1794538771481110695,
+      "sha256": "9241cc5a5602d4c92244963d7e8c1905692d9b7d0009015cf011d846aff9c10a"
+    },
+    "s2s_edge/s2s_edge/tts.py": {
+      "path": "s2s_edge/s2s_edge/tts.py",
+      "size": 9249,
+      "mtime_ns": 1794496490548638645,
+      "sha256": "4be96de6df439ef6e0a22ff2b7b7312166361ff0bc95bfb81b560851bf6f2a1b"
+    },
+    "s2s_edge/s2s_edge/tts_format.py": {
+      "path": "s2s_edge/s2s_edge/tts_format.py",
+      "size": 3579,
+      "mtime_ns": 1794496354754325757,
+      "sha256": "cee722d6835d84955cc10ab853537932fea0a690ba459b1acb107f3787badf8d"
+    },
+    "tests/test_asr_integration.py": {
+      "path": "tests/test_asr_integration.py",
+      "size": 3230,
+      "mtime_ns": 1794538821949405625,
+      "sha256": "b52361e2cb6470a09768cf2fa0b264b002c094f740be71ad9de89278449f5316"
+    },
+    "tests/test_hybrid_format.py": {
+      "path": "tests/test_hybrid_format.py",
+      "size": 8291,
+      "mtime_ns": 1794535637681850620,
+      "sha256": "34dae1b703b3deda597b604154637bc7b5fea110449eef64c3e1167a4e59473c"
+    },
+    "tests/tests_identifiers.py": {
+      "path": "tests/tests_identifiers.py",
+      "size": 3088,
+      "mtime_ns": 1794406358141260183,
+      "sha256": "c472fd5d3dad1580d2babf998890a3a5bc1c81392a8ee2aa9815d540a840884a"
+    },
+    "tools/check_s2s_web.py": {
+      "path": "tools/check_s2s_web.py",
+      "size": 1431,
+      "mtime_ns": 1794460091523895519,
+      "sha256": "9df6b0041851a596b2d93c9a043d5023f40f7ca08461cfc18d389c0fcd6e307d"
+    },
+    "tools/evaluate_asr_integration.py": {
+      "path": "tools/evaluate_asr_integration.py",
+      "size": 1938,
+      "mtime_ns": 1794538557729757718,
+      "sha256": "0ec20fe6b002ca486c3bfddf6a3d883951a560f6a50cbdd023389deecc1a6ddc"
+    },
+    "tools/run_e2e.py": {
+      "path": "tools/run_e2e.py",
+      "size": 2235,
+      "mtime_ns": 1794535448486176429,
+      "sha256": "b7b2159a008e7848f09b4cd8bc5e44ee08024ea3be413e52680fbdc6e3b6fc13"
+    },
+    "tools/s2s_web.py": {
+      "path": "tools/s2s_web.py",
+      "size": 9499,
+      "mtime_ns": 1794496697543293755,
+      "sha256": "304f07608a38d523919277a0888403bc2a7342d1e5f4ff1d7a35c3f81a859972"
+    },
+    "tools/start_s2s_web.py": {
+      "path": "tools/start_s2s_web.py",
+      "size": 1039,
+      "mtime_ns": 1794496697601473950,
+      "sha256": "a9949a86de63d183d9bbca071e37e571cbccef7da2e53b1cd77459779210719b"
+    }
+  },
+  "evidence_files": {
+    "reports/asr_integration/verification.json": {
+      "path": "reports/asr_integration/verification.json",
+      "size": 5720,
+      "mtime_ns": 1794538866940925748,
+      "sha256": "50b187cd7582df509f33baa9caea5415c41e4bfc0f96d2a5881e005fe5531d50"
+    },
+    "results/asr_integration/before/summary.json": {
+      "path": "results/asr_integration/before/summary.json",
+      "size": 42312,
+      "mtime_ns": 1794538602454042374,
+      "sha256": "54d0b005f4a459af56f400bd401e9526f7e4a3d25080af1edbf216554812148b"
+    },
+    "results/asr_integration/after/summary.json": {
+      "path": "results/asr_integration/after/summary.json",
+      "size": 55939,
+      "mtime_ns": 1794538830001915917,
+      "sha256": "24b59005860c00a12ece445be51c7b8d3187cb21d8cdae5c310d5a20d684338d"
+    },
+    "reports/tts_format_s2s_eval_2026-11-13.md": {
+      "path": "reports/tts_format_s2s_eval_2026-11-13.md",
+      "size": 29046,
+      "mtime_ns": 1794538087816112857,
+      "sha256": "77fafe8f019d766c3c00404f64bc4c5a6d58d69b8654591731ea45503bde254c"
+    }
+  },
+  "model_weights_count": 27,
+  "reference_inputs": {
+    "results/neural_fix/final/audio/en_to_vi.wav": {
+      "path": "results/neural_fix/final/audio/en_to_vi.wav",
+      "size": 711502,
+      "mtime_ns": 1794459248155586267,
+      "sha256": "e4bc8fbfd48f8403c79f66ced304350fed21017d75198993b40de8aa60d0ad62"
+    },
+    "results/neural_fix/final/audio/en_to_vi_special_input.wav": {
+      "path": "results/neural_fix/final/audio/en_to_vi_special_input.wav",
+      "size": 1787948,
+      "mtime_ns": 1794450939812310140,
+      "sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e"
+    },
+    "results/neural_fix/final/audio/vi_to_en.wav": {
+      "path": "results/neural_fix/final/audio/vi_to_en.wav",
+      "size": 1534520,
+      "mtime_ns": 1794459347558773671,
+      "sha256": "4a6741a14382e2a6fe8e91cd9edafedf5a71f9eb3dde7319a1466639f079aa98"
+    },
+    "results/neural_fix/final/audio/vi_to_en_special_input.wav": {
+      "path": "results/neural_fix/final/audio/vi_to_en_special_input.wav",
+      "size": 527404,
+      "mtime_ns": 1794450940429099597,
+      "sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e"
+    },
+    "results/e2e/audio/en_to_vi.wav": {
+      "path": "results/e2e/audio/en_to_vi.wav",
+      "size": 738130,
+      "mtime_ns": 1794452546434266088,
+      "sha256": "c94df96717479491f155d26a2c6c5e57c292c9d638c3b43d716ac491244238ff"
+    },
+    "results/e2e/audio/en_to_vi_special_input.wav": {
+      "path": "results/e2e/audio/en_to_vi_special_input.wav",
+      "size": 1787948,
+      "mtime_ns": 1794450939812310140,
+      "sha256": "a0d35c02db7a964676185876126266a3e93a4bce10ee760a9c7de0a94a27b63e"
+    },
+    "results/e2e/audio/ko_to_vi.wav": {
+      "path": "results/e2e/audio/ko_to_vi.wav",
+      "size": 464972,
+      "mtime_ns": 1794452614500389331,
+      "sha256": "37ff1e2828d5f9518dfbb74309af4f2af30233d212ffa14e1e6fe9000a76dabe"
+    },
+    "results/e2e/audio/vi_to_en.wav": {
+      "path": "results/e2e/audio/vi_to_en.wav",
+      "size": 1740860,
+      "mtime_ns": 1794452564011468172,
+      "sha256": "164663be4fdade18cea961418b58ccd6dfd30678b5d17aa17f67c5877d16ea25"
+    },
+    "results/e2e/audio/vi_to_en_special_input.wav": {
+      "path": "results/e2e/audio/vi_to_en_special_input.wav",
+      "size": 527404,
+      "mtime_ns": 1794450940429099597,
+      "sha256": "6d0aa3c1cc41fe82ef91d15c6151925de81fb1362b82943f8c61adcb4eb3b01e"
+    },
+    "results/e2e/audio/vi_to_ko.wav": {
+      "path": "results/e2e/audio/vi_to_ko.wav",
+      "size": 1512500,
+      "mtime_ns": 1794452595788477167,
+      "sha256": "55a6fc20f198b50b23f891201e37b11cac08897e086582dfc2697db35021de0b"
+    },
+    "results/e2e/audio/vi_to_zh.wav": {
+      "path": "results/e2e/audio/vi_to_zh.wav",
+      "size": 1345596,
+      "mtime_ns": 1794452588038479769,
+      "sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e"
+    },
+    "results/e2e/audio/zh_to_vi.wav": {
+      "path": "results/e2e/audio/zh_to_vi.wav",
+      "size": 730432,
+      "mtime_ns": 1794452606552296486,
+      "sha256": "68293af02d3bfe0bb6ebc762d97755fd31494a551fc56b35ee1cb4065147f10f"
+    },
+    "results/reference_inputs/cases.json": {
+      "path": "results/reference_inputs/cases.json",
+      "size": 1617,
+      "mtime_ns": 1794535448484356014,
+      "sha256": "2a2a28d6b5f35a87cef9e049e38c04cb50ad013f8e5ccc81c843369265e1659f"
+    },
+    "results/asr_integration/before/en_to_vi.wav": {
+      "path": "results/asr_integration/before/en_to_vi.wav",
+      "size": 678222,
+      "mtime_ns": 1794538593913744323,
+      "sha256": "10b9c5257666ac22ce790169920218d2196b15b30016a6451647880b1b319a29"
+    },
+    "results/asr_integration/before/ko_to_vi.wav": {
+      "path": "results/asr_integration/before/ko_to_vi.wav",
+      "size": 464972,
+      "mtime_ns": 1794538598323131098,
+      "sha256": "37ff1e2828d5f9518dfbb74309af4f2af30233d212ffa14e1e6fe9000a76dabe"
+    },
+    "results/asr_integration/before/summary.json": {
+      "path": "results/asr_integration/before/summary.json",
+      "size": 42312,
+      "mtime_ns": 1794538602454042374,
+      "sha256": "54d0b005f4a459af56f400bd401e9526f7e4a3d25080af1edbf216554812148b"
+    },
+    "results/asr_integration/before/vi_to_en.wav": {
+      "path": "results/asr_integration/before/vi_to_en.wav",
+      "size": 1790012,
+      "mtime_ns": 1794538569890888845,
+      "sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5"
+    },
+    "results/asr_integration/before/vi_to_ko.wav": {
+      "path": "results/asr_integration/before/vi_to_ko.wav",
+      "size": 1487924,
+      "mtime_ns": 1794538576554387596,
+      "sha256": "c558f3bfe96d5c4db309f7403db3ef5f69497ec79347fc22d0f847b3e89757be"
+    },
+    "results/asr_integration/before/vi_to_zh.wav": {
+      "path": "results/asr_integration/before/vi_to_zh.wav",
+      "size": 1345596,
+      "mtime_ns": 1794538587693539031,
+      "sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e"
+    },
+    "results/asr_integration/before/zh_to_vi.wav": {
+      "path": "results/asr_integration/before/zh_to_vi.wav",
+      "size": 660030,
+      "mtime_ns": 1794538602452158542,
+      "sha256": "73ce37a2c166a8bae4493806684e9a1ba1bcd8b2c42360525752123402b19459"
+    },
+    "results/asr_integration/after/en_to_vi.wav": {
+      "path": "results/asr_integration/after/en_to_vi.wav",
+      "size": 754316,
+      "mtime_ns": 1794538815037890727,
+      "sha256": "d25e0884fc29da824ee48ee40626df237983c6b4efc969e47d892e9afb64cafe"
+    },
+    "results/asr_integration/after/ko_to_vi.wav": {
+      "path": "results/asr_integration/after/ko_to_vi.wav",
+      "size": 613244,
+      "mtime_ns": 1794538823105271091,
+      "sha256": "0c765034892de4c3b2c58e8f4bd6cb4458344e83c0a93942cdea208205a0562c"
+    },
+    "results/asr_integration/after/summary.json": {
+      "path": "results/asr_integration/after/summary.json",
+      "size": 55939,
+      "mtime_ns": 1794538830001915917,
+      "sha256": "24b59005860c00a12ece445be51c7b8d3187cb21d8cdae5c310d5a20d684338d"
+    },
+    "results/asr_integration/after/vi_to_en.wav": {
+      "path": "results/asr_integration/after/vi_to_en.wav",
+      "size": 1790012,
+      "mtime_ns": 1794538783854976579,
+      "sha256": "f9715ea53524f82f2db88726ec546b6291a38f171d811f1b5e897975b8de1bb5"
+    },
+    "results/asr_integration/after/vi_to_ko.wav": {
+      "path": "results/asr_integration/after/vi_to_ko.wav",
+      "size": 1487924,
+      "mtime_ns": 1794538790898609295,
+      "sha256": "c558f3bfe96d5c4db309f7403db3ef5f69497ec79347fc22d0f847b3e89757be"
+    },
+    "results/asr_integration/after/vi_to_zh.wav": {
+      "path": "results/asr_integration/after/vi_to_zh.wav",
+      "size": 1345596,
+      "mtime_ns": 1794538803139230445,
+      "sha256": "349ffda498def0f1606fbcb4fdcd1cd187dad7163ee5a145db31267986215d7e"
+    },
+    "results/asr_integration/after/zh_to_vi.wav": {
+      "path": "results/asr_integration/after/zh_to_vi.wav",
+      "size": 627308,
+      "mtime_ns": 1794538829997816796,
+      "sha256": "bfa4795e5a761cc0cc1e2708a3dc34ae70f632e176f9d267059de7afa249099a"
+    },
+    "../en-vi/BTC/EV-0157.json": {
+      "path": "en-vi/BTC/EV-0157.json",
+      "size": 1418,
+      "mtime_ns": 1794474953000000000,
+      "sha256": "daac4b188748649e79494e7ac36469348aa63287d16207fb0f2a2dc3adece388"
+    },
+    "../en-vi/BTC/EV-0157_in.wav": {
+      "path": "en-vi/BTC/EV-0157_in.wav",
+      "size": 294956,
+      "mtime_ns": 1794474953000000000,
+      "sha256": "cd61a89d36bb678c2f693741950f83f487245e64341594ff12b31560fa3476d6"
+    },
+    "../en-vi/BTC/EV-0157_out.wav": {
+      "path": "en-vi/BTC/EV-0157_out.wav",
+      "size": 178732,
+      "mtime_ns": 1794474953000000000,
+      "sha256": "52fad53c009fa1fe8534e4ace74965cd1b0125832edf6ec18b73965dee5ad67c"
+    },
+    "../en-vi/BTC/EV-0182.json": {
+      "path": "en-vi/BTC/EV-0182.json",
+      "size": 1826,
+      "mtime_ns": 1794474962000000000,
+      "sha256": "e0d7440c3dfebddd33e5061ea0de95a1424cd527dc78011d72adb09a3a968718"
+    },
+    "../en-vi/BTC/EV-0182_in.wav": {
+      "path": "en-vi/BTC/EV-0182_in.wav",
+      "size": 293164,
+      "mtime_ns": 1794474962000000000,
+      "sha256": "39eaa3ade47d6c9679dd3aca5f535a93298cde7577f85d85c98736f2e687ad1b"
+    },
+    "../en-vi/BTC/EV-0182_out.wav": {
+      "path": "en-vi/BTC/EV-0182_out.wav",
+      "size": 210236,
+      "mtime_ns": 1794474962000000000,
+      "sha256": "1d4273ac8b56e52eb0810ce12f2afc9525a48ec38e8e5ac095657db463c56489"
+    },
+    "../en-vi/BTC/EV-0228.json": {
+      "path": "en-vi/BTC/EV-0228.json",
+      "size": 1490,
+      "mtime_ns": 1794474970000000000,
+      "sha256": "f1c1f2152a0f1512868046e51dd6b7e0d9a7ff70d4b575e8180f00bc3a480bad"
+    },
+    "../en-vi/BTC/EV-0228_in.wav": {
+      "path": "en-vi/BTC/EV-0228_in.wav",
+      "size": 202796,
+      "mtime_ns": 1794474970000000000,
+      "sha256": "b5207aab8d1940df93360ab67826e72c40fda5b010855eb6b777ad6558688d5f"
+    },
+    "../en-vi/BTC/EV-0228_out.wav": {
+      "path": "en-vi/BTC/EV-0228_out.wav",
+      "size": 181292,
+      "mtime_ns": 1794474970000000000,
+      "sha256": "8c9f34d40c684a729a37bc24d528376418420cf80a095fff43f0eb130e8e2797"
+    },
+    "../en-vi/BTC/EV-0240.json": {
+      "path": "en-vi/BTC/EV-0240.json",
+      "size": 1649,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "e296e9c8a73d8bdfb1d150709d11408eceeebba97aa5f505e7d961122b8cd67c"
+    },
+    "../en-vi/BTC/EV-0240_in.wav": {
+      "path": "en-vi/BTC/EV-0240_in.wav",
+      "size": 190508,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "1d097781cd85876c55e0c720bf9a8576529bba5175dba0021a031cb54fd2f9a4"
+    },
+    "../en-vi/BTC/EV-0240_out.wav": {
+      "path": "en-vi/BTC/EV-0240_out.wav",
+      "size": 213036,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "7369fbdd76fcda7e6f73bdc0d93560224932f56b26bd6704e5e5bcc8e89d356f"
+    },
+    "../en-vi/BTC/EV-0250.json": {
+      "path": "en-vi/BTC/EV-0250.json",
+      "size": 1725,
+      "mtime_ns": 1794474987000000000,
+      "sha256": "18fb7d6daf0225c44627d3b30609f4364b0a6c0d22deed4089bf529fb3d2699d"
+    },
+    "../en-vi/BTC/EV-0250_in.wav": {
+      "path": "en-vi/BTC/EV-0250_in.wav",
+      "size": 176364,
+      "mtime_ns": 1794474987000000000,
+      "sha256": "c7ee1599601b319621b17f3bcbed1fb7ac7d160d265dffc518448dfdf6666a03"
+    },
+    "../en-vi/BTC/EV-0250_out.wav": {
+      "path": "en-vi/BTC/EV-0250_out.wav",
+      "size": 260652,
+      "mtime_ns": 1794474987000000000,
+      "sha256": "0bde9d43be78de5d738cd98cf5f0bdf3fc6f34c84a035021335344cee57cb160"
+    },
+    "../en-vi/BTC/EV-0333.json": {
+      "path": "en-vi/BTC/EV-0333.json",
+      "size": 1271,
+      "mtime_ns": 1794474993000000000,
+      "sha256": "ac2b7ff0e664f505d493cfbecf9532a4cbb0add0329d7328c64f4a12f9db31fc"
+    },
+    "../en-vi/BTC/EV-0333_in.wav": {
+      "path": "en-vi/BTC/EV-0333_in.wav",
+      "size": 138636,
+      "mtime_ns": 1794474993000000000,
+      "sha256": "729d69d6b0b042bdb307b592f1926c90dde130a92bad515475dc81745c46ddc0"
+    },
+    "../en-vi/BTC/EV-0333_out.wav": {
+      "path": "en-vi/BTC/EV-0333_out.wav",
+      "size": 127532,
+      "mtime_ns": 1794474993000000000,
+      "sha256": "edb6191acb676851f897cb4660a1edcb7a7ead1da49fc1add4da2fbb051afc2a"
+    },
+    "../en-vi/BTC/EV-0358.json": {
+      "path": "en-vi/BTC/EV-0358.json",
+      "size": 1263,
+      "mtime_ns": 1794474997000000000,
+      "sha256": "046bcbaf5db7430934d1f4ced4093cad5a34fb7cab6df3aba995a8324563cb03"
+    },
+    "../en-vi/BTC/EV-0358_in.wav": {
+      "path": "en-vi/BTC/EV-0358_in.wav",
+      "size": 183084,
+      "mtime_ns": 1794474997000000000,
+      "sha256": "ba488dd557d33e429d6fa7e3be7b7834ca0de4309fefd3c5f6009b2969797047"
+    },
+    "../en-vi/BTC/EV-0358_out.wav": {
+      "path": "en-vi/BTC/EV-0358_out.wav",
+      "size": 194092,
+      "mtime_ns": 1794474997000000000,
+      "sha256": "e640e25bfadd7751a46d2f227b2ae711afcada52724e452192cc2fe49c7bf5b6"
+    },
+    "../en-vi/BTC/EV-0383.json": {
+      "path": "en-vi/BTC/EV-0383.json",
+      "size": 2431,
+      "mtime_ns": 1794475011000000000,
+      "sha256": "9f7c235185e6cd5f222d808bc2df0e741b8e732475223eb04ad6506ade9d4d4c"
+    },
+    "../en-vi/BTC/EV-0383_in.wav": {
+      "path": "en-vi/BTC/EV-0383_in.wav",
+      "size": 264748,
+      "mtime_ns": 1794475011000000000,
+      "sha256": "88567494c1a77d74d3238d63a6c737576a2c95025bbbd9d5ed209de7fa6c5e2a"
+    },
+    "../en-vi/BTC/EV-0383_out.wav": {
+      "path": "en-vi/BTC/EV-0383_out.wav",
+      "size": 390206,
+      "mtime_ns": 1794475011000000000,
+      "sha256": "6f77ca1982d6487b849e9ffaf332ac48ed5ecbadc0132e84c243690421f1a8e4"
+    },
+    "../en-vi/BTC/EV-0491.json": {
+      "path": "en-vi/BTC/EV-0491.json",
+      "size": 1907,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "7825b06bbe89b519e449d668cbeece60ed9aad49853c1803bc1e3a84f4f4868e"
+    },
+    "../en-vi/BTC/EV-0491_in.wav": {
+      "path": "en-vi/BTC/EV-0491_in.wav",
+      "size": 296246,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "3e48fc6003e32d68970312d26942479b2ad273acfbbca445398994731b8c5e45"
+    },
+    "../en-vi/BTC/EV-0491_out.wav": {
+      "path": "en-vi/BTC/EV-0491_out.wav",
+      "size": 296238,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "bda588be9170d01fb0a05994d710b54993023d90f358e7594dcd9030b6097723"
+    },
+    "../en-vi/BTC/EV-0523.json": {
+      "path": "en-vi/BTC/EV-0523.json",
+      "size": 1259,
+      "mtime_ns": 1794475028000000000,
+      "sha256": "b14a30d9e48202d8ccc4b87cd5f00c94568e6f7da479eefdaf5ba9a644877d05"
+    },
+    "../en-vi/BTC/EV-0523_in.wav": {
+      "path": "en-vi/BTC/EV-0523_in.wav",
+      "size": 132012,
+      "mtime_ns": 1794475028000000000,
+      "sha256": "c55f5b6296bb36850bac05dd0afd2f3a82ac7f65be148e0a30997e0272b05a0b"
+    },
+    "../en-vi/BTC/EV-0523_out.wav": {
+      "path": "en-vi/BTC/EV-0523_out.wav",
+      "size": 121900,
+      "mtime_ns": 1794475028000000000,
+      "sha256": "34e11bc61c6fe9f32d2da8644aaf06db07f12867c766b8aa65e0a0cb201df722"
+    },
+    "../en-vi/BTC/EV-0752.json": {
+      "path": "en-vi/BTC/EV-0752.json",
+      "size": 1498,
+      "mtime_ns": 1794475034000000000,
+      "sha256": "85aaff127859f1e28453de0163ff88c20c06bbb1efaf3f7f400e00876d643fe4"
+    },
+    "../en-vi/BTC/EV-0752_in.wav": {
+      "path": "en-vi/BTC/EV-0752_in.wav",
+      "size": 173900,
+      "mtime_ns": 1794475034000000000,
+      "sha256": "fc3e703b0c5c44901b7f91471a746c08c42751360257def20e1e55785d2552cd"
+    },
+    "../en-vi/BTC/EV-0752_out.wav": {
+      "path": "en-vi/BTC/EV-0752_out.wav",
+      "size": 175148,
+      "mtime_ns": 1794475034000000000,
+      "sha256": "2411a9e450345ae25fa2f95fdd70103b0004b6a4f482fa30d52ebb2a71fcbda3"
+    },
+    "../en-vi/BTC/EV-0894.json": {
+      "path": "en-vi/BTC/EV-0894.json",
+      "size": 1505,
+      "mtime_ns": 1794475042000000000,
+      "sha256": "1910d3bcbbca6781d5a861917903f7a253ef83b834645520f0224752ca89ef19"
+    },
+    "../en-vi/BTC/EV-0894_in.wav": {
+      "path": "en-vi/BTC/EV-0894_in.wav",
+      "size": 136012,
+      "mtime_ns": 1794475042000000000,
+      "sha256": "02339496affe818dea1430653c5985bca77e1e05c3d33ff5cebc1be223aa4735"
+    },
+    "../en-vi/BTC/EV-0894_out.wav": {
+      "path": "en-vi/BTC/EV-0894_out.wav",
+      "size": 199724,
+      "mtime_ns": 1794475042000000000,
+      "sha256": "f2d2e41e36942b21a5815bc094f900a99aa122e28c4fa62a24c3d0d10cb6f023"
+    },
+    "../en-vi/BTC/EV-1173.json": {
+      "path": "en-vi/BTC/EV-1173.json",
+      "size": 1457,
+      "mtime_ns": 1794475049000000000,
+      "sha256": "57177479b4869b13a4832509d871dfc972508abee5ca054f63fc34f855751abf"
+    },
+    "../en-vi/BTC/EV-1173_in.wav": {
+      "path": "en-vi/BTC/EV-1173_in.wav",
+      "size": 176148,
+      "mtime_ns": 1794475049000000000,
+      "sha256": "077570b4c32e2f4918bf7446eccca962be41d001f2634b1215f64dbb354828a9"
+    },
+    "../en-vi/BTC/EV-1173_out.wav": {
+      "path": "en-vi/BTC/EV-1173_out.wav",
+      "size": 148524,
+      "mtime_ns": 1794475049000000000,
+      "sha256": "6a886de86513a0b7a5a4405d57217cb43669b69a3a5101bfefca6288c3f9df53"
+    },
+    "../en-vi/BTC/EV-1212.json": {
+      "path": "en-vi/BTC/EV-1212.json",
+      "size": 1366,
+      "mtime_ns": 1794475055000000000,
+      "sha256": "bf786363ef295c986376059deeab970769b50c3857400e99984e4716dbaa8ee2"
+    },
+    "../en-vi/BTC/EV-1212_in.wav": {
+      "path": "en-vi/BTC/EV-1212_in.wav",
+      "size": 144524,
+      "mtime_ns": 1794475055000000000,
+      "sha256": "d020dfa3d861587cfa3422ba25ad7e52ea1612d5f57bbd7bc87cefa8e00fbd5e"
+    },
+    "../en-vi/BTC/EV-1212_out.wav": {
+      "path": "en-vi/BTC/EV-1212_out.wav",
+      "size": 150572,
+      "mtime_ns": 1794475055000000000,
+      "sha256": "663e58d4bd5840010a8d0dbd9755efc3332d6869269897096f356a23b630806d"
+    },
+    "../en-vi/BTC/EV-1229.json": {
+      "path": "en-vi/BTC/EV-1229.json",
+      "size": 1604,
+      "mtime_ns": 1794475061000000000,
+      "sha256": "0715c9f59e3f3eb704ff1acb5a6a57ff5aae2a57c5560ac3a71e2e42fc4d266e"
+    },
+    "../en-vi/BTC/EV-1229_in.wav": {
+      "path": "en-vi/BTC/EV-1229_in.wav",
+      "size": 157164,
+      "mtime_ns": 1794475061000000000,
+      "sha256": "87b9f1c84ed0331f2dff83bfe786b445f7ffe04bb78b43b05a2e154d80b7faad"
+    },
+    "../en-vi/BTC/EV-1229_out.wav": {
+      "path": "en-vi/BTC/EV-1229_out.wav",
+      "size": 195628,
+      "mtime_ns": 1794475061000000000,
+      "sha256": "5b48746fbb5b2e7d7d62b5977a5771156c9c83a10f0b0fc92dd0d1bcd2a46838"
+    },
+    "../en-vi/BTC/EV-1508.json": {
+      "path": "en-vi/BTC/EV-1508.json",
+      "size": 1661,
+      "mtime_ns": 1794475069000000000,
+      "sha256": "a07f8f1eb23e7a87e999a104a2d02769cedef1d80e20fa06bcb0e3fbae86863b"
+    },
+    "../en-vi/BTC/EV-1508_in.wav": {
+      "path": "en-vi/BTC/EV-1508_in.wav",
+      "size": 279084,
+      "mtime_ns": 1794475069000000000,
+      "sha256": "e3460570a97ba1ac537b0f73649bd73b781b4629a427da2bc2bb8bac79f61fd9"
+    },
+    "../en-vi/BTC/EV-1508_out.wav": {
+      "path": "en-vi/BTC/EV-1508_out.wav",
+      "size": 237100,
+      "mtime_ns": 1794475069000000000,
+      "sha256": "8e0afd57e4ab0e997585b030b8f0bdde55603efb6e5b8851a3ef57c2461dd16f"
+    },
+    "../en-vi/BTC/EV-1725.json": {
+      "path": "en-vi/BTC/EV-1725.json",
+      "size": 1281,
+      "mtime_ns": 1794475075000000000,
+      "sha256": "eae2ebd9201915bd24c61daa15fdf46c5500e66ffead9fc2f91488278cc03d67"
+    },
+    "../en-vi/BTC/EV-1725_in.wav": {
+      "path": "en-vi/BTC/EV-1725_in.wav",
+      "size": 143372,
+      "mtime_ns": 1794475075000000000,
+      "sha256": "eec0b5f72b553458d8c70be4c245c19d09099a28b01f696456cbf41961a604f6"
+    },
+    "../en-vi/BTC/EV-1725_out.wav": {
+      "path": "en-vi/BTC/EV-1725_out.wav",
+      "size": 144428,
+      "mtime_ns": 1794475075000000000,
+      "sha256": "ca03ab81238fa3ebff6e0d04c1082bff7bb1295ffaf12433275c6abb4b77b95a"
+    },
+    "../en-vi/BTC/EV-1829.json": {
+      "path": "en-vi/BTC/EV-1829.json",
+      "size": 1527,
+      "mtime_ns": 1794475082000000000,
+      "sha256": "a5547eec5222673f2ddbca744004ca6879f0ad65a3c81f25ee9a1f31e4a3765e"
+    },
+    "../en-vi/BTC/EV-1829_in.wav": {
+      "path": "en-vi/BTC/EV-1829_in.wav",
+      "size": 113004,
+      "mtime_ns": 1794475082000000000,
+      "sha256": "88a0a460ef4184fcce88f26dc0f4983b4e7799fc1865734f304ca1c6c7202c47"
+    },
+    "../en-vi/BTC/EV-1829_out.wav": {
+      "path": "en-vi/BTC/EV-1829_out.wav",
+      "size": 197164,
+      "mtime_ns": 1794475082000000000,
+      "sha256": "de119483fa163d10b2d43d7a10c32073c3a712522d9c47e140f1ae1e5ed9b78d"
+    },
+    "../en-vi/BTC/EV-1863.json": {
+      "path": "en-vi/BTC/EV-1863.json",
+      "size": 1350,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "7cc0caa76e62f441be2327ac3b136463767b6e7e56011d5aaa9fb4122d7b60fc"
+    },
+    "../en-vi/BTC/EV-1863_in.wav": {
+      "path": "en-vi/BTC/EV-1863_in.wav",
+      "size": 102430,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "88a13088abfe046488961953f73f583a696d718bb2cdf93c4a7cce6a1981d1e4"
+    },
+    "../en-vi/BTC/EV-1863_out.wav": {
+      "path": "en-vi/BTC/EV-1863_out.wav",
+      "size": 125484,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "cf4b80e8abb3abbc47ede6137169f46c0b7ab944be53d562247577ca74fbd657"
+    },
+    "../en-vi/BTC/EV-2177.json": {
+      "path": "en-vi/BTC/EV-2177.json",
+      "size": 1294,
+      "mtime_ns": 1794475094000000000,
+      "sha256": "573158416b5af164b36f8adb435a07cf6abafd986693f5f5174fadc77173d85f"
+    },
+    "../en-vi/BTC/EV-2177_in.wav": {
+      "path": "en-vi/BTC/EV-2177_in.wav",
+      "size": 199084,
+      "mtime_ns": 1794475094000000000,
+      "sha256": "5c9d2c2f306577600924035e11729de21bcab035a3dcead5485af677f489593e"
+    },
+    "../en-vi/BTC/EV-2177_out.wav": {
+      "path": "en-vi/BTC/EV-2177_out.wav",
+      "size": 129580,
+      "mtime_ns": 1794475094000000000,
+      "sha256": "5f4796b86271369b674f67a8b2354297df8afb66959776040c083008f279846c"
+    },
+    "../en-vi/BTC/EV-2248.json": {
+      "path": "en-vi/BTC/EV-2248.json",
+      "size": 1344,
+      "mtime_ns": 1794475100000000000,
+      "sha256": "b8e5c7c47a08669952ba6ad79e04bb3cf240306856549b0ce3a67e79dfa7ae74"
+    },
+    "../en-vi/BTC/EV-2248_in.wav": {
+      "path": "en-vi/BTC/EV-2248_in.wav",
+      "size": 159788,
+      "mtime_ns": 1794475100000000000,
+      "sha256": "e8942a4b420ec06a65042cfc6d9a955e802b848794fe559e67225500b5bc6ba3"
+    },
+    "../en-vi/BTC/EV-2248_out.wav": {
+      "path": "en-vi/BTC/EV-2248_out.wav",
+      "size": 143916,
+      "mtime_ns": 1794475100000000000,
+      "sha256": "b9ee0aec9f2292da4136746b2eb921933277aff0f3828ffecb724d61970d3836"
+    },
+    "../en-vi/BTC/EV-2316.json": {
+      "path": "en-vi/BTC/EV-2316.json",
+      "size": 2021,
+      "mtime_ns": 1794475111000000000,
+      "sha256": "fdb2d2f60960c80c6a89b9c221cf4e8d2c6bfd1c0fba7c5769ed3058f8f66ad5"
+    },
+    "../en-vi/BTC/EV-2316_in.wav": {
+      "path": "en-vi/BTC/EV-2316_in.wav",
+      "size": 289292,
+      "mtime_ns": 1794475111000000000,
+      "sha256": "a8467befa47d673e65a73922e3ec9f3891f28fc9e998db9658dbd7f10e15fcfd"
+    },
+    "../en-vi/BTC/EV-2316_out.wav": {
+      "path": "en-vi/BTC/EV-2316_out.wav",
+      "size": 334126,
+      "mtime_ns": 1794475111000000000,
+      "sha256": "7da8355472d0a9e4821c28c50fc16b34244b05a9ca3a8953ddd2ad5304478ccf"
+    },
+    "../en-vi/BTC/EV-2364.json": {
+      "path": "en-vi/BTC/EV-2364.json",
+      "size": 2268,
+      "mtime_ns": 1794475123000000000,
+      "sha256": "9b36844335c173c31d015c9824405594579369eb92ba6aea2c1840ab7b8e0203"
+    },
+    "../en-vi/BTC/EV-2364_in.wav": {
+      "path": "en-vi/BTC/EV-2364_in.wav",
+      "size": 288364,
+      "mtime_ns": 1794475123000000000,
+      "sha256": "2f2920636377f2f45a4453a79bc83c00becc7540288d939e7db5c3e865125da9"
+    },
+    "../en-vi/BTC/EV-2364_out.wav": {
+      "path": "en-vi/BTC/EV-2364_out.wav",
+      "size": 360750,
+      "mtime_ns": 1794475123000000000,
+      "sha256": "774cb9af7e80ced820e5ee8e3693df1f99efdbeb0305df1565e386a2ef719e32"
+    },
+    "../en-vi/BTC/EV-2388.json": {
+      "path": "en-vi/BTC/EV-2388.json",
+      "size": 1778,
+      "mtime_ns": 1794475131000000000,
+      "sha256": "5629dd3d734850b771570d727af958d5b18b4f2448ea6338ecfbc6b7e0ba292a"
+    },
+    "../en-vi/BTC/EV-2388_in.wav": {
+      "path": "en-vi/BTC/EV-2388_in.wav",
+      "size": 196044,
+      "mtime_ns": 1794475131000000000,
+      "sha256": "1fa32114952d723aeaf6edec45076d9af59c1d379cb7bfd6e0055ed7e69640bc"
+    },
+    "../en-vi/BTC/EV-2388_out.wav": {
+      "path": "en-vi/BTC/EV-2388_out.wav",
+      "size": 270638,
+      "mtime_ns": 1794475131000000000,
+      "sha256": "2fb64e7f178292c7a5d3f1660de11c499ae52e538377e0d15fa620b7307d6c53"
+    },
+    "../en-vi/BTC/EV-2390.json": {
+      "path": "en-vi/BTC/EV-2390.json",
+      "size": 1282,
+      "mtime_ns": 1794475137000000000,
+      "sha256": "98e01613b7c45ae2f443dcfefb0f7d58c24e157c56a2a1941978ee701340cb83"
+    },
+    "../en-vi/BTC/EV-2390_in.wav": {
+      "path": "en-vi/BTC/EV-2390_in.wav",
+      "size": 122924,
+      "mtime_ns": 1794475137000000000,
+      "sha256": "5c156fe15c2ec336050ff0fc0033155be4a7d443a7e280548bbf2082f99d3fb3"
+    },
+    "../en-vi/BTC/EV-2390_out.wav": {
+      "path": "en-vi/BTC/EV-2390_out.wav",
+      "size": 124460,
+      "mtime_ns": 1794475137000000000,
+      "sha256": "932daec4adfb6c2034833c9327cc842a594c36bb6b050169ad6a5b063194b762"
+    },
+    "../en-vi/BTC/EV-2401.json": {
+      "path": "en-vi/BTC/EV-2401.json",
+      "size": 1875,
+      "mtime_ns": 1794475148000000000,
+      "sha256": "672310c6fd4918938228354742574c3e18fd1212809ad759b1ea539c8f897a05"
+    },
+    "../en-vi/BTC/EV-2401_in.wav": {
+      "path": "en-vi/BTC/EV-2401_in.wav",
+      "size": 207084,
+      "mtime_ns": 1794475148000000000,
+      "sha256": "72ecd7ca0f688e1b58416fb800658d428a75cf5ed37b0cf600a65898bef2dbde"
+    },
+    "../en-vi/BTC/EV-2401_out.wav": {
+      "path": "en-vi/BTC/EV-2401_out.wav",
+      "size": 241468,
+      "mtime_ns": 1794475148000000000,
+      "sha256": "868c9bbf99d42a2f60a6e4a03259b59635152f61d53c62be84446d25e3811534"
+    },
+    "../en-vi/BTC/EV-2476.json": {
+      "path": "en-vi/BTC/EV-2476.json",
+      "size": 1431,
+      "mtime_ns": 1794475154000000000,
+      "sha256": "741f66e6264275b1a7ec6267f03f104ae9b844dd40c059de7bf2eee33b7fb9f9"
+    },
+    "../en-vi/BTC/EV-2476_in.wav": {
+      "path": "en-vi/BTC/EV-2476_in.wav",
+      "size": 160460,
+      "mtime_ns": 1794475154000000000,
+      "sha256": "0da4e71596f3107a52d540f611857ca4f5a27acfe6ff8fed6f2661a08234e270"
+    },
+    "../en-vi/BTC/EV-2476_out.wav": {
+      "path": "en-vi/BTC/EV-2476_out.wav",
+      "size": 140844,
+      "mtime_ns": 1794475154000000000,
+      "sha256": "a0c6795e05f41e5c7488ca56e4a48f245975d54c8c154783ed7798d4be31b175"
+    },
+    "../en-vi/BTC/EV-2748.json": {
+      "path": "en-vi/BTC/EV-2748.json",
+      "size": 1027,
+      "mtime_ns": 1794475156000000000,
+      "sha256": "189ab9768acf15ecfa0bd42fb60f2ab2bee64bc81ce571fe04f609ea379fc292"
+    },
+    "../en-vi/BTC/EV-2748_in.wav": {
+      "path": "en-vi/BTC/EV-2748_in.wav",
+      "size": 190764,
+      "mtime_ns": 1794475156000000000,
+      "sha256": "06c5d3555dd8308c87872c38608655e9a0f3d81ae9749611afa47121c3d43f3a"
+    },
+    "../en-vi/BTC/EV-2802.json": {
+      "path": "en-vi/BTC/EV-2802.json",
+      "size": 1972,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "8fd454da40e470da3a43a2cd77faf3bf6c6e3e92d6332914df858cf81d582533"
+    },
+    "../en-vi/BTC/EV-2802_in.wav": {
+      "path": "en-vi/BTC/EV-2802_in.wav",
+      "size": 273286,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "3c5ee4ebe5494b676b6c796c1cb2de0ea64f9a2a9fbdbfe5ca3d886516e14ebe"
+    },
+    "../en-vi/BTC/EV-2802_out.wav": {
+      "path": "en-vi/BTC/EV-2802_out.wav",
+      "size": 316718,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "29e1e2ef67ec3eeadb4fb8bc5acf1ecaac69cc056c7ecab483d3cd79815ffa55"
+    },
+    "../en-vi/BTC/EV-3057.json": {
+      "path": "en-vi/BTC/EV-3057.json",
+      "size": 1891,
+      "mtime_ns": 1794475177000000000,
+      "sha256": "6d834b269012eb9bd0df3d90c1e21ee6b34e4f9c8024c6760f758b671f8be271"
+    },
+    "../en-vi/BTC/EV-3057_in.wav": {
+      "path": "en-vi/BTC/EV-3057_in.wav",
+      "size": 211244,
+      "mtime_ns": 1794475177000000000,
+      "sha256": "e5c962bb475d8fc5e5dbcd62f45049e47bfec3b4180aa71f385b5068e3c51989"
+    },
+    "../en-vi/BTC/EV-3057_out.wav": {
+      "path": "en-vi/BTC/EV-3057_out.wav",
+      "size": 313646,
+      "mtime_ns": 1794475177000000000,
+      "sha256": "dd29172c45e795e90f9c47f951d795a7923a796140571cb0e86ca93bb48c54d9"
+    },
+    "../en-vi/BTC/EV-3248.json": {
+      "path": "en-vi/BTC/EV-3248.json",
+      "size": 1137,
+      "mtime_ns": 1794475181000000000,
+      "sha256": "170efac185fc2681672663a13bca0f5cfc0e6c46bb5fac54303d46ab85dacdef"
+    },
+    "../en-vi/BTC/EV-3248_in.wav": {
+      "path": "en-vi/BTC/EV-3248_in.wav",
+      "size": 88108,
+      "mtime_ns": 1794475181000000000,
+      "sha256": "24f350acefa7d527dfd2162917f682fd10bc171a47d153a33b1c8f69cc2e8aca"
+    },
+    "../en-vi/BTC/EV-3248_out.wav": {
+      "path": "en-vi/BTC/EV-3248_out.wav",
+      "size": 66604,
+      "mtime_ns": 1794475181000000000,
+      "sha256": "7d4efba075edb89e70fc8b0528fefcea11c0ed7728fa740f5c96ddd29cecd3db"
+    },
+    "../en-vi/BTC/EV-3459.json": {
+      "path": "en-vi/BTC/EV-3459.json",
+      "size": 1701,
+      "mtime_ns": 1794475189000000000,
+      "sha256": "8a1c2561641f154f66704cffc865c787096ed3692697088305efcc9d070d71a4"
+    },
+    "../en-vi/BTC/EV-3459_in.wav": {
+      "path": "en-vi/BTC/EV-3459_in.wav",
+      "size": 179916,
+      "mtime_ns": 1794475189000000000,
+      "sha256": "1c19a7f392572af4646e67b4ee167ef00aae468c69d2dcaf716951a1884760b7"
+    },
+    "../en-vi/BTC/EV-3459_out.wav": {
+      "path": "en-vi/BTC/EV-3459_out.wav",
+      "size": 239148,
+      "mtime_ns": 1794475189000000000,
+      "sha256": "9c20e34930604878c81a0e3a96d2fac27f723d0648fd04c945482cabae0cc93f"
+    },
+    "../en-vi/BTC/EV-3775.json": {
+      "path": "en-vi/BTC/EV-3775.json",
+      "size": 1435,
+      "mtime_ns": 1794475198000000000,
+      "sha256": "8bf0a70ec7acc27f91804a27bb260f269f3261b2f4991a5be2e61c580a8b2bda"
+    },
+    "../en-vi/BTC/EV-3775_in.wav": {
+      "path": "en-vi/BTC/EV-3775_in.wav",
+      "size": 167980,
+      "mtime_ns": 1794475197000000000,
+      "sha256": "f22659c8ead783e43d765b54b909a99c9ef62dd6437cfd597f7fe6fd0351a957"
+    },
+    "../en-vi/BTC/EV-3775_out.wav": {
+      "path": "en-vi/BTC/EV-3775_out.wav",
+      "size": 182828,
+      "mtime_ns": 1794475198000000000,
+      "sha256": "cc1756c01975a289272897a2178babeb4017c28d5b7a68ae4443b5ea888d5b85"
+    },
+    "../en-vi/BTC/EV-3791.json": {
+      "path": "en-vi/BTC/EV-3791.json",
+      "size": 2192,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "08c2ab6406a9c74af1f243856c52ba1b12e43039787016a5999f70085fc15221"
+    },
+    "../en-vi/BTC/EV-3791_in.wav": {
+      "path": "en-vi/BTC/EV-3791_in.wav",
+      "size": 264364,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "f1a9a204169a7c128b5c2e17634bbbb52e7045e4dee002be34cc96770134a36e"
+    },
+    "../en-vi/BTC/EV-3791_out.wav": {
+      "path": "en-vi/BTC/EV-3791_out.wav",
+      "size": 368430,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "cea97c32b8ce9d32ec3d11bfde564afe9db96ff4913a0597f35403ac85bdc51b"
+    },
+    "../en-vi/BTC/EV-4009.json": {
+      "path": "en-vi/BTC/EV-4009.json",
+      "size": 1968,
+      "mtime_ns": 1794475218000000000,
+      "sha256": "908f4a14b400c2129a8500eb54322e429da62c7fdf2861d61b198659670ed6ba"
+    },
+    "../en-vi/BTC/EV-4009_in.wav": {
+      "path": "en-vi/BTC/EV-4009_in.wav",
+      "size": 283562,
+      "mtime_ns": 1794475218000000000,
+      "sha256": "5ce5de5fa78add9f242fcfd0195888d6984506073d692d2f0736649220c5b024"
+    },
+    "../en-vi/BTC/EV-4009_out.wav": {
+      "path": "en-vi/BTC/EV-4009_out.wav",
+      "size": 315694,
+      "mtime_ns": 1794475218000000000,
+      "sha256": "5696581164134ef77b77b1b2b6b5859687357b3ee52cf39421a591a1e5f35be8"
+    },
+    "../en-vi/BTC/EV-4177.json": {
+      "path": "en-vi/BTC/EV-4177.json",
+      "size": 1468,
+      "mtime_ns": 1794475225000000000,
+      "sha256": "93dc1a30fda25e818b23d3897154c688e9b6ef491177db460d1d4af898fd0f8a"
+    },
+    "../en-vi/BTC/EV-4177_in.wav": {
+      "path": "en-vi/BTC/EV-4177_in.wav",
+      "size": 190764,
+      "mtime_ns": 1794475225000000000,
+      "sha256": "b1ad77d4e45d41ea857b507a896c55f1cb93601aa3936c6317cd7caf532c81b3"
+    },
+    "../en-vi/BTC/EV-4177_out.wav": {
+      "path": "en-vi/BTC/EV-4177_out.wav",
+      "size": 186412,
+      "mtime_ns": 1794475225000000000,
+      "sha256": "99768d92efabd35849c41cfea33ee354d59e6e824170a41bfd8dc1a9757eb915"
+    },
+    "../en-vi/BTC/EV-4250.json": {
+      "path": "en-vi/BTC/EV-4250.json",
+      "size": 1510,
+      "mtime_ns": 1794475233000000000,
+      "sha256": "90d8bd53207d6977c84cdecc5c69050fb1d33d1b0d95c9722836f7cde9f07083"
+    },
+    "../en-vi/BTC/EV-4250_in.wav": {
+      "path": "en-vi/BTC/EV-4250_in.wav",
+      "size": 176204,
+      "mtime_ns": 1794475233000000000,
+      "sha256": "99fbca22450f421e83533d74058c5ee0c08f5efe35d503a11ebd1cb7cc7d8176"
+    },
+    "../en-vi/BTC/EV-4250_out.wav": {
+      "path": "en-vi/BTC/EV-4250_out.wav",
+      "size": 184876,
+      "mtime_ns": 1794475233000000000,
+      "sha256": "9688a2649a95dd8abecda9854f56a86ac9675894845718633a82725f0341bff0"
+    },
+    "../en-vi/BTC/EV-4294.json": {
+      "path": "en-vi/BTC/EV-4294.json",
+      "size": 1518,
+      "mtime_ns": 1794475239000000000,
+      "sha256": "80ba27a5fae2e894701b2b94049b7b64f950198d7b2f84749dfca2b789c6d506"
+    },
+    "../en-vi/BTC/EV-4294_in.wav": {
+      "path": "en-vi/BTC/EV-4294_in.wav",
+      "size": 180244,
+      "mtime_ns": 1794475239000000000,
+      "sha256": "e1e128450e890e8412f1aead870763bedce7f7c9a4e5bf5e16e0141915913c03"
+    },
+    "../en-vi/BTC/EV-4294_out.wav": {
+      "path": "en-vi/BTC/EV-4294_out.wav",
+      "size": 220716,
+      "mtime_ns": 1794475239000000000,
+      "sha256": "78eb9760a81581ab7aec3bb3591f7a319e6fdc7491f18d8b6b713b605b302047"
+    },
+    "../en-vi/BTC/EV-4321.json": {
+      "path": "en-vi/BTC/EV-4321.json",
+      "size": 1515,
+      "mtime_ns": 1794475245000000000,
+      "sha256": "596bd628fd3b3a4b2f2d17dc01a56f4610cd6219abef2ea1782e90acdba7f283"
+    },
+    "../en-vi/BTC/EV-4321_in.wav": {
+      "path": "en-vi/BTC/EV-4321_in.wav",
+      "size": 187564,
+      "mtime_ns": 1794475245000000000,
+      "sha256": "3ba0435fb51610fc727d60666b7c278800a94be7d122e1addcf6675482e101d1"
+    },
+    "../en-vi/BTC/EV-4321_out.wav": {
+      "path": "en-vi/BTC/EV-4321_out.wav",
+      "size": 173100,
+      "mtime_ns": 1794475245000000000,
+      "sha256": "6c1f2f0cda621a79130f0b9aafecc0a87b1947cfd6e819b02c5cd319ef223370"
+    },
+    "../en-vi/BTC/EV-4505.json": {
+      "path": "en-vi/BTC/EV-4505.json",
+      "size": 2171,
+      "mtime_ns": 1794475256000000000,
+      "sha256": "ed9f4c60d76b21f55daf4dc920a3a170d8a40e245460cbbbff2ac59f5e69c240"
+    },
+    "../en-vi/BTC/EV-4505_in.wav": {
+      "path": "en-vi/BTC/EV-4505_in.wav",
+      "size": 298284,
+      "mtime_ns": 1794475256000000000,
+      "sha256": "8fa2ca6a43ae3592f228d0e60691460ca8732b13198edbad94cbbe4d8f2f7507"
+    },
+    "../en-vi/BTC/EV-4505_out.wav": {
+      "path": "en-vi/BTC/EV-4505_out.wav",
+      "size": 347950,
+      "mtime_ns": 1794475256000000000,
+      "sha256": "30d08eb4c4053434c1677f023da699c809fcf4aa4e3b0461ea855b99052839f8"
+    },
+    "../en-vi/BTC/EV-4810.json": {
+      "path": "en-vi/BTC/EV-4810.json",
+      "size": 1454,
+      "mtime_ns": 1794475264000000000,
+      "sha256": "69275ab2af673e2475d54ecb8ca7ed3f8978236fe8fd4f2a8036d608cb5b4e44"
+    },
+    "../en-vi/BTC/EV-4810_in.wav": {
+      "path": "en-vi/BTC/EV-4810_in.wav",
+      "size": 138924,
+      "mtime_ns": 1794475264000000000,
+      "sha256": "53c039047773bb071fd21b5c2d598689e0ae75951423aa264cfa645a08e83f6c"
+    },
+    "../en-vi/BTC/EV-4810_out.wav": {
+      "path": "en-vi/BTC/EV-4810_out.wav",
+      "size": 193068,
+      "mtime_ns": 1794475264000000000,
+      "sha256": "a3e3c76761101b4cea73b316d5450c09cb9789f566c6d3bfeadc5a305b893fa6"
+    },
+    "../en-vi/BTC/EV-5187.json": {
+      "path": "en-vi/BTC/EV-5187.json",
+      "size": 1717,
+      "mtime_ns": 1794475270000000000,
+      "sha256": "93870402d0f1e8770ab47b94a0060a6ae85eea608ab8302dd5ebd7e7432ba456"
+    },
+    "../en-vi/BTC/EV-5187_in.wav": {
+      "path": "en-vi/BTC/EV-5187_in.wav",
+      "size": 229378,
+      "mtime_ns": 1794475270000000000,
+      "sha256": "5568c73ae8b6d8c51f7046fc4c905aa189c227bb37730146ff991ea30b7d60d6"
+    },
+    "../en-vi/BTC/EV-5187_out.wav": {
+      "path": "en-vi/BTC/EV-5187_out.wav",
+      "size": 205356,
+      "mtime_ns": 1794475270000000000,
+      "sha256": "1a183687fbae3e20fa314181ee3c79662d1a3442c4f93e54d6fc50559febe170"
+    },
+    "../en-vi/BTC/EV-5269.json": {
+      "path": "en-vi/BTC/EV-5269.json",
+      "size": 1152,
+      "mtime_ns": 1794475276000000000,
+      "sha256": "620270e36bad295d99f62c35fbab5481e406178be000c62605711161ea3d3117"
+    },
+    "../en-vi/BTC/EV-5269_in.wav": {
+      "path": "en-vi/BTC/EV-5269_in.wav",
+      "size": 88108,
+      "mtime_ns": 1794475276000000000,
+      "sha256": "f5ad7daf5eea77e8ad9fb2a48744a45c03e719392f51d71c018fc04a1fe9cb31"
+    },
+    "../en-vi/BTC/EV-5269_out.wav": {
+      "path": "en-vi/BTC/EV-5269_out.wav",
+      "size": 72236,
+      "mtime_ns": 1794475276000000000,
+      "sha256": "df095a3eb20d1115349add448d7fde242a163185c833f31b808ef2e32d8c8cb2"
+    },
+    "../en-vi/BTC/EV-5301.json": {
+      "path": "en-vi/BTC/EV-5301.json",
+      "size": 1251,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "8febf11e6868c768089cd8405274392cea97da1aaa018bff8758046e286b9bf5"
+    },
+    "../en-vi/BTC/EV-5301_in.wav": {
+      "path": "en-vi/BTC/EV-5301_in.wav",
+      "size": 102444,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "4916aa131db37013611802f6cf4deb2ad8cdae2b4f055ccef559954c37a65a02"
+    },
+    "../en-vi/BTC/EV-5301_out.wav": {
+      "path": "en-vi/BTC/EV-5301_out.wav",
+      "size": 111660,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "35c60a0f57dc22155867ce6e82c24a3a414dee65ec41dcbde2549005a1aa62d5"
+    },
+    "../en-vi/BTC/EV-5455.json": {
+      "path": "en-vi/BTC/EV-5455.json",
+      "size": 1435,
+      "mtime_ns": 1794475287000000000,
+      "sha256": "dca32b7f8af044e20525309ea6c41278beaecd860e9ebcbd07be7ed70b408fd7"
+    },
+    "../en-vi/BTC/EV-5455_in.wav": {
+      "path": "en-vi/BTC/EV-5455_in.wav",
+      "size": 124972,
+      "mtime_ns": 1794475287000000000,
+      "sha256": "d5499b81e69bd2663858f8343ac493a46f247d1b0a47bcab2a3bdccc1e0bc106"
+    },
+    "../en-vi/BTC/EV-5455_out.wav": {
+      "path": "en-vi/BTC/EV-5455_out.wav",
+      "size": 154156,
+      "mtime_ns": 1794475287000000000,
+      "sha256": "401e52f3db1b83c6db64784a77d52f054da43d06b7c980eb3e05cc105340c538"
+    },
+    "../en-vi/BTC/EV-5482.json": {
+      "path": "en-vi/BTC/EV-5482.json",
+      "size": 1294,
+      "mtime_ns": 1794475293000000000,
+      "sha256": "017668acf2ad059fe7953c7eb999626a377cf8019ab6c33739e02d50e2fdb7f8"
+    },
+    "../en-vi/BTC/EV-5482_in.wav": {
+      "path": "en-vi/BTC/EV-5482_in.wav",
+      "size": 116620,
+      "mtime_ns": 1794475293000000000,
+      "sha256": "6c3e0699badbae006b34f4523fd1057dd557f05b8ce3ff78f99229849e11e3eb"
+    },
+    "../en-vi/BTC/EV-5482_out.wav": {
+      "path": "en-vi/BTC/EV-5482_out.wav",
+      "size": 119852,
+      "mtime_ns": 1794475293000000000,
+      "sha256": "26d4a866a63fabe10f08bf5b7b72e71e571794a3e846870d13d34d2e3435a56d"
+    },
+    "../en-vi/BTC/EV-5600.json": {
+      "path": "en-vi/BTC/EV-5600.json",
+      "size": 2006,
+      "mtime_ns": 1794475303000000000,
+      "sha256": "2a8220667c99e6202b5f257179edf12f2c44e1066eb6abaacab93fe7416fc85b"
+    },
+    "../en-vi/BTC/EV-5600_in.wav": {
+      "path": "en-vi/BTC/EV-5600_in.wav",
+      "size": 264364,
+      "mtime_ns": 1794475303000000000,
+      "sha256": "e94e659512d5055a541879974e92ee67e75760c86f76fdb4bedba32aa756891f"
+    },
+    "../en-vi/BTC/EV-5600_out.wav": {
+      "path": "en-vi/BTC/EV-5600_out.wav",
+      "size": 253756,
+      "mtime_ns": 1794475303000000000,
+      "sha256": "7ce73a80ec8e0322be49bf97ad440d81fbd90a27d72e303ef26d5c2b832811e0"
+    },
+    "../en-vi/BTC/EV-5621.json": {
+      "path": "en-vi/BTC/EV-5621.json",
+      "size": 1407,
+      "mtime_ns": 1794475309000000000,
+      "sha256": "73804d87c2208caeededba6a5b0db747816c6ce6b859fc1cea8273333e02d977"
+    },
+    "../en-vi/BTC/EV-5621_in.wav": {
+      "path": "en-vi/BTC/EV-5621_in.wav",
+      "size": 92204,
+      "mtime_ns": 1794475309000000000,
+      "sha256": "2c1ff18e99e2644ad912c6ba241b1ddf9a386b0b356537c3bf4872ce6f4c2cd7"
+    },
+    "../en-vi/BTC/EV-5621_out.wav": {
+      "path": "en-vi/BTC/EV-5621_out.wav",
+      "size": 176172,
+      "mtime_ns": 1794475309000000000,
+      "sha256": "9a06dabd0b5b03359d304be988b66697facb85985919d86e272177d232d74c51"
+    },
+    "../en-vi/BTC/EV-5655.json": {
+      "path": "en-vi/BTC/EV-5655.json",
+      "size": 1471,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "a96bb23392fdba62b01ca32aa4bb886ac63701e00d5a31f2a6fe91b32c597350"
+    },
+    "../en-vi/BTC/EV-5655_in.wav": {
+      "path": "en-vi/BTC/EV-5655_in.wav",
+      "size": 178220,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "87ac2afb6a3cfb4771ff8bfda5fac512e01e7a43e03c6a05cc3be1a73e162c3c"
+    },
+    "../en-vi/BTC/EV-5655_out.wav": {
+      "path": "en-vi/BTC/EV-5655_out.wav",
+      "size": 163372,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "7e2ec8af6a3297bc1853b0f4e21cf270679a2eddaaab4fc12b6ed988a1d4803f"
+    },
+    "../en-vi/BTC/EV-5674.json": {
+      "path": "en-vi/BTC/EV-5674.json",
+      "size": 1469,
+      "mtime_ns": 1794475322000000000,
+      "sha256": "631c561c7df200c6bd13a153cb78bbe509a8f230d382031df76e34c17bd4f24a"
+    },
+    "../en-vi/BTC/EV-5674_in.wav": {
+      "path": "en-vi/BTC/EV-5674_in.wav",
+      "size": 135194,
+      "mtime_ns": 1794475322000000000,
+      "sha256": "1ad539f400d2a6db00ac438737ae94aa82189cabfa2a11eb3cffa04876c61481"
+    },
+    "../en-vi/BTC/EV-5674_out.wav": {
+      "path": "en-vi/BTC/EV-5674_out.wav",
+      "size": 181292,
+      "mtime_ns": 1794475322000000000,
+      "sha256": "f83a8f2773ee564baae488b5e4925b4e6f8302210361afd0f16e31a7e71c0576"
+    },
+    "../Khoa/EV-0240.json": {
+      "path": "Khoa/EV-0240.json",
+      "size": 1649,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "e296e9c8a73d8bdfb1d150709d11408eceeebba97aa5f505e7d961122b8cd67c"
+    },
+    "../Khoa/EV-0240_in.wav": {
+      "path": "Khoa/EV-0240_in.wav",
+      "size": 190508,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "1d097781cd85876c55e0c720bf9a8576529bba5175dba0021a031cb54fd2f9a4"
+    },
+    "../Khoa/EV-0240_out.wav": {
+      "path": "Khoa/EV-0240_out.wav",
+      "size": 213036,
+      "mtime_ns": 1794474978000000000,
+      "sha256": "7369fbdd76fcda7e6f73bdc0d93560224932f56b26bd6704e5e5bcc8e89d356f"
+    },
+    "../Khoa/EV-0491.json": {
+      "path": "Khoa/EV-0491.json",
+      "size": 1907,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "7825b06bbe89b519e449d668cbeece60ed9aad49853c1803bc1e3a84f4f4868e"
+    },
+    "../Khoa/EV-0491_in.wav": {
+      "path": "Khoa/EV-0491_in.wav",
+      "size": 296246,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "3e48fc6003e32d68970312d26942479b2ad273acfbbca445398994731b8c5e45"
+    },
+    "../Khoa/EV-0491_out.wav": {
+      "path": "Khoa/EV-0491_out.wav",
+      "size": 296238,
+      "mtime_ns": 1794475022000000000,
+      "sha256": "bda588be9170d01fb0a05994d710b54993023d90f358e7594dcd9030b6097723"
+    },
+    "../Khoa/EV-1212.json": {
+      "path": "Khoa/EV-1212.json",
+      "size": 1366,
+      "mtime_ns": 1794475054000000000,
+      "sha256": "bf786363ef295c986376059deeab970769b50c3857400e99984e4716dbaa8ee2"
+    },
+    "../Khoa/EV-1212_in.wav": {
+      "path": "Khoa/EV-1212_in.wav",
+      "size": 144524,
+      "mtime_ns": 1794475054000000000,
+      "sha256": "d020dfa3d861587cfa3422ba25ad7e52ea1612d5f57bbd7bc87cefa8e00fbd5e"
+    },
+    "../Khoa/EV-1212_out.wav": {
+      "path": "Khoa/EV-1212_out.wav",
+      "size": 150572,
+      "mtime_ns": 1794475054000000000,
+      "sha256": "663e58d4bd5840010a8d0dbd9755efc3332d6869269897096f356a23b630806d"
+    },
+    "../Khoa/EV-1863.json": {
+      "path": "Khoa/EV-1863.json",
+      "size": 1350,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "7cc0caa76e62f441be2327ac3b136463767b6e7e56011d5aaa9fb4122d7b60fc"
+    },
+    "../Khoa/EV-1863_in.wav": {
+      "path": "Khoa/EV-1863_in.wav",
+      "size": 102430,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "88a13088abfe046488961953f73f583a696d718bb2cdf93c4a7cce6a1981d1e4"
+    },
+    "../Khoa/EV-1863_out.wav": {
+      "path": "Khoa/EV-1863_out.wav",
+      "size": 125484,
+      "mtime_ns": 1794475088000000000,
+      "sha256": "cf4b80e8abb3abbc47ede6137169f46c0b7ab944be53d562247577ca74fbd657"
+    },
+    "../Khoa/EV-2388.json": {
+      "path": "Khoa/EV-2388.json",
+      "size": 1778,
+      "mtime_ns": 1794475130000000000,
+      "sha256": "5629dd3d734850b771570d727af958d5b18b4f2448ea6338ecfbc6b7e0ba292a"
+    },
+    "../Khoa/EV-2388_in.wav": {
+      "path": "Khoa/EV-2388_in.wav",
+      "size": 196044,
+      "mtime_ns": 1794475130000000000,
+      "sha256": "1fa32114952d723aeaf6edec45076d9af59c1d379cb7bfd6e0055ed7e69640bc"
+    },
+    "../Khoa/EV-2388_out.wav": {
+      "path": "Khoa/EV-2388_out.wav",
+      "size": 270638,
+      "mtime_ns": 1794475130000000000,
+      "sha256": "2fb64e7f178292c7a5d3f1660de11c499ae52e538377e0d15fa620b7307d6c53"
+    },
+    "../Khoa/EV-2802.json": {
+      "path": "Khoa/EV-2802.json",
+      "size": 1972,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "8fd454da40e470da3a43a2cd77faf3bf6c6e3e92d6332914df858cf81d582533"
+    },
+    "../Khoa/EV-2802_in.wav": {
+      "path": "Khoa/EV-2802_in.wav",
+      "size": 273286,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "3c5ee4ebe5494b676b6c796c1cb2de0ea64f9a2a9fbdbfe5ca3d886516e14ebe"
+    },
+    "../Khoa/EV-2802_out.wav": {
+      "path": "Khoa/EV-2802_out.wav",
+      "size": 316718,
+      "mtime_ns": 1794475166000000000,
+      "sha256": "29e1e2ef67ec3eeadb4fb8bc5acf1ecaac69cc056c7ecab483d3cd79815ffa55"
+    },
+    "../Khoa/EV-3791.json": {
+      "path": "Khoa/EV-3791.json",
+      "size": 2192,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "08c2ab6406a9c74af1f243856c52ba1b12e43039787016a5999f70085fc15221"
+    },
+    "../Khoa/EV-3791_in.wav": {
+      "path": "Khoa/EV-3791_in.wav",
+      "size": 264364,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "f1a9a204169a7c128b5c2e17634bbbb52e7045e4dee002be34cc96770134a36e"
+    },
+    "../Khoa/EV-3791_out.wav": {
+      "path": "Khoa/EV-3791_out.wav",
+      "size": 368430,
+      "mtime_ns": 1794475208000000000,
+      "sha256": "cea97c32b8ce9d32ec3d11bfde564afe9db96ff4913a0597f35403ac85bdc51b"
+    },
+    "../Khoa/EV-4321.json": {
+      "path": "Khoa/EV-4321.json",
+      "size": 1515,
+      "mtime_ns": 1794475244000000000,
+      "sha256": "596bd628fd3b3a4b2f2d17dc01a56f4610cd6219abef2ea1782e90acdba7f283"
+    },
+    "../Khoa/EV-4321_in.wav": {
+      "path": "Khoa/EV-4321_in.wav",
+      "size": 187564,
+      "mtime_ns": 1794475244000000000,
+      "sha256": "3ba0435fb51610fc727d60666b7c278800a94be7d122e1addcf6675482e101d1"
+    },
+    "../Khoa/EV-4321_out.wav": {
+      "path": "Khoa/EV-4321_out.wav",
+      "size": 173100,
+      "mtime_ns": 1794475244000000000,
+      "sha256": "6c1f2f0cda621a79130f0b9aafecc0a87b1947cfd6e819b02c5cd319ef223370"
+    },
+    "../Khoa/EV-5301.json": {
+      "path": "Khoa/EV-5301.json",
+      "size": 1251,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "8febf11e6868c768089cd8405274392cea97da1aaa018bff8758046e286b9bf5"
+    },
+    "../Khoa/EV-5301_in.wav": {
+      "path": "Khoa/EV-5301_in.wav",
+      "size": 102444,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "4916aa131db37013611802f6cf4deb2ad8cdae2b4f055ccef559954c37a65a02"
+    },
+    "../Khoa/EV-5301_out.wav": {
+      "path": "Khoa/EV-5301_out.wav",
+      "size": 111660,
+      "mtime_ns": 1794475280000000000,
+      "sha256": "35c60a0f57dc22155867ce6e82c24a3a414dee65ec41dcbde2549005a1aa62d5"
+    },
+    "../Khoa/EV-5655.json": {
+      "path": "Khoa/EV-5655.json",
+      "size": 1471,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "a96bb23392fdba62b01ca32aa4bb886ac63701e00d5a31f2a6fe91b32c597350"
+    },
+    "../Khoa/EV-5655_in.wav": {
+      "path": "Khoa/EV-5655_in.wav",
+      "size": 178220,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "87ac2afb6a3cfb4771ff8bfda5fac512e01e7a43e03c6a05cc3be1a73e162c3c"
+    },
+    "../Khoa/EV-5655_out.wav": {
+      "path": "Khoa/EV-5655_out.wav",
+      "size": 163372,
+      "mtime_ns": 1794475316000000000,
+      "sha256": "7e2ec8af6a3297bc1853b0f4e21cf270679a2eddaaab4fc12b6ed988a1d4803f"
+    }
+  }
+}

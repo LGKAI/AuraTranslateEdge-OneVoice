@@ -1,0 +1,68 @@
+[
+  {
+    "direction": "en→vi",
+    "segments": 3,
+    "audio_out_s": 16.736643990929704,
+    "peak": 0.77301025390625,
+    "rms": 0.12410724212956024,
+    "compute_s": 6.069287123999857,
+    "wall_including_load_s": 9.139640166999925,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  },
+  {
+    "direction": "ko→vi",
+    "segments": 3,
+    "audio_out_s": 10.542585034013605,
+    "peak": 0.841033935546875,
+    "rms": 0.13465152675828893,
+    "compute_s": 4.517123500000707,
+    "wall_including_load_s": 6.55232820800029,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  },
+  {
+    "direction": "vi→en",
+    "segments": 1,
+    "audio_out_s": 19.737142857142857,
+    "peak": 0.735748291015625,
+    "rms": 0.04737632783990109,
+    "compute_s": 10.417113749999771,
+    "wall_including_load_s": 12.578319000000192,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  },
+  {
+    "direction": "vi→ko",
+    "segments": 1,
+    "audio_out_s": 17.148027210884354,
+    "peak": 0.6337890625,
+    "rms": 0.05035774458538461,
+    "compute_s": 7.547012916999847,
+    "wall_including_load_s": 12.216022957999485,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  },
+  {
+    "direction": "vi→zh",
+    "segments": 1,
+    "audio_out_s": 15.255691609977324,
+    "peak": 0.37738037109375,
+    "rms": 0.05799061507554004,
+    "compute_s": 12.054652332999467,
+    "wall_including_load_s": 14.767203415999575,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  },
+  {
+    "direction": "zh→vi",
+    "segments": 2,
+    "audio_out_s": 16.562086167800455,
+    "peak": 0.873992919921875,
+    "rms": 0.13593652311556376,
+    "compute_s": 4.599167584000497,
+    "wall_including_load_s": 6.751362125000014,
+    "decoder": "mt_decB",
+    "fallbacks": []
+  }
+]

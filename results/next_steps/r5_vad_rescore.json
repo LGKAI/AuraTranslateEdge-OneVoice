@@ -1,0 +1,2392 @@
+{
+  "source_vad_json": "results/next_steps/t3_ablation/vad/vad_ablation.json",
+  "source_split_json": "results/next_steps/manifests/t3_ablation_split.json",
+  "profiles": {
+    "legacy": {
+      "cases_total": 18,
+      "cases_all_labeled_correct": 2,
+      "entities_correct": 10,
+      "entities_wrong": 20,
+      "entities_unknown": 55,
+      "written_entities_detected": 57,
+      "written_entities_labeled": 7,
+      "mean_coverage": 0.3859,
+      "cases": [
+        {
+          "id": "native_en_dev_EV0358",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "734 Main Street, Harper Valley Oregon,67297.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "734",
+              "67297"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 2,
+            "wrong": 0,
+            "unknown": 0,
+            "all_labeled_correct": true,
+            "items": [
+              {
+                "expected": "734",
+                "kind": "number",
+                "norm": "734",
+                "status": "correct",
+                "matched_raw": "734",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "correct",
+                "matched_raw": "67297",
+                "reason": "exact_typed_match"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_dev_EV0157",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "Play only all music released between the year 1990 and 2000.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "1990",
+              "2000"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 2,
+            "wrong": 0,
+            "unknown": 0,
+            "all_labeled_correct": true,
+            "items": [
+              {
+                "expected": "1990",
+                "kind": "number",
+                "norm": "1990",
+                "status": "correct",
+                "matched_raw": "1990",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "2000",
+                "kind": "number",
+                "norm": "2000",
+                "status": "correct",
+                "matched_raw": "2000",
+                "reason": "exact_typed_match"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_dev_EV0491",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "You'll just need roughly $10 for food and gas money. my friend is driving so we usually all chip in a few dollars for gas money.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "10"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 1,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "10",
+                "kind": "number",
+                "norm": "10",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV1508",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "I'll look at it like when my usual working hours are like from 12 o'clock to 3 o'clock or something.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "12",
+              "3"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 0,
+            "wrong": 2,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "12",
+                "kind": "number",
+                "norm": "12",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "3",
+                "kind": "number",
+                "norm": "3",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV3459",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "That are two years old. Okayk, could you tell me the first line of your address and your postcode, please.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [],
+            "missing": [
+              "32"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "32",
+                "kind": "number",
+                "norm": "32",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "unparsed_spoken"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV3775",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "Gett me a taxi to take me to the airport on Friday, at530 AM.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "530"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 1,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "530",
+                "kind": "number",
+                "norm": "530",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_special",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "330",
+              "15",
+              "2026",
+              "15.50",
+              "15%",
+              "37.5",
+              "VN",
+              "123",
+              "67297"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.2857,
+            "labeled_detected": 2,
+            "total_detected": 7,
+            "labeled_expected": 9,
+            "correct": 2,
+            "wrong": 7,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "330",
+                "kind": "number",
+                "norm": "330",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15",
+                "kind": "number",
+                "norm": "15",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "2026",
+                "kind": "number",
+                "norm": "2026",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15.50",
+                "kind": "number",
+                "norm": "15.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "correct",
+                "matched_raw": "15%",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "37.5",
+                "kind": "number",
+                "norm": "37.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "VN",
+                "kind": "untyped",
+                "norm": "vn",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "123",
+                "kind": "number",
+                "norm": "123",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "correct",
+                "matched_raw": "67297",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "November 15, 2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$15.50",
+                "kind": "currency",
+                "norm": "15.5|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "37.5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN123",
+                "kind": "flight_id",
+                "norm": "VN123",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_clear",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 in the afternoon on November 15, 2026. | The ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123 My ZIP code is 67297. | Call 0912,34,5678.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "330",
+              "15",
+              "2026",
+              "15.50",
+              "15%",
+              "37.5",
+              "67297"
+            ],
+            "missing": [
+              "0912345678"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.375,
+            "labeled_detected": 3,
+            "total_detected": 8,
+            "labeled_expected": 8,
+            "correct": 2,
+            "wrong": 6,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "330",
+                "kind": "number",
+                "norm": "330",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15",
+                "kind": "number",
+                "norm": "15",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "2026",
+                "kind": "number",
+                "norm": "2026",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15.50",
+                "kind": "number",
+                "norm": "15.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "correct",
+                "matched_raw": "15%",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "37.5",
+                "kind": "number",
+                "norm": "37.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "correct",
+                "matched_raw": "67297",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "0912345678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "November 15, 2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$15.50",
+                "kind": "currency",
+                "norm": "15.5|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "37.5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN123",
+                "kind": "flight_id",
+                "norm": "VN123",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_multilingual",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 PMm on December 21st, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius My ZIP code is 04782. | My phone number is 0908246135 The flight is V and 247.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "2027",
+              "18",
+              "36.8",
+              "04782",
+              "0908246135"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.2857,
+            "labeled_detected": 2,
+            "total_detected": 7,
+            "labeled_expected": 5,
+            "correct": 2,
+            "wrong": 3,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027",
+                "kind": "number",
+                "norm": "2027",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "18",
+                "kind": "number",
+                "norm": "18",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "36.8",
+                "kind": "number",
+                "norm": "36.8",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "correct",
+                "matched_raw": "04782",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "correct",
+                "matched_raw": "0908246135",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "21/12/2027",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$18.25",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8 degrees Celsius",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_special_to_en",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 6,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 6,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "14h45",
+                "kind": "time",
+                "norm": "14:45",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "15/11/2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "50.000 đồng",
+                "kind": "currency",
+                "norm": "50000|VND",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_percent_label"
+              },
+              {
+                "expected": "37,5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "0912 345 678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_clear_to_ko",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc ba giờ ba phút chiều hôm nay là ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm giá mười phần trăm | nhiệt độ ba bảy năm độ cệ xin gọi số không chín một hai ba bốn năm sáu bảy tám mã biêu chính là sáu bảy hay chín bảy",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "3:30 chiều",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "15/11/2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "50.000 đồng",
+                "kind": "currency",
+                "norm": "50000|VND",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_percent_label"
+              },
+              {
+                "expected": "37,5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "0912345678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_number_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_multilingual_to_zh",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc ba giờ ba phút chiều ngày hai tháng mười hai năm hai nghìn không hai bảy giá là mười tám đô la hai năm c nhiệt độ ba sáu tám độ c mã không bốn bảy tám hai | điện thoại không chín không tám hai bốn sáu một bà năm chuyến bay vn hai bốn bảy số nhà bảy trăm ba bốn",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 8,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 8,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "3:30 chiều",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "21/12/2027",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$18.25",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36,8°C",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              },
+              {
+                "expected": "734",
+                "kind": "number",
+                "norm": "734",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_number_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_e2e",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_hybrid",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "회의는 열례에 내 날1 11월 2000년 2006년 500원의 티켓 가격은 10%나 줄어들었습니다 온도 37년 씨, | 전화연 91, 2 3 4, 5 678.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_multilingual",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "페이 2027년 12월 20일 1 3시 30분에 있습니다 가격은 18달 25입니다 온도는 36.8도입니다. | 우편 번호는 04782입니다 전화번호는 090 824 61 3호입니다 항공편은 브이엔니 47입니다.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027년 12월 21일",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "3:30",
+                "kind": "time",
+                "norm": "3:30",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "18.25달러",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8도",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_e2e",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_hybrid",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "货议在14小时4天实时1月一年，而且没有两。 | 各65000元的门票价格下降了10%，气温3年7度，其他类型电话号码0912345678。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_multilingual",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "会议在2027年12月21日3点30分开始价格48美元，25美分，温度是36.8摄氏度，邮正编码是04782。 | 电话号码是0908246135，航班号是为N247。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027年12月21日",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "3:30",
+                "kind": "time",
+                "norm": "3:30",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "18.25美元",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8摄氏度",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "upstream": {
+      "cases_total": 18,
+      "cases_all_labeled_correct": 1,
+      "entities_correct": 10,
+      "entities_wrong": 20,
+      "entities_unknown": 55,
+      "written_entities_detected": 57,
+      "written_entities_labeled": 7,
+      "mean_coverage": 0.3859,
+      "cases": [
+        {
+          "id": "native_en_dev_EV0358",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "734 Main Street. | Harper Valley Oregon. | Six,7,29,7.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "734"
+            ],
+            "missing": [
+              "67297"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 1,
+            "wrong": 1,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "734",
+                "kind": "number",
+                "norm": "734",
+                "status": "correct",
+                "matched_raw": "734",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_dev_EV0157",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "Play only all music released between the year. | 1990 and 2000.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "1990",
+              "2000"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 2,
+            "wrong": 0,
+            "unknown": 0,
+            "all_labeled_correct": true,
+            "items": [
+              {
+                "expected": "1990",
+                "kind": "number",
+                "norm": "1990",
+                "status": "correct",
+                "matched_raw": "1990",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "2000",
+                "kind": "number",
+                "norm": "2000",
+                "status": "correct",
+                "matched_raw": "2000",
+                "reason": "exact_typed_match"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_dev_EV0491",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "You'll just need roughly $10 for food and gas money. | My friend is driving, so we usually all chip in a few dollars for gas money.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "10"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 1,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "10",
+                "kind": "number",
+                "norm": "10",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV1508",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "I'll look at it like when my usual working hours are like. | From 12 o'clock to. | 3 o'clock or something.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "12",
+              "3"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 2,
+            "correct": 0,
+            "wrong": 2,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "12",
+                "kind": "number",
+                "norm": "12",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "3",
+                "kind": "number",
+                "norm": "3",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV3459",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "That to two years old,. | Could you tell me the first time of your draft? | And the post code please.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [],
+            "missing": [
+              "32"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "32",
+                "kind": "number",
+                "norm": "32",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "unparsed_spoken"
+              }
+            ]
+          }
+        },
+        {
+          "id": "native_en_holdout_EV3775",
+          "src": "en",
+          "input_kind": "native_human_speech",
+          "asr_raw": "Get me a taxi to take me to the airport on Friday, at530 AM.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "530"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 1.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 1,
+            "correct": 0,
+            "wrong": 1,
+            "unknown": 0,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "530",
+                "kind": "number",
+                "norm": "530",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_special",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "330",
+              "15",
+              "2026",
+              "15.50",
+              "15%",
+              "37.5",
+              "VN",
+              "123"
+            ],
+            "missing": [
+              "67297"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.2857,
+            "labeled_detected": 2,
+            "total_detected": 7,
+            "labeled_expected": 9,
+            "correct": 1,
+            "wrong": 8,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "330",
+                "kind": "number",
+                "norm": "330",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15",
+                "kind": "number",
+                "norm": "15",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "2026",
+                "kind": "number",
+                "norm": "2026",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15.50",
+                "kind": "number",
+                "norm": "15.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "correct",
+                "matched_raw": "15%",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "37.5",
+                "kind": "number",
+                "norm": "37.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "VN",
+                "kind": "untyped",
+                "norm": "vn",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "123",
+                "kind": "number",
+                "norm": "123",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "November 15, 2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$15.50",
+                "kind": "currency",
+                "norm": "15.5|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "37.5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN123",
+                "kind": "flight_id",
+                "norm": "VN123",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_clear",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 in the afternoon on November 15th. | 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN123. | My ZIP code is 67297. | Call 09123,45678.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "330",
+              "15",
+              "2026",
+              "15.50",
+              "15%",
+              "37.5",
+              "67297"
+            ],
+            "missing": [
+              "0912345678"
+            ],
+            "all_preserved": false
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.375,
+            "labeled_detected": 3,
+            "total_detected": 8,
+            "labeled_expected": 8,
+            "correct": 3,
+            "wrong": 5,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "330",
+                "kind": "number",
+                "norm": "330",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15",
+                "kind": "number",
+                "norm": "15",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "2026",
+                "kind": "number",
+                "norm": "2026",
+                "status": "correct",
+                "matched_raw": "2026",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "15.50",
+                "kind": "number",
+                "norm": "15.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "correct",
+                "matched_raw": "15%",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "37.5",
+                "kind": "number",
+                "norm": "37.5",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "correct",
+                "matched_raw": "67297",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "0912345678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "November 15, 2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$15.50",
+                "kind": "currency",
+                "norm": "15.5|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "37.5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN123",
+                "kind": "flight_id",
+                "norm": "VN123",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_en_multilingual",
+          "src": "en",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "The meeting is at 330 pm on. | December 21t, 2027. | The price is $18.25. | The temperature is 36.8 degrees Celsius. | My ZIP code is 04782. | My phone number is 0908246135. | The flight is V and 247.",
+          "legacy_lexical_proxy": {
+            "checked": true,
+            "unknown_or_unlabeled": false,
+            "matched": [
+              "2027",
+              "18",
+              "36.8",
+              "04782",
+              "0908246135"
+            ],
+            "missing": [],
+            "all_preserved": true
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.2857,
+            "labeled_detected": 2,
+            "total_detected": 7,
+            "labeled_expected": 5,
+            "correct": 3,
+            "wrong": 2,
+            "unknown": 5,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027",
+                "kind": "number",
+                "norm": "2027",
+                "status": "correct",
+                "matched_raw": "2027",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "18",
+                "kind": "number",
+                "norm": "18",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "36.8",
+                "kind": "number",
+                "norm": "36.8",
+                "status": "wrong",
+                "matched_raw": null,
+                "reason": "missing_or_mismatched_entity"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "correct",
+                "matched_raw": "04782",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "correct",
+                "matched_raw": "0908246135",
+                "reason": "exact_typed_match"
+              },
+              {
+                "expected": "3:30 PM",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "21/12/2027",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$18.25",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8 degrees Celsius",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_special_to_en",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 6,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 6,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "14h45",
+                "kind": "time",
+                "norm": "14:45",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "15/11/2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "50.000 đồng",
+                "kind": "currency",
+                "norm": "50000|VND",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_percent_label"
+              },
+              {
+                "expected": "37,5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "0912 345 678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_clear_to_ko",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc ba giờ ba phút chiều | hôm nay là ngày mười tháng mười một năm hai nghìn hai sáu | giá vé năm nghìn đồng | giảm giá mười phần trăm | nhiệt độ ba bảy năm độ c | xin gọi số không chín một hai ba bốn năm sáu bảy tám | mã biêu chính là sáu bảy hay chín bảy",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "3:30 chiều",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "15/11/2026",
+                "kind": "date",
+                "norm": "2026-11-15",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "50.000 đồng",
+                "kind": "currency",
+                "norm": "50000|VND",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "15%",
+                "kind": "percent",
+                "norm": "15%",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_percent_label"
+              },
+              {
+                "expected": "37,5°C",
+                "kind": "temperature",
+                "norm": "37.5|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "0912345678",
+                "kind": "code_or_phone",
+                "norm": "0912345678",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "67297",
+                "kind": "number",
+                "norm": "67297",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_number_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_vi_multilingual_to_zh",
+          "src": "vi",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "cuộc họp lúc ba giờ ba phút chiều ngày hai tháng mười hai năm hai nghìn không hai bảy | giá là mười tám đô la hai năm cent nhiệt độ ba sáu tám độ c mã không bốn bảy tám hai điện thoại không chín không tám hai bốn sáu một bà năm chuyến bay vn hai bốn bảy số nhà bảy trăm ba bốn",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 8,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 8,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "3:30 chiều",
+                "kind": "time",
+                "norm": "3:30:pm",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "21/12/2027",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "$18.25",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36,8°C",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              },
+              {
+                "expected": "734",
+                "kind": "number",
+                "norm": "734",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_number_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_e2e",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_hybrid",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "회의는 열례 에 내날1 11월 2000년 2006년 5000원의 티켓 가격은, | 10 나 줄 어 들었 습니다. | 온도 37년 씨. | 전화연 9일 23 4,5 678.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_ko_multilingual",
+          "src": "ko",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "페이 는 2027 년 12 월 20 일  일 3시 30 분에 있 습니다. | 가격은 18달러 25 입니다. | 온도는 36.8도입니다. | 우편 번호는 04782입니다. | 전화번호는 영형 824 61 3호 입니다. | 항공편은 브이엔니 47입니다.",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027년 12월 21일",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "3:30",
+                "kind": "time",
+                "norm": "3:30",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "18.25달러",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8도",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_e2e",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_hybrid",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "会议在14小时4天实时1月一年而且没有两。 | 各六5000元的门票价格下降了10%。 | 期温3年7度其他类型电话号码。 | 0912345678。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 0,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 1,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": null,
+                "kind": "unlabeled_case",
+                "norm": null,
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "synthetic_stub_without_written_text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "syn_zh_multilingual",
+          "src": "zh",
+          "input_kind": "synthetic_tts_fixture",
+          "asr_raw": "会议在2027年12月21日3点30分。 | 开始价格48美元，25美分。 | 温度是36.8摄氏度。 | 邮政编码是04782。 | 电话号码是0908246135。 | 航班号是为N247。",
+          "legacy_lexical_proxy": {
+            "checked": false,
+            "unknown_or_unlabeled": true,
+            "matched": [],
+            "missing": []
+          },
+          "entity_eval": {
+            "scorer": "typed_boundary_entity_v1",
+            "coverage": 0.0,
+            "labeled_detected": 0,
+            "total_detected": 7,
+            "labeled_expected": 0,
+            "correct": 0,
+            "wrong": 0,
+            "unknown": 7,
+            "all_labeled_correct": false,
+            "items": [
+              {
+                "expected": "2027年12月21日",
+                "kind": "date",
+                "norm": "2027-12-21",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_date_label"
+              },
+              {
+                "expected": "3:30",
+                "kind": "time",
+                "norm": "3:30",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_time_label"
+              },
+              {
+                "expected": "18.25美元",
+                "kind": "currency",
+                "norm": "18.25|USD",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_currency_label"
+              },
+              {
+                "expected": "36.8摄氏度",
+                "kind": "temperature",
+                "norm": "36.8|C",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_temperature_label"
+              },
+              {
+                "expected": "04782",
+                "kind": "code_or_phone",
+                "norm": "04782",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "0908246135",
+                "kind": "code_or_phone",
+                "norm": "0908246135",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_code_or_phone_label"
+              },
+              {
+                "expected": "VN247",
+                "kind": "flight_id",
+                "norm": "VN247",
+                "status": "unknown",
+                "matched_raw": null,
+                "reason": "missing_flight_id_label"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

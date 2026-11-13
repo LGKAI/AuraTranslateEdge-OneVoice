@@ -1,0 +1,2 @@
+{"stage": "asr_segmentation", "lang": "en", "input": "Well.", "output": ["Well."], "seconds": 0.7189879580000706, "attempts": 1, "content_preserved": true}
+{"stage": "tts", "lang": "vi", "input": "Được rồi.", "identifiers": [], "identifier_spoken_text": "Được rồi.", "output": "Được rồi.", "seconds": 0.3486115420000715, "tokens": 17, "model": "ByT5-Vi-Normalization + learned span tags", "digits_remaining": false}

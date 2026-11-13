@@ -1,0 +1,57 @@
+{
+  "method": "same live Translator sequentially processes a valid audio then quiet EV-2748; no injected transcript",
+  "cases": [
+    {
+      "id": "EV-5301",
+      "asr": "Just to confirm, you set the alarm to go off at 800.",
+      "mt": "Chỉ để xác nhận, anh đã đặt báo động lên 08:00.",
+      "tts_text": "chỉ để xác nhận, anh đã đặt báo động lên tám giờ.",
+      "tts_format": {
+        "stage": "tts_hybrid",
+        "lang": "vi",
+        "input": "Chỉ để xác nhận, anh đã đặt báo động lên 08:00.",
+        "output": "Chỉ để xác nhận, anh đã đặt báo động lên tám giờ.",
+        "spans": [
+          {
+            "start": 41,
+            "end": 46,
+            "kind": "time",
+            "raw": "08:00",
+            "value": {
+              "hour": 8,
+              "minute": 0,
+              "second": null,
+              "ampm": ""
+            },
+            "spoken": "tám giờ",
+            "source": "grammar"
+          }
+        ],
+        "protected_ranges": [
+          [
+            41,
+            48
+          ]
+        ],
+        "warnings": [],
+        "seconds": 0.00978529200074263,
+        "identifier_model": "CRF loaded",
+        "validation": "raw span identity; typed deterministic renderer; no generative numeric rewriting",
+        "planned_chunks": [
+          "chỉ để xác nhận, anh đã đặt báo động lên tám giờ."
+        ],
+        "chunk_policy": "never cut Latin/Hangul tokens; keep typed spans if graph budget permits"
+      },
+      "audio_samples": 56320
+    },
+    {
+      "id": "EV-2748",
+      "asr": "",
+      "mt": "",
+      "tts_text": "",
+      "tts_format": {},
+      "audio_samples": 0
+    }
+  ],
+  "passed": true
+}

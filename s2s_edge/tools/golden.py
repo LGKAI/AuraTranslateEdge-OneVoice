@@ -8,7 +8,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from s2s_edge.registry import Registry, ASSETS
 from s2s_edge.audio import load_audio
-from s2s_edge.asr import _fbank, LID
+from s2s_edge.asr import _fbank, LID, PAD_LOGMEL, sv_features, load_cmvn
 from s2s_edge.mt import Nllb, S
 
 HERE = os.path.dirname(os.path.abspath(__file__)); GOLD = os.path.join(os.path.dirname(HERE), "golden")
@@ -17,8 +17,13 @@ HERE = os.path.dirname(os.path.abspath(__file__)); GOLD = os.path.join(os.path.d
 def inputs_for(reg, key):
     """Deterministic example inputs for graph `key` (only needs assets + one wav)."""
     wav_vi = os.path.join(os.path.dirname(HERE), "samples", "vi_0.wav"); wav_en = os.path.join(os.path.dirname(HERE), "samples", "en_0.wav")
-    if key == "asr_vi":
-        f = _fbank(load_audio(wav_vi)[:14 * 16000]); x = np.zeros((1, 1500, 80), np.float32); n = min(len(f), 1500); x[0, :n] = f[:n]; return dict(x=x, x_lens=np.array([n], np.int64))
+    if key == "asr_vi" or key.startswith("asr_vi@"):              # Zipformer windows: "asr_vi" = 1500 frames (or its "window"), "asr_vi@<T>"
+        T = int(key.split("@")[1]) if "@" in key else int(reg.cfg[key].get("window", 1500))
+        f = _fbank(load_audio(wav_vi)[: (T - 10) * 160]); x = np.full((1, T, 80), PAD_LOGMEL, np.float32); n = min(len(f), T); x[0, :n] = f[:n]; return dict(x=x, x_lens=np.array([n], np.int64))
+    if key.startswith("asr_xx_encoder@") or (key == "asr_xx_encoder" and reg.sv_frontend() == "host"):   # SenseVoice encoder fed with host features
+        L = int(key.split("@")[1]) if "@" in key else int(reg.cfg[key].get("window", 500)); x = sv_features(load_audio(wav_en)[: (L * 6 - 4) * 160], load_cmvn(os.path.join(ASSETS, "sensevoice_am.mvn")))
+        b = np.zeros((1, L, 560), np.float32); n = min(len(x), L); b[0, :n] = x[:n]
+        return dict(fbank=b, speech_lengths=np.array([n], np.int32), language=np.array([LID["en"]], np.int32), textnorm=np.array([14], np.int32))
     if key in ("asr_xx", "asr_xx_frontend"):
         w = load_audio(wav_en); b = np.zeros((1, 464000), np.float32); n = min(len(w), 464000); b[0, :n] = w[:n]
         d = dict(wav=b, wav_len=np.array([n], np.int32))
@@ -52,7 +57,10 @@ def inputs_for(reg, key):
 def compare(a, b):
     a, b = np.asarray(a), np.asarray(b)
     if a.size != b.size: return "size", float("nan")
-    if np.issubdtype(b.dtype, np.integer): return "int", float((a.reshape(-1).astype(np.int64) == b.reshape(-1).astype(np.int64)).mean())
+    if np.issubdtype(b.dtype, np.integer):
+        x, y = a.reshape(-1).astype(np.int64), b.reshape(-1).astype(np.int64); nz = (x != 0) | (y != 0)
+        if y.size > 64 and nz.any(): return "int", float((x[nz] == y[nz]).mean())      # padded id/byte buffers (SenseVoice): judge the real content only
+        return "int", float((x == y).mean())
     x, y = a.reshape(-1).astype(np.float64), b.reshape(-1).astype(np.float64)
     if not np.any(np.abs(x) > 1e-9) and not np.any(np.abs(y) > 1e-9): return "zero", 1.0     # both all-zero (e.g. Piper's OOV count): equal, cosine is undefined
     return "cos", float(x @ y / (np.linalg.norm(x) * np.linalg.norm(y) + 1e-12))
@@ -61,7 +69,7 @@ def compare(a, b):
 def _good(kind, v): return (kind in ("cos", "zero") and v >= 0.99) or (kind == "int" and v >= 0.95)
 
 
-def judge(key, out, refs):
+def judge(key, out, refs, reg=None):
     """-> (ok, status, note). Positional comparison first. If that fails:
     * TTS graphs: outputs are taken by size/dtype (s2s_edge.tts.split_outputs, so a permuted order is harmless) and the audio passes when
       the waveform matches (cos >= 0.99) OR length and level match (+-1 % / >= 2 units, RMS ratio 0.8-1.25). Reason: on QCS8550 the fp16
@@ -69,12 +77,22 @@ def judge(key, out, refs):
     * other graphs: a match found at another position is reported (fix with "out": [...] in models.json) but stays a FAIL."""
     out = [np.asarray(o) for o in out]; status = [(i, *compare(o, r)) for i, (o, r) in enumerate(zip(out, refs))]; status = [(i, k, round(v, 5)) for i, k, v in status]
     if len(out) == len(refs) and all(_good(k, v) for _, k, v in status): return True, status, ""
-    if key == "asr_vi" and len(out) == len(refs) and out[0].size == refs[0].size:
+    if (key == "asr_vi" or key.startswith("asr_vi@")) and len(out) == len(refs):
         # CTC logits: what the decoder uses is the per-frame argmax. On QCS8550 the fp16 logits have cos 0.982 vs CPU, yet the argmax agrees on
         # 100 % of frames and the transcript is identical (AI Hub check 10/11), so judge the argmax over the valid frames.
-        lg_o, lg_r = out[0].reshape(refs[0].shape), refs[0]; n = int(np.asarray(refs[1]).reshape(-1)[0]) if len(refs) > 1 else lg_r.shape[1]
-        agree = float((lg_o[0, :n].argmax(-1) == lg_r[0, :n].argmax(-1)).mean()); rest_ok = all(_good(k, v) for i, k, v in status if i > 0)
-        return agree >= 0.99 and rest_ok, status, f"ctc: frame argmax agreement {100 * agree:.2f} % over {n} frames"
+        # Graphs with encoder_out (RNN-T head): the RNN-T greedy tokens of the NPU encoder_out must equal those of the CPU reference.
+        from s2s_edge.asr import zip_outputs
+        T = int(key.split("@")[1]) if "@" in key else int((reg.cfg.get(key, {}) if reg is not None else {}).get("window", 1500))
+        (lg_o, el_o, eo_o), (lg_r, el_r, eo_r) = zip_outputs(out, T), zip_outputs(refs, T); n = int(np.asarray(el_r).reshape(-1)[0])
+        agree = float((lg_o[0, :n].argmax(-1) == lg_r[0, :n].argmax(-1)).mean()); note = f"ctc: frame argmax agreement {100 * agree:.2f} % over {n} frames"
+        rest_ok = int(np.asarray(el_o).reshape(-1)[0]) == n
+        if eo_r is not None:
+            tr = reg.transducer() if reg is not None else None
+            if tr is not None and eo_o is not None:
+                same = tr.greedy(eo_o[:n]) == tr.greedy(eo_r[:n]); rest_ok = rest_ok and same; note += f"; rnnt greedy tokens {'identical' if same else 'DIFFER'}"
+            else:
+                kind, cv = compare(eo_o, eo_r); rest_ok = rest_ok and _good(kind, cv); note += f"; encoder_out {kind} {cv:.4f}"
+        return agree >= 0.99 and rest_ok, status, note
     if key.startswith("tts"):
         from s2s_edge.tts import split_outputs
         ca, cl, _ = split_outputs(out); ra, rl, _ = split_outputs(refs); kind, cosv = compare(ca, ra)
@@ -95,7 +113,7 @@ def main():
     global GOLD
     if "_golden" in reg.cfg: GOLD = os.path.join(os.path.dirname(HERE), reg.cfg["_golden"])     # model set with its own golden vectors (e.g. NLLB-1.3B)
     os.makedirs(GOLD, exist_ok=True)
-    keys = [k for k in a.only.split(",") if k] or [k for k in reg.cfg if k in ("asr_vi", "asr_xx", "asr_xx_frontend", "asr_xx_encoder", "mt", "mt_enc", "mt_dec", "tts_vi", "tts_zh", "tts_enko") or k.startswith("mt_decB")]; rows = []
+    keys = [k for k in a.only.split(",") if k] or [k for k in reg.cfg if k in ("asr_vi", "asr_xx", "asr_xx_frontend", "asr_xx_encoder", "mt", "mt_enc", "mt_dec", "tts_vi", "tts_zh", "tts_enko") or k.startswith(("mt_decB", "asr_vi@", "asr_xx_encoder@"))]; rows = []
     for k in keys:
         gp = os.path.join(GOLD, f"{k}.npz") if a.mode == "make" else reg.gold_path(k)
         tl = time.perf_counter()
@@ -113,7 +131,8 @@ def main():
         if a.mode == "make":
             np.savez_compressed(gp, **{f"in_{n}": v for n, v in ins.items()}, **{f"out_{i}": np.asarray(o) for i, o in enumerate(out)}); print("saved", gp, f"{os.path.getsize(gp)/1e6:.1f} MB"); continue
         ref = np.load(gp); refs = [ref[f"out_{i}"] for i in range(len([n for n in ref.files if n.startswith("out_")]))]
-        ok, status, note = judge(k, out, refs)
+        try: ok, status, note = judge(k, out, refs, reg)
+        except Exception as e: ok, status, note = False, [], f"judge failed: {e!r}"[:300]
         rows.append(dict(graph=k, ok=ok, outputs=status, note=note, seconds=round(dt, 3), load_s=round(load_s, 2)))
         print(("PASS " if ok else "FAIL ") + k, status, f"{dt*1000:.0f} ms (load {load_s:.1f} s)", note, flush=True)
     if a.mode == "check":

@@ -137,6 +137,7 @@ _VI_EXCLAM_WORDS = re.compile(
     r"\b(cẩn thận|chú ý|nguy hiểm|dừng lại|coi chừng|mau lên|nhanh lên|tuyệt vời|chúc mừng|hoan hô|xin chào)\b"
 )
 _VI_EXCLAM_LAST = {"quá", "lắm", "nào"}
+_VI_NUMBER_WORDS = set("không một hai ba bốn tư năm lăm sáu bảy tám chín mười mươi trăm nghìn ngàn triệu tỷ lẻ linh phẩy âm".split())
 
 _SPLIT_PATTERNS = [
     (re.compile(r"^(xin chào|chào (?:anh|chị|em|bạn|bác|chú|cô|mọi người))\s+(?=(?:tôi|chúng tôi|em|mình|cho)\b)", re.IGNORECASE), r"\1! "),
@@ -183,9 +184,20 @@ def _punct_clause(c):
         is_q = False
     if core_last in ("không", "chưa") and len(words) <= 2 and words[0] in ("không", "chưa", "tôi", "em"):
         is_q = False
+    # CAPU can split a spoken numeric sequence into clauses. A numeric zero
+    # at the end of such a statement is not a yes/no question particle.
+    numeric_words = [w.strip(',;:') for w in words]
+    numeric_clause = all(w in _VI_NUMBER_WORDS or w.isdecimal() for w in numeric_words)
+    call_zero = bool(re.search(r'\b(?:gọi|liên hệ)\b.*\bsố\s+không$', low))
+    if last_mark == '.' and core_last == 'không' and (numeric_clause or call_zero):
+        is_q = False
 
     # 2. Exclamation check
     is_ex = bool(_VI_EXCLAM_WORDS.search(low)) or (core_last in _VI_EXCLAM_LAST and not is_q)
+    # A declarative "I don't know when/which ..." must not become an
+    # exclamation merely because the final word is "nào".
+    if _VI_NOT_Q.search(low):
+        is_ex = False
     if is_ex and core_last in ("nào", "sao"):
         is_q = False
 
@@ -196,14 +208,23 @@ def _punct_clause(c):
     return _cap_vi(s) + mark
 
 
-def vi_punct(text):
+def vi_punct(text, breaks=None):
     """Restore sentence capitalization, punctuation ('?', '!', '.') and clause splitting on Vietnamese ASR transcripts.
+    `breaks`: optional 1-indexed word boundary positions (e.g. from audio pauses >= 320 ms); inserts a sentence break where '.?!' is absent.
     Ensures interrogative and imperative contexts are preserved for accurate downstream NLLB MT translation."""
     t = re.sub(r"\s+", " ", text).strip()
     if not t: return t
 
     for pat, repl in _SPLIT_PATTERNS:
         t = pat.sub(repl, t)
+
+    if breaks:
+        words = t.split()
+        for k in sorted(set(breaks)):
+            if 0 < k < len(words) and words[k - 1][-1] not in ".?!":
+                w = words[k - 1].rstrip(",:;")
+                if w: words[k - 1] = w + "."
+        t = " ".join(words)
 
     raw_clauses = [c.strip() for c in re.split(r"(?<=[.?!])\s+", t) if c.strip()]
     out = [_punct_clause(c) for c in raw_clauses]

@@ -70,7 +70,17 @@ src/step4_quantization/tts/supertonic/**/*.npy
 # ==========================================
 # s2s_edge Runtime Directories & Outputs
 # ==========================================
-models/
+models/*
+!models/*.json
+models/source/
+models/normalization/
+tmp/
+build/
+results/**/audio/
+results/**/en_vi_tts/
+results/**/s2s/
+reports/**/en_vi_tts/
+reports/**/s2s/
 s2s_edge/models/
 golden/
 golden_13b/

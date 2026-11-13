@@ -1,0 +1,2 @@
+{"stage": "asr_segmentation", "lang": "vi", "input": "có thể của bà con", "output": ["Có thể của bà con."], "seconds": 0.8149492920001649, "attempts": 1, "content_preserved": true}
+{"stage": "tts", "lang": "en", "input": "Probably my grandmother's.", "identifiers": [], "identifier_spoken_text": "Probably my grandmother's.", "normalization_spans": [], "output": "Probably my grandmother's.", "seconds": 0.00010804199882841203, "tokens": 0, "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags", "digits_remaining": false}

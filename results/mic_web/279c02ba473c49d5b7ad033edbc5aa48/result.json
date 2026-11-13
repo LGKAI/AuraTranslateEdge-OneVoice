@@ -1,0 +1,71 @@
+{
+  "id": "279c02ba473c49d5b7ad033edbc5aa48",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 4.757375,
+  "output_seconds": 2.9257142857142857,
+  "elapsed_seconds": 5.725483833000908,
+  "input_url": "/audio/279c02ba473c49d5b7ad033edbc5aa48/input.wav",
+  "output_url": "/audio/279c02ba473c49d5b7ad033edbc5aa48/output.wav",
+  "detail_url": "/audio/279c02ba473c49d5b7ad033edbc5aa48/result.json",
+  "asr": "The latency is 1.5 second, not 15 seconds.",
+  "translation": "Thời gian trễ là 1,5 giây, không phải 15 giây.",
+  "tts_text": "thời gian trễ là một phẩy năm giây, không phải mười lăm giây.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The latency is 1.5 second, not 15 seconds.",
+      "asr_before_normalization": "The latency is 1.5 second, not 15 seconds.",
+      "mt": "Thời gian trễ là 1,5 giây, không phải 15 giây.",
+      "tts_text": "thời gian trễ là một phẩy năm giây, không phải mười lăm giây.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.407338458000595,
+        "source_normalize_s": 1.0190486249994137,
+        "mt_s": 0.5884297080010583,
+        "tts_s": 1.1125280420019408,
+        "total_s": 3.127344833003008,
+        "graph_s": 1.4240388340040226,
+        "graph_calls": 20,
+        "host_s": 1.7033059989989852,
+        "audio_in_s": 4.5,
+        "audio_out_s": 2.9257142857142857
+      },
+      "asr_raw": "The latency is 1.5 second, not 15 seconds.",
+      "span": [
+        0.07,
+        4.57
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "The latency is 1.5 second, not 15 seconds.",
+      "output": [
+        "The latency is 1.5 second, not 15 seconds."
+      ],
+      "seconds": 1.0173631249999744,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Thời gian trễ là 1,5 giây, không phải 15 giây.",
+      "identifiers": [],
+      "identifier_spoken_text": "Thời gian trễ là 1,5 giây, không phải 15 giây.",
+      "output": "Thời gian trễ là một phẩy năm giây, không phải mười lăm giây.",
+      "seconds": 0.61024762499801,
+      "tokens": 82,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

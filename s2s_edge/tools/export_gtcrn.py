@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Export GTCRN (48 k parameters, DNS3 checkpoint) to ONNX with a dynamic number of frames. STFT / iSTFT are done in numpy on the host (s2s_edge/denoise.py).
- python tools/export_gtcrn.py --repo ../../third_party_gtcrn --out assets/gtcrn_dns3.onnx"""
+ python tools/export_gtcrn.py --repo ../third_party/gtcrn --out assets/gtcrn_dns3.onnx"""
 import argparse, os, sys, numpy as np, torch
 ap = argparse.ArgumentParser(); ap.add_argument("--repo", required=True); ap.add_argument("--out", default="assets/gtcrn_dns3.onnx"); a = ap.parse_args()
 sys.path.insert(0, a.repo); from gtcrn import GTCRN

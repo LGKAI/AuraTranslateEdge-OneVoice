@@ -1,0 +1,48 @@
+{
+  "manifest_id": "asr_integration_6dir_v1",
+  "description": "Default 6-direction synthetic speech evaluation set matching results/asr_integration/{before,after} inputs (no native KO/ZH speech; not a substitute for human holdout).",
+  "cases": [
+    {
+      "id": "vi_to_en_special",
+      "src": "vi",
+      "tgt": "en",
+      "input_wav": "results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture"
+    },
+    {
+      "id": "vi_to_ko_special",
+      "src": "vi",
+      "tgt": "ko",
+      "input_wav": "results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture"
+    },
+    {
+      "id": "vi_to_zh_special",
+      "src": "vi",
+      "tgt": "zh",
+      "input_wav": "results/e2e/audio/vi_to_en_special_input.wav",
+      "input_kind": "synthetic_tts_fixture"
+    },
+    {
+      "id": "en_to_vi_special",
+      "src": "en",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/en_to_vi_special_input.wav",
+      "input_kind": "synthetic_tts_fixture"
+    },
+    {
+      "id": "ko_to_vi_special",
+      "src": "ko",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/vi_to_ko.wav",
+      "input_kind": "synthetic_tts_fixture"
+    },
+    {
+      "id": "zh_to_vi_special",
+      "src": "zh",
+      "tgt": "vi",
+      "input_wav": "results/e2e/audio/vi_to_zh.wav",
+      "input_kind": "synthetic_tts_fixture"
+    }
+  ]
+}

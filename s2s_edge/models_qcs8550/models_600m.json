@@ -1,0 +1,57 @@
+{
+ "asr_vi": {
+  "ctx": "asr_vi_zip150_ctc_fp16.bin",
+  "name": "asr_vi",
+  "job": "j5q1k16eg"
+ },
+ "asr_xx_frontend": {
+  "ctx": "asr_xx_sensevoice_frontend_v3.bin",
+  "name": "asr_xx_frontend",
+  "job": "jgl8z8v2p"
+ },
+ "asr_xx_encoder": {
+  "ctx": "asr_xx_sensevoice_encoder_q.bin",
+  "name": "asr_xx_encoder",
+  "job": "j56mjmynp",
+  "in_quant": {
+   "fbank": [
+    0.00015061978774610907,
+    -38135
+   ]
+  }
+ },
+ "mt_enc": {
+  "ctx": "mt_enc_nllb_s64.bin",
+  "name": "mt_enc",
+  "job": "jp3737jmg",
+  "S": 64
+ },
+ "mt_dec": {
+  "ctx": "mt_dec_nllb_s64.bin",
+  "name": "mt_dec",
+  "job": "jgzy9y34p",
+  "Tm": 96
+ },
+ "mt_decB": {
+  "ctx": "mt_decB_nllb_s64.bin",
+  "name": "mt_decB",
+  "job": "j5wzvzez5",
+  "Tm": 96,
+  "B": 4
+ },
+ "tts_vi": {
+  "ctx": "tts_vi_piper_fullg8.bin",
+  "name": "tts_vi",
+  "job": "jgd494xkg"
+ },
+ "tts_zh": {
+  "ctx": "tts_zh_melo_one.bin",
+  "name": "tts_zh",
+  "job": "jgnqyq0vg"
+ },
+ "tts_enko": {
+  "ctx": "tts_enko_supertonic_full_v3.bin",
+  "name": "tts_enko",
+  "job": "jp2d6dxx5"
+ }
+}

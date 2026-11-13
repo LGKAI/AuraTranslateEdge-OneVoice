@@ -1,0 +1,73 @@
+{
+  "id": "0dda38b615484451b956ca0a928c0535",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "en",
+  "tgt": "vi",
+  "input_seconds": 9.4506875,
+  "output_seconds": 4.237641723356009,
+  "elapsed_seconds": 5.60467108299963,
+  "input_url": "/audio/0dda38b615484451b956ca0a928c0535/input.wav",
+  "output_url": "/audio/0dda38b615484451b956ca0a928c0535/output.wav",
+  "detail_url": "/audio/0dda38b615484451b956ca0a928c0535/result.json",
+  "asr": "On August 15,1940, at a Three,30 PM.",
+  "translation": "Vào ngày 15 tháng 8 năm 1940, lúc 3 giờ 30 phút.",
+  "tts_text": "vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, lúc ba giờ ba mươi phút.",
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "On August 15, 1940, at a three, 30 PM.",
+      "asr_before_normalization": "On August 15,1940, at a Three,30 PM.",
+      "mt": "Vào ngày 15 tháng 8 năm 1940, lúc 3 giờ 30 phút.",
+      "tts_text": "vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, lúc ba giờ ba mươi phút.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.46149325000078534,
+        "source_normalize_s": 1.1459198749998905,
+        "mt_s": 0.5170551669998531,
+        "tts_s": 1.2808720000011817,
+        "total_s": 3.4053402920017106,
+        "graph_s": 1.4927892920040904,
+        "graph_calls": 20,
+        "host_s": 1.9125509999976202,
+        "audio_in_s": 9.4506875,
+        "audio_out_s": 4.237641723356009
+      },
+      "asr_raw": "On August 15,1940, at a Three,30 PM.",
+      "span": [
+        0.0,
+        9.4506875
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "en",
+      "input": "On August 15,1940, at a Three,30 PM.",
+      "output": [
+        "On August 15, 1940, at a three, 30 PM."
+      ],
+      "seconds": 1.1455511250005657,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "vi",
+      "input": "Vào ngày 15 tháng 8 năm 1940, lúc 3 giờ 30 phút.",
+      "identifiers": [
+        "8 năm 1940, lúc 3 giờ 30 phút"
+      ],
+      "identifier_spoken_text": "Vào ngày 15 tháng 8 năm 1940, lúc 3 giờ 30 phút.",
+      "output": "Vào ngày mười lăm tháng tám năm một nghìn chín trăm bốn mươi, lúc ba giờ ba mươi phút.",
+      "seconds": 0.6960925000003044,
+      "tokens": 112,
+      "model": "ByT5-Vi-Normalization + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

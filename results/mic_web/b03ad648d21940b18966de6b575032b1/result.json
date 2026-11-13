@@ -1,0 +1,73 @@
+{
+  "id": "b03ad648d21940b18966de6b575032b1",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 4.896,
+  "output_seconds": 2.647074829931973,
+  "elapsed_seconds": 5.933880750000753,
+  "input_url": "/audio/b03ad648d21940b18966de6b575032b1/input.wav",
+  "output_url": "/audio/b03ad648d21940b18966de6b575032b1/output.wav",
+  "detail_url": "/audio/b03ad648d21940b18966de6b575032b1/result.json",
+  "asr": "anh đặt mười cái không phải năm cái",
+  "translation": "I'm not ordering ten. That's five.",
+  "tts_text": "I'm not ordering ten. That's five.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "anh đặt mười cái không phải năm cái",
+      "asr_before_normalization": "anh đặt mười cái không phải năm cái",
+      "mt": "I'm not ordering ten. That's five.",
+      "tts_text": "I'm not ordering ten. That's five.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.17843308400006208,
+        "source_normalize_s": 1.5864336659997207,
+        "mt_s": 0.6501355420004984,
+        "tts_s": 1.180825667001045,
+        "total_s": 3.5958279590013262,
+        "graph_s": 1.9386546679979801,
+        "graph_calls": 22,
+        "host_s": 1.657173291003346,
+        "audio_in_s": 4.826,
+        "audio_out_s": 2.647074829931973
+      },
+      "asr_raw": "anh đặt mười cái không phải năm cái",
+      "span": [
+        0.07,
+        4.896
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "anh đặt mười cái không phải năm cái",
+      "output": [
+        "anh đặt mười cái không",
+        "phải năm cái"
+      ],
+      "seconds": 1.5850840830007655,
+      "attempts": 2,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "I'm not ordering ten. That's five.",
+      "identifiers": [],
+      "identifier_spoken_text": "I'm not ordering ten. That's five.",
+      "normalization_spans": [],
+      "output": "I'm not ordering ten. That's five.",
+      "seconds": 8.733300091989804e-05,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

@@ -1,0 +1,464 @@
+{
+  "semantic_examples": {
+    "passed": 55,
+    "total": 55
+  },
+  "generated_cases": 1600,
+  "unittest_groups": 10,
+  "unittest_log": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/logs/test_hybrid_format.log",
+  "tts_replay_status": {
+    "ok": 49,
+    "skipped_empty_mt": 1
+  },
+  "normalization_latency_ms": {
+    "legacy": {
+      "n": 196,
+      "mean_ms": 0.00796620391768983,
+      "median_ms": 0.006291498721111566,
+      "p95_ms": 0.016510750356246717
+    },
+    "hybrid": {
+      "n": 196,
+      "mean_ms": 0.22718091828692752,
+      "median_ms": 0.17197899978782516,
+      "p95_ms": 0.47471875041082967
+    }
+  },
+  "verified_audio_count": 59,
+  "audio": [
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0157.wav",
+      "sample_rate": 22050,
+      "seconds": 4.028662131519274,
+      "finite": true,
+      "sha256": "b01308f35a9ff27092f3d3c1a3e62127c66b41e76b1b643072ceb965809d6a0d"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0182.wav",
+      "sample_rate": 22050,
+      "seconds": 4.493061224489796,
+      "finite": true,
+      "sha256": "b53da3b2b65f9d8e08dae0573041e6d6566e06ceb2e0e13b8721538c6cac36ad"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0228.wav",
+      "sample_rate": 22050,
+      "seconds": 4.098321995464852,
+      "finite": true,
+      "sha256": "0d4f4a635a1ea468d1680313d92b91f6dcc2967306ece08cafc4a5a99f626a0f"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0240.wav",
+      "sample_rate": 22050,
+      "seconds": 4.829750566893424,
+      "finite": true,
+      "sha256": "ba02d489e0739c970155d33eb24096095b082635276c2843f2841365481af955"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0250.wav",
+      "sample_rate": 22050,
+      "seconds": 5.874648526077097,
+      "finite": true,
+      "sha256": "07c624606a2d3c8bfd22811d3ea921f89e942380937d2f174d4a4be44f1c1f80"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0333.wav",
+      "sample_rate": 22050,
+      "seconds": 2.8676643990929707,
+      "finite": true,
+      "sha256": "fd512b51be3e0f0922365e72476adb6642adc75945e5e4a4044ce8523e6d88a9"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0358.wav",
+      "sample_rate": 22050,
+      "seconds": 3.599092970521542,
+      "finite": true,
+      "sha256": "7898bfd63dab5444d539564fb48bd857be72d5ff0d9e98b8b32d76211b351ac2"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0383.wav",
+      "sample_rate": 22050,
+      "seconds": 8.823673469387755,
+      "finite": true,
+      "sha256": "3c83ac0e8920b3b605c90a51c1955c7d0651eab59a21e8ebdbb1be7b5b214780"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0491.wav",
+      "sample_rate": 22050,
+      "seconds": 6.704807256235828,
+      "finite": true,
+      "sha256": "93f01f2c4b2157b80a3d913c2843bf4910a8dbb9c53b6f104898612978ec0258"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0523.wav",
+      "sample_rate": 22050,
+      "seconds": 2.7631746031746034,
+      "finite": true,
+      "sha256": "77a11307db01ec5948324237cfdd0ab30c7a5dbc4959c6413af240fc2967adbf"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0752.wav",
+      "sample_rate": 22050,
+      "seconds": 3.982222222222222,
+      "finite": true,
+      "sha256": "43e38ec0b11c12e6ae72efdfad57838504390ae3c72e94bbafc781f22e905196"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-0894.wav",
+      "sample_rate": 22050,
+      "seconds": 4.539501133786848,
+      "finite": true,
+      "sha256": "a5775b7fd50f741582043444043155da26198e2ecdcd1c8393b24024d8d9acc5"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1173.wav",
+      "sample_rate": 22050,
+      "seconds": 3.3436734693877552,
+      "finite": true,
+      "sha256": "d65453988e82fe391e423233a2baaef1f5ec735e1aa5c645e06f944f76a929b6"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1212.wav",
+      "sample_rate": 22050,
+      "seconds": 3.4017233560090703,
+      "finite": true,
+      "sha256": "608e395d8d517ee6ccd720bd2dd07a817c2f084efc9ad64aa804236ed20717ae"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1229.wav",
+      "sample_rate": 22050,
+      "seconds": 4.423401360544218,
+      "finite": true,
+      "sha256": "e4999e3fd23908792604ce6b7c9d8bcd03918c2944b6b9527a2fbf064c26114e"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1508.wav",
+      "sample_rate": 22050,
+      "seconds": 5.363809523809524,
+      "finite": true,
+      "sha256": "ecdd303d16b19a24b96138628bc1286471ee54f937b7b23d71d6d887c935f01b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1725.wav",
+      "sample_rate": 22050,
+      "seconds": 3.274013605442177,
+      "finite": true,
+      "sha256": "bea040e5723fd45e98dd66a65aca70f719889c7b754625aa6ef730285920b523"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1829.wav",
+      "sample_rate": 22050,
+      "seconds": 4.481451247165533,
+      "finite": true,
+      "sha256": "a3070f7389d51ece7c35d5f4fe2f37b411205ff56719d79f17cfe821206bb021"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-1863.wav",
+      "sample_rate": 22050,
+      "seconds": 2.8444444444444446,
+      "finite": true,
+      "sha256": "e43410db6e45c18db3cfe991dfe7f41fe829075ccae9b8ef1587eb18f14d4159"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2177.wav",
+      "sample_rate": 22050,
+      "seconds": 2.9373242630385485,
+      "finite": true,
+      "sha256": "086d0d966f9da86a09ce5c6f814f9c7ecc8c427e81619ff98e9d2949c3c45f6b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2248.wav",
+      "sample_rate": 22050,
+      "seconds": 3.2624036281179136,
+      "finite": true,
+      "sha256": "8632849b0d75f7ee823da00ef50fe16f187c140a6f68305cb940fbb2f6c12cf8"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2316.wav",
+      "sample_rate": 22050,
+      "seconds": 7.5639455782312925,
+      "finite": true,
+      "sha256": "03514bac08eeaa51c9e52eced679c4c565ffefc5a1803c00a725030f6ee9842d"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2364.wav",
+      "sample_rate": 22050,
+      "seconds": 8.132834467120182,
+      "finite": true,
+      "sha256": "65ab136c9835c29d7deffe01a6516524db8856015ffc11f9b74613b57a86bfe2"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2388.wav",
+      "sample_rate": 22050,
+      "seconds": 6.147528344671202,
+      "finite": true,
+      "sha256": "5605f4866817d18ab937f3aeb5277914aaf37b1f0115d179923359c1376a662f"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2390.wav",
+      "sample_rate": 22050,
+      "seconds": 2.809614512471655,
+      "finite": true,
+      "sha256": "45ae1f7fff93ab0142b9c996c3b8dd5540cc468ceb89c7f37ee3e7f3fdc4bddd"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2401.wav",
+      "sample_rate": 22050,
+      "seconds": 5.317369614512471,
+      "finite": true,
+      "sha256": "b097b878fc4ba49d7e99348a23c9bb17bbe7c024a3a9de75723f36175a4f7f82"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2476.wav",
+      "sample_rate": 22050,
+      "seconds": 3.1927437641723357,
+      "finite": true,
+      "sha256": "960fcd93e2e1a9c9523a0c871d3d7e537eeec40b8a5f884dd1608da309a5ea5b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-2802.wav",
+      "sample_rate": 22050,
+      "seconds": 7.3317460317460315,
+      "finite": true,
+      "sha256": "ac8e2b76ef9b91cf7f196498ab679db7561be1dfbd5c1e70f114f87f44ed4962"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-3057.wav",
+      "sample_rate": 22050,
+      "seconds": 7.087936507936508,
+      "finite": true,
+      "sha256": "1996d1339d75fb832d3df4df19acb9ca546791201290c638d36f75946668dffd"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-3248.wav",
+      "sample_rate": 22050,
+      "seconds": 1.509297052154195,
+      "finite": true,
+      "sha256": "4ac5d3474292e731a9ea6bf6016a3a5575b76138fd4984662a867affb8883e2c"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-3459.wav",
+      "sample_rate": 22050,
+      "seconds": 5.3986394557823125,
+      "finite": true,
+      "sha256": "b5cf0b51d2d234ce9242de41197e6f986c56eadb9a26b07f28227d3ad99d059d"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-3775.wav",
+      "sample_rate": 22050,
+      "seconds": 4.516281179138322,
+      "finite": true,
+      "sha256": "9187fc755ac75c4ce3ef6ce4c978daecb3ed40a11974cb403b829e796aa122c7"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-3791.wav",
+      "sample_rate": 22050,
+      "seconds": 8.341814058956917,
+      "finite": true,
+      "sha256": "95fa20ecc1efdef12a1a347db7ba86067482de3727c52d601c8adb41723a2ee2"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4009.wav",
+      "sample_rate": 22050,
+      "seconds": 7.13437641723356,
+      "finite": true,
+      "sha256": "1841cf223c71749026a35a7cedaea8f4716ca15ce53bbdb2e3beacd300667d45"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4177.wav",
+      "sample_rate": 22050,
+      "seconds": 4.2260317460317465,
+      "finite": true,
+      "sha256": "aefc5f84ac35f3acacba15356610fa4e045d3b5282db6f31dbe4317638cbe2ad"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4250.wav",
+      "sample_rate": 22050,
+      "seconds": 4.191201814058957,
+      "finite": true,
+      "sha256": "d6c3b8b5a49c759df44fb0343353992e8eefec155301be30169da5f8b170ca1b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4294.wav",
+      "sample_rate": 22050,
+      "seconds": 5.00390022675737,
+      "finite": true,
+      "sha256": "abe3819a5daf7905a70149f50dfa0588c8bedde2d4e7c35a364a01bae896345b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4321.wav",
+      "sample_rate": 22050,
+      "seconds": 3.900952380952381,
+      "finite": true,
+      "sha256": "e32c80859d0c888870fa39813f8a302ea36f95ab511744e85703e66fff3796af"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4505.wav",
+      "sample_rate": 22050,
+      "seconds": 8.01673469387755,
+      "finite": true,
+      "sha256": "db19b16847d1bfa861057dee06b8967a8154242623953f7e6adeb9692df26320"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-4810.wav",
+      "sample_rate": 22050,
+      "seconds": 4.35374149659864,
+      "finite": true,
+      "sha256": "f92a12fe61b0658644b466bc855aeb34a7cd9d85def64a87512bb65f64ca613f"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5187.wav",
+      "sample_rate": 22050,
+      "seconds": 4.632380952380952,
+      "finite": true,
+      "sha256": "86611d9e1cf676ef574e11c7899d422da1adc9f8ac1d2be10e59f3043ae51140"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5269.wav",
+      "sample_rate": 22050,
+      "seconds": 1.6370068027210884,
+      "finite": true,
+      "sha256": "865642167f0c4704d4bcc13d3db01b6a13b28ff4640082a9d59fd6b7f35c9a6b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5301.wav",
+      "sample_rate": 22050,
+      "seconds": 2.4380952380952383,
+      "finite": true,
+      "sha256": "08f60d201086146c48bb807245c4f0919507092f509f41b4729bc120721be3b8"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5455.wav",
+      "sample_rate": 22050,
+      "seconds": 3.5062131519274375,
+      "finite": true,
+      "sha256": "72093c2ece4f39f827c9569b9da547103bd413defb138344fad2c44990389d3b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5482.wav",
+      "sample_rate": 22050,
+      "seconds": 2.681904761904762,
+      "finite": true,
+      "sha256": "2d934b79a3649b147944653523ccf7cfadde9874a10cb99ceb2be122ebcf002e"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5600.wav",
+      "sample_rate": 22050,
+      "seconds": 5.526349206349207,
+      "finite": true,
+      "sha256": "a16e2cf76522c76caff41569911ac37dfce1c20587fd9d6dfed8c0871bfa15e9"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5621.wav",
+      "sample_rate": 22050,
+      "seconds": 3.9706122448979593,
+      "finite": true,
+      "sha256": "79fbfaca85dcf8ee488cdb619222f5529adb47782729dd94f540005995be16a6"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5655.wav",
+      "sample_rate": 22050,
+      "seconds": 3.680362811791383,
+      "finite": true,
+      "sha256": "01811bd8d460cbd1aa1b72d98bc3177003745749939cc83e1c953d81cd347101"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/en_vi_tts/EV-5674.wav",
+      "sample_rate": 22050,
+      "seconds": 4.1099319727891155,
+      "finite": true,
+      "sha256": "c70785ab68bcd11cba56ad6a5855fa09caeea9bfc62e26a37e4abfa10854a14e"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/en.wav",
+      "sample_rate": 44100,
+      "seconds": 24.973333333333333,
+      "finite": true,
+      "sha256": "7c3fe59a80d218996c6d761915639c93b5faba22dfea025b7248635cad9898fb"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/ko.wav",
+      "sample_rate": 44100,
+      "seconds": 21.89659863945578,
+      "finite": true,
+      "sha256": "5d59b577916618bc77e9fc6fdfbbfef2b030a74a449ae7dab93852a9ebd719b0"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/vi.wav",
+      "sample_rate": 22050,
+      "seconds": 16.48625850340136,
+      "finite": true,
+      "sha256": "75b0b2ec95845b2e3cabe582cbc0375149949d170c20628f5c35ff07fb29655d"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/multilingual_tts_format/hybrid/zh.wav",
+      "sample_rate": 44100,
+      "seconds": 17.6415873015873,
+      "finite": true,
+      "sha256": "181f81c170b28f691fd9d9578b91293eb9b44c761c27263e200d177817b4d0e8"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-0358_out.wav",
+      "sample_rate": 22050,
+      "seconds": 4.063492063492063,
+      "finite": true,
+      "sha256": "f164d166f78ec868b994c786b58f09224ca190dc282af63858e65ad6aceb544f"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-3775_out.wav",
+      "sample_rate": 22050,
+      "seconds": 4.6439909297052155,
+      "finite": true,
+      "sha256": "50e2179608f85c0dd97c6eba095d3958397590a16bf50e8aa234a9f53f06289b"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/en_vi_format_replay/hybrid/EV-5301_out.wav",
+      "sample_rate": 22050,
+      "seconds": 2.3219954648526078,
+      "finite": true,
+      "sha256": "3cb70698ca8529650af5a5e20d458e80b6747c4918628cb434f3c2c6e813e1bd"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/s2s/audio/vi_to_en.wav",
+      "sample_rate": 44100,
+      "seconds": 16.840408163265305,
+      "finite": true,
+      "sha256": "5a7e55d66f44963534d6da18e931b5907537bb7884b9877908ed9b4dff664e45"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/s2s/audio/vi_to_ko.wav",
+      "sample_rate": 44100,
+      "seconds": 13.804353741496598,
+      "finite": true,
+      "sha256": "f9e1e39dd827fc52b2ab9538f2a78a65b16d03cc6cfe670a5989139752e10d7c"
+    },
+    {
+      "path": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/hybrid_format/s2s/audio/vi_to_zh.wav",
+      "sample_rate": 44100,
+      "seconds": 12.684036281179138,
+      "finite": true,
+      "sha256": "d66fad22beaa1956cb3f47b57510d160a833d47bf63ebee4cd1a167a0b171fb1"
+    }
+  ],
+  "review_source_sha256": {
+    "s2s_edge/s2s_edge/hybrid_textnorm.py": "4ed6dc5aa5b840ad450fd3f166c59b25294724e3c1d36dfe684f2dc945e1b235",
+    "s2s_edge/s2s_edge/format_locales.py": "dddaefd4acbe63327da06112cd04051e237c17307be9f056bd4ba42df7417656",
+    "s2s_edge/s2s_edge/tts_format.py": "cee722d6835d84955cc10ab853537932fea0a690ba459b1acb107f3787badf8d",
+    "s2s_edge/s2s_edge/tts.py": "4be96de6df439ef6e0a22ff2b7b7312166361ff0bc95bfb81b560851bf6f2a1b",
+    "s2s_edge/s2s_edge/conversation.py": "a27e037be3f5befb8a0f89d33221d46070c32fc53883fc6797c8b6306419175f",
+    "models/models.cpu.json": "45bdec586cf9d75d90a9a2d5717941d182c0c2ed9ff57fb45a40c46c4c84c2d0",
+    "tests/test_hybrid_format.py": "4591f2ad096a6c1213a5152e615a5bb8feab756323d69f64a96bc19d72105b6b"
+  },
+  "added_TN_python_bytes": 27491,
+  "CRF_bytes": 62028,
+  "limitations": "development tests; ASR cross-check not human listening; latency is local CPU format only, excludes model TTS/G2P, no IO, no NPU benchmark",
+  "saved_TTS_text_matches_final_formatter": 49,
+  "http_audio_test": {
+    "job": "15d26efd8536478c99f0d34e79e8068d",
+    "status": "done",
+    "tts_text": "chỉ để xác nhận, anh đặt báo động vào tám giờ.",
+    "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/mic_web/15d26efd8536478c99f0d34e79e8068d/output.wav",
+    "scope": "real HTTP audio upload -> ASR/MT/hybrid TTS; no browser/mic simulated"
+  },
+  "empty_input_reuse_check": true
+}

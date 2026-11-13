@@ -1,0 +1,80 @@
+{
+  "source_commit": "1e5231886dbf4af5bb0a6ff722bfa16223f8f3a6",
+  "unit_tests": 22,
+  "tts_and_registry_hashes_unchanged": true,
+  "raw_asr_wrapper_unchanged": true,
+  "source_neural_tn": false,
+  "local_adjustments": [
+    "Do not classify unknown when-statements as exclamations",
+    "Keep numeric zero statements from being reclassified as questions"
+  ],
+  "cases": [
+    {
+      "direction": "vi->en",
+      "before_seconds": 11.54988400000002,
+      "after_seconds": 11.538760709001508,
+      "before_segments": 1,
+      "after_segments": 1,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/vi_to_en.wav",
+      "after_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+      "before_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám."
+    },
+    {
+      "direction": "vi->ko",
+      "before_seconds": 6.655424707998463,
+      "after_seconds": 7.039310707994446,
+      "before_segments": 1,
+      "after_segments": 1,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/vi_to_ko.wav",
+      "after_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+      "before_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám."
+    },
+    {
+      "direction": "vi->zh",
+      "before_seconds": 11.13948845899722,
+      "after_seconds": 12.235760416995618,
+      "before_segments": 1,
+      "after_segments": 1,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/vi_to_zh.wav",
+      "after_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+      "before_asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám."
+    },
+    {
+      "direction": "en->vi",
+      "before_seconds": 6.211990499999956,
+      "after_seconds": 11.89277679099905,
+      "before_segments": 3,
+      "after_segments": 7,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/en_to_vi.wav",
+      "after_asr": "The meeting is at 330 pm on November 15, 2026. | The ticket costs $15.50. | With a 15% discount. | The temperature is 37.5 degreesC. | My flight is VN123. | And my ZIP code is6. | 729,7.",
+      "before_asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount. | The temperature is 37.5 degrees Celsius. | My flight is VN 123, and my ZIP code is 67297."
+    },
+    {
+      "direction": "ko->vi",
+      "before_seconds": 4.400077500002226,
+      "after_seconds": 8.056525833002524,
+      "before_segments": 3,
+      "after_segments": 6,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/ko_to_vi.wav",
+      "after_asr": "회의 는 14 일 4시 입니다. | 11월 115천 2천 아니 두 여섯. | 5000원 10% 줄려의 온도는 375로씨 입니다. | 노트북에 전화에 아홉 한. | 2 세 네. | 다섯 여섯 일곱 여덟.",
+      "before_asr": "회의는 14일 4시 입니다 11월 115천 2천 아니 두 섯, | 5000원 10% 줄여요 온도는 3,75로씨 입니다. | 노트북의 전화해 아홉 한2세,넷 다섯 여섯 일곱 여덟."
+    },
+    {
+      "direction": "zh->vi",
+      "before_seconds": 4.121764790994348,
+      "after_seconds": 6.886581457998545,
+      "before_segments": 2,
+      "after_segments": 5,
+      "audio": "/Users/khoa/study/Onevoice_final_ves/OneVoice_E2E_HybridTTS/results/asr_integration/after/zh_to_vi.wav",
+      "after_asr": "会议14天上午14点，这是11月11。 | 我两清没有我两个的6个。 | 票价为5000元，降低了10分之1。 | 温度为375摄氏度，打电话给您号码。 | 912345678。",
+      "before_asr": "会议14天上午14点，这是11月11，我两清没有我两个的6个票价为5000元，降低了10分之1。 | 温度为375，摄氏多，打电话给您号码，就12345678。"
+    }
+  ],
+  "limits": [
+    "No change to ASR weights",
+    "6 small development fixtures, no WER/MOS claim",
+    "KO/ZH fixture audio was synthesized by earlier pipeline, not independent native speech",
+    "Upstream three-clip audio not present locally",
+    "S2S_NEURAL_TN=1 keeps the previous Qwen source-normalization branch; new restore_vi rules apply with S2S_NEURAL_TN=0"
+  ]
+}

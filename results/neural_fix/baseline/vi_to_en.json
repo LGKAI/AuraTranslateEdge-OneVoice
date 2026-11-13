@@ -1,0 +1,39 @@
+{
+  "src": "vi",
+  "tgt": "en",
+  "input": "/Users/khoa/study/Onevoice_final_ves/AuraTranslateEdge/output/s2s-original-2026-11-12/audio/vi_to_en_special_input.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/neural_fix/baseline/audio/vi_to_en.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 17.272358707999956,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Cuộc họp lúc mười bốn giờ bốn ngày. Mười tháng mười một. Năm, hai nghìn, không. Hai, sáu. Giá vé năm nghìn đồng, giảm mười phần trăm. Nhiệt độ ba, bảy, Năm độ C. Gọi số không. Chín, một, hai, ba, bốn, năm, sáu, bảy, tám.",
+      "asr_before_normalization": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám",
+      "mt": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+      "tts_text": "The meeting is at fourteen four days. It's the eleventh of November. Five, two thousand, no. Two, six. Tickets for five thousand, a discount of ten per cent. Temperatures three, seven, five degrees C. Call the number. Nine, one, two, three, four, five, six, seven, eight.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.3777593329996307,
+        "source_normalize_s": 0.24931225000000268,
+        "mt_s": 4.441471750000346,
+        "tts_s": 7.558700167001007,
+        "total_s": 12.627243500000986,
+        "graph_s": 11.772897458989974,
+        "graph_calls": 116,
+        "host_s": 0.8543460410110129,
+        "audio_in_s": 11.9583125,
+        "audio_out_s": 19.737142857142857
+      },
+      "span": [
+        0.0,
+        11.9583125
+      ],
+      "asr_raw": "cuộc họp lúc mười bốn giờ bốn ngày mười tháng mười một năm hai nghìn không hai sáu giá vé năm nghìn đồng giảm mười phần trăm nhiệt độ ba bảy năm độ c gọi số không chín một hai ba bốn năm sáu bảy tám"
+    }
+  ],
+  "neural_normalization": false
+}

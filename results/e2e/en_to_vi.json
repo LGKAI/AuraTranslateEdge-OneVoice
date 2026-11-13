@@ -1,0 +1,78 @@
+{
+  "src": "en",
+  "tgt": "vi",
+  "input": "/Users/khoa/study/Onevoice_final_ves/AuraTranslateEdge/output/s2s-original-2026-11-12/audio/en_to_vi_special_input.wav",
+  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/e2e/audio/en_to_vi.wav",
+  "backend": "ONNX Runtime CPU",
+  "wall_including_load_s": 9.139640166999925,
+  "decoder": "mt_decB",
+  "fallbacks": [],
+  "segments": [
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+      "mt": "Cuộc họp là vào lúc 330 giờ tối ngày 15 tháng 11 năm 2026, giá vé là 15 đô la. 50 với giảm giá 15%.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.3899741659997744,
+        "mt_s": 1.0814263749998645,
+        "tts_s": 1.4424587920002523,
+        "total_s": 2.913859332999891,
+        "graph_s": 2.74198045400135,
+        "graph_calls": 43,
+        "host_s": 0.17187887899854104,
+        "audio_in_s": 10.0,
+        "audio_out_s": 9.137142857142857
+      },
+      "span": [
+        0.33,
+        10.33
+      ]
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "The temperature is 37.5 degrees Celsius.",
+      "mt": "Nhiệt độ là 37. 5 độ C.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.3086810830000104,
+        "mt_s": 0.49791929200000595,
+        "tts_s": 0.47696883299977344,
+        "total_s": 1.2835692079997898,
+        "graph_s": 1.2073203319969252,
+        "graph_calls": 22,
+        "host_s": 0.07624887600286456,
+        "audio_in_s": 3.28,
+        "audio_out_s": 1.8692063492063493
+      },
+      "span": [
+        10.63,
+        13.91
+      ]
+    },
+    {
+      "src": "en",
+      "tgt": "vi",
+      "asr": "My flight is VN 123, and my ZIP code is 67297.",
+      "mt": "Chuyến bay của tôi là VN 123, và mã địa chỉ là 67297.",
+      "sr": 22050,
+      "timing": {
+        "asr_s": 0.2936153330001616,
+        "mt_s": 0.6248949589999029,
+        "tts_s": 0.9533482910001112,
+        "total_s": 1.8718585830001757,
+        "graph_s": 1.7709050419980485,
+        "graph_calls": 27,
+        "host_s": 0.10095354100212717,
+        "audio_in_s": 5.78,
+        "audio_out_s": 5.230340136054422
+      },
+      "span": [
+        14.19,
+        19.97
+      ]
+    }
+  ]
+}

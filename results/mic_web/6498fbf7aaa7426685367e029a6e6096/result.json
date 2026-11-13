@@ -1,0 +1,72 @@
+{
+  "id": "6498fbf7aaa7426685367e029a6e6096",
+  "status": "done",
+  "stage": "Hoàn tất",
+  "src": "vi",
+  "tgt": "en",
+  "input_seconds": 4.44,
+  "output_seconds": 2.5774149659863945,
+  "elapsed_seconds": 5.299579541000639,
+  "input_url": "/audio/6498fbf7aaa7426685367e029a6e6096/input.wav",
+  "output_url": "/audio/6498fbf7aaa7426685367e029a6e6096/output.wav",
+  "detail_url": "/audio/6498fbf7aaa7426685367e029a6e6096/result.json",
+  "asr": "một phần hai mgg không phải năm mg",
+  "translation": "A fraction of two mg is not five mg.",
+  "tts_text": "A fraction of two mg is not five mg.",
+  "segments": [
+    {
+      "src": "vi",
+      "tgt": "en",
+      "asr": "Một phần hai mgg không phải năm mg.",
+      "asr_before_normalization": "một phần hai mgg không phải năm mg",
+      "mt": "A fraction of two mg is not five mg.",
+      "tts_text": "A fraction of two mg is not five mg.",
+      "sr": 44100,
+      "timing": {
+        "asr_s": 0.18325929200000246,
+        "source_normalize_s": 0.9322697909992712,
+        "mt_s": 0.5717835420000483,
+        "tts_s": 1.1964450420000503,
+        "total_s": 2.8837576669993723,
+        "graph_s": 1.8819587950001733,
+        "graph_calls": 17,
+        "host_s": 1.001798871999199,
+        "audio_in_s": 3.98,
+        "audio_out_s": 2.5774149659863945
+      },
+      "asr_raw": "một phần hai mgg không phải năm mg",
+      "span": [
+        0.05,
+        4.03
+      ]
+    }
+  ],
+  "normalization": [
+    {
+      "stage": "asr_segmentation",
+      "lang": "vi",
+      "input": "một phần hai mgg không phải năm mg",
+      "output": [
+        "Một phần hai mgg không phải năm mg."
+      ],
+      "seconds": 0.9286031249994267,
+      "attempts": 1,
+      "content_preserved": true
+    },
+    {
+      "stage": "tts",
+      "lang": "en",
+      "input": "A fraction of two mg is not five mg.",
+      "identifiers": [],
+      "identifier_spoken_text": "A fraction of two mg is not five mg.",
+      "normalization_spans": [],
+      "output": "A fraction of two mg is not five mg.",
+      "seconds": 0.00014975000158301555,
+      "tokens": 0,
+      "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+      "digits_remaining": false
+    }
+  ],
+  "backend": "integrated ONNX CPU + learned normalization on Apple Metal",
+  "input_kind": "uploaded speech audio; no transcript provided"
+}

@@ -7,6 +7,9 @@ so every chunk fits the static graph, and chunks are joined with a short pause.
 import os, re, unicodedata, numpy as np
 from .textnorm import normalize
 from .names import VietnameseNames, latin_to_vi
+from . import neural_textnorm
+from . import tts_format
+_tts_format = tts_format
 
 def split_outputs(out):
     """(audio, length, others) from a TTS graph's outputs, independent of their order: the AI Hub inference check on QCS8550 showed the
@@ -77,27 +80,45 @@ def _join(waves, sr, pause=0.18):
 class TtsVi:
     sr = 22050; unit, max_units = "word", 26
 
-    def __init__(self, graph, assets_dir=None, glossary=None):
+    def __init__(self, graph, assets_dir=None, glossary=None, tts_format=None):
         self.g = graph; self.oov = 0; self.glossary = glossary; self.vn = None
+        self.tts_format = _tts_format.resolve_mode(tts_format)
         if assets_dir and os.path.exists(os.path.join(assets_dir, "piper_vi_words.txt")):
             known = set(open(os.path.join(assets_dir, "piper_vi_words.txt"), encoding="utf-8").read().splitlines())
             self.vn = VietnameseNames(os.path.join(assets_dir, "cmudict_min.json"), known)
 
     def _synth(self, piece):
-        b = unicodedata.normalize("NFC", piece).encode("utf-8")[:512]; x = np.zeros((1, 512), np.int32); x[0, :len(b)] = list(b)
+        b = unicodedata.normalize("NFC", piece).encode("utf-8")
+        if len(b) > 512 and self.tts_format != 'legacy': raise ValueError('Piper input exceeds 512 UTF-8 bytes')
+        b = b[:512]; x = np.zeros((1, 512), np.int32); x[0, :len(b)] = list(b)
         audio, yl, rest = split_outputs(self.g(text_bytes=x)); yl = int(round(yl)); self.oov += int(rest[0].reshape(-1)[0]) if rest else 0
         return audio[: max(yl, 1) * 256].astype(np.float32), yl >= 1533
 
     def synthesize(self, text):
+        if self.tts_format == 'legacy':
+            orig = text
+            if self.vn is not None: text = latin_to_vi(text, self.vn, self.glossary)
+            text = normalize(text.lower(), 'vi')
+            self.normalized_text = text; self.tts_input_text = text
+            self.format_trace = {'stage': 'tts_legacy', 'input': orig, 'output': text, 'spans': [], 'protected_ranges': [], 'warnings': []}
+            return _join(adaptive(text, self.max_units, 'word', self._synth), self.sr)
+        text, self.format_trace = _tts_format.prepare(text, 'vi', mode=self.tts_format)
+        self.normalized_text = text
         if self.vn is not None: text = latin_to_vi(text, self.vn, self.glossary)     # words outside Piper's table would be silently dropped
-        text = normalize(text.lower(), "vi")
-        return _join(adaptive(text, self.max_units, "word", self._synth), self.sr)
+        text = text.lower()
+        self.tts_input_text = text
+        def counter(s):
+            byte_count = len(unicodedata.normalize('NFC', s).encode('utf-8'))
+            return max(len(s.split()), (byte_count*self.max_units+511)//512)
+        return _join(_tts_format.adaptive(text, 'vi', self.max_units, 'word', self._synth, self.format_trace, counter=counter), self.sr)
 
 
 class TtsZh:
     sr = 44100; unit, max_units = "char", 20
 
-    def __init__(self, graph): self.g = graph
+    def __init__(self, graph, tts_format=None):
+        self.g = graph
+        self.tts_format = _tts_format.resolve_mode(tts_format)
 
     def _synth(self, piece):
         b = unicodedata.normalize("NFC", piece).encode("utf-8")[:112]
@@ -109,16 +130,25 @@ class TtsZh:
         return audio[: max(yl, 1) * 512].astype(np.float32), yl >= 381
 
     def synthesize(self, text):
-        return _join(adaptive(normalize(text, "zh"), self.max_units, "char", self._synth), self.sr)
+        if self.tts_format == 'legacy':
+            orig = text
+            norm_text = normalize(text, 'zh')
+            self.normalized_text = norm_text; self.tts_input_text = norm_text
+            self.format_trace = {'stage': 'tts_legacy', 'input': orig, 'output': norm_text, 'spans': [], 'protected_ranges': [], 'warnings': []}
+            return _join(adaptive(self.tts_input_text, self.max_units, 'char', self._synth), self.sr)
+        text, self.format_trace = _tts_format.prepare(text, 'zh', mode=self.tts_format)
+        self.normalized_text = text; self.tts_input_text = text
+        return _join(_tts_format.adaptive(text, 'zh', self.max_units, 'char', self._synth, self.format_trace), self.sr)
 
 
 class TtsEnKo:
     sr = 44100; N = 96
 
-    def __init__(self, graph, lang, assets_dir, voice="M1"):
+    def __init__(self, graph, lang, assets_dir, voice="M1", tts_format=None):
         import json
         from .vendor.supertonic_text import UnicodeProcessor
-        self.g = graph; self.lang = lang; self.p = UnicodeProcessor(os.path.join(assets_dir, "supertonic_unicode_indexer.json"))
+        self.g = graph; self.lang = lang; self.tts_format = _tts_format.resolve_mode(tts_format)
+        self.p = UnicodeProcessor(os.path.join(assets_dir, "supertonic_unicode_indexer.json"))
         st = np.load(os.path.join(assets_dir, "supertonic_styles.npz")); self.dp = st[voice + "_dp"].astype(np.float32); self.ttl = st[voice + "_ttl"].astype(np.float32)
         self.ok = np.array([0 <= i for i in self.p.indexer])         # characters the model can embed (index -1 = unsupported)
 
@@ -126,12 +156,23 @@ class TtsEnKo:
         return "".join(c for c in s if ord(c) < len(self.ok) and self.ok[ord(c)])
 
     def _synth(self, piece):
-        s = self._clean(self.p._preprocess_text(piece, self.lang))[: self.N]
+        s = self._clean(self.p._preprocess_text(piece, self.lang))
+        if len(s) > self.N and self.tts_format != 'legacy': raise ValueError('Supertonic preprocessed input exceeds graph budget')
+        s = s[:self.N]
         if not s.strip(): return np.zeros(0, np.float32), False
         cp = np.zeros((1, self.N), np.int32); cp[0, :len(s)] = [ord(c) for c in s]
         wav, lat, _ = split_outputs(self.g(cp=cp, style_dp=self.dp, style_ttl=self.ttl)); lat = int(round(lat))
         return wav[: max(lat, 1) * 3072].astype(np.float32), lat >= len(wav) // 3072 - 2
 
     def synthesize(self, text):
-        text = normalize(text, self.lang); units = self.N - 14 if self.lang == "en" else 52            # Korean is spoken slowly: ~52 characters fill the 10 s window
-        return _join([w for w in adaptive(text, units, "char", self._synth) if len(w)], self.sr)
+        text, self.format_trace = _tts_format.prepare(text, self.lang, mode=self.tts_format)
+        self.normalized_text = text; self.tts_input_text = text
+        units = self.N - 14 if self.lang == "en" else 52            # Korean is spoken slowly: ~52 characters fill the 10 s window
+        if self.tts_format == 'legacy':
+            return _join([w for w in adaptive(text, units, 'char', self._synth) if len(w)], self.sr)
+        # Hangul expands to Jamo under NFKD; budget the actual graph input,
+        # including language markers and preprocessing expansions.
+        counter = lambda s: len(self._clean(self.p._preprocess_text(s, self.lang)))
+        result = _tts_format.adaptive(text, self.lang, self.N, 'char', self._synth, self.format_trace, counter=counter)
+        self.format_trace['preprocessed_chunk_lengths'] = [counter(p) for p in self.format_trace.get('planned_chunks', [])]
+        return _join([w for w in result if len(w)], self.sr)

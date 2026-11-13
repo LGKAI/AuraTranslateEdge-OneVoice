@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Command line: `python -m s2s_edge file|live --src vi --tgt en`."""
+"""Command line:
+  python -m s2s_edge file  --src vi --tgt en --in in.wav --out out.wav   one file, per-stage timing
+  python -m s2s_edge live  --pair vi,ko                                   microphone / loudspeaker plugged into the box
+  python -m s2s_edge serve --data_root /root/onevoice                      web UI + API on 127.0.0.1:8770 (laptop: adb forward, open the page);
+                                                                          models stay loaded, inference on the box. See s2s_edge/webui.py."""
 import argparse, os, queue, sys, threading, time
 import numpy as np
 from .audio import load_audio, save_wav, listen, play, concat_results
@@ -26,10 +30,14 @@ class Player:
     def wait(self): self.q.join()
 
 
+def fmt_t(t):
+    return f"ASR {t['asr_s'] * 1000:.0f} | MT {t['mt_s'] * 1000:.0f} | TTS {t['tts_s'] * 1000:.0f} | total {t['total_s'] * 1000:.0f} ms (NPU graphs {t['graph_s'] * 1000:.0f} ms)"
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(prog="s2s_edge", description="Offline speech-to-speech translation (vi <-> en/zh/ko)")
-    ap.add_argument("cmd", choices=["file", "live"])
+    ap.add_argument("cmd", choices=["file", "live", "serve"])
     ap.add_argument("--src", choices=["vi", "en", "zh", "ko"])
     ap.add_argument("--tgt", choices=["vi", "en", "zh", "ko"])
     ap.add_argument("--pair", help="bidirectional conversation between two languages, e.g. vi,ko (language of each utterance is detected)")
@@ -45,8 +53,18 @@ def main():
     ap.add_argument("--continuous", action="store_true", help="live mode without pressing Enter: always listening, translate and speak after each utterance")
     ap.add_argument("--no-warmup", action="store_true", help="live mode: skip loading + running every needed graph once before the first utterance")
     ap.add_argument("--no-stream", action="store_true", help="live mode: translate the whole utterance before playing (default: sentence-pipelined playback)")
+    ap.add_argument("--vad-profile", default=None, choices=["hybrid", "legacy", "upstream"], help="VAD (default hybrid, or $S2S_VAD_PROFILE)")
+    ap.add_argument("--ort-policy", default=None, choices=["auto", "basic", "disable"])
+    ap.add_argument("--source-mode", default=None, choices=["0", "1"])
+    ap.add_argument("--tts-format", default=None, choices=["hybrid", "legacy"])
+    ap.add_argument("--port", type=int, default=8770, help="serve mode: TCP port, bound to 127.0.0.1 only")
+    ap.add_argument("--data_root", default=os.environ.get("S2S_DATA", "/root/onevoice"), help="serve mode: folder with onevoice_btc_data/ and onevoice_btc_adv/ (data-set runs from the web UI)")
     a = ap.parse_args()
-    reg = Registry(a.models, a.backend, a.glossary)
+    t_load = time.perf_counter()
+    reg = Registry(a.models, a.backend, a.glossary, ort_policy=a.ort_policy, vad_profile=a.vad_profile, source_mode=a.source_mode, tts_format=a.tts_format)
+    if a.cmd == "serve":                                                     # web UI + API (s2s_edge/webui.py); all six directions available
+        from .webui import serve
+        return serve(reg, a.models, a.data_root, a.pair or "vi,ko", a.port, None if a.no_warmup else list(DIRECTIONS))
     if a.pair: dirs = [("vi", x) for x in a.pair.split(",") if x != "vi"] + [(x, "vi") for x in a.pair.split(",") if x != "vi"]
     elif a.auto: dirs = list(DIRECTIONS)
     else: dirs = [(a.src, a.tgt)]
@@ -59,10 +77,10 @@ def main():
         if not a.src or not a.tgt or (a.src, a.tgt) not in DIRECTIONS: sys.exit(f"give --src/--tgt (one side must be vi), or --pair / --auto. Supported: {DIRECTIONS}")
         tr = Translator(reg, a.src, a.tgt, denoise=a.denoise); label = f"{a.src}->{a.tgt}"
     if a.cmd == "file":
-        res = tr.translate(load_audio(a.inp))
+        wav_in = load_audio(a.inp); t_ready = time.perf_counter(); res = tr.translate(wav_in); t_done = time.perf_counter()
         for r in res:
-            t = r["timing"]
-            print(f"[{r['span'][0]:.1f}-{r['span'][1]:.1f}s] {r.get('src', a.src)}->{r.get('tgt', a.tgt)}: {r['asr']}\n   -> {r['mt']}\n   ({t['total_s'] * 1000:.0f} ms, graphs {t['graph_s'] * 1000:.0f} ms)")
+            print(f"[{r['span'][0]:.1f}-{r['span'][1]:.1f}s] {r.get('src', a.src)}->{r.get('tgt', a.tgt)}: {r['asr']}\n   -> {r['mt']}\n   {fmt_t(r['timing'])}")
+        print(f"audio {len(wav_in) / 16000:.1f} s | translation {(t_done - t_ready) * 1000:.0f} ms | model loading {(t_ready - t_load) * 1000:.0f} ms (paid once in live / serve mode)")
         wav, sr = concat_results(res); save_wav(a.out, wav, sr)
         print("saved", a.out)
     else:

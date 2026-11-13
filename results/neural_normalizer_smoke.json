@@ -1,0 +1,159 @@
+[
+  {
+    "stage": "tts",
+    "lang": "vi",
+    "input": "Cuộc họp lúc 3:30 chiều ngày 15/11/2026.",
+    "money": [],
+    "identifiers": [
+      "15/11/2026"
+    ],
+    "identifier_spoken_text": "Cuộc họp lúc 3:30 chiều ngày một năm một một hai không hai sáu.",
+    "output": "Cuộc họp lúc ba giờ ba mươi phút chiều ngày một năm một một hai không hai sáu.",
+    "seconds": 2.759067208000488,
+    "tokens": 102,
+    "model": "ByT5-Vi-Normalization + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "vi",
+    "input": "Giá vé 50.000 đồng, giảm 15%. Nhiệt độ 37,5°C.",
+    "money": [
+      {
+        "text": "50.000 đồng",
+        "major": "50",
+        "major_unit": "đồng",
+        "minor": "000",
+        "minor_unit": "xu",
+        "prefix": ""
+      }
+    ],
+    "identifiers": [],
+    "identifier_spoken_text": "Giá vé 50 đồng, giảm 15%. Nhiệt độ 37,5°C.",
+    "output": "Giá vé năm mươi đồng, giảm mười lăm phần trăm. Nhiệt độ ba mươi bảy phẩy năm độ xê.",
+    "seconds": 1.9526657919996069,
+    "tokens": 116,
+    "model": "ByT5-Vi-Normalization + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "vi",
+    "input": "Xin gọi số 0912 345 678. Chuyến bay VN123, mã ZIP 67297.",
+    "money": [],
+    "identifiers": [
+      "0912 345 678",
+      "VN123",
+      "67297"
+    ],
+    "identifier_spoken_text": "Xin gọi số không chín một hai ba bốn năm sáu bảy tám. Chuyến bay vê en một hai ba, mã ZIP sáu bảy hai chín bảy.",
+    "output": "Xin gọi số không chín một hai ba bốn năm sáu bảy tám. Chuyến bay vê en một hai ba, mã dét i pê sáu bảy hai chín bảy.",
+    "seconds": 1.043604750000668,
+    "tokens": 140,
+    "model": "ByT5-Vi-Normalization + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "en",
+    "input": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50, with a 15% discount. The temperature is 37.5 degrees Celsius.",
+    "identifiers": [],
+    "identifier_spoken_text": "The meeting is at 3:30 PM on November 15, 2026. The ticket costs $15.50, with a 15% discount. The temperature is 37.5 degrees Celsius.",
+    "normalization_spans": [
+      {
+        "input": "3:30 PM",
+        "output": "three thirty p m"
+      },
+      {
+        "input": "November 15, 2026",
+        "output": "november fifteenth twenty twenty six"
+      },
+      {
+        "input": "$15.50",
+        "output": "fifteen dollars and fifty cents"
+      },
+      {
+        "input": "15%",
+        "output": "fifteen"
+      },
+      {
+        "input": "37.5 degrees Celsius",
+        "output": "thirty seven point five degrees Celsius"
+      }
+    ],
+    "output": "The meeting is at three thirty p m on november fifteenth twenty twenty six. The ticket costs fifteen dollars and fifty cents, with a fifteen discount. The temperature is thirty seven point five degrees Celsius.",
+    "seconds": 1.448667499998919,
+    "tokens": 50,
+    "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "en",
+    "input": "Call 0912345678. My flight is VN123 and my ZIP code is 67297.",
+    "identifiers": [
+      "0912345678",
+      "VN123",
+      "67297"
+    ],
+    "identifier_spoken_text": "Call zero nine one two three four five six seven eight. My flight is vee en one two three and my ZIP code is six seven two nine seven.",
+    "normalization_spans": [],
+    "output": "Call zero nine one two three four five six seven eight. My flight is vee en one two three and my ZIP code is six seven two nine seven.",
+    "seconds": 0.00011166699914610945,
+    "tokens": 0,
+    "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "vi",
+    "input": "Phòng 330 có giá 330 đồng. Cuộc họp lúc 14h45.",
+    "money": [
+      {
+        "text": "330 đồng",
+        "major": "330",
+        "major_unit": "đồng",
+        "minor": "",
+        "minor_unit": "",
+        "prefix": ""
+      }
+    ],
+    "identifiers": [],
+    "identifier_spoken_text": "Phòng 330 có giá 330 đồng. Cuộc họp lúc 14h45.",
+    "output": "Phòng ba trăm ba mươi có giá ba trăm ba mươi đồng. Cuộc họp lúc mười bốn giờ bốn mươi lăm phút.",
+    "seconds": 1.5442924170001788,
+    "tokens": 127,
+    "model": "ByT5-Vi-Normalization + learned span tags",
+    "digits_remaining": false
+  },
+  {
+    "stage": "tts",
+    "lang": "en",
+    "input": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+    "identifiers": [],
+    "identifier_spoken_text": "The meeting is at 330 pm on November 15, 2026, the ticket costs $15.50 with a 15% discount.",
+    "normalization_spans": [
+      {
+        "input": "330 pm",
+        "output": "three hundred thirty p m"
+      },
+      {
+        "input": "November 15, 2026",
+        "output": "november fifteenth twenty twenty six"
+      },
+      {
+        "input": "$15.50",
+        "output": "fifteen dollars and fifty cents"
+      },
+      {
+        "input": "15%",
+        "output": "fifteen"
+      }
+    ],
+    "output": "The meeting is at three hundred thirty p m on november fifteenth twenty twenty six, the ticket costs fifteen dollars and fifty cents with a fifteen discount.",
+    "seconds": 1.0137197920012113,
+    "tokens": 40,
+    "model": "NVIDIA neural_text_normalization_t5 decoder + learned span tags",
+    "digits_remaining": false
+  }
+]

@@ -218,7 +218,7 @@ class LocalTorchEngine:
                 dev = "CUDA"
         except Exception:
             pass
-        self.name = f"OneVoice Local · {dev} (Zipformer/SenseVoice · NLLB-600M · Piper/Supertonic)"
+        self.name = f"s2s_edge · LOCAL ({dev})"
         self.info = dict(mode="local", repo_root=self.repo_root, device=dev.lower())
 
     def _get_zipformer(self):
@@ -349,7 +349,7 @@ class LocalTorchEngine:
         tok.src_lang = codes[src]
         tgt_id = tok.convert_tokens_to_ids(codes[tgt])
         pieces = []
-        for unit in split_sentences(text):
+        for unit in split_sentences(text, src):
             inputs = tok(unit, return_tensors="pt").to(model.device)
             out_ids = model.generate(**inputs, forced_bos_token_id=tgt_id, max_new_tokens=128)
             raw = tok.batch_decode(out_ids, skip_special_tokens=True)[0].strip()
@@ -360,6 +360,18 @@ class LocalTorchEngine:
                 pieces.append(cleaned)
         return ("" if tgt == "zh" else " ").join(pieces)
 
+    def _get_melo_zh(self):
+        if getattr(self, "_melo_zh", None) is None:
+            import torch
+            from melo.api import TTS
+            dev = "cuda" if torch.cuda.is_available() else "cpu"
+            m = TTS(language="ZH", device=dev)
+            if hasattr(m.hps, "data"):
+                m.hps.data.disable_bert = True
+            spk = list(m.hps.data.spk2id.values())[0]
+            self._melo_zh = (m, spk, m.hps.data.sampling_rate)
+        return self._melo_zh
+
     def tts(self, text, lang):
         import numpy as np
         if not text.strip():
@@ -369,6 +381,14 @@ class LocalTorchEngine:
             text, _ = prepare_tts(text, lang)
         except Exception:
             pass
+        if lang == "zh":
+            try:
+                m, spk, sr = self._get_melo_zh()
+                wav = m.tts_to_file(text, spk, output_path=None, speed=1.0, quiet=True)
+                if wav is not None:
+                    return _f32_to_wav(np.asarray(wav, np.float32).squeeze(), sr)
+            except Exception:
+                pass
         if lang in ("en", "ko"):
             try:
                 st, style = self._get_supertonic()

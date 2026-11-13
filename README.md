@@ -200,7 +200,6 @@ AuraTranslateEdge-OneVoice/
 │   ├── test_engine.py                 # Kiểm thử Web Demo độc lập không cần tải weight
 │   └── static/                        # Giao diện web hiện đại (mic, upload WAV, sửa text ASR dịch lại)
 │
-├── web/                               # Giao diện web thu âm/batch phục vụ tools/s2s_web.py
 ├── tools/                             # Bộ công cụ đo kiểm Plan-01, export ONNX, S2S web launcher & audit
 ├── tests/                             # Bộ test tích hợp toàn hệ thống (VAD/ORT profiles, Hybrid TTS, Entities)
 ├── models/                            # Manifest & cấu hình mô hình CPU tham chiếu (`models.cpu.json`)

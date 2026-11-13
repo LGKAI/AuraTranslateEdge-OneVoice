@@ -253,6 +253,7 @@
     recStart = performance.now();
     levels.fill(0);
     setState("recording");
+    sizeCanvas();
     hideStages();
     tick();
     timerId = setInterval(() => {
@@ -312,9 +313,15 @@
   const td = new Float32Array(1024);
   function sizeCanvas() {
     const r = canvas.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-    canvas.width = r.width * d; canvas.height = r.height * d; ctx2d.setTransform(d, 0, 0, d, 0, 0);
+    if (!r.width || !r.height) return;
+    canvas.width = Math.round(r.width * d);
+    canvas.height = Math.round(r.height * d);
+    ctx2d.setTransform(d, 0, 0, d, 0, 0);
   }
   sizeCanvas(); window.addEventListener("resize", sizeCanvas);
+  if (window.matchMedia) {
+    try { window.matchMedia("(resolution: 1dppx)").addEventListener("change", sizeCanvas); } catch {}
+  }
 
   let frame = 0;
   function tick() {

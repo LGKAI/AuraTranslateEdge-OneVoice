@@ -8,26 +8,6 @@
     ko: { name: "한국어 · Korean", code: "KO" },
   };
   let PAIRS = [["vi", "en"], ["en", "vi"], ["vi", "zh"], ["zh", "vi"], ["vi", "ko"], ["ko", "vi"]];
-  const SAMPLES_BY_LANG = {
-    vi: [
-      "Xin chào, hôm nay dây chuyền số ba hoạt động bình thường.",
-      "Vui lòng đeo mũ bảo hộ trước khi vào khu vực này.",
-      "Lô hàng này cần được giao trước ba giờ chiều.",
-    ],
-    en: [
-      "Please wear a safety helmet before entering this area.",
-      "This shipment needs to be delivered before three PM.",
-      "Stop the machine right away if it overheats.",
-    ],
-    zh: [
-      "进入该区域前请佩戴安全帽。",
-      "这批货需要在下午三点前送达。",
-    ],
-    ko: [
-      "이 구역에 들어가기 전에 안전모를 착용해 주세요.",
-      "오늘 3번 생산 라인은 정상적으로 가동되고 있습니다.",
-    ],
-  };
 
   const TARGET_SR = 16000;
   const MIN_SEC = 0.25;
@@ -48,7 +28,6 @@
   const fileInput = $("#fileInput");
   const canvas = $("#wave");
   const ctx2d = canvas.getContext("2d");
-  const sampleChipsEl = $("#sampleChips");
   const stackInfoEl = $("#stackInfo");
   const textForm = $("#textForm");
   const textInput = $("#textInput");
@@ -91,19 +70,6 @@
     sel.value = codes.includes(value) ? value : codes[0];
   }
 
-  function renderSampleChips(src) {
-    if (!sampleChipsEl) return;
-    sampleChipsEl.innerHTML = "";
-    for (const phrase of (SAMPLES_BY_LANG[src] || SAMPLES_BY_LANG.vi)) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "sample-chip";
-      btn.textContent = phrase;
-      btn.addEventListener("click", () => runText(phrase));
-      sampleChipsEl.appendChild(btn);
-    }
-  }
-
   function syncQuickPairChips() {
     const [s, t] = pair0();
     document.querySelectorAll(".pair-chip").forEach((b) => {
@@ -111,7 +77,6 @@
       const active = (s === a && t === c) || (s === c && t === a);
       b.classList.toggle("active", active);
     });
-    renderSampleChips(s);
   }
 
   function setPair(src, tgt) {

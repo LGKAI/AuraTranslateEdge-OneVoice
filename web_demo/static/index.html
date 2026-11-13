@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>OneVoice — Edge Speech Translation</title>
+  <title>AuraTranslate Edge — Gia Sư Đỉnh Cao</title>
   <link rel="stylesheet" href="app.css" />
   <script>
     try {
@@ -14,8 +14,6 @@
   </script>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true"></div>
-
   <div class="app" id="app">
     <header class="topbar">
       <div class="brand">
@@ -23,8 +21,8 @@
           <svg viewBox="0 0 24 24"><path d="M12 4v16M8 8v8M16 7v10M4 11v2M20 10v4"/></svg>
         </span>
         <div class="brand-text">
-          <span class="brand-name">OneVoice</span>
-          <span class="brand-tag">Edge S2S</span>
+          <span class="brand-name">AuraTranslate Edge</span>
+          <span class="brand-team">Gia Sư Đỉnh Cao</span>
         </div>
       </div>
 
@@ -48,17 +46,17 @@
 
     <section class="lang-section" aria-label="Chọn cặp ngôn ngữ và thông tin mô hình">
       <div class="langbar">
-        <label class="lang" for="srcLang">
+        <div class="lang">
           <span class="lang-label">Nguồn nói (ASR)</span>
           <select id="srcLang" aria-label="Ngôn ngữ nói"></select>
-        </label>
+        </div>
         <button class="swap" id="swapBtn" aria-label="Đảo chiều dịch" title="Đảo chiều dịch">
           <svg viewBox="0 0 24 24"><path d="M7 16l-4-4 4-4M3 12h18M17 8l4 4-4 4"/></svg>
         </button>
-        <label class="lang lang-right" for="tgtLang">
+        <div class="lang lang-right">
           <span class="lang-label">Ngôn ngữ đích (MT + TTS)</span>
           <select id="tgtLang" aria-label="Ngôn ngữ dịch"></select>
-        </label>
+        </div>
       </div>
 
       <div class="subbar">
@@ -73,15 +71,11 @@
 
     <main class="feed" id="feed" aria-live="polite">
       <div class="empty" id="empty">
-        <div class="empty-orb" aria-hidden="true">
+        <div class="empty-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg>
         </div>
-        <h1>Phiên dịch giọng nói Edge Offline</h1>
-        <p>Nhấn nút micro bên dưới để nói, giữ phím <kbd>Space</kbd> để thu nhanh, kéo thả file <code>.wav</code> hoặc gõ văn bản.</p>
-        <div class="samples-wrap">
-          <span class="samples-label">Thử nhanh một câu mẫu:</span>
-          <div class="samples" id="sampleChips"></div>
-        </div>
+        <h1>AuraTranslate Edge</h1>
+        <p>Bấm nút Mic hoặc giữ phím <kbd>Space</kbd> để nói, chọn / kéo thả file <code>.wav</code>, hoặc nhập chữ bên dưới.</p>
       </div>
     </main>
 
@@ -98,7 +92,7 @@
         <input
           type="text"
           id="textInput"
-          placeholder="Hoặc nhập nhanh câu cần dịch (Enter để dịch + đọc ngay)…"
+          placeholder="Nhập văn bản cần dịch (Enter để dịch + phát TTS)…"
           aria-label="Nhập văn bản cần dịch nhanh"
         />
         <button type="submit" class="send-btn" id="sendTextBtn" title="Dịch văn bản này">
@@ -136,7 +130,7 @@
     <div class="drop-box">
       <svg viewBox="0 0 24 24"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
       <strong>Thả file âm thanh vào đây</strong>
-      <span>Tự động giải mã 16 kHz và chạy ASR → MT → TTS</span>
+      <span>Giải mã 16 kHz mono WAV và chạy ASR → MT → TTS</span>
     </div>
   </div>
 

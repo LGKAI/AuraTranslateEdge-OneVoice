@@ -219,8 +219,9 @@ class LocalTorchEngine:
         except Exception:
             pass
         import importlib.util
-        melo_ok = importlib.util.find_spec("melo") is not None
-        tts_zh = "MeloTTS" if melo_ok else "Piper ZH (fallback)"
+        melo_src = os.path.join(self.repo_root, "src", "step4_quantization", "tts", "melotts", "MeloTTS")
+        melo_onnx = self._find_melo_onnx()
+        melo_ok = (importlib.util.find_spec("melo") is not None) or os.path.isdir(melo_src) or (melo_onnx is not None)
         self.name = f"s2s_edge · LOCAL ({dev})"
         self.info = dict(
             mode="local",
@@ -228,9 +229,19 @@ class LocalTorchEngine:
             device=dev.lower(),
             asr="Zipformer / SenseVoice",
             mt="NLLB-200-600M",
-            tts=f"Piper VI · Supertonic EN/KO · {tts_zh}",
+            tts="Piper (VI) · MeloTTS (ZH) · Supertonic (EN/KO)",
             melo_installed=melo_ok,
         )
+
+    def _find_melo_onnx(self):
+        for rel in (
+            os.path.join(self.repo_root, "build", "melo", "melo_one.onnx"),
+            os.path.join(os.path.dirname(self.repo_root), "build", "melo", "melo_one.onnx"),
+            os.path.join(self.repo_root, "models", "melo_one.onnx"),
+        ):
+            if os.path.isfile(rel):
+                return rel
+        return None
 
     def _get_zipformer(self):
         if self._zipformer is None:
@@ -373,14 +384,27 @@ class LocalTorchEngine:
 
     def _get_melo_zh(self):
         if getattr(self, "_melo_zh", None) is None:
-            import torch
-            from melo.api import TTS
-            dev = "cuda" if torch.cuda.is_available() else "cpu"
-            m = TTS(language="ZH", device=dev)
-            if hasattr(m.hps, "data"):
-                m.hps.data.disable_bert = True
-            spk = list(m.hps.data.spk2id.values())[0]
-            self._melo_zh = (m, spk, m.hps.data.sampling_rate)
+            import sys
+            melo_repo = os.path.join(self.repo_root, "src", "step4_quantization", "tts", "melotts", "MeloTTS")
+            if os.path.isdir(melo_repo) and melo_repo not in sys.path:
+                sys.path.insert(0, melo_repo)
+            try:
+                import torch
+                from melo.api import TTS
+                dev = "cuda" if torch.cuda.is_available() else "cpu"
+                m = TTS(language="ZH", device=dev)
+                if hasattr(m.hps, "data"):
+                    m.hps.data.disable_bert = True
+                spk = list(m.hps.data.spk2id.values())[0]
+                self._melo_zh = ("torch", m, spk, m.hps.data.sampling_rate)
+            except Exception as torch_exc:
+                onnx_path = self._find_melo_onnx()
+                if onnx_path:
+                    from s2s_edge.backends import make_runner
+                    from s2s_edge.tts import TtsZh
+                    self._melo_zh = ("onnx", TtsZh(make_runner("tts_zh", {"onnx": onnx_path}, "cpu")))
+                else:
+                    raise RuntimeError(f"MeloTTS ZH chưa sẵn sàng ({torch_exc})") from torch_exc
         return self._melo_zh
 
     def tts(self, text, lang):
@@ -393,13 +417,14 @@ class LocalTorchEngine:
         except Exception:
             pass
         if lang == "zh":
-            try:
-                m, spk, sr = self._get_melo_zh()
+            melo = self._get_melo_zh()
+            if melo[0] == "torch":
+                _, m, spk, sr = melo
                 wav = m.tts_to_file(text, spk, output_path=None, speed=1.0, quiet=True)
-                if wav is not None:
-                    return _f32_to_wav(np.asarray(wav, np.float32).squeeze(), sr)
-            except Exception:
-                pass
+                return _f32_to_wav(np.asarray(wav, np.float32).squeeze(), sr)
+            _, tts_zh = melo
+            wav, sr = tts_zh.synthesize(text)
+            return _f32_to_wav(wav, sr)
         if lang in ("en", "ko"):
             try:
                 st, style = self._get_supertonic()

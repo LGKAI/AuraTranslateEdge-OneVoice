@@ -1,7 +1,0 @@
-{
-  "job": "15d26efd8536478c99f0d34e79e8068d",
-  "status": "done",
-  "tts_text": "chỉ để xác nhận, anh đặt báo động vào tám giờ.",
-  "output": "/Users/khoa/study/Onevoice_final_ves/OneVoice_integrated/results/mic_web/15d26efd8536478c99f0d34e79e8068d/output.wav",
-  "scope": "real HTTP audio upload -> ASR/MT/hybrid TTS; no browser/mic simulated"
-}

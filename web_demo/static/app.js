@@ -4,111 +4,214 @@
   const LANGS = {
     vi: { name: "Tiếng Việt", code: "VI" },
     en: { name: "English", code: "EN" },
-    zh: { name: "中文", code: "ZH" },
-    ko: { name: "한국어", code: "KO" },
+    zh: { name: "中文 · Mandarin", code: "ZH" },
+    ko: { name: "한국어 · Korean", code: "KO" },
   };
+  let PAIRS = [["vi", "en"], ["en", "vi"], ["vi", "zh"], ["zh", "vi"], ["vi", "ko"], ["ko", "vi"]];
+  const SAMPLES_BY_LANG = {
+    vi: [
+      "Xin chào, hôm nay dây chuyền số ba hoạt động bình thường.",
+      "Vui lòng đeo mũ bảo hộ trước khi vào khu vực này.",
+      "Lô hàng này cần được giao trước ba giờ chiều.",
+    ],
+    en: [
+      "Please wear a safety helmet before entering this area.",
+      "This shipment needs to be delivered before three PM.",
+      "Stop the machine right away if it overheats.",
+    ],
+    zh: [
+      "进入该区域前请佩戴安全帽。",
+      "这批货需要在下午三点前送达。",
+    ],
+    ko: [
+      "이 구역에 들어가기 전에 안전모를 착용해 주세요.",
+      "오늘 3번 생산 라인은 정상적으로 가동되고 있습니다.",
+    ],
+  };
+
   const TARGET_SR = 16000;
-  const MIN_SEC = 0.4;
+  const MIN_SEC = 0.25;
   const MAX_SEC = 30;
 
-  const $ = (s) => document.querySelector(s);
-  const app = $(".app");
+  const $ = (s, p = document) => p.querySelector(s);
+  const app = $("#app");
   const feed = $("#feed");
   const empty = $("#empty");
+  const tpl = $("#turnTpl");
   const srcSel = $("#srcLang");
   const tgtSel = $("#tgtLang");
+  const swapBtn = $("#swapBtn");
   const micBtn = $("#micBtn");
-  const halo = $("#micHalo");
+  const halo = $("#halo");
   const statusEl = $("#status");
   const stagesEl = $("#stages");
+  const fileInput = $("#fileInput");
   const canvas = $("#wave");
   const ctx2d = canvas.getContext("2d");
-  const fileInput = $("#fileInput");
-  const tpl = $("#turnTpl");
-
-  // ---------- storage (per-viewer prefs, optional) ----------
-  const store = {
-    get(k, d) { try { const v = localStorage.getItem("ov." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
-    set(k, v) { try { localStorage.setItem("ov." + k, JSON.stringify(v)); } catch {} },
-  };
+  const sampleChipsEl = $("#sampleChips");
+  const stackInfoEl = $("#stackInfo");
+  const textForm = $("#textForm");
+  const textInput = $("#textInput");
+  const sendTextBtn = $("#sendTextBtn");
+  const dropOverlay = $("#dropOverlay");
 
   // ---------- theme ----------
-  const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
-  function applyTheme(t) { document.documentElement.dataset.theme = t; }
-  applyTheme(store.get("theme", sysDark.matches ? "dark" : "light"));
+  const root = document.documentElement;
   $("#themeBtn").addEventListener("click", () => {
-    const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(t); store.set("theme", t);
+    const dark = root.dataset.theme === "dark";
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch {}
   });
 
   // ---------- autoplay ----------
-  let autoplay = store.get("autoplay", true);
-  const apBtn = $("#autoplayBtn");
-  apBtn.setAttribute("aria-pressed", String(autoplay));
-  apBtn.addEventListener("click", () => {
-    autoplay = !autoplay; store.set("autoplay", autoplay);
-    apBtn.setAttribute("aria-pressed", String(autoplay));
-    toast(autoplay ? "Tự động phát: bật" : "Tự động phát: tắt");
+  let autoplay = true;
+  try { autoplay = localStorage.getItem("autoplay") !== "0"; } catch {}
+  const autoplayBtn = $("#autoplayBtn");
+  const syncAutoplay = () => {
+    autoplayBtn.setAttribute("aria-pressed", String(autoplay));
+    autoplayBtn.title = "Tự động phát giọng dịch: " + (autoplay ? "Bật" : "Tắt");
+  };
+  syncAutoplay();
+  autoplayBtn.addEventListener("click", () => {
+    autoplay = !autoplay;
+    try { localStorage.setItem("autoplay", autoplay ? "1" : "0"); } catch {}
+    syncAutoplay();
   });
 
-  // ---------- languages ----------
-  // Supported directions (mirror of PAIRS in engine.py): Vietnamese <-> each foreign language.
-  const PAIRS = [["vi", "en"], ["en", "vi"], ["vi", "zh"], ["zh", "vi"], ["vi", "ko"], ["ko", "vi"]];
-  const homeLang = "vi"; // Vietnamese speaker's turns sit on the right
+  // ---------- language pairs ----------
+  const homeLang = "vi";
+  const partnerOf = (s) => PAIRS.filter(([a]) => a === s).map(([, b]) => b);
 
-
-  // Source lists every language; target lists only the languages valid for the current source.
-  for (const k of Object.keys(LANGS)) srcSel.add(new Option(LANGS[k].name, k));
-
-  let prevSrc, prevTgt;
-  function setPair(src, tgt) {
-    srcSel.value = src;
-    const ts = PAIRS.filter((p) => p[0] === src).map((p) => p[1]);
-    tgtSel.replaceChildren(...ts.map((k) => new Option(LANGS[k].name, k)));
-    // keep the requested target if valid, else the foreign language just spoken, else the first option
-    tgtSel.value = ts.includes(tgt) ? tgt : ts.includes(prevSrc) ? prevSrc : ts[0];
-    prevSrc = srcSel.value; prevTgt = tgtSel.value;
-    store.set("src", prevSrc); store.set("tgt", prevTgt);
+  function fillSelect(sel, codes, value) {
+    sel.innerHTML = "";
+    for (const c of codes) {
+      const o = new Option(LANGS[c]?.name || c, c);
+      sel.add(o);
+    }
+    sel.value = codes.includes(value) ? value : codes[0];
   }
 
-  const s0 = store.get("src", "vi");
-  setPair(LANGS[s0] ? s0 : "vi", store.get("tgt", "en"));
+  function renderSampleChips(src) {
+    if (!sampleChipsEl) return;
+    sampleChipsEl.innerHTML = "";
+    for (const phrase of (SAMPLES_BY_LANG[src] || SAMPLES_BY_LANG.vi)) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "sample-chip";
+      btn.textContent = phrase;
+      btn.addEventListener("click", () => runText(phrase));
+      sampleChipsEl.appendChild(btn);
+    }
+  }
+
+  function syncQuickPairChips() {
+    const [s, t] = pair0();
+    document.querySelectorAll(".pair-chip").forEach((b) => {
+      const [a, c] = b.dataset.pair.split("-");
+      const active = (s === a && t === c) || (s === c && t === a);
+      b.classList.toggle("active", active);
+    });
+    renderSampleChips(s);
+  }
+
+  function setPair(src, tgt) {
+    fillSelect(srcSel, Object.keys(LANGS), src);
+    fillSelect(tgtSel, partnerOf(srcSel.value), tgt);
+    try { localStorage.setItem("pair", srcSel.value + "-" + tgtSel.value); } catch {}
+    syncQuickPairChips();
+  }
+
   const pair0 = () => [srcSel.value, tgtSel.value];
+  {
+    let saved = "vi-en";
+    try { saved = localStorage.getItem("pair") || saved; } catch {}
+    const [a, b] = saved.split("-");
+    setPair(LANGS[a] ? a : "vi", b);
+  }
 
   srcSel.addEventListener("change", () => setPair(srcSel.value, tgtSel.value));
-  tgtSel.addEventListener("change", () => setPair(srcSel.value, tgtSel.value));
-  const swapBtn = $("#swapBtn");
-  function swap() {
-    setPair(tgtSel.value, srcSel.value);
+  tgtSel.addEventListener("change", () => {
+    try { localStorage.setItem("pair", srcSel.value + "-" + tgtSel.value); } catch {}
+    syncQuickPairChips();
+  });
+  swapBtn.addEventListener("click", () => {
+    const [s, t] = pair0();
+    setPair(t, s);
     swapBtn.classList.toggle("spin");
-  }
-  swapBtn.addEventListener("click", swap);
-
-  // ---------- health ----------
-  fetch("/api/health").then((r) => r.json()).then((h) => {
-    $("#enginePill").classList.add("ok");
-    $("#engineName").textContent = h.engine + " · Offline";
-  }).catch(() => {
-    $("#enginePill").classList.add("err");
-    $("#engineName").textContent = "Mất kết nối server";
   });
 
-  // ---------- toast ----------
+  document.querySelectorAll(".pair-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const [a, b] = btn.dataset.pair.split("-");
+      const [s, t] = pair0();
+      if (s === a && t === b) setPair(b, a);
+      else setPair(a, b);
+    });
+  });
+
+  // ---------- health check ----------
+  fetch("/api/health").then((r) => r.json()).then((h) => {
+    if (Array.isArray(h.pairs) && h.pairs.length) {
+      PAIRS = h.pairs;
+      setPair(srcSel.value, tgtSel.value);
+    }
+    const pill = $("#enginePill");
+    const isMock = (h.engine || "").toLowerCase().includes("mock");
+    pill.classList.add(isMock ? "mock" : "ok");
+    $("#engineName").textContent = (h.engine || "Ready") + " · Offline";
+    const info = h.info || {};
+    const parts = [];
+    if (info.asr) parts.push(`ASR: ${info.asr}`);
+    if (info.mt) parts.push(`MT: ${info.mt}`);
+    if (info.tts) parts.push(`TTS: ${info.tts}`);
+    if (parts.length && stackInfoEl) {
+      stackInfoEl.textContent = parts.join(" · ");
+      pill.title = parts.join("\n");
+    } else if (stackInfoEl) {
+      stackInfoEl.textContent = isMock ? "Chế độ mô phỏng UI (Mock)" : "Pipeline NPU / CPU Offline";
+    }
+  }).catch(() => {
+    $("#engineName").textContent = "Mất kết nối server";
+    toast("Không kết nối được server /api/health");
+  });
+
   let toastT;
   function toast(msg) {
     const el = $("#toast");
-    el.textContent = msg; el.classList.add("show");
-    clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2400);
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(() => el.classList.remove("show"), 2600);
   }
 
   // ---------- state ----------
   let state = "idle"; // idle | recording | busy
-  function setState(s) {
+  let busyTimerId = null;
+  let busyStart = 0;
+
+  function setState(s, hintText) {
     state = s;
     app.classList.toggle("recording", s === "recording");
     app.classList.toggle("busy", s === "busy");
     micBtn.setAttribute("aria-label", s === "recording" ? "Dừng và dịch" : s === "busy" ? "Đang xử lý" : "Bắt đầu ghi âm");
-    if (s === "idle") statusEl.textContent = "Sẵn sàng";
+    sendTextBtn.disabled = s !== "idle";
+    if (s === "idle") {
+      clearInterval(busyTimerId);
+      busyTimerId = null;
+      statusEl.textContent = "Sẵn sàng";
+    } else if (s === "busy" && hintText) {
+      statusEl.textContent = hintText;
+    }
+  }
+
+  function startBusyClock(labelFn) {
+    clearInterval(busyTimerId);
+    busyStart = performance.now();
+    statusEl.textContent = labelFn(0);
+    busyTimerId = setInterval(() => {
+      const sec = (performance.now() - busyStart) / 1000;
+      statusEl.textContent = labelFn(sec);
+    }, 250);
   }
 
   // ---------- recording (raw PCM via AudioWorklet) ----------
@@ -146,7 +249,6 @@
     worklet = new AudioWorkletNode(audioCtx, "rec");
     worklet.port.onmessage = (e) => chunks.push(e.data);
     srcNode.connect(analyser); srcNode.connect(worklet);
-    // worklet must be pulled by the graph; route through a muted gain
     const mute = audioCtx.createGain(); mute.gain.value = 0; worklet.connect(mute).connect(audioCtx.destination);
     recStart = performance.now();
     levels.fill(0);
@@ -155,10 +257,10 @@
     tick();
     timerId = setInterval(() => {
       const s = (performance.now() - recStart) / 1000;
-      statusEl.textContent = "Đang nghe… " + fmt(s);
+      statusEl.textContent = "Đang thu âm… " + fmt(s) + " (nhấn Space hoặc nút đỏ để dừng)";
       if (s >= MAX_SEC) stopRec();
     }, 100);
-    statusEl.textContent = "Đang nghe… 0:00";
+    statusEl.textContent = "Đang thu âm… 0:00";
   }
 
   function teardown() {
@@ -177,7 +279,7 @@
     const pcm = new Float32Array(len); let o = 0;
     for (const c of chunks) { pcm.set(c, o); o += c.length; }
     chunks = [];
-    if (cancel) { setState("idle"); toast("Đã huỷ"); return; }
+    if (cancel) { setState("idle"); toast("Đã huỷ ghi âm"); return; }
     if (len / rate < MIN_SEC) { setState("idle"); toast("Đoạn ghi quá ngắn — hãy nói lâu hơn"); return; }
     const wav = encodeWav(await resample(pcm, rate), TARGET_SR);
     run(wav);
@@ -219,7 +321,7 @@
     analyser.getFloatTimeDomainData(td);
     let sum = 0; for (let i = 0; i < td.length; i++) sum += td[i] * td[i];
     const rms = Math.min(1, Math.sqrt(sum / td.length) * 6);
-    halo.style.transform = `scale(${1 + rms * 0.55})`;
+    halo.style.transform = `scale(${1 + rms * 0.52})`;
     if ((frame++ & 1) === 0) { levels.copyWithin(0, 1); levels[BARS - 1] = rms; }
     draw();
     rafId = requestAnimationFrame(tick);
@@ -228,12 +330,11 @@
     const W = canvas.clientWidth, H = canvas.clientHeight, mid = H / 2;
     ctx2d.clearRect(0, 0, W, H);
     const color = getComputedStyle(document.documentElement).getPropertyValue("--rec").trim();
-    const half = BARS / 2, gap = 56, bw = 3, step = (W / 2 - gap) / half;
+    const half = BARS / 2, gap = 50, bw = 3, step = (W / 2 - gap) / half;
     for (let i = 0; i < half; i++) {
-      // newest levels nearest the mic, fanning outward on both sides
       const lv = levels[BARS - 1 - i * 2] || 0;
       const h = Math.max(3, lv * (H - 10));
-      ctx2d.globalAlpha = 0.85 - (i / half) * 0.65;
+      ctx2d.globalAlpha = 0.88 - (i / half) * 0.65;
       ctx2d.fillStyle = color;
       for (const x of [W / 2 + gap + i * step, W / 2 - gap - i * step - bw]) {
         roundRect(x, mid - h / 2, bw, h, 1.5);
@@ -241,7 +342,11 @@
     }
     ctx2d.globalAlpha = 1;
   }
-  function roundRect(x, y, w, h, r) { ctx2d.beginPath(); ctx2d.roundRect ? ctx2d.roundRect(x, y, w, h, r) : ctx2d.rect(x, y, w, h); ctx2d.fill(); }
+  function roundRect(x, y, w, h, r) {
+    ctx2d.beginPath();
+    ctx2d.roundRect ? ctx2d.roundRect(x, y, w, h, r) : ctx2d.rect(x, y, w, h);
+    ctx2d.fill();
+  }
 
   // ---------- stages ----------
   const stageLis = {};
@@ -256,27 +361,64 @@
 
   // ---------- turns ----------
   let turnCount = 0;
-  function newTurn(src, tgt, inputBlob) {
+  function createTurn(src, tgt, inputBlob, modeLabel) {
     empty.hidden = true;
     const el = tpl.content.firstElementChild.cloneNode(true);
     el.classList.add(src === homeLang ? "right" : "left");
-    el.querySelector(".m-src").textContent = LANGS[src].code;
-    el.querySelector(".m-tgt").textContent = LANGS[tgt].code;
+    el.querySelector(".m-src").textContent = LANGS[src]?.code || src.toUpperCase();
+    el.querySelector(".m-tgt").textContent = LANGS[tgt]?.code || tgt.toUpperCase();
     el.querySelector(".m-time").textContent = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
-    const origUrl = URL.createObjectURL(inputBlob);
-    const inBtn = el.querySelector(".play-in");
-    setDuration(inBtn, origUrl);
-    inBtn.addEventListener("click", () => player.toggle(inBtn, origUrl));
+    if (modeLabel) {
+      const m = el.querySelector(".m-mode");
+      m.textContent = modeLabel;
+      m.hidden = false;
+    }
+    if (inputBlob) {
+      const origUrl = URL.createObjectURL(inputBlob);
+      const inBtn = el.querySelector(".play-in");
+      inBtn.hidden = false;
+      setDuration(inBtn, origUrl);
+      inBtn.addEventListener("click", () => player.toggle(inBtn, origUrl));
+    }
     el.dataset.src = src; el.dataset.tgt = tgt;
+    el._stageMs = {};
     wireEdit(el);
     feed.appendChild(el);
     turnCount++;
     requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "end" }));
     return el;
   }
+
+  function renderTurnStagePills(el) {
+    const box = el.querySelector(".turn-stage-pills");
+    const entries = Object.entries(el._stageMs || {});
+    if (!entries.length) return;
+    box.innerHTML = "";
+    for (const [k, v] of entries) {
+      const s = document.createElement("span");
+      s.className = "stage-mini";
+      s.textContent = `${k.toUpperCase()} ${v}ms`;
+      box.appendChild(s);
+    }
+    box.hidden = false;
+  }
+
   function setText(el, sel, text, lang) {
     const p = el.querySelector(sel);
-    p.textContent = text; p.lang = lang; p.classList.add("reveal");
+    p.textContent = text; p.lang = lang; p.style.color = ""; p.style.fontSize = ""; p.classList.add("reveal");
+  }
+
+  function wireCopy(turn, getTranslated) {
+    turn.querySelector(".a-copy").onclick = async (ev) => {
+      try {
+        await navigator.clipboard.writeText(turn._translated || getTranslated());
+        const b = ev.currentTarget; b.classList.add("done");
+        setTimeout(() => b.classList.remove("done"), 1200);
+        toast("Đã sao chép bản dịch");
+      } catch {
+        toast("Không sao chép được");
+      }
+    };
   }
 
   // ---------- playback (one at a time) ----------
@@ -308,7 +450,9 @@
     const start = () => {
       turn.classList.add("editing"); p.contentEditable = "plaintext-only";
       if (p.contentEditable !== "plaintext-only") p.contentEditable = "true";
-      p.focus(); const r = document.createRange(); r.selectNodeContents(p); r.collapse(false); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      p.focus();
+      const r = document.createRange(); r.selectNodeContents(p); r.collapse(false);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
       statusEl.textContent = "Sửa chữ rồi bấm Enter hoặc ✓ để dịch lại (Esc: huỷ)";
     };
     const stop = () => { turn.classList.remove("editing"); p.contentEditable = "false"; };
@@ -317,14 +461,18 @@
       if (!turn.classList.contains("editing")) return;
       if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); retranslate(turn); }
       else if (e.key === "Escape") { e.preventDefault(); p.textContent = p.dataset.orig || p.textContent; stop(); statusEl.textContent = "Sẵn sàng"; }
-      e.stopPropagation();                                                     // Space must not start push-to-talk while typing
+      e.stopPropagation();
     });
     p.addEventListener("keyup", (e) => { if (turn.classList.contains("editing")) e.stopPropagation(); });
     turn._stopEdit = stop;
   }
 
   async function readEvents(res, onEvent) {
-    if (!res.ok || !res.body) { let m = "Server trả lỗi " + res.status; try { m += ": " + (await res.json()).error; } catch {} throw new Error(m); }
+    if (!res.ok || !res.body) {
+      let m = "Server trả lỗi " + res.status;
+      try { m += ": " + (await res.json()).error; } catch {}
+      throw new Error(m);
+    }
     const reader = res.body.getReader(), dec = new TextDecoder(); let buf = "";
     for (;;) {
       const { value, done } = await reader.read(); if (done) break;
@@ -341,71 +489,117 @@
     const p = turn.querySelector(".src-text"), text = p.textContent.trim(), src = turn.dataset.src, tgt = turn.dataset.tgt;
     turn._stopEdit();
     if (!text) return toast("Chữ trống");
-    setState("busy"); resetStages(); stageDone("asr", "sửa tay"); stageActive("mt"); statusEl.textContent = "Đang dịch lại…";
+    setState("busy"); resetStages(); stageDone("asr", "sửa tay"); stageActive("mt");
+    startBusyClock((s) => `Đang dịch lại… ${s.toFixed(1)}s`);
     const out = turn.querySelector(".tgt-text"); out.innerHTML = '<span class="skel"></span>'; turn.classList.remove("error");
     const pb = turn.querySelector(".play-out"); pb.disabled = true;
+    turn._stageMs = {};
     try {
       const res = await fetch(`/api/text?src=${src}&tgt=${tgt}`, { method: "POST", body: JSON.stringify({ text }), headers: { "Content-Type": "application/json" } });
       await readEvents(res, (ev) => {
-        if (ev.stage === "mt") { setText(turn, ".tgt-text", ev.text, tgt); turn._translated = ev.text; stageDone("mt", ev.ms); stageActive("tts"); }
-        else if (ev.stage === "tts") { stageDone("tts", ev.ms); attachAudio(turn, ev.audio); }
-        else if (ev.stage === "done") { turn.querySelector(".m-lat").textContent = (ev.total_ms / 1000).toFixed(2) + " s (sửa)"; }
+        if (ev.stage === "mt") {
+          setText(turn, ".tgt-text", ev.text, tgt);
+          turn._translated = ev.text; turn._stageMs.mt = ev.ms;
+          stageDone("mt", ev.ms); stageActive("tts");
+          startBusyClock((s) => `Đang tạo giọng nói (TTS)… ${s.toFixed(1)}s`);
+          turn.querySelector(".a-copy").disabled = false;
+        } else if (ev.stage === "tts") {
+          turn._stageMs.tts = ev.ms; stageDone("tts", ev.ms); attachAudio(turn, ev.audio);
+        } else if (ev.stage === "done") {
+          turn.querySelector(".m-lat").textContent = (ev.total_ms / 1000).toFixed(2) + " s (sửa)";
+          renderTurnStagePills(turn);
+        }
       });
-      if (!p.querySelector(".edited-note")) { const n = document.createElement("small"); n.className = "edited-note"; n.textContent = "đã sửa tay"; p.after(n); }
+      if (!turn.querySelector(".edited-note")) { const n = document.createElement("small"); n.className = "edited-note"; n.textContent = "Đã sửa tay & dịch lại"; p.after(n); }
     } catch (e) {
-      out.textContent = "Không dịch được. " + (e.message || ""); turn.classList.add("error"); toast("Lỗi: " + (e.message || "không rõ"));
+      out.textContent = "Không dịch được: " + (e.message || ""); out.style.color = "var(--rec)"; out.style.fontSize = "14px";
+      turn.classList.add("error"); toast("Lỗi: " + (e.message || "không rõ"));
       for (const li of Object.values(stageLis)) if (li.className === "active") li.className = "";
     }
-    setState("idle"); statusEl.textContent = "Sẵn sàng";
-    setTimeout(() => { if (state === "idle") hideStages(); }, 3500);
+    setState("idle");
+    setTimeout(() => { if (state === "idle") hideStages(); }, 4000);
   }
 
-  // ---------- pipeline call ----------
-  async function run(wavBlob) {
+  // ---------- quick text translation (POST /api/text) ----------
+  async function runText(rawText) {
+    const text = (rawText || "").trim();
+    if (!text) return;
+    if (state !== "idle") return toast("Đang bận, chờ lượt hiện tại xong");
     const [src, tgt] = pair0();
-    setState("busy");
-    resetStages();
-    stageActive("asr");
-    statusEl.textContent = "Đang xử lý…";
-    const turn = newTurn(src, tgt, wavBlob);
+    setState("busy"); resetStages(); stageDone("asr", "nhập tay"); stageActive("mt");
+    startBusyClock((s) => `Đang dịch máy (${s.toFixed(1)}s)…`);
+    const turn = createTurn(src, tgt, null, "Văn bản");
+    setText(turn, ".src-text", text, src);
+    turn.querySelector(".a-edit").disabled = false;
     let translated = "";
+    wireCopy(turn, () => translated);
 
     try {
-      const res = await fetch(`/api/translate?src=${src}&tgt=${tgt}`, { method: "POST", body: wavBlob, headers: { "Content-Type": "audio/wav" } });
-      if (!res.ok || !res.body) throw new Error("Server trả lỗi " + res.status);
-      const reader = res.body.getReader(), dec = new TextDecoder();
-      let buf = "";
-      for (;;) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        buf += dec.decode(value, { stream: true });
-        let i;
-        while ((i = buf.indexOf("\n")) >= 0) {
-          const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1);
-          if (!line) continue;
-          const ev = JSON.parse(line);
-          if (ev.stage === "asr") { setText(turn, ".src-text", ev.text, src); stageDone("asr", ev.ms); stageActive("mt"); turn.querySelector(".a-edit").disabled = false; }
-          else if (ev.stage === "mt") { translated = ev.text; setText(turn, ".tgt-text", ev.text, tgt); stageDone("mt", ev.ms); stageActive("tts"); turn.querySelector(".a-copy").disabled = false; }
-          else if (ev.stage === "tts") { stageDone("tts", ev.ms); attachAudio(turn, ev.audio); }
-          else if (ev.stage === "done") { turn.querySelector(".m-lat").textContent = (ev.total_ms / 1000).toFixed(2) + " s"; }
-          else if (ev.stage === "error") throw new Error(ev.message);
+      const res = await fetch(`/api/text?src=${src}&tgt=${tgt}`, { method: "POST", body: JSON.stringify({ text }), headers: { "Content-Type": "application/json" } });
+      await readEvents(res, (ev) => {
+        if (ev.stage === "mt") {
+          translated = ev.text; turn._translated = ev.text; turn._stageMs.mt = ev.ms;
+          setText(turn, ".tgt-text", ev.text, tgt); stageDone("mt", ev.ms); stageActive("tts");
+          startBusyClock((s) => `Đang tổng hợp giọng nói (TTS)… ${s.toFixed(1)}s`);
+          turn.querySelector(".a-copy").disabled = false;
+        } else if (ev.stage === "tts") {
+          turn._stageMs.tts = ev.ms; stageDone("tts", ev.ms); attachAudio(turn, ev.audio);
+        } else if (ev.stage === "done") {
+          turn.querySelector(".m-lat").textContent = (ev.total_ms / 1000).toFixed(2) + " s";
+          renderTurnStagePills(turn);
         }
-      }
+      });
     } catch (e) {
       turn.classList.add("error");
       turn.querySelectorAll(".skel").forEach((s) => s.remove());
       const p = turn.querySelector(".tgt-text");
-      if (!translated) { p.textContent = "Không dịch được. " + (e.message || ""); p.style.color = "var(--rec)"; p.style.fontSize = "14px"; }
+      if (!translated) { p.textContent = "Không dịch được: " + (e.message || ""); p.style.color = "var(--rec)"; p.style.fontSize = "14px"; }
       for (const li of Object.values(stageLis)) if (li.className === "active") li.className = "";
       toast("Lỗi: " + (e.message || "không rõ"));
     }
     setState("idle");
-    setTimeout(() => { if (state === "idle") hideStages(); }, 3500);
+    setTimeout(() => { if (state === "idle") hideStages(); }, 4000);
+  }
 
-    turn.querySelector(".a-copy").onclick = async (ev) => {
-      try { await navigator.clipboard.writeText(turn._translated || translated); const b = ev.currentTarget; b.classList.add("done"); setTimeout(() => b.classList.remove("done"), 1200); toast("Đã sao chép"); }
-      catch { toast("Không sao chép được"); }
-    };
+  // ---------- speech pipeline call (POST /api/translate) ----------
+  async function run(wavBlob) {
+    const [src, tgt] = pair0();
+    setState("busy"); resetStages(); stageActive("asr");
+    startBusyClock((s) => `Đang nhận dạng giọng nói (ASR)… ${s.toFixed(1)}s`);
+    const turn = createTurn(src, tgt, wavBlob, null);
+    let translated = "";
+    wireCopy(turn, () => translated);
+
+    try {
+      const res = await fetch(`/api/translate?src=${src}&tgt=${tgt}`, { method: "POST", body: wavBlob, headers: { "Content-Type": "audio/wav" } });
+      await readEvents(res, (ev) => {
+        if (ev.stage === "asr") {
+          turn._stageMs.asr = ev.ms;
+          setText(turn, ".src-text", ev.text, src); stageDone("asr", ev.ms); stageActive("mt");
+          startBusyClock((s) => s > 4 ? `Đang dịch máy NLLB (lần đầu nạp model chờ ~20s)… ${s.toFixed(0)}s` : `Đang dịch máy… ${s.toFixed(1)}s`);
+          turn.querySelector(".a-edit").disabled = false;
+        } else if (ev.stage === "mt") {
+          translated = ev.text; turn._translated = ev.text; turn._stageMs.mt = ev.ms;
+          setText(turn, ".tgt-text", ev.text, tgt); stageDone("mt", ev.ms); stageActive("tts");
+          startBusyClock((s) => `Đang tổng hợp giọng nói (TTS)… ${s.toFixed(1)}s`);
+          turn.querySelector(".a-copy").disabled = false;
+        } else if (ev.stage === "tts") {
+          turn._stageMs.tts = ev.ms; stageDone("tts", ev.ms); attachAudio(turn, ev.audio);
+        } else if (ev.stage === "done") {
+          turn.querySelector(".m-lat").textContent = (ev.total_ms / 1000).toFixed(2) + " s";
+          renderTurnStagePills(turn);
+        }
+      });
+    } catch (e) {
+      turn.classList.add("error");
+      turn.querySelectorAll(".skel").forEach((s) => s.remove());
+      const p = turn.querySelector(".tgt-text");
+      if (!translated) { p.textContent = "Không dịch được: " + (e.message || ""); p.style.color = "var(--rec)"; p.style.fontSize = "14px"; }
+      for (const li of Object.values(stageLis)) if (li.className === "active") li.className = "";
+      toast("Lỗi: " + (e.message || "không rõ"));
+    }
+    setState("idle");
+    setTimeout(() => { if (state === "idle") hideStages(); }, 4000);
   }
 
   function attachAudio(turn, b64) {
@@ -426,6 +620,14 @@
   const fmt = (s) => { s = Math.max(0, s || 0); return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0"); };
 
   // ---------- inputs ----------
+  textForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = textInput.value.trim();
+    if (!val || state !== "idle") return;
+    textInput.value = "";
+    runText(val);
+  });
+
   micBtn.addEventListener("click", () => {
     if (state === "idle") startRec(); else if (state === "recording") stopRec();
   });
@@ -440,7 +642,7 @@
   window.addEventListener("keyup", (e) => {
     if (e.code === "Space" && spaceHeld) { e.preventDefault(); spaceHeld = false; stopRec(); }
   });
-  const isTyping = (e) => /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+  const isTyping = (e) => /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.target.isContentEditable;
 
   $("#uploadBtn").addEventListener("click", () => state === "idle" && fileInput.click());
   fileInput.addEventListener("change", async () => {
@@ -455,13 +657,26 @@
     } catch { toast("Không đọc được file âm thanh này"); }
   });
 
-  // drag & drop an audio file anywhere
+  // drag & drop an audio file anywhere with visual overlay
+  let dragDepth = 0;
+  window.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    if (state === "idle") { dragDepth++; dropOverlay.classList.add("show"); }
+  });
   window.addEventListener("dragover", (e) => e.preventDefault());
+  window.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dragDepth = Math.max(0, dragDepth - 1);
+    if (dragDepth === 0) dropOverlay.classList.remove("show");
+  });
   window.addEventListener("drop", (e) => {
     e.preventDefault();
+    dragDepth = 0; dropOverlay.classList.remove("show");
     const f = e.dataTransfer.files[0];
-    if (f && f.type.startsWith("audio/") && state === "idle") {
+    if (f && (f.type.startsWith("audio/") || /\.(wav|mp3|flac|m4a|ogg)$/i.test(f.name)) && state === "idle") {
       const dt = new DataTransfer(); dt.items.add(f); fileInput.files = dt.files; fileInput.dispatchEvent(new Event("change"));
+    } else if (f) {
+      toast("Vui lòng chọn file âm thanh (.wav, .mp3, .flac)");
     }
   });
 

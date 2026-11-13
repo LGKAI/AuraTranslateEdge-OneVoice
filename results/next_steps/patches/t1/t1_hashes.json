@@ -1,6 +1,0 @@
-{
-  "tools/evaluate_asr_integration.py": "fb494b9b2fc125fc7fb60a0237f90eb8964efa0e442e9550bfa00ae64e66ff3e",
-  "tools/rollback_baseline.py": "63db859fb56617b9fa4cd8534960845b94a0ae4a3ad04bc09f290f089950dc3c",
-  "tests/test_asr_evaluation_contract.py": "15b90c50d2550349f98c51b10ad8db068eaf58a4ad4e1ff95a1e6e8cb6934df2",
-  "results/next_steps/manifests/asr_integration_6dir.json": "d6790b68e32b899744fe5ef51149927ddbe808a23e2c6c7c4a293cc29806e802"
-}

@@ -205,12 +205,9 @@ AuraTranslateEdge-OneVoice/
 ├── tests/                             # Bộ test tích hợp toàn hệ thống (VAD/ORT profiles, Hybrid TTS, Entities)
 ├── models/                            # Manifest & cấu hình mô hình CPU tham chiếu (`models.cpu.json`)
 ├── data/                              # Dữ liệu đo kiểm & tập mẫu (`phase3_sample_dataset`, `asr`, `mt`, `noise`)
-├── docs/                              # Tài liệu kỹ thuật, workflow & hồ sơ đề án
+├── docs/                              # Tài liệu kỹ thuật & hồ sơ đề án (Phase 1–3)
 ├── src/                               # Mã nguồn nghiên cứu & lượng tử hoá theo từng bước (`step1_asr` .. `step5_pipeline`)
 ├── third_party/                       # Mã nguồn & trọng số bên thứ ba (`gtcrn`, `zipformer`)
-├── research/                          # Benchmark chuẩn hoá định dạng TTS đa ngữ (`tts_format_benchmark`)
-├── reports/                           # Báo cáo đánh giá tích hợp ASR, TTS Hybrid & audio audit
-├── results/                           # Dữ liệu log/JSON đối chứng E2E và benchmark tự động
 └── outputs/                           # Log kết quả, báo cáo đo đạc và kết quả kiểm thử
 ```
 
@@ -220,10 +217,10 @@ AuraTranslateEdge-OneVoice/
 
 ### 6.1. Chạy Web Demo Pipeline trên Localhost (Windows / Linux)
 
-Để quay video demo hoặc thử nghiệm giao diện streaming trực tiếp trên trình duyệt (`http://localhost:8000` — hỗ trợ micro, kéo/thả file âm thanh, và chỉnh sửa text ASR dịch lại):
+Để quay video demo hoặc thử nghiệm giao diện streaming trực tiếp trên trình duyệt (`http://localhost:8000` — hỗ trợ micro/Spacebar, kéo thả file âm thanh, nhập nhanh văn bản, câu mẫu và sửa text ASR dịch lại):
 
 ```bash
-# 1. Chạy Web Demo với model AI cục bộ trên máy (Zipformer + SenseVoice + NLLB-600M + Piper/Supertonic)
+# 1. Chạy Web Demo với model AI cục bộ trên máy (Zipformer + SenseVoice + NLLB-600M + Piper/Supertonic, ưu tiên MeloTTS ZH nếu đã cài)
 python web_demo/server.py
 
 # Hoặc chạy chế độ Mock để test/quay nhanh giao diện không cần chờ nạp model (PowerShell):

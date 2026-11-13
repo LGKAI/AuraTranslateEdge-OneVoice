@@ -1,9 +1,0 @@
-{
-  "id": "79450e463e2a49088957abb0ce55f80d",
-  "status": "error",
-  "stage": "Chưa xử lý được bản thu",
-  "src": "en",
-  "tgt": "vi",
-  "created": 1794476271.725751,
-  "error": "Bản thu không có tín hiệu. Hãy kiểm tra mic và nói lại."
-}

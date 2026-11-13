@@ -18,6 +18,17 @@ import evaluate_asr_integration as harness
 import rollback_baseline
 
 
+def _make_freeze(base: Path, target_rel: str = "README.md", root: Path = ROOT) -> Path:
+    """Create a self-contained baseline freeze manifest inside a temp directory for isolated tests."""
+    sha = hashlib.sha256((root / target_rel).read_bytes()).hexdigest()
+    freeze = base / "freeze_manifest.json"
+    freeze.write_text(
+        json.dumps({"freeze_id": "test_freeze", "evidence_files": {target_rel: {"sha256": sha}}}),
+        encoding="utf-8",
+    )
+    return freeze
+
+
 class AsrEvaluationContractTests(unittest.TestCase):
     def test_rejects_reserved_before_after_and_existing_run_id(self):
         with tempfile.TemporaryDirectory() as td:
@@ -86,7 +97,7 @@ class AsrEvaluationContractTests(unittest.TestCase):
                 effective_options={"source_mode": "0", "vad_profile": "legacy", "ort_policy": "auto"},
                 root=base,
                 cache_path=base / "cache.json",
-                baseline_freeze_path=ROOT / "results/next_steps/baseline_freeze/freeze_manifest.json",
+                baseline_freeze_path=_make_freeze(base, "in.wav", root=base),
                 source_paths=[src],
                 model_paths=[mdl],
             )
@@ -159,7 +170,7 @@ class AsrEvaluationContractTests(unittest.TestCase):
                     vad_profile="legacy",
                     ort_policy="auto",
                     cache_path=base / "cache.json",
-                    baseline_freeze_path=ROOT / "results/next_steps/baseline_freeze/freeze_manifest.json",
+                    baseline_freeze_path=_make_freeze(base),
                     engine_factory=lambda *_: (FakeReg(), FakeEngine()),
                     segment_fn=lambda wav, max_s, prof: [(0, len(wav))],
                 )
@@ -262,7 +273,7 @@ class AsrEvaluationContractTests(unittest.TestCase):
                 vad_profile="legacy",
                 ort_policy="auto",
                 cache_path=base / "cache.json",
-                baseline_freeze_path=ROOT / "results/next_steps/baseline_freeze/freeze_manifest.json",
+                baseline_freeze_path=_make_freeze(base),
                 expected_candidate_rev="0" * 64,
             )
             self.assertNotEqual(code, 0)
@@ -318,7 +329,7 @@ class AsrEvaluationContractTests(unittest.TestCase):
                     manifest_path=manifest,
                     out_root=out_root,
                     cache_path=base / "cache.json",
-                    baseline_freeze_path=ROOT / "results/next_steps/baseline_freeze/freeze_manifest.json",
+                    baseline_freeze_path=_make_freeze(base),
                     engine_factory=lambda *_: (FakeReg(), MutatingEngine()),
                     segment_fn=lambda w, m, p: [(0, len(w))],
                 )
@@ -504,7 +515,7 @@ class AsrEvaluationContractTests(unittest.TestCase):
             code_ok, sum_ok = ablate_profiles.run_ablation(
                 step="vad", run_id="r3_valid_run", split_path=split_path, out_root=out_root,
                 repeats=1, seed=42, cache_path=base / "cache.json",
-                baseline_freeze_path=ROOT / "results/next_steps/baseline_freeze/freeze_manifest.json",
+                baseline_freeze_path=_make_freeze(base),
                 engine_factory=fake_factory, segment_fn=lambda w, m, p: [(0, len(w))],
                 source_paths=[src_dummy], model_paths=[mdl_dummy],
             )

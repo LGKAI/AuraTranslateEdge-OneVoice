@@ -218,8 +218,19 @@ class LocalTorchEngine:
                 dev = "CUDA"
         except Exception:
             pass
+        import importlib.util
+        melo_ok = importlib.util.find_spec("melo") is not None
+        tts_zh = "MeloTTS" if melo_ok else "Piper ZH (fallback)"
         self.name = f"s2s_edge · LOCAL ({dev})"
-        self.info = dict(mode="local", repo_root=self.repo_root, device=dev.lower())
+        self.info = dict(
+            mode="local",
+            repo_root=self.repo_root,
+            device=dev.lower(),
+            asr="Zipformer / SenseVoice",
+            mt="NLLB-200-600M",
+            tts=f"Piper VI · Supertonic EN/KO · {tts_zh}",
+            melo_installed=melo_ok,
+        )
 
     def _get_zipformer(self):
         if self._zipformer is None:

@@ -2,10 +2,10 @@
   "use strict";
 
   const LANGS = {
-    vi: { name: "Tiếng Việt", code: "VI" },
-    en: { name: "English", code: "EN" },
-    zh: { name: "中文 · Mandarin", code: "ZH" },
-    ko: { name: "한국어 · Korean", code: "KO" },
+    vi: { name: "Tiếng Việt - Vietnamese", code: "VI" },
+    en: { name: "Tiếng Anh - English", code: "EN" },
+    zh: { name: "Tiếng Trung - Chinese (中文)", code: "ZH" },
+    ko: { name: "Tiếng Hàn - Korean (한국어)", code: "KO" },
   };
   let PAIRS = [["vi", "en"], ["en", "vi"], ["vi", "zh"], ["zh", "vi"], ["vi", "ko"], ["ko", "vi"]];
 

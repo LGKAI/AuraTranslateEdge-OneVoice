@@ -222,7 +222,7 @@ class LocalTorchEngine:
         melo_src = os.path.join(self.repo_root, "src", "step4_quantization", "tts", "melotts", "MeloTTS")
         melo_onnx = self._find_melo_onnx()
         melo_ok = (importlib.util.find_spec("melo") is not None) or os.path.isdir(melo_src) or (melo_onnx is not None)
-        self.name = f"s2s_edge · LOCAL ({dev})"
+        self.name = "AuraTranslate Engine"
         self.info = dict(
             mode="local",
             repo_root=self.repo_root,

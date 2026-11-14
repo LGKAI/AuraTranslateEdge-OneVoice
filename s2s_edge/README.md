@@ -93,7 +93,7 @@ Tệp cấu hình `models/models.json` ánh xạ tên các thành phần tới �
 |---|---|
 | `s2s_edge/` | Gói thư viện chính: `audio` (I/O, VAD), `asr`, `mt`, `tts`, `textnorm`, `backends` (ONNX Runtime, QNN), `registry`, `pipeline`, `bench`, `__main__` (CLI) |
 | `s2s_dashboard.py` | Web Dashboard trực quan chạy localhost: mic thu âm, dịch văn bản, nghe TTS, đo latency |
-| `docs/VNG_SETUP.md` | Hướng dẫn kết nối và cấu hình thực địa trên phần cứng AIBOX 8550 tại VNG |
+| `docs/HUONG_DAN_CHAY_BOX.md` | Hướng dẫn cài đặt và chạy thực tế trên phần cứng HSPTEK AIBOX 8550 |
 | `tools/recon.sh` | Script tự động khảo sát môi trường (OS, SoC, QNN libs, thiết bị âm thanh, mạng) |
 | `tools/session0.sh` | Chuỗi tự động chạy đầu tiên trên thiết bị, đóng gói log thành `.tgz` |
 | `tools/golden.py` | Tạo và kiểm tra các cặp vector kiểm thử đầu vào - đầu ra (golden test) cho từng graph |

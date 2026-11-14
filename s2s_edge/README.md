@@ -5,7 +5,7 @@ Hỗ trợ 6 chiều dịch: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→v
 
 > **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 trên thiết bị **HSPTEK AIBOX 8550 (SoC Qualcomm QCS8550)** qua Qualcomm AI Hub với QAIRT 2.51. Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
 >
-> **Chạy trên hộp AIBOX 8550 (gói đã gộp, web điều khiển, MT 3.3B, lọc rác ASR/MT): xem `../HUONG_DAN_CHAY_BOX.md`** ở thư mục gốc repo. Sơ đồ file và lệnh chi tiết: `docs/HUONG_DAN.md`, các thay đổi 13/11: `docs/THAY_DOI_VA_CACH_CHAY.md`.
+> **Chạy trên hộp AIBOX 8550 (gói đã gộp, web điều khiển, MT 3.3B, lọc rác ASR/MT): xem [`docs/HUONG_DAN_CHAY_BOX.md`](docs/HUONG_DAN_CHAY_BOX.md)**. Sơ đồ file và lệnh chi tiết: `docs/HUONG_DAN.md`, các thay đổi 13/11: `docs/THAY_DOI_VA_CACH_CHAY.md`.
 
 ---
 

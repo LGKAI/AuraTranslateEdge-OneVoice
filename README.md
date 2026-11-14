@@ -11,7 +11,7 @@ Dự án được đồng thiết kế (hardware-software co-design) bởi độ
 
 > [!IMPORTANT]
 > - **Web Demo trực quan trên Localhost (`web_demo/`):** chạy `python web_demo/server.py` (Windows local models) hoặc `S2S_ENGINE=mock python web_demo/server.py` (chế độ test UI), mở `http://localhost:8000` (xem [`web_demo/README.md`](web_demo/README.md)).
-> - **Triển khai trên HSPTEK AIBOX 8550 (bản gộp ASR + MT 3.3B routing + Hybrid TTS + Web Demo):** xem [`s2s_edge/HUONG_DAN_CHAY_BOX.md`](s2s_edge/HUONG_DAN_CHAY_BOX.md). Trên hộp chỉ cần một lệnh: `bash s2s_edge/start.sh demo`.
+> - **Triển khai trên HSPTEK AIBOX 8550 (bản gộp ASR + MT 3.3B routing + Hybrid TTS + Web Demo):** xem [`s2s_edge/docs/HUONG_DAN_CHAY_BOX.md`](s2s_edge/docs/HUONG_DAN_CHAY_BOX.md). Trên hộp chỉ cần một lệnh: `bash s2s_edge/start.sh demo`.
 
 ---
 
@@ -178,7 +178,7 @@ AuraTranslateEdge-OneVoice/
 │
 ├── s2s_edge/                          # ENGINE TRIỂN KHAI EDGE CHÍNH THỨC (PHASE 3)
 │   ├── README.md                      # Chi tiết kiến trúc NPU Qualcomm Hexagon v73
-│   ├── HUONG_DAN_CHAY_BOX.md          # Hướng dẫn cài đặt và chạy demo trên AIBOX 8550
+│   ├── docs/HUONG_DAN_CHAY_BOX.md     # Hướng dẫn cài đặt và chạy demo trên AIBOX 8550
 │   ├── requirements.txt               # Dependencies tối giản phục vụ chạy on-device
 │   ├── install.sh / start.sh / run_demo.sh  # Scripts triển khai 1 lệnh trên AIBOX 8550
 │   ├── s2s_web.py                     # Giao diện Web Dashboard cục bộ (Torch/CPU fallback)

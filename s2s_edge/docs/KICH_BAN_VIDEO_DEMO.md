@@ -1,176 +1,230 @@
-# Kịch bản Quay Video Demo 30 Phút — AuraTranslate Edge (Phase 3)
+# Kịch Bản Quay Video Demo 30 Phút (Tuần Tự Từng Bước)
 
-- **Đội thi:** Gia Sư Đỉnh Cao
-- **Dự án:** AuraTranslate Edge (OneVoice) — bản dựng `s2s_edge 0.1.0`
-- **Thiết bị demo:** HSPTEK AIBOX 8550 (Qualcomm QCS8550, Hexagon NPU v73, RAM 16 GB LPDDR5x, Ubuntu 22.04 LTS, QAIRT 2.51)
-- **Thời lượng mục tiêu:** 30 phút 00 giây
-- **Căn cứ tiêu chí:** `docs/phase3_prototype_submission_brief.pdf` (Mục 3, 4, 6, 7.1) & `docs/phase3_prototype_submission_draft.md`
+- **Đội thi:** Gia Sư Đỉnh Cao — **Dự án:** AuraTranslate Edge (OneVoice)
+- **Thiết bị trên bàn khi quay:**
+  1. Hộp **HSPTEK AIBOX 8550** (chạy NPU Hexagon v73, nối cáp USB sang laptop).
+  2. **Micro USB RGB ME6S** đặt giữa bàn (dùng để cả nhóm nói trực tiếp khi kiểm thử).
+  3. Laptop **Lenovo LOQ** (hiển thị màn hình điều khiển, đồng thời dùng **loa của laptop Lenovo LOQ** phát âm thanh dịch đầu ra).
+  4. **Điện thoại / Máy quay** (để quay toàn cảnh cả nhóm và lia vào màn hình laptop) + **Phần mềm quay màn hình (OBS)** trên laptop (để lấy hình màn hình rõ nét).
 
----
-
-## I. Bố cục quay & Quy tắc bắt buộc từ Brief
-
-### 1. Quy tắc bắt buộc không được vi phạm
-- **Không cắt dựng / giả lập đoạn chạy demo (Mục 7.1):** Toàn bộ phần từ lúc **ngắt mạng** cho đến hết phần kiểm thử hội thoại và CLI phải quay **1 take liên tục**, hiển thị rõ đồng hồ hệ thống, giao diện web và terminal log để Ban Giám khảo đối chiếu thời gian xử lý thực tế.
-- **Có bằng chứng ngắt mạng ngay trước khi chạy (Mục 7.1):** Quay rõ thao tác tắt Wi-Fi/LAN trên laptop và trên AIBOX 8550 (`nmcli networking off`), chạy `ping 8.8.8.8` báo lỗi không có kết nối.
-- **Bám sát 4 trụ cột điểm (Mục 6):**
-  - **A. Chất lượng dịch Voice-to-Voice (45%):** Trọn vẹn 6 chiều **VI ⇄ EN / KO / ZH** trong hội thoại tự nhiên tại phân xưởng sản xuất FDI.
-  - **B. Hiệu năng On-device (20%):** Thời gian suy luận từng bước (`ASR / MT / TTS`), dung lượng RAM thực tế (`free -h`).
-  - **C. Tích hợp thiết bị & UX (20%):** Giao diện `AuraTranslate Edge` trực quan (1 chạm / giữ `Space`), sửa chữ nhận dạng rồi dịch lại, kéo thả file âm thanh, hoạt động dưới tạp âm nền nhẹ.
-  - **D. Hồ sơ demo (15%):** Quy trình tái lập rõ ràng, nêu trung thực giới hạn hiện tại và lộ trình phát triển.
-
-### 2. Bố cục khung hình (OBS Studio) & Thu âm
-- **Scene 1 — Toàn cảnh (dùng cho Intro `00:00–02:30` & Outro `28:15–30:00`):**
-  - Camera góc rộng quay cả đội ngồi quanh bàn cùng **HSPTEK AIBOX 8550**, laptop điều khiển, loa ngoài và **micro USB** đặt ở trung tâm bàn.
-- **Scene 2 — Picture-in-Picture (dùng xuyên suốt `02:30–28:15`):**
-  - **80% khung hình chính (Screen Capture laptop):**
-    - Bên trái (~60%): Trình duyệt mở **AuraTranslate Edge** (`http://localhost:8000`).
-    - Bên phải (~40%): Terminal SSH/ADB vào AIBOX 8550 hiển thị log xử lý real-time + `free -h`.
-  - **20% góc dưới bên phải (Camera PiP):** Quay cả đội đang ngồi thao tác trên laptop, nói vào micro USB và thấy hộp AIBOX 8550 đang chạy bên cạnh.
-- **Âm thanh:** Thu qua **micro USB** đặt trên bàn (cân chỉnh trước để thu rõ cả giọng thành viên nói vào hệ thống lẫn giọng TTS phát ra từ loa).
+> **Lưu ý quan trọng từ BTC:** Từ lúc tắt mạng (Bước 2) cho đến hết phần chạy test (Bước 4), giữ máy quay và trình quay màn hình chạy **liên tục không cắt ghép** để Ban Giám khảo thấy đúng thời gian xử lý thực tế.
 
 ---
 
-## II. Phân vai & Checklist chuẩn bị trước khi bấm máy
+## BƯỚC 1: INTRO — Mới vô quay toàn cảnh cả nhóm & giới thiệu thiết bị (00:00 – 02:00)
 
-### Phân vai
-- **Vai A (Điều phối & Kỹ thuật):** Chạy lệnh terminal, thực hiện ngắt mạng, thao tác nút Mic / giữ `Space` / kéo thả `.wav` / sửa chữ (✎), giải thích thông số NPU và log.
-- **Vai B (Quản lý FDI / Chuyên gia nước ngoài):** Đảm nhận thoại tiếng Anh, tiếng Hàn, tiếng Trung (có thể chia 2 người nếu đội có thành viên phụ trách riêng từng ngôn ngữ).
-- **Vai C (Tổ trưởng / Công nhân / Thủ kho Việt Nam):** Đảm nhận thoại tiếng Việt, trực tiếp thao tác bấm Mic / `Space` trên giao diện web như người dùng tại xưởng.
-
-### Checklist trước khi quay
-- [ ] Cắm nguồn ổn định cho **HSPTEK AIBOX 8550**, cắm dây USB nối laptop (`adb devices` nhận hộp), cắm micro & loa USB vào đúng cổng.
-- [ ] Chuẩn bị sẵn **1 chiếc quạt nhỏ** (đặt cạnh bàn, bật ở Hồi 4 để tạo tạp âm nền nhẹ 50–60 dB theo Mục 4 Brief).
-- [ ] Chuẩn bị sẵn **1 file `.wav` mẫu** trên Desktop laptop để demo tính năng tải file / kéo thả ở Hồi 4.
-- [ ] Quay thử 30 giây kiểm tra âm lượng micro USB thu cả tiếng người + tiếng loa TTS rõ, không rè, không bị quá nhỏ; chữ trên terminal đủ to để BGK đọc được trong video 1080p.
-- [ ] In hoặc mở sẵn **Bảng câu thoại (Mục IV)** trên điện thoại/giấy để đọc tự nhiên, tránh ấp úng làm hụt mạch 1 take.
+1. **Mới bắt đầu bấm máy:**
+   - Đặt góc máy quay **toàn cảnh cả nhóm** đang ngồi quanh bàn làm việc. Trên bàn đặt sẵn hộp **HSPTEK AIBOX 8550**, chiếc **Micro USB RGB ME6S** bật đèn sẵn, và chiếc laptop **Lenovo LOQ** đang mở.
+2. **Cả nhóm chào Ban Giám khảo & giới thiệu:**
+   - **Đại diện nhóm nói:** *"Xin chào Ban Giám khảo OneVoice AI Challenge 2026. Chúng tôi là đội Gia Sư Đỉnh Cao, mang đến giải pháp AuraTranslate Edge — thiết bị dịch thuật giọng nói đa ngôn ngữ chạy hoàn toàn offline trên phần cứng biên, phục vụ giao tiếp giữa quản lý nước ngoài và công nhân Việt Nam tại các nhà máy sản xuất FDI và kho vận."*
+3. **Lia camera giới thiệu từng thiết bị trên bàn:**
+   - Người cầm máy **lia camera cận cảnh** vào hộp **HSPTEK AIBOX 8550** trên bàn -> thành viên chỉ vào hộp và giới thiệu: *"Đây là thiết bị xử lý chính HSPTEK AIBOX 8550 sử dụng chip Qualcomm QCS8550 với NPU Hexagon v73 và 16 GB RAM, nơi toàn bộ 9 đồ thị AI nhận dạng, dịch máy và tổng hợp giọng nói được thực thi."*
+   - Tiếp tục **lia camera sang chiếc Micro USB RGB ME6S và laptop Lenovo LOQ** -> giới thiệu: *"Để thu âm kiểm thử thực tế hôm nay, nhóm sử dụng Micro USB định hướng ME6S đặt trên bàn, kết nối với giao diện điều khiển trên laptop Lenovo LOQ qua cáp USB nội bộ, và phát âm thanh dịch trực tiếp ra loa của laptop để Ban Giám khảo cùng nghe rõ."*
+   - Chốt Intro: *"Bây giờ nhóm sẽ tiến hành ngắt toàn bộ kết nối mạng, kiểm thử hội thoại trực tiếp qua micro trên cả 6 chiều dịch Việt – Anh – Hàn – Trung, và chạy kiểm thử trực tiếp trên bộ dữ liệu dataset mà nhóm đã chuẩn bị."*
 
 ---
 
-## III. Kịch bản chi tiết từng phút (00:00 – 30:00)
+## BƯỚC 2: Ngắt mạng & Kiểm tra NPU sẵn sàng (02:00 – 05:00)
 
-### Phần 1: Intro — Đội thi, Bài toán & Phần cứng (00:00 – 02:30 | 2 phút 30 giây)
-*Khung hình: Scene 1 (Toàn đội bên thiết bị AIBOX 8550, laptop, mic USB).*
-
-| Mốc | Hình ảnh / Thao tác | Nội dung trình bày |
-|---|---|---|
-| **00:00 – 00:45** | Cả đội chào trước camera. Đưa tay chỉ/cận cảnh nhẹ hộp **HSPTEK AIBOX 8550** và **micro USB** trên bàn. | **Vai A:** "Xin chào Ban Giám khảo OneVoice AI Challenge 2026. Chúng tôi là đội **Gia Sư Đỉnh Cao**, giới thiệu giải pháp **AuraTranslate Edge** — hệ thống phiên dịch giọng nói hai chiều chạy **100% offline trên thiết bị biên**." |
-| **00:45 – 01:35** | Camera giữ góc toàn đội. | **Vai C:** "Bối cảnh giải pháp hướng tới là giao tiếp hằng ngày tại **nhà máy sản xuất FDI, công trường và kho vận** giữa quản lý, chuyên gia nước ngoài và công nhân Việt Nam — môi trường đòi hỏi bảo mật dữ liệu nội bộ, không phụ thuộc kết nối Internet và luôn có tạp âm nền từ máy móc, quạt gió." |
-| **01:35 – 02:30** | Vai A giới thiệu phần cứng và bố cục buổi kiểm thử. | **Vai A:** "Toàn bộ 9 đồ thị AI của hệ thống được tối ưu và biên dịch chạy trên NPU Hexagon v73 của **HSPTEK AIBOX 8550** (Snapdragon QCS8550, RAM 16 GB), hỗ trợ trọn vẹn 6 chiều dịch **Việt ⇄ Anh / Trung / Hàn**. Ngay sau đây, đội sẽ ngắt toàn bộ mạng và thực hiện phiên hội thoại kiểm thử thực tế tại phân xưởng sản xuất trong gần 30 phút." |
-
----
-
-### Phần 2: Kiểm tra NPU, Bằng chứng Ngắt mạng & Khởi động (02:30 – 06:00 | 3 phút 30 giây)
-*Khung hình: Chuyển sang Scene 2 (PiP — 80% màn hình laptop + 20% camera cả đội). Giữ **1 take liên tục** từ đây tới 28:15.*
-
-| Mốc | Thao tác trên màn hình & thiết bị | Lời dẫn |
-|---|---|---|
-| **02:30 – 03:30** | 1. Mở Terminal kết nối vào AIBOX (`adb shell` -> `su -`).<br>2. Chạy `bash start.sh check` (hoặc kiểm tra kết quả `tools/session0.sh` / `cat logs/models_ok.txt`) để hiển thị các đồ thị NPU đạt `PASS`, đồng thời gõ `arecord -l` cho thấy thiết bị audio USB đang kết nối với hộp. | **Vai A:** "Đầu tiên, chúng tôi kiểm tra nhanh trạng thái các đồ thị NPU trong gói offline và xác nhận micro/loa USB đã được hệ thống nhận diện." |
-| **03:30 – 04:30** | **CẢNH BẮT BUỘC — NGẮT MẠNG:**<br>1. Trên Laptop: mở khay hệ thống Windows tắt **Wi-Fi** / bật **Airplane Mode**.<br>2. Trên Terminal AIBOX: chạy `nmcli networking off` (hoặc `ip link`), sau đó chạy `ping -c 3 8.8.8.8` ➔ màn hình báo `Network is unreachable`.<br>3. Trên Terminal phụ của Laptop: chạy `ping 8.8.8.8` ➔ thất bại hoàn toàn. | **Vai A:** "Để chứng minh hệ thống vận hành 100% offline, chúng tôi ngắt kết nối mạng trên cả laptop và AIBOX 8550. Lệnh `ping 8.8.8.8` trên cả hai thiết bị đều báo không thể kết nối. Từ lúc này toàn bộ suy luận ASR, dịch máy và tổng hợp giọng nói diễn ra hoàn toàn nội bộ trên chip QCS8550." |
-| **04:30 – 06:00** | 1. Trên AIBOX: chạy `bash start.sh demo` (chờ hiện `OneVoice S2S demo -> http://127.0.0.1:8000`).<br>2. Trên Laptop: chạy `python s2s_edge_pkg/tools/laptop_web.py --demo` (mở port forward nội bộ qua cáp USB tới `http://localhost:8000`).<br>3. Trình duyệt hiện giao diện **AuraTranslate Edge** đã kết nối engine; cửa sổ terminal bên cạnh mở sẵn `free -h` cho thấy mức RAM thực tế (~2.2–3.5 GB / 16 GB). | **Vai A:** "Web Demo đã kết nối thành công qua `adb forward` nội bộ bằng cáp USB. BGK có thể quan sát giao diện AuraTranslate Edge bên trái và log suy luận cùng mức RAM tiêu thụ ở cửa sổ bên phải." |
-
----
-
-### Phần 3: Hội thoại Thực tế Tại Phân xưởng Sản xuất FDI (06:00 – 26:00 | 20 phút)
-*Khung hình: Scene 2 (PiP). Sau mỗi lượt nói, giữ yên 1–2 giây để loa phát hết câu dịch TTS và màn hình hiển thị đầy đủ thời gian `ASR / MT / TTS`.*
-
-#### Hồi 1: Giao ban đầu ca & An toàn dây chuyền — Cặp VI ⇄ EN (06:00 – 11:30 | 5 phút 30 giây)
-*Thao tác:* Click chip **`VI ↔ EN`**. Luân phiên nhấn đảo chiều hoặc chọn nguồn nói/đích, bấm Mic hoặc giữ phím `Space` để nói.
-
-- **Lượt 1 (EN → VI | Vai B):** *"Good morning everyone. Before starting the morning shift, please check your anti-static wrist straps and safety goggles."*
-- **Lượt 2 (VI → EN | Vai C):** *"Chào anh, toàn bộ mười hai công nhân tổ lắp ráp đã đeo vòng chống tĩnh điện và kiểm tra thiết bị bảo hộ đầy đủ rồi ạ."*
-- **Lượt 3 (EN → VI | Vai B):** *"Great. Today's production target for line B2 is one thousand two hundred circuit boards, and the defect rate must stay below zero point five percent."*
-- **Lượt 4 (VI → EN | Vai C):** *"Rõ rồi ạ. Hiện lô hàng mã A8 đang chạy ổn định, nhiệt độ lò hàn đang giữ ở mức hai trăm bốn mươi lăm độ C."*
-- **Lượt 5 (EN → VI | Vai B):** *"Please record the serial numbers of batch A8 every two hours and report to the quality office before twelve o'clock."*
-- **Lượt 6 (VI → EN | Vai C):** *"Vâng, cứ hai tiếng một lần tôi sẽ cập nhật số lượng đạt chuẩn và gửi báo cáo sang phòng kiểm tra chất lượng trước mười hai giờ trưa."*
-- **Nhấn mạnh kỹ thuật (30 giây cuối Hồi 1 — Vai A):** Chỉ vào giao diện web/log chỉ rõ các số lượng, tỷ lệ phần trăm, nhiệt độ, giờ giấc được chuẩn hoá sang chữ để TTS đọc tự nhiên, cùng độ trễ từng khâu hiển thị rõ ràng.
-
-#### Hồi 2: Xử lý sự cố kỹ thuật & Sửa nhận dạng trực tiếp — Cặp VI ⇄ KO (11:30 – 17:00 | 5 phút 30 giây)
-*Thao tác:* Click chip **`VI ↔ KO`**. Lồng ghép tình huống bấm nút bút chì **✎** sửa chữ nhận dạng rồi dịch lại.
-
-- **Lượt 1 (VI → KO | Vai C):** *"Anh quản lý ơi, máy gắp linh kiện số hai vừa báo lỗi lệch chân tụ điện trên bảng mạch."*
-- **Lượt 2 (KO → VI | Vai B):** *"지금 바로 2번 라인을 잠깐 멈추고, AOI 검사기 화면을 같이 확인합시다."*
-- **Lượt 3 (VI → KO | Vai C):** *"Em đã tạm dừng máy và kiểm tra đồng hồ áp suất khí nén, hiện đang ở mức không phẩy sáu megapascal."*
-- **Lượt 4 (KO → VI | Vai B):** *"압력은 정상이네요. 흡착 노즐을 새 것으로 교체하고 샘플 스무 개만 다시 테스트해 주세요."*
-- **Lượt 5 (Demo UX sửa chữ ✎ | Vai C & Vai A):**
-  - **Vai C** nói một câu tiếng Việt có tên riêng hoặc từ dễ nhầm: *"Nhờ anh gọi kỹ thuật viên Minh sang kiểm tra lại đầu đọc mã vạch ở cổng số ba."*
-  - Sau khi thẻ hội thoại hiện lên, **Vai A** click biểu tượng **bút chì ✎** trên thẻ đó, chỉnh sửa từ/chính tả rồi bấm **Enter** (hoặc nút **✓**) để hệ thống dịch và đọc lại ngay lập tức (thẻ hiển thị nhãn `"đã sửa tay"`).
-  - **Vai A giải thích:** "Trong thực tế nhà máy có tên riêng hoặc mã thiết bị lạ, công nhân chỉ cần sửa nhanh 1–2 chữ trên màn hình mà không phải nói lại cả câu dài."
-- **Lượt 6 (KO → VI | Vai B):** *"확인했습니다. 이상 없으면 10분 뒤에 라인을 다시 가동하세요."*
-
-#### Hồi 3: Điều phối vật tư kho vận — Cặp VI ⇄ ZH (17:00 – 22:00 | 5 phút 00 giây)
-*Thao tác:* Click chip **`VI ↔ ZH`**.
-
-- **Lượt 1 (ZH → VI | Vai B):** *"你好，我们刚送到五十卷电阻和二十箱保护外壳，请问要放在哪个仓库？"*
-- **Lượt 2 (VI → ZH | Vai C):** *"Chào anh, toàn bộ hàng mới nhập sẽ xếp vào khu B3, nhờ xe nâng chuyển giúp sang cửa kho số bốn trước mười bốn giờ ba mươi."*
-- **Lượt 3 (ZH → VI | Vai B):** *"好的，但是这次还少了两箱塑料盖子，下午四点半的车会补送过来。"*
-- **Lượt 4 (VI → ZH | Vai C):** *"Không sao, anh ghi chú mã phiếu nhập và để lại số điện thoại nội bộ để khi xe tới bảo vệ gọi trực tiếp cho tôi nhé."*
-- **Lượt 5 (ZH → VI | Vai B):** *"没问题，我的分机号码是三零八五，货到了请随时联系我。"*
-
-#### Hồi 4: Stress-test Môi trường Nhiễu Xưởng, Tải File & CLI (22:00 – 26:00 | 4 phút 00 giây)
-*Mục tiêu: Đáp ứng Mục 4 (tạp âm nền nhẹ) & Mục 3 (nhiều giao diện cho BGK tự thao tác).*
-
-1. **22:00 – 23:45 — Thử nghiệm dưới tiếng ồn quạt & khoảng cách 1.5 m:**
-   - **Vai A** bật chiếc quạt nhỏ đặt gần bàn (nêu rõ cho BGK thấy trên camera PiP để tạo tạp âm nền tương đương môi trường kiểm thử).
-   - **Vai C** ngồi lùi cách micro USB khoảng **1.5 m**, bấm giữ `Space` nói: *"Chuyền số một đã chạy lại ổn định, sản lượng đạt năm trăm sản phẩm đầu tiên."*
-   - Đảo chiều thử thêm 1 câu **EN → VI** hoặc **KO → VI** trong khi quạt vẫn chạy: *"Please keep the aisle clear for the forklift."*
-   - **Vai A:** Chỉ trên màn hình thấy bộ VAD thích ứng và lọc rác ASR vẫn bắt đúng câu nói, không bị tiếng quạt làm nhiễu hay sinh chữ ảo.
-2. **23:45 – 24:45 — Kéo thả / Tải file `.wav` trên Web Demo:**
-   - **Vai A** kéo thả (hoặc bấm nút Upload) 1 file `.wav` mẫu từ Desktop vào Web Demo.
-   - Chỉ rõ thanh trạng thái `ASR → MT → TTS` chạy lần lượt trên giao diện và phát âm thanh kết quả.
-3. **24:45 – 26:00 — Chạy chế độ CLI rảnh tay trên AIBOX:**
-   - Tắt Web Demo bằng `Ctrl+C` trong terminal (giải thích việc giải phóng RAM giữa các chế độ trên bộ nhớ 16 GB).
-   - Gõ lệnh chạy trực tiếp trên thiết bị:
+1. **Lia camera vào màn hình laptop Lenovo LOQ:**
+   - Người cầm máy di chuyển góc quay **chiếu thẳng vào màn hình laptop** (đồng thời trên laptop đang ghi màn hình).
+2. **Thao tác ngắt mạng (Bắt buộc có trong video):**
+   - Thành viên ngồi máy bấm vào góc dưới bên phải màn hình Windows trên laptop, **tắt Wi-Fi / bật chế độ Máy bay (Airplane Mode)**.
+   - Mở cửa sổ Terminal đang kết nối với hộp AIBOX (`adb shell`), gõ lệnh tắt mạng trên hộp:
      ```bash
-     bash start.sh live vi ko
+     nmcli networking off
+     ping -c 3 8.8.8.8
      ```
-   - Nói nhanh 1 lượt **VI → KO** và 1 lượt **KO → VI** qua mic/loa USB gắn trực tiếp với hộp để chứng minh ngoài Web UI, giám khảo có thể dùng trực tiếp CLI rảnh tay.
+   - Chỉ tay vào màn hình cho camera thấy rõ dòng chữ `Network is unreachable` (và trên laptop gõ `ping 8.8.8.8` cũng báo lỗi mất mạng).
+   - **Thuyết minh ngắn:** *"Như Ban Giám khảo thấy, cả hộp AIBOX 8550 và laptop đều đã ngắt mạng hoàn toàn. Mọi xử lý từ giây phút này đều diễn ra 100% offline trên thiết bị."*
+3. **Kiểm tra trạng thái NPU & RAM trước khi chạy:**
+   - Trên Terminal của hộp, chạy nhanh kiểm tra model và bộ nhớ:
+     ```bash
+     cat logs/models_ok.txt
+     free -h
+     ```
+   - Chỉ vào màn hình cho thấy các đồ thị NPU đã kiểm tra đạt chuẩn (`PASS`) và lượng RAM trống còn rất dồi dào trên tổng 16 GB.
 
 ---
 
-### Phần 4: Tổng kết Hiệu năng, Giới hạn & Outro (26:00 – 30:00 | 4 phút 00 giây)
+## BƯỚC 3: Cả nhóm thu âm kiểm thử trực tiếp qua Mic USB & Nghe loa Laptop phát Output (05:00 – 21:00)
 
-#### 4.1. Đọc số liệu thực tế, Giới hạn & Lộ trình (26:00 – 28:15 | 2 phút 15 giây)
-*Khung hình: Scene 2 (PiP) — Vai A mở cửa sổ terminal/log và `free -h` vừa đo được.*
+### Khởi động giao diện Web Demo (05:00 – 06:00)
+- Trên cửa sổ Terminal của hộp AIBOX, chạy:
+  ```bash
+  bash start.sh demo
+  ```
+- Trên cửa sổ Terminal của laptop, chạy:
+  ```bash
+  python s2s_edge_pkg/tools/laptop_web.py --demo
+  ```
+- Trình duyệt trên laptop mở giao diện **AuraTranslate Edge** (`http://localhost:8000`). Để cửa sổ trình duyệt chiếm 2/3 màn hình bên trái, cửa sổ Terminal log của hộp nằm 1/3 bên phải để thấy log chạy thật.
 
-- **26:00 – 27:00 — Số liệu thực đo trên thiết bị (Tiêu chí B):**
-  - Trỏ vào terminal log ghi lại suốt phiên chạy vừa qua (thời gian `ASR`, `MT`, `TTS`, tổng thời gian từng lượt và RAM đang chiếm dụng).
-  - Nhấn mạnh: cả 9 đồ thị context binary (~4.0 GB lưu trữ, ~2.2 GB RAM khi nạp một chiều dịch) chạy hoàn toàn trên NPU Hexagon v73, ổn định liên tục suốt hơn 20 phút kiểm thử mà không rò rỉ bộ nhớ hay crash.
-- **27:00 – 28:15 — Giới hạn hiện tại & Hướng phát triển (Mục 3 Brief):**
-  - **Giới hạn hiện tại:** (1) Tên riêng ngoại lai hoặc mã kỹ thuật ít gặp đôi khi cần sửa tay trên Web UI; (2) Nói chồng âm nhiều người cùng lúc sát micro dễ lẫn tiếng; (3) Câu pha trộn nhiều từ mượn tiếng Anh trong tiếng Việt khi ồn cao.
-  - **Lộ trình tiếp theo:** (1) Dùng Greedy Search cho câu ngắn dưới 12 token để giảm ~50% độ trễ MT; (2) Pipelining chồng chập (chạy ASR câu sau song song lúc đang phát TTS câu trước); (3) Bổ sung từ điển phát âm G2P chuyên biệt cho thuật ngữ nhà máy.
-
-#### 4.2. Outro — Kết thúc & Cảm ơn (28:15 – 30:00 | 1 phút 45 giây)
-*Khung hình: Chuyển về Scene 1 (Cả đội ngồi quanh thiết bị AIBOX 8550, laptop, mic USB).*
-
-- **28:15 – 29:15:** Đại diện đội tổng kết 3 điểm cốt lõi của **AuraTranslate Edge**:
-  1. **100% On-device & Offline** trên phần cứng thực tế HSPTEK AIBOX 8550.
-  2. **Đa ngôn ngữ trọn vẹn 6 chiều (VI ⇄ EN / ZH / KO)** phù hợp môi trường nhà máy FDI, kho vận.
-  3. **UX thực tế cho người lao động:** thao tác đơn giản, hỗ trợ sửa chữ dịch lại, chạy ổn định khi có tạp âm nền nhẹ.
-- **29:15 – 30:00:** Cả đội gửi lời cảm ơn tới Ban Tổ chức **OneVoice AI Challenge 2026**, Qualcomm và Ban Giám khảo. *(Giữ 5–10 giây cuối hiển thị tên đội **Gia Sư Đỉnh Cao**, dự án **AuraTranslate Edge**, bản build `s2s_edge 0.1.0`).*
+> **Cách phối hợp máy quay trong suốt Bước 3:**
+> - **Khi thành viên nói:** Giữ góc máy **toàn cảnh hoặc trung cảnh thấy thành viên trong nhóm đang nói trực tiếp vào chiếc Micro USB ME6S** và tay bấm nút Mic (hoặc giữ phím `Space`) trên laptop.
+> - **Ngay khi vừa dứt câu nói:** **Lia camera sát vào màn hình laptop** để thấy rõ thanh tiến độ `ASR → MT → TTS` chạy, chữ nhận dạng và bản dịch hiện ra, đồng thời cả nhóm giữ yên 2–3 giây để **loa laptop Lenovo LOQ phát to câu dịch ra ngoài**.
 
 ---
 
-## IV. Bảng câu thoại nhanh (Cue Sheet để in / mở khi quay)
+### 3.1. Kiểm thử Cặp Tiếng Việt ⇄ Tiếng Anh (`VI ↔ EN`) (06:00 – 11:00)
+*Bối cảnh: Quản lý nhà máy người nước ngoài và Tổ trưởng sản xuất Việt Nam trao đổi đầu ca sáng.*
 
-| Hồi | Chiều | Người nói | Câu thoại chuẩn |
-|---|---|---|---|
-| **Hồi 1** | EN → VI | Vai B | Good morning everyone. Before starting the morning shift, please check your anti-static wrist straps and safety goggles. |
-| **Hồi 1** | VI → EN | Vai C | Chào anh, toàn bộ mười hai công nhân tổ lắp ráp đã đeo vòng chống tĩnh điện và kiểm tra thiết bị bảo hộ đầy đủ rồi ạ. |
-| **Hồi 1** | EN → VI | Vai B | Great. Today's production target for line B2 is one thousand two hundred circuit boards, and the defect rate must stay below zero point five percent. |
-| **Hồi 1** | VI → EN | Vai C | Rõ rồi ạ. Hiện lô hàng mã A8 đang chạy ổn định, nhiệt độ lò hàn đang giữ ở mức hai trăm bốn mươi lăm độ C. |
-| **Hồi 1** | EN → VI | Vai B | Please record the serial numbers of batch A8 every two hours and report to the quality office before twelve o'clock. |
-| **Hồi 1** | VI → EN | Vai C | Vâng, cứ hai tiếng một lần tôi sẽ cập nhật số lượng đạt chuẩn và gửi báo cáo sang phòng kiểm tra chất lượng trước mười hai giờ trưa. |
-| **Hồi 2** | VI → KO | Vai C | Anh quản lý ơi, máy gắp linh kiện số hai vừa báo lỗi lệch chân tụ điện trên bảng mạch. |
-| **Hồi 2** | KO → VI | Vai B | 지금 바로 2번 라인을 잠깐 멈추고, AOI 검사기 화면을 같이 확인합시다. |
-| **Hồi 2** | VI → KO | Vai C | Em đã tạm dừng máy và kiểm tra đồng hồ áp suất khí nén, hiện đang ở mức không phẩy sáu megapascal. |
-| **Hồi 2** | KO → VI | Vai B | 압력은 정상이네요. 흡착 노즐을 새 것으로 교체하고 샘플 스무 개만 다시 테스트해 주세요. |
-| **Hồi 2** | VI → KO (✎) | Vai C | Nhờ anh gọi kỹ thuật viên Minh sang kiểm tra lại đầu đọc mã vạch ở cổng số ba. |
-| **Hồi 2** | KO → VI | Vai B | 확인했습니다. 이상 없으면 10분 뒤에 라인을 다시 가동하세요. |
-| **Hồi 3** | ZH → VI | Vai B | 你好，我们刚送到五十卷电阻和二十箱保护外壳，请问要放在哪个仓库？ |
-| **Hồi 3** | VI → ZH | Vai C | Chào anh, toàn bộ hàng mới nhập sẽ xếp vào khu B3, nhờ xe nâng chuyển giúp sang cửa kho số bốn trước mười bốn giờ ba mươi. |
-| **Hồi 3** | ZH → VI | Vai B | 好的，但是这次还少了两箱塑料盖子，下午四点半的车会补送过来。 |
-| **Hồi 3** | VI → ZH | Vai C | Không sao, anh ghi chú mã phiếu nhập và để lại số điện thoại nội bộ để khi xe tới bảo vệ gọi trực tiếp cho tôi nhé. |
-| **Hồi 3** | ZH → VI | Vai B | 没问题，我的分机号码是三零八五，货到了请随时联系我。 |
-| **Hồi 4** | VI → EN (1.5m + quạt) | Vai C | Chuyền số một đã chạy lại ổn định, sản lượng đạt năm trăm sản phẩm đầu tiên. |
-| **Hồi 4** | EN → VI (1.5m + quạt) | Vai B | Please keep the aisle clear for the forklift. |
+1. **Thao tác:** Bấm vào nút chọn nhanh **`VI ↔ EN`** trên màn hình.
+2. **Lượt 1 (EN → VI):**
+   - Quay cảnh **Thành viên B** nói vào **Mic ME6S**:
+     > *"Good morning everyone. Before starting the morning shift, please check your anti-static wrist straps and safety goggles."*
+   - Lia camera vào màn hình laptop: xem chữ tiếng Anh hiện lên, bản dịch tiếng Việt hiện ra kèm thời gian xử lý (ms), và **nghe loa laptop Lenovo LOQ đọc câu tiếng Việt**.
+3. **Lượt 2 (VI → EN):**
+   - Bấm nút đảo chiều `⇄` (hoặc chọn nguồn Tiếng Việt). Quay cảnh **Thành viên C** nói vào **Mic ME6S**:
+     > *"Chào anh, toàn bộ mười hai công nhân tổ lắp ráp đã đeo vòng chống tĩnh điện và kiểm tra thiết bị bảo hộ đầy đủ rồi ạ."*
+   - Lia camera vào màn hình xem câu nhận dạng có tự động thêm dấu câu, bản dịch tiếng Anh hiện ra và loa laptop phát giọng đọc tiếng Anh.
+4. **Lượt 3 (EN → VI):**
+   - Quay **Thành viên B** nói vào mic:
+     > *"Great. Today's production target for line B2 is one thousand two hundred circuit boards, and the defect rate must stay below zero point five percent."*
+   - Lia vào màn hình xem kết quả và nghe loa laptop phát (chú ý các con số `1.200`, `0.5%` được đọc thành chữ rõ ràng).
+5. **Lượt 4 (VI → EN):**
+   - Quay **Thành viên C** nói vào mic:
+     > *"Rõ rồi ạ. Hiện lô hàng mã A8 đang chạy ổn định, nhiệt độ lò hàn đang giữ ở mức hai trăm bốn mươi lăm độ C."*
+   - Lia vào màn hình xem kết quả và nghe loa phát.
+6. **Lượt 5 (EN → VI):**
+   - Quay **Thành viên B** nói vào mic:
+     > *"Please record the serial numbers of batch A8 every two hours and report to the quality office before twelve o'clock."*
+   - Lia vào màn hình và nghe loa phát.
+7. **Lượt 6 (VI → EN):**
+   - Quay **Thành viên C** nói vào mic:
+     > *"Vâng, cứ hai tiếng một lần tôi sẽ cập nhật số lượng đạt chuẩn và gửi báo cáo sang phòng kiểm tra chất lượng trước mười hai giờ trưa."*
+   - Lia vào màn hình xem thời gian xử lý từng khâu `ASR / MT / TTS` và nghe loa phát xong.
+
+---
+
+### 3.2. Kiểm thử Cặp Tiếng Việt ⇄ Tiếng Hàn (`VI ↔ KO`) & Demo sửa chữ nhận dạng (11:00 – 16:00)
+*Bối cảnh: Quản lý Hàn Quốc và công nhân Việt Nam xử lý lỗi lệch chân linh kiện trên chuyền SMT.*
+
+1. **Thao tác:** Bấm vào nút **`VI ↔ KO`** trên màn hình.
+2. **Lượt 1 (VI → KO):**
+   - Quay cảnh **Thành viên C** nói vào **Mic ME6S**:
+     > *"Anh quản lý ơi, máy gắp linh kiện số hai vừa báo lỗi lệch chân tụ điện trên bảng mạch."*
+   - Lia camera vào màn hình xem bản dịch tiếng Hàn hiện ra và nghe loa laptop đọc câu tiếng Hàn.
+3. **Lượt 2 (KO → VI):**
+   - Đảo chiều sang `KO → VI`. Quay cảnh **Thành viên B** nói vào mic (hoặc phát/đọc mẫu câu tiếng Hàn chuẩn):
+     > *"지금 바로 2번 라인을 잠깐 멈추고, AOI 검사기 화면을 같이 확인합시다."*
+     *(Nghĩa: Hãy dừng nhanh chuyền số 2 ngay bây giờ và cùng kiểm tra màn hình máy kiểm tra AOI.)*
+   - Lia camera vào màn hình xem bản dịch tiếng Việt và nghe loa laptop đọc.
+4. **Lượt 3 (VI → KO):**
+   - Quay **Thành viên C** nói vào mic:
+     > *"Em đã tạm dừng máy và kiểm tra đồng hồ áp suất khí nén, hiện đang ở mức không phẩy sáu megapascal."*
+   - Lia camera vào màn hình và nghe loa laptop phát.
+5. **Lượt 4 (KO → VI):**
+   - Quay **Thành viên B** nói vào mic:
+     > *"압력은 정상이네요. 흡착 노즐을 새 것으로 교체하고 샘플 스무 개만 다시 테스트해 주세요."*
+     *(Nghĩa: Áp suất bình thường đấy. Hãy thay đầu hút mới và chạy thử lại 20 sản phẩm mẫu nhé.)*
+   - Lia camera vào màn hình và nghe loa phát.
+6. **Lượt 5 — Demo tính năng sửa nhanh chữ nhận dạng rồi dịch lại (Điểm ăn điểm UX):**
+   - Quay **Thành viên C** nói vào mic một câu có tên riêng:
+     > *"Nhờ anh gọi kỹ thuật viên Minh sang kiểm tra lại đầu đọc mã vạch ở cổng số ba."*
+   - Lia camera sát vào màn hình laptop: Thành viên điều khiển chỉ tay vào nút **hình bút chì (✎)** ngay trên thẻ hội thoại vừa hiện ra, bấm vào đó, sửa nhanh 1 từ (ví dụ sửa tên riêng hoặc mã cổng) rồi bấm **Enter / dấu tích (✓)**.
+   - Máy lập tức dịch lại và **loa laptop Lenovo LOQ đọc lại bản dịch mới**, trên thẻ hiện chữ `"đã sửa tay"`.
+   - **Thuyết minh ngắn:** *"Trong môi trường xưởng ồn, nếu nhận dạng nhầm một tên riêng hay mã máy, công nhân chỉ cần bấm nút bút chì sửa lại chữ đó rồi bấm Enter là máy dịch và đọc lại ngay, không cần phải nói lại cả câu."*
+7. **Lượt 6 (KO → VI):**
+   - Quay **Thành viên B** nói chốt:
+     > *"확인했습니다. 이상 없으면 10분 뒤에 라인을 다시 가동하세요."*
+     *(Nghĩa: Tôi đã rõ. Nếu không có bất thường nào thì 10 phút nữa cho chuyền chạy lại nhé.)*
+
+---
+
+### 3.3. Kiểm thử Cặp Tiếng Việt ⇄ Tiếng Trung (`VI ↔ ZH`) (16:00 – 19:30)
+*Bối cảnh: Thủ kho Việt Nam và Giám sát kho nói tiếng Trung đối chiếu đơn nhập hàng.*
+
+1. **Thao tác:** Bấm vào nút **`VI ↔ ZH`** trên màn hình.
+2. **Lượt 1 (ZH → VI):**
+   - Quay **Thành viên B** nói vào **Mic ME6S**:
+     > *"你好，我们刚送到五十卷电阻和二十箱保护外壳，请问要放在哪个仓库？"*
+     *(Nghĩa: Xin chào, chúng tôi vừa giao 50 cuộn điện trở và 20 thùng vỏ bảo vệ, xin hỏi cần để ở kho nào?)*
+   - Lia camera vào màn hình xem bản dịch tiếng Việt và nghe loa laptop đọc.
+3. **Lượt 2 (VI → ZH):**
+   - Đảo chiều `VI → ZH`. Quay **Thành viên C** nói vào mic:
+     > *"Chào anh, toàn bộ hàng mới nhập sẽ xếp vào khu B3, nhờ xe nâng chuyển giúp sang cửa kho số bốn trước mười bốn giờ ba mươi."*
+   - Lia camera vào màn hình xem chữ Hán hiện ra và nghe **loa laptop phát giọng đọc MeloTTS tiếng Trung**.
+4. **Lượt 3 (ZH → VI):**
+   - Quay **Thành viên B** nói vào mic:
+     > *"好的，但是这次还少了两箱塑料盖子，下午四点半的车会补送过来。"*
+     *(Nghĩa: Được rồi, nhưng lần này còn thiếu 2 thùng nắp nhựa, chuyến xe lúc 4 rưỡi chiều sẽ giao bù sang.)*
+   - Lia camera vào màn hình và nghe loa laptop phát.
+5. **Lượt 4 (VI → ZH):**
+   - Quay **Thành viên C** nói vào mic:
+     > *"Không sao, anh ghi chú mã phiếu nhập và để lại số điện thoại nội bộ để khi xe tới bảo vệ gọi trực tiếp cho tôi nhé."*
+   - Lia camera vào màn hình và nghe loa laptop phát.
+6. **Lượt 5 (ZH → VI):**
+   - Quay **Thành viên B** nói vào mic:
+     > *"没问题，我的分机号码是三零八五，货到了请随时联系我。"*
+     *(Nghĩa: Không vấn đề gì, số máy lẻ của tôi là 3085, hàng tới cứ liên hệ tôi bất cứ lúc nào.)*
+   - Lia camera vào màn hình và nghe loa laptop phát.
+
+---
+
+### 3.4. Thử nghiệm khoảng cách xa + tạp âm quạt & Tải file `.wav` (19:30 – 21:00)
+
+1. **Thử nói khi có tạp âm quạt và ngồi cách mic 1,5m:**
+   - Bật quạt gió đặt gần bàn làm việc. Một thành viên ngồi lùi ra cách **Micro USB ME6S** khoảng **1m – 1,5m**, người ngồi máy bấm giữ phím `Space` để thu:
+     > *"Chuyền số một đã chạy lại ổn định, sản lượng đạt năm trăm sản phẩm đầu tiên."*
+   - Lia camera vào màn hình laptop cho thấy dù có tiếng quạt và ngồi xa, bộ lọc VAD + làm sạch ASR vẫn nhận đúng câu và loa laptop phát bản dịch rõ ràng.
+2. **Thử kéo thả / tải 1 file `.wav` vào Web Demo:**
+   - Trên laptop, bấm nút **Tải file âm thanh** (hoặc kéo thả 1 file `.wav` mẫu từ màn hình Desktop thả vào giao diện **AuraTranslate Edge**).
+   - Lia camera vào màn hình để thấy máy giải mã file `.wav`, chạy qua `ASR → MT → TTS` và phát tiếng ra loa laptop.
+
+---
+
+## BƯỚC 4: Quay màn hình Laptop chạy Test một phần Bộ Dataset chuẩn bị sẵn (21:00 – 27:30)
+
+*Mục tiêu: Chứng minh cho Ban Giám khảo thấy hệ thống chạy thực tế và chấm điểm tự động trên bộ dataset chuẩn bị sẵn (`BTC` / `ADV`), nhưng **chỉ chọn chạy 1 phần nhỏ (ví dụ 5–10 mẫu mỗi chiều)** để vừa khít thời lượng video mà không phải đợi hàng trăm câu.*
+
+1. **Chuyển từ Web Demo sang công cụ chạy Dataset (21:00 – 22:00):**
+   - Lia camera vào màn hình laptop (kết hợp quay màn hình OBS).
+   - Trên cửa sổ Terminal của hộp AIBOX, nhấn `Ctrl+C` để đóng Web Demo (giải thích ngắn: *"Nhóm tắt Web Demo để giải phóng RAM trên hộp trước khi nạp trình chạy đánh giá bộ dữ liệu"*).
+   - Khởi động trình chạy kiểm thử bộ dữ liệu trên hộp:
+     ```bash
+     bash start.sh box
+     ```
+     *(Hoặc `bash tools/box_serve.sh`)*.
+   - Trên cửa sổ Terminal của laptop, chạy:
+     ```bash
+     python s2s_edge_pkg/tools/laptop_web.py
+     ```
+     -> Trình duyệt mở trang điều khiển & đánh giá dữ liệu tại `http://127.0.0.1:8770`.
+     *(Lưu ý: Nếu nhóm muốn chạy trực tiếp bằng dòng lệnh trên Terminal thay vì giao diện web 8770, có thể chạy lệnh `bash tools/vng_run_all.sh /tmp/onevoice 5` để chạy tự động 5 mẫu/chiều ngay trên Terminal).*
+
+2. **Chọn chạy 1 phần Dataset trên màn hình (22:00 – 26:00):**
+   - Trên giao diện **Tab "Chạy bộ dữ liệu"** (hoặc trên cửa sổ Terminal):
+     - Chọn bộ dữ liệu **BTC** (bộ dữ liệu có câu chuẩn và bản dịch tham chiếu).
+     - Chọn chiều dịch kiểm thử (ví dụ `vi-en`, `en-vi`, `vi-ko`, `ko-vi`...).
+     - Ở ô **Số clip mỗi chiều**, nhập **`5`** (hoặc **`8`** câu) — giải thích rõ với BGK: *"Vì bộ dữ liệu đầy đủ gồm từ 100 đến 180 câu mỗi chiều mất nhiều thời gian, trong video này nhóm chạy trực tiếp một phần gồm 5–8 mẫu đại diện ngay trên NPU để Ban Giám khảo quan sát toàn bộ quá trình chấm điểm thời gian thực; kết quả chạy toàn bộ bộ dữ liệu đã được nhóm xuất đầy đủ trong hồ sơ nộp bài."*
+     - Bấm nút **"Chạy trên chip"**.
+   - **Giữ cảnh quay màn hình laptop (xen kẽ góc camera lia vào màn hình và góc cả nhóm đang theo dõi):**
+     - Quan sát từng dòng mẫu dữ liệu hiện lên lần lượt khi NPU xử lý xong:
+       - Cột **Âm thanh gốc & Câu chuẩn**.
+       - Cột **Kết quả ASR**, **thời gian chạy ASR (ms)** và **tỷ lệ lỗi CER/WER**.
+       - Cột **Kết quả dịch MT**, **điểm chất lượng chrF**, và **thời gian chạy MT (ms)**.
+       - Cột **Âm thanh đầu ra TTS**, **thời gian chạy TTS (ms)** và **tổng thời gian chạy trên NPU**.
+     - Khi chạy xong 5–8 mẫu, thành viên ngồi máy **bấm nút Play (▶) ở 2–3 dòng bất kỳ** để phát cả **âm thanh gốc trong dataset** lẫn **âm thanh dịch do AIBOX 8550 tạo ra** qua **loa laptop Lenovo LOQ** cho Ban Giám khảo nghe đối chứng trực tiếp.
+
+3. **Thử thêm 2–3 mẫu của Bộ dữ liệu Nhiễu (`ADV`) & Xem bảng tổng hợp (26:00 – 27:30):**
+   - Chuyển sang chọn bộ **ADV (bộ dữ liệu nhiễu nhà xưởng / công trường 15 dB – 10 dB)**, đặt số lượng **3 câu**, bấm **"Chạy trên chip"**.
+   - Sau khi chạy xong, cuộn lên **Bảng tổng hợp kết quả** trên màn hình: chỉ vào các con số trung bình (lỗi ASR, điểm chrF, thời gian trung bình từng chặng `ASR / MT / TTS`, phân vị `p50 / p90`, RTF) và bấm nút **"Tải CSV"** để lưu file kết quả.
+
+---
+
+## BƯỚC 5: OUTRO — Quay toàn cảnh cả nhóm tổng kết & Kết thúc (27:30 – 30:00)
+
+1. **Lia camera từ màn hình laptop ra lại toàn cảnh cả nhóm (27:30 – 28:30):**
+   - Người cầm máy lùi ra để lấy lại khung hình **toàn cảnh cả nhóm Gia Sư Đỉnh Cao** ngồi quanh bàn cùng hộp **HSPTEK AIBOX 8550**, **Micro USB RGB ME6S** và laptop **Lenovo LOQ**.
+   - **Thành viên đại diện tổng kết kết quả vừa chạy:**
+     > *"Qua gần 30 phút kiểm thử liên tục không ngắt quãng trong điều kiện tắt mạng hoàn toàn, hệ thống AuraTranslate Edge trên hộp HSPTEK AIBOX 8550 đã hoàn thành cả hai phần: thu âm hội thoại trực tiếp qua Micro USB ME6S phát ra loa laptop trên trọn vẹn 6 chiều dịch Việt – Anh – Hàn – Trung, và chạy chấm điểm trực tiếp trên bộ dữ liệu mẫu với đầy đủ thông số độ trễ và độ chính xác trên NPU Hexagon v73."*
+
+2. **Nêu ngắn gọn giới hạn hiện tại & hướng phát triển tiếp theo (28:30 – 29:30):**
+   - **Thành viên kỹ thuật chia sẻ thêm (đúng yêu cầu khuyến khích của BTC):**
+     > *"Về giới hạn hiện tại của bản nguyên mẫu: thứ nhất, với một số tên riêng nước ngoài hoặc mã viết tắt đặc thù chưa có trong từ điển, đôi khi người dùng cần bấm nút sửa nhanh trên giao diện web như nhóm vừa minh hoạ; thứ hai, trường hợp nhiều người nói đè lên nhau cùng lúc sát micro sẽ làm giảm độ chính xác nhận dạng. Trong giai đoạn tiếp theo hướng tới vòng Field-Testing và Chung kết, nhóm sẽ kích hoạt chế độ giải mã nhanh cho các câu ngắn dưới 12 từ để giảm thêm một nửa độ trễ dịch, chạy gối đầu nhận dạng câu sau trong lúc đang phát loa câu trước, và bổ sung từ điển phát âm chuyên ngành nhà máy."*
+
+3. **Lời chào kết thúc (29:30 – 30:00):**
+   - **Cả nhóm cùng nhìn vào camera:**
+     > *"Đội Gia Sư Đỉnh Cao xin chân thành cảm ơn Ban Tổ chức OneVoice AI Challenge 2026, Qualcomm và Ban Giám khảo đã theo dõi phần trình diễn nguyên mẫu AuraTranslate Edge. Xin cảm ơn và hẹn gặp lại tại vòng Field-Testing!"*
+   - Cả nhóm vẫy tay chào, giữ khung hình ổn định 3–5 giây rồi bấm dừng quay.

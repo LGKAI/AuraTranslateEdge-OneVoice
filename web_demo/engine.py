@@ -232,6 +232,23 @@ class LocalTorchEngine:
             tts="Piper (VI) · MeloTTS (ZH) · Supertonic (EN/KO)",
             melo_installed=melo_ok,
         )
+        if os.environ.get("S2S_WARMUP", "1") != "0":
+            self.warmup()
+
+    def warmup(self):
+        print("[warmup] Preloading local VI/EN/KO models into memory...", flush=True)
+        for label, loader in (
+            ("ASR VI (Zipformer)", self._get_zipformer),
+            ("ASR EN/KO/ZH (SenseVoice)", self._get_sensevoice),
+            ("MT (NLLB-200-600M)", self._get_nllb),
+            ("TTS VI (Piper)", lambda: self._get_piper("vi")),
+            ("TTS EN/KO (Supertonic)", self._get_supertonic),
+        ):
+            try:
+                loader()
+                print(f"[warmup] OK: {label}", flush=True)
+            except Exception as exc:
+                print(f"[warmup] SKIP {label}: {exc}", flush=True)
 
     def _find_melo_onnx(self):
         for rel in (
@@ -273,10 +290,21 @@ class LocalTorchEngine:
             from funasr import AutoModel
             from funasr.utils.postprocess_utils import rich_transcription_postprocess
             dev = "cuda:0" if torch.cuda.is_available() else "cpu"
-            try:
-                self._sv = AutoModel(model="FunAudioLLM/SenseVoiceSmall", hub="hf", device=dev, disable_update=True)
-            except TypeError:
-                self._sv = AutoModel(model="iic/SenseVoiceSmall", device=dev, disable_update=True)
+            snap_root = os.path.expanduser("~/.cache/huggingface/hub/models--FunAudioLLM--SenseVoiceSmall/snapshots")
+            local_dir = None
+            if os.path.isdir(snap_root):
+                for d in os.listdir(snap_root):
+                    cand = os.path.join(snap_root, d)
+                    if os.path.isfile(os.path.join(cand, "model.pt")):
+                        local_dir = cand
+                        break
+            if local_dir:
+                self._sv = AutoModel(model=local_dir, device=dev, disable_update=True)
+            else:
+                try:
+                    self._sv = AutoModel(model="FunAudioLLM/SenseVoiceSmall", hub="hf", device=dev, disable_update=True)
+                except TypeError:
+                    self._sv = AutoModel(model="iic/SenseVoiceSmall", device=dev, disable_update=True)
             self._sv_post = rich_transcription_postprocess
         return self._sv, self._sv_post
 

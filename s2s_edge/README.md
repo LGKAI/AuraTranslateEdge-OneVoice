@@ -5,7 +5,7 @@ Hỗ trợ 6 chiều dịch: vi→en, vi→zh, vi→ko, en→vi, zh→vi, ko→v
 
 > **Hiện trạng thực tế:** Mã nguồn pipeline chạy toàn trình (End-to-End) hỗ trợ cả 2 backend: Backend NPU tăng tốc phần cứng (`--backend npu`) và Backend tham chiếu CPU (`--backend cpu` qua ONNX Runtime). Cả 9 đồ thị mô hình đã được biên dịch và link thành QNN Context Binary cho NPU Hexagon v73 trên thiết bị **HSPTEK AIBOX 8550 (SoC Qualcomm QCS8550)** qua Qualcomm AI Hub với QAIRT 2.51. Hệ thống đã được nạp và đo kiểm thực tế trên thiết bị phần cứng AIBOX 8550 tại cơ sở VNG Campus.
 >
-> **Chạy trên hộp AIBOX 8550 (gói đã gộp, web điều khiển, MT 3.3B, lọc rác ASR/MT): xem [`docs/HUONG_DAN_CHAY_BOX.md`](docs/HUONG_DAN_CHAY_BOX.md)**. Sơ đồ file và lệnh chi tiết: `docs/HUONG_DAN.md`, các thay đổi 13/11: `docs/THAY_DOI_VA_CACH_CHAY.md`.
+> **Chạy trên hộp AIBOX 8550 (gói đã gộp, web điều khiển, MT 3.3B, lọc rác ASR/MT): xem [`docs/HUONG_DAN_CHAY_BOX.md`](docs/HUONG_DAN_CHAY_BOX.md)**. Tổng hợp kỹ thuật toàn pipeline: [`docs/TONG_HOP_KY_THUAT.md`](docs/TONG_HOP_KY_THUAT.md).
 
 ---
 
@@ -52,7 +52,7 @@ python s2s_dashboard.py --port 8765
 
 ### ASR: cửa sổ nhiều kích thước, RNN-T, đặc trưng SenseVoice trên host
 
-Mỗi ASR có thể có nhiều đồ thị tĩnh (khoá `asr_vi@<frame>`, `asr_xx_encoder@<frame LFR>` trong models.json); pipeline chạy cửa sổ nhỏ nhất vừa câu nói, nên câu 3 s không phải trả giá cửa sổ 15 s / 29 s. Zipformer tiếng Việt giải mã bằng nhánh RNN-T khi có `asr_vi_decoder` + `asr_vi_joiner`; SenseVoice tính đặc trưng trên host khi `"_sv_frontend": "host"`. Mẫu cấu hình: `models.dev_asr_buckets.json`. Chi tiết, số đo và cách build/link trên AI Hub: [`docs/asr_optimization.md`](docs/asr_optimization.md); đánh giá riêng ASR: `python tools/eval_asr.py`, kiểm tra nhanh không cần model: `python tools/test_asr_host.py`.
+Mỗi ASR có thể có nhiều đồ thị tĩnh (khoá `asr_vi@<frame>`, `asr_xx_encoder@<frame LFR>` trong models.json); pipeline chạy cửa sổ nhỏ nhất vừa câu nói, nên câu 3 s không phải trả giá cửa sổ 15 s / 29 s. Zipformer tiếng Việt giải mã bằng nhánh RNN-T khi có `asr_vi_decoder` + `asr_vi_joiner`; SenseVoice tính đặc trưng trên host khi `"_sv_frontend": "host"`. Mẫu cấu hình: `models.dev_asr_buckets.json`. Chi tiết kỹ thuật và số đo: [`docs/TONG_HOP_KY_THUAT.md`](docs/TONG_HOP_KY_THUAT.md); đánh giá riêng ASR: `python tools/eval_asr.py`, kiểm tra nhanh không cần model: `python tools/test_asr_host.py`.
 
 ---
 
@@ -68,7 +68,7 @@ Chi tiết về xử lý tên riêng (tên Latinh mà TTS tiếng Việt / Trung
 
 ## 4. Chạy trên Thiết bị Phần cứng Thật (HSPTEK AIBOX 8550)
 
-Bản tích hợp (Plan-01 + ASR speed/accuracy): profile mặc định, dựng gói với `--asr-config`, fallback trên box → [`docs/aibox8550_integration.md`](docs/aibox8550_integration.md).
+Bản tích hợp đầy đủ trên hộp (hướng dẫn chạy `bash start.sh demo / box / check / live` và các biến môi trường) → [`docs/HUONG_DAN_CHAY_BOX.md`](docs/HUONG_DAN_CHAY_BOX.md).
 
 Khởi động phiên kiểm tra toàn diện đầu tiên trên thiết bị:
 ```bash

@@ -116,4 +116,4 @@ Mic / WAV 16 kHz → VAD (host) → ASR trên NPU (Zipformer vi | SenseVoice en/
 - Rác ASR do ASR w8a16 trên chip sinh ra (chạy `junk_report.py` sau lần chạy đầu).
 - Mic thật trên web demo.
 
-**Nguồn số liệu chi tiết:** `asr_optimization.md` (ASR/VAD), `results_hybrid_format/README.md` và `hybrid_format_plan.md` (TTS hybrid), `quality_improvements_summary.md` (dấu câu, fallback, TTS), `mt33_routing.md` và `THAY_DOI_VA_CACH_CHAY.md` (MT 3.3B, route, lọc rác, tách câu, câu dài), `chip_results.md` (số đo trên chip), `aibox8550_integration.md` (gộp nhánh), `HUONG_DAN_CHAY_BOX.md` (cách chạy).
+**Tài liệu liên quan trong `docs/`:** `chip_results.md` (số đo từng đồ thị trên chip QCS8550), `conversation.md` (hội thoại hai chiều & xử lý tên riêng), `HUONG_DAN_CHAY_BOX.md` (cách cài đặt và chạy trên hộp).

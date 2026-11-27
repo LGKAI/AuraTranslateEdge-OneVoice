@@ -3,7 +3,8 @@
   python -m s2s_edge file  --src vi --tgt en --in in.wav --out out.wav   one file, per-stage timing
   python -m s2s_edge live  --pair vi,ko                                   microphone / loudspeaker plugged into the box
   python -m s2s_edge serve --data_root /root/onevoice                      web UI + API on 127.0.0.1:8770 (laptop: adb forward, open the page);
-                                                                          models stay loaded, inference on the box. See s2s_edge/webui.py."""
+                                                                          models stay loaded, inference on the box. See s2s_edge/webui.py.
+  python -m s2s_edge eval  --input <dir> --output <dir>                   OVAC Phase 3 automated offline eval mode."""
 import argparse, os, queue, sys, threading, time
 import numpy as np
 from .audio import load_audio, save_wav, listen, play, concat_results
@@ -37,7 +38,7 @@ def fmt_t(t):
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(prog="s2s_edge", description="Offline speech-to-speech translation (vi <-> en/zh/ko)")
-    ap.add_argument("cmd", choices=["file", "live", "serve"])
+    ap.add_argument("cmd", choices=["file", "live", "serve", "eval"])
     ap.add_argument("--src", choices=["vi", "en", "zh", "ko"])
     ap.add_argument("--tgt", choices=["vi", "en", "zh", "ko"])
     ap.add_argument("--pair", help="bidirectional conversation between two languages, e.g. vi,ko (language of each utterance is detected)")
@@ -59,7 +60,29 @@ def main():
     ap.add_argument("--tts-format", default=None, choices=["hybrid", "legacy"])
     ap.add_argument("--port", type=int, default=8770, help="serve mode: TCP port, bound to 127.0.0.1 only")
     ap.add_argument("--data_root", default=os.environ.get("S2S_DATA", "/root/onevoice"), help="serve mode: folder with onevoice_btc_data/ and onevoice_btc_adv/ (data-set runs from the web UI)")
+    ap.add_argument("--input", dest="eval_input", default=None, help="eval mode: input directory containing manifest.csv and audio/")
+    ap.add_argument("--output", dest="eval_output", default=None, help="eval mode: output directory for STARTED, audio/, result.csv, log.txt, DONE")
+    ap.add_argument("--team", default=os.environ.get("OVAC_TEAM", "GiaSuDinhCao"), help="eval mode: team identifier written into DONE")
+    ap.add_argument("--timeout", type=float, default=float(os.environ.get("OVAC_TIMEOUT_S", "60")), help="eval mode: per-sentence timeout in seconds (default 60)")
     a = ap.parse_args()
+    if a.cmd == "eval":
+        if not a.eval_input or not a.eval_output:
+            sys.exit("eval mode requires --input <input_dir> and --output <output_dir>")
+        from .eval_mode import run_eval
+        sys.exit(run_eval(
+            input_dir=a.eval_input,
+            output_dir=a.eval_output,
+            models_path=a.models,
+            backend=a.backend,
+            team_name=a.team,
+            timeout_s=a.timeout,
+            glossary=a.glossary,
+            denoise=a.denoise,
+            ort_policy=a.ort_policy,
+            vad_profile=a.vad_profile,
+            source_mode=a.source_mode,
+            tts_format=a.tts_format,
+        ))
     t_load = time.perf_counter()
     reg = Registry(a.models, a.backend, a.glossary, ort_policy=a.ort_policy, vad_profile=a.vad_profile, source_mode=a.source_mode, tts_format=a.tts_format)
     if a.cmd == "serve":                                                     # web UI + API (s2s_edge/webui.py); all six directions available

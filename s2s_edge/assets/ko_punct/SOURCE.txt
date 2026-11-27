@@ -1,0 +1,3 @@
+Horizon-Labs/punctuation-restoration-small (Hugging Face, Apache-2.0), downloaded 14/11/2026.
+Files verified against the repo SHA256SUMS: onnx/model_quantized.onnx 5679870b..., tokenizer.json f34b44a6...
+Used by s2s_edge/punct_ko.py (S2S_KO_PUNCT).

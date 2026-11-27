@@ -272,6 +272,16 @@ class Registry:
                     else: log("  warmup vi punctuation model: assets/vi_capu missing -> rule-based vi_punct")
             except Exception as e:
                 import traceback; traceback.print_exc(); log(f"  warmup vi punctuation model: FAILED {repr(e)[:300]}")
+        if any(s == "ko" for s, _ in directions):                         # Korean punctuation model (CPU), see conversation.restore_ko
+            try:
+                from .conversation import KO_PUNCT
+                if KO_PUNCT:
+                    from .punct_ko import get as get_ko
+                    t0 = time.perf_counter(); m = get_ko(ASSETS)
+                    if m is not None: m("안녕하세요 오늘 회의는 세 시에 시작합니다 괜찮으세요"); log(f"  warmup ko punctuation model: {time.perf_counter() - t0:.1f} s")
+                    else: log("  warmup ko punctuation model: assets/ko_punct missing -> SenseVoice punctuation")
+            except Exception as e:
+                import traceback; traceback.print_exc(); log(f"  warmup ko punctuation model: FAILED {repr(e)[:300]}")
         log(f"  warmup done: {len(keys)} graphs in {time.perf_counter() - t_all:.1f} s")
         return out
 

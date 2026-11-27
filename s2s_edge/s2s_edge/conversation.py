@@ -88,6 +88,30 @@ def _restore_vi(text, breaks=None):
             return vi_punct(out, breaks=breaks)
     return vi_punct(text, breaks=breaks)
 
+# Korean punctuation (s2s_edge/punct_ko.py, Horizon-Labs/punctuation-restoration-small on the CPU): S2S_KO_PUNCT=1 (default) re-punctuates the
+# SenseVoice text when assets/ko_punct is present; 0 keeps SenseVoice's own punctuation.
+KO_PUNCT = os.environ.get("S2S_KO_PUNCT", "1") != "0"
+
+
+def restore_ko(text):
+    """Korean ASR text -> re-punctuated by the model. ':' -> ',' and '-' dropped (see punct_ko); the ASR's own final '?' / '!' is kept, a sentence
+    end without a mark gets '.'. Unchanged when the model files are missing or the text has no Hangul.
+    BTC ko-vi (98 chip-ASR sentences, laptop MT): chrF 600M 37.16 -> 37.88 (7 better / 3 worse), 3.3B 40.39 -> 40.44 (5 / 6): small, not conclusive."""
+    if not KO_PUNCT or not text or not HANGUL.search(text): return text
+    from .punct_ko import get
+    from .registry import ASSETS
+    m = get(ASSETS)
+    if m is None: return text
+    end = text.rstrip()[-1:]
+    out = m(text)
+    if not out: return text
+    out = re.sub(r"\s+-(?=\s|$)", "", out).replace(":", ",")
+    out = re.sub(r"\s{2,}", " ", out).strip()
+    if out[-1] not in ".?!": out += end if end in "?!" else "."
+    elif end in "?!" and out[-1] == ".": out = out[:-1] + end                     # keep the ASR's own final '?' (BTC ko-vi: without it 3.3B chrF -0.6)
+    return out
+
+
 HANGUL = re.compile(r"[가-힣ᄀ-ᇿ]"); HAN = re.compile(r"[一-鿿]"); LATIN = re.compile(r"[A-Za-z]")
 
 
@@ -168,6 +192,8 @@ class Engine:
             wb = _break_positions(breaks, word_ends)
             if wb and text.split() != raw_words: wb = _align_breaks(raw_words, text.split(), wb)
             text = restore_vi(text, breaks=wb)                                             # the CTC/RNN-T model outputs no punctuation: restore "?" so MT keeps questions
+        elif src == "ko" and KO_PUNCT:
+            text = restore_ko(text)                                                        # SenseVoice punctuates, the model re-punctuates (S2S_KO_PUNCT=0: keep SenseVoice's)
         return text, None
 
     def prepare_text(self, text, src):

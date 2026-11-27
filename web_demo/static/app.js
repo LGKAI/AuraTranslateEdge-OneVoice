@@ -126,15 +126,8 @@
     $("#engineName").textContent = (h.engine || "Ready") + " · Offline";
     const info = h.info || {};
     const parts = [];
-    if (info.backend) parts.push(`Backend: ${String(info.backend).toUpperCase()}`);
     if (info.asr) parts.push(`ASR: ${info.asr}`);
-    if (typeof info.mt === "string" && info.mt) {
-      parts.push(`MT: ${info.mt}`);
-    } else if (info.mt && typeof info.mt === "object") {
-      const mtLabel = info.mt.big_in_use ? "NLLB 3.3B + 600M" : "NLLB-600M";
-      parts.push(`MT: ${mtLabel}${info.mt.degraded ? " (DEGRADED)" : ""}`);
-      if (info.mt.degraded) toast("Cảnh báo: NLLB-3.3B không khả dụng, đang chạy 600M");
-    }
+    if (info.mt) parts.push(`MT: ${info.mt}`);
     if (info.tts) parts.push(`TTS: ${info.tts}`);
     if (parts.length && stackInfoEl) {
       stackInfoEl.textContent = parts.join(" · ");
@@ -206,12 +199,14 @@
 
   async function startRec() {
     if (state !== "idle") return;
+    state = "starting";                                   // opening the mic is async: block a second start (double click / click + Space) meanwhile
     try {
       await ensureCtx();
       stream = await navigator.mediaDevices.getUserMedia({
         audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
       });
     } catch (e) {
+      setState("idle");
       toast(e && e.name === "NotAllowedError" ? "Cần cấp quyền micro để ghi âm" : "Không mở được micro");
       return;
     }
@@ -228,7 +223,9 @@
     sizeCanvas();
     hideStages();
     tick();
+    clearInterval(timerId);
     timerId = setInterval(() => {
+      if (state !== "recording") { clearInterval(timerId); return; }   // never keep counting after the recording ended
       const s = (performance.now() - recStart) / 1000;
       statusEl.textContent = "Đang thu âm… " + fmt(s) + " (nhấn Space hoặc nút đỏ để dừng)";
       if (s >= MAX_SEC) stopRec();
@@ -237,7 +234,7 @@
   }
 
   function teardown() {
-    cancelAnimationFrame(rafId); clearInterval(timerId);
+    cancelAnimationFrame(rafId); clearInterval(timerId); timerId = null;
     halo.style.transform = "";
     try { srcNode && srcNode.disconnect(); worklet && worklet.disconnect(); } catch {}
     stream && stream.getTracks().forEach((t) => t.stop());
@@ -611,15 +608,21 @@
     if (state === "idle") startRec(); else if (state === "recording") stopRec();
   });
 
-  let spaceHeld = false;
+  // Space: hold to talk (release = translate) OR tap to start and tap again to stop, as the hint says
+  let spaceHeld = false, spaceDownAt = 0;
+  const HOLD_MS = 600;
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space" && !e.repeat && !isTyping(e)) {
       e.preventDefault();
-      if (state === "idle") { spaceHeld = true; startRec(); }
+      if (state === "idle") { spaceHeld = true; spaceDownAt = performance.now(); startRec(); }
+      else if (state === "recording" && !spaceHeld) stopRec();          // second tap stops
     } else if (e.key === "Escape" && state === "recording") stopRec(true);
   });
   window.addEventListener("keyup", (e) => {
-    if (e.code === "Space" && spaceHeld) { e.preventDefault(); spaceHeld = false; stopRec(); }
+    if (e.code === "Space" && spaceHeld) {
+      e.preventDefault(); spaceHeld = false;
+      if (performance.now() - spaceDownAt >= HOLD_MS) stopRec();         // held: push-to-talk; short tap: keep recording until the next tap
+    }
   });
   const isTyping = (e) => /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.target.isContentEditable;
 

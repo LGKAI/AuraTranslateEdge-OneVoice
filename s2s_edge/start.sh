@@ -4,6 +4,7 @@
 #   bash start.sh box             box web UI (batch BTC / ADV runs, zip export), port 8770  (= tools/start_box.sh)
 #   bash start.sh check           install if needed + check every graph on the NPU + smoke test (tools/session0.sh)
 #   bash start.sh live vi ko      microphone conversation in the terminal (needs a USB mic/speaker on the box)
+#   bash tools/demo_status.sh     read-only status screen for the demo video: network, NPU, last check of every graph, RAM
 # Env: PORT, HOST (default 127.0.0.1: open it from the laptop through `adb forward` / `ssh -L`), MODELS (default: the set session0 validated, else
 #      models_qcs8550/models.json = NLLB-3.3B route + 600M), SKIP_CHECK=1, S2S_MT=600m (no 3.3B), S2S_ASR_CLEAN=0, S2S_MT_SPLIT=0.
 # Logs: logs/start_<mode>_<time>.log. Nothing outside this folder is changed.
@@ -33,14 +34,24 @@ LOG=logs/start_${MODE}_$(date +%Y%m%d_%H%M%S).log
 echo "== $(date '+%H:%M:%S') $(hostname) | user $(id -un) | $(uname -m) | python3 $(python3 -V 2>&1 | cut -d' ' -f2) | free RAM $(free -h | awk '/Mem:/{print $7}') | disk $(df -h . | awk 'NR==2{print $4}')"
 [ -e /dev/adsprpc-smd ] && { [ -r /dev/adsprpc-smd ] && [ -w /dev/adsprpc-smd ] && echo "== NPU device: OK" || echo "!! NPU device /dev/adsprpc-smd not accessible for $(id -un)"; } || echo "!! /dev/adsprpc-smd missing: not the AIBOX 8550? (NPU graphs will fail)"
 
-if [ "$MODE" = "box" ]; then exec bash tools/start_box.sh "$@"; fi
-
 if [ ! -x .venv/bin/python ]; then
   echo "== first run: offline install into ./.venv (1-3 min), log logs_install.txt"
   bash install.sh > logs_install.txt 2>&1 || { echo "!! install failed: tail logs_install.txt"; tail -15 logs_install.txt; exit 2; }
   tail -3 logs_install.txt
 fi
 . .venv/bin/activate; . tools/env.sh 2>/dev/null
+# an old or half-finished .venv (copied from another box, interrupted install) must not fail in the middle of a demo: re-install once
+if ! python -c "import numpy, scipy, soundfile, sentencepiece, kaldi_native_fbank, psutil, sacrebleu, jiwer" >/dev/null 2>&1; then
+  echo "== ./.venv is incomplete: offline re-install (1-3 min), log logs_install.txt"
+  bash install.sh > logs_install.txt 2>&1 || { echo "!! install failed: tail logs_install.txt"; tail -15 logs_install.txt; exit 2; }
+  . .venv/bin/activate; . tools/env.sh 2>/dev/null
+fi
+
+if [ "$MODE" = "box" ]; then
+  # the NPU check already passed once (logs/models_ok.txt): do not repeat the 2-5 min check at every start (SKIP_CHECK=0 forces it)
+  [ -f logs/models_ok.txt ] && export SKIP_CHECK=${SKIP_CHECK:-1}
+  exec bash tools/start_box.sh "$@"
+fi
 
 if [ "$MODE" = "check" ] || { [ "${SKIP_CHECK:-0}" != "1" ] && [ ! -f logs/models_ok.txt ]; }; then
   echo "== check every graph on the NPU + smoke test (2-5 min, details logs/session0_*)"

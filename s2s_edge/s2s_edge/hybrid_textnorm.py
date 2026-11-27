@@ -136,12 +136,42 @@ def number_words(value, lang):
     return out
 
 
+_ORD_LAST = {'one': 'first', 'two': 'second', 'three': 'third', 'five': 'fifth', 'eight': 'eighth', 'nine': 'ninth', 'twelve': 'twelfth'}
+
+
 def ordinal_en(n):
-    special = {1:'first', 2:'second', 3:'third', 5:'fifth', 8:'eighth', 9:'ninth', 12:'twelfth'}
-    if n in special: return special[n]
-    if n < 20: return cardinal(n, 'en') + 'th'
-    if n % 10 == 0: return cardinal(n, 'en')[:-1] + 'ieth'
-    return cardinal(n//10*10, 'en') + ' ' + ordinal_en(n%10)
+    """Ordinal words for any n >= 1: only the last word changes (twenty-one -> twenty-first, one hundred -> one hundredth)."""
+    words = cardinal(n, 'en'); head, sep, last = words.rpartition(' ')
+    pre, hy, core = last.rpartition('-')
+    core = _ORD_LAST.get(core) or (core[:-1] + 'ieth' if core.endswith('y') else core + 'th')
+    return head + sep + pre + (' ' if pre else '') + core
+
+
+# Korean: native numerals (attributive forms) are used before these counters (세 시, 여덟 시간, 두 개, 세 살, 세 번째); Sino-Korean otherwise.
+_KO_NATIVE_UNITS = ['', '한', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉']
+_KO_NATIVE_TENS = ['', '열', '스물', '서른', '마흔', '쉰', '예순', '일흔', '여든', '아흔']
+_KO_COUNTER = re.compile(r'\s*(?:시간|번째|개(?!월)|살|명|마리|권|잔|병|달(?!러)|사람|그릇|켤레|송이|시(?=$|[\s\d.,!?에은는부까쯤반정경와과도이가로을를만]))')
+
+
+_CJK = '\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af'                         # kana, CJK ideographs, Hangul: particles may follow a unit directly
+_END = r'(?![^\W\d_' + _CJK + r'])'                                          # not followed by a Latin (incl. Vietnamese) letter
+
+
+_SCORE = re.compile(r'tỉ số|tỷ số|thắng|thua|hòa|hoà|gỡ|score|won|lost|beat|defeat|draw|比分|赢|输|胜|负|스코어|이겼|졌|승리|패배|무승부', re.IGNORECASE)
+_RANGE_CUE = re.compile(r'(?:từ|khoảng|tầm|trang|from|between|pages?|about|around|roughly|approximately|chapters?|aged?|ages)\s*$', re.IGNORECASE)
+
+
+def _range_ok(text, a, b):
+    """Read "X-Y" as a range only with evidence: a quantity word or a CJK unit follows (10-20 phút, 10-20분), or a cue precedes (từ / from / pages);
+    never next to a score word (thua 3-5, lost 3-5, 3-5로 졌다)."""
+    if _SCORE.search(text[max(0, a - 25):a]) or _SCORE.search(text[b:b + 15]): return False
+    return bool(re.match(r'\s*[^\W\d_]', text[b:]) or _RANGE_CUE.search(text[:a]))
+
+
+def ko_native(n):
+    if n == 20: return '스무'
+    t, u = divmod(n, 10)
+    return _KO_NATIVE_TENS[t] + _KO_NATIVE_UNITS[u]
 
 
 @dataclass(frozen=True)
@@ -201,6 +231,25 @@ class HybridNormalizer:
             return []
 
     def render(self, kind, raw, m, lang):
+        if kind == 'idiom':                                              # 24/7 = around the clock
+            return {'idiom': raw}, dict(vi='hai mươi bốn trên bảy', en='twenty-four seven', ko='연중무휴', zh='全天候')[lang]
+        if kind == 'monthyear':
+            month, y = int(m['mm']), int(m['yyyy'])
+            if not (1 <= month <= 12 and 1000 <= y <= 2999): raise ValueError('not a month/year')
+            if lang == 'vi': spoken = join(lang, ['tháng', cardinal(month, lang), 'năm', cardinal(y, lang)])
+            elif lang == 'en': spoken = MONTHS_EN[month-1] + ' ' + cardinal(y, lang)
+            elif lang == 'ko': spoken = cardinal(y, lang) + ' 년 ' + cardinal(month, lang) + ' 월'
+            else: spoken = digits(str(y), lang) + '年' + cardinal(month, lang) + '月'
+            return {'year': y, 'month': month}, spoken
+        if kind == 'ordinal':
+            n = int(m['n'])
+            if n < 1: raise ValueError('ordinal 0')
+            return {'ordinal': n}, ordinal_en(n)
+        if kind == 'range':
+            a_, b_ = [int(x) for x in re.split(r'\s*[-–]\s*', raw.strip())]
+            word = dict(vi='đến', en='to', ko='에서', zh='到')[lang]
+            if lang == 'ko': return {'from': a_, 'to': b_}, cardinal(a_, lang) + '에서 ' + cardinal(b_, lang)   # particle attaches: 십에서 이십
+            return {'from': a_, 'to': b_}, join(lang, [cardinal(a_, lang), word, cardinal(b_, lang)])
         if kind == 'unsupported':
             raise ValueError('unsupported numeric notation; do not infer its semantic value')
         if kind == 'date':
@@ -292,21 +341,36 @@ class HybridNormalizer:
         patterns = [
             ('date', r'(?<!\d)(?:\d{4}[-/]\d{1,2}[-/]\d{1,2}(?!\d)|\d{4}年\s*\d{1,2}月\s*\d{1,2}日|\d{4}년\s*\d{1,2}월\s*\d{1,2}일|\d{1,2}/\d{1,2}(?:/\d{2,4})?(?!\d)|\d{1,2}\s+tháng\s+\d{1,2}(?:\s+năm\s+\d{4})?)'),
             ('date', r'\b(?:'+'|'.join(MONTHS_EN)+r')\s+\d{1,2}(?:st|nd|rd|th)?(?:,?\s+\d{4})?\b'),
+            ('date', r'(?<![\d.\-])\d{1,2}([\-.])\d{1,2}\1\d{4}(?![\d\-]|\.\d)'),             # 15-11-2026, 15.11.2026 (4-digit year only)
+            ('idiom', r'(?<![\d/])24/7(?![\d/])'),
+            ('monthyear', r'(?<![\d/])(?P<mm>\d{1,2})/(?P<yyyy>\d{4})(?![\d/])'),
+            ('ordinal', r'(?<![^\W_])(?P<n>\d+)(?P<suffix>st|nd|rd|th)(?![^\W_])'),
             ('year', r'(?<!\d)\d{4}\s*(?:年|년)'),
             ('time', r'(?<![\d:：])(?P<hour>\d{1,2})\s*[:：hH]\s*(?P<minute>\d{2})(?:[:：](?P<second>\d{2}))?(?:\s*(?P<ampm>[aApP]\.?[mM]\.?))?(?!\d)'),
             ('money', r'(?P<currency>'+currency+r')\s*(?P<number>'+NUM+r')(?!\d)'),
-            ('money', r'(?P<number>'+NUM+r')\s*(?P<currency>'+currency+r')(?![A-Za-z])'),
+            ('money', r'(?P<number>'+NUM+r')\s*(?P<currency>'+currency+r')'+_END),
             ('percent', r'(?P<number>'+NUM+r')\s*[%％]'),
-            ('measure', r'(?P<number>'+NUM+r')\s*(?P<unit>'+units+r')(?![A-Za-z])'),
+            ('measure', r'(?P<number>'+NUM+r')\s*(?P<unit>'+units+r')'+_END),
+            ('range', r'(?<![\dA-Za-z.,\-])[1-9]\d{0,3}\s*[-–]\s*[1-9]\d{0,3}(?=[' + _CJK + r'])'),       # 10-20분, 10-20分钟 (ascending only, checked below)
             ('unsupported', r'(?<![\w-])\d+(?:[.,]\d+)?[eE][+\-]?\d+(?!\w)'),
             ('unsupported', r'(?<![\w-])\d+(?:[.,]\d+)?\s*[-–]\s*\d+(?:[.,]\d+)?(?![\w-])'),
         ]
         candidates = []
         for kind, pattern in patterns:
             for m in re.finditer(pattern, text, flags=re.IGNORECASE):
+                if kind == 'measure' and len(m['unit']) == 1 and m['unit'].isupper() and m['unit'] != 'L': continue
+                if kind == 'ordinal' and lang != 'en': continue
+                if kind == 'range':
+                    a_, b_ = [int(x) for x in re.split(r'\s*[-–]\s*', m.group())]
+                    if a_ >= b_ or not _range_ok(text, m.start(), m.end()): continue
+                if kind == 'unsupported' and '-' in m.group() or kind == 'unsupported' and '–' in m.group():
+                    a_, b_ = [x.strip() for x in re.split(r'[-–]', m.group(), maxsplit=1)]
+                    if re.fullmatch(r'[1-9]\d{0,3}', a_) and re.fullmatch(r'[1-9]\d{0,3}', b_) and int(a_) < int(b_):
+                        kind = 'range'                                    # ascending small integers: 10-20, 2020-2022 (scores 6-6 / 3-1 and phone groups stay spelled)
+                if kind == 'range' and not _range_ok(text, m.start(), m.end()): kind = 'unsupported' 
                 candidates.append((m.start(), m.end(), kind, m, 'grammar'))
         # An identifier is a whole code/sequence, not a substring of a number.
-        for m in re.finditer(r'(?<![A-Za-z\d])(?:\+?\d[\d ()-]*\d|[A-Za-z]+[A-Za-z\d-]*\d[A-Za-z\d-]*|\d+[A-Za-z][A-Za-z\d]*)(?![A-Za-z\d])', text):
+        for m in re.finditer(r'(?<![^\W_' + _CJK + r'])(?:\+?\d[\d ()-]*\d|[A-Za-z]+[A-Za-z\d-]*\d[A-Za-z\d-]*|\d+[A-Za-z][A-Za-z\d]*)(?![^\W_' + _CJK + r'])', text):
             raw = m.group().rstrip(' -')
             context = self._context_identifier(text, m.start())
             mixed = bool(re.search('[A-Za-z]', raw)) and bool(re.search(r'\d', raw))
@@ -317,7 +381,7 @@ class HybridNormalizer:
             candidates.append((a, b, 'identifier', None, 'CRF proposal'))
         for m in re.finditer(NUM, text):
             candidates.append((m.start(), m.end(), 'number', m, 'grammar'))
-        priority = {'date': 0, 'year': 1, 'time': 1, 'money': 2, 'percent': 2, 'measure': 2, 'identifier': 3, 'unsupported': 4, 'number': 5}
+        priority = {'idiom': -1, 'date': 0, 'monthyear': 0, 'year': 1, 'time': 1, 'ordinal': 1, 'money': 2, 'percent': 2, 'measure': 2, 'range': 2, 'identifier': 3, 'unsupported': 4, 'number': 5}
         selected = []
         for a, b, kind, match, source in sorted(candidates, key=lambda c: (priority[c[2]], c[0], -(c[1]-c[0]))):
             if any(a < s.end and b > s.start for s in selected): continue
@@ -326,6 +390,14 @@ class HybridNormalizer:
                 value, spoken = self.render(kind, raw, match, lang)
                 if kind == 'date' and lang == 'vi' and re.search(r'\bngày\s*$', text[:a], re.IGNORECASE):
                     spoken = spoken.removeprefix('ngày ')
+                if kind == 'monthyear' and lang == 'vi' and re.search(r'\btháng\s*$', text[:a], re.IGNORECASE):
+                    spoken = spoken.removeprefix('tháng ')
+                if (kind == 'number' and lang == 'ko' and not value['sign'] and not value['fraction'] and value['whole'].isdigit()
+                        and not value['whole'].startswith('0') and 1 <= int(value['whole']) <= 99 and _KO_COUNTER.match(text, b)):
+                    after = _KO_COUNTER.match(text, b).group().lstrip()
+                    n_ = int(value['whole'])
+                    if not (after.startswith('시') and not after.startswith('시간') and n_ > 12):   # 13시 and later stay Sino-Korean (십삼 시)
+                        spoken = ko_native(n_); value = dict(value, native=True)
                 if kind == 'number' and value['whole'].startswith('0') and len(value['whole']) > 1 and not value['fraction']:
                     kind = 'identifier'
                     value = {'characters': raw, 'warning': 'untyped leading-zero sequence; preserve characters'}
@@ -336,10 +408,18 @@ class HybridNormalizer:
             selected.append(Span(a, b, kind, raw, value, spoken, source))
         selected.sort(key=lambda s: s.start)
         cursor = 0; parts = []; spoken_ranges = []; warnings = []
-        for s in selected:
+        for i, s in enumerate(selected):
             assert s.start >= cursor and text[s.start:s.end] == s.raw
-            parts.append(text[cursor:s.start]); begin = sum(len(p) for p in parts)
+            parts.append(text[cursor:s.start])
+            # a spoken form glued to a letter or to the previous span ("A4" -> "A four", "15-11" -> no "fifteenminus", "s403" -> "s bốn trăm")
+            prev = ''.join(parts)[-1:] if parts else ''
+            if lang != 'zh' and prev and prev.isalnum() and s.spoken[:1].isalnum() and (lang != 'ko' or prev.isascii()): parts.append(' ')
+            begin = sum(len(p) for p in parts)
             parts.append(s.spoken); spoken_ranges.append((begin, begin+len(s.spoken)))
+            nxt = text[s.end:s.end+1]
+            glued = lang != 'zh' and s.kind == 'number' and nxt and nxt.isalnum() and s.spoken[-1:].isalnum() and not (i + 1 < len(selected) and selected[i+1].start == s.end)
+            if glued and (lang != 'ko' or s.value.get('native') or nxt.isascii()):      # ko: only 세 시 / 두 개 and 삼 D, Sino-Korean stays attached
+                parts.append(' ')
             if s.kind == 'unresolved': warnings.append({'raw': s.raw, 'reason': s.value['reason'], 'policy': 'spell characters, do not infer value'})
             if 'warning' in s.value:
                 warnings.append({'raw': s.raw, 'reason': s.value['warning'], 'policy': 'spell characters'})

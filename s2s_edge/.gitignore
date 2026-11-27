@@ -1,0 +1,15 @@
+models/
+*.onnx
+*.dlc
+*.bin
+__pycache__/
+*.pyc
+logs/*.wav
+golden/
+logs/
+samples/*.wav
+golden_13b/
+golden_13b_b4/
+
+# organisers' sample-set evaluation logs (contain their sentences): keep out of the public repo
+eval/cpu_ref/

@@ -362,6 +362,7 @@ class LocalTorchEngine:
         return self._supertonic, self._st_style
 
     def asr(self, wav, lang):
+        from s2s_edge.asr import fix_itn
         from s2s_edge.asr_clean import clean_asr
         from s2s_edge.audio import normalize_level, segment
         from s2s_edge.conversation import restore_vi
@@ -382,7 +383,7 @@ class LocalTorchEngine:
         sv, post = self._get_sensevoice()
         for s, t in spans:
             res = sv.generate(input=x[s:t], cache={}, language=lang, use_itn=True)
-            raw = post(res[0]["text"]).strip()
+            raw = fix_itn(post(res[0]["text"]).strip(), lang)
             txt, _ = clean_asr(raw, lang)
             if txt:
                 out.append(txt)

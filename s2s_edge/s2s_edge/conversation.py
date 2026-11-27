@@ -15,7 +15,7 @@ from .asr import AsrXx
 from .names import NameTransliterator
 from .textnorm import vi_punct
 from . import neural_textnorm
-from .asr_clean import clean_asr, clean_mt
+from .asr_clean import clean_asr, clean_mt, drop_dup_parens
 from .ko_polite import polite as ko_polite
 MT_SPLIT = os.environ.get("S2S_MT_SPLIT", "1") != "0"
 
@@ -52,7 +52,32 @@ def _break_positions(breaks, word_ends, frame_s=0.04):
     return sorted(pos)
 
 
+def fix_vi_colons(text):
+    """The Vietnamese punctuation model sometimes inserts ':' as if the speaker named someone ("Thư: Có lý do gì không ạ?", "Nó vừa vặn với tôi:"),
+    and NLLB then translates a dialogue line. A colon is not punctuation the ASR can hear: turn it into a comma (end of text: a full stop).
+    Clock times and ratios (digits on both sides: 3:30, 2:1) are kept, and so is a colon that introduces a list ("gồm: tiếng Tây Ban Nha, tiếng Anh, ...",
+    "như sau:"), where NLLB handles it well."""
+    if ":" not in text: return text
+    common = ("anh", "chị", "em", "tôi", "mình", "bạn", "ông", "bà", "cô", "chú", "có", "không", "khoảng", "vâng", "dạ", "được", "cái", "này", "đó", "là", "thì", "nhưng", "và")
+    def _sub(m):
+        before, w = text[:m.start()], m.group(1) or ""
+        rest = re.split(r"[.?!]", text[m.end() - len(w):], maxsplit=1)[0]
+        if re.search(r"(?:gồm|gồm có|bao gồm|như sau|sau đây|như)\s*$", before, re.IGNORECASE) or rest.count(",") >= 2: return m.group(0)   # list colon
+        label = len(re.split(r"[.?!]\s*", before)[-1].split()) <= 2                       # "Thư:", "Tôi:", "Lưu ý:" read as a speaker label by NLLB
+        dangling = not re.search(r"\w", rest)                                                # "Nó vừa vặn với tôi:."
+        if not (label or dangling): return m.group(0)                                      # "Phòng đang dọn: Khoảng 2 phút ..." is fine as it is (BTC VE-6066)
+        return ", " + (w[0].lower() + w[1:] if w and w.casefold() in common else w)
+    t = re.sub(r"(?<!\d)\s*:\s*(?!\d)(\w+)?", _sub, text)
+    t = re.sub(r",\s*([.?!])", r"\1", t)
+    t = re.sub(r",\s*$", ".", t.rstrip())
+    return t
+
+
 def restore_vi(text, breaks=None):
+    return fix_vi_colons(_restore_vi(text, breaks))
+
+
+def _restore_vi(text, breaks=None):
     if VI_PUNCT_MODE == "model":
         from .punct_vi import get
         from .registry import ASSETS
@@ -160,7 +185,9 @@ class Engine:
         outs, tags = [], []
         for p in units:
             m, tg = clean_mt(run(p), p, tgt)
-            if tgt in ("zh", "ko") and m and self.names: m = self.names(m, tgt)
+            if tgt in ("zh", "ko") and m and self.names:
+                m = self.names(m, tgt); d = drop_dup_parens(m, p)                 # "도니 대학교 (Dony University)" only becomes a duplicate after transliteration
+                if d != m: m = d; tg = tg + ["mt_paren"] if "mt_paren" not in tg else tg
             if tgt == "ko" and m: m = ko_polite(m)
             if m: outs.append(m)
             tags += [x for x in tg if x not in tags]

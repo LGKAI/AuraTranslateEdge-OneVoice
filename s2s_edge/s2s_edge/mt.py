@@ -192,6 +192,12 @@ class MtFallback:
 DEFAULT_ROUTE = {"vi-zh": "mt33", "zh-vi": "mt33", "vi-ko": "mt33", "ko-vi": "mt33", "en-vi": "mt600", "vi-en": "mt600"}
 
 
+def _comma_cut(src, out):
+    """True when the translation ends on a comma while the source ends a sentence (the decoder stopped mid-sentence)."""
+    s, o = (src or "").strip(), (out or "").strip()
+    return bool(s and o and s[-1] in ".?!。？！" and o[-1] in ",，、")
+
+
 class MtRouter:
     """Per-direction MT: NLLB-200 3.3B ("mt33") for the directions where NLLB-600M ("mt600") is known to make meaning errors, 600M for the rest
     (route = {"vi-zh": "mt33", ...}; evidence in docs/mt33_routing.md). The TARGET is 3.3B on its directions, so falling back to 600M is never silent:
@@ -216,7 +222,10 @@ class MtRouter:
     def __call__(self, text, src, tgt):
         if self.uses_big(src, tgt):
             try:
-                out = self.big(text, src, tgt); self.last = "mt33"; return out
+                out = self.big(text, src, tgt); self.last = "mt33"
+                if _comma_cut(text, out):                                    # 3.3B stopped at a comma although the source sentence ends (vi->zh, ~1 % of BTC)
+                    out, self.last = self._retry_cut(text, src, tgt, out)
+                return out
             except Exception as e:
                 if self.strict: raise
                 self.big = None
@@ -225,6 +234,30 @@ class MtRouter:
                     except Exception: pass
                 self._degrade(f"NLLB-3.3B failed while translating {src}->{tgt}: {repr(e)[:300]}")
         self.last = "mt600"; return self.small(text, src, tgt)
+
+    def _retry_cut(self, text, src, tgt, first):
+        """Second try with a stronger length penalty (3.3B, beam 4), then NLLB-600M. A retry is accepted only if it is complete AND clearly longer
+        than the cut output (>= 1.15 x, spaces/punctuation ignored): a full translation must contain the cut part plus the missing tail, so a "complete"
+        output that is not longer has dropped content elsewhere (seen once in 14: 600M dropped a clause and invented a date). Nothing accepted ->
+        the longer of the two 3.3B outputs (never a 600M one). Laptop check on the 14 real cases: 10 completed, 0 meaning regressions (fix_check/)."""
+        core = lambda x: len(re.sub(r"[\W_]+", "", x or ""))
+        good = lambda x: not _comma_cut(text, x) and core(x) >= 1.15 * core(first)
+        cands = [(first, "mt33")]
+        dec = getattr(self.big, "__dict__", {}).get("impl") or self.big     # set it on the beam decoder itself, not on a delegating wrapper
+        lp = getattr(dec, "lp", None)
+        try:
+            if lp is not None:
+                dec.lp = 1.6
+                try: cands.append((self.big(text, src, tgt), "mt33_lp1.6"))
+                finally: dec.lp = lp
+        except Exception as e: self.log(f"[mt] length-penalty retry failed: {e!r}")
+        if len(cands) > 1 and good(cands[-1][0]):
+            return cands[-1]
+        try:
+            o = self.small(text, src, tgt)
+            if good(o): return o, "mt600_cut_fallback"
+        except Exception as e: self.log(f"[mt] 600M retry failed: {e!r}")
+        return max(cands, key=lambda c: core(c[0]))
 
     def status(self):
         return dict(route=self.route, big_in_use=self.big is not None, degraded=self.degraded, errors=self.errors[-3:], small=getattr(self.small, "active", None))
@@ -236,6 +269,11 @@ class MtRouter:
 
 
 _SENT = re.compile(r"(?<=[\.\!\?;])\s+|(?<=[。！？；])|\s*\n+\s*")      # ASCII . ! ? ; only before a space (keeps 15.000 / 36.5 / 1,000 whole)
+_INITIAL = re.compile(r"(?:^|\s)[A-HJ-Z]\.$")                                       # one-letter initial ("M. James", "Bamela F. Fagoj"); "I." still ends a sentence
+_STARTERS = {w.casefold() for w in (                                                    # after "Plan B." these start a new sentence, so no merge
+    "I We You He She It They This That These Those There Here The A An My Our Your His Her Its Their Then So But And Or If When What Why How Where Who "
+    "Yes No Ok Okay Please Thank Thanks Let Do Does Did Is Are Was Were Can Could Will Would Should "
+    "Tôi Chúng Mình Bạn Anh Chị Em Ông Bà Cô Chú Nó Họ Đây Đó Này Vâng Dạ Không Có Được Cảm Xin Vậy Thế Nhưng Và Rồi Sau Khi Nếu").split()}
 _ABBR = re.compile(r"(?:^|\s)(?:Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|Mt|e\.g|i\.e|a\.m|p\.m|U\.S|TP|Tp)\.$", re.IGNORECASE)
 
 
@@ -244,7 +282,7 @@ def split_sentences(text, lang):
     e.g. a lone 'Vâng.') are merged into the neighbour so MT never gets a fragment out of context."""
     parts = []
     for p in (p.strip() for p in _SENT.split(text.strip()) if p and p.strip()):
-        if parts and _ABBR.search(parts[-1]): parts[-1] += " " + p                         # "Mr. Kim", "at 7 a.m. tomorrow": not a sentence end
+        if parts and (_ABBR.search(parts[-1]) or _INITIAL.search(parts[-1]) and p.split()[0].strip(",.;:!?").casefold() not in _STARTERS): parts[-1] += " " + p                         # "Mr. Kim", "at 7 a.m. tomorrow": not a sentence end
         else: parts.append(p)
     small = (lambda p: len(re.sub(r"\W", "", p)) < 3) if lang in ("zh", "ko") else (lambda p: len(p.split()) < 2)
     out = []

@@ -115,6 +115,19 @@ def clean_mt(out, src_text, tgt):
     return t, tags
 
 
+def drop_dup_parens(t, src_text=""):
+    """NLLB adds "(transliteration)" duplicates: 도니 대학교 (도니 대학교), and TTS reads them twice. Also called after the name transliteration,
+    because NLLB often writes "도니 대학교 (Dony University)" and the duplicate only appears once the Latin is transliterated.
+    A parenthesis is dropped only if one of its words (>= 2 chars) repeats within the 30 characters before it, and never if the source has brackets:
+    acronyms "(SWAPO)", glosses "(se)", "(đã gồm thuế)" stay."""
+    if not ENABLED or not t or "(" in (src_text or "") or "（" in (src_text or ""): return t
+    def _dup(m):
+        words = [w for w in re.split(r"[\s·・,，]+", m.group(1)) if len(w) >= 2]
+        return "" if any(w in t[max(0, m.start() - 30):m.start()] for w in words) else m.group(0)
+    u = re.sub(r"\s*[(（]([^()（）]{1,40})[)）]", _dup, t)
+    return re.sub(r"\s{2,}", " ", u).strip() if u != t and re.search(r"\w", u) else t
+
+
 def _clean_mt_once(out, src_text, tgt):
     if not ENABLED or not out: return out or "", []
     t = out; tags = []
@@ -124,6 +137,8 @@ def _clean_mt_once(out, src_text, tgt):
     if _OUT_LABEL.match(t) and not _OUT_LABEL.match(src_text or ""): t, tags = _OUT_LABEL.sub("", t, 1), tags + ["mt_label"]
     u = _LEAD_PUNCT.sub("", t)
     if u != t and u: t, tags = u, tags + ["mt_lead_punct"]
+    u = drop_dup_parens(t, src_text)
+    if u != t: t, tags = u, tags + ["mt_paren"]
     if tgt in ("vi", "en"):
         u = re.sub(r"\s*。\s*$", ".", re.sub(r"\s*。\s*(?=\S)", ". ", t))
         if u != t: t, tags = u, tags + ["mt_cjk_stop"]

@@ -54,17 +54,22 @@ def sv_features(w, cmvn):
     return ((x + cmvn[0]) * cmvn[1]).astype(np.float32)
 
 
-_GLUED = re.compile(r"\b(at|by|to|till|until|from|before|after|around|about|since|past|is|was)(\d)", re.IGNORECASE)
-_HHMM = re.compile(r"\b([01]?\d)([0-5]\d)(\s*)(a\.?m\.?|p\.?m\.?)(?![A-Za-z])", re.IGNORECASE)
+_GLUED = re.compile(r"\b(at|by|to|till|until|from|before|after|around|about|since|past|is|was)(\d)", re.IGNORECASE)      # only inserts a space
+_TIME_PREP = r"(?:at|by|around|from|to|until|till|before|after|about|since|past)"
+# a clock time before AM/PM needs a time preposition right before it: "at 530 AM", "from 530 AM to 630 PM", "at 8 30 am" (the colon came out as a space).
+# Without the preposition the digits are left alone ("1000 AM radios", "Room 530 AM"). Hour 1-12 then two digits of minutes 00-59.
+_HHMM = re.compile(r"(?<![\w:.,/\-])(" + _TIME_PREP + r")(\s+)(1[0-2]|0?[1-9])\s?([0-5]\d)(\s*)(a\.?m\.?|p\.?m\.?)(?![A-Za-z\d])", re.IGNORECASE)
 
 
 def fix_itn(text, lang):
     """Repair SenseVoice inverse text normalisation for English times. "at 5:30 AM" needs two tokens that carry no sound of their own
-    (a lone "▁" and ":"); greedy CTC at 60 ms frames drops exactly those, giving "at530 AM" (BTC EV-3775), which MT cannot read.
-    Only words that are followed by a time are split from the digits, and only 3-4 digit numbers before AM/PM become h:mm."""
+    (a lone "▁" and ":"); greedy CTC at 60 ms frames drops exactly those, giving "at530 AM" (BTC EV-3775) or "at 8 30 am" (BTC EV-6709), which MT cannot read.
+    Two rules, both pattern based (no sentence is special-cased): (1) a time preposition glued to digits gets its space back; (2) h:mm is restored only
+    for "<time preposition> <h><mm> AM/PM" with hour 1-12 and minutes 00-59. 24-hour times ("at1530") are NOT guessed: glued digits also occur for
+    plain numbers ("dividing by2" for "by 12"), so there is no evidence they are times."""
     if lang not in ("en", "auto") or not any(c.isdigit() for c in text): return text      # auto: the patterns only match Latin words / AM-PM
     text = _GLUED.sub(r"\1 \2", text)
-    return _HHMM.sub(lambda m: f"{m.group(1)}:{m.group(2)}{m.group(3) or ' '}{m.group(4)}" if int(m.group(1)) <= 12 else m.group(0), text)
+    return _HHMM.sub(lambda m: f"{m.group(1)}{m.group(2)}{m.group(3)}:{m.group(4)}{m.group(5) or ' '}{m.group(6)}", text)
 
 
 def windows(graphs, default):

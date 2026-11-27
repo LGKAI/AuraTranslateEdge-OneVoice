@@ -126,8 +126,15 @@
     $("#engineName").textContent = (h.engine || "Ready") + " · Offline";
     const info = h.info || {};
     const parts = [];
+    if (info.backend) parts.push(`Backend: ${String(info.backend).toUpperCase()}`);
     if (info.asr) parts.push(`ASR: ${info.asr}`);
-    if (info.mt) parts.push(`MT: ${info.mt}`);
+    if (typeof info.mt === "string" && info.mt) {
+      parts.push(`MT: ${info.mt}`);
+    } else if (info.mt && typeof info.mt === "object") {
+      const mtLabel = info.mt.big_in_use ? "NLLB 3.3B + 600M" : "NLLB-600M";
+      parts.push(`MT: ${mtLabel}${info.mt.degraded ? " (DEGRADED)" : ""}`);
+      if (info.mt.degraded) toast("Cảnh báo: NLLB-3.3B không khả dụng, đang chạy 600M");
+    }
     if (info.tts) parts.push(`TTS: ${info.tts}`);
     if (parts.length && stackInfoEl) {
       stackInfoEl.textContent = parts.join(" · ");
